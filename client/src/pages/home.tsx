@@ -21,10 +21,10 @@ import {
 } from "lucide-react";
 
 export default function Home() {
-  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
+  const [openMenus, setOpenMenus] = useState<string>('');
 
   const toggleMenu = (menu: string) => {
-    setOpenMenus(prev => ({ ...prev, [menu]: !prev[menu] }));
+    setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
   return (
@@ -62,9 +62,9 @@ export default function Home() {
                   <Users className="w-5 h-5" />
                   <span className="text-sm font-medium">CRM</span>
                 </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus['crm'] ? '' : '-rotate-90'}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'crm' ? '' : '-rotate-90'}`} />
               </button>
-              {openMenus['crm'] && (
+              {openMenus === 'crm' && (
                 <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                   <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
                     Active Clients
@@ -99,9 +99,9 @@ export default function Home() {
                   <DollarSign className="w-5 h-5" />
                   <span className="text-sm font-medium">Sales</span>
                 </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus['sales'] ? '' : '-rotate-90'}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'sales' ? '' : '-rotate-90'}`} />
               </button>
-              {openMenus['sales'] && (
+              {openMenus === 'sales' && (
                 <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                   <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
                     Invoices
@@ -126,9 +126,9 @@ export default function Home() {
                   <FileText className="w-5 h-5" />
                   <span className="text-sm font-medium">Contracts</span>
                 </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus['contracts'] ? '' : '-rotate-90'}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'contracts' ? '' : '-rotate-90'}`} />
               </button>
-              {openMenus['contracts'] && (
+              {openMenus === 'contracts' && (
                 <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                   <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
                     Contracts
@@ -150,9 +150,9 @@ export default function Home() {
                   <MessageSquare className="w-5 h-5" />
                   <span className="text-sm font-medium">Support</span>
                 </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus['support'] ? '' : '-rotate-90'}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'support' ? '' : '-rotate-90'}`} />
               </button>
-              {openMenus['support'] && (
+              {openMenus === 'support' && (
                 <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                   <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
                     Tickets
@@ -181,9 +181,9 @@ export default function Home() {
                   <FileBarChart className="w-5 h-5" />
                   <span className="text-sm font-medium">Reports</span>
                 </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus['reports'] ? '' : '-rotate-90'}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'reports' ? '' : '-rotate-90'}`} />
               </button>
-              {openMenus['reports'] && (
+              {openMenus === 'reports' && (
                 <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                   <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
                     Reports
