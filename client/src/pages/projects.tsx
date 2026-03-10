@@ -33,7 +33,7 @@ export default function ProjectsPage() {
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white ">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Projects" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -47,22 +47,22 @@ export default function ProjectsPage() {
                   <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm font-medium text-[#8b5cf6] shadow-sm">
                     <List className="w-4 h-4" /> Table View
                   </button>
-                  <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm font-medium text-[#64748b] hover:bg-[#f8fafc] transition-colors shadow-sm">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm font-medium text-[#64748b] hover:bg-white/80 backdrop-blur-md/50 transition-colors shadow-sm">
                     <LayoutGrid className="w-4 h-4 text-[#8b5cf6]" /> Board
                   </button>
                 </div>
                 <div className="flex items-center gap-2 ml-2">
-                  <button className="px-4 py-2 bg-white border border-green-200 rounded-full text-sm font-medium text-green-600 shadow-sm">
+                  <button className="px-4 py-2 bg-white/80 backdrop-blur-md border border-green-200 rounded-full text-sm font-medium text-green-600 shadow-sm">
                     Completed
                   </button>
-                  <button className="px-4 py-2 bg-white border border-[#e2e8f0] rounded-full text-sm font-medium text-[#64748b] hover:bg-[#f8fafc] transition-colors shadow-sm">
+                  <button className="px-4 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] rounded-full text-sm font-medium text-[#64748b] hover:bg-white/80 backdrop-blur-md/50 transition-colors shadow-sm">
                     In progress
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-4 mb-6 shadow-sm border border-[#e2e8f0]">
+            <div className="modern-card p-4 mb-6 shadow-sm border border-[#e2e8f0]">
               <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div className="flex items-center gap-3 w-full sm:w-auto flex-1">
                   <div className="relative flex-1 max-w-[240px]">
@@ -73,10 +73,10 @@ export default function ProjectsPage() {
                       className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white transition-all shadow-sm hover:shadow transition-colors">
+                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                     Filter <Filter className="w-4 h-4" />
                   </button>
-                  <button className="p-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-[#475569] hover:bg-[#f8fafc] transition-colors">
+                  <button className="p-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-[#475569] hover:bg-white/80 backdrop-blur-md/50 transition-colors">
                     <TrendingUp className="w-4 h-4" />
                   </button>
                   <div className="relative flex-1 max-w-[200px]">
@@ -89,7 +89,7 @@ export default function ProjectsPage() {
                 </div>
                 
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white transition-all shadow-sm hover:shadow transition-colors">
+                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                     <Download className="w-4 h-4" /> Export <ChevronDown className="w-3.5 h-3.5" />
                   </button>
                   <button 
@@ -103,7 +103,7 @@ export default function ProjectsPage() {
             </div>
 
             {/* Stats Row */}
-            <div className="bg-white p-6 mb-8 shadow-sm border border-[#e2e8f0]">
+            <div className="modern-card p-6 mb-8 shadow-sm border border-[#e2e8f0]">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div className="flex flex-col group cursor-pointer">
                   <span className="text-[28px] font-medium text-[#0f172a] mb-1">181</span>
@@ -131,7 +131,7 @@ export default function ProjectsPage() {
             <div className="overflow-x-auto pb-4">
               <table className="w-full text-sm text-left whitespace-nowrap border-separate" style={{ borderSpacing: '0 12px' }}>
                 <thead>
-                  <tr className="bg-[#f8fafc] text-[#64748b]">
+                  <tr className="bg-white/80 backdrop-blur-md/50 text-[#64748b]">
                     <th className="py-4 px-6 font-medium rounded-l-[12px] cursor-pointer hover:text-[#0f172a]">
                       <div className="flex items-center gap-1.5 text-[13px]">Project Name <ChevronUp className="w-3.5 h-3.5 opacity-50" /></div>
                     </th>
@@ -158,7 +158,7 @@ export default function ProjectsPage() {
                 </thead>
                 <tbody>
                   {projectsList.map((project, i) => (
-                    <tr key={i} className="bg-white group">
+                    <tr key={i} className="bg-white/80 backdrop-blur-md group">
                       <td className="py-4 px-6 font-medium rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
                         <Link href="/projects/1" className="text-[#0f172a] hover:text-[#8b5cf6] transition-colors">{project.name}</Link>
                       </td>
@@ -213,8 +213,8 @@ export default function ProjectsPage() {
       {/* Add Project Modal */}
       {isAddProjectModalOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white shadow-xl w-full max-w-[800px] my-8 flex flex-col relative max-h-[90vh]">
-            <div className="flex items-center justify-between p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white z-10 rounded-t-lg">
+          <div className="modern-card shadow-xl w-full max-w-[800px] my-8 flex flex-col relative max-h-[90vh]">
+            <div className="flex items-center justify-between p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white/80 backdrop-blur-md z-10 rounded-t-lg">
               <h2 className="text-xl font-bold text-[#0f172a]">Create A New Project</h2>
               <button 
                 onClick={() => setIsAddProjectModalOpen(false)}
@@ -267,15 +267,15 @@ export default function ProjectsPage() {
               <div className="flex items-center justify-between">
                 <span className="text-[14px] font-medium text-[#0f172a]">Description & Details</span>
                 <button className="w-10 h-5 bg-[#e2e8f0] rounded-full relative transition-colors cursor-pointer">
-                  <div className="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                  <div className="w-4 h-4 bg-white/80 backdrop-blur-md rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
                 </button>
               </div>
             </div>
             
-            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white rounded-b-lg shrink-0 sticky bottom-0">
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white/80 backdrop-blur-md rounded-b-lg shrink-0 sticky bottom-0">
               <button 
                 onClick={() => setIsAddProjectModalOpen(false)}
-                className="px-5 py-2 bg-white border border-[#e2e8f0] hover:bg-[#f8fafc] text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
               >
                 Close
               </button>
@@ -289,8 +289,8 @@ export default function ProjectsPage() {
       {/* Edit Project Modal */}
       {isEditProjectModalOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white shadow-xl w-full max-w-[800px] my-8 flex flex-col relative max-h-[90vh]">
-            <div className="flex flex-col p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white z-10 rounded-t-lg">
+          <div className="modern-card shadow-xl w-full max-w-[800px] my-8 flex flex-col relative max-h-[90vh]">
+            <div className="flex flex-col p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white/80 backdrop-blur-md z-10 rounded-t-lg">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-[#0f172a]">Edit Project</h2>
                 <button 
@@ -335,7 +335,7 @@ export default function ProjectsPage() {
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Assignee</label>
-                  <div className="w-full min-h-[80px] p-2 bg-white border border-[#e2e8f0] rounded-md flex flex-col gap-2">
+                  <div className="w-full min-h-[80px] p-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] rounded-md flex flex-col gap-2">
                     <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#f1f5f9] border border-[#e2e8f0] rounded text-[12px] text-[#475569] w-fit">
                       <span className="cursor-pointer hover:text-red-500">×</span>
                       Vikas Sharma (vikas@pinkgorillasoftware.com)
@@ -361,15 +361,15 @@ export default function ProjectsPage() {
               <div className="flex items-center justify-between">
                 <span className="text-[14px] font-medium text-[#0f172a]">Description & Details</span>
                 <button className="w-10 h-5 bg-[#e2e8f0] rounded-full relative transition-colors cursor-pointer">
-                  <div className="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                  <div className="w-4 h-4 bg-white/80 backdrop-blur-md rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
                 </button>
               </div>
             </div>
             
-            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white rounded-b-lg shrink-0 sticky bottom-0">
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white/80 backdrop-blur-md rounded-b-lg shrink-0 sticky bottom-0">
               <button 
                 onClick={() => setIsEditProjectModalOpen(false)}
-                className="px-5 py-2 bg-white border border-[#e2e8f0] hover:bg-[#f8fafc] text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
               >
                 Close
               </button>

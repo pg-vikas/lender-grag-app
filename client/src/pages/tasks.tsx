@@ -15,14 +15,14 @@ export default function TasksPage() {
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white ">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Tasks" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Client Tasks Overview</h1>
 
-            <div className="bg-white p-6 mb-6  border border-[#e2e8f0]">
+            <div className="modern-card p-6 mb-6  border border-[#e2e8f0]">
               <div className="flex flex-col md:flex-row gap-6 items-end">
                 <div className="flex-1 w-full max-w-[320px]">
                   <label className="block text-[13px] text-[#64748b] mb-2 font-medium">Client</label>
@@ -49,22 +49,22 @@ export default function TasksPage() {
               </div>
             </div>
 
-            <div className="bg-white min-h-[400px] rounded-lg  border border-[#e2e8f0]">
+            <div className="bg-white/80 backdrop-blur-md min-h-[400px] rounded-lg  border border-[#e2e8f0]">
               <div className="p-6 overflow-x-auto border-b border-[#e2e8f0]">
                 <div className="flex gap-3 min-w-max">
                   <button className="px-4 py-2 bg-[#8b5cf6] text-white rounded-md text-[13px] font-medium transition-colors">
                     Today's Tasks (0)
                   </button>
-                  <button className="px-4 py-2 bg-[#f8fafc] text-[#475569] hover:bg-[#f1f5f9] rounded-md text-[13px] font-medium transition-colors">
+                  <button className="px-4 py-2 bg-white/80 backdrop-blur-md/50 text-[#475569] hover:bg-[#f1f5f9] rounded-md text-[13px] font-medium transition-colors">
                     Overdue Tasks (0)
                   </button>
-                  <button className="px-4 py-2 bg-[#f8fafc] text-[#475569] hover:bg-[#f1f5f9] rounded-md text-[13px] font-medium transition-colors">
+                  <button className="px-4 py-2 bg-white/80 backdrop-blur-md/50 text-[#475569] hover:bg-[#f1f5f9] rounded-md text-[13px] font-medium transition-colors">
                     Future Tasks (0)
                   </button>
-                  <button className="px-4 py-2 bg-[#f8fafc] text-[#475569] hover:bg-[#f1f5f9] rounded-md text-[13px] font-medium transition-colors">
+                  <button className="px-4 py-2 bg-white/80 backdrop-blur-md/50 text-[#475569] hover:bg-[#f1f5f9] rounded-md text-[13px] font-medium transition-colors">
                     Completed Tasks (0)
                   </button>
-                  <button className="px-4 py-2 bg-[#f8fafc] text-[#475569] hover:bg-[#f1f5f9] rounded-md text-[13px] font-medium transition-colors">
+                  <button className="px-4 py-2 bg-white/80 backdrop-blur-md/50 text-[#475569] hover:bg-[#f1f5f9] rounded-md text-[13px] font-medium transition-colors">
                     Clients Missing Task (0)
                   </button>
                 </div>

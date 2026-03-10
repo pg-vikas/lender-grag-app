@@ -30,7 +30,7 @@ export default function KnowledgebasePage() {
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white ">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Knowledgebase" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -50,7 +50,7 @@ export default function KnowledgebasePage() {
                    <input 
                      type="text"
                      placeholder="Search articles, guides, and tutorials..." 
-                     className="w-full pl-12 pr-4 py-4 bg-white rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] transition-all shadow-lg"
+                     className="w-full pl-12 pr-4 py-4 bg-white/80 backdrop-blur-md rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] transition-all shadow-lg"
                    />
                    <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#8b5cf6] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#7c3aed] transition-colors">
                      Search
@@ -65,7 +65,7 @@ export default function KnowledgebasePage() {
                  <h2 className="text-xl font-bold text-[#0f172a] mb-6">Browse by Category</h2>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {categories.map((cat, i) => (
-                      <div key={i} className="bg-white p-6  border border-[#e2e8f0] hover:border-[#8b5cf6]/30 transition-colors cursor-pointer group">
+                      <div key={i} className="modern-card p-6  border border-[#e2e8f0] hover:border-[#8b5cf6]/30 transition-colors cursor-pointer group">
                          <div className="flex items-start gap-4">
                             <div className="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-[#8b5cf6] group-hover:text-white transition-colors">
                                <BookOpen className="w-6 h-6" />
@@ -83,7 +83,7 @@ export default function KnowledgebasePage() {
 
                {/* Sidebar */}
                <div>
-                 <div className="bg-white p-6  border border-[#e2e8f0]">
+                 <div className="modern-card p-6  border border-[#e2e8f0]">
                     <h2 className="text-lg font-bold text-[#0f172a] mb-4">Popular Articles</h2>
                     <ul className="space-y-3">
                        {popularArticles.map((article, i) => (

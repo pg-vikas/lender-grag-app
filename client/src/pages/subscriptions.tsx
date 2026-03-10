@@ -20,14 +20,14 @@ export default function SubscriptionsPage() {
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white ">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Subscriptions" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Subscriptions</h1>
 
-            <div className="bg-white shadow-sm p-6 border border-[#e2e8f0]">
+            <div className="modern-card shadow-sm p-6 border border-[#e2e8f0]">
               <div className="flex items-center gap-3 mb-6 w-full sm:w-auto">
                 <div className="relative flex-1 sm:w-64">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
@@ -37,7 +37,7 @@ export default function SubscriptionsPage() {
                     className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                   />
                 </div>
-                <button className="flex items-center justify-center w-10 h-10 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg text-[#94a3b8] hover:bg-[#f1f5f9] transition-colors">
+                <button className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] rounded-lg text-[#94a3b8] hover:bg-[#f1f5f9] transition-colors">
                   <Filter className="w-4 h-4" />
                 </button>
               </div>
@@ -45,7 +45,7 @@ export default function SubscriptionsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left whitespace-nowrap border-separate" style={{ borderSpacing: '0 12px' }}>
                   <thead>
-                    <tr className="bg-[#f8fafc] text-[#64748b]">
+                    <tr className="bg-white/80 backdrop-blur-md/50 text-[#64748b]">
                       <th className="py-4 px-6 font-medium rounded-l-[12px] cursor-pointer hover:text-[#0f172a] w-32">
                         <div className="flex items-center gap-1.5 text-[13px]">ID # <ChevronUp className="w-3.5 h-3.5 opacity-50" /></div>
                       </th>
@@ -72,7 +72,7 @@ export default function SubscriptionsPage() {
                   </thead>
                   <tbody>
                     {subscriptionsList.map((sub, i) => (
-                      <tr key={i} className="bg-white group">
+                      <tr key={i} className="bg-white/80 backdrop-blur-md group">
                         <td className="py-4 px-6 font-medium rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
                           <Link href={`/subscriptions/${sub.id}`} className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors">
                             {sub.id}

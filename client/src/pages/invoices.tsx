@@ -28,7 +28,7 @@ export default function InvoicesPage() {
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-      <div className="flex-1 flex flex-col min-w-0 bg-white ">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Invoices" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -42,7 +42,7 @@ export default function InvoicesPage() {
 
             {/* Stats Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="bg-white p-6  border border-[#e2e8f0] flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Total Paid</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">$14,500.00</h3>
@@ -51,7 +51,7 @@ export default function InvoicesPage() {
                     <CheckCircle2 className="w-6 h-6 text-green-500" />
                  </div>
               </div>
-              <div className="bg-white p-6  border border-[#e2e8f0] flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Total Pending</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">$3,200.00</h3>
@@ -60,7 +60,7 @@ export default function InvoicesPage() {
                     <Clock className="w-6 h-6 text-amber-500" />
                  </div>
               </div>
-              <div className="bg-white p-6  border border-[#e2e8f0] flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Total Overdue</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">$2,400.00</h3>
@@ -71,8 +71,8 @@ export default function InvoicesPage() {
               </div>
             </div>
 
-            <div className="bg-white  overflow-hidden border border-[#e2e8f0]">
-              <div className="p-4 border-b border-[#e2e8f0] flex flex-col sm:flex-row gap-4 justify-between items-center bg-[#f8fafc]">
+            <div className="modern-card  overflow-hidden border border-[#e2e8f0]">
+              <div className="p-4 border-b border-[#e2e8f0] flex flex-col sm:flex-row gap-4 justify-between items-center bg-white/80 backdrop-blur-md/50">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 sm:w-64">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
@@ -82,18 +82,18 @@ export default function InvoicesPage() {
                       className="w-full pl-9 pr-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white transition-all shadow-sm hover:shadow transition-colors">
+                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                     Filter <Filter className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white transition-all shadow-sm hover:shadow transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                   <Download className="w-3.5 h-3.5" /> Download All
                 </button>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left whitespace-nowrap">
-                  <thead className="bg-white border-b border-[#e2e8f0]">
+                  <thead className="bg-white/80 backdrop-blur-md border-b border-[#e2e8f0]">
                     <tr>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Invoice ID</th>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Client</th>
@@ -106,7 +106,7 @@ export default function InvoicesPage() {
                   </thead>
                   <tbody className="divide-y divide-[#f1f5f9]">
                     {invoicesList.map((invoice, i) => (
-                      <tr key={i} className="hover:bg-[#f8fafc]/50 transition-colors bg-white">
+                      <tr key={i} className="hover:bg-white/80 backdrop-blur-md/50/50 transition-colors bg-white/80 backdrop-blur-md">
                         <td className="py-4 px-6 font-semibold">
                           <Link href={`/invoices/${invoice.id}`} className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors">{invoice.id}</Link>
                         </td>
@@ -143,9 +143,9 @@ export default function InvoicesPage() {
                                     className="fixed inset-0 z-10"
                                     onClick={() => setActiveDropdown(null)}
                                   ></div>
-                                  <div className="absolute right-0 top-[24px] z-20 w-[200px] bg-white rounded-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-[#e2e8f0] py-2 flex flex-col">
+                                  <div className="absolute right-0 top-[24px] z-20 w-[200px] bg-white/80 backdrop-blur-md rounded-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-[#e2e8f0] py-2 flex flex-col">
                                     <button 
-                                      className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-[#f8fafc] transition-colors"
+                                      className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-white/80 backdrop-blur-md/50 transition-colors"
                                       onClick={() => {
                                         setActiveDropdown(null);
                                         setIsEditInvoiceModalOpen(true);
@@ -154,7 +154,7 @@ export default function InvoicesPage() {
                                       Quick Edit
                                     </button>
                                     <button 
-                                      className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-[#f8fafc] transition-colors"
+                                      className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-white/80 backdrop-blur-md/50 transition-colors"
                                       onClick={() => {
                                         setActiveDropdown(null);
                                         setIsAddPaymentModalOpen(true);
@@ -162,7 +162,7 @@ export default function InvoicesPage() {
                                     >
                                       Add A New Payment
                                     </button>
-                                    <button className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-[#f8fafc] transition-colors">
+                                    <button className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-white/80 backdrop-blur-md/50 transition-colors">
                                       Download
                                     </button>
                                   </div>
@@ -187,8 +187,8 @@ export default function InvoicesPage() {
       {/* Edit Invoice Modal */}
       {isEditInvoiceModalOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white shadow-xl w-full max-w-[700px] my-8 flex flex-col relative max-h-[90vh]">
-            <div className="flex flex-col p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white z-10 rounded-t-lg">
+          <div className="modern-card shadow-xl w-full max-w-[700px] my-8 flex flex-col relative max-h-[90vh]">
+            <div className="flex flex-col p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white/80 backdrop-blur-md z-10 rounded-t-lg">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-[#0f172a]">Edit Invoice</h2>
                 <button 
@@ -226,22 +226,22 @@ export default function InvoicesPage() {
               <div className="flex items-center justify-between mb-4">
                 <span className="text-[14px] font-medium text-[#475569]">Additional Information</span>
                 <button className="w-10 h-5 bg-[#e2e8f0] rounded-full relative transition-colors cursor-pointer">
-                  <div className="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                  <div className="w-4 h-4 bg-white/80 backdrop-blur-md rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
                 </button>
               </div>
 
               <div className="text-[13px] font-semibold text-[#475569] mb-3">* Required</div>
 
-              <div className="flex items-center gap-2 px-4 py-3 bg-[#f8fafc] border border-cyan-100 rounded-md text-[13px] text-[#475569]">
+              <div className="flex items-center gap-2 px-4 py-3 bg-white/80 backdrop-blur-md/50 border border-cyan-100 rounded-md text-[13px] text-[#475569]">
                 <RefreshCw className="w-4 h-4 text-orange-400" />
                 <span>Recurring invoice options are available after an invoice has been created</span>
               </div>
             </div>
             
-            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white rounded-b-lg shrink-0 sticky bottom-0">
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white/80 backdrop-blur-md rounded-b-lg shrink-0 sticky bottom-0">
               <button 
                 onClick={() => setIsEditInvoiceModalOpen(false)}
-                className="px-5 py-2 bg-white border border-[#e2e8f0] hover:bg-[#f8fafc] text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
               >
                 Close
               </button>
@@ -255,8 +255,8 @@ export default function InvoicesPage() {
       {/* Add Payment Modal */}
       {isAddPaymentModalOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white shadow-xl w-full max-w-[700px] my-8 flex flex-col relative max-h-[90vh]">
-            <div className="flex flex-col p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white z-10 rounded-t-lg">
+          <div className="modern-card shadow-xl w-full max-w-[700px] my-8 flex flex-col relative max-h-[90vh]">
+            <div className="flex flex-col p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white/80 backdrop-blur-md z-10 rounded-t-lg">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-[#0f172a]">Add A New Payment</h2>
                 <button 
@@ -276,7 +276,7 @@ export default function InvoicesPage() {
                 <div className="grid grid-cols-[160px_1fr] items-center">
                   <label className="text-[13px] font-medium text-[#475569]">Amount*</label>
                   <div className="flex">
-                    <span className="inline-flex items-center px-3 bg-[#f8fafc] border border-r-0 border-[#e2e8f0] rounded-l-md text-[13px] text-[#94a3b8]">
+                    <span className="inline-flex items-center px-3 bg-white/80 backdrop-blur-md/50 border border-r-0 border-[#e2e8f0] rounded-l-md text-[13px] text-[#94a3b8]">
                       $
                     </span>
                     <input type="text" defaultValue="0.00" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-r-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
@@ -306,7 +306,7 @@ export default function InvoicesPage() {
               <div className="flex items-center justify-between mb-4">
                 <span className="text-[14px] font-medium text-[#475569]">Additional Information</span>
                 <button className="w-10 h-5 bg-[#e2e8f0] rounded-full relative transition-colors cursor-pointer">
-                  <div className="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                  <div className="w-4 h-4 bg-white/80 backdrop-blur-md rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
                 </button>
               </div>
 
@@ -320,10 +320,10 @@ export default function InvoicesPage() {
               <div className="text-[13px] font-semibold text-[#475569]">* Required</div>
             </div>
             
-            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white rounded-b-lg shrink-0 sticky bottom-0">
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white/80 backdrop-blur-md rounded-b-lg shrink-0 sticky bottom-0">
               <button 
                 onClick={() => setIsAddPaymentModalOpen(false)}
-                className="px-5 py-2 bg-white border border-[#e2e8f0] hover:bg-[#f8fafc] text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
               >
                 Close
               </button>

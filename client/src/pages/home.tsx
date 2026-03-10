@@ -35,7 +35,7 @@ export default function Home() {
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
       {/* Main Container */}
-      <div className="flex-1 flex flex-col min-w-0 bg-white ">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Home" />
 
         {/* Main Layout */}
@@ -46,7 +46,7 @@ export default function Home() {
               <h1 className="text-[#0f172a] mb-8 font-semibold text-[22px]">Home</h1>
 
               {/* Work Session */}
-              <div className="bg-white p-6 mb-6 ">
+              <div className="modern-card p-6 mb-6 ">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
                   {/* Left */}
                   <div className="flex flex-col">
@@ -73,12 +73,12 @@ export default function Home() {
 
                 {/* Time Boxes */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-                  <div className="border border-[#e2e8f0] rounded-[0.75rem] p-4 bg-[#f8fafc]/50 flex flex-col justify-center">
+                  <div className="border border-[#e2e8f0] rounded-[0.75rem] p-4 bg-white/80 backdrop-blur-md/50/50 flex flex-col justify-center">
                     <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK IN</div>
                     <div className="text-lg text-[#0f172a] font-medium">3:41:05 PM</div>
                     <div className="text-xs text-[#94a3b8]">03 Feb 2026</div>
                   </div>
-                  <div className="border border-[#e2e8f0] rounded-[0.75rem] p-4 bg-[#f8fafc]/50 flex flex-col justify-center">
+                  <div className="border border-[#e2e8f0] rounded-[0.75rem] p-4 bg-white/80 backdrop-blur-md/50/50 flex flex-col justify-center">
                     <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK OUT</div>
                     <div className="text-lg text-[#0f172a] font-medium">12:01:03 PM</div>
                     <div className="text-xs text-[#94a3b8]">04 Feb 2026</div>
@@ -105,9 +105,9 @@ export default function Home() {
                   { label: 'Support Tickets', value: '4', icon: HelpCircle, href: '/tickets' },
                 ].map((stat, i) => (
                   <Link key={i} href={stat.href} className="block group">
-                    <div className="bg-white p-5  flex flex-col justify-between h-28 relative hover:border-[#8b5cf6] border border-transparent transition-colors cursor-pointer">
+                    <div className="modern-card p-5  flex flex-col justify-between h-28 relative hover:border-[#8b5cf6] border border-transparent transition-colors cursor-pointer">
                       <div className="flex items-center space-x-3">
-                        <div className="bg-[#f8fafc] p-1.5 rounded-full text-[#0f172a] group-hover:bg-[#f3e8ff] group-hover:text-[#8b5cf6] transition-colors">
+                        <div className="bg-white/80 backdrop-blur-md/50 p-1.5 rounded-full text-[#0f172a] group-hover:bg-[#f3e8ff] group-hover:text-[#8b5cf6] transition-colors">
                           <stat.icon className="w-4 h-4" strokeWidth={2.5} />
                         </div>
                         <span className="font-semibold text-[#0f172a] text-sm group-hover:text-[#8b5cf6] transition-colors">{stat.label}</span>
@@ -128,10 +128,10 @@ export default function Home() {
               </div>
 
               {/* Total Projects */}
-              <div className="bg-white p-6  mb-6">
+              <div className="modern-card p-6  mb-6">
                 <div className="flex justify-between items-center mb-5">
                   <h2 className="text-base text-[#0f172a] font-medium">Total Projects</h2>
-                  <Link href="/projects" className="text-xs font-semibold text-[#64748b] bg-white border border-[#e2e8f0]/80 px-4 py-2 rounded-full hover:bg-white hover:shadow-sm transition-all flex items-center transition-colors">
+                  <Link href="/projects" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-[#e2e8f0]/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all flex items-center transition-colors">
                     View All Projects <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </Link>
                 </div>
@@ -179,10 +179,10 @@ export default function Home() {
 
               {/* Bottom Row */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="bg-white p-6  flex flex-col h-[350px]">
+                <div className="modern-card p-6  flex flex-col h-[350px]">
                   <div className="flex justify-between items-center mb-5">
                     <h2 className="text-base text-[#0f172a] font-medium">Clients</h2>
-                    <Link href="/clients" className="text-xs font-semibold text-[#64748b] bg-white border border-[#e2e8f0]/80 px-4 py-2 rounded-full hover:bg-white hover:shadow-sm transition-all transition-colors">
+                    <Link href="/clients" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-[#e2e8f0]/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all transition-colors">
                       View all
                     </Link>
                   </div>
@@ -205,7 +205,7 @@ export default function Home() {
                       'urban land solution',
                       "Angel's Gardening Services"
                     ].map((client, i) => (
-                      <div key={i} className="flex items-center gap-3 p-2.5 hover:bg-[#f8fafc]/80 rounded-xl cursor-pointer transition-all hover:translate-x-1">
+                      <div key={i} className="flex items-center gap-3 p-2.5 hover:bg-white/80 backdrop-blur-md/50/80 rounded-xl cursor-pointer transition-all hover:translate-x-1">
                         <div className="w-8 h-8 rounded-md bg-[#f1f5f9] flex items-center justify-center shrink-0">
                           <Building2 className="w-4 h-4 text-[#94a3b8]" />
                         </div>
@@ -215,10 +215,10 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <div className="bg-white p-6  flex flex-col h-[350px]">
+                <div className="modern-card p-6  flex flex-col h-[350px]">
                   <div className="flex justify-between items-center mb-5 shrink-0">
                     <h2 className="text-base text-[#0f172a] font-medium">Support Tickets</h2>
-                    <Link href="/tickets" className="text-xs font-semibold text-[#64748b] bg-white border border-[#e2e8f0]/80 px-4 py-2 rounded-full hover:bg-white hover:shadow-sm transition-all flex items-center transition-colors">
+                    <Link href="/tickets" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-[#e2e8f0]/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all flex items-center transition-colors">
                       View All Tickets <ArrowRight className="w-3.5 h-3.5 ml-1" />
                     </Link>
                   </div>
@@ -265,7 +265,7 @@ export default function Home() {
                   { user: '', action: 'Assigned a task to Jitander', time: '2 weeks ago', type: 'icon' },
                 ].map((event, i) => (
                   <div key={i} className="relative flex items-start gap-4">
-                    <div className="relative z-10 w-10 h-10 rounded-full bg-white border border-[#e2e8f0] flex items-center justify-center shrink-0 overflow-hidden">
+                    <div className="relative z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-[#e2e8f0] flex items-center justify-center shrink-0 overflow-hidden">
                       {event.type === 'avatar' ? (
                         <img src={event.img} alt={event.user} className="w-full h-full object-cover" />
                       ) : (

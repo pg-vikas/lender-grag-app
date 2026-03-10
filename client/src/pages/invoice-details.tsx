@@ -15,19 +15,19 @@ export default function InvoiceDetailsPage() {
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/invoices" />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white ">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Invoice Details" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-5xl mx-auto">
             <div className="flex justify-between items-center mb-8">
               <h1 className="text-[22px] font-semibold text-[#0f172a]">Invoice #INV-000023</h1>
-              <button className="w-10 h-10 flex items-center justify-center bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-[#475569] shadow-sm hover:bg-[#f8fafc] transition-colors">
+              <button className="w-10 h-10 flex items-center justify-center bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-[#475569] shadow-sm hover:bg-white/80 backdrop-blur-md/50 transition-colors">
                 <Download className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-[#e2e8f0] p-8 md:p-12 mb-6">
+            <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-sm border border-[#e2e8f0] p-8 md:p-12 mb-6">
                <div className="flex justify-between items-start mb-12">
                   <div>
                     <h2 className="text-[16px] font-bold text-[#0f172a] mb-1">Invoice</h2>
@@ -80,7 +80,7 @@ export default function InvoiceDetailsPage() {
 
                <div className="w-full overflow-x-auto">
                  <table className="w-full text-sm text-left whitespace-nowrap mb-6">
-                   <thead className="bg-[#f8fafc] border-y border-[#e2e8f0]">
+                   <thead className="bg-white/80 backdrop-blur-md/50 border-y border-[#e2e8f0]">
                      <tr>
                        <th className="py-3 px-4 font-semibold text-[#64748b] text-[13px] w-full">Description</th>
                        <th className="py-3 px-4 font-semibold text-[#64748b] text-[13px] text-right">Qty</th>
@@ -100,14 +100,14 @@ export default function InvoiceDetailsPage() {
                    </tbody>
                  </table>
                  
-                 <div className="bg-[#f8fafc] border-y border-[#e2e8f0] py-4 px-4 flex justify-between items-center w-full">
+                 <div className="bg-white/80 backdrop-blur-md/50 border-y border-[#e2e8f0] py-4 px-4 flex justify-between items-center w-full">
                     <span className="font-bold text-[#0f172a] ml-auto mr-12 text-[15px]">Total</span>
                     <span className="font-bold text-[#0f172a] text-[15px]">$0.00</span>
                  </div>
                </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-[#e2e8f0] p-6">
+            <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-sm border border-[#e2e8f0] p-6">
               <div className="flex items-center gap-1.5 text-[15px] font-semibold text-[#0f172a]">
                 Notes <Info className="w-4 h-4 text-[#94a3b8]" />
               </div>
