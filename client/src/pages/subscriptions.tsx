@@ -73,7 +73,11 @@ export default function SubscriptionsPage() {
                   <tbody>
                     {subscriptionsList.map((sub, i) => (
                       <tr key={i} className="bg-white group">
-                        <td className="py-4 px-6 font-medium text-[#0f172a] rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{sub.id}</td>
+                        <td className="py-4 px-6 font-medium rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
+                          <Link href={`/subscriptions/${sub.id}`} className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors">
+                            {sub.id}
+                          </Link>
+                        </td>
                         <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{sub.client}</td>
                         <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{sub.plan}</td>
                         <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{sub.amount}</td>
@@ -88,9 +92,9 @@ export default function SubscriptionsPage() {
                         </td>
                         <td className="py-4 px-6 border-y border-r border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors rounded-r-[12px]">
                            <div className="flex items-center gap-3 text-[#94a3b8]">
-                              <button className="hover:text-[#0f172a] transition-colors">
+                              <Link href={`/subscriptions/${sub.id}`} className="hover:text-[#0f172a] transition-colors">
                                 <ExternalLink className="w-4 h-4" />
-                              </button>
+                              </Link>
                               <button className="hover:text-[#0f172a] transition-colors">
                                 <Pin className="w-4 h-4" />
                               </button>

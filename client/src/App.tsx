@@ -13,6 +13,7 @@ import ProjectDetailsPage from "@/pages/project-details";
 import InvoicesPage from "@/pages/invoices";
 import InvoiceDetailsPage from "@/pages/invoice-details";
 import SubscriptionsPage from "@/pages/subscriptions";
+import SubscriptionDetailsPage from "@/pages/subscription-details";
 import PaymentsPage from "@/pages/payments";
 import ContractsPage from "@/pages/contracts";
 import TemplatesPage from "@/pages/templates";
@@ -39,6 +40,7 @@ function Router() {
       <Route path="/invoices" component={InvoicesPage} />
       <Route path="/invoices/:id" component={InvoiceDetailsPage} />
       <Route path="/subscriptions" component={SubscriptionsPage} />
+      <Route path="/subscriptions/:id" component={SubscriptionDetailsPage} />
       <Route path="/payments" component={PaymentsPage} />
       <Route path="/contracts" component={ContractsPage} />
       <Route path="/templates" component={TemplatesPage} />
