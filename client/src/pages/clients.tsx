@@ -312,6 +312,14 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#e2e8f0] rounded-lg text-sm font-medium text-[#475569] hover:bg-[#f8fafc] transition-colors w-full sm:w-auto justify-center">
                   <Download className="w-3.5 h-3.5" /> Export <ChevronDown className="w-3.5 h-3.5" />
                 </button>
+                {!isActiveOnly && (
+                  <button 
+                    onClick={() => setIsAddClientModalOpen(true)}
+                    className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-lg text-sm font-medium transition-colors w-full sm:w-auto justify-center shadow-sm whitespace-nowrap"
+                  >
+                    <Plus className="w-4 h-4" /> Add New Client
+                  </button>
+                )}
               </div>
             </div>
 
