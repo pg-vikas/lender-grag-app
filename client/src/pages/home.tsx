@@ -217,7 +217,7 @@ export default function Home() {
                 
                 <div className="modern-card p-6  flex flex-col h-[350px]">
                   <div className="flex justify-between items-center mb-5 shrink-0">
-                    <h2 className="text-base font-bold text-[#0f172a]">Support Tickets</h2>
+                    <h2 className="text-base text-[#0f172a] font-medium">Support Tickets</h2>
                     <Link href="/tickets" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-white/60/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all flex items-center transition-colors">
                       View All Tickets <ArrowRight className="w-3.5 h-3.5 ml-1" />
                     </Link>
