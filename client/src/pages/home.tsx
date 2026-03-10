@@ -45,8 +45,24 @@ export default function Home() {
               </div>
             </a>
             
+            {/* CRM Group */}
+            <div>
+              <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                <div className="flex items-center space-x-3">
+                  <Users className="w-5 h-5" />
+                  <span className="text-sm font-medium">CRM</span>
+                </div>
+                <ChevronDown className="w-4 h-4" />
+              </a>
+              {/* CRM Dropdown */}
+              <div className="bg-[#1e293b]/50 py-1">
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Active Clients
+                </a>
+              </div>
+            </div>
+
             {[
-              { name: 'CRM', icon: Users, hasSubmenu: true },
               { name: 'Projects', icon: FolderOpen, hasSubmenu: false },
               { name: 'Sales', icon: DollarSign, hasSubmenu: true },
               { name: 'Contracts', icon: FileText, hasSubmenu: true },
