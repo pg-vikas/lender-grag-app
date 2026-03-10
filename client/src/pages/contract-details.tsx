@@ -15,13 +15,13 @@ export default function ContractDetailsPage() {
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/contracts" />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-white ">
         <Header title="Contract Details" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-4xl mx-auto">
             
-            <div className="modern-card shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[#e2e8f0]">
+            <div className="bg-white shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[#e2e8f0]">
               
               {/* Header Banner */}
               <div className="relative h-48 bg-gradient-to-r from-purple-800 to-indigo-900 flex flex-col items-center justify-center text-white overflow-hidden">
@@ -33,7 +33,7 @@ export default function ContractDetailsPage() {
                    </div>
                 </div>
                 <div className="absolute top-6 left-0">
-                  <span className="bg-white/80 backdrop-blur-md/20 backdrop-blur-sm px-4 py-1.5 rounded-r-md text-sm font-medium">Draft</span>
+                  <span className="bg-white  px-4 py-1.5 rounded-r-md text-sm font-medium">Draft</span>
                 </div>
                 <div className="relative z-10 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter">
                   <h1 className="text-4xl font-bold mb-2 tracking-tight">CONTRACT</h1>

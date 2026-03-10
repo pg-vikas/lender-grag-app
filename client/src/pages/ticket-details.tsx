@@ -15,7 +15,7 @@ export default function TicketDetailsPage() {
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/tickets" />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-white ">
         <Header title="Ticket Details" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -37,7 +37,7 @@ export default function TicketDetailsPage() {
               
               {/* Left Column - Ticket Details */}
               <div className="w-full lg:w-[320px] shrink-0">
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0]">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0]">
                   <div className="p-5 border-b border-[#e2e8f0]">
                     <h2 className="text-[15px] font-bold text-[#0f172a]">Ticket Details</h2>
                   </div>
@@ -106,7 +106,7 @@ export default function TicketDetailsPage() {
               <div className="flex-1 min-w-0 space-y-4">
                 
                 {/* Message 1 */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] p-6">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] p-6">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 shrink-0">
                       <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Milhan" alt="Milhan" className="w-full h-full object-cover" />
@@ -161,7 +161,7 @@ export default function TicketDetailsPage() {
 
                 {/* Actions */}
                 <div className="flex justify-center gap-3 pt-4">
-                  <button className="px-5 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0] hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-lg text-[14px] font-semibold transition-colors shadow-sm">
+                  <button className="px-5 py-2.5 bg-white border border-[#e2e8f0] hover:bg-[#f8fafc] text-[#475569] rounded-lg text-[14px] font-semibold transition-colors shadow-sm">
                     Add A Note
                   </button>
                   <button className="px-5 py-2.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-lg text-[14px] font-semibold transition-colors shadow-sm">

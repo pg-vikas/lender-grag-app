@@ -15,7 +15,7 @@ export default function ClientDetailsPage() {
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/clients" />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-white ">
         <Header title="Client Details" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -31,8 +31,8 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Company Details */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0] flex justify-between items-center">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Building2 className="w-4 h-4 text-[#8b5cf6]" />
                       <span className="font-semibold text-[#0f172a] text-[14px]">Company Details</span>
@@ -52,7 +52,7 @@ export default function ClientDetailsPage() {
                     </div>
                     <div className="flex flex-col gap-1">
                       <span className="text-[12px] text-[#64748b]">Assigned to:</span>
-                      <div className="px-3 py-1.5 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] rounded text-[12px] text-[#0f172a] flex justify-between items-center">
+                      <div className="px-3 py-1.5 bg-[#f8fafc] border border-[#e2e8f0] rounded text-[12px] text-[#0f172a] flex justify-between items-center">
                         <span className="truncate">Maria Christina (maria@pinkgorilla...)</span>
                         <ChevronDown className="w-3.5 h-3.5 text-[#94a3b8] shrink-0" />
                       </div>
@@ -61,21 +61,21 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Contact Information */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0] flex items-center gap-2">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center gap-2">
                     <Phone className="w-4 h-4 text-[#8b5cf6]" />
                     <span className="font-semibold text-[#0f172a] text-[14px]">Contact Information</span>
                   </div>
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center gap-3 p-2.5 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] rounded-lg">
+                    <div className="flex items-center gap-3 p-2.5 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg">
                       <Phone className="w-4 h-4 text-[#94a3b8]" />
                       <span className="text-[13px] text-[#0f172a]">+1 973 979 7987</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] rounded-lg">
+                    <div className="flex items-center gap-3 p-2.5 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg">
                       <Mail className="w-4 h-4 text-[#94a3b8]" />
                       <span className="text-[13px] text-[#94a3b8]">---</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] rounded-lg">
+                    <div className="flex items-center gap-3 p-2.5 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg">
                       <MapPin className="w-4 h-4 text-[#94a3b8]" />
                       <span className="text-[13px] text-[#94a3b8]">---</span>
                     </div>
@@ -83,8 +83,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Website */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0] flex items-center gap-2">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center gap-2">
                     <Globe className="w-4 h-4 text-[#22c55e]" />
                     <span className="font-semibold text-[#0f172a] text-[14px]">Website</span>
                   </div>
@@ -97,8 +97,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Business Discovery */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0] flex justify-between items-center">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Compass className="w-4 h-4 text-[#f97316]" />
                       <span className="font-semibold text-[#0f172a] text-[14px]">Business Discovery</span>
@@ -109,15 +109,15 @@ export default function ClientDetailsPage() {
                   </div>
                   <div className="p-5">
                     <p className="text-[13px] text-[#64748b] mb-4">No business discovery links added yet.</p>
-                    <button className="w-full py-2 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] hover:bg-[#f1f5f9] text-[#f97316] rounded-md text-[13px] font-medium transition-colors flex items-center justify-center gap-2">
+                    <button className="w-full py-2 bg-[#f8fafc] border border-[#e2e8f0] hover:bg-[#f1f5f9] text-[#f97316] rounded-md text-[13px] font-medium transition-colors flex items-center justify-center gap-2">
                       <Plus className="w-3.5 h-3.5" /> Add More
                     </button>
                   </div>
                 </div>
 
                 {/* Google Analytics */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0]">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0]">
                     <span className="font-semibold text-[#0f172a] text-[14px]">Google Analytics</span>
                   </div>
                   <div className="p-5">
@@ -128,8 +128,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Billing Information */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0]">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0]">
                     <span className="font-semibold text-[#0f172a] text-[14px]">Billing Information</span>
                   </div>
                   <div className="p-5 space-y-4">
@@ -151,8 +151,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Background */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0] flex justify-between items-center">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex justify-between items-center">
                     <span className="font-semibold text-[#0f172a] text-[14px]">Background</span>
                     <button className="text-[#8b5cf6]">
                       <Edit2 className="w-3.5 h-3.5" />
@@ -166,8 +166,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* General */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0]">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0]">
                     <span className="font-semibold text-[#0f172a] text-[14px]">General</span>
                   </div>
                   <div className="p-5 space-y-3">
@@ -208,7 +208,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Employee Details */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
                   <div className="p-4 flex justify-between items-center">
                     <span className="font-semibold text-[#0f172a] text-[14px]">Employee Details</span>
                     <button className="w-6 h-6 rounded bg-[#f1f5f9] flex items-center justify-center text-[#8b5cf6] hover:bg-[#e2e8f0]">
@@ -218,8 +218,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Compliance Essentials */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0]">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0]">
                     <span className="font-semibold text-[#0f172a] text-[14px]">Compliance Essentials</span>
                   </div>
                   <div className="p-5 space-y-3">
@@ -246,7 +246,7 @@ export default function ClientDetailsPage() {
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
                 {/* Communications Section */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
                   <div className="p-5 border-b border-[#e2e8f0] flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-[#0f172a]">Communications</h2>
                     <div className="flex items-center gap-4">
@@ -263,7 +263,7 @@ export default function ClientDetailsPage() {
                   </div>
                   
                   <div className="p-6">
-                    <div className="border border-[#e2e8f0] rounded-lg p-5 bg-white/80 backdrop-blur-md/50">
+                    <div className="border border-[#e2e8f0] rounded-lg p-5 bg-[#f8fafc]">
                       <div className="space-y-4">
                         <div>
                           <label className="block text-[13px] font-medium text-[#1e293b] mb-1.5">To*</label>
@@ -295,8 +295,8 @@ export default function ClientDetailsPage() {
                         
                         <div>
                           <label className="block text-[13px] font-medium text-[#1e293b] mb-1.5">Message*</label>
-                          <div className="border border-[#e2e8f0] rounded-md bg-white/80 backdrop-blur-md overflow-hidden flex flex-col">
-                            <div className="flex items-center gap-1 border-b border-[#e2e8f0] p-1.5 bg-white/80 backdrop-blur-md/50">
+                          <div className="border border-[#e2e8f0] rounded-md bg-white overflow-hidden flex flex-col">
+                            <div className="flex items-center gap-1 border-b border-[#e2e8f0] p-1.5 bg-[#f8fafc]">
                               <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="font-bold text-[12px] px-1">B</span></button>
                               <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="italic text-[12px] px-1">I</span></button>
                               <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="underline text-[12px] px-1">U</span></button>
@@ -308,7 +308,7 @@ export default function ClientDetailsPage() {
                         </div>
                         
                         <div className="flex justify-between items-center pt-2">
-                          <button className="px-3 py-1.5 border border-[#e2e8f0] bg-white/80 backdrop-blur-md text-[#475569] rounded text-[12px] font-medium flex items-center gap-1.5 hover:bg-white/80 backdrop-blur-md/50">
+                          <button className="px-3 py-1.5 border border-[#e2e8f0] bg-white text-[#475569] rounded text-[12px] font-medium flex items-center gap-1.5 hover:bg-[#f8fafc]">
                             <Plus className="w-3.5 h-3.5" /> Attach Files
                           </button>
                           <button className="px-5 py-2 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-md text-[13px] font-medium transition-colors shadow-sm">
@@ -321,10 +321,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0] flex justify-between items-center">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex justify-between items-center">
                     <span className="font-semibold text-[#0f172a] text-[15px]">Notes</span>
-                    <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0] rounded text-[12px] font-medium text-[#475569] hover:bg-[#f1f5f9]">
+                    <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#e2e8f0] rounded text-[12px] font-medium text-[#475569] hover:bg-[#f1f5f9]">
                       <PlusCircle className="w-3.5 h-3.5" /> Add Note
                     </button>
                   </div>
@@ -356,8 +356,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Samples Section */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
-                  <div className="p-4 bg-white/80 backdrop-blur-md/50 border-b border-[#e2e8f0] flex justify-between items-center">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                  <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex justify-between items-center">
                     <span className="font-semibold text-[#0f172a] text-[15px]">Samples</span>
                     <div className="flex gap-2">
                       <button className="flex items-center gap-1.5 px-3 py-1.5 border border-[#8b5cf6] text-[#8b5cf6] rounded text-[12px] font-medium hover:bg-purple-50">
@@ -391,7 +391,7 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Pagination */}
-                <div className="flex justify-between items-center bg-white/80 backdrop-blur-md rounded-lg border border-[#e2e8f0] p-2">
+                <div className="flex justify-between items-center bg-white rounded-lg border border-[#e2e8f0] p-2">
                   <button className="px-3 py-1 text-[12px] text-[#64748b] hover:text-[#0f172a] font-medium flex items-center gap-1">
                     <ChevronDown className="w-3.5 h-3.5 rotate-90" /> Previous
                   </button>
@@ -402,16 +402,16 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
                   <div className="p-4 bg-[#f0fdf4] border-b border-[#bbf7d0] flex justify-between items-center">
                     <span className="font-semibold text-[#166534] text-[15px]">Tasks</span>
                     <div className="flex gap-2">
-                      <button className="w-6 h-6 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-[#22c55e] shadow-sm"><Globe className="w-3.5 h-3.5" /></button>
+                      <button className="w-6 h-6 rounded-full bg-white flex items-center justify-center text-[#22c55e] shadow-sm"><Globe className="w-3.5 h-3.5" /></button>
                       <button className="w-6 h-6 rounded-full bg-[#22c55e] flex items-center justify-center text-white shadow-sm"><svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></button>
-                      <button className="w-6 h-6 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-[#22c55e] shadow-sm"><Plus className="w-4 h-4" /></button>
+                      <button className="w-6 h-6 rounded-full bg-white flex items-center justify-center text-[#22c55e] shadow-sm"><Plus className="w-4 h-4" /></button>
                     </div>
                   </div>
-                  <div className="p-10 flex flex-col items-center justify-center text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter bg-white/80 backdrop-blur-md/50">
+                  <div className="p-10 flex flex-col items-center justify-center text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter bg-[#f8fafc]">
                     <div className="w-12 h-12 mb-3 flex items-center justify-center text-[#94a3b8]">
                       <Search className="w-8 h-8" />
                     </div>
@@ -421,10 +421,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] overflow-hidden">
+                <div className="bg-white rounded-xl  border border-[#e2e8f0] overflow-hidden">
                   <div className="p-4 border-b border-[#e2e8f0] flex justify-between items-center">
                     <span className="font-semibold text-[#0f172a] text-[15px]">Activity Log</span>
-                    <button className="flex items-center gap-1 text-[12px] text-[#64748b] bg-white/80 backdrop-blur-md/50 px-2 py-1 rounded border border-[#e2e8f0]">
+                    <button className="flex items-center gap-1 text-[12px] text-[#64748b] bg-[#f8fafc] px-2 py-1 rounded border border-[#e2e8f0]">
                       All Activities <ChevronDown className="w-3 h-3" />
                     </button>
                   </div>

@@ -22,7 +22,7 @@ export default function UsersPage() {
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-white ">
         <Header title="Users" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -35,7 +35,7 @@ export default function UsersPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
+              <div className="bg-white p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Total Users</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">12</h3>
@@ -44,7 +44,7 @@ export default function UsersPage() {
                     <UsersIcon className="w-6 h-6 text-blue-500" />
                  </div>
               </div>
-              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
+              <div className="bg-white p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Administrators</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">3</h3>
@@ -55,8 +55,8 @@ export default function UsersPage() {
               </div>
             </div>
 
-            <div className="modern-card  overflow-hidden border border-[#e2e8f0]">
-              <div className="p-4 border-b border-[#e2e8f0] flex flex-col sm:flex-row gap-4 justify-between items-center bg-white/80 backdrop-blur-md/50">
+            <div className="bg-white  overflow-hidden border border-[#e2e8f0]">
+              <div className="p-4 border-b border-[#e2e8f0] flex flex-col sm:flex-row gap-4 justify-between items-center bg-[#f8fafc]">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 sm:w-64">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
@@ -71,7 +71,7 @@ export default function UsersPage() {
 
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left whitespace-nowrap">
-                  <thead className="bg-white/80 backdrop-blur-md border-b border-[#e2e8f0]">
+                  <thead className="bg-white border-b border-[#e2e8f0]">
                     <tr>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Name</th>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Role</th>
@@ -82,7 +82,7 @@ export default function UsersPage() {
                   </thead>
                   <tbody className="divide-y divide-[#f1f5f9]">
                     {usersList.map((user, i) => (
-                      <tr key={i} className="hover:bg-white/80 backdrop-blur-md/50/50 transition-colors bg-white/80 backdrop-blur-md">
+                      <tr key={i} className="hover:bg-[#f8fafc]/50 transition-colors bg-white">
                         <td className="py-4 px-6">
                            <div className="flex items-center gap-3">
                              <div className="w-10 h-10 rounded-full bg-[#8b5cf6] text-white flex items-center justify-center font-bold shadow-sm">
@@ -135,7 +135,7 @@ export default function UsersPage() {
       {/* User Details Modal */}
       {selectedUser && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="modern-card shadow-xl w-full max-w-2xl overflow-hidden flex flex-col relative">
+          <div className="bg-white shadow-xl w-full max-w-2xl overflow-hidden flex flex-col relative">
             <button 
               onClick={() => setSelectedUser(null)}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"

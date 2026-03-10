@@ -24,7 +24,7 @@ export default function Login() {
          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500 rounded-full blur-[120px]" />
       </div>
 
-      <div className="w-full max-w-md bg-white/10 backdrop-blur-mdard/50 backdrop-blur-xl border border-border rounded-2xl shadow-2xl p-8 z-10 animate-in fade-in zoom-in duration-500">
+      <div className="w-full max-w-md bg-white /50  border border-border rounded-2xl shadow-2xl p-8 z-10 animate-in fade-in zoom-in duration-500">
         <div className="flex flex-col items-center mb-8">
           <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-4 border border-primary/50">
             <span className="text-3xl font-black text-primary">GH</span>

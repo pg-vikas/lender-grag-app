@@ -20,7 +20,7 @@ export default function ContractsPage() {
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-white ">
         <Header title="Contracts" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -32,8 +32,8 @@ export default function ContractsPage() {
               </button>
             </div>
 
-            <div className="modern-card  overflow-hidden border border-[#e2e8f0]">
-              <div className="p-4 border-b border-[#e2e8f0] flex flex-col sm:flex-row gap-4 justify-between items-center bg-white/80 backdrop-blur-md/50">
+            <div className="bg-white  overflow-hidden border border-[#e2e8f0]">
+              <div className="p-4 border-b border-[#e2e8f0] flex flex-col sm:flex-row gap-4 justify-between items-center bg-[#f8fafc]">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 sm:w-64">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
@@ -43,7 +43,7 @@ export default function ContractsPage() {
                       className="w-full pl-9 pr-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
+                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white transition-all shadow-sm hover:shadow transition-colors">
                     Filter <Filter className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -51,7 +51,7 @@ export default function ContractsPage() {
 
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left whitespace-nowrap">
-                  <thead className="bg-white/80 backdrop-blur-md border-b border-[#e2e8f0]">
+                  <thead className="bg-white border-b border-[#e2e8f0]">
                     <tr>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Contract Name</th>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Client</th>
@@ -63,7 +63,7 @@ export default function ContractsPage() {
                   </thead>
                   <tbody className="divide-y divide-[#f1f5f9]">
                     {contractsList.map((contract, i) => (
-                      <tr key={i} className="hover:bg-white/80 backdrop-blur-md/50/50 transition-colors bg-white/80 backdrop-blur-md">
+                      <tr key={i} className="hover:bg-[#f8fafc]/50 transition-colors bg-white">
                         <td className="py-4 px-6">
                            <div className="flex items-center gap-3">
                              <FileText className="w-5 h-5 text-[#94a3b8]" />
