@@ -1,0 +1,101 @@
+import { useState } from "react";
+import { Search, Filter, Plus, FileText, CheckCircle2, Clock } from "lucide-react";
+import { useLocation } from "wouter";
+import { Sidebar, Header } from "./clients";
+
+export default function ContractsPage() {
+  const [openMenus, setOpenMenus] = useState<string>('contracts');
+  const [location] = useLocation();
+
+  const toggleMenu = (menu: string) => {
+    setOpenMenus(prev => prev === menu ? '' : menu);
+  };
+
+  const contractsList = [
+    { name: "Master Service Agreement", client: "Pink Gorilla Software", value: "$45,000", created: "Sep 15, 2026", status: "Signed" },
+    { name: "Website Development Contract", client: "Estate Landscape", value: "$8,500", created: "Oct 02, 2026", status: "Pending Signature" },
+    { name: "SEO Retainer Agreement", client: "Summit Cabinets", value: "$1,200/mo", created: "Oct 05, 2026", status: "Draft" },
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#f3f4f8] flex font-sans text-[#1e293b]">
+      <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
+
+      <div className="flex-1 flex flex-col min-w-0">
+        <Header title="Contracts" />
+
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h1 className="text-2xl font-bold text-[#0f172a]">Contracts</h1>
+              <button className="flex items-center gap-2 px-4 py-2 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-lg text-sm font-medium transition-colors shadow-sm">
+                <Plus className="w-4 h-4" /> Create Contract
+              </button>
+            </div>
+
+            <div className="bg-white rounded-[1rem] shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden border border-[#f1f5f9]">
+              <div className="p-4 border-b border-[#f1f5f9] flex flex-col sm:flex-row gap-4 justify-between items-center bg-[#f8fafc]">
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <div className="relative flex-1 sm:w-64">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
+                    <input 
+                      type="text"
+                      placeholder="Search contracts" 
+                      className="w-full pl-9 pr-4 py-2 bg-white border border-[#e2e8f0] rounded-lg text-sm focus:outline-none focus:border-primary/30 transition-all placeholder:text-[#94a3b8]"
+                    />
+                  </div>
+                  <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#e2e8f0] rounded-lg text-sm font-medium text-[#475569] hover:bg-[#f8fafc] transition-colors">
+                    Filter <Filter className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left whitespace-nowrap">
+                  <thead className="bg-white border-b border-[#f1f5f9]">
+                    <tr>
+                      <th className="py-4 px-6 font-semibold text-[#475569]">Contract Name</th>
+                      <th className="py-4 px-6 font-semibold text-[#475569]">Client</th>
+                      <th className="py-4 px-6 font-semibold text-[#475569]">Value</th>
+                      <th className="py-4 px-6 font-semibold text-[#475569]">Created Date</th>
+                      <th className="py-4 px-6 font-semibold text-[#475569]">Status</th>
+                      <th className="py-4 px-6 font-semibold text-[#475569]">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#f1f5f9]">
+                    {contractsList.map((contract, i) => (
+                      <tr key={i} className="hover:bg-[#f8fafc]/50 transition-colors bg-white">
+                        <td className="py-4 px-6">
+                           <div className="flex items-center gap-3">
+                             <FileText className="w-5 h-5 text-[#94a3b8]" />
+                             <span className="font-medium text-[#0f172a]">{contract.name}</span>
+                           </div>
+                        </td>
+                        <td className="py-4 px-6 text-[#64748b]">{contract.client}</td>
+                        <td className="py-4 px-6 font-medium text-[#0f172a]">{contract.value}</td>
+                        <td className="py-4 px-6 text-[#64748b]">{contract.created}</td>
+                        <td className="py-4 px-6">
+                           <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-semibold
+                              ${contract.status === 'Signed' ? 'bg-green-50 text-green-600 border border-green-200' : 
+                                contract.status === 'Pending Signature' ? 'bg-amber-50 text-amber-600 border border-amber-200' : 'bg-gray-100 text-gray-600 border border-gray-200'}`}>
+                             {contract.status}
+                           </span>
+                        </td>
+                        <td className="py-4 px-6">
+                           <button className="text-sm font-medium text-[#8b5cf6] hover:text-[#7c3aed] transition-colors">
+                             View
+                           </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}

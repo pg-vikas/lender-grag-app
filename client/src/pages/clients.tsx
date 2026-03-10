@@ -131,6 +131,20 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
               </div>
               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'contracts' ? '' : '-rotate-90'}`} />
             </button>
+            {openMenus === 'contracts' && (
+              <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
+                <Link href="/contracts">
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/contracts' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                    Contracts
+                  </a>
+                </Link>
+                <Link href="/templates">
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/templates' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                    Templates
+                  </a>
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Support Group */}
@@ -145,21 +159,39 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
               </div>
               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'support' ? '' : '-rotate-90'}`} />
             </button>
+            {openMenus === 'support' && (
+              <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
+                <Link href="/tickets">
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/tickets' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                    Tickets
+                  </a>
+                </Link>
+                <Link href="/knowledgebase">
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/knowledgebase' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                    Knowledgebase
+                  </a>
+                </Link>
+              </div>
+            )}
           </div>
 
-          <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-            <div className="flex items-center space-x-3">
-              <User className="w-5 h-5" />
-              <span className="text-sm font-medium">Users</span>
-            </div>
-          </a>
+          <Link href="/users">
+            <a className={`flex items-center justify-between px-6 py-3 transition-colors ${currentPath === '/users' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+              <div className="flex items-center space-x-3">
+                <User className="w-5 h-5" />
+                <span className="text-sm font-medium">Users</span>
+              </div>
+            </a>
+          </Link>
 
-          <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-            <div className="flex items-center space-x-3">
-              <Globe className="w-5 h-5" />
-              <span className="text-sm font-medium whitespace-pre-line">Website{"\n"}Analytics</span>
-            </div>
-          </a>
+          <Link href="/analytics">
+            <a className={`flex items-center justify-between px-6 py-3 transition-colors ${currentPath === '/analytics' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+              <div className="flex items-center space-x-3">
+                <Globe className="w-5 h-5" />
+                <span className="text-sm font-medium whitespace-pre-line">Website{"\n"}Analytics</span>
+              </div>
+            </a>
+          </Link>
         </nav>
       </div>
       
