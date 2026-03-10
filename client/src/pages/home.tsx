@@ -244,7 +244,7 @@ export default function Home() {
 
           {/* Right Sidebar */}
           <aside className="w-[300px] bg-gradient-to-b from-[#f8fafc] to-[#e2e8f0] border-l border-white/60 shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.05)] overflow-y-auto hidden xl:block p-6">
-            <h2 className="text-[15px] font-bold text-[#0f172a] mb-6">Latest Activity</h2>
+            <h2 className="text-[#0f172a] mb-6 font-medium text-[18px]">Latest Activity</h2>
             
             <div className="relative">
               <div className="absolute left-[19px] top-4 bottom-0 w-px bg-[#e2e8f0]"></div>
