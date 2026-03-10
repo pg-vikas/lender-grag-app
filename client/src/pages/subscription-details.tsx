@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 import { ExternalLink, Download } from "lucide-react";
 
@@ -98,7 +98,9 @@ export default function SubscriptionDetailsPage() {
                         <div className="w-5 h-4 bg-gray-200 rounded-[2px] flex items-center justify-center shrink-0">
                           <div className="w-3 h-0.5 bg-white rounded-full"></div>
                         </div>
-                        <span className="text-[14px] font-semibold text-[#0f172a]">{payment.invoice}</span>
+                        <Link href={`/invoices/${payment.invoice}`} className="text-[14px] font-semibold text-[#0f172a] hover:text-[#8b5cf6] transition-colors">
+                          {payment.invoice}
+                        </Link>
                       </div>
                       
                       <div className="text-[14px] text-[#475569] w-1/5 text-center">
@@ -118,9 +120,9 @@ export default function SubscriptionDetailsPage() {
                           {payment.status}
                         </span>
                         <div className="flex items-center gap-3 text-[#94a3b8]">
-                          <button className="hover:text-[#0f172a] transition-colors">
+                          <Link href={`/invoices/${payment.invoice}`} className="hover:text-[#0f172a] transition-colors">
                             <ExternalLink className="w-4 h-4" />
-                          </button>
+                          </Link>
                           <button className="hover:text-[#0f172a] transition-colors">
                             <Download className="w-4 h-4" />
                           </button>
