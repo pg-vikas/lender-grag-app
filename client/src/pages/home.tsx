@@ -43,7 +43,7 @@ export default function Home() {
           {/* Main Content */}
           <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
             <div className="max-w-7xl mx-auto">
-              <h1 className="text-3xl font-bold text-[#0f172a] mb-8">Home</h1>
+              <h1 className="text-3xl text-[#0f172a] mb-8 font-semibold">Home</h1>
 
               {/* Work Session */}
               <div className="modern-card p-6 mb-6 ">
