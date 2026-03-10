@@ -1,5 +1,20 @@
 import { useState } from "react";
-import { Search, Globe, Users, MousePointer2, Clock, ArrowUpRight } from "lucide-react";
+import { 
+  BarChart2, 
+  CheckSquare, 
+  Unlink, 
+  Users, 
+  Target, 
+  Zap, 
+  DollarSign, 
+  Lightbulb, 
+  Smartphone, 
+  Monitor, 
+  MapPin,
+  Clock,
+  MousePointer2,
+  TrendingUp
+} from "lucide-react";
 import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
 
@@ -12,7 +27,7 @@ export default function WebsiteAnalyticsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f4f8] flex font-sans text-[#1e293b]">
+    <div className="min-h-screen bg-[#f8fafc] flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
       <div className="flex-1 flex flex-col min-w-0">
@@ -20,126 +35,327 @@ export default function WebsiteAnalyticsPage() {
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8">
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h1 className="text-2xl font-bold text-[#0f172a]">Website Performance</h1>
-              <select className="px-4 py-2 bg-white border border-[#e2e8f0] rounded-lg text-sm font-medium text-[#475569] hover:bg-[#f8fafc] transition-colors focus:outline-none">
-                <option>Last 30 Days</option>
-                <option>Last 7 Days</option>
-                <option>This Year</option>
-              </select>
+            <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Website Analytics</h1>
+
+            {/* Google Analytics Dashboard Card */}
+            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0] flex flex-col lg:flex-row justify-between lg:items-center gap-4">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <BarChart2 className="w-5 h-5 text-[#94a3b8]" />
+                  <h2 className="text-base font-semibold text-[#64748b]">Google Analytics Dashboard</h2>
+                </div>
+                <div className="flex flex-col gap-1 mt-3">
+                  <p className="text-[15px] font-semibold text-[#0f172a]">Property ID: <span className="font-normal">508551389</span></p>
+                  <p className="text-[15px] font-semibold text-[#10b981]">Credentials: <span className="font-normal">Uploaded</span></p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 border border-[#e2e8f0] p-4 rounded-lg">
+                <div className="flex flex-col">
+                  <span className="text-sm font-semibold text-[#10b981] flex items-center gap-2">
+                    <CheckSquare className="w-4 h-4" /> Connected to Google Analytics
+                  </span>
+                  <span className="text-[13px] text-[#64748b] ml-6">Last checked: 2026-03-10 00:47:34</span>
+                </div>
+                <button className="px-4 py-2 border border-red-200 text-red-400 hover:bg-red-50 rounded-md text-sm font-medium flex items-center gap-2 transition-colors h-[38px] ml-4">
+                  <Unlink className="w-4 h-4" /> Disconnect
+                </button>
+              </div>
             </div>
 
-            {/* Top Stat Cards */}
+            {/* Four Metric Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-               <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#f1f5f9]">
+               <div className="bg-white rounded-lg p-5 shadow-sm border border-[#e2e8f0]">
                  <div className="flex items-center justify-between mb-4">
-                   <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-                      <Users className="w-5 h-5" />
+                   <p className="text-sm font-medium text-[#475569]">Total Visitors</p>
+                   <div className="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center">
+                      <Users className="w-[18px] h-[18px]" />
                    </div>
-                   <span className="text-xs font-medium text-green-500 bg-green-50 px-2 py-1 rounded-full flex items-center gap-1"><ArrowUpRight className="w-3 h-3" /> 12.5%</span>
                  </div>
-                 <p className="text-sm font-medium text-[#64748b] mb-1">Total Visitors</p>
-                 <h3 className="text-2xl font-bold text-[#0f172a]">45.2K</h3>
+                 <h3 className="text-2xl font-medium text-[#0f172a] mb-1">51</h3>
+                 <span className="text-xs font-medium text-[#10b981]">↑ N/A this month</span>
                </div>
 
-               <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#f1f5f9]">
+               <div className="bg-white rounded-lg p-5 shadow-sm border border-[#e2e8f0]">
                  <div className="flex items-center justify-between mb-4">
-                   <div className="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center">
-                      <MousePointer2 className="w-5 h-5" />
+                   <p className="text-sm font-medium text-[#475569]">New Leads Captured</p>
+                   <div className="w-8 h-8 rounded bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                      <Target className="w-[18px] h-[18px]" />
                    </div>
-                   <span className="text-xs font-medium text-green-500 bg-green-50 px-2 py-1 rounded-full flex items-center gap-1"><ArrowUpRight className="w-3 h-3" /> 5.2%</span>
                  </div>
-                 <p className="text-sm font-medium text-[#64748b] mb-1">Bounce Rate</p>
-                 <h3 className="text-2xl font-bold text-[#0f172a]">42.3%</h3>
+                 <h3 className="text-2xl font-medium text-[#0f172a] mb-1">0</h3>
+                 <span className="text-xs font-medium text-[#10b981]">↑ N/A from last month</span>
                </div>
 
-               <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#f1f5f9]">
+               <div className="bg-white rounded-lg p-5 shadow-sm border border-[#e2e8f0]">
                  <div className="flex items-center justify-between mb-4">
-                   <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
-                      <Clock className="w-5 h-5" />
+                   <p className="text-sm font-medium text-[#475569]">Conversion Rate</p>
+                   <div className="w-8 h-8 rounded bg-purple-100 text-purple-600 flex items-center justify-center">
+                      <Zap className="w-[18px] h-[18px]" />
                    </div>
-                   <span className="text-xs font-medium text-green-500 bg-green-50 px-2 py-1 rounded-full flex items-center gap-1"><ArrowUpRight className="w-3 h-3" /> 8.1%</span>
                  </div>
-                 <p className="text-sm font-medium text-[#64748b] mb-1">Avg. Session Duration</p>
-                 <h3 className="text-2xl font-bold text-[#0f172a]">2m 45s</h3>
+                 <h3 className="text-2xl font-medium text-[#0f172a] mb-1">0.0%</h3>
+                 <span className="text-xs font-medium text-[#10b981]">↑ N/A</span>
                </div>
 
-               <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#f1f5f9]">
+               <div className="bg-white rounded-lg p-5 shadow-sm border border-[#e2e8f0]">
                  <div className="flex items-center justify-between mb-4">
-                   <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                      <Globe className="w-5 h-5" />
+                   <p className="text-sm font-medium text-[#475569]">Revenue from Web Leads</p>
+                   <div className="w-8 h-8 rounded bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                      <DollarSign className="w-[18px] h-[18px]" />
                    </div>
-                   <span className="text-xs font-medium text-green-500 bg-green-50 px-2 py-1 rounded-full flex items-center gap-1"><ArrowUpRight className="w-3 h-3" /> 14.2%</span>
                  </div>
-                 <p className="text-sm font-medium text-[#64748b] mb-1">Page Views</p>
-                 <h3 className="text-2xl font-bold text-[#0f172a]">124.8K</h3>
+                 <h3 className="text-2xl font-medium text-[#0f172a] mb-1">$0</h3>
+                 <span className="text-xs font-medium text-[#10b981]">↑ N/A this month</span>
                </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-               <div className="lg:col-span-2 bg-white rounded-[1rem] shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#f1f5f9] p-6">
-                 <h2 className="text-lg font-bold text-[#0f172a] mb-6">Traffic Overview</h2>
-                 <div className="h-[300px] flex items-end justify-between gap-1 mt-8">
-                    {/* Mock Line Chart Using Bars */}
-                    {Array.from({length: 30}).map((_, i) => {
-                      // Generate a somewhat realistic looking curved pattern
-                      const height = 40 + Math.sin(i * 0.5) * 30 + Math.random() * 20;
-                      return (
-                        <div key={i} className="w-full bg-[#8b5cf6]/20 rounded-t-sm relative group hover:bg-[#8b5cf6]" style={{ height: `${height}%` }}>
-                           {/* Tooltip on hover */}
-                           <div className="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-[#0f172a] text-white text-xs py-1 px-2 rounded whitespace-nowrap">
-                              {Math.floor(height * 10)} visits
-                           </div>
-                        </div>
-                      )
-                    })}
-                 </div>
-                 <div className="flex justify-between text-xs text-[#64748b] mt-4 border-t border-[#f1f5f9] pt-4">
-                    <span>Oct 1</span>
-                    <span>Oct 15</span>
-                    <span>Oct 30</span>
-                 </div>
-               </div>
+            {/* Key Insights */}
+            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0]">
+              <h3 className="text-[15px] font-semibold text-[#475569] mb-4 flex items-center gap-2">
+                <Lightbulb className="w-4 h-4 text-[#64748b]" /> Key Insights
+              </h3>
+              <ul className="space-y-3 text-[14px] text-[#64748b] list-disc list-inside ml-2 marker:text-gray-300">
+                <li>You had <span className="font-semibold text-[#0f172a]">51</span> visitors in the last 7 days.</li>
+                <li><span className="font-semibold text-[#0f172a]">Direct</span> drove <span className="font-semibold text-[#0f172a]">34.3%</span> of sessions.</li>
+                <li>Desktop users account for <span className="font-semibold text-[#0f172a]">85%</span> of traffic.</li>
+                <li>Average time on site is <span className="font-semibold text-[#0f172a]">15m 50s</span>.</li>
+              </ul>
+            </div>
 
-               <div className="bg-white rounded-[1rem] shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#f1f5f9] p-6">
-                 <h2 className="text-lg font-bold text-[#0f172a] mb-6">Top Sources</h2>
-                 <div className="space-y-6">
+            {/* Website Traffic */}
+            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0]">
+              <div className="flex justify-between items-start mb-8">
+                <div>
+                  <h3 className="text-lg font-medium text-[#0f172a]">Website Traffic</h3>
+                  <p className="text-[13px] text-[#94a3b8] mt-1">Visitor sessions over time</p>
+                </div>
+                <div className="flex bg-[#f1f5f9] p-1 rounded-full">
+                  <button className="px-4 py-1.5 bg-white shadow-sm rounded-full text-xs font-semibold text-[#0f172a]">7 Days</button>
+                  <button className="px-4 py-1.5 text-[#64748b] text-xs font-medium hover:text-[#0f172a]">30 Days</button>
+                  <button className="px-4 py-1.5 text-[#64748b] text-xs font-medium hover:text-[#0f172a]">90 Days</button>
+                </div>
+              </div>
+              
+              {/* Mock Line Chart Using SVG */}
+              <div className="h-[200px] w-full mb-6 relative">
+                 <svg viewBox="0 0 1000 200" className="w-full h-full preserve-aspect-ratio-none">
+                    <polyline fill="none" stroke="#86efac" strokeWidth="2" points="50,150 200,50 350,70 500,140 650,190 800,120 950,200" />
+                    <circle cx="50" cy="150" r="3" fill="#86efac" />
+                    <circle cx="200" cy="50" r="3" fill="#86efac" />
+                    <circle cx="350" cy="70" r="3" fill="#86efac" />
+                    <circle cx="500" cy="140" r="3" fill="#86efac" />
+                    <circle cx="650" cy="190" r="3" fill="#86efac" />
+                    <circle cx="800" cy="120" r="3" fill="#86efac" />
+                    <circle cx="950" cy="200" r="3" fill="#86efac" />
+                 </svg>
+                 <div className="absolute bottom-0 w-full flex justify-between text-xs text-[#94a3b8] border-t border-[#e2e8f0] pt-2 px-[5%]">
+                    <span>Mar 03</span>
+                    <span>Mar 04</span>
+                    <span>Mar 05</span>
+                    <span>Mar 06</span>
+                    <span>Mar 07</span>
+                    <span>Mar 08</span>
+                    <span>Mar 09</span>
+                    <span>Mar 10</span>
+                 </div>
+                 <div className="absolute left-0 bottom-2 w-4 h-full flex items-end">
+                    <span className="text-xs text-[#94a3b8] -translate-x-full pr-1">0</span>
+                 </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-6">
+                <div>
+                  <h4 className="text-[14px] font-medium text-[#475569] mb-5">Top Traffic Sources</h4>
+                  <div className="space-y-4 text-sm">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2 text-[#475569]">
+                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div> Direct
+                      </div>
+                      <span className="font-medium text-[#0f172a]">34.3%</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2 text-[#475569]">
+                        <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div> Referral
+                      </div>
+                      <span className="font-medium text-[#0f172a]">29.3%</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2 text-[#475569]">
+                        <div className="w-2.5 h-2.5 rounded-full bg-purple-500"></div> Organic Search
+                      </div>
+                      <span className="font-medium text-[#0f172a]">24.2%</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2 text-[#475569]">
+                        <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div> Unassigned
+                      </div>
+                      <span className="font-medium text-[#0f172a]">12.1%</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-[14px] font-medium text-[#475569] mb-5">Device Breakdown</h4>
+                  <div className="space-y-6 text-sm">
                     <div>
-                      <div className="flex justify-between text-sm mb-2 font-medium">
-                        <span className="text-[#0f172a]">Organic Search (Google)</span>
-                        <span className="text-[#0f172a]">45%</span>
+                      <div className="flex justify-between items-center mb-1 text-[#475569]">
+                        <span className="flex items-center gap-2"><Smartphone className="w-4 h-4 text-emerald-400" /> Mobile</span>
                       </div>
-                      <div className="w-full bg-[#f1f5f9] rounded-full h-2">
-                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '45%' }}></div>
-                      </div>
+                      <div className="text-[13px] text-[#94a3b8] mb-1">15%</div>
                     </div>
                     <div>
-                      <div className="flex justify-between text-sm mb-2 font-medium">
-                        <span className="text-[#0f172a]">Direct Traffic</span>
-                        <span className="text-[#0f172a]">30%</span>
+                      <div className="flex justify-between items-center mb-1 text-[#475569]">
+                        <span className="flex items-center gap-2"><Monitor className="w-4 h-4 text-blue-400" /> Desktop</span>
                       </div>
-                      <div className="w-full bg-[#f1f5f9] rounded-full h-2">
-                        <div className="bg-purple-500 h-2 rounded-full" style={{ width: '30%' }}></div>
-                      </div>
+                      <div className="text-[13px] text-[#94a3b8] mb-1">85%</div>
                     </div>
-                    <div>
-                      <div className="flex justify-between text-sm mb-2 font-medium">
-                        <span className="text-[#0f172a]">Social Media (Twitter/X)</span>
-                        <span className="text-[#0f172a]">15%</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-[14px] font-medium text-[#475569] mb-5">Top Locations</h4>
+                  <div className="space-y-4 text-sm">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2 text-[#475569]">
+                        <MapPin className="w-3.5 h-3.5 text-[#94a3b8]" /> Unknown, Eastern Visayas
                       </div>
-                      <div className="w-full bg-[#f1f5f9] rounded-full h-2">
-                        <div className="bg-sky-500 h-2 rounded-full" style={{ width: '15%' }}></div>
-                      </div>
+                      <span className="font-medium text-[#0f172a]">4</span>
                     </div>
-                    <div>
-                      <div className="flex justify-between text-sm mb-2 font-medium">
-                        <span className="text-[#0f172a]">Referral</span>
-                        <span className="text-[#0f172a]">10%</span>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2 text-[#475569]">
+                        <MapPin className="w-3.5 h-3.5 text-[#94a3b8]" /> Chandigarh, Ropar Division
                       </div>
-                      <div className="w-full bg-[#f1f5f9] rounded-full h-2">
-                        <div className="bg-amber-500 h-2 rounded-full" style={{ width: '10%' }}></div>
-                      </div>
+                      <span className="font-medium text-[#0f172a]">4</span>
                     </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2 text-[#475569]">
+                        <MapPin className="w-3.5 h-3.5 text-[#94a3b8]" /> Sahibzada Ajit Singh Nagar, Punjab
+                      </div>
+                      <span className="font-medium text-[#0f172a]">4</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2 text-[#475569]">
+                        <MapPin className="w-3.5 h-3.5 text-[#94a3b8]" /> , Eastern Visayas
+                      </div>
+                      <span className="font-medium text-[#0f172a]">2</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Leads & Conversions */}
+            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0] min-h-[300px] flex flex-col">
+              <h3 className="text-[15px] font-semibold text-[#0f172a] mb-1">Leads & Conversions</h3>
+              <p className="text-[13px] text-[#94a3b8]">Comparing website visitors to leads captured</p>
+              <div className="flex-1 flex items-center justify-center">
+                <span className="text-sm text-[#94a3b8]">No data available</span>
+              </div>
+            </div>
+
+            {/* Top Pages & Engagement Metrics */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#e2e8f0]">
+                 <h3 className="text-[15px] font-semibold text-[#0f172a] mb-6">Top Pages</h3>
+                 <div className="space-y-0 divide-y divide-[#f1f5f9]">
+                   <div className="flex justify-between items-center py-4">
+                     <div className="flex flex-col">
+                       <span className="text-[14px] text-[#475569]">Home Renovation - Pink Gorilla Agency</span>
+                       <span className="text-xs text-[#94a3b8] mt-1">97 views</span>
+                     </div>
+                     <span className="text-sm font-medium text-[#475569]">97</span>
+                   </div>
+                   <div className="flex justify-between items-center py-4">
+                     <div className="flex flex-col">
+                       <span className="text-[14px] text-[#475569]">Mortgage Loan - Pink Gorilla Agency</span>
+                       <span className="text-xs text-[#94a3b8] mt-1">87 views</span>
+                     </div>
+                     <span className="text-sm font-medium text-[#475569]">87</span>
+                   </div>
+                   <div className="flex justify-between items-center py-4">
+                     <div className="flex flex-col">
+                       <span className="text-[14px] text-[#475569]">Pink Gorilla Agency</span>
+                       <span className="text-xs text-[#94a3b8] mt-1">67 views</span>
+                     </div>
+                     <span className="text-sm font-medium text-[#475569]">67</span>
+                   </div>
+                   <div className="flex justify-between items-center py-4">
+                     <div className="flex flex-col">
+                       <span className="text-[14px] text-[#475569]">Doctor & Clinic - Pink Gorilla Agency</span>
+                       <span className="text-xs text-[#94a3b8] mt-1">51 views</span>
+                     </div>
+                     <span className="text-sm font-medium text-[#475569]">51</span>
+                   </div>
+                   <div className="flex justify-between items-center py-4">
+                     <div className="flex flex-col">
+                       <span className="text-[14px] text-[#475569]">Pool Cleaning - Pink Gorilla Agency</span>
+                       <span className="text-xs text-[#94a3b8] mt-1">38 views</span>
+                     </div>
+                     <span className="text-sm font-medium text-[#475569]">38</span>
+                   </div>
+                 </div>
+              </div>
+              
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#e2e8f0]">
+                 <h3 className="text-[15px] font-semibold text-[#0f172a] mb-6">Engagement Metrics</h3>
+                 <div className="space-y-4">
+                   <div className="border border-[#e2e8f0] rounded-lg p-4 flex items-center gap-4">
+                     <div className="w-10 h-10 rounded-lg bg-indigo-500 text-white flex items-center justify-center shrink-0">
+                       <Clock className="w-5 h-5" />
+                     </div>
+                     <div className="flex flex-col">
+                       <span className="text-xs text-[#64748b]">Average Time on Site</span>
+                       <span className="text-[15px] font-medium text-[#0f172a]">15m 50s</span>
+                     </div>
+                   </div>
+                   <div className="border border-[#e2e8f0] rounded-lg p-4 flex items-center gap-4">
+                     <div className="w-10 h-10 rounded-lg bg-emerald-400 text-white flex items-center justify-center shrink-0">
+                       <Target className="w-5 h-5" />
+                     </div>
+                     <div className="flex flex-col">
+                       <span className="text-xs text-[#64748b]">Pages per Session</span>
+                       <span className="text-[15px] font-medium text-[#0f172a]">5.1</span>
+                     </div>
+                   </div>
+                   <div className="border border-[#e2e8f0] rounded-lg p-4 flex items-center gap-4">
+                     <div className="w-10 h-10 rounded-lg bg-orange-400 text-white flex items-center justify-center shrink-0">
+                       <TrendingUp className="w-5 h-5" />
+                     </div>
+                     <div className="flex flex-col">
+                       <span className="text-xs text-[#64748b]">Bounce Rate</span>
+                       <span className="text-[15px] font-medium text-[#0f172a]">0.5%</span>
+                     </div>
+                   </div>
+                 </div>
+              </div>
+            </div>
+
+            {/* Business Summary */}
+            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0]">
+               <h3 className="text-[15px] font-semibold text-[#64748b] mb-1">Business Summary (This Month)</h3>
+               <p className="text-[13px] text-[#94a3b8] mb-6">Performance metrics from your CRM</p>
+               
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                 <div className="bg-emerald-50 rounded-lg p-5">
+                   <p className="text-[13px] font-medium text-emerald-500 mb-2">Total Jobs Completed</p>
+                   <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">87</h4>
+                   <p className="text-sm font-semibold text-[#0f172a]">+12 from last month</p>
+                 </div>
+                 
+                 <div className="bg-blue-50 rounded-lg p-5">
+                   <p className="text-[13px] font-medium text-blue-500 mb-2">Total Revenue</p>
+                   <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">$124,350</h4>
+                   <p className="text-sm font-semibold text-[#0f172a]">+18% from last month</p>
+                 </div>
+                 
+                 <div className="bg-purple-50 rounded-lg p-5">
+                   <p className="text-[13px] font-medium text-purple-500 mb-2">Average Job Value</p>
+                   <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">$1,429</h4>
+                   <p className="text-sm font-semibold text-[#0f172a]">Industry standard: $1,200</p>
+                 </div>
+                 
+                 <div className="bg-orange-50 rounded-lg p-5">
+                   <p className="text-[13px] font-medium text-orange-500 mb-2">Repeat Customers</p>
+                   <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">68%</h4>
+                   <p className="text-sm font-semibold text-[#0f172a]">Excellent retention rate</p>
                  </div>
                </div>
             </div>
