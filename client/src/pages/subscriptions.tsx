@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, Filter, ExternalLink, Pin, ChevronUp } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function SubscriptionsPage() {
