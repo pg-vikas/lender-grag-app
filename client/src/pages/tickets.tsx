@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, Filter, Plus, Edit2, ExternalLink, Pin, ChevronUp, Box, TrendingUp } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function TicketsPage() {
@@ -120,8 +120,12 @@ export default function TicketsPage() {
                       <td className="py-4 px-6 rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
                          <div className="w-4 h-4 rounded border border-[#cbd5e1] bg-white"></div>
                       </td>
-                      <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{ticket.id}</td>
-                      <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{ticket.subject}</td>
+                      <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
+                        <Link href={`/tickets/${ticket.id}`} className="hover:text-[#8b5cf6] transition-colors">{ticket.id}</Link>
+                      </td>
+                      <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
+                        <Link href={`/tickets/${ticket.id}`} className="hover:text-[#8b5cf6] transition-colors">{ticket.subject}</Link>
+                      </td>
                       <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{ticket.user}</td>
                       <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{ticket.client}</td>
                       <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{ticket.date}</td>
@@ -141,9 +145,9 @@ export default function TicketsPage() {
                            <button className="hover:text-[#0f172a] transition-colors">
                              <Edit2 className="w-[15px] h-[15px]" />
                            </button>
-                           <button className="hover:text-[#0f172a] transition-colors">
+                           <Link href={`/tickets/${ticket.id}`} className="hover:text-[#0f172a] transition-colors">
                              <ExternalLink className="w-[15px] h-[15px]" />
-                           </button>
+                           </Link>
                            <button className="hover:text-[#0f172a] transition-colors">
                              <Pin className="w-[15px] h-[15px]" />
                            </button>
