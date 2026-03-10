@@ -19,9 +19,12 @@ import {
   Globe,
   ChevronDown
 } from "lucide-react";
+import { useLocation } from "wouter";
+import { Sidebar, Header } from "./clients";
 
 export default function Home() {
   const [openMenus, setOpenMenus] = useState<string>('');
+  const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -29,223 +32,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#f3f4f8] flex font-sans text-[#1e293b]">
-      {/* Left Sidebar */}
-      <aside className="w-[240px] bg-[#0f172a] text-white flex flex-col hidden lg:flex h-screen sticky top-0">
-        <div className="p-4 border-b border-white/10">
-          <button className="w-full flex items-center justify-between bg-transparent border border-white/20 rounded-full py-1.5 px-3 hover:bg-white/5 transition-colors">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded-full bg-white text-[#0f172a] flex items-center justify-center overflow-hidden">
-                 <User className="w-4 h-4" />
-              </div>
-              <span className="text-sm font-medium">Admin Gorilla</span>
-            </div>
-            <ChevronDown className="w-4 h-4 text-white/70" />
-          </button>
-        </div>
-
-        <div className="flex-1 overflow-y-auto py-4 scrollbar-hide">
-          <nav className="space-y-1">
-            <a href="#" className="flex items-center justify-between px-6 py-3 bg-[#8b5cf6] text-white">
-              <div className="flex items-center space-x-3">
-                <HomeIcon className="w-5 h-5" />
-                <span className="text-sm font-medium">Dashboard</span>
-              </div>
-            </a>
-            
-            {/* CRM Group */}
-            <div>
-              <button 
-                onClick={() => toggleMenu('crm')}
-                className="w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-              >
-                <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5" />
-                  <span className="text-sm font-medium">CRM</span>
-                </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'crm' ? '' : '-rotate-90'}`} />
-              </button>
-              {openMenus === 'crm' && (
-                <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Active Clients
-                  </a>
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Clients
-                  </a>
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Tasks
-                  </a>
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Growth KPI
-                  </a>
-                </div>
-              )}
-            </div>
-
-            <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-              <div className="flex items-center space-x-3">
-                <FolderOpen className="w-5 h-5" />
-                <span className="text-sm font-medium">Projects</span>
-              </div>
-            </a>
-
-            {/* Sales Group */}
-            <div>
-              <button 
-                onClick={() => toggleMenu('sales')}
-                className="w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-              >
-                <div className="flex items-center space-x-3">
-                  <DollarSign className="w-5 h-5" />
-                  <span className="text-sm font-medium">Sales</span>
-                </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'sales' ? '' : '-rotate-90'}`} />
-              </button>
-              {openMenus === 'sales' && (
-                <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Invoices
-                  </a>
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Payments
-                  </a>
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Subscriptions
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* Contracts Group */}
-            <div>
-              <button 
-                onClick={() => toggleMenu('contracts')}
-                className="w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-              >
-                <div className="flex items-center space-x-3">
-                  <FileText className="w-5 h-5" />
-                  <span className="text-sm font-medium">Contracts</span>
-                </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'contracts' ? '' : '-rotate-90'}`} />
-              </button>
-              {openMenus === 'contracts' && (
-                <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Contracts
-                  </a>
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Templates
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* Support Group */}
-            <div>
-              <button 
-                onClick={() => toggleMenu('support')}
-                className="w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-              >
-                <div className="flex items-center space-x-3">
-                  <MessageSquare className="w-5 h-5" />
-                  <span className="text-sm font-medium">Support</span>
-                </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'support' ? '' : '-rotate-90'}`} />
-              </button>
-              {openMenus === 'support' && (
-                <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Tickets
-                  </a>
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Knowledgebase
-                  </a>
-                </div>
-              )}
-            </div>
-
-            <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-              <div className="flex items-center space-x-3">
-                <User className="w-5 h-5" />
-                <span className="text-sm font-medium">Users</span>
-              </div>
-            </a>
-
-            {/* Reports Group */}
-            <div>
-              <button 
-                onClick={() => toggleMenu('reports')}
-                className="w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-              >
-                <div className="flex items-center space-x-3">
-                  <FileBarChart className="w-5 h-5" />
-                  <span className="text-sm font-medium">Reports</span>
-                </div>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'reports' ? '' : '-rotate-90'}`} />
-              </button>
-              {openMenus === 'reports' && (
-                <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Reports
-                  </a>
-                  <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                    Performance Report
-                  </a>
-                </div>
-              )}
-            </div>
-
-            <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-              <div className="flex items-center space-x-3">
-                <Globe className="w-5 h-5" />
-                <span className="text-sm font-medium whitespace-pre-line">Website{"\n"}Analytics</span>
-              </div>
-            </a>
-          </nav>
-        </div>
-        
-        <div className="p-4 mt-auto">
-          <div className="flex items-center space-x-2">
-            <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center">
-              <Globe className="w-4 h-4 text-white" />
-            </div>
-            <span className="text-sm font-medium">homepage</span>
-          </div>
-        </div>
-      </aside>
+      <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
       {/* Main Container */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Header */}
-        <header className="h-[60px] bg-white flex items-center px-4 shrink-0 sticky top-0 z-10 border-b border-[#e2e8f0]/50 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-          <button className="p-2 mr-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors lg:hidden">
-            <Menu className="w-5 h-5" />
-          </button>
-          
-          <button className="p-2 mr-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors hidden lg:block">
-            <Menu className="w-5 h-5" />
-          </button>
-          
-          <div className="flex items-center text-sm font-medium text-[#64748b]">
-            Gorilla Hub <span className="mx-2">/</span> <span className="text-[#64748b]">Home</span>
-          </div>
-
-          <div className="ml-8 relative flex-1 max-w-md hidden sm:block">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
-            <input 
-              type="text"
-              placeholder="Search" 
-              className="w-full pl-9 pr-4 py-1.5 bg-[#f1f5f9] border-none rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-[#94a3b8]"
-            />
-          </div>
-
-          <div className="ml-auto flex items-center space-x-4">
-            <span className="text-sm font-medium text-[#64748b] hidden sm:inline-block">SMS Alert</span>
-            <button className="p-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors relative">
-              <Bell className="w-5 h-5" />
-            </button>
-          </div>
-        </header>
+        <Header title="Home" />
 
         {/* Main Layout */}
         <div className="flex flex-1 overflow-hidden">

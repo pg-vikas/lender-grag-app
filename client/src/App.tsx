@@ -6,12 +6,19 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Login from "@/pages/login";
 import Home from "@/pages/home";
+import ClientsPage from "@/pages/clients";
 
 function Router() {
   return (
     <Switch>
       <Route path="/login" component={Login} />
       <Route path="/home" component={Home} />
+      <Route path="/clients">
+        <ClientsPage isActiveOnly={false} />
+      </Route>
+      <Route path="/clients/active">
+        <ClientsPage isActiveOnly={true} />
+      </Route>
       <Route path="/">
         <Redirect to="/home" />
       </Route>
