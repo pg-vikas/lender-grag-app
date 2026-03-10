@@ -1,14 +1,19 @@
 import { useState } from "react";
-import { Search, Filter, Plus, FileText, Download, CheckCircle2, Clock } from "lucide-react";
+import { Search, Filter, Plus, FileText, Download, CheckCircle2, Clock, Trash2, ExternalLink, MoreHorizontal, Pin } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function InvoicesPage() {
   const [openMenus, setOpenMenus] = useState<string>('sales');
+  const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
+  };
+
+  const toggleDropdown = (index: number) => {
+    setActiveDropdown(activeDropdown === index ? null : index);
   };
 
   const invoicesList = [
@@ -115,10 +120,46 @@ export default function InvoicesPage() {
                              {invoice.status}
                            </span>
                         </td>
-                        <td className="py-4 px-6">
-                           <button className="text-sm font-medium text-[#8b5cf6] hover:text-[#7c3aed] transition-colors">
-                             View
-                           </button>
+                        <td className="py-4 px-6 relative">
+                          <div className="flex items-center gap-3">
+                            <button className="text-red-400 hover:text-red-500 transition-colors">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                            <Link href={`/invoices/${invoice.id}`} className="text-[#475569] hover:text-[#0f172a] transition-colors">
+                              <ExternalLink className="w-4 h-4" />
+                            </Link>
+                            <div className="relative">
+                              <button 
+                                onClick={() => toggleDropdown(i)}
+                                className="text-[#475569] hover:text-[#0f172a] transition-colors"
+                              >
+                                <MoreHorizontal className="w-4 h-4" />
+                              </button>
+                              
+                              {activeDropdown === i && (
+                                <>
+                                  <div 
+                                    className="fixed inset-0 z-10"
+                                    onClick={() => setActiveDropdown(null)}
+                                  ></div>
+                                  <div className="absolute right-0 top-[24px] z-20 w-48 bg-white rounded-lg shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#e2e8f0] py-2">
+                                    <button className="w-full text-left px-4 py-2 text-sm text-[#0f172a] hover:bg-[#f8fafc] transition-colors">
+                                      Quick Edit
+                                    </button>
+                                    <button className="w-full text-left px-4 py-2 text-sm text-[#0f172a] hover:bg-[#f8fafc] transition-colors">
+                                      Add A New Payment
+                                    </button>
+                                    <button className="w-full text-left px-4 py-2 text-sm text-[#0f172a] hover:bg-[#f8fafc] transition-colors">
+                                      Download
+                                    </button>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                            <button className="text-[#475569] hover:text-[#0f172a] transition-colors">
+                              <Pin className="w-4 h-4" />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
