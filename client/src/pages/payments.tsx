@@ -21,7 +21,7 @@ export default function PaymentsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f3f4f8] flex font-sans text-[#1e293b]">
+    <div className="min-h-screen bg-[#f8fafc] flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
       <div className="flex-1 flex flex-col min-w-0">
@@ -29,7 +29,7 @@ export default function PaymentsPage() {
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-xl font-semibold text-[#0f172a] mb-6">Billings</h1>
+            <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Billings</h1>
 
             <div className="bg-white rounded-lg shadow-sm p-6 border border-[#e2e8f0]">
               <h2 className="text-sm font-medium text-[#64748b] mb-6">Billing History</h2>
@@ -61,20 +61,20 @@ export default function PaymentsPage() {
                   </thead>
                   <tbody>
                     {paymentsList.map((payment, i) => (
-                      <tr key={i} className="bg-white group shadow-sm">
-                        <td className="py-5 px-6 font-medium text-[#0f172a] rounded-l-[12px] border-y border-l border-[#f1f5f9]">{payment.id}</td>
-                        <td className="py-5 px-6 font-medium text-[#0f172a] border-y border-[#f1f5f9]">{payment.date}</td>
-                        <td className="py-5 px-6 font-medium text-[#0f172a] border-y border-[#f1f5f9]">{payment.invoice}</td>
-                        <td className="py-5 px-6 font-medium text-[#0f172a] border-y border-[#f1f5f9]">{payment.amount}</td>
-                        <td className="py-5 px-6 font-medium text-[#0f172a] border-y border-[#f1f5f9]">{payment.client}</td>
-                        <td className="py-5 px-6 font-medium text-[#0f172a] border-y border-[#f1f5f9]">{payment.method}</td>
-                        <td className="py-5 px-6 border-y border-r border-[#f1f5f9] rounded-r-[12px]">
+                      <tr key={i} className="bg-white group">
+                        <td className="py-4 px-6 font-medium text-[#0f172a] rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.id}</td>
+                        <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.date}</td>
+                        <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.invoice}</td>
+                        <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.amount}</td>
+                        <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.client}</td>
+                        <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.method}</td>
+                        <td className="py-4 px-6 border-y border-r border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors rounded-r-[12px]">
                            <div className="flex items-center gap-3 text-[#94a3b8]">
                               <button className="hover:text-[#0f172a] transition-colors">
-                                <ExternalLink className="w-[18px] h-[18px]" />
+                                <ExternalLink className="w-4 h-4" />
                               </button>
                               <button className="hover:text-[#0f172a] transition-colors">
-                                <Pin className="w-[18px] h-[18px]" />
+                                <Pin className="w-4 h-4" />
                               </button>
                            </div>
                         </td>
