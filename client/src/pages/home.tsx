@@ -80,7 +80,7 @@ export default function Home() {
                   </div>
                   <div className="border border-white/60 rounded-[0.75rem] p-4 bg-white/80 backdrop-blur-md/50/50 flex flex-col justify-center">
                     <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK OUT</div>
-                    <div className="font-bold text-lg text-[#0f172a]">12:01:03 PM</div>
+                    <div className="text-lg text-[#0f172a] font-medium">12:01:03 PM</div>
                     <div className="text-xs text-[#94a3b8]">04 Feb 2026</div>
                   </div>
                 </div>
