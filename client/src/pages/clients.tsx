@@ -23,7 +23,11 @@ import {
   Building2,
   ChevronUp,
   Plus,
-  X
+  X,
+  Edit,
+  Mail,
+  Pin,
+  Star
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
@@ -252,10 +256,16 @@ export function Header({ title }: { title: string }) {
 export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: boolean }) {
   const [openMenus, setOpenMenus] = useState<string>('crm');
   const [isAddClientModalOpen, setIsAddClientModalOpen] = useState(false);
+  const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
+  };
+
+  const toggleDropdown = (index: number) => {
+    setActiveDropdown(activeDropdown === index ? null : index);
   };
 
   const title = isActiveOnly ? "Active Clients" : "Clients";
@@ -387,10 +397,42 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             {client.status}
                           </span>
                         </td>
-                        <td className="py-4 px-6">
-                           <button className="flex items-center gap-1.5 px-4 py-1.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-md text-sm font-medium transition-colors shadow-sm">
+                        <td className="py-4 px-6 relative">
+                           <button 
+                             onClick={() => toggleDropdown(i)}
+                             className="flex items-center gap-1.5 px-4 py-1.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-md text-sm font-medium transition-colors shadow-sm"
+                           >
                              Action <ChevronDown className="w-3.5 h-3.5" />
                            </button>
+                           
+                           {activeDropdown === i && (
+                             <>
+                               <div 
+                                 className="fixed inset-0 z-10"
+                                 onClick={() => setActiveDropdown(null)}
+                               ></div>
+                               <div className="absolute right-[24px] top-[50px] z-20 w-40 bg-white rounded-lg shadow-lg border border-[#e2e8f0] py-2">
+                                 <button 
+                                   className="w-full flex items-center gap-3 px-4 py-2 text-sm text-[#475569] hover:bg-[#f8fafc] hover:text-[#0f172a] transition-colors"
+                                   onClick={() => {
+                                     setActiveDropdown(null);
+                                     setIsEditClientModalOpen(true);
+                                   }}
+                                 >
+                                   <Edit className="w-4 h-4 text-[#5eead4]" /> Edit
+                                 </button>
+                                 <button className="w-full flex items-center gap-3 px-4 py-2 text-sm text-[#475569] hover:bg-[#f8fafc] hover:text-[#0f172a] transition-colors">
+                                   <Mail className="w-4 h-4 text-[#8b5cf6]" /> Send email
+                                 </button>
+                                 <button className="w-full flex items-center gap-3 px-4 py-2 text-sm text-[#475569] hover:bg-[#f8fafc] hover:text-[#0f172a] transition-colors">
+                                   <Pin className="w-4 h-4 text-[#94a3b8]" /> Pinning
+                                 </button>
+                                 <button className="w-full flex items-center gap-3 px-4 py-2 text-sm text-[#475569] hover:bg-[#f8fafc] hover:text-[#0f172a] transition-colors">
+                                   <Star className="w-4 h-4 text-[#94a3b8]" /> Star Client
+                                 </button>
+                               </div>
+                             </>
+                           )}
                         </td>
                       </tr>
                     ))}
@@ -594,6 +636,203 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
               </button>
               <button className="px-5 py-2 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-md text-[14px] font-medium transition-colors shadow-sm">
                 Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Client Modal */}
+      {isEditClientModalOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-[800px] my-8 flex flex-col relative max-h-[90vh]">
+            <div className="flex items-center justify-between p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white z-10 rounded-t-lg">
+              <h2 className="text-xl font-bold text-[#0f172a]">Edit Client</h2>
+              <button 
+                onClick={() => setIsEditClientModalOpen(false)}
+                className="text-[#94a3b8] hover:text-[#0f172a] transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 overflow-y-auto">
+              <div className="space-y-8">
+                
+                {/* Company Details */}
+                <div>
+                  <h3 className="text-[16px] font-bold text-[#0f172a] mb-5">Company Details</h3>
+                  
+                  <div className="mb-6">
+                    <label className="block text-[13px] text-[#475569] mb-2">Company Logo</label>
+                    <div className="w-[120px]">
+                      <div className="h-[120px] border border-[#e2e8f0] rounded-t-md bg-[#f8fafc] flex items-center justify-center">
+                        <Building2 className="w-8 h-8 text-[#cbd5e1]" />
+                      </div>
+                      <button className="w-full py-2 bg-[#334155] text-white text-[13px] font-medium rounded-b-md hover:bg-[#1e293b] transition-colors">
+                        Upload
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-5">
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Company Name*</label>
+                      <input type="text" defaultValue="Pink Gorilla" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                    </div>
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Company Email</label>
+                      <input type="email" value="neeraj@pinkgorillasoftware.com" readOnly className="w-full px-3 py-2 bg-[#f1f5f9] border border-[#e2e8f0] rounded-md text-[13px] text-[#475569] focus:outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Company Phone Number*</label>
+                      <div className="flex">
+                        <select className="px-2 py-2 bg-white border border-[#e2e8f0] border-r-0 rounded-l-md text-[13px] text-[#475569] focus:outline-none w-[70px]">
+                          <option>+1</option>
+                        </select>
+                        <input type="text" defaultValue="9000000001" className="flex-1 px-3 py-2 bg-white border border-[#e2e8f0] rounded-r-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Website</label>
+                      <input type="text" defaultValue="https://pinkgorilla.agency" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                    </div>
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Company Address</label>
+                      <input type="text" defaultValue="po 12, ABCD, lame road, LA, CA" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                    </div>
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Default Currency</label>
+                      <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                        <option>USD</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Default Time Zone</label>
+                      <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                        <option>America/Denver</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Language</label>
+                      <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                        <option>English - US</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Status</label>
+                      <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                        <option>Brand New</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Industry</label>
+                      <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                        <option>Retail Trade</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Year in Business</label>
+                      <input type="text" defaultValue="1" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                    </div>
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">No. of Employees</label>
+                      <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                        <option>1 - 3</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-full h-[1px] bg-[#f1f5f9]"></div>
+
+                {/* Business Discovery */}
+                <div>
+                  <h3 className="text-[16px] font-bold text-[#0f172a] mb-5">Business Discovery</h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-5 mb-4">
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Yelp URL</label>
+                      <input type="text" placeholder="https://yelp.com/biz/..." className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                    </div>
+                    <div>
+                      <label className="block text-[13px] text-[#475569] mb-1.5">Google URL</label>
+                      <input type="text" placeholder="https://google.com/maps/..." className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                    </div>
+                  </div>
+                  
+                  <button className="px-3 py-1.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-[4px] text-[12px] font-medium transition-colors mb-6">
+                    + Add Link
+                  </button>
+
+                  <div className="flex items-center justify-between border-b border-[#f1f5f9] pb-4">
+                    <span className="text-[14px] text-[#64748b]">Background</span>
+                    <button className="w-10 h-5 bg-[#e2e8f0] rounded-full relative transition-colors cursor-pointer">
+                      <div className="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Employee Details */}
+                <div>
+                  <h3 className="text-[16px] font-bold text-[#0f172a] mb-5">Employee Details</h3>
+                  
+                  <div className="p-5 border border-[#e2e8f0] rounded-lg mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-5">
+                      <div>
+                        <label className="block text-[13px] text-[#475569] mb-1.5">First Name</label>
+                        <input type="text" defaultValue="Jordan" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[#475569] mb-1.5">Last Name</label>
+                        <input type="text" defaultValue="Peterson" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[#475569] mb-1.5">Email Address</label>
+                        <input type="email" defaultValue="email@domain.com" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                      </div>
+
+                      <div>
+                        <label className="block text-[13px] text-[#475569] mb-1.5">Phone</label>
+                        <div className="flex">
+                          <select className="px-2 py-2 bg-white border border-[#e2e8f0] border-r-0 rounded-l-md text-[13px] text-[#475569] focus:outline-none w-[70px]">
+                            <option>+1</option>
+                          </select>
+                          <input type="text" defaultValue="9876543210" className="flex-1 px-3 py-2 bg-white border border-[#e2e8f0] rounded-r-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[#475569] mb-1.5">Title</label>
+                        <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                          <option>HR</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[#475569] mb-1.5">Password</label>
+                        <input type="password" value=".........." readOnly className="w-full px-3 py-2 bg-[#f1f5f9] border border-[#e2e8f0] rounded-md text-[13px] text-[#475569] focus:outline-none" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <button className="px-3 py-1.5 bg-[#f8fafc] border border-[#e2e8f0] hover:bg-[#f1f5f9] text-[#475569] rounded-[4px] text-[12px] font-medium transition-colors">
+                    + Add Another
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white rounded-b-lg shrink-0 sticky bottom-0">
+              <button 
+                onClick={() => setIsEditClientModalOpen(false)}
+                className="px-5 py-2 bg-white border border-[#e2e8f0] hover:bg-[#f8fafc] text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+              >
+                Close
+              </button>
+              <button className="px-5 py-2 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-md text-[14px] font-medium transition-colors shadow-sm">
+                Save Changes
               </button>
             </div>
           </div>
