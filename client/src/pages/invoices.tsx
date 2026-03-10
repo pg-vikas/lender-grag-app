@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, Filter, Plus, FileText, Download, CheckCircle2, Clock } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function InvoicesPage() {
@@ -101,7 +101,9 @@ export default function InvoicesPage() {
                   <tbody className="divide-y divide-[#f1f5f9]">
                     {invoicesList.map((invoice, i) => (
                       <tr key={i} className="hover:bg-[#f8fafc]/50 transition-colors bg-white">
-                        <td className="py-4 px-6 font-semibold text-[#8b5cf6]">{invoice.id}</td>
+                        <td className="py-4 px-6 font-semibold">
+                          <Link href={`/invoices/${invoice.id}`} className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors">{invoice.id}</Link>
+                        </td>
                         <td className="py-4 px-6 font-medium text-[#0f172a]">{invoice.client}</td>
                         <td className="py-4 px-6 font-medium text-[#0f172a]">{invoice.amount}</td>
                         <td className="py-4 px-6 text-[#64748b]">{invoice.date}</td>

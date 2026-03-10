@@ -11,6 +11,7 @@ import TasksPage from "@/pages/tasks";
 import ProjectsPage from "@/pages/projects";
 import ProjectDetailsPage from "@/pages/project-details";
 import InvoicesPage from "@/pages/invoices";
+import InvoiceDetailsPage from "@/pages/invoice-details";
 import SubscriptionsPage from "@/pages/subscriptions";
 import PaymentsPage from "@/pages/payments";
 import ContractsPage from "@/pages/contracts";
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/projects" component={ProjectsPage} />
       <Route path="/projects/:id" component={ProjectDetailsPage} />
       <Route path="/invoices" component={InvoicesPage} />
+      <Route path="/invoices/:id" component={InvoiceDetailsPage} />
       <Route path="/subscriptions" component={SubscriptionsPage} />
       <Route path="/payments" component={PaymentsPage} />
       <Route path="/contracts" component={ContractsPage} />
