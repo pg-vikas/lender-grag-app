@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Filter, Plus, ChevronUp, Folder, MoreHorizontal, LayoutGrid, List, TrendingUp, Download, Edit2 } from "lucide-react";
+import { Search, Filter, Plus, ChevronUp, ChevronDown, Folder, MoreHorizontal, LayoutGrid, List, TrendingUp, Download, Edit2 } from "lucide-react";
 import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
 
