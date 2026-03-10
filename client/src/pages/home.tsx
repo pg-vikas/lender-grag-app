@@ -8,43 +8,111 @@ import {
   BarChart2,
   HelpCircle,
   ArrowUpRight,
-  ArrowRight
+  ArrowRight,
+  Home as HomeIcon,
+  FolderOpen,
+  DollarSign,
+  FileText,
+  MessageSquare,
+  FileBarChart,
+  Globe,
+  ChevronDown
 } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f3f4f8] flex flex-col font-sans text-[#1e293b]">
-      {/* Header */}
-      <header className="h-[60px] bg-white flex items-center px-4 shrink-0 sticky top-0 z-10 border-b border-[#e2e8f0]/50 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-        <button className="p-2 mr-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors">
-          <Menu className="w-5 h-5" />
-        </button>
-        
-        <div className="flex items-center text-sm font-medium text-[#64748b]">
-          Gorilla Hub <span className="mx-2">/</span> <span className="text-[#64748b]">Home</span>
-        </div>
-
-        <div className="ml-8 relative flex-1 max-w-md hidden sm:block">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
-          <input 
-            type="text"
-            placeholder="Search" 
-            className="w-full pl-9 pr-4 py-1.5 bg-[#f1f5f9] border-none rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-[#94a3b8]"
-          />
-        </div>
-
-        <div className="ml-auto flex items-center space-x-4">
-          <span className="text-sm font-medium text-[#64748b] hidden sm:inline-block">SMS Alert</span>
-          <button className="p-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors relative">
-            <Bell className="w-5 h-5" />
+    <div className="min-h-screen bg-[#f3f4f8] flex font-sans text-[#1e293b]">
+      {/* Left Sidebar */}
+      <aside className="w-[240px] bg-[#0f172a] text-white flex flex-col hidden lg:flex h-screen sticky top-0">
+        <div className="p-4 border-b border-white/10">
+          <button className="w-full flex items-center justify-between bg-transparent border border-white/20 rounded-full py-1.5 px-3 hover:bg-white/5 transition-colors">
+            <div className="flex items-center space-x-2">
+              <div className="w-6 h-6 rounded-full bg-white text-[#0f172a] flex items-center justify-center overflow-hidden">
+                 <User className="w-4 h-4" />
+              </div>
+              <span className="text-sm font-medium">Admin Gorilla</span>
+            </div>
+            <ChevronDown className="w-4 h-4 text-white/70" />
           </button>
         </div>
-      </header>
 
-      {/* Main Layout */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Main Content */}
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+        <div className="flex-1 overflow-y-auto py-4">
+          <nav className="space-y-1">
+            <a href="#" className="flex items-center justify-between px-6 py-3 bg-[#8b5cf6] text-white">
+              <div className="flex items-center space-x-3">
+                <HomeIcon className="w-5 h-5" />
+                <span className="text-sm font-medium">Dashboard</span>
+              </div>
+            </a>
+            
+            {[
+              { name: 'CRM', icon: Users, hasSubmenu: true },
+              { name: 'Projects', icon: FolderOpen, hasSubmenu: false },
+              { name: 'Sales', icon: DollarSign, hasSubmenu: true },
+              { name: 'Contracts', icon: FileText, hasSubmenu: true },
+              { name: 'Support', icon: MessageSquare, hasSubmenu: true },
+              { name: 'Users', icon: User, hasSubmenu: false },
+              { name: 'Reports', icon: FileBarChart, hasSubmenu: true },
+              { name: 'Website\nAnalytics', icon: Globe, hasSubmenu: false },
+            ].map((item, i) => (
+              <a key={i} href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                <div className="flex items-center space-x-3">
+                  <item.icon className="w-5 h-5" />
+                  <span className="text-sm font-medium whitespace-pre-line">{item.name}</span>
+                </div>
+                {item.hasSubmenu && <ChevronDown className="w-4 h-4 -rotate-90" />}
+              </a>
+            ))}
+          </nav>
+        </div>
+        
+        <div className="p-4 mt-auto">
+          <div className="flex items-center space-x-2">
+            <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center">
+              <Globe className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-sm font-medium">homepage</span>
+          </div>
+        </div>
+      </aside>
+
+      {/* Main Container */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Header */}
+        <header className="h-[60px] bg-white flex items-center px-4 shrink-0 sticky top-0 z-10 border-b border-[#e2e8f0]/50 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+          <button className="p-2 mr-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors lg:hidden">
+            <Menu className="w-5 h-5" />
+          </button>
+          
+          <button className="p-2 mr-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors hidden lg:block">
+            <Menu className="w-5 h-5" />
+          </button>
+          
+          <div className="flex items-center text-sm font-medium text-[#64748b]">
+            Gorilla Hub <span className="mx-2">/</span> <span className="text-[#64748b]">Home</span>
+          </div>
+
+          <div className="ml-8 relative flex-1 max-w-md hidden sm:block">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
+            <input 
+              type="text"
+              placeholder="Search" 
+              className="w-full pl-9 pr-4 py-1.5 bg-[#f1f5f9] border-none rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-[#94a3b8]"
+            />
+          </div>
+
+          <div className="ml-auto flex items-center space-x-4">
+            <span className="text-sm font-medium text-[#64748b] hidden sm:inline-block">SMS Alert</span>
+            <button className="p-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors relative">
+              <Bell className="w-5 h-5" />
+            </button>
+          </div>
+        </header>
+
+        {/* Main Layout */}
+        <div className="flex flex-1 overflow-hidden">
+          {/* Main Content */}
+          <main className="flex-1 overflow-y-auto p-6 lg:p-8">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-2xl font-bold text-[#0f172a] mb-6">Home</h1>
 
