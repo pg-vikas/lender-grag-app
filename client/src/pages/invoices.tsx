@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Search, Filter, Plus, FileText, Download, CheckCircle2, Clock, Trash2, ExternalLink, MoreHorizontal, Pin } from "lucide-react";
+import { Search, Filter, Plus, FileText, Download, CheckCircle2, Clock, Trash2, ExternalLink, MoreHorizontal, Pin, X, RefreshCw } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function InvoicesPage() {
   const [openMenus, setOpenMenus] = useState<string>('sales');
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+  const [isEditInvoiceModalOpen, setIsEditInvoiceModalOpen] = useState(false);
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
@@ -143,7 +144,13 @@ export default function InvoicesPage() {
                                     onClick={() => setActiveDropdown(null)}
                                   ></div>
                                   <div className="absolute right-0 top-[24px] z-20 w-[200px] bg-white rounded-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-[#e2e8f0] py-2 flex flex-col">
-                                    <button className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-[#f8fafc] transition-colors">
+                                    <button 
+                                      className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-[#f8fafc] transition-colors"
+                                      onClick={() => {
+                                        setActiveDropdown(null);
+                                        setIsEditInvoiceModalOpen(true);
+                                      }}
+                                    >
                                       Quick Edit
                                     </button>
                                     <button className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-[#f8fafc] transition-colors">
@@ -171,6 +178,75 @@ export default function InvoicesPage() {
           </div>
         </main>
       </div>
+
+      {/* Edit Invoice Modal */}
+      {isEditInvoiceModalOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-[700px] my-8 flex flex-col relative max-h-[90vh]">
+            <div className="flex flex-col p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white z-10 rounded-t-lg">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-bold text-[#0f172a]">Edit Invoice</h2>
+                <button 
+                  onClick={() => setIsEditInvoiceModalOpen(false)}
+                  className="text-[#94a3b8] hover:text-[#0f172a] transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="text-[13px] text-[#64748b] text-right mt-1">
+                Created By: | 28-02-2026
+              </div>
+            </div>
+            
+            <div className="p-6 overflow-y-auto">
+              <div className="grid grid-cols-1 gap-y-5">
+                <div className="grid grid-cols-[160px_1fr] items-center">
+                  <label className="text-[13px] font-medium text-[#475569]">Invoice Date*</label>
+                  <input type="text" defaultValue="28-02-2026" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                </div>
+                <div className="grid grid-cols-[160px_1fr] items-center">
+                  <label className="text-[13px] font-medium text-[#475569]">Due Date*</label>
+                  <input type="text" defaultValue="28-02-2026" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                </div>
+                <div className="grid grid-cols-[160px_1fr] items-center">
+                  <label className="text-[13px] font-medium text-[#475569]">Category*</label>
+                  <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                    <option>Default</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div className="w-full h-[1px] bg-[#f1f5f9] my-6"></div>
+              
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[14px] font-medium text-[#475569]">Additional Information</span>
+                <button className="w-10 h-5 bg-[#e2e8f0] rounded-full relative transition-colors cursor-pointer">
+                  <div className="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                </button>
+              </div>
+
+              <div className="text-[13px] font-semibold text-[#475569] mb-3">* Required</div>
+
+              <div className="flex items-center gap-2 px-4 py-3 bg-[#f8fafc] border border-cyan-100 rounded-md text-[13px] text-[#475569]">
+                <RefreshCw className="w-4 h-4 text-orange-400" />
+                <span>Recurring invoice options are available after an invoice has been created</span>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white rounded-b-lg shrink-0 sticky bottom-0">
+              <button 
+                onClick={() => setIsEditInvoiceModalOpen(false)}
+                className="px-5 py-2 bg-white border border-[#e2e8f0] hover:bg-[#f8fafc] text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+              >
+                Close
+              </button>
+              <button className="px-5 py-2 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-md text-[14px] font-medium transition-colors shadow-sm">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
