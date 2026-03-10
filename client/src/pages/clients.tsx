@@ -374,7 +374,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             <div className="w-10 h-10 rounded bg-[#f1f5f9] flex items-center justify-center text-[#94a3b8] shrink-0 border border-[#e2e8f0]">
                               {i === 2 ? <div className="font-black text-xs text-black">SUN<br/>CAB</div> : <Building2 className="w-5 h-5" />}
                             </div>
-                            <span className="font-semibold text-[#0f172a]">{client.name}</span>
+                            <Link href={`/clients/${i+1}`} className="font-semibold text-[#0f172a] hover:text-[#8b5cf6] transition-colors">{client.name}</Link>
                           </div>
                         </td>
                         <td className="py-4 px-6 text-[#475569]">{client.industry}</td>

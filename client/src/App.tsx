@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Login from "@/pages/login";
 import Home from "@/pages/home";
 import ClientsPage from "@/pages/clients";
+import ClientDetailsPage from "@/pages/client-details";
 import TasksPage from "@/pages/tasks";
 import ProjectsPage from "@/pages/projects";
 import ProjectDetailsPage from "@/pages/project-details";
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/clients/active">
         <ClientsPage isActiveOnly={true} />
       </Route>
+      <Route path="/clients/:id" component={ClientDetailsPage} />
       <Route path="/tasks" component={TasksPage} />
       <Route path="/projects" component={ProjectsPage} />
       <Route path="/projects/:id" component={ProjectDetailsPage} />
