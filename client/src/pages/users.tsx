@@ -22,14 +22,13 @@ export default function UsersPage() {
   return (
     <div className="min-h-screen bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Users" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-between mb-6">
-              <h1 className="text-[22px] font-bold text-[#0f172a]">User Management</h1>
+              <h1 className="text-[22px] text-[#0f172a] font-semibold">User Management</h1>
               <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] hover:from-[#4f46e5] hover:to-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
                 <Plus className="w-4 h-4" /> Add User
               </button>
@@ -133,7 +132,6 @@ export default function UsersPage() {
           </div>
         </main>
       </div>
-
       {/* User Details Modal */}
       {selectedUser && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
