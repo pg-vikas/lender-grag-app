@@ -17,7 +17,8 @@ import {
   MessageSquare,
   FileBarChart,
   Globe,
-  ChevronDown
+  ChevronDown,
+  Building2
 } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
@@ -47,9 +48,9 @@ export default function Home() {
 
               {/* Work Session */}
               <div className="bg-white rounded-[1rem] p-6 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
                   {/* Left */}
-                  <div>
+                  <div className="flex flex-col">
                     <h2 className="text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider mb-2">WORK SESSION</h2>
                     <div className="flex items-center text-[11px] font-medium text-[#64748b] bg-[#f1f5f9] px-2.5 py-1 rounded-full w-fit">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#94a3b8] mr-2"></span>
@@ -65,7 +66,7 @@ export default function Home() {
                   </div>
 
                   {/* Right */}
-                  <div className="flex flex-col md:items-end gap-1.5 text-[11px] text-[#64748b] justify-start pt-1">
+                  <div className="flex flex-col gap-1.5 text-[11px] text-[#64748b] justify-center pt-1 md:flex-row md:gap-6">
                     <div>Current session: <span className="text-[#0f172a] font-bold font-mono text-xs">00:00:00</span></div>
                     <div>Breaks today: <span className="text-[#94a3b8] font-medium font-mono text-xs">00:00:00</span></div>
                   </div>
@@ -73,22 +74,24 @@ export default function Home() {
 
                 {/* Time Boxes */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-                  <div className="border border-[#f1f5f9] rounded-[0.75rem] p-4 bg-[#f8fafc]/50">
+                  <div className="border border-[#f1f5f9] rounded-[0.75rem] p-4 bg-[#f8fafc]/50 flex flex-col justify-center">
                     <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK IN</div>
-                    <div className="font-mono text-sm text-[#0f172a] font-medium">--:--:--</div>
+                    <div className="font-bold text-lg text-[#0f172a]">3:41:05 PM</div>
+                    <div className="text-xs text-[#94a3b8]">03 Feb 2026</div>
                   </div>
-                  <div className="border border-[#f1f5f9] rounded-[0.75rem] p-4 bg-[#f8fafc]/50">
+                  <div className="border border-[#f1f5f9] rounded-[0.75rem] p-4 bg-[#f8fafc]/50 flex flex-col justify-center">
                     <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK OUT</div>
-                    <div className="font-mono text-sm text-[#0f172a] font-medium">--:--:--</div>
+                    <div className="font-bold text-lg text-[#0f172a]">12:01:03 PM</div>
+                    <div className="text-xs text-[#94a3b8]">04 Feb 2026</div>
                   </div>
                 </div>
 
                 {/* Actions */}
                 <div className="flex gap-2.5">
-                  <Button className="bg-[#2dd4bf] hover:bg-[#10b981] text-white font-semibold text-xs tracking-wide px-5 py-2 h-8 rounded-md shadow-sm border-none">
+                  <Button className="bg-[#34d399] hover:bg-[#10b981] text-white font-bold text-xs tracking-wide px-5 py-2 h-8 rounded-[4px] shadow-sm border-none">
                     CLOCK IN
                   </Button>
-                  <Button className="bg-[#a855f7] hover:bg-[#9333ea] text-white font-semibold text-xs tracking-wide px-5 py-2 h-8 rounded-md shadow-sm border-none">
+                  <Button className="bg-[#fb7185] hover:bg-[#f43f5e] text-white font-bold text-xs tracking-wide px-5 py-2 h-8 rounded-[4px] shadow-sm border-none">
                     CLOCK OUT
                   </Button>
                 </div>
@@ -97,10 +100,10 @@ export default function Home() {
               {/* Stat Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 {[
-                  { label: 'Clients', value: '0', icon: User, href: '/clients' },
-                  { label: 'Projects', value: '0', icon: Users, href: '/projects' },
+                  { label: 'Clients', value: '14', icon: User, href: '/clients' },
+                  { label: 'Projects', value: '28', icon: Users, href: '/projects' },
                   { label: 'Analytics', value: '0', icon: BarChart2, href: '/analytics' },
-                  { label: 'Support Tickets', value: '0', icon: HelpCircle, href: '/tickets' },
+                  { label: 'Support Tickets', value: '4', icon: HelpCircle, href: '/tickets' },
                 ].map((stat, i) => (
                   <Link key={i} href={stat.href} className="block group">
                     <div className="bg-white rounded-[1rem] p-5 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-between h-28 relative hover:border-[#8b5cf6] border border-transparent transition-colors cursor-pointer">
@@ -146,11 +149,30 @@ export default function Home() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td colSpan={5} className="py-8 text-center text-[#64748b] font-medium bg-white">
-                          No projects found
-                        </td>
-                      </tr>
+                      {[
+                        { name: 'Add new Status Colum', client: 'Pink Gorilla Softwar...', date: '29 Dec - 29 Dec, 2025', status: 'Completed', statusColor: 'text-[#10b981] border-[#10b981]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
+                        { name: 'SSL Failed on Generated Websites (but no...', client: 'Pink Gorilla Softwar...', date: '22 Dec - 29 Dec, 2025', status: 'Pending Approval', statusColor: 'text-[#f59e0b] border-[#f59e0b]', priority: 'Urgent', priorityColor: 'text-[#ef4444] border-[#ef4444]' },
+                        { name: 'WIREFRAME DESIGN SUMMIT', client: 'PG Development', date: '02 Nov - 09 Nov, 2025', status: 'Completed', statusColor: 'text-[#10b981] border-[#10b981]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
+                        { name: 'Agreement function CRM', client: 'Pink Gorilla Softwar...', date: '15 Oct - 10 Mar, 2026', status: 'Not Started', statusColor: 'text-[#94a3b8] border-[#94a3b8]', priority: 'Low', priorityColor: 'text-[#94a3b8] border-[#94a3b8]' },
+                        { name: 'Bug Assignee is not selected', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Cancelled', statusColor: 'text-[#ef4444] border-[#ef4444]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
+                        { name: 'Dash Board - Pencil Frame HTML', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Pending', statusColor: 'text-[#38bdf8] border-[#38bdf8]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
+                      ].map((project, i) => (
+                        <tr key={i} className="border-b border-[#f1f5f9] last:border-0 hover:bg-[#f8fafc]/50 transition-colors">
+                          <td className="py-3 px-4 font-medium text-[#0f172a]">{project.name}</td>
+                          <td className="py-3 px-4 text-[#475569]">{project.client}</td>
+                          <td className="py-3 px-4 text-[#475569] whitespace-nowrap">{project.date}</td>
+                          <td className="py-3 px-4">
+                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[11px] font-medium border bg-transparent ${project.statusColor}`}>
+                              {project.status}
+                            </span>
+                          </td>
+                          <td className="py-3 px-4">
+                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[11px] font-medium border bg-transparent ${project.priorityColor}`}>
+                              {project.priority}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -158,26 +180,107 @@ export default function Home() {
 
               {/* Bottom Row */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex justify-between items-center">
-                  <h2 className="text-base font-bold text-[#0f172a]">Clients</h2>
-                  <Link href="/clients" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] transition-colors">
-                    View all
-                  </Link>
+                <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col h-[350px]">
+                  <div className="flex justify-between items-center mb-5">
+                    <h2 className="text-base font-bold text-[#0f172a]">Clients</h2>
+                    <Link href="/clients" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] transition-colors">
+                      View all
+                    </Link>
+                  </div>
+                  
+                  <div className="relative mb-4 shrink-0">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
+                    <input 
+                      type="text" 
+                      placeholder="Search" 
+                      className="w-full pl-9 pr-4 py-2 bg-[#f8fafc] border border-[#f1f5f9] rounded-lg text-sm focus:outline-none focus:border-[#e2e8f0] transition-colors"
+                    />
+                  </div>
+
+                  <div className="flex-1 overflow-y-auto space-y-1 pr-2 scrollbar-hide">
+                    {[
+                      'Test demo1',
+                      'Demo test on CRM',
+                      'Test Dev4 Starter',
+                      'Sale 2 company',
+                      'urban land solution',
+                      "Angel's Gardening Services"
+                    ].map((client, i) => (
+                      <div key={i} className="flex items-center gap-3 p-2 hover:bg-[#f8fafc] rounded-lg cursor-pointer transition-colors">
+                        <div className="w-8 h-8 rounded-md bg-[#f1f5f9] flex items-center justify-center shrink-0">
+                          <Building2 className="w-4 h-4 text-[#94a3b8]" />
+                        </div>
+                        <span className="text-sm font-medium text-[#475569]">{client}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex justify-between items-center">
-                  <h2 className="text-base font-bold text-[#0f172a]">Support Tickets</h2>
-                  <Link href="/tickets" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] flex items-center transition-colors">
-                    View All Tickets <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                  </Link>
+                
+                <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col h-[350px]">
+                  <div className="flex justify-between items-center mb-5 shrink-0">
+                    <h2 className="text-base font-bold text-[#0f172a]">Support Tickets</h2>
+                    <Link href="/tickets" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] flex items-center transition-colors">
+                      View All Tickets <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                    </Link>
+                  </div>
+
+                  <div className="flex-1 overflow-y-auto space-y-2 pr-2 scrollbar-hide">
+                    {[
+                      { id: 1, title: 'Test' },
+                      { id: 2, title: 'Test on client side' },
+                      { id: 3, title: 'Test ticket' },
+                      { id: 4, title: 'Test' },
+                      { id: 5, title: 'Demo' },
+                    ].map((ticket) => (
+                      <div key={ticket.id} className="flex items-center gap-4 p-3 border border-[#f1f5f9] rounded-lg hover:border-[#e2e8f0] transition-colors cursor-pointer">
+                        <span className="text-sm font-bold text-[#0f172a] w-4">{ticket.id}</span>
+                        <span className="text-sm font-medium text-[#475569]">{ticket.title}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </main>
 
           {/* Right Sidebar */}
-          <aside className="w-80 bg-[#f4f5f8] border-l border-[#e2e8f0]/50 overflow-y-auto hidden xl:block p-6">
-            <h2 className="text-sm font-bold text-[#0f172a] mb-4">Latest Activity</h2>
-            {/* Activity items would go here */}
+          <aside className="w-[300px] bg-[#f4f5f8] border-l border-[#e2e8f0]/50 overflow-y-auto hidden xl:block p-6">
+            <h2 className="text-[15px] font-bold text-[#0f172a] mb-6">Latest Activity</h2>
+            
+            <div className="relative">
+              <div className="absolute left-[19px] top-4 bottom-0 w-px bg-[#e2e8f0]"></div>
+              
+              <div className="space-y-6">
+                {[
+                  { user: 'NK', action: 'event added client note', time: '5 days ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=1' },
+                  { user: 'NK', action: 'event added client note', time: '5 days ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=2' },
+                  { user: 'NK', action: 'event added client note', time: '1 week ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=3' },
+                  { user: 'VS', action: 'event added client note', time: '1 week ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=4' },
+                  { user: 'NK', action: 'event created launchpad', time: '1 week ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=5' },
+                  { user: '', action: 'event created launchpad', time: '1 week ago', type: 'icon' },
+                  { user: 'NK', action: 'event created launchpad', time: '1 week ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=6' },
+                  { user: '', action: 'event created launchpad', time: '2 weeks ago', type: 'icon' },
+                  { user: '', action: 'event created launchpad', time: '2 weeks ago', type: 'icon' },
+                  { user: '', action: 'Opened a new support ticket', time: '2 weeks ago', type: 'icon' },
+                  { user: '', action: 'Assigned a task to Neeraj', time: '2 weeks ago', type: 'icon' },
+                  { user: '', action: 'Assigned a task to Jitander', time: '2 weeks ago', type: 'icon' },
+                ].map((event, i) => (
+                  <div key={i} className="relative flex items-start gap-4">
+                    <div className="relative z-10 w-10 h-10 rounded-full bg-white border border-[#e2e8f0] flex items-center justify-center shrink-0 overflow-hidden">
+                      {event.type === 'avatar' ? (
+                        <img src={event.img} alt={event.user} className="w-full h-full object-cover" />
+                      ) : (
+                        <User className="w-5 h-5 text-[#94a3b8]" />
+                      )}
+                    </div>
+                    <div className="pt-1">
+                      <p className="text-sm font-medium text-[#0f172a] leading-tight">{event.action}</p>
+                      <p className="text-xs text-[#94a3b8] mt-0.5">{event.time}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </aside>
         </div>
       </div>
