@@ -181,7 +181,7 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="modern-card p-6  flex flex-col h-[350px]">
                   <div className="flex justify-between items-center mb-5">
-                    <h2 className="text-base font-bold text-[#0f172a]">Clients</h2>
+                    <h2 className="text-base text-[#0f172a] font-medium">Clients</h2>
                     <Link href="/clients" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-white/60/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all transition-colors">
                       View all
                     </Link>
