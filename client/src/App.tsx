@@ -9,6 +9,7 @@ import Home from "@/pages/home";
 import ClientsPage from "@/pages/clients";
 import TasksPage from "@/pages/tasks";
 import ProjectsPage from "@/pages/projects";
+import ProjectDetailsPage from "@/pages/project-details";
 import InvoicesPage from "@/pages/invoices";
 import SubscriptionsPage from "@/pages/subscriptions";
 import PaymentsPage from "@/pages/payments";
@@ -33,6 +34,7 @@ function Router() {
       </Route>
       <Route path="/tasks" component={TasksPage} />
       <Route path="/projects" component={ProjectsPage} />
+      <Route path="/projects/:id" component={ProjectDetailsPage} />
       <Route path="/invoices" component={InvoicesPage} />
       <Route path="/subscriptions" component={SubscriptionsPage} />
       <Route path="/payments" component={PaymentsPage} />

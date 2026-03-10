@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, Filter, Plus, ChevronUp, ChevronDown, Folder, MoreHorizontal, LayoutGrid, List, TrendingUp, Download, Edit2 } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function ProjectsPage() {
@@ -154,7 +154,9 @@ export default function ProjectsPage() {
                 <tbody>
                   {projectsList.map((project, i) => (
                     <tr key={i} className="bg-white group">
-                      <td className="py-4 px-6 font-medium text-[#0f172a] rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{project.name}</td>
+                      <td className="py-4 px-6 font-medium rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
+                        <Link href="/projects/1" className="text-[#0f172a] hover:text-[#8b5cf6] transition-colors">{project.name}</Link>
+                      </td>
                       <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{project.client}</td>
                       <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{project.dueDate}</td>
                       <td className="py-4 px-6 border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
