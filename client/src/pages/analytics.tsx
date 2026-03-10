@@ -29,7 +29,6 @@ export default function WebsiteAnalyticsPage() {
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Website Analytics" />
 
@@ -335,7 +334,7 @@ export default function WebsiteAnalyticsPage() {
                
                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                  <div className="bg-emerald-50 rounded-lg p-5">
-                   <p className="text-[13px] font-medium text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-500 mb-2">Total Jobs Completed</p>
+                   <p className="text-[13px] font-medium drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-500 mb-2 text-[#080808]">Total Jobs Completed</p>
                    <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">87</h4>
                    <p className="text-sm font-semibold text-[#0f172a]">+12 from last month</p>
                  </div>
