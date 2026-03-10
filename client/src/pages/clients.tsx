@@ -353,7 +353,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   { value: '0', label: 'Inactive', color: 'bg-rose-400' },
                 ].map((stat, i) => (
                   <div key={i} className="flex-1 flex flex-col px-6 cursor-pointer hover:bg-slate-50 transition-colors py-2 rounded-lg first:ml-0 last:mr-0 group">
-                    <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-semibold text-[#0f172a] mb-1 group-hover:text-primary transition-colors">{stat.value}</span>
+                    <span className="drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-semibold mb-1 group-hover:text-primary transition-colors text-[#000000]">{stat.value}</span>
                     <span className="text-[11px] font-medium text-[#64748b] mb-3 group-hover:text-[#475569]">{stat.label}</span>
                     <div className={`h-1 w-full rounded-full ${stat.color} opacity-80`} />
                   </div>
