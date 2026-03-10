@@ -253,8 +253,8 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
             </div>
 
             {/* Stats Row */}
-            <div className="bg-white rounded-b-[1rem] p-6 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-x-auto">
-              <div className="flex gap-8 min-w-max">
+            <div className="bg-white rounded-b-[1rem] p-4 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-x-auto">
+              <div className="flex w-full divide-x divide-[#f1f5f9] min-w-max">
                 {[
                   { value: '4548', label: 'Clients', color: 'bg-purple-500' },
                   { value: '9', label: 'Active', color: 'bg-purple-600' },
@@ -265,9 +265,9 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   { value: '9', label: 'Hot', color: 'bg-amber-400' },
                   { value: '0', label: 'Inactive', color: 'bg-rose-400' },
                 ].map((stat, i) => (
-                  <div key={i} className="flex flex-col min-w-[80px]">
-                    <span className="text-2xl font-semibold text-[#0f172a]">{stat.value}</span>
-                    <span className="text-[11px] font-medium text-[#64748b] mb-3">{stat.label}</span>
+                  <div key={i} className="flex-1 flex flex-col px-6 cursor-pointer hover:bg-slate-50 transition-colors py-2 rounded-lg first:ml-0 last:mr-0 group">
+                    <span className="text-2xl font-semibold text-[#0f172a] mb-1 group-hover:text-primary transition-colors">{stat.value}</span>
+                    <span className="text-[11px] font-medium text-[#64748b] mb-3 group-hover:text-[#475569]">{stat.label}</span>
                     <div className={`h-1 w-full rounded-full ${stat.color} opacity-80`} />
                   </div>
                 ))}
