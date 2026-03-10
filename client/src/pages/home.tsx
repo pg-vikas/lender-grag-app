@@ -59,7 +59,7 @@ export default function Home() {
                   
                   {/* Center */}
                   <div className="flex justify-center items-start">
-                    <div className="text-3xl font-bold font-mono tracking-tight text-[#0f172a]">
+                    <div className="text-3xl font-mono tracking-tight text-[#0f172a] font-medium">
                       00:00:00
                     </div>
                   </div>
