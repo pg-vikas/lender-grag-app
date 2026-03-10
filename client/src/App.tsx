@@ -13,7 +13,7 @@ function Router() {
       <Route path="/login" component={Login} />
       <Route path="/home" component={Home} />
       <Route path="/">
-        <Redirect to="/login" />
+        <Redirect to="/home" />
       </Route>
       <Route component={NotFound} />
     </Switch>
