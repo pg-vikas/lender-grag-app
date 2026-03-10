@@ -136,15 +136,15 @@ export default function Home() {
                   </Link>
                 </div>
                 
-                <div className="rounded-xl overflow-hidden border border-white/60">
-                  <table className="w-full text-xs text-left">
-                    <thead className="bg-white/80 backdrop-blur-md/50 border-b border-white/40">
-                      <tr>
-                        <th className="py-3 px-4 font-bold text-[#475569]">Project Name</th>
-                        <th className="py-3 px-4 font-bold text-[#475569]">Client</th>
-                        <th className="py-3 px-4 font-bold text-[#475569]">Date</th>
-                        <th className="py-3 px-4 font-bold text-[#475569]">Status</th>
-                        <th className="py-3 px-4 font-bold text-[#475569]">Priority</th>
+                <div className="rounded-[12px] overflow-hidden border border-[#e2e8f0] bg-white mt-4">
+                  <table className="w-full text-[13px] text-left">
+                    <thead className="bg-[#f8fafc]">
+                      <tr className="border-b border-[#e2e8f0]">
+                        <th className="py-4 px-6 font-bold text-[#475569]">Project Name</th>
+                        <th className="py-4 px-6 font-bold text-[#475569]">Client</th>
+                        <th className="py-4 px-6 font-bold text-[#475569]">Date</th>
+                        <th className="py-4 px-6 font-bold text-[#475569]">Status</th>
+                        <th className="py-4 px-6 font-bold text-[#475569]">Priority</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -156,17 +156,17 @@ export default function Home() {
                         { name: 'Bug Assignee is not selected', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Cancelled', statusColor: 'text-[#ef4444] border-[#ef4444]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
                         { name: 'Dash Board - Pencil Frame HTML', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Pending', statusColor: 'text-[#38bdf8] border-[#38bdf8]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
                       ].map((project, i) => (
-                        <tr key={i} className="border-b border-white/40 last:border-0 hover:bg-white/80 backdrop-blur-md/50/50 transition-colors">
-                          <td className="py-3 px-4 font-medium text-[#0f172a]">{project.name}</td>
-                          <td className="py-3 px-4 text-[#475569]">{project.client}</td>
-                          <td className="py-3 px-4 text-[#475569] whitespace-nowrap">{project.date}</td>
-                          <td className="py-3 px-4">
-                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[11px] font-medium border bg-transparent ${project.statusColor}`}>
+                        <tr key={i} className="border-b border-[#e2e8f0] last:border-0 bg-white">
+                          <td className="py-4 px-6 font-semibold text-[#0f172a]">{project.name}</td>
+                          <td className="py-4 px-6 text-[#64748b]">{project.client}</td>
+                          <td className="py-4 px-6 text-[#64748b] whitespace-nowrap">{project.date}</td>
+                          <td className="py-4 px-6">
+                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[12px] font-medium border bg-white ${project.statusColor}`}>
                               {project.status}
                             </span>
                           </td>
-                          <td className="py-3 px-4">
-                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[11px] font-medium border bg-transparent ${project.priorityColor}`}>
+                          <td className="py-4 px-6">
+                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[12px] font-medium border bg-white ${project.priorityColor}`}>
                               {project.priority}
                             </span>
                           </td>
