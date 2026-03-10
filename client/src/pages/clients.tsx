@@ -30,60 +30,64 @@ import {
   Star
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import { useAppStore } from "@/lib/store";
 
 // Reusable Sidebar Component
 export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: string, toggleMenu: (m: string) => void, currentPath: string }) {
+  const { sidebarOpen } = useAppStore();
+  
   return (
-    <aside className="w-[240px] bg-[#0f172a] text-white flex flex-col hidden lg:flex h-screen sticky top-0 shrink-0">
-      <div className="p-4 border-b border-white/10">
-        <button className="w-full flex items-center justify-between bg-transparent border border-white/20 rounded-full py-1.5 px-3 hover:bg-white/5 transition-colors">
+    <aside className={`${sidebarOpen ? 'w-[240px]' : 'w-[72px]'} bg-[#0f172a] text-white flex flex-col hidden lg:flex h-screen sticky top-0 shrink-0 transition-all duration-300 z-20`}>
+      <div className={`p-4 border-b border-white/10 flex items-center ${sidebarOpen ? 'justify-between' : 'justify-center'}`}>
+        <button className={`flex items-center justify-center bg-transparent border border-white/20 rounded-full hover:bg-white/5 transition-colors ${sidebarOpen ? 'w-full py-1.5 px-3 justify-between' : 'w-10 h-10'}`}>
           <div className="flex items-center space-x-2">
-            <div className="w-6 h-6 rounded-full bg-white text-[#0f172a] flex items-center justify-center overflow-hidden">
+            <div className="w-6 h-6 rounded-full bg-white text-[#0f172a] flex items-center justify-center overflow-hidden shrink-0">
                <User className="w-4 h-4" />
             </div>
-            <span className="text-sm font-medium">Neeraj Kumar</span>
+            {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Neeraj Kumar</span>}
           </div>
-          <ChevronDown className="w-4 h-4 text-white/70" />
+          {sidebarOpen && <ChevronDown className="w-4 h-4 text-white/70 shrink-0" />}
         </button>
       </div>
 
       <div className="flex-1 overflow-y-auto py-4 scrollbar-hide">
         <nav className="space-y-1">
           <Link href="/home">
-            <a className={`flex items-center justify-between px-6 py-3 transition-colors ${currentPath === '/home' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+            <a className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors ${currentPath === '/home' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
               <div className="flex items-center space-x-3">
-                <HomeIcon className="w-5 h-5" />
-                <span className="text-sm font-medium">Dashboard</span>
+                <HomeIcon className="w-5 h-5 shrink-0" />
+                {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Dashboard</span>}
               </div>
             </a>
           </Link>
           
           {/* CRM Group */}
-          <div>
+          <div className="relative group">
             <button 
-              onClick={() => toggleMenu('crm')}
-              className="w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+              onClick={() => sidebarOpen ? toggleMenu('crm') : toggleSidebar()}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors`}
+              title={!sidebarOpen ? "CRM" : ""}
             >
               <div className="flex items-center space-x-3">
-                <Users className="w-5 h-5" />
-                <span className="text-sm font-medium">CRM</span>
+                <Users className="w-5 h-5 shrink-0" />
+                {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">CRM</span>}
               </div>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'crm' ? '' : '-rotate-90'}`} />
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'crm' ? '' : '-rotate-90'}`} />}
             </button>
-            {openMenus === 'crm' && (
+            {sidebarOpen && openMenus === 'crm' && (
               <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                 <Link href="/clients/active">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/clients/active' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/clients/active' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Active Clients
                   </a>
                 </Link>
                 <Link href="/clients">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/clients' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/clients' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Clients
                   </a>
                 </Link>
                 <Link href="/tasks">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/tasks' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/tasks' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Tasks
                   </a>
                 </Link>
@@ -92,40 +96,41 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
           </div>
 
           <Link href="/projects">
-            <a className={`flex items-center justify-between px-6 py-3 transition-colors ${currentPath === '/projects' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+            <a className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors ${currentPath === '/projects' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
               <div className="flex items-center space-x-3">
-                <FolderOpen className="w-5 h-5" />
-                <span className="text-sm font-medium">Projects</span>
+                <FolderOpen className="w-5 h-5 shrink-0" />
+                {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Projects</span>}
               </div>
             </a>
           </Link>
 
           {/* Sales Group */}
-          <div>
+          <div className="relative group">
             <button 
-              onClick={() => toggleMenu('sales')}
-              className="w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+              onClick={() => sidebarOpen ? toggleMenu('sales') : toggleSidebar()}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors`}
+              title={!sidebarOpen ? "Sales" : ""}
             >
               <div className="flex items-center space-x-3">
-                <DollarSign className="w-5 h-5" />
-                <span className="text-sm font-medium">Sales</span>
+                <DollarSign className="w-5 h-5 shrink-0" />
+                {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Sales</span>}
               </div>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'sales' ? '' : '-rotate-90'}`} />
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'sales' ? '' : '-rotate-90'}`} />}
             </button>
-            {openMenus === 'sales' && (
+            {sidebarOpen && openMenus === 'sales' && (
               <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                 <Link href="/invoices">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/invoices' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/invoices' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Invoices
                   </a>
                 </Link>
                 <Link href="/payments">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/payments' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/payments' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Payments
                   </a>
                 </Link>
                 <Link href="/subscriptions">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/subscriptions' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/subscriptions' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Subscriptions
                   </a>
                 </Link>
@@ -134,26 +139,27 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
           </div>
 
           {/* Contracts Group */}
-          <div>
+          <div className="relative group">
             <button 
-              onClick={() => toggleMenu('contracts')}
-              className="w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+              onClick={() => sidebarOpen ? toggleMenu('contracts') : toggleSidebar()}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors`}
+              title={!sidebarOpen ? "Contracts" : ""}
             >
               <div className="flex items-center space-x-3">
-                <FileText className="w-5 h-5" />
-                <span className="text-sm font-medium">Contracts</span>
+                <FileText className="w-5 h-5 shrink-0" />
+                {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Contracts</span>}
               </div>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'contracts' ? '' : '-rotate-90'}`} />
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'contracts' ? '' : '-rotate-90'}`} />}
             </button>
-            {openMenus === 'contracts' && (
+            {sidebarOpen && openMenus === 'contracts' && (
               <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                 <Link href="/contracts">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/contracts' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/contracts' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Contracts
                   </a>
                 </Link>
                 <Link href="/templates">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/templates' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/templates' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Templates
                   </a>
                 </Link>
@@ -162,26 +168,27 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
           </div>
 
           {/* Support Group */}
-          <div>
+          <div className="relative group">
             <button 
-              onClick={() => toggleMenu('support')}
-              className="w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+              onClick={() => sidebarOpen ? toggleMenu('support') : toggleSidebar()}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors`}
+              title={!sidebarOpen ? "Support" : ""}
             >
               <div className="flex items-center space-x-3">
-                <MessageSquare className="w-5 h-5" />
-                <span className="text-sm font-medium">Support</span>
+                <MessageSquare className="w-5 h-5 shrink-0" />
+                {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Support</span>}
               </div>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openMenus === 'support' ? '' : '-rotate-90'}`} />
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'support' ? '' : '-rotate-90'}`} />}
             </button>
-            {openMenus === 'support' && (
+            {sidebarOpen && openMenus === 'support' && (
               <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                 <Link href="/tickets">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/tickets' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/tickets' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Tickets
                   </a>
                 </Link>
                 <Link href="/knowledgebase">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/knowledgebase' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/knowledgebase' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Knowledgebase
                   </a>
                 </Link>
@@ -190,28 +197,30 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
           </div>
 
           <Link href="/users">
-            <a className={`flex items-center justify-between px-6 py-3 transition-colors ${currentPath === '/users' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+            <a className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors ${currentPath === '/users' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
               <div className="flex items-center space-x-3">
-                <User className="w-5 h-5" />
-                <span className="text-sm font-medium">Users</span>
+                <User className="w-5 h-5 shrink-0" />
+                {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Users</span>}
               </div>
             </a>
           </Link>
 
           <Link href="/analytics">
-            <a className={`flex items-center justify-between px-6 py-3 transition-colors ${currentPath === '/analytics' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+            <a className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors ${currentPath === '/analytics' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
               <div className="flex items-center space-x-3">
-                <Globe className="w-5 h-5" />
-                <span className="text-sm font-medium whitespace-pre-line">Website{"\n"}Analytics</span>
+                <Globe className="w-5 h-5 shrink-0" />
+                {sidebarOpen && <span className="text-sm font-medium whitespace-pre-line">Website{"\n"}Analytics</span>}
               </div>
             </a>
           </Link>
         </nav>
       </div>
       
-      <div className="p-4 mt-auto">
-         <div className="w-full h-12 rounded bg-[#202c40] flex items-center justify-center border border-white/5">
-           <span className="font-black text-[#22c55e] tracking-tighter text-xl">GORILLA HUB</span>
+      <div className={`p-4 mt-auto ${sidebarOpen ? '' : 'flex justify-center px-2'}`}>
+         <div className={`rounded bg-[#202c40] flex items-center justify-center border border-white/5 ${sidebarOpen ? 'w-full h-12' : 'w-10 h-10'}`}>
+           <span className="font-black text-[#22c55e] tracking-tighter text-xl">
+             {sidebarOpen ? 'GORILLA HUB' : 'GH'}
+           </span>
          </div>
       </div>
     </aside>
@@ -220,13 +229,21 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
 
 // Reusable Header Component
 export function Header({ title }: { title: string }) {
+  const { toggleSidebar } = useAppStore();
+
   return (
     <header className="h-[60px] bg-white flex items-center px-4 shrink-0 sticky top-0 z-10 border-b border-[#e2e8f0]/50 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-      <button className="p-2 mr-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors lg:hidden">
+      <button 
+        onClick={toggleSidebar}
+        className="p-2 mr-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors lg:hidden"
+      >
         <Menu className="w-5 h-5" />
       </button>
       
-      <button className="p-2 mr-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors hidden lg:block">
+      <button 
+        onClick={toggleSidebar}
+        className="p-2 mr-2 text-[#64748b] hover:text-[#0f172a] rounded-md transition-colors hidden lg:block"
+      >
         <Menu className="w-5 h-5" />
       </button>
       
