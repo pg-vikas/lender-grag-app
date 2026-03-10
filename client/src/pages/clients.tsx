@@ -296,7 +296,6 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
   return (
     <div className="min-h-screen bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-
       {/* Main Container */}
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title={title} />
@@ -304,7 +303,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
         {/* Main Content */}
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold text-[#0f172a] mb-8">{title}</h1>
+            <h1 className="text-[#0f172a] mb-8 text-[22px] font-semibold">{title}</h1>
 
             {/* Top Bar with Search and Filter */}
             <div className="bg-white/80 backdrop-blur-md rounded-t-[1rem] p-4 flex flex-col sm:flex-row gap-4 justify-between items-center  border-b border-white/40">
@@ -463,7 +462,6 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
           </div>
         </main>
       </div>
-
       {/* Add Client Modal */}
       {isAddClientModalOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
@@ -660,7 +658,6 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
           </div>
         </div>
       )}
-
       {/* Edit Client Modal */}
       {isEditClientModalOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
