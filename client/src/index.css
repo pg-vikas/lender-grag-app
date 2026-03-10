@@ -102,5 +102,6 @@
 }
 
 .modern-card {
-  @apply bg-card text-card-foreground modern-shadow rounded-2xl border border-white/40 dark:border-white/5;
+  @apply bg-card text-card-foreground rounded-2xl border border-white/40 dark:border-white/5;
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04), 0 2px 8px -2px rgba(0, 0, 0, 0.02);
 }

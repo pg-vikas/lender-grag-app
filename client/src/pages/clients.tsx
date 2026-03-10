@@ -53,12 +53,12 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
       <div className="flex-1 overflow-y-auto py-4 scrollbar-hide">
         <nav className="space-y-1">
           <Link href="/home">
-            <a className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors ${currentPath === '/home' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors cursor-pointer ${currentPath === '/home' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
               <div className="flex items-center space-x-3">
                 <HomeIcon className="w-5 h-5 shrink-0" />
                 {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Dashboard</span>}
               </div>
-            </a>
+            </div>
           </Link>
           
           {/* CRM Group */}
@@ -77,31 +77,31 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             {sidebarOpen && openMenus === 'crm' && (
               <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                 <Link href="/clients/active">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/clients/active' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/clients/active' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Active Clients
-                  </a>
+                  </div>
                 </Link>
                 <Link href="/clients">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/clients' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/clients' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Clients
-                  </a>
+                  </div>
                 </Link>
                 <Link href="/tasks">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/tasks' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/tasks' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Tasks
-                  </a>
+                  </div>
                 </Link>
               </div>
             )}
           </div>
 
           <Link href="/projects">
-            <a className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors ${currentPath === '/projects' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors cursor-pointer ${currentPath === '/projects' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
               <div className="flex items-center space-x-3">
                 <FolderOpen className="w-5 h-5 shrink-0" />
                 {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Projects</span>}
               </div>
-            </a>
+            </div>
           </Link>
 
           {/* Sales Group */}
@@ -120,19 +120,19 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             {sidebarOpen && openMenus === 'sales' && (
               <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                 <Link href="/invoices">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/invoices' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/invoices' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Invoices
-                  </a>
+                  </div>
                 </Link>
                 <Link href="/payments">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/payments' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/payments' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Payments
-                  </a>
+                  </div>
                 </Link>
                 <Link href="/subscriptions">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/subscriptions' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/subscriptions' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Subscriptions
-                  </a>
+                  </div>
                 </Link>
               </div>
             )}
@@ -154,14 +154,14 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             {sidebarOpen && openMenus === 'contracts' && (
               <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                 <Link href="/contracts">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/contracts' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/contracts' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Contracts
-                  </a>
+                  </div>
                 </Link>
                 <Link href="/templates">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/templates' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/templates' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Templates
-                  </a>
+                  </div>
                 </Link>
               </div>
             )}
@@ -183,35 +183,35 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             {sidebarOpen && openMenus === 'support' && (
               <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
                 <Link href="/tickets">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/tickets' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/tickets' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Tickets
-                  </a>
+                  </div>
                 </Link>
                 <Link href="/knowledgebase">
-                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap ${currentPath === '/knowledgebase' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                  <div className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors whitespace-nowrap cursor-pointer ${currentPath === '/knowledgebase' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
                     Knowledgebase
-                  </a>
+                  </div>
                 </Link>
               </div>
             )}
           </div>
 
           <Link href="/users">
-            <a className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors ${currentPath === '/users' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors cursor-pointer ${currentPath === '/users' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
               <div className="flex items-center space-x-3">
                 <User className="w-5 h-5 shrink-0" />
                 {sidebarOpen && <span className="text-sm font-medium whitespace-nowrap">Users</span>}
               </div>
-            </a>
+            </div>
           </Link>
 
           <Link href="/analytics">
-            <a className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors ${currentPath === '/analytics' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-6' : 'justify-center px-0'} py-3 transition-colors cursor-pointer ${currentPath === '/analytics' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
               <div className="flex items-center space-x-3">
                 <Globe className="w-5 h-5 shrink-0" />
                 {sidebarOpen && <span className="text-sm font-medium whitespace-pre-line">Website{"\n"}Analytics</span>}
               </div>
-            </a>
+            </div>
           </Link>
         </nav>
       </div>
