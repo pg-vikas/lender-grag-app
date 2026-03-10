@@ -34,7 +34,6 @@ export default function Home() {
   return (
     <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-
       {/* Main Container */}
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Home" />
@@ -44,7 +43,7 @@ export default function Home() {
           {/* Main Content */}
           <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
             <div className="max-w-7xl mx-auto">
-              <h1 className="text-3xl font-bold bg-white/10 backdrop-blur-mdlip-text text-transparent bg-gradient-to-r from-[#0f172a] to-[#475569] mb-8">Home</h1>
+              <h1 className="text-3xl backdrop-blur-mdlip-text bg-gradient-to-r from-[#0f172a] to-[#475569] mb-8 text-[#000000fa] font-semibold">Home</h1>
 
               {/* Work Session */}
               <div className="modern-card p-6 mb-6 ">
