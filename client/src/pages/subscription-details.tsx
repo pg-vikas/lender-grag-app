@@ -23,13 +23,13 @@ export default function SubscriptionDetailsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex font-sans text-[#1e293b]">
+    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/subscriptions" />
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Subscription Details" />
 
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-[1400px] mx-auto">
             
             <div className="flex flex-col lg:flex-row gap-8">
@@ -40,7 +40,7 @@ export default function SubscriptionDetailsPage() {
                   <p className="text-[14px] text-[#475569] font-medium">$0.00/Month</p>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-sm border border-[#e2e8f0] overflow-hidden">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-sm border border-white/60 overflow-hidden">
                   <div className="p-6 space-y-6">
                     <div>
                       <p className="text-[13px] font-medium text-[#64748b] mb-1">Client</p>
@@ -93,21 +93,21 @@ export default function SubscriptionDetailsPage() {
                 
                 <div className="space-y-4">
                   {paymentHistory.map((payment, i) => (
-                    <div key={i} className="bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.02)] p-4 flex items-center justify-between group border border-transparent hover:border-[#e2e8f0] transition-colors">
+                    <div key={i} className="bg-white/80 backdrop-blur-md rounded-xl  p-4 flex items-center justify-between group border border-transparent hover:border-[#e2e8f0] transition-colors">
                       <div className="flex items-center gap-2 w-1/4">
                         <div className="w-5 h-4 bg-gray-200 rounded-[2px] flex items-center justify-center shrink-0">
-                          <div className="w-3 h-0.5 bg-white rounded-full"></div>
+                          <div className="w-3 h-0.5 bg-white/80 backdrop-blur-md rounded-full"></div>
                         </div>
                         <Link href={`/invoices/${payment.invoice}`} className="text-[14px] font-semibold text-[#0f172a] hover:text-[#8b5cf6] transition-colors">
                           {payment.invoice}
                         </Link>
                       </div>
                       
-                      <div className="text-[14px] text-[#475569] w-1/5 text-center">
+                      <div className="text-[14px] text-[#475569] w-1/5 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter">
                         {payment.date}
                       </div>
                       
-                      <div className="text-[14px] text-[#475569] w-1/4 text-center">
+                      <div className="text-[14px] text-[#475569] w-1/4 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter">
                         {payment.method}
                       </div>
                       

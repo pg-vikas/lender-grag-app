@@ -16,17 +16,17 @@ export default function TicketsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex font-sans text-[#1e293b]">
+    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Tickets" />
 
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Tickets</h1>
 
-            <div className="bg-white rounded-lg p-4 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#e2e8f0]">
+            <div className="modern-card p-4 mb-6  border border-white/60">
               <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 max-w-[300px]">
@@ -34,16 +34,16 @@ export default function TicketsPage() {
                     <input 
                       type="text"
                       placeholder="Search" 
-                      className="w-full pl-9 pr-4 py-2 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg text-sm focus:outline-none focus:border-primary/30 transition-all placeholder:text-[#94a3b8]"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-lg text-sm focus:outline-none focus:border-primary/30 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
-                  <button className="p-2.5 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
+                  <button className="p-2.5 bg-white/80 backdrop-blur-md/50 border border-white/60 rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
                     <Box className="w-4 h-4" />
                   </button>
-                  <button className="p-2.5 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
+                  <button className="p-2.5 bg-white/80 backdrop-blur-md/50 border border-white/60 rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
                     <TrendingUp className="w-4 h-4" />
                   </button>
-                  <button className="p-2.5 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
+                  <button className="p-2.5 bg-white/80 backdrop-blur-md/50 border border-white/60 rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
                     <Filter className="w-4 h-4" />
                   </button>
                 </div>
@@ -55,7 +55,7 @@ export default function TicketsPage() {
             </div>
 
             {/* Stats Row */}
-            <div className="bg-white rounded-lg p-6 mb-8 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#e2e8f0]">
+            <div className="modern-card p-6 mb-8  border border-white/60">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div className="flex flex-col group cursor-pointer">
                   <span className="text-[28px] font-medium text-[#0f172a] mb-1">0</span>
@@ -83,9 +83,9 @@ export default function TicketsPage() {
             <div className="overflow-x-auto pb-4">
               <table className="w-full text-sm text-left whitespace-nowrap border-separate" style={{ borderSpacing: '0 12px' }}>
                 <thead>
-                  <tr className="bg-[#f8fafc] text-[#64748b]">
+                  <tr className="bg-white/80 backdrop-blur-md/50 text-[#64748b]">
                     <th className="py-4 px-6 font-medium rounded-l-[12px] w-12">
-                      <div className="w-4 h-4 rounded border border-[#cbd5e1] bg-white"></div>
+                      <div className="w-4 h-4 rounded border border-[#cbd5e1] bg-white/80 backdrop-blur-md"></div>
                     </th>
                     <th className="py-4 px-6 font-medium cursor-pointer hover:text-[#0f172a]">
                       <div className="flex items-center gap-1.5 text-[13px]">ID <ChevronUp className="w-3.5 h-3.5 opacity-50" /></div>
@@ -116,9 +116,9 @@ export default function TicketsPage() {
                 </thead>
                 <tbody>
                   {ticketsList.map((ticket, i) => (
-                    <tr key={i} className="bg-white group shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                    <tr key={i} className="bg-white/80 backdrop-blur-md group ">
                       <td className="py-4 px-6 rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
-                         <div className="w-4 h-4 rounded border border-[#cbd5e1] bg-white"></div>
+                         <div className="w-4 h-4 rounded border border-[#cbd5e1] bg-white/80 backdrop-blur-md"></div>
                       </td>
                       <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
                         <Link href={`/tickets/${ticket.id}`} className="hover:text-[#8b5cf6] transition-colors">{ticket.id}</Link>

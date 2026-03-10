@@ -27,18 +27,18 @@ export default function WebsiteAnalyticsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex font-sans text-[#1e293b]">
+    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Website Analytics" />
 
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Website Analytics</h1>
 
             {/* Google Analytics Dashboard Card */}
-            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0] flex flex-col lg:flex-row justify-between lg:items-center gap-4">
+            <div className="modern-card p-6 mb-6 shadow-sm border border-white/60 flex flex-col lg:flex-row justify-between lg:items-center gap-4">
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <BarChart2 className="w-5 h-5 text-[#94a3b8]" />
@@ -49,7 +49,7 @@ export default function WebsiteAnalyticsPage() {
                   <p className="text-[15px] font-semibold text-[#10b981]">Credentials: <span className="font-normal">Uploaded</span></p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 border border-[#e2e8f0] p-4 rounded-lg">
+              <div className="flex items-center gap-4 border border-white/60 p-4 rounded-lg">
                 <div className="flex flex-col">
                   <span className="text-sm font-semibold text-[#10b981] flex items-center gap-2">
                     <CheckSquare className="w-4 h-4" /> Connected to Google Analytics
@@ -64,53 +64,53 @@ export default function WebsiteAnalyticsPage() {
 
             {/* Four Metric Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-               <div className="bg-white rounded-lg p-5 shadow-sm border border-[#e2e8f0]">
+               <div className="modern-card p-5 shadow-sm border border-white/60">
                  <div className="flex items-center justify-between mb-4">
                    <p className="text-sm font-medium text-[#475569]">Total Visitors</p>
                    <div className="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center">
                       <Users className="w-[18px] h-[18px]" />
                    </div>
                  </div>
-                 <h3 className="text-2xl font-medium text-[#0f172a] mb-1">51</h3>
+                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-[#0f172a] mb-1">51</h3>
                  <span className="text-xs font-medium text-[#10b981]">↑ N/A this month</span>
                </div>
 
-               <div className="bg-white rounded-lg p-5 shadow-sm border border-[#e2e8f0]">
+               <div className="modern-card p-5 shadow-sm border border-white/60">
                  <div className="flex items-center justify-between mb-4">
                    <p className="text-sm font-medium text-[#475569]">New Leads Captured</p>
-                   <div className="w-8 h-8 rounded bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                   <div className="w-8 h-8 rounded bg-emerald-100 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-600 flex items-center justify-center">
                       <Target className="w-[18px] h-[18px]" />
                    </div>
                  </div>
-                 <h3 className="text-2xl font-medium text-[#0f172a] mb-1">0</h3>
+                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-[#0f172a] mb-1">0</h3>
                  <span className="text-xs font-medium text-[#10b981]">↑ N/A from last month</span>
                </div>
 
-               <div className="bg-white rounded-lg p-5 shadow-sm border border-[#e2e8f0]">
+               <div className="modern-card p-5 shadow-sm border border-white/60">
                  <div className="flex items-center justify-between mb-4">
                    <p className="text-sm font-medium text-[#475569]">Conversion Rate</p>
                    <div className="w-8 h-8 rounded bg-purple-100 text-purple-600 flex items-center justify-center">
                       <Zap className="w-[18px] h-[18px]" />
                    </div>
                  </div>
-                 <h3 className="text-2xl font-medium text-[#0f172a] mb-1">0.0%</h3>
+                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-[#0f172a] mb-1">0.0%</h3>
                  <span className="text-xs font-medium text-[#10b981]">↑ N/A</span>
                </div>
 
-               <div className="bg-white rounded-lg p-5 shadow-sm border border-[#e2e8f0]">
+               <div className="modern-card p-5 shadow-sm border border-white/60">
                  <div className="flex items-center justify-between mb-4">
                    <p className="text-sm font-medium text-[#475569]">Revenue from Web Leads</p>
-                   <div className="w-8 h-8 rounded bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                   <div className="w-8 h-8 rounded bg-emerald-100 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-600 flex items-center justify-center">
                       <DollarSign className="w-[18px] h-[18px]" />
                    </div>
                  </div>
-                 <h3 className="text-2xl font-medium text-[#0f172a] mb-1">$0</h3>
+                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-[#0f172a] mb-1">$0</h3>
                  <span className="text-xs font-medium text-[#10b981]">↑ N/A this month</span>
                </div>
             </div>
 
             {/* Key Insights */}
-            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0]">
+            <div className="modern-card p-6 mb-6 shadow-sm border border-white/60">
               <h3 className="text-[15px] font-semibold text-[#475569] mb-4 flex items-center gap-2">
                 <Lightbulb className="w-4 h-4 text-[#64748b]" /> Key Insights
               </h3>
@@ -123,14 +123,14 @@ export default function WebsiteAnalyticsPage() {
             </div>
 
             {/* Website Traffic */}
-            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0]">
+            <div className="modern-card p-6 mb-6 shadow-sm border border-white/60">
               <div className="flex justify-between items-start mb-8">
                 <div>
                   <h3 className="text-lg font-medium text-[#0f172a]">Website Traffic</h3>
                   <p className="text-[13px] text-[#94a3b8] mt-1">Visitor sessions over time</p>
                 </div>
                 <div className="flex bg-[#f1f5f9] p-1 rounded-full">
-                  <button className="px-4 py-1.5 bg-white shadow-sm rounded-full text-xs font-semibold text-[#0f172a]">7 Days</button>
+                  <button className="px-4 py-1.5 bg-white/80 backdrop-blur-md shadow-sm rounded-full text-xs font-semibold text-[#0f172a]">7 Days</button>
                   <button className="px-4 py-1.5 text-[#64748b] text-xs font-medium hover:text-[#0f172a]">30 Days</button>
                   <button className="px-4 py-1.5 text-[#64748b] text-xs font-medium hover:text-[#0f172a]">90 Days</button>
                 </div>
@@ -198,7 +198,7 @@ export default function WebsiteAnalyticsPage() {
                   <div className="space-y-6 text-sm">
                     <div>
                       <div className="flex justify-between items-center mb-1 text-[#475569]">
-                        <span className="flex items-center gap-2"><Smartphone className="w-4 h-4 text-emerald-400" /> Mobile</span>
+                        <span className="flex items-center gap-2"><Smartphone className="w-4 h-4 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-400" /> Mobile</span>
                       </div>
                       <div className="text-[13px] text-[#94a3b8] mb-1">15%</div>
                     </div>
@@ -243,7 +243,7 @@ export default function WebsiteAnalyticsPage() {
             </div>
 
             {/* Leads & Conversions */}
-            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0] min-h-[300px] flex flex-col">
+            <div className="modern-card p-6 mb-6 shadow-sm border border-white/60 min-h-[300px] flex flex-col">
               <h3 className="text-[15px] font-semibold text-[#0f172a] mb-1">Leads & Conversions</h3>
               <p className="text-[13px] text-[#94a3b8]">Comparing website visitors to leads captured</p>
               <div className="flex-1 flex items-center justify-center">
@@ -253,7 +253,7 @@ export default function WebsiteAnalyticsPage() {
 
             {/* Top Pages & Engagement Metrics */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#e2e8f0]">
+              <div className="modern-card p-6 shadow-sm border border-white/60">
                  <h3 className="text-[15px] font-semibold text-[#0f172a] mb-6">Top Pages</h3>
                  <div className="space-y-0 divide-y divide-[#f1f5f9]">
                    <div className="flex justify-between items-center py-4">
@@ -294,10 +294,10 @@ export default function WebsiteAnalyticsPage() {
                  </div>
               </div>
               
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-[#e2e8f0]">
+              <div className="modern-card p-6 shadow-sm border border-white/60">
                  <h3 className="text-[15px] font-semibold text-[#0f172a] mb-6">Engagement Metrics</h3>
                  <div className="space-y-4">
-                   <div className="border border-[#e2e8f0] rounded-lg p-4 flex items-center gap-4">
+                   <div className="border border-white/60 rounded-lg p-4 flex items-center gap-4">
                      <div className="w-10 h-10 rounded-lg bg-indigo-500 text-white flex items-center justify-center shrink-0">
                        <Clock className="w-5 h-5" />
                      </div>
@@ -306,7 +306,7 @@ export default function WebsiteAnalyticsPage() {
                        <span className="text-[15px] font-medium text-[#0f172a]">15m 50s</span>
                      </div>
                    </div>
-                   <div className="border border-[#e2e8f0] rounded-lg p-4 flex items-center gap-4">
+                   <div className="border border-white/60 rounded-lg p-4 flex items-center gap-4">
                      <div className="w-10 h-10 rounded-lg bg-emerald-400 text-white flex items-center justify-center shrink-0">
                        <Target className="w-5 h-5" />
                      </div>
@@ -315,7 +315,7 @@ export default function WebsiteAnalyticsPage() {
                        <span className="text-[15px] font-medium text-[#0f172a]">5.1</span>
                      </div>
                    </div>
-                   <div className="border border-[#e2e8f0] rounded-lg p-4 flex items-center gap-4">
+                   <div className="border border-white/60 rounded-lg p-4 flex items-center gap-4">
                      <div className="w-10 h-10 rounded-lg bg-orange-400 text-white flex items-center justify-center shrink-0">
                        <TrendingUp className="w-5 h-5" />
                      </div>
@@ -329,13 +329,13 @@ export default function WebsiteAnalyticsPage() {
             </div>
 
             {/* Business Summary */}
-            <div className="bg-white rounded-lg p-6 mb-6 shadow-sm border border-[#e2e8f0]">
+            <div className="modern-card p-6 mb-6 shadow-sm border border-white/60">
                <h3 className="text-[15px] font-semibold text-[#64748b] mb-1">Business Summary (This Month)</h3>
                <p className="text-[13px] text-[#94a3b8] mb-6">Performance metrics from your CRM</p>
                
                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                  <div className="bg-emerald-50 rounded-lg p-5">
-                   <p className="text-[13px] font-medium text-emerald-500 mb-2">Total Jobs Completed</p>
+                   <p className="text-[13px] font-medium text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-500 mb-2">Total Jobs Completed</p>
                    <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">87</h4>
                    <p className="text-sm font-semibold text-[#0f172a]">+12 from last month</p>
                  </div>

@@ -32,26 +32,26 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f4f8] flex font-sans text-[#1e293b]">
+    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
       {/* Main Container */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Home" />
 
         {/* Main Layout */}
         <div className="flex flex-1 overflow-hidden">
           {/* Main Content */}
-          <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+          <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
             <div className="max-w-7xl mx-auto">
-              <h1 className="text-2xl font-bold text-[#0f172a] mb-6">Home</h1>
+              <h1 className="text-3xl font-bold bg-white/10 backdrop-blur-mdlip-text text-transparent bg-gradient-to-r from-[#0f172a] to-[#475569] mb-8">Home</h1>
 
               {/* Work Session */}
-              <div className="bg-white rounded-[1rem] p-6 mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+              <div className="modern-card p-6 mb-6 ">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
                   {/* Left */}
                   <div className="flex flex-col">
-                    <h2 className="text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider mb-2">WORK SESSION</h2>
+                    <h2 className="text-xs font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8b5cf6] to-[#4f46e5] uppercase tracking-widest mb-2">WORK SESSION</h2>
                     <div className="flex items-center text-[11px] font-medium text-[#64748b] bg-[#f1f5f9] px-2.5 py-1 rounded-full w-fit">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#94a3b8] mr-2"></span>
                       Stopped
@@ -74,12 +74,12 @@ export default function Home() {
 
                 {/* Time Boxes */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-                  <div className="border border-[#f1f5f9] rounded-[0.75rem] p-4 bg-[#f8fafc]/50 flex flex-col justify-center">
+                  <div className="border border-white/60 rounded-[0.75rem] p-4 bg-white/80 backdrop-blur-md/50/50 flex flex-col justify-center">
                     <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK IN</div>
                     <div className="font-bold text-lg text-[#0f172a]">3:41:05 PM</div>
                     <div className="text-xs text-[#94a3b8]">03 Feb 2026</div>
                   </div>
-                  <div className="border border-[#f1f5f9] rounded-[0.75rem] p-4 bg-[#f8fafc]/50 flex flex-col justify-center">
+                  <div className="border border-white/60 rounded-[0.75rem] p-4 bg-white/80 backdrop-blur-md/50/50 flex flex-col justify-center">
                     <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK OUT</div>
                     <div className="font-bold text-lg text-[#0f172a]">12:01:03 PM</div>
                     <div className="text-xs text-[#94a3b8]">04 Feb 2026</div>
@@ -106,20 +106,20 @@ export default function Home() {
                   { label: 'Support Tickets', value: '4', icon: HelpCircle, href: '/tickets' },
                 ].map((stat, i) => (
                   <Link key={i} href={stat.href} className="block group">
-                    <div className="bg-white rounded-[1rem] p-5 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-between h-28 relative hover:border-[#8b5cf6] border border-transparent transition-colors cursor-pointer">
-                      <div className="flex items-center space-x-2.5">
-                        <div className="bg-[#f8fafc] p-1.5 rounded-full text-[#0f172a] group-hover:bg-[#f3e8ff] group-hover:text-[#8b5cf6] transition-colors">
+                    <div className="modern-card p-5  flex flex-col justify-between h-28 relative hover:border-[#8b5cf6] border border-transparent transition-colors cursor-pointer">
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-white/80 backdrop-blur-md/50 p-1.5 rounded-full text-[#0f172a] group-hover:bg-[#f3e8ff] group-hover:text-[#8b5cf6] transition-colors">
                           <stat.icon className="w-4 h-4" strokeWidth={2.5} />
                         </div>
                         <span className="font-semibold text-[#0f172a] text-sm group-hover:text-[#8b5cf6] transition-colors">{stat.label}</span>
                       </div>
                       
                       <div className="mt-4">
-                        <span className="text-2xl font-bold text-[#0f172a]">{stat.value}</span>
+                        <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-bold text-[#0f172a]">{stat.value}</span>
                       </div>
 
                       <div className="absolute bottom-4 right-4">
-                        <div className="w-6 h-6 rounded-full border border-[#f1f5f9] flex items-center justify-center text-[#94a3b8] group-hover:bg-[#8b5cf6] group-hover:border-[#8b5cf6] group-hover:text-white transition-all">
+                        <div className="w-6 h-6 rounded-full border border-white/60 flex items-center justify-center text-[#94a3b8] group-hover:bg-[#8b5cf6] group-hover:border-[#8b5cf6] group-hover:text-white transition-all">
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </div>
                       </div>
@@ -129,17 +129,17 @@ export default function Home() {
               </div>
 
               {/* Total Projects */}
-              <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] mb-6">
+              <div className="modern-card p-6  mb-6">
                 <div className="flex justify-between items-center mb-5">
                   <h2 className="text-base font-bold text-[#0f172a]">Total Projects</h2>
-                  <Link href="/projects" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] flex items-center transition-colors">
+                  <Link href="/projects" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-white/60/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all flex items-center transition-colors">
                     View All Projects <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </Link>
                 </div>
                 
-                <div className="rounded-xl overflow-hidden border border-[#f1f5f9]">
+                <div className="rounded-xl overflow-hidden border border-white/60">
                   <table className="w-full text-xs text-left">
-                    <thead className="bg-[#f8fafc] border-b border-[#f1f5f9]">
+                    <thead className="bg-white/80 backdrop-blur-md/50 border-b border-white/40">
                       <tr>
                         <th className="py-3 px-4 font-bold text-[#475569]">Project Name</th>
                         <th className="py-3 px-4 font-bold text-[#475569]">Client</th>
@@ -157,7 +157,7 @@ export default function Home() {
                         { name: 'Bug Assignee is not selected', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Cancelled', statusColor: 'text-[#ef4444] border-[#ef4444]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
                         { name: 'Dash Board - Pencil Frame HTML', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Pending', statusColor: 'text-[#38bdf8] border-[#38bdf8]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
                       ].map((project, i) => (
-                        <tr key={i} className="border-b border-[#f1f5f9] last:border-0 hover:bg-[#f8fafc]/50 transition-colors">
+                        <tr key={i} className="border-b border-white/40 last:border-0 hover:bg-white/80 backdrop-blur-md/50/50 transition-colors">
                           <td className="py-3 px-4 font-medium text-[#0f172a]">{project.name}</td>
                           <td className="py-3 px-4 text-[#475569]">{project.client}</td>
                           <td className="py-3 px-4 text-[#475569] whitespace-nowrap">{project.date}</td>
@@ -180,10 +180,10 @@ export default function Home() {
 
               {/* Bottom Row */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col h-[350px]">
+                <div className="modern-card p-6  flex flex-col h-[350px]">
                   <div className="flex justify-between items-center mb-5">
                     <h2 className="text-base font-bold text-[#0f172a]">Clients</h2>
-                    <Link href="/clients" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] transition-colors">
+                    <Link href="/clients" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-white/60/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all transition-colors">
                       View all
                     </Link>
                   </div>
@@ -193,7 +193,7 @@ export default function Home() {
                     <input 
                       type="text" 
                       placeholder="Search" 
-                      className="w-full pl-9 pr-4 py-2 bg-[#f8fafc] border border-[#f1f5f9] rounded-lg text-sm focus:outline-none focus:border-[#e2e8f0] transition-colors"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-lg text-sm focus:outline-none focus:border-[#e2e8f0] transition-colors"
                     />
                   </div>
 
@@ -206,7 +206,7 @@ export default function Home() {
                       'urban land solution',
                       "Angel's Gardening Services"
                     ].map((client, i) => (
-                      <div key={i} className="flex items-center gap-3 p-2 hover:bg-[#f8fafc] rounded-lg cursor-pointer transition-colors">
+                      <div key={i} className="flex items-center gap-3 p-2.5 hover:bg-white/80 backdrop-blur-md/50/80 rounded-xl cursor-pointer transition-all hover:translate-x-1">
                         <div className="w-8 h-8 rounded-md bg-[#f1f5f9] flex items-center justify-center shrink-0">
                           <Building2 className="w-4 h-4 text-[#94a3b8]" />
                         </div>
@@ -216,10 +216,10 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col h-[350px]">
+                <div className="modern-card p-6  flex flex-col h-[350px]">
                   <div className="flex justify-between items-center mb-5 shrink-0">
                     <h2 className="text-base font-bold text-[#0f172a]">Support Tickets</h2>
-                    <Link href="/tickets" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] flex items-center transition-colors">
+                    <Link href="/tickets" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-white/60/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all flex items-center transition-colors">
                       View All Tickets <ArrowRight className="w-3.5 h-3.5 ml-1" />
                     </Link>
                   </div>
@@ -232,7 +232,7 @@ export default function Home() {
                       { id: 4, title: 'Test' },
                       { id: 5, title: 'Demo' },
                     ].map((ticket) => (
-                      <div key={ticket.id} className="flex items-center gap-4 p-3 border border-[#f1f5f9] rounded-lg hover:border-[#e2e8f0] transition-colors cursor-pointer">
+                      <div key={ticket.id} className="flex items-center gap-4 p-3 border border-white/60 rounded-lg hover:border-[#e2e8f0] transition-colors cursor-pointer">
                         <span className="text-sm font-bold text-[#0f172a] w-4">{ticket.id}</span>
                         <span className="text-sm font-medium text-[#475569]">{ticket.title}</span>
                       </div>
@@ -244,7 +244,7 @@ export default function Home() {
           </main>
 
           {/* Right Sidebar */}
-          <aside className="w-[300px] bg-[#f4f5f8] border-l border-[#e2e8f0]/50 overflow-y-auto hidden xl:block p-6">
+          <aside className="w-[300px] bg-gradient-to-b from-[#f8fafc] to-[#e2e8f0] border-l border-white/60 shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.05)] overflow-y-auto hidden xl:block p-6">
             <h2 className="text-[15px] font-bold text-[#0f172a] mb-6">Latest Activity</h2>
             
             <div className="relative">
@@ -266,7 +266,7 @@ export default function Home() {
                   { user: '', action: 'Assigned a task to Jitander', time: '2 weeks ago', type: 'icon' },
                 ].map((event, i) => (
                   <div key={i} className="relative flex items-start gap-4">
-                    <div className="relative z-10 w-10 h-10 rounded-full bg-white border border-[#e2e8f0] flex items-center justify-center shrink-0 overflow-hidden">
+                    <div className="relative z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-white/60 flex items-center justify-center shrink-0 overflow-hidden">
                       {event.type === 'avatar' ? (
                         <img src={event.img} alt={event.user} className="w-full h-full object-cover" />
                       ) : (

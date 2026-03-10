@@ -12,22 +12,22 @@ export default function TicketDetailsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex font-sans text-[#1e293b]">
+    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/tickets" />
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
         <Header title="Ticket Details" />
 
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-[1400px] mx-auto">
             
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-[22px] font-bold text-[#0f172a]">Testing the Support features</h1>
               <div className="flex items-center gap-2">
-                <button className="w-9 h-9 flex items-center justify-center bg-white border border-[#e2e8f0] rounded-lg text-[#94a3b8] hover:text-[#0f172a] hover:bg-[#f1f5f9] transition-colors shadow-sm">
+                <button className="w-9 h-9 flex items-center justify-center bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-[#94a3b8] hover:text-[#0f172a] hover:bg-[#f1f5f9] transition-colors shadow-sm">
                   <Edit2 className="w-4 h-4" />
                 </button>
-                <button className="w-9 h-9 flex items-center justify-center bg-white border border-[#e2e8f0] rounded-lg text-[#94a3b8] hover:text-[#0f172a] hover:bg-[#f1f5f9] transition-colors shadow-sm">
+                <button className="w-9 h-9 flex items-center justify-center bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-[#94a3b8] hover:text-[#0f172a] hover:bg-[#f1f5f9] transition-colors shadow-sm">
                   <Settings className="w-4 h-4" />
                 </button>
               </div>
@@ -37,8 +37,8 @@ export default function TicketDetailsPage() {
               
               {/* Left Column - Ticket Details */}
               <div className="w-full lg:w-[320px] shrink-0">
-                <div className="bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#e2e8f0]">
-                  <div className="p-5 border-b border-[#f1f5f9]">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-white/60">
+                  <div className="p-5 border-b border-white/40">
                     <h2 className="text-[15px] font-bold text-[#0f172a]">Ticket Details</h2>
                   </div>
                   
@@ -106,7 +106,7 @@ export default function TicketDetailsPage() {
               <div className="flex-1 min-w-0 space-y-4">
                 
                 {/* Message 1 */}
-                <div className="bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#e2e8f0] p-6">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-white/60 p-6">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 shrink-0">
                       <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Milhan" alt="Milhan" className="w-full h-full object-cover" />
@@ -122,7 +122,7 @@ export default function TicketDetailsPage() {
                 </div>
 
                 {/* Note 1 */}
-                <div className="bg-[#fff9e6] rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#fef0c7] p-6 relative">
+                <div className="bg-[#fff9e6] rounded-xl  border border-[#fef0c7] p-6 relative">
                   <div className="absolute top-6 right-6">
                     <span className="px-2 py-1 bg-[#fef0c7] text-[#d97706] text-[10px] font-bold rounded">ticket note</span>
                   </div>
@@ -141,7 +141,7 @@ export default function TicketDetailsPage() {
                 </div>
 
                 {/* Note 2 */}
-                <div className="bg-[#fff9e6] rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-[#fef0c7] p-6 relative">
+                <div className="bg-[#fff9e6] rounded-xl  border border-[#fef0c7] p-6 relative">
                   <div className="absolute top-6 right-6">
                     <span className="px-2 py-1 bg-[#fef0c7] text-[#d97706] text-[10px] font-bold rounded">ticket note</span>
                   </div>
@@ -161,7 +161,7 @@ export default function TicketDetailsPage() {
 
                 {/* Actions */}
                 <div className="flex justify-center gap-3 pt-4">
-                  <button className="px-5 py-2.5 bg-white border border-[#e2e8f0] hover:bg-[#f8fafc] text-[#475569] rounded-lg text-[14px] font-semibold transition-colors shadow-sm">
+                  <button className="px-5 py-2.5 bg-white/80 backdrop-blur-md border border-white/60 hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-lg text-[14px] font-semibold transition-colors shadow-sm">
                     Add A Note
                   </button>
                   <button className="px-5 py-2.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-lg text-[14px] font-semibold transition-colors shadow-sm">
