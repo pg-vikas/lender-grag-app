@@ -19,7 +19,7 @@ import {
   Globe,
   ChevronDown
 } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function Home() {
@@ -97,29 +97,31 @@ export default function Home() {
               {/* Stat Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 {[
-                  { label: 'Clients', value: '0', icon: User },
-                  { label: 'Projects', value: '0', icon: Users },
-                  { label: 'Analytics', value: '0', icon: BarChart2 },
-                  { label: 'Support Tickets', value: '0', icon: HelpCircle },
+                  { label: 'Clients', value: '0', icon: User, href: '/clients' },
+                  { label: 'Projects', value: '0', icon: Users, href: '/projects' },
+                  { label: 'Analytics', value: '0', icon: BarChart2, href: '/analytics' },
+                  { label: 'Support Tickets', value: '0', icon: HelpCircle, href: '/tickets' },
                 ].map((stat, i) => (
-                  <div key={i} className="bg-white rounded-[1rem] p-5 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-between h-28 relative">
-                    <div className="flex items-center space-x-2.5">
-                      <div className="bg-[#f8fafc] p-1.5 rounded-full text-[#0f172a]">
-                        <stat.icon className="w-4 h-4" strokeWidth={2.5} />
+                  <Link key={i} href={stat.href} className="block group">
+                    <div className="bg-white rounded-[1rem] p-5 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col justify-between h-28 relative hover:border-[#8b5cf6] border border-transparent transition-colors cursor-pointer">
+                      <div className="flex items-center space-x-2.5">
+                        <div className="bg-[#f8fafc] p-1.5 rounded-full text-[#0f172a] group-hover:bg-[#f3e8ff] group-hover:text-[#8b5cf6] transition-colors">
+                          <stat.icon className="w-4 h-4" strokeWidth={2.5} />
+                        </div>
+                        <span className="font-semibold text-[#0f172a] text-sm group-hover:text-[#8b5cf6] transition-colors">{stat.label}</span>
                       </div>
-                      <span className="font-semibold text-[#0f172a] text-sm">{stat.label}</span>
-                    </div>
-                    
-                    <div className="mt-4">
-                      <span className="text-2xl font-bold text-[#0f172a]">{stat.value}</span>
-                    </div>
+                      
+                      <div className="mt-4">
+                        <span className="text-2xl font-bold text-[#0f172a]">{stat.value}</span>
+                      </div>
 
-                    <div className="absolute bottom-4 right-4">
-                      <div className="w-6 h-6 rounded-full border border-[#f1f5f9] flex items-center justify-center text-[#94a3b8]">
-                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      <div className="absolute bottom-4 right-4">
+                        <div className="w-6 h-6 rounded-full border border-[#f1f5f9] flex items-center justify-center text-[#94a3b8] group-hover:bg-[#8b5cf6] group-hover:border-[#8b5cf6] group-hover:text-white transition-all">
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
 
@@ -127,9 +129,9 @@ export default function Home() {
               <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] mb-6">
                 <div className="flex justify-between items-center mb-5">
                   <h2 className="text-base font-bold text-[#0f172a]">Total Projects</h2>
-                  <button className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] flex items-center transition-colors">
+                  <Link href="/projects" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] flex items-center transition-colors">
                     View All Projects <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                  </button>
+                  </Link>
                 </div>
                 
                 <div className="rounded-xl overflow-hidden border border-[#f1f5f9]">
@@ -158,15 +160,15 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex justify-between items-center">
                   <h2 className="text-base font-bold text-[#0f172a]">Clients</h2>
-                  <button className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] transition-colors">
+                  <Link href="/clients" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] transition-colors">
                     View all
-                  </button>
+                  </Link>
                 </div>
                 <div className="bg-white rounded-[1rem] p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex justify-between items-center">
                   <h2 className="text-base font-bold text-[#0f172a]">Support Tickets</h2>
-                  <button className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] flex items-center transition-colors">
+                  <Link href="/tickets" className="text-xs font-semibold text-[#64748b] border border-[#e2e8f0] px-3 py-1.5 rounded-full hover:bg-[#f8fafc] flex items-center transition-colors">
                     View All Tickets <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
