@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Search, Filter, Plus, ChevronUp, ChevronDown, Folder, MoreHorizontal, LayoutGrid, List, TrendingUp, Download, Edit2 } from "lucide-react";
+import { Search, Filter, Plus, ChevronUp, ChevronDown, Folder, MoreHorizontal, LayoutGrid, List, TrendingUp, Download, Edit2, X } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function ProjectsPage() {
   const [openMenus, setOpenMenus] = useState<string>('');
+  const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
@@ -90,7 +91,10 @@ export default function ProjectsPage() {
                   <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#e2e8f0] rounded-lg text-sm font-medium text-[#475569] hover:bg-[#f8fafc] transition-colors">
                     <Download className="w-4 h-4" /> Export <ChevronDown className="w-3.5 h-3.5" />
                   </button>
-                  <button className="flex items-center gap-2 px-5 py-2 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-lg text-sm font-medium transition-colors shadow-sm">
+                  <button 
+                    onClick={() => setIsAddProjectModalOpen(true)}
+                    className="flex items-center gap-2 px-5 py-2 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
+                  >
                     <Plus className="w-4 h-4" /> Add New Project
                   </button>
                 </div>
@@ -201,6 +205,83 @@ export default function ProjectsPage() {
           </div>
         </main>
       </div>
+
+      {/* Add Project Modal */}
+      {isAddProjectModalOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-[800px] my-8 flex flex-col relative max-h-[90vh]">
+            <div className="flex items-center justify-between p-6 border-b border-[#e2e8f0] shrink-0 sticky top-0 bg-white z-10 rounded-t-lg">
+              <h2 className="text-xl font-bold text-[#0f172a]">Create A New Project</h2>
+              <button 
+                onClick={() => setIsAddProjectModalOpen(false)}
+                className="text-[#94a3b8] hover:text-[#0f172a] transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 overflow-y-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                <div>
+                  <label className="block text-[13px] text-[#475569] mb-1.5">Project Name*</label>
+                  <input type="text" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                </div>
+                <div>
+                  <label className="block text-[13px] text-[#475569] mb-1.5">Client</label>
+                  <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                    <option></option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[13px] text-[#475569] mb-1.5">Date From*</label>
+                  <input type="text" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                </div>
+                <div>
+                  <label className="block text-[13px] text-[#475569] mb-1.5">Date To</label>
+                  <input type="text" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                </div>
+                <div>
+                  <label className="block text-[13px] text-[#475569] mb-1.5">Priority</label>
+                  <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                    <option>Normal</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[13px] text-[#475569] mb-1.5">Assignee</label>
+                  <input type="text" className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                </div>
+                <div>
+                  <label className="block text-[13px] text-[#475569] mb-1.5">Status</label>
+                  <select className="w-full px-3 py-2 bg-white border border-[#e2e8f0] rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                    <option>Not Started</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div className="w-full h-[1px] bg-[#f1f5f9] my-6"></div>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-[14px] font-medium text-[#0f172a]">Description & Details</span>
+                <button className="w-10 h-5 bg-[#e2e8f0] rounded-full relative transition-colors cursor-pointer">
+                  <div className="w-4 h-4 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm"></div>
+                </button>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white rounded-b-lg shrink-0 sticky bottom-0">
+              <button 
+                onClick={() => setIsAddProjectModalOpen(false)}
+                className="px-5 py-2 bg-white border border-[#e2e8f0] hover:bg-[#f8fafc] text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+              >
+                Close
+              </button>
+              <button className="px-5 py-2 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-md text-[14px] font-medium transition-colors shadow-sm">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
