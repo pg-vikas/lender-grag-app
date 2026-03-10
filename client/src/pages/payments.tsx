@@ -32,7 +32,7 @@ export default function PaymentsPage() {
           <div className="max-w-7xl mx-auto">
             <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Billings</h1>
 
-            <div className="modern-card shadow-sm p-6 border border-white/60">
+            <div className="modern-card shadow-sm p-6 border border-[#e2e8f0]">
               <h2 className="text-sm font-medium text-[#64748b] mb-6">Billing History</h2>
 
               <div className="overflow-x-auto">
@@ -115,7 +115,7 @@ export default function PaymentsPage() {
             </div>
             
             <div className="p-6 pt-2 pb-12">
-              <div className="border border-white/60 rounded-md overflow-hidden">
+              <div className="border border-[#e2e8f0] rounded-md overflow-hidden">
                 <table className="w-full text-[14px] text-left">
                   <tbody className="divide-y divide-[#e2e8f0]">
                     <tr>

@@ -21,7 +21,7 @@ export default function ContractDetailsPage() {
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-4xl mx-auto">
             
-            <div className="modern-card shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-white/60">
+            <div className="modern-card shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-[#e2e8f0]">
               
               {/* Header Banner */}
               <div className="relative h-48 bg-gradient-to-r from-purple-800 to-indigo-900 flex flex-col items-center justify-center text-white overflow-hidden">

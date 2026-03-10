@@ -44,10 +44,10 @@ export default function ProjectsPage() {
               <div className="flex items-center gap-3">
                 <span className="text-sm font-medium text-[#475569]">View:</span>
                 <div className="flex items-center gap-2">
-                  <button className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-sm font-medium text-[#8b5cf6] shadow-sm">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm font-medium text-[#8b5cf6] shadow-sm">
                     <List className="w-4 h-4" /> Table View
                   </button>
-                  <button className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-sm font-medium text-[#64748b] hover:bg-white/80 backdrop-blur-md/50 transition-colors shadow-sm">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm font-medium text-[#64748b] hover:bg-white/80 backdrop-blur-md/50 transition-colors shadow-sm">
                     <LayoutGrid className="w-4 h-4 text-[#8b5cf6]" /> Board
                   </button>
                 </div>
@@ -55,14 +55,14 @@ export default function ProjectsPage() {
                   <button className="px-4 py-2 bg-white/80 backdrop-blur-md border border-green-200 rounded-full text-sm font-medium text-green-600 shadow-sm">
                     Completed
                   </button>
-                  <button className="px-4 py-2 bg-white/80 backdrop-blur-md border border-white/60 rounded-full text-sm font-medium text-[#64748b] hover:bg-white/80 backdrop-blur-md/50 transition-colors shadow-sm">
+                  <button className="px-4 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] rounded-full text-sm font-medium text-[#64748b] hover:bg-white/80 backdrop-blur-md/50 transition-colors shadow-sm">
                     In progress
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="modern-card p-4 mb-6 shadow-sm border border-white/60">
+            <div className="modern-card p-4 mb-6 shadow-sm border border-[#e2e8f0]">
               <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div className="flex items-center gap-3 w-full sm:w-auto flex-1">
                   <div className="relative flex-1 max-w-[240px]">
@@ -70,26 +70,26 @@ export default function ProjectsPage() {
                     <input 
                       type="text"
                       placeholder="Search" 
-                      className="w-full pl-10 pr-4 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-lg text-sm focus:outline-none focus:border-primary/30 transition-all placeholder:text-[#94a3b8]"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-white/60/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
+                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                     Filter <Filter className="w-4 h-4" />
                   </button>
-                  <button className="p-2 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-[#475569] hover:bg-white/80 backdrop-blur-md/50 transition-colors">
+                  <button className="p-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-[#475569] hover:bg-white/80 backdrop-blur-md/50 transition-colors">
                     <TrendingUp className="w-4 h-4" />
                   </button>
                   <div className="relative flex-1 max-w-[200px]">
                     <input 
                       type="text"
                       placeholder="Assigned" 
-                      className="w-full px-4 py-2 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-primary/30 transition-all placeholder:text-[#94a3b8]"
+                      className="w-full px-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-white/60/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
+                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                     <Download className="w-4 h-4" /> Export <ChevronDown className="w-3.5 h-3.5" />
                   </button>
                   <button 
@@ -103,7 +103,7 @@ export default function ProjectsPage() {
             </div>
 
             {/* Stats Row */}
-            <div className="modern-card p-6 mb-8 shadow-sm border border-white/60">
+            <div className="modern-card p-6 mb-8 shadow-sm border border-[#e2e8f0]">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div className="flex flex-col group cursor-pointer">
                   <span className="text-[28px] font-medium text-[#0f172a] mb-1">181</span>
@@ -228,35 +228,35 @@ export default function ProjectsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Project Name*</label>
-                  <input type="text" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Client</label>
-                  <select className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                  <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
                     <option></option>
                   </select>
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Date From*</label>
-                  <input type="text" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Date To</label>
-                  <input type="text" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Priority</label>
-                  <select className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                  <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
                     <option>Normal</option>
                   </select>
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Assignee</label>
-                  <input type="text" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Status</label>
-                  <select className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                  <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
                     <option>Not Started</option>
                   </select>
                 </div>
@@ -275,7 +275,7 @@ export default function ProjectsPage() {
             <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white/80 backdrop-blur-md rounded-b-lg shrink-0 sticky bottom-0">
               <button 
                 onClick={() => setIsAddProjectModalOpen(false)}
-                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-white/60 hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
               >
                 Close
               </button>
@@ -309,25 +309,25 @@ export default function ProjectsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Project Name*</label>
-                  <input type="text" defaultValue="Twilio ticket + domain verify" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" defaultValue="Twilio ticket + domain verify" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Client</label>
-                  <select className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                  <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
                     <option>Pink Gorilla Agency</option>
                   </select>
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Date From*</label>
-                  <input type="text" defaultValue="10-03-2026" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" defaultValue="10-03-2026" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Date To</label>
-                  <input type="text" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Priority</label>
-                  <select className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                  <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
                     <option>Low</option>
                     <option>Normal</option>
                     <option>High</option>
@@ -335,12 +335,12 @@ export default function ProjectsPage() {
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Assignee</label>
-                  <div className="w-full min-h-[80px] p-2 bg-white/80 backdrop-blur-md border border-white/60 rounded-md flex flex-col gap-2">
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#f1f5f9] border border-white/60 rounded text-[12px] text-[#475569] w-fit">
+                  <div className="w-full min-h-[80px] p-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] rounded-md flex flex-col gap-2">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#f1f5f9] border border-[#e2e8f0] rounded text-[12px] text-[#475569] w-fit">
                       <span className="cursor-pointer hover:text-red-500">×</span>
                       Vikas Sharma (vikas@pinkgorillasoftware.com)
                     </div>
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#f1f5f9] border border-white/60 rounded text-[12px] text-[#475569] w-fit">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#f1f5f9] border border-[#e2e8f0] rounded text-[12px] text-[#475569] w-fit">
                       <span className="cursor-pointer hover:text-red-500">×</span>
                       Chayan Alavi (chayan@pinkgorilla.agency)
                     </div>
@@ -348,7 +348,7 @@ export default function ProjectsPage() {
                 </div>
                 <div>
                   <label className="block text-[13px] text-[#475569] mb-1.5">Status</label>
-                  <select className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                  <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
                     <option>Pending Approval</option>
                     <option>In Progress</option>
                     <option>Completed</option>
@@ -369,7 +369,7 @@ export default function ProjectsPage() {
             <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white/80 backdrop-blur-md rounded-b-lg shrink-0 sticky bottom-0">
               <button 
                 onClick={() => setIsEditProjectModalOpen(false)}
-                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-white/60 hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
               >
                 Close
               </button>

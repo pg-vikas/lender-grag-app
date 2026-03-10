@@ -40,7 +40,7 @@ export default function SubscriptionDetailsPage() {
                   <p className="text-[14px] text-[#475569] font-medium">$0.00/Month</p>
                 </div>
 
-                <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-sm border border-white/60 overflow-hidden">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-sm border border-[#e2e8f0] overflow-hidden">
                   <div className="p-6 space-y-6">
                     <div>
                       <p className="text-[13px] font-medium text-[#64748b] mb-1">Client</p>

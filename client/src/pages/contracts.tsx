@@ -32,18 +32,18 @@ export default function ContractsPage() {
               </button>
             </div>
 
-            <div className="modern-card  overflow-hidden border border-white/60">
-              <div className="p-4 border-b border-white/40 flex flex-col sm:flex-row gap-4 justify-between items-center bg-white/80 backdrop-blur-md/50">
+            <div className="modern-card  overflow-hidden border border-[#e2e8f0]">
+              <div className="p-4 border-b border-[#e2e8f0] flex flex-col sm:flex-row gap-4 justify-between items-center bg-white/80 backdrop-blur-md/50">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 sm:w-64">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
                     <input 
                       type="text"
                       placeholder="Search contracts" 
-                      className="w-full pl-9 pr-4 py-2 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-primary/30 transition-all placeholder:text-[#94a3b8]"
+                      className="w-full pl-9 pr-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-white/60/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
+                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                     Filter <Filter className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -51,7 +51,7 @@ export default function ContractsPage() {
 
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left whitespace-nowrap">
-                  <thead className="bg-white/80 backdrop-blur-md border-b border-white/40">
+                  <thead className="bg-white/80 backdrop-blur-md border-b border-[#e2e8f0]">
                     <tr>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Contract Name</th>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Client</th>

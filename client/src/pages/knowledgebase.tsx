@@ -65,7 +65,7 @@ export default function KnowledgebasePage() {
                  <h2 className="text-xl font-bold text-[#0f172a] mb-6">Browse by Category</h2>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {categories.map((cat, i) => (
-                      <div key={i} className="modern-card p-6  border border-white/60 hover:border-[#8b5cf6]/30 transition-colors cursor-pointer group">
+                      <div key={i} className="modern-card p-6  border border-[#e2e8f0] hover:border-[#8b5cf6]/30 transition-colors cursor-pointer group">
                          <div className="flex items-start gap-4">
                             <div className="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-[#8b5cf6] group-hover:text-white transition-colors">
                                <BookOpen className="w-6 h-6" />
@@ -83,7 +83,7 @@ export default function KnowledgebasePage() {
 
                {/* Sidebar */}
                <div>
-                 <div className="modern-card p-6  border border-white/60">
+                 <div className="modern-card p-6  border border-[#e2e8f0]">
                     <h2 className="text-lg font-bold text-[#0f172a] mb-4">Popular Articles</h2>
                     <ul className="space-y-3">
                        {popularArticles.map((article, i) => (

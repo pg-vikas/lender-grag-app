@@ -22,7 +22,7 @@ export default function ProjectDetailsPage() {
           <div className="max-w-[1400px] mx-auto">
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-[22px] font-semibold text-[#0f172a]">Project Details</h1>
-              <button className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-sm font-medium text-[#475569] shadow-sm hover:bg-white/80 backdrop-blur-md/50 transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm font-medium text-[#475569] shadow-sm hover:bg-white/80 backdrop-blur-md/50 transition-colors">
                 <Edit2 className="w-4 h-4" /> Edit
               </button>
             </div>
@@ -31,7 +31,7 @@ export default function ProjectDetailsPage() {
               {/* Left Column */}
               <div className="space-y-6">
                 {/* Main Info Card */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-white/60">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-[#e2e8f0]">
                   <div className="space-y-5">
                     <div>
                       <div className="flex items-center gap-2 text-[#64748b] mb-1">
@@ -114,7 +114,7 @@ export default function ProjectDetailsPage() {
                 </div>
 
                 {/* Information */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-white/60">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-[#e2e8f0]">
                    <h3 className="text-[14px] font-bold text-[#0f172a] mb-4">Information</h3>
                    <div className="space-y-1.5 text-[13px]">
                      <div className="flex gap-1"><span className="font-semibold text-[#0f172a]">Created By:</span> <span className="text-[#64748b]">Vikas Sharma</span></div>
@@ -126,12 +126,12 @@ export default function ProjectDetailsPage() {
                 </div>
 
                 {/* Description */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-white/60">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-[#e2e8f0]">
                    <h3 className="text-[14px] font-bold text-[#0f172a]">Description</h3>
                 </div>
 
                 {/* Attachments */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-white/60 flex justify-between items-center">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-[#e2e8f0] flex justify-between items-center">
                    <h3 className="text-[14px] font-bold text-[#0f172a]">Attachments</h3>
                    <button className="text-[#94a3b8] hover:text-[#0f172a] transition-colors">
                      <Plus className="w-4 h-4" />
@@ -143,20 +143,20 @@ export default function ProjectDetailsPage() {
               <div className="lg:col-span-2 space-y-6">
                 
                 {/* Tasks */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-white/60 min-h-[300px] flex flex-col">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-[#e2e8f0] min-h-[300px] flex flex-col">
                    <div className="flex justify-between items-center mb-6">
                      <h2 className="text-[16px] font-bold text-[#0f172a]">Tasks</h2>
                      <div className="flex items-center gap-2">
-                        <button className="w-8 h-8 flex items-center justify-center rounded border border-white/60 text-[#94a3b8] bg-white/80 backdrop-blur-md/50 hover:bg-[#f1f5f9] transition-colors">
+                        <button className="w-8 h-8 flex items-center justify-center rounded border border-[#e2e8f0] text-[#94a3b8] bg-white/80 backdrop-blur-md/50 hover:bg-[#f1f5f9] transition-colors">
                           <CheckSquare className="w-4 h-4" />
                         </button>
-                        <button className="w-8 h-8 flex items-center justify-center rounded border border-white/60 text-[#94a3b8] bg-white/80 backdrop-blur-md/50 hover:bg-[#f1f5f9] transition-colors">
+                        <button className="w-8 h-8 flex items-center justify-center rounded border border-[#e2e8f0] text-[#94a3b8] bg-white/80 backdrop-blur-md/50 hover:bg-[#f1f5f9] transition-colors">
                           <List className="w-4 h-4" />
                         </button>
                         <button className="w-8 h-8 flex items-center justify-center rounded bg-[#8b5cf6] text-white shadow-sm hover:bg-[#7c3aed] transition-colors">
                           <Zap className="w-4 h-4" fill="currentColor" />
                         </button>
-                        <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-sm font-medium text-[#475569] shadow-sm hover:bg-white/80 backdrop-blur-md/50 transition-colors ml-1">
+                        <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm font-medium text-[#475569] shadow-sm hover:bg-white/80 backdrop-blur-md/50 transition-colors ml-1">
                           <Plus className="w-4 h-4" /> Add Tasks
                         </button>
                      </div>
@@ -167,7 +167,7 @@ export default function ProjectDetailsPage() {
                          <div className="absolute -top-2 -left-2 w-2 h-2 rounded-full bg-green-200 opacity-50"></div>
                          <div className="absolute top-0 right-2 w-1.5 h-1.5 rounded-full bg-blue-200 opacity-50"></div>
                          <div className="absolute bottom-4 -left-4 w-1 h-1 rounded-full bg-amber-200 opacity-50"></div>
-                         <div className="w-20 h-20 rounded-full border border-white/60 flex items-center justify-center bg-white/80 backdrop-blur-md shadow-sm relative z-10">
+                         <div className="w-20 h-20 rounded-full border border-[#e2e8f0] flex items-center justify-center bg-white/80 backdrop-blur-md shadow-sm relative z-10">
                            <Search className="w-8 h-8 text-[#94a3b8]" strokeWidth={1.5} />
                          </div>
                          {/* decorative sparkles around search */}
@@ -181,10 +181,10 @@ export default function ProjectDetailsPage() {
                 </div>
 
                 {/* Notes */}
-                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-white/60">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 shadow-sm border border-[#e2e8f0]">
                    <div className="flex justify-between items-center mb-6">
                      <h2 className="text-[16px] font-bold text-[#0f172a]">Notes</h2>
-                     <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-md/50 border border-white/60 rounded-lg text-sm font-medium text-[#475569] shadow-sm hover:bg-[#f1f5f9] transition-colors">
+                     <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] rounded-lg text-sm font-medium text-[#475569] shadow-sm hover:bg-[#f1f5f9] transition-colors">
                        <Plus className="w-4 h-4" /> Add Note
                      </button>
                    </div>

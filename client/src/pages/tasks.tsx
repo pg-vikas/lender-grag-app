@@ -22,20 +22,20 @@ export default function TasksPage() {
           <div className="max-w-7xl mx-auto">
             <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Client Tasks Overview</h1>
 
-            <div className="modern-card p-6 mb-6  border border-white/60">
+            <div className="modern-card p-6 mb-6  border border-[#e2e8f0]">
               <div className="flex flex-col md:flex-row gap-6 items-end">
                 <div className="flex-1 w-full max-w-[320px]">
                   <label className="block text-[13px] text-[#64748b] mb-2 font-medium">Client</label>
                   <input 
                     type="text" 
-                    className="w-full h-[40px] px-3 border border-white/60 rounded-md focus:outline-none focus:border-primary/30 text-sm" 
+                    className="w-full h-[40px] px-3 border border-[#e2e8f0] rounded-md focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm" 
                   />
                 </div>
                 <div className="flex-1 w-full max-w-[320px]">
                   <label className="block text-[13px] text-[#64748b] mb-2 font-medium">Status</label>
                   <input 
                     type="text" 
-                    className="w-full h-[40px] px-3 border border-white/60 rounded-md focus:outline-none focus:border-primary/30 text-sm" 
+                    className="w-full h-[40px] px-3 border border-[#e2e8f0] rounded-md focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm" 
                   />
                 </div>
                 <div className="flex items-center gap-4">
@@ -49,8 +49,8 @@ export default function TasksPage() {
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-md min-h-[400px] rounded-lg  border border-white/60">
-              <div className="p-6 overflow-x-auto border-b border-white/40">
+            <div className="bg-white/80 backdrop-blur-md min-h-[400px] rounded-lg  border border-[#e2e8f0]">
+              <div className="p-6 overflow-x-auto border-b border-[#e2e8f0]">
                 <div className="flex gap-3 min-w-max">
                   <button className="px-4 py-2 bg-[#8b5cf6] text-white rounded-md text-[13px] font-medium transition-colors">
                     Today's Tasks (0)

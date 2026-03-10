@@ -23,7 +23,7 @@ export default function ReportsPage() {
             <div className="flex items-center justify-between mb-6">
               <h1 className="text-[22px] font-bold text-[#0f172a]">Reports Overview</h1>
               <div className="flex items-center gap-3">
-                 <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-white/60/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
+                 <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                     <Calendar className="w-4 h-4" /> This Month
                  </button>
                  <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] hover:from-[#4f46e5] hover:to-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
@@ -33,7 +33,7 @@ export default function ReportsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              <div className="modern-card p-6  border border-white/60 flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Total Revenue</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">$124,500</h3>
@@ -43,7 +43,7 @@ export default function ReportsPage() {
                     <BarChart2 className="w-8 h-8 text-purple-500" />
                  </div>
               </div>
-              <div className="modern-card p-6  border border-white/60 flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Active Projects</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">42</h3>
@@ -53,7 +53,7 @@ export default function ReportsPage() {
                     <PieChart className="w-8 h-8 text-blue-500" />
                  </div>
               </div>
-              <div className="modern-card p-6  border border-white/60 flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Client Retention</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">94.2%</h3>
@@ -66,7 +66,7 @@ export default function ReportsPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-               <div className="modern-card  border border-white/60 p-6">
+               <div className="modern-card  border border-[#e2e8f0] p-6">
                  <h2 className="text-lg font-bold text-[#0f172a] mb-6">Revenue Growth</h2>
                  <div className="h-[300px] flex items-end justify-between gap-2">
                     {/* Mock Bar Chart */}
@@ -79,7 +79,7 @@ export default function ReportsPage() {
                  </div>
                </div>
 
-               <div className="modern-card  border border-white/60 p-6">
+               <div className="modern-card  border border-[#e2e8f0] p-6">
                  <h2 className="text-lg font-bold text-[#0f172a] mb-6">Project Status</h2>
                  <div className="flex flex-col gap-6">
                     <div>

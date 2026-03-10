@@ -26,7 +26,7 @@ export default function TicketsPage() {
           <div className="max-w-7xl mx-auto">
             <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Tickets</h1>
 
-            <div className="modern-card p-4 mb-6  border border-white/60">
+            <div className="modern-card p-4 mb-6  border border-[#e2e8f0]">
               <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 max-w-[300px]">
@@ -34,16 +34,16 @@ export default function TicketsPage() {
                     <input 
                       type="text"
                       placeholder="Search" 
-                      className="w-full pl-10 pr-4 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-lg text-sm focus:outline-none focus:border-primary/30 transition-all placeholder:text-[#94a3b8]"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
-                  <button className="p-2.5 bg-white/80 backdrop-blur-md/50 border border-white/60 rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
+                  <button className="p-2.5 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
                     <Box className="w-4 h-4" />
                   </button>
-                  <button className="p-2.5 bg-white/80 backdrop-blur-md/50 border border-white/60 rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
+                  <button className="p-2.5 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
                     <TrendingUp className="w-4 h-4" />
                   </button>
-                  <button className="p-2.5 bg-white/80 backdrop-blur-md/50 border border-white/60 rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
+                  <button className="p-2.5 bg-white/80 backdrop-blur-md/50 border border-[#e2e8f0] rounded-lg text-[#64748b] hover:bg-[#f1f5f9] transition-colors">
                     <Filter className="w-4 h-4" />
                   </button>
                 </div>
@@ -55,7 +55,7 @@ export default function TicketsPage() {
             </div>
 
             {/* Stats Row */}
-            <div className="modern-card p-6 mb-8  border border-white/60">
+            <div className="modern-card p-6 mb-8  border border-[#e2e8f0]">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div className="flex flex-col group cursor-pointer">
                   <span className="text-[28px] font-medium text-[#0f172a] mb-1">0</span>

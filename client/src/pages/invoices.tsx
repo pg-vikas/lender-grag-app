@@ -42,7 +42,7 @@ export default function InvoicesPage() {
 
             {/* Stats Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="modern-card p-6  border border-white/60 flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Total Paid</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">$14,500.00</h3>
@@ -51,7 +51,7 @@ export default function InvoicesPage() {
                     <CheckCircle2 className="w-6 h-6 text-green-500" />
                  </div>
               </div>
-              <div className="modern-card p-6  border border-white/60 flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Total Pending</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">$3,200.00</h3>
@@ -60,7 +60,7 @@ export default function InvoicesPage() {
                     <Clock className="w-6 h-6 text-amber-500" />
                  </div>
               </div>
-              <div className="modern-card p-6  border border-white/60 flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Total Overdue</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">$2,400.00</h3>
@@ -71,29 +71,29 @@ export default function InvoicesPage() {
               </div>
             </div>
 
-            <div className="modern-card  overflow-hidden border border-white/60">
-              <div className="p-4 border-b border-white/40 flex flex-col sm:flex-row gap-4 justify-between items-center bg-white/80 backdrop-blur-md/50">
+            <div className="modern-card  overflow-hidden border border-[#e2e8f0]">
+              <div className="p-4 border-b border-[#e2e8f0] flex flex-col sm:flex-row gap-4 justify-between items-center bg-white/80 backdrop-blur-md/50">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 sm:w-64">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
                     <input 
                       type="text"
                       placeholder="Search invoices" 
-                      className="w-full pl-9 pr-4 py-2 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-primary/30 transition-all placeholder:text-[#94a3b8]"
+                      className="w-full pl-9 pr-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-white/60/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
+                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                     Filter <Filter className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-white/60/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0]/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                   <Download className="w-3.5 h-3.5" /> Download All
                 </button>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left whitespace-nowrap">
-                  <thead className="bg-white/80 backdrop-blur-md border-b border-white/40">
+                  <thead className="bg-white/80 backdrop-blur-md border-b border-[#e2e8f0]">
                     <tr>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Invoice ID</th>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Client</th>
@@ -143,7 +143,7 @@ export default function InvoicesPage() {
                                     className="fixed inset-0 z-10"
                                     onClick={() => setActiveDropdown(null)}
                                   ></div>
-                                  <div className="absolute right-0 top-[24px] z-20 w-[200px] bg-white/80 backdrop-blur-md rounded-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-white/60 py-2 flex flex-col">
+                                  <div className="absolute right-0 top-[24px] z-20 w-[200px] bg-white/80 backdrop-blur-md rounded-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-[#e2e8f0] py-2 flex flex-col">
                                     <button 
                                       className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-white/80 backdrop-blur-md/50 transition-colors"
                                       onClick={() => {
@@ -207,15 +207,15 @@ export default function InvoicesPage() {
               <div className="grid grid-cols-1 gap-y-5">
                 <div className="grid grid-cols-[160px_1fr] items-center">
                   <label className="text-[13px] font-medium text-[#475569]">Invoice Date*</label>
-                  <input type="text" defaultValue="28-02-2026" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" defaultValue="28-02-2026" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 <div className="grid grid-cols-[160px_1fr] items-center">
                   <label className="text-[13px] font-medium text-[#475569]">Due Date*</label>
-                  <input type="text" defaultValue="28-02-2026" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" defaultValue="28-02-2026" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 <div className="grid grid-cols-[160px_1fr] items-center">
                   <label className="text-[13px] font-medium text-[#475569]">Category*</label>
-                  <select className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
+                  <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
                     <option>Default</option>
                   </select>
                 </div>
@@ -241,7 +241,7 @@ export default function InvoicesPage() {
             <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white/80 backdrop-blur-md rounded-b-lg shrink-0 sticky bottom-0">
               <button 
                 onClick={() => setIsEditInvoiceModalOpen(false)}
-                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-white/60 hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
               >
                 Close
               </button>
@@ -279,25 +279,25 @@ export default function InvoicesPage() {
                     <span className="inline-flex items-center px-3 bg-white/80 backdrop-blur-md/50 border border-r-0 border-[#e2e8f0] rounded-l-md text-[13px] text-[#94a3b8]">
                       $
                     </span>
-                    <input type="text" defaultValue="0.00" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-r-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                    <input type="text" defaultValue="0.00" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-r-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-[160px_1fr] items-center">
                   <label className="text-[13px] font-medium text-[#475569]">Date*</label>
-                  <input type="text" defaultValue="10-03-2026" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" defaultValue="10-03-2026" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
                 
                 <div className="grid grid-cols-[160px_1fr] items-center">
                   <label className="text-[13px] font-medium text-[#475569]">Payment Method*</label>
-                  <select className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] text-[#475569] focus:outline-none">
+                  <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#475569] focus:outline-none">
                     <option>Paypal</option>
                   </select>
                 </div>
 
                 <div className="grid grid-cols-[160px_1fr] items-center">
                   <label className="text-[13px] font-medium text-[#475569]">Transaction ID</label>
-                  <input type="text" className="w-full px-3 py-2.5 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-md text-[13px] focus:outline-none focus:border-[#8b5cf6]" />
+                  <input type="text" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                 </div>
               </div>
               
@@ -323,7 +323,7 @@ export default function InvoicesPage() {
             <div className="flex items-center justify-end gap-3 p-6 border-t border-[#e2e8f0] bg-white/80 backdrop-blur-md rounded-b-lg shrink-0 sticky bottom-0">
               <button 
                 onClick={() => setIsAddPaymentModalOpen(false)}
-                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-white/60 hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
+                className="px-5 py-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] hover:bg-white/80 backdrop-blur-md/50 text-[#475569] rounded-md text-[14px] font-medium transition-colors"
               >
                 Close
               </button>

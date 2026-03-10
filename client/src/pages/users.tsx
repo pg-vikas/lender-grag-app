@@ -35,7 +35,7 @@ export default function UsersPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="modern-card p-6  border border-white/60 flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Total Users</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">12</h3>
@@ -44,7 +44,7 @@ export default function UsersPage() {
                     <UsersIcon className="w-6 h-6 text-blue-500" />
                  </div>
               </div>
-              <div className="modern-card p-6  border border-white/60 flex items-center justify-between">
+              <div className="modern-card p-6  border border-[#e2e8f0] flex items-center justify-between">
                  <div>
                    <p className="text-sm font-medium text-[#64748b] mb-1">Administrators</p>
                    <h3 className="text-3xl font-bold text-[#0f172a]">3</h3>
@@ -55,15 +55,15 @@ export default function UsersPage() {
               </div>
             </div>
 
-            <div className="modern-card  overflow-hidden border border-white/60">
-              <div className="p-4 border-b border-white/40 flex flex-col sm:flex-row gap-4 justify-between items-center bg-white/80 backdrop-blur-md/50">
+            <div className="modern-card  overflow-hidden border border-[#e2e8f0]">
+              <div className="p-4 border-b border-[#e2e8f0] flex flex-col sm:flex-row gap-4 justify-between items-center bg-white/80 backdrop-blur-md/50">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 sm:w-64">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
                     <input 
                       type="text"
                       placeholder="Search users" 
-                      className="w-full pl-9 pr-4 py-2 bg-white/80 backdrop-blur-md/80 backdrop-blur-sm border border-white/60/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-primary/30 transition-all placeholder:text-[#94a3b8]"
+                      className="w-full pl-9 pr-4 py-2 bg-white border border-[#e2e8f0]/80 rounded-xl shadow-sm text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-[#94a3b8]"
                     />
                   </div>
                 </div>
@@ -71,7 +71,7 @@ export default function UsersPage() {
 
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left whitespace-nowrap">
-                  <thead className="bg-white/80 backdrop-blur-md border-b border-white/40">
+                  <thead className="bg-white/80 backdrop-blur-md border-b border-[#e2e8f0]">
                     <tr>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Name</th>
                       <th className="py-4 px-6 font-semibold text-[#475569]">Role</th>
@@ -100,7 +100,7 @@ export default function UsersPage() {
                            </div>
                         </td>
                         <td className="py-4 px-6">
-                           <span className="inline-flex items-center px-2.5 py-1 rounded bg-[#f1f5f9] text-[#475569] font-medium text-xs border border-white/60">
+                           <span className="inline-flex items-center px-2.5 py-1 rounded bg-[#f1f5f9] text-[#475569] font-medium text-xs border border-[#e2e8f0]">
                              {user.role}
                            </span>
                         </td>
