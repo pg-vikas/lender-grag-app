@@ -12,7 +12,7 @@ export default function InvoiceDetailsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/invoices" />
 
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
