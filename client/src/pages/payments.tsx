@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { ChevronUp, ExternalLink, Pin } from "lucide-react";
+import { ChevronUp, ExternalLink, Pin, X } from "lucide-react";
 import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function PaymentsPage() {
   const [openMenus, setOpenMenus] = useState<string>('sales');
   const [location] = useLocation();
+  const [selectedPayment, setSelectedPayment] = useState<any>(null);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -62,7 +63,14 @@ export default function PaymentsPage() {
                   <tbody>
                     {paymentsList.map((payment, i) => (
                       <tr key={i} className="bg-white group">
-                        <td className="py-4 px-6 font-medium text-[#0f172a] rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.id}</td>
+                        <td className="py-4 px-6 font-medium text-[#0f172a] rounded-l-[12px] border-y border-l border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
+                          <button 
+                            className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors hover:underline"
+                            onClick={() => setSelectedPayment(payment)}
+                          >
+                            {payment.id}
+                          </button>
+                        </td>
                         <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.date}</td>
                         <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.invoice}</td>
                         <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.amount}</td>
@@ -70,7 +78,10 @@ export default function PaymentsPage() {
                         <td className="py-4 px-6 font-medium text-[#0f172a] border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">{payment.method}</td>
                         <td className="py-4 px-6 border-y border-r border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors rounded-r-[12px]">
                            <div className="flex items-center gap-3 text-[#94a3b8]">
-                              <button className="hover:text-[#0f172a] transition-colors">
+                              <button 
+                                className="hover:text-[#0f172a] transition-colors"
+                                onClick={() => setSelectedPayment(payment)}
+                              >
                                 <ExternalLink className="w-4 h-4" />
                               </button>
                               <button className="hover:text-[#0f172a] transition-colors">
@@ -88,6 +99,60 @@ export default function PaymentsPage() {
           </div>
         </main>
       </div>
+
+      {/* Payment Details Popup */}
+      {selectedPayment && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-all">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex justify-between items-center p-6 pb-4">
+              <h2 className="text-xl font-bold text-[#0f172a]">Payment</h2>
+              <button 
+                onClick={() => setSelectedPayment(null)}
+                className="text-[#64748b] hover:text-[#0f172a] transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 pt-2 pb-12">
+              <div className="border border-[#e2e8f0] rounded-md overflow-hidden">
+                <table className="w-full text-[14px] text-left">
+                  <tbody className="divide-y divide-[#e2e8f0]">
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-[#475569] bg-[#f8fafc] w-1/3 border-r border-[#e2e8f0]">Payment ID</td>
+                      <td className="py-3 px-4 text-[#0f172a]">{selectedPayment.id}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-[#475569] bg-[#f8fafc] border-r border-[#e2e8f0]">Amount</td>
+                      <td className="py-3 px-4 text-[#0f172a]">{selectedPayment.amount}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-[#475569] bg-[#f8fafc] border-r border-[#e2e8f0]">Invoice ID</td>
+                      <td className="py-3 px-4 text-[#0f172a]">{selectedPayment.invoice}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-[#475569] bg-[#f8fafc] border-r border-[#e2e8f0]">Date</td>
+                      <td className="py-3 px-4 text-[#0f172a]">{selectedPayment.date}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-[#475569] bg-[#f8fafc] border-r border-[#e2e8f0]">Payment Method</td>
+                      <td className="py-3 px-4 text-[#0f172a]">{selectedPayment.method}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-[#475569] bg-[#f8fafc] border-r border-[#e2e8f0]">Client</td>
+                      <td className="py-3 px-4 text-[#0f172a]">{selectedPayment.client}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-[#475569] bg-[#f8fafc] border-r border-[#e2e8f0]">Notes</td>
+                      <td className="py-3 px-4 text-[#0f172a]"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
