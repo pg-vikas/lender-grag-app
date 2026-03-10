@@ -23,7 +23,7 @@ export default function SubscriptionDetailsPage() {
   ];
 
   return (
-    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
+    <div className="min-h-screen bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/subscriptions" />
 
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">

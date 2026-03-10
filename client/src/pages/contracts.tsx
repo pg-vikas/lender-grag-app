@@ -18,7 +18,7 @@ export default function ContractsPage() {
   ];
 
   return (
-    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
+    <div className="min-h-screen bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
@@ -27,7 +27,7 @@ export default function ContractsPage() {
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-between mb-6">
-              <h1 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-bold text-[#0f172a]">Contracts</h1>
+              <h1 className="text-[22px] font-bold text-[#0f172a]">Contracts</h1>
               <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] hover:from-[#4f46e5] hover:to-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
                 <Plus className="w-4 h-4" /> Create Contract
               </button>

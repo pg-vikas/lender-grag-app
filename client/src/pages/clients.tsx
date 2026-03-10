@@ -294,7 +294,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
   ];
 
   return (
-    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
+    <div className="min-h-screen bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
       {/* Main Container */}
@@ -304,7 +304,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
         {/* Main Content */}
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold bg-white/10 backdrop-blur-mdlip-text text-transparent bg-gradient-to-r from-[#0f172a] to-[#475569] mb-8">{title}</h1>
+            <h1 className="text-3xl font-bold text-[#0f172a] mb-8">{title}</h1>
 
             {/* Top Bar with Search and Filter */}
             <div className="bg-white/80 backdrop-blur-md rounded-t-[1rem] p-4 flex flex-col sm:flex-row gap-4 justify-between items-center  border-b border-white/40">

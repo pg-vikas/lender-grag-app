@@ -27,7 +27,7 @@ export default function KnowledgebasePage() {
   ];
 
   return (
-    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
+    <div className="min-h-screen bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
@@ -41,7 +41,7 @@ export default function KnowledgebasePage() {
                <div className="absolute top-0 right-0 w-64 h-64 bg-[#8b5cf6] rounded-full blur-[100px] opacity-20 -mr-10 -mt-10 pointer-events-none"></div>
                <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-500 rounded-full blur-[100px] opacity-10 -ml-10 -mb-10 pointer-events-none"></div>
                
-               <h1 className="text-3xl font-bold text-white mb-4 relative z-10">How can we help you today?</h1>
+               <h1 className="text-3xl font-bold text-[#0f172a] mb-4 relative z-10">How can we help you today?</h1>
                <p className="text-white/70 mb-8 max-w-lg mx-auto relative z-10">Search our knowledgebase for answers to common questions, tutorials, and step-by-step guides.</p>
                
                <div className="max-w-2xl mx-auto relative z-10">

@@ -12,7 +12,7 @@ export default function ReportsPage() {
   };
 
   return (
-    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
+    <div className="min-h-screen bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
@@ -21,7 +21,7 @@ export default function ReportsPage() {
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-between mb-6">
-              <h1 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-bold text-[#0f172a]">Reports Overview</h1>
+              <h1 className="text-[22px] font-bold text-[#0f172a]">Reports Overview</h1>
               <div className="flex items-center gap-3">
                  <button className="flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-md border border-white/60/80 rounded-xl text-sm font-medium text-[#475569] hover:bg-white/80 backdrop-blur-md transition-all shadow-sm hover:shadow transition-colors">
                     <Calendar className="w-4 h-4" /> This Month

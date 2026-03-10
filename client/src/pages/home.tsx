@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen page-bg flex font-sans text-[#1e293b]">
+    <div className="min-h-screen bg-transparent flex font-sans text-[#1e293b]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
       {/* Main Container */}
       <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
@@ -43,7 +43,7 @@ export default function Home() {
           {/* Main Content */}
           <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
             <div className="max-w-7xl mx-auto">
-              <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 mb-8">Home</h1>
+              <h1 className="text-3xl font-bold text-[#0f172a] mb-8">Home</h1>
 
               {/* Work Session */}
               <div className="modern-card p-6 mb-6 ">
@@ -114,7 +114,7 @@ export default function Home() {
                       </div>
                       
                       <div className="mt-4">
-                        <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-bold text-[#0f172a]">{stat.value}</span>
+                        <span className="text-[22px] font-bold text-[#0f172a]">{stat.value}</span>
                       </div>
 
                       <div className="absolute bottom-4 right-4">
