@@ -75,7 +75,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
                   <div className="border border-white/60 rounded-[0.75rem] p-4 bg-white/80 backdrop-blur-md/50/50 flex flex-col justify-center">
                     <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK IN</div>
-                    <div className="font-bold text-lg text-[#0f172a]">3:41:05 PM</div>
+                    <div className="text-lg text-[#0f172a] font-medium">3:41:05 PM</div>
                     <div className="text-xs text-[#94a3b8]">03 Feb 2026</div>
                   </div>
                   <div className="border border-white/60 rounded-[0.75rem] p-4 bg-white/80 backdrop-blur-md/50/50 flex flex-col justify-center">
