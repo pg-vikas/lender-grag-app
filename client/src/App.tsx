@@ -7,6 +7,9 @@ import NotFound from "@/pages/not-found";
 import Login from "@/pages/login";
 import Home from "@/pages/home";
 import ClientsPage from "@/pages/clients";
+import TasksPage from "@/pages/tasks";
+import ProjectsPage from "@/pages/projects";
+import InvoicesPage from "@/pages/invoices";
 
 function Router() {
   return (
@@ -19,6 +22,9 @@ function Router() {
       <Route path="/clients/active">
         <ClientsPage isActiveOnly={true} />
       </Route>
+      <Route path="/tasks" component={TasksPage} />
+      <Route path="/projects" component={ProjectsPage} />
+      <Route path="/invoices" component={InvoicesPage} />
       <Route path="/">
         <Redirect to="/home" />
       </Route>

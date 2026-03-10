@@ -76,19 +76,23 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
                     Clients
                   </a>
                 </Link>
-                <a href="#" className="block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-                  Tasks
-                </a>
+                <Link href="/tasks">
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/tasks' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                    Tasks
+                  </a>
+                </Link>
               </div>
             )}
           </div>
 
-          <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
-            <div className="flex items-center space-x-3">
-              <FolderOpen className="w-5 h-5" />
-              <span className="text-sm font-medium">Projects</span>
-            </div>
-          </a>
+          <Link href="/projects">
+            <a className={`flex items-center justify-between px-6 py-3 transition-colors ${currentPath === '/projects' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+              <div className="flex items-center space-x-3">
+                <FolderOpen className="w-5 h-5" />
+                <span className="text-sm font-medium">Projects</span>
+              </div>
+            </a>
+          </Link>
 
           {/* Sales Group */}
           <div>
@@ -104,7 +108,11 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             </button>
             {openMenus === 'sales' && (
               <div className="bg-[#1e293b]/50 py-1 animate-in slide-in-from-top-2 duration-200">
-                <a href="#" className="block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 text-white/70 hover:text-white hover:bg-white/5 transition-colors">Invoices</a>
+                <Link href="/invoices">
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/invoices' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                    Invoices
+                  </a>
+                </Link>
                 <a href="#" className="block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 text-white/70 hover:text-white hover:bg-white/5 transition-colors">Payments</a>
                 <a href="#" className="block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 text-white/70 hover:text-white hover:bg-white/5 transition-colors">Subscriptions</a>
               </div>
