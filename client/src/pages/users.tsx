@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Search, Filter, Plus, Users as UsersIcon, Shield, Mail, Edit } from "lucide-react";
+import { Search, Filter, Plus, Users as UsersIcon, Shield, Mail, Edit, X } from "lucide-react";
 import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function UsersPage() {
   const [openMenus, setOpenMenus] = useState<string>('');
+  const [selectedUser, setSelectedUser] = useState<any>(null);
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
@@ -12,10 +13,10 @@ export default function UsersPage() {
   };
 
   const usersList = [
-    { name: "Neeraj Kumar", email: "neeraj@pinkgorilla.com", role: "Administrator", status: "Active", lastLogin: "Just now" },
-    { name: "Vinayak Sharma", email: "vinayak@pinkgorilla.com", role: "Manager", status: "Active", lastLogin: "2 hours ago" },
-    { name: "Maria Christina", email: "maria@pinkgorilla.com", role: "Support Agent", status: "Active", lastLogin: "Yesterday" },
-    { name: "Chayan Alavi", email: "chayan@pinkgorilla.com", role: "Developer", status: "Offline", lastLogin: "3 days ago" },
+    { name: "Neeraj Kumar", email: "neeraj@pinkgorilla.com", role: "Administrator", status: "Active", lastLogin: "Just now", phone: "+1 555 123 4567", dateAdded: "15-08-2025" },
+    { name: "Vinayak Sharma", email: "vinayak@pinkgorilla.com", role: "Manager", status: "Active", lastLogin: "2 hours ago", phone: "---", dateAdded: "20-09-2025" },
+    { name: "Maria Christina", email: "maria@pinkgorilla.com", role: "Support Agent", status: "Active", lastLogin: "Yesterday", phone: "+1 555 987 6543", dateAdded: "10-10-2025" },
+    { name: "Chayan Alavi", email: "chayan@pinkgorilla.com", role: "Developer", status: "Offline", lastLogin: "3 days ago", phone: "---", dateAdded: "05-11-2025" },
   ];
 
   return (
@@ -89,7 +90,12 @@ export default function UsersPage() {
                                {user.name.charAt(0)}
                              </div>
                              <div>
-                               <div className="font-semibold text-[#0f172a]">{user.name}</div>
+                               <div 
+                                 className="font-semibold text-[#0f172a] cursor-pointer hover:text-[#8b5cf6] transition-colors"
+                                 onClick={() => setSelectedUser(user)}
+                               >
+                                 {user.name}
+                               </div>
                                <div className="text-xs text-[#64748b]">{user.email}</div>
                              </div>
                            </div>
@@ -127,6 +133,53 @@ export default function UsersPage() {
           </div>
         </main>
       </div>
+
+      {/* User Details Modal */}
+      {selectedUser && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl overflow-hidden flex flex-col relative">
+            <button 
+              onClick={() => setSelectedUser(null)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            <div className="p-8">
+              <div className="mb-6">
+                <div className="w-24 h-24 rounded-full bg-[#93c5fd] text-white flex items-center justify-center mb-4 overflow-hidden shadow-sm">
+                  <svg className="w-16 h-16 text-white mt-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl font-medium text-[#1e293b]">{selectedUser.name}</h2>
+                <p className="text-[#64748b] text-[15px]">{selectedUser.email}</p>
+              </div>
+              
+              <div className="h-[1px] w-full bg-[#e2e8f0] mb-8"></div>
+              
+              <div className="grid grid-cols-2 gap-y-8 gap-x-12">
+                <div>
+                  <h3 className="text-[#1e293b] font-medium mb-1">Phone</h3>
+                  <p className="text-[#475569]">{selectedUser.phone || '---'}</p>
+                </div>
+                <div>
+                  <h3 className="text-[#1e293b] font-medium mb-1">Designation</h3>
+                  <p className="text-[#475569]">{selectedUser.role}</p>
+                </div>
+                <div>
+                  <h3 className="text-[#1e293b] font-medium mb-1">Date Added</h3>
+                  <p className="text-[#475569]">{selectedUser.dateAdded || '---'}</p>
+                </div>
+                <div>
+                  <h3 className="text-[#1e293b] font-medium mb-1">Last Seen</h3>
+                  <p className="text-[#475569]">{selectedUser.lastLogin}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
