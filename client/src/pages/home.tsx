@@ -59,26 +59,121 @@ export default function Home() {
                 <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
                   Active Clients
                 </a>
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Clients
+                </a>
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Tasks
+                </a>
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Growth KPI
+                </a>
               </div>
             </div>
 
-            {[
-              { name: 'Projects', icon: FolderOpen, hasSubmenu: false },
-              { name: 'Sales', icon: DollarSign, hasSubmenu: true },
-              { name: 'Contracts', icon: FileText, hasSubmenu: true },
-              { name: 'Support', icon: MessageSquare, hasSubmenu: true },
-              { name: 'Users', icon: User, hasSubmenu: false },
-              { name: 'Reports', icon: FileBarChart, hasSubmenu: true },
-              { name: 'Website\nAnalytics', icon: Globe, hasSubmenu: false },
-            ].map((item, i) => (
-              <a key={i} href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+            <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+              <div className="flex items-center space-x-3">
+                <FolderOpen className="w-5 h-5" />
+                <span className="text-sm font-medium">Projects</span>
+              </div>
+            </a>
+
+            {/* Sales Group */}
+            <div>
+              <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
                 <div className="flex items-center space-x-3">
-                  <item.icon className="w-5 h-5" />
-                  <span className="text-sm font-medium whitespace-pre-line">{item.name}</span>
+                  <DollarSign className="w-5 h-5" />
+                  <span className="text-sm font-medium">Sales</span>
                 </div>
-                {item.hasSubmenu && <ChevronDown className="w-4 h-4 -rotate-90" />}
+                <ChevronDown className="w-4 h-4" />
               </a>
-            ))}
+              {/* Sales Dropdown */}
+              <div className="bg-[#1e293b]/50 py-1">
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Invoices
+                </a>
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Payments
+                </a>
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Subscriptions
+                </a>
+              </div>
+            </div>
+
+            {/* Contracts Group */}
+            <div>
+              <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                <div className="flex items-center space-x-3">
+                  <FileText className="w-5 h-5" />
+                  <span className="text-sm font-medium">Contracts</span>
+                </div>
+                <ChevronDown className="w-4 h-4" />
+              </a>
+              {/* Contracts Dropdown */}
+              <div className="bg-[#1e293b]/50 py-1">
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Contracts
+                </a>
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Templates
+                </a>
+              </div>
+            </div>
+
+            {/* Support Group */}
+            <div>
+              <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                <div className="flex items-center space-x-3">
+                  <MessageSquare className="w-5 h-5" />
+                  <span className="text-sm font-medium">Support</span>
+                </div>
+                <ChevronDown className="w-4 h-4" />
+              </a>
+              {/* Support Dropdown */}
+              <div className="bg-[#1e293b]/50 py-1">
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Tickets
+                </a>
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Knowledgebase
+                </a>
+              </div>
+            </div>
+
+            <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+              <div className="flex items-center space-x-3">
+                <User className="w-5 h-5" />
+                <span className="text-sm font-medium">Users</span>
+              </div>
+            </a>
+
+            {/* Reports Group */}
+            <div>
+              <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                <div className="flex items-center space-x-3">
+                  <FileBarChart className="w-5 h-5" />
+                  <span className="text-sm font-medium">Reports</span>
+                </div>
+                <ChevronDown className="w-4 h-4" />
+              </a>
+              {/* Reports Dropdown */}
+              <div className="bg-[#1e293b]/50 py-1">
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Reports
+                </a>
+                <a href="#" className="flex items-center px-14 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                  Performance Report
+                </a>
+              </div>
+            </div>
+
+            <a href="#" className="flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+              <div className="flex items-center space-x-3">
+                <Globe className="w-5 h-5" />
+                <span className="text-sm font-medium whitespace-pre-line">Website{"\n"}Analytics</span>
+              </div>
+            </a>
           </nav>
         </div>
         
