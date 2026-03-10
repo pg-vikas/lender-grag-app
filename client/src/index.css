@@ -30,48 +30,48 @@
 }
 
 :root {
-  --background: #f4f5f8;
+  --background: #f8f9fc;
   --foreground: #0f172a;
   --card: #ffffff;
   --card-foreground: #0f172a;
   --popover: #ffffff;
   --popover-foreground: #0f172a;
-  --primary: #0f172a;
-  --primary-foreground: #f8fafc;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
   --secondary-foreground: #0f172a;
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
-  --accent: #f1f5f9;
+  --accent: #f8fafc;
   --accent-foreground: #0f172a;
   --destructive: #ef4444;
   --destructive-foreground: #f8fafc;
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #0f172a;
-  --radius: 0.75rem;
+  --ring: #6366f1;
+  --radius: 1rem;
 }
 
 .dark {
-  --background: #0f172a;
+  --background: #0b0f19;
   --foreground: #f8fafc;
-  --card: #1e293b;
+  --card: #131b2c;
   --card-foreground: #f8fafc;
-  --popover: #1e293b;
+  --popover: #131b2c;
   --popover-foreground: #f8fafc;
-  --primary: #f8fafc;
-  --primary-foreground: #0f172a;
-  --secondary: #334155;
+  --primary: #818cf8;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
   --secondary-foreground: #f8fafc;
-  --muted: #334155;
+  --muted: #1e293b;
   --muted-foreground: #94a3b8;
-  --accent: #334155;
+  --accent: #1e293b;
   --accent-foreground: #f8fafc;
   --destructive: #7f1d1d;
   --destructive-foreground: #f8fafc;
-  --border: #334155;
-  --input: #334155;
-  --ring: #cbd5e1;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #818cf8;
 }
 
 @layer base {
@@ -79,6 +79,28 @@
     @apply border-border;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply antialiased bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
+}
+
+/* Custom Utilities for Modern Look */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass-panel {
+  background: rgba(19, 27, 44, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modern-shadow {
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04), 0 2px 8px -2px rgba(0, 0, 0, 0.02);
+}
+
+.modern-card {
+  @apply bg-card text-card-foreground modern-shadow rounded-2xl border border-white/40 dark:border-white/5;
 }
