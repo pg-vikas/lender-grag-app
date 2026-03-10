@@ -43,7 +43,7 @@ export default function Home() {
           {/* Main Content */}
           <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
             <div className="max-w-7xl mx-auto">
-              <h1 className="text-3xl backdrop-blur-mdlip-text bg-gradient-to-r from-[#0f172a] to-[#475569] mb-8 text-[#000000fa] font-semibold">Home</h1>
+              <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 mb-8">Home</h1>
 
               {/* Work Session */}
               <div className="modern-card p-6 mb-6 ">
