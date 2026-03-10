@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, Filter, Plus, FileText, CheckCircle2, Clock } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function ContractsPage() {
@@ -68,7 +68,7 @@ export default function ContractsPage() {
                         <td className="py-4 px-6">
                            <div className="flex items-center gap-3">
                              <FileText className="w-5 h-5 text-[#94a3b8]" />
-                             <span className="font-medium text-[#0f172a]">{contract.name}</span>
+                             <Link href="/contracts/1" className="font-medium text-[#0f172a] hover:text-[#8b5cf6] transition-colors">{contract.name}</Link>
                            </div>
                         </td>
                         <td className="py-4 px-6 text-[#64748b]">{contract.client}</td>
@@ -82,9 +82,9 @@ export default function ContractsPage() {
                            </span>
                         </td>
                         <td className="py-4 px-6">
-                           <button className="text-sm font-medium text-[#8b5cf6] hover:text-[#7c3aed] transition-colors">
+                           <Link href="/contracts/1" className="text-sm font-medium text-[#8b5cf6] hover:text-[#7c3aed] transition-colors">
                              View
-                           </button>
+                           </Link>
                         </td>
                       </tr>
                     ))}
