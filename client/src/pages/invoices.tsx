@@ -142,7 +142,7 @@ export default function InvoicesPage() {
                                     className="fixed inset-0 z-10"
                                     onClick={() => setActiveDropdown(null)}
                                   ></div>
-                                  <div className="absolute right-0 top-[24px] z-20 w-[200px] bg-white rounded-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-[#e2e8f0] py-2">
+                                  <div className="absolute right-0 top-[24px] z-20 w-[200px] bg-white rounded-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-[#e2e8f0] py-2 flex flex-col">
                                     <button className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-[#0f172a] hover:bg-[#f8fafc] transition-colors">
                                       Quick Edit
                                     </button>
