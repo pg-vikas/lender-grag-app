@@ -113,8 +113,16 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
                     Invoices
                   </a>
                 </Link>
-                <a href="#" className="block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 text-white/70 hover:text-white hover:bg-white/5 transition-colors">Payments</a>
-                <a href="#" className="block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 text-white/70 hover:text-white hover:bg-white/5 transition-colors">Subscriptions</a>
+                <Link href="/payments">
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/payments' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                    Payments
+                  </a>
+                </Link>
+                <Link href="/subscriptions">
+                  <a className={`block w-[85%] mx-auto px-4 py-2 text-sm rounded-md mb-1 transition-colors ${currentPath === '/subscriptions' ? 'bg-[#8b5cf6] text-white' : 'text-white/70 hover:text-white hover:bg-white/5'}`}>
+                    Subscriptions
+                  </a>
+                </Link>
               </div>
             )}
           </div>
