@@ -12,10 +12,10 @@ export default function ProjectDetailsPage() {
   };
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/projects" />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Project Details" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -47,7 +47,7 @@ export default function ProjectDetailsPage() {
                         <span className="text-[13px] font-medium">Client</span>
                       </div>
                       <div className="flex items-center gap-2 pl-6 mt-1">
-                         <div className="w-5 h-5 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center text-[10px] font-bold">PG</div>
+                         <div className="w-5 h-5 bg-slate-200 rounded-full overflow-hidden flex items-center justify-center text-[10px] font-bold">PG</div>
                          <span className="text-[14px] font-semibold text-[#0f172a]">Pink Gorilla...</span>
                       </div>
                     </div>
@@ -74,7 +74,7 @@ export default function ProjectDetailsPage() {
                         <span className="text-[13px] font-medium">Priority</span>
                       </div>
                       <div className="pl-6 mt-1">
-                        <span className="inline-flex items-center justify-center px-4 py-1 rounded-full text-xs font-medium text-gray-500 border border-gray-200 bg-white/80 backdrop-blur-md">
+                        <span className="inline-flex items-center justify-center px-4 py-1 rounded-full text-xs font-medium text-slate-500 border border-slate-200 bg-white/80 backdrop-blur-md">
                           Low
                         </span>
                       </div>
@@ -91,7 +91,7 @@ export default function ProjectDetailsPage() {
                            <span className="text-[13px] font-semibold text-[#0f172a]">Vikas Shar...</span>
                         </div>
                         <div className="flex items-center gap-1.5">
-                           <div className="w-6 h-6 rounded-full bg-gray-500 flex-shrink-0 border-2 border-white shadow-sm overflow-hidden">
+                           <div className="w-6 h-6 rounded-full bg-slate-500 flex-shrink-0 border-2 border-white shadow-sm overflow-hidden">
                              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=user1" alt="avatar" />
                            </div>
                            <span className="text-[13px] font-semibold text-[#0f172a]">Chayan Alavi</span>

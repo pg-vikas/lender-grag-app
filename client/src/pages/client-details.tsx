@@ -12,10 +12,10 @@ export default function ClientDetailsPage() {
   };
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/clients" />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Client Details" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -266,7 +266,7 @@ export default function ClientDetailsPage() {
                     <div className="border border-[#e2e8f0] rounded-lg p-5 bg-white/80 backdrop-blur-md/50">
                       <div className="space-y-4">
                         <div>
-                          <label className="block text-[13px] font-medium text-[#1e293b] mb-1.5">To*</label>
+                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">To*</label>
                           <input type="text" placeholder="Enter recipient email" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                           <p className="text-[11px] text-[#64748b] mt-1">
                             Type email address separated by commas to add multiple email address.<br/>
@@ -275,26 +275,26 @@ export default function ClientDetailsPage() {
                         </div>
                         
                         <div>
-                          <label className="block text-[13px] font-medium text-[#1e293b] mb-1.5">From*</label>
+                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">From*</label>
                           <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#0f172a] focus:outline-none">
                             <option>Neeraj Kumar (neeraj@pinkgorillasoftware.com)</option>
                           </select>
                         </div>
                         
                         <div>
-                          <label className="block text-[13px] font-medium text-[#1e293b] mb-1.5">Subject*</label>
+                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Subject*</label>
                           <input type="text" placeholder="Enter email subject" className="w-full px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                         </div>
                         
                         <div>
-                          <label className="block text-[13px] font-medium text-[#1e293b] mb-1.5">Email Template</label>
+                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Email Template</label>
                           <select className="w-full border border-[#e2e8f0] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 px-3 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-md text-[13px] text-[#64748b] focus:outline-none">
                             <option>Select Template</option>
                           </select>
                         </div>
                         
                         <div>
-                          <label className="block text-[13px] font-medium text-[#1e293b] mb-1.5">Message*</label>
+                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Message*</label>
                           <div className="border border-[#e2e8f0] rounded-md bg-white/80 backdrop-blur-md overflow-hidden flex flex-col">
                             <div className="flex items-center gap-1 border-b border-[#e2e8f0] p-1.5 bg-white/80 backdrop-blur-md/50">
                               <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="font-bold text-[12px] px-1">B</span></button>
@@ -435,7 +435,7 @@ export default function ClientDetailsPage() {
                       <div className="flex gap-2">
                         <CheckCircle2 className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
                         <div>
-                          <p className="text-[13px] font-medium text-[#1e293b] leading-tight">Follow Up task added.</p>
+                          <p className="text-[13px] font-medium text-[#e2e8f0] leading-tight">Follow Up task added.</p>
                           <div className="flex flex-col mt-2 gap-0.5 text-[11px] text-[#64748b]">
                             <span>Mar 09, 2026 - 02:40 PM</span>
                             <span>Added By Maria Christina</span>
@@ -449,7 +449,7 @@ export default function ClientDetailsPage() {
                       <div className="flex gap-2">
                         <MessageSquare className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
                         <div>
-                          <p className="text-[13px] font-medium text-[#1e293b] leading-tight line-clamp-2">Hi! Saw your business on Yelp. We're a web development company offerin...</p>
+                          <p className="text-[13px] font-medium text-[#e2e8f0] leading-tight line-clamp-2">Hi! Saw your business on Yelp. We're a web development company offerin...</p>
                           <div className="flex flex-col mt-2 gap-0.5 text-[11px] text-[#64748b]">
                             <span>Mar 09, 2026 - 02:40 PM</span>
                             <span>Sent by Maria Christina</span>

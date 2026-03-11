@@ -12,10 +12,10 @@ export default function TicketDetailsPage() {
   };
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/tickets" />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Ticket Details" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -108,7 +108,7 @@ export default function TicketDetailsPage() {
                 {/* Message 1 */}
                 <div className="bg-white/80 backdrop-blur-md rounded-xl  border border-[#e2e8f0] p-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 shrink-0">
+                    <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 shrink-0">
                       <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Milhan" alt="Milhan" className="w-full h-full object-cover" />
                     </div>
                     <div>
@@ -127,7 +127,7 @@ export default function TicketDetailsPage() {
                     <span className="px-2 py-1 bg-[#fef0c7] text-[#d97706] text-[10px] font-bold rounded">ticket note</span>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 shrink-0">
+                    <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 shrink-0">
                       <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Milhan" alt="Milhan" className="w-full h-full object-cover" />
                     </div>
                     <div>
@@ -146,7 +146,7 @@ export default function TicketDetailsPage() {
                     <span className="px-2 py-1 bg-[#fef0c7] text-[#d97706] text-[10px] font-bold rounded">ticket note</span>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 shrink-0">
+                    <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 shrink-0">
                       <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Milhan" alt="Milhan" className="w-full h-full object-cover" />
                     </div>
                     <div>

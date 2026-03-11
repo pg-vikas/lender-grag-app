@@ -23,10 +23,10 @@ export default function SubscriptionDetailsPage() {
   ];
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/subscriptions" />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Subscription Details" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -95,7 +95,7 @@ export default function SubscriptionDetailsPage() {
                   {paymentHistory.map((payment, i) => (
                     <div key={i} className="bg-white/80 backdrop-blur-md rounded-xl  p-4 flex items-center justify-between group border border-transparent hover:border-[#e2e8f0] transition-colors">
                       <div className="flex items-center gap-2 w-1/4">
-                        <div className="w-5 h-4 bg-gray-200 rounded-[2px] flex items-center justify-center shrink-0">
+                        <div className="w-5 h-4 bg-slate-200 rounded-[2px] flex items-center justify-center shrink-0">
                           <div className="w-3 h-0.5 bg-white/80 backdrop-blur-md rounded-full"></div>
                         </div>
                         <Link href={`/invoices/${payment.invoice}`} className="text-[14px] font-semibold text-[#0f172a] hover:text-[#8b5cf6] transition-colors">

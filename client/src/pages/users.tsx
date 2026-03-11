@@ -20,9 +20,9 @@ export default function UsersPage() {
   ];
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Users" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -106,8 +106,8 @@ export default function UsersPage() {
                         </td>
                         <td className="py-4 px-6">
                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold
-                              ${user.status === 'Active' ? 'bg-green-50 text-green-600 border border-green-200' : 'bg-gray-100 text-gray-600 border border-gray-200'}`}>
-                             <span className={`w-1.5 h-1.5 rounded-full ${user.status === 'Active' ? 'bg-green-500' : 'bg-gray-400'}`}></span>
+                              ${user.status === 'Active' ? 'bg-green-50 text-green-600 border border-green-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}>
+                             <span className={`w-1.5 h-1.5 rounded-full ${user.status === 'Active' ? 'bg-green-500' : 'bg-slate-400'}`}></span>
                              {user.status}
                            </span>
                         </td>
@@ -138,7 +138,7 @@ export default function UsersPage() {
           <div className="modern-card shadow-xl w-full max-w-2xl overflow-hidden flex flex-col relative">
             <button 
               onClick={() => setSelectedUser(null)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
@@ -150,7 +150,7 @@ export default function UsersPage() {
                     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
                 </div>
-                <h2 className="text-xl font-medium text-[#1e293b]">{selectedUser.name}</h2>
+                <h2 className="text-xl font-medium text-[#e2e8f0]">{selectedUser.name}</h2>
                 <p className="text-[#64748b] text-[15px]">{selectedUser.email}</p>
               </div>
               
@@ -158,19 +158,19 @@ export default function UsersPage() {
               
               <div className="grid grid-cols-2 gap-y-8 gap-x-12">
                 <div>
-                  <h3 className="text-[#1e293b] font-medium mb-1">Phone</h3>
+                  <h3 className="text-[#e2e8f0] font-medium mb-1">Phone</h3>
                   <p className="text-[#475569]">{selectedUser.phone || '---'}</p>
                 </div>
                 <div>
-                  <h3 className="text-[#1e293b] font-medium mb-1">Designation</h3>
+                  <h3 className="text-[#e2e8f0] font-medium mb-1">Designation</h3>
                   <p className="text-[#475569]">{selectedUser.role}</p>
                 </div>
                 <div>
-                  <h3 className="text-[#1e293b] font-medium mb-1">Date Added</h3>
+                  <h3 className="text-[#e2e8f0] font-medium mb-1">Date Added</h3>
                   <p className="text-[#475569]">{selectedUser.dateAdded || '---'}</p>
                 </div>
                 <div>
-                  <h3 className="text-[#1e293b] font-medium mb-1">Last Seen</h3>
+                  <h3 className="text-[#e2e8f0] font-medium mb-1">Last Seen</h3>
                   <p className="text-[#475569]">{selectedUser.lastLogin}</p>
                 </div>
               </div>

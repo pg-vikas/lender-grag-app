@@ -25,15 +25,15 @@ export default function ProjectsPage() {
   };
 
   const getPriorityStyle = (priority: string) => {
-    if (priority === 'Low') return 'text-gray-400 border border-gray-200 bg-gray-50';
+    if (priority === 'Low') return 'text-slate-400 border border-slate-200 bg-slate-50';
     return 'text-sky-500 border border-sky-200 bg-sky-50';
   };
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Projects" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -171,7 +171,7 @@ export default function ProjectsPage() {
                       </td>
                       <td className="py-4 px-6 border-y border-[#e2e8f0] group-hover:border-[#cbd5e1] transition-colors">
                         <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-full overflow-hidden bg-gray-100 shrink-0">
+                          <div className="w-7 h-7 rounded-full overflow-hidden bg-slate-100 shrink-0">
                              <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${project.createdBy}`} alt={project.createdBy} className="w-full h-full object-cover" />
                           </div>
                           <span className="font-medium text-[#0f172a]">{project.createdBy}</span>

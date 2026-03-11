@@ -1,24 +1,17 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { 
-  Menu, 
-  Search, 
-  Bell, 
-  User,
   Users,
   BarChart2,
   HelpCircle,
   ArrowUpRight,
-  ArrowRight,
-  Home as HomeIcon,
-  FolderOpen,
-  DollarSign,
-  FileText,
-  MessageSquare,
-  FileBarChart,
-  Globe,
-  ChevronDown,
-  Building2
+  User,
+  Building2,
+  Search,
+  Activity,
+  Zap,
+  TrendingUp,
+  ShieldAlert,
+  Server
 } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
@@ -32,255 +25,315 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-[#0f172a] flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
+      
       {/* Main Container */}
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
-        <Header title="Home" />
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
+        {/* Subtle background glow effect */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+        <Header title="Super Admin Dashboard" />
 
         {/* Main Layout */}
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 overflow-hidden relative z-10">
           {/* Main Content */}
-          <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
+          <main className="flex-1 overflow-y-auto p-6 lg:p-8 scrollbar-hide">
             <div className="max-w-7xl mx-auto">
-              <h1 className="text-[#0f172a] mb-8 font-semibold text-[22px]">Home</h1>
+              
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h1 className="text-3xl font-bold text-white tracking-tight mb-1">Command Center</h1>
+                  <p className="text-slate-400 text-sm flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+                    System Online • All services operational
+                  </p>
+                </div>
+                
+                <div className="flex gap-3">
+                  <button className="px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 text-sm font-medium hover:bg-slate-700/80 transition-colors">
+                    Export Report
+                  </button>
+                  <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-medium hover:from-indigo-400 hover:to-purple-500 shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all">
+                    System Actions
+                  </button>
+                </div>
+              </div>
 
-              {/* Work Session */}
-              <div className="modern-card p-6 mb-6 ">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
-                  {/* Left */}
-                  <div className="flex flex-col">
-                    <h2 className="text-xs font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8b5cf6] to-[#4f46e5] uppercase tracking-widest mb-2">WORK SESSION</h2>
-                    <div className="flex items-center text-[11px] font-medium text-[#64748b] bg-[#f1f5f9] px-2.5 py-1 rounded-full w-fit">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#94a3b8] mr-2"></span>
-                      Stopped
+              {/* Top Row - Major Metrics */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+                {/* Platform Overview */}
+                <Link href="/users" className="block group">
+                  <div className="glass-panel rounded-2xl p-6 module-gradient-purple hover-lift border-t border-purple-500/20">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all shadow-[0_0_10px_rgba(168,85,247,0.1)]">
+                        <Users className="w-5 h-5" />
+                      </div>
+                      <div className="flex items-center gap-1 text-emerald-400 text-xs font-bold bg-emerald-400/10 px-2 py-1 rounded-md">
+                        <TrendingUp className="w-3 h-3" /> +12%
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-slate-400 text-sm font-medium mb-1">Total Users</div>
+                      <div className="text-3xl font-bold text-white tracking-tight">12,482</div>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Active Clients */}
+                <Link href="/clients" className="block group">
+                  <div className="glass-panel rounded-2xl p-6 module-gradient-blue hover-lift border-t border-cyan-500/20">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-all shadow-[0_0_10px_rgba(6,182,212,0.1)]">
+                        <Building2 className="w-5 h-5" />
+                      </div>
+                      <div className="flex items-center gap-1 text-emerald-400 text-xs font-bold bg-emerald-400/10 px-2 py-1 rounded-md">
+                        <TrendingUp className="w-3 h-3" /> +5%
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-slate-400 text-sm font-medium mb-1">Active Agencies</div>
+                      <div className="text-3xl font-bold text-white tracking-tight">842</div>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Revenue */}
+                <Link href="/payments" className="block group">
+                  <div className="glass-panel rounded-2xl p-6 module-gradient-green hover-lift border-t border-emerald-500/20">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+                        <Activity className="w-5 h-5" />
+                      </div>
+                      <div className="flex items-center gap-1 text-emerald-400 text-xs font-bold bg-emerald-400/10 px-2 py-1 rounded-md">
+                        <TrendingUp className="w-3 h-3" /> +18%
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-slate-400 text-sm font-medium mb-1">Monthly MRR</div>
+                      <div className="text-3xl font-bold text-white tracking-tight">$142.5k</div>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* System Health */}
+                <Link href="/analytics" className="block group">
+                  <div className="glass-panel rounded-2xl p-6 module-gradient-orange hover-lift border-t border-orange-500/20">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="p-2.5 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-[0_0_10px_rgba(249,115,22,0.1)]">
+                        <Server className="w-5 h-5" />
+                      </div>
+                      <div className="flex items-center gap-1 text-slate-400 text-xs font-medium bg-slate-800 px-2 py-1 rounded-md">
+                        Stable
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-slate-400 text-sm font-medium mb-1">API Requests/min</div>
+                      <div className="text-3xl font-bold text-white tracking-tight">4,281</div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Middle Row - Charts & Activity */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                
+                {/* Main Chart Area */}
+                <div className="lg:col-span-2 glass-panel rounded-2xl p-6 border-t border-indigo-500/20 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 blur-[80px] rounded-full"></div>
+                  
+                  <div className="flex justify-between items-center mb-8 relative z-10">
+                    <div>
+                      <h2 className="text-lg font-bold text-white">Platform Growth</h2>
+                      <p className="text-sm text-slate-400">User acquisition & revenue over time</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <button className="px-3 py-1.5 rounded bg-indigo-500/20 text-indigo-300 text-xs font-bold border border-indigo-500/30">7D</button>
+                      <button className="px-3 py-1.5 rounded bg-slate-800/80 text-slate-400 hover:text-[#e2e8f0] text-xs font-medium border border-slate-700">30D</button>
+                      <button className="px-3 py-1.5 rounded bg-slate-800/80 text-slate-400 hover:text-[#e2e8f0] text-xs font-medium border border-slate-700">90D</button>
                     </div>
                   </div>
                   
-                  {/* Center */}
-                  <div className="flex justify-center items-start">
-                    <div className="text-3xl font-mono tracking-tight text-[#0f172a] font-medium">
-                      00:00:00
+                  {/* Mock Chart Visualization - using CSS to build a striking visual */}
+                  <div className="h-64 flex items-end gap-2 relative z-10 pt-4">
+                    {/* Y Axis */}
+                    <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-slate-500 font-mono py-2 w-10">
+                      <span>15k</span><span>10k</span><span>5k</span><span>0</span>
                     </div>
-                  </div>
-
-                  {/* Right */}
-                  <div className="flex flex-col gap-1.5 text-[11px] text-[#64748b] justify-center pt-1 md:flex-row md:gap-6">
-                    <div>Current session: <span className="text-[#0f172a] font-bold font-mono text-xs">00:00:00</span></div>
-                    <div>Breaks today: <span className="text-[#94a3b8] font-medium font-mono text-xs">00:00:00</span></div>
-                  </div>
-                </div>
-
-                {/* Time Boxes */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-                  <div className="border border-[#e2e8f0] rounded-[0.75rem] p-4 bg-white/80 backdrop-blur-md/50/50 flex flex-col justify-center">
-                    <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK IN</div>
-                    <div className="text-lg text-[#0f172a] font-medium">3:41:05 PM</div>
-                    <div className="text-xs text-[#94a3b8]">03 Feb 2026</div>
-                  </div>
-                  <div className="border border-[#e2e8f0] rounded-[0.75rem] p-4 bg-white/80 backdrop-blur-md/50/50 flex flex-col justify-center">
-                    <div className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-1">CLOCK OUT</div>
-                    <div className="text-lg text-[#0f172a] font-medium">12:01:03 PM</div>
-                    <div className="text-xs text-[#94a3b8]">04 Feb 2026</div>
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex gap-2.5">
-                  <Button className="bg-[#34d399] hover:bg-[#10b981] text-white font-bold text-xs tracking-wide px-5 py-2 h-8 rounded-[4px] shadow-sm border-none">
-                    CLOCK IN
-                  </Button>
-                  <Button className="bg-[#fb7185] hover:bg-[#f43f5e] text-white font-bold text-xs tracking-wide px-5 py-2 h-8 rounded-[4px] shadow-sm border-none">
-                    CLOCK OUT
-                  </Button>
-                </div>
-              </div>
-
-              {/* Stat Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                {[
-                  { label: 'Clients', value: '14', icon: User, href: '/clients' },
-                  { label: 'Projects', value: '28', icon: Users, href: '/projects' },
-                  { label: 'Analytics', value: '0', icon: BarChart2, href: '/analytics' },
-                  { label: 'Support Tickets', value: '4', icon: HelpCircle, href: '/tickets' },
-                ].map((stat, i) => (
-                  <Link key={i} href={stat.href} className="block group">
-                    <div className="modern-card p-5  flex flex-col justify-between h-28 relative hover:border-[#8b5cf6] border border-transparent transition-colors cursor-pointer">
-                      <div className="flex items-center space-x-3">
-                        <div className="bg-white/80 backdrop-blur-md/50 p-1.5 rounded-full text-[#0f172a] group-hover:bg-[#f3e8ff] group-hover:text-[#8b5cf6] transition-colors">
-                          <stat.icon className="w-4 h-4" strokeWidth={2.5} />
-                        </div>
-                        <span className="font-semibold text-[#0f172a] text-sm group-hover:text-[#8b5cf6] transition-colors">{stat.label}</span>
-                      </div>
-                      
-                      <div className="mt-4">
-                        <span className="text-[22px] font-bold text-[#0f172a]">{stat.value}</span>
-                      </div>
-
-                      <div className="absolute bottom-4 right-4">
-                        <div className="w-6 h-6 rounded-full border border-[#e2e8f0] flex items-center justify-center text-[#94a3b8] group-hover:bg-[#8b5cf6] group-hover:border-[#8b5cf6] group-hover:text-white transition-all">
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </div>
-                      </div>
+                    
+                    {/* Grid Lines */}
+                    <div className="absolute left-10 right-0 top-0 bottom-8 flex flex-col justify-between z-0">
+                      <div className="w-full border-t border-slate-700/50"></div>
+                      <div className="w-full border-t border-slate-700/50"></div>
+                      <div className="w-full border-t border-slate-700/50"></div>
+                      <div className="w-full border-t border-slate-800"></div>
                     </div>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Total Projects */}
-              <div className="modern-card p-6  mb-6">
-                <div className="flex justify-between items-center mb-5">
-                  <h2 className="text-base text-[#0f172a] font-medium">Total Projects</h2>
-                  <Link href="/projects" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-[#e2e8f0]/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all flex items-center transition-colors">
-                    View All Projects <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                  </Link>
-                </div>
-                
-                <div className="rounded-[12px] overflow-hidden border border-[#e2e8f0] bg-white mt-4">
-                  <table className="w-full text-[13px] text-left">
-                    <thead className="bg-[#f8fafc]">
-                      <tr className="border-b border-[#e2e8f0]">
-                        <th className="py-4 px-6 font-bold text-[#475569]">Project Name</th>
-                        <th className="py-4 px-6 font-bold text-[#475569]">Client</th>
-                        <th className="py-4 px-6 font-bold text-[#475569]">Date</th>
-                        <th className="py-4 px-6 font-bold text-[#475569]">Status</th>
-                        <th className="py-4 px-6 font-bold text-[#475569]">Priority</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        { name: 'Add new Status Colum', client: 'Pink Gorilla Softwar...', date: '29 Dec - 29 Dec, 2025', status: 'Completed', statusColor: 'text-[#10b981] border-[#10b981]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
-                        { name: 'SSL Failed on Generated Websites (but no...', client: 'Pink Gorilla Softwar...', date: '22 Dec - 29 Dec, 2025', status: 'Pending Approval', statusColor: 'text-[#f59e0b] border-[#f59e0b]', priority: 'Urgent', priorityColor: 'text-[#ef4444] border-[#ef4444]' },
-                        { name: 'WIREFRAME DESIGN SUMMIT', client: 'PG Development', date: '02 Nov - 09 Nov, 2025', status: 'Completed', statusColor: 'text-[#10b981] border-[#10b981]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
-                        { name: 'Agreement function CRM', client: 'Pink Gorilla Softwar...', date: '15 Oct - 10 Mar, 2026', status: 'Not Started', statusColor: 'text-[#94a3b8] border-[#94a3b8]', priority: 'Low', priorityColor: 'text-[#94a3b8] border-[#94a3b8]' },
-                        { name: 'Bug Assignee is not selected', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Cancelled', statusColor: 'text-[#ef4444] border-[#ef4444]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
-                        { name: 'Dash Board - Pencil Frame HTML', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Pending', statusColor: 'text-[#38bdf8] border-[#38bdf8]', priority: 'Normal', priorityColor: 'text-[#38bdf8] border-[#38bdf8]' },
-                      ].map((project, i) => (
-                        <tr key={i} className="border-b border-[#e2e8f0] last:border-0 bg-white">
-                          <td className="py-4 px-6 font-semibold text-[#0f172a]">{project.name}</td>
-                          <td className="py-4 px-6 text-[#64748b]">{project.client}</td>
-                          <td className="py-4 px-6 text-[#64748b] whitespace-nowrap">{project.date}</td>
-                          <td className="py-4 px-6">
-                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[12px] font-medium border bg-white ${project.statusColor}`}>
-                              {project.status}
-                            </span>
-                          </td>
-                          <td className="py-4 px-6">
-                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[12px] font-medium border bg-white ${project.priorityColor}`}>
-                              {project.priority}
-                            </span>
-                          </td>
-                        </tr>
+                    
+                    {/* Bars - Generated via map */}
+                    <div className="ml-10 flex-1 flex items-end justify-between gap-1 sm:gap-2 h-[calc(100%-2rem)] z-10 relative group-hover:[&>div>div]:opacity-100">
+                      {[40, 55, 45, 60, 75, 65, 80, 70, 85, 90, 80, 95, 85, 100].map((height, i) => (
+                        <div key={i} className="flex-1 flex flex-col justify-end group/bar cursor-pointer relative h-full">
+                          {/* Tooltip */}
+                          <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 border border-indigo-500/30 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity z-20 pointer-events-none whitespace-nowrap shadow-xl">
+                            Val: {height * 100}
+                          </div>
+                          
+                          {/* Bar with gradient and top glow */}
+                          <div 
+                            style={{ height: `${height}%` }} 
+                            className="w-full bg-gradient-to-t from-indigo-900/50 to-indigo-500/80 rounded-t-sm relative transition-all duration-300 group-hover/bar:to-indigo-400 group-hover/bar:shadow-[0_0_15px_rgba(99,102,241,0.5)]"
+                          >
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-indigo-300 rounded-t-sm opacity-50"></div>
+                          </div>
+                        </div>
                       ))}
-                    </tbody>
-                  </table>
+                    </div>
+                  </div>
+                  
+                  {/* X Axis */}
+                  <div className="flex justify-between text-xs text-slate-500 font-mono ml-10 mt-2 px-2">
+                    <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                  </div>
+                </div>
+
+                {/* System Activity Feed */}
+                <div className="glass-panel rounded-2xl p-6 border-t border-rose-500/20 flex flex-col h-full">
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                      <Zap className="w-5 h-5 text-rose-500" /> Live Events
+                    </h2>
+                    <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                  </div>
+
+                  <div className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-hide relative">
+                    <div className="absolute left-[15px] top-2 bottom-2 w-[2px] bg-slate-800"></div>
+                    
+                    {[
+                      { type: 'alert', icon: ShieldAlert, color: 'text-rose-400', bg: 'bg-rose-500/10', border: 'border-rose-500/20', title: 'High CPU Usage', desc: 'Node cluster alpha-2', time: 'Just now' },
+                      { type: 'signup', icon: Users, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', title: 'New Agency Signup', desc: 'Creative Digital LLC', time: '2m ago' },
+                      { type: 'payment', icon: Activity, color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', title: 'Plan Upgrade', desc: 'PG Software to Enterprise', time: '15m ago' },
+                      { type: 'system', icon: Server, color: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', title: 'Database Backup', desc: 'Automated snapshot complete', time: '1h ago' },
+                      { type: 'signup', icon: Users, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', title: 'New Agency Signup', desc: 'Marketing Pros Inc', time: '2h ago' },
+                    ].map((event, i) => (
+                      <div key={i} className="relative flex gap-4 group/event">
+                        <div className={`relative z-10 w-8 h-8 rounded-full flex items-center justify-center shrink-0 border ${event.bg} ${event.color} ${event.border} shadow-[0_0_10px_rgba(0,0,0,0.2)] group-hover/event:scale-110 transition-transform`}>
+                          <event.icon className="w-4 h-4" />
+                        </div>
+                        <div className="pt-1.5 flex-1 pb-2">
+                          <div className="flex justify-between items-start">
+                            <p className="text-sm font-bold text-[#e2e8f0]">{event.title}</p>
+                            <span className="text-xs font-mono text-slate-500">{event.time}</span>
+                          </div>
+                          <p className="text-xs text-slate-400 mt-0.5">{event.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Bottom Row */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="modern-card p-6  flex flex-col h-[350px]">
-                  <div className="flex justify-between items-center mb-5">
-                    <h2 className="text-base text-[#0f172a] font-medium">Clients</h2>
-                    <Link href="/clients" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-[#e2e8f0]/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all transition-colors">
-                      View all
+              {/* Bottom Row - Data Tables */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                {/* Active Support Issues */}
+                <div className="glass-panel rounded-2xl overflow-hidden border-t border-fuchsia-500/20 flex flex-col">
+                  <div className="p-6 border-b border-white/5 flex justify-between items-center bg-slate-900/50">
+                    <h2 className="text-base font-bold text-white flex items-center gap-2">
+                      <HelpCircle className="w-5 h-5 text-fuchsia-400" /> Urgent Support Tickets
+                    </h2>
+                    <Link href="/tickets" className="text-xs font-bold text-fuchsia-400 hover:text-fuchsia-300 transition-colors uppercase tracking-wider">
+                      View All
                     </Link>
                   </div>
                   
-                  <div className="relative mb-4 shrink-0">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" />
-                    <input 
-                      type="text" 
-                      placeholder="Search" 
-                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#e2e8f0]/80 rounded-lg text-sm focus:outline-none focus:border-[#e2e8f0] transition-colors"
-                    />
-                  </div>
-
-                  <div className="flex-1 overflow-y-auto space-y-1 pr-2 scrollbar-hide">
-                    {[
-                      'Test demo1',
-                      'Demo test on CRM',
-                      'Test Dev4 Starter',
-                      'Sale 2 company',
-                      'urban land solution',
-                      "Angel's Gardening Services"
-                    ].map((client, i) => (
-                      <div key={i} className="flex items-center gap-3 p-2.5 hover:bg-white/80 backdrop-blur-md/50/80 rounded-xl cursor-pointer transition-all hover:translate-x-1">
-                        <div className="w-8 h-8 rounded-md bg-[#f1f5f9] flex items-center justify-center shrink-0">
-                          <Building2 className="w-4 h-4 text-[#94a3b8]" />
-                        </div>
-                        <span className="text-sm font-medium text-[#475569]">{client}</span>
-                      </div>
-                    ))}
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left dark-table">
+                      <thead>
+                        <tr>
+                          <th className="py-3 px-6">ID</th>
+                          <th className="py-3 px-6">Agency</th>
+                          <th className="py-3 px-6">Issue</th>
+                          <th className="py-3 px-6">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { id: '#T-4921', agency: 'Pink Gorilla', issue: 'API Webhook failing', status: 'Escalated', color: 'text-rose-400 bg-rose-400/10 border-rose-400/20' },
+                          { id: '#T-4920', agency: 'Acme Digital', issue: 'Billing portal error', status: 'In Progress', color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
+                          { id: '#T-4915', agency: 'Creative LLC', issue: 'Custom domain setup', status: 'Waiting on Client', color: 'text-indigo-400 bg-indigo-400/10 border-indigo-400/20' },
+                          { id: '#T-4908', agency: 'Global Tech', issue: 'White label config', status: 'In Progress', color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
+                        ].map((ticket, i) => (
+                          <tr key={i} className="group cursor-pointer">
+                            <td className="py-4 px-6 font-mono text-xs text-slate-400 group-hover:text-slate-300">{ticket.id}</td>
+                            <td className="py-4 px-6 text-sm font-semibold text-white">{ticket.agency}</td>
+                            <td className="py-4 px-6 text-sm text-slate-300">{ticket.issue}</td>
+                            <td className="py-4 px-6">
+                              <span className={`inline-flex items-center px-2.5 py-1 rounded text-xs font-bold border ${ticket.color}`}>
+                                {ticket.status}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-                
-                <div className="modern-card p-6  flex flex-col h-[350px]">
-                  <div className="flex justify-between items-center mb-5 shrink-0">
-                    <h2 className="text-base text-[#0f172a] font-medium">Support Tickets</h2>
-                    <Link href="/tickets" className="text-xs font-semibold text-[#64748b] bg-white/80 backdrop-blur-md/80 border border-[#e2e8f0]/80 px-4 py-2 rounded-full hover:bg-white/80 backdrop-blur-md hover:shadow-sm transition-all flex items-center transition-colors">
-                      View All Tickets <ArrowRight className="w-3.5 h-3.5 ml-1" />
+
+                {/* Latest Signups */}
+                <div className="glass-panel rounded-2xl overflow-hidden border-t border-cyan-500/20 flex flex-col">
+                  <div className="p-6 border-b border-white/5 flex justify-between items-center bg-slate-900/50">
+                    <h2 className="text-base font-bold text-white flex items-center gap-2">
+                      <User className="w-5 h-5 text-cyan-400" /> Recent Agency Signups
+                    </h2>
+                    <Link href="/clients" className="text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider">
+                      Directory
                     </Link>
                   </div>
-
-                  <div className="flex-1 overflow-y-auto space-y-2 pr-2 scrollbar-hide">
-                    {[
-                      { id: 1, title: 'Test' },
-                      { id: 2, title: 'Test on client side' },
-                      { id: 3, title: 'Test ticket' },
-                      { id: 4, title: 'Test' },
-                      { id: 5, title: 'Demo' },
-                    ].map((ticket) => (
-                      <div key={ticket.id} className="flex items-center gap-4 p-3 border border-[#e2e8f0] rounded-lg hover:border-[#e2e8f0] transition-colors cursor-pointer">
-                        <span className="text-sm font-bold text-[#0f172a] w-4">{ticket.id}</span>
-                        <span className="text-sm font-medium text-[#475569]">{ticket.title}</span>
-                      </div>
-                    ))}
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left dark-table">
+                      <thead>
+                        <tr>
+                          <th className="py-3 px-6">Agency Name</th>
+                          <th className="py-3 px-6">Plan</th>
+                          <th className="py-3 px-6">MRR</th>
+                          <th className="py-3 px-6">Joined</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { name: 'Nexus Digital', plan: 'Enterprise', mrr: '$499', joined: 'Today, 2:40 PM' },
+                          { name: 'Studio Elevate', plan: 'Pro', mrr: '$199', joined: 'Today, 10:15 AM' },
+                          { name: 'Blue Ocean Media', plan: 'Starter', mrr: '$99', joined: 'Yesterday' },
+                          { name: 'Apex Marketing', plan: 'Enterprise', mrr: '$499', joined: 'Yesterday' },
+                        ].map((agency, i) => (
+                          <tr key={i} className="group cursor-pointer">
+                            <td className="py-4 px-6">
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-colors">
+                                  <Building2 className="w-4 h-4" />
+                                </div>
+                                <span className="text-sm font-semibold text-white">{agency.name}</span>
+                              </div>
+                            </td>
+                            <td className="py-4 px-6 text-sm text-slate-300">
+                              <span className={agency.plan === 'Enterprise' ? 'text-purple-400 font-semibold' : 'text-slate-300'}>
+                                {agency.plan}
+                              </span>
+                            </td>
+                            <td className="py-4 px-6 text-sm font-mono text-emerald-400">{agency.mrr}</td>
+                            <td className="py-4 px-6 text-xs text-slate-500">{agency.joined}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
+
               </div>
+              
             </div>
           </main>
-
-          {/* Right Sidebar */}
-          <aside className="w-[300px] bg-gradient-to-b from-[#f8fafc] to-[#e2e8f0] border-l border-[#e2e8f0] shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.05)] overflow-y-auto hidden xl:block p-6">
-            <h2 className="text-[#0f172a] mb-6 font-medium text-[18px]">Latest Activity</h2>
-            
-            <div className="relative">
-              <div className="absolute left-[19px] top-4 bottom-0 w-px bg-[#e2e8f0]"></div>
-              
-              <div className="space-y-6">
-                {[
-                  { user: 'NK', action: 'event added client note', time: '5 days ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=1' },
-                  { user: 'NK', action: 'event added client note', time: '5 days ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=2' },
-                  { user: 'NK', action: 'event added client note', time: '1 week ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=3' },
-                  { user: 'VS', action: 'event added client note', time: '1 week ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=4' },
-                  { user: 'NK', action: 'event created launchpad', time: '1 week ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=5' },
-                  { user: '', action: 'event created launchpad', time: '1 week ago', type: 'icon' },
-                  { user: 'NK', action: 'event created launchpad', time: '1 week ago', type: 'avatar', img: 'https://i.pravatar.cc/150?u=6' },
-                  { user: '', action: 'event created launchpad', time: '2 weeks ago', type: 'icon' },
-                  { user: '', action: 'event created launchpad', time: '2 weeks ago', type: 'icon' },
-                  { user: '', action: 'Opened a new support ticket', time: '2 weeks ago', type: 'icon' },
-                  { user: '', action: 'Assigned a task to Neeraj', time: '2 weeks ago', type: 'icon' },
-                  { user: '', action: 'Assigned a task to Jitander', time: '2 weeks ago', type: 'icon' },
-                ].map((event, i) => (
-                  <div key={i} className="relative flex items-start gap-4">
-                    <div className="relative z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-[#e2e8f0] flex items-center justify-center shrink-0 overflow-hidden">
-                      {event.type === 'avatar' ? (
-                        <img src={event.img} alt={event.user} className="w-full h-full object-cover" />
-                      ) : (
-                        <User className="w-5 h-5 text-[#94a3b8]" />
-                      )}
-                    </div>
-                    <div className="pt-1">
-                      <p className="text-sm font-medium text-[#0f172a] leading-tight">{event.action}</p>
-                      <p className="text-xs text-[#94a3b8] mt-0.5">{event.time}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </aside>
         </div>
       </div>
     </div>

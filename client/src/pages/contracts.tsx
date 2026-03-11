@@ -18,9 +18,9 @@ export default function ContractsPage() {
   ];
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Contracts" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -76,7 +76,7 @@ export default function ContractsPage() {
                         <td className="py-4 px-6">
                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-semibold
                               ${contract.status === 'Signed' ? 'bg-green-50 text-green-600 border border-green-200' : 
-                                contract.status === 'Pending Signature' ? 'bg-amber-50 text-amber-600 border border-amber-200' : 'bg-gray-100 text-gray-600 border border-gray-200'}`}>
+                                contract.status === 'Pending Signature' ? 'bg-amber-50 text-amber-600 border border-amber-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}>
                              {contract.status}
                            </span>
                         </td>

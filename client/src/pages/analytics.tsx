@@ -27,10 +27,10 @@ export default function WebsiteAnalyticsPage() {
   };
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Website Analytics" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -114,7 +114,7 @@ export default function WebsiteAnalyticsPage() {
               <h3 className="text-[15px] font-semibold text-[#475569] mb-4 flex items-center gap-2">
                 <Lightbulb className="w-4 h-4 text-[#64748b]" /> Key Insights
               </h3>
-              <ul className="space-y-3 text-[14px] text-[#64748b] list-disc list-inside ml-2 marker:text-gray-300">
+              <ul className="space-y-3 text-[14px] text-[#64748b] list-disc list-inside ml-2 marker:text-slate-300">
                 <li>You had <span className="font-semibold text-[#0f172a]">51</span> visitors in the last 7 days.</li>
                 <li><span className="font-semibold text-[#0f172a]">Direct</span> drove <span className="font-semibold text-[#0f172a]">34.3%</span> of sessions.</li>
                 <li>Desktop users account for <span className="font-semibold text-[#0f172a]">85%</span> of traffic.</li>

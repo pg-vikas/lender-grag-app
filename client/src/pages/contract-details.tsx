@@ -12,10 +12,10 @@ export default function ContractDetailsPage() {
   };
 
   return (
-    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#1e293b]">
+    <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/contracts" />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-white/30 backdrop-blur-3xl">
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Contract Details" />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
@@ -68,7 +68,7 @@ export default function ContractDetailsPage() {
                   </div>
                 </div>
 
-                <div className="text-gray-400 mb-16">
+                <div className="text-slate-400 mb-16">
                   ..
                 </div>
 
