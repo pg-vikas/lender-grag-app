@@ -75,7 +75,7 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
               </div>
               {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'crm' || currentPath.includes('/clients') ? '' : '-rotate-90'}`} />}
             </button>
-            {sidebarOpen && (openMenus === 'crm' || currentPath.includes('/clients')) && (
+            {useAppStore.getState().sidebarOpen && (openMenus === 'crm' || currentPath.includes('/clients')) && (
               <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
                 <Link href="/clients/active">
                   <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/clients/active' ? 'bg-cyan-500/20 text-cyan-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
@@ -118,7 +118,7 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
               </div>
               {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'sales' || currentPath.includes('/invoices') || currentPath.includes('/payments') ? '' : '-rotate-90'}`} />}
             </button>
-            {sidebarOpen && (openMenus === 'sales' || currentPath.includes('/invoices') || currentPath.includes('/payments') || currentPath.includes('/subscriptions')) && (
+            {useAppStore.getState().sidebarOpen && (openMenus === 'sales' || currentPath.includes('/invoices') || currentPath.includes('/payments') || currentPath.includes('/subscriptions')) && (
               <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
                 <Link href="/invoices">
                   <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/invoices') ? 'bg-emerald-500/20 text-emerald-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
@@ -152,7 +152,7 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
               </div>
               {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'support' || currentPath.includes('/tickets') ? '' : '-rotate-90'}`} />}
             </button>
-            {sidebarOpen && (openMenus === 'support' || currentPath.includes('/tickets')) && (
+            {useAppStore.getState().sidebarOpen && (openMenus === 'support' || currentPath.includes('/tickets')) && (
               <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
                 <Link href="/tickets">
                   <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/tickets') ? 'bg-fuchsia-500/20 text-fuchsia-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
@@ -399,7 +399,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
       </div>
       
       {/* Backdrop for mobile sidebar */}
-      {sidebarOpen && (
+      {useAppStore.getState().sidebarOpen && (
         <div 
           className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-20 lg:hidden"
           onClick={() => useAppStore.getState().toggleSidebar()}
