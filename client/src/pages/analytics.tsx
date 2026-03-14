@@ -35,26 +35,26 @@ export default function WebsiteAnalyticsPage() {
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-[22px] font-semibold text-[#0f172a] mb-6">Website Analytics</h1>
+            <h1 className="text-[22px] font-semibold text-white mb-6">Website Analytics</h1>
 
             {/* Google Analytics Dashboard Card */}
-            <div className="modern-card p-6 mb-6 shadow-sm border border-[#e2e8f0] flex flex-col lg:flex-row justify-between lg:items-center gap-4">
+            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-6 shadow-sm border border-white/10 flex flex-col lg:flex-row justify-between lg:items-center gap-4">
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <BarChart2 className="w-5 h-5 text-[#94a3b8]" />
-                  <h2 className="text-base font-semibold text-[#64748b]">Google Analytics Dashboard</h2>
+                  <BarChart2 className="w-5 h-5 text-slate-500" />
+                  <h2 className="text-base font-semibold text-slate-400">Google Analytics Dashboard</h2>
                 </div>
                 <div className="flex flex-col gap-1 mt-3">
-                  <p className="text-[15px] font-semibold text-[#0f172a]">Property ID: <span className="font-normal">508551389</span></p>
-                  <p className="text-[15px] font-semibold text-[#10b981]">Credentials: <span className="font-normal">Uploaded</span></p>
+                  <p className="text-[15px] font-semibold text-white">Property ID: <span className="font-normal">508551389</span></p>
+                  <p className="text-[15px] font-semibold text-emerald-400">Credentials: <span className="font-normal">Uploaded</span></p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 border border-[#e2e8f0] p-4 rounded-lg">
+              <div className="flex items-center gap-4 border border-white/10 p-4 rounded-lg">
                 <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-[#10b981] flex items-center gap-2">
+                  <span className="text-sm font-semibold text-emerald-400 flex items-center gap-2">
                     <CheckSquare className="w-4 h-4" /> Connected to Google Analytics
                   </span>
-                  <span className="text-[13px] text-[#64748b] ml-6">Last checked: 2026-03-10 00:47:34</span>
+                  <span className="text-[13px] text-slate-400 ml-6">Last checked: 2026-03-10 00:47:34</span>
                 </div>
                 <button className="px-4 py-2 border border-red-200 text-red-400 hover:bg-red-50 rounded-md text-sm font-medium flex items-center gap-2 transition-colors h-[38px] ml-4">
                   <Unlink className="w-4 h-4" /> Disconnect
@@ -64,75 +64,75 @@ export default function WebsiteAnalyticsPage() {
 
             {/* Four Metric Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-               <div className="modern-card p-5 shadow-sm border border-[#e2e8f0]">
+               <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-5 shadow-sm border border-white/10">
                  <div className="flex items-center justify-between mb-4">
-                   <p className="text-sm font-medium text-[#475569]">Total Visitors</p>
+                   <p className="text-sm font-medium text-slate-300">Total Visitors</p>
                    <div className="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center">
                       <Users className="w-[18px] h-[18px]" />
                    </div>
                  </div>
-                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-[#0f172a] mb-1">51</h3>
-                 <span className="text-xs font-medium text-[#10b981]">↑ N/A this month</span>
+                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-white mb-1">51</h3>
+                 <span className="text-xs font-medium text-emerald-400">↑ N/A this month</span>
                </div>
 
-               <div className="modern-card p-5 shadow-sm border border-[#e2e8f0]">
+               <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-5 shadow-sm border border-white/10">
                  <div className="flex items-center justify-between mb-4">
-                   <p className="text-sm font-medium text-[#475569]">New Leads Captured</p>
+                   <p className="text-sm font-medium text-slate-300">New Leads Captured</p>
                    <div className="w-8 h-8 rounded bg-emerald-100 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-600 flex items-center justify-center">
                       <Target className="w-[18px] h-[18px]" />
                    </div>
                  </div>
-                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-[#0f172a] mb-1">0</h3>
-                 <span className="text-xs font-medium text-[#10b981]">↑ N/A from last month</span>
+                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-white mb-1">0</h3>
+                 <span className="text-xs font-medium text-emerald-400">↑ N/A from last month</span>
                </div>
 
-               <div className="modern-card p-5 shadow-sm border border-[#e2e8f0]">
+               <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-5 shadow-sm border border-white/10">
                  <div className="flex items-center justify-between mb-4">
-                   <p className="text-sm font-medium text-[#475569]">Conversion Rate</p>
+                   <p className="text-sm font-medium text-slate-300">Conversion Rate</p>
                    <div className="w-8 h-8 rounded bg-purple-100 text-purple-600 flex items-center justify-center">
                       <Zap className="w-[18px] h-[18px]" />
                    </div>
                  </div>
-                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-[#0f172a] mb-1">0.0%</h3>
-                 <span className="text-xs font-medium text-[#10b981]">↑ N/A</span>
+                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-white mb-1">0.0%</h3>
+                 <span className="text-xs font-medium text-emerald-400">↑ N/A</span>
                </div>
 
-               <div className="modern-card p-5 shadow-sm border border-[#e2e8f0]">
+               <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-5 shadow-sm border border-white/10">
                  <div className="flex items-center justify-between mb-4">
-                   <p className="text-sm font-medium text-[#475569]">Revenue from Web Leads</p>
+                   <p className="text-sm font-medium text-slate-300">Revenue from Web Leads</p>
                    <div className="w-8 h-8 rounded bg-emerald-100 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-600 flex items-center justify-center">
                       <DollarSign className="w-[18px] h-[18px]" />
                    </div>
                  </div>
-                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-[#0f172a] mb-1">$0</h3>
-                 <span className="text-xs font-medium text-[#10b981]">↑ N/A this month</span>
+                 <h3 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-medium text-white mb-1">$0</h3>
+                 <span className="text-xs font-medium text-emerald-400">↑ N/A this month</span>
                </div>
             </div>
 
             {/* Key Insights */}
-            <div className="modern-card p-6 mb-6 shadow-sm border border-[#e2e8f0]">
-              <h3 className="text-[15px] font-semibold text-[#475569] mb-4 flex items-center gap-2">
-                <Lightbulb className="w-4 h-4 text-[#64748b]" /> Key Insights
+            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-6 shadow-sm border border-white/10">
+              <h3 className="text-[15px] font-semibold text-slate-300 mb-4 flex items-center gap-2">
+                <Lightbulb className="w-4 h-4 text-slate-400" /> Key Insights
               </h3>
-              <ul className="space-y-3 text-[14px] text-[#64748b] list-disc list-inside ml-2 marker:text-slate-300">
-                <li>You had <span className="font-semibold text-[#0f172a]">51</span> visitors in the last 7 days.</li>
-                <li><span className="font-semibold text-[#0f172a]">Direct</span> drove <span className="font-semibold text-[#0f172a]">34.3%</span> of sessions.</li>
-                <li>Desktop users account for <span className="font-semibold text-[#0f172a]">85%</span> of traffic.</li>
-                <li>Average time on site is <span className="font-semibold text-[#0f172a]">15m 50s</span>.</li>
+              <ul className="space-y-3 text-[14px] text-slate-400 list-disc list-inside ml-2 marker:text-slate-300">
+                <li>You had <span className="font-semibold text-white">51</span> visitors in the last 7 days.</li>
+                <li><span className="font-semibold text-white">Direct</span> drove <span className="font-semibold text-white">34.3%</span> of sessions.</li>
+                <li>Desktop users account for <span className="font-semibold text-white">85%</span> of traffic.</li>
+                <li>Average time on site is <span className="font-semibold text-white">15m 50s</span>.</li>
               </ul>
             </div>
 
             {/* Website Traffic */}
-            <div className="modern-card p-6 mb-6 shadow-sm border border-[#e2e8f0]">
+            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-6 shadow-sm border border-white/10">
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <h3 className="text-lg font-medium text-[#0f172a]">Website Traffic</h3>
-                  <p className="text-[13px] text-[#94a3b8] mt-1">Visitor sessions over time</p>
+                  <h3 className="text-lg font-medium text-white">Website Traffic</h3>
+                  <p className="text-[13px] text-slate-500 mt-1">Visitor sessions over time</p>
                 </div>
-                <div className="flex bg-[#f1f5f9] p-1 rounded-full">
-                  <button className="px-4 py-1.5 bg-white/80 backdrop-blur-md shadow-sm rounded-full text-xs font-semibold text-[#0f172a]">7 Days</button>
-                  <button className="px-4 py-1.5 text-[#64748b] text-xs font-medium hover:text-[#0f172a]">30 Days</button>
-                  <button className="px-4 py-1.5 text-[#64748b] text-xs font-medium hover:text-[#0f172a]">90 Days</button>
+                <div className="flex bg-slate-800 p-1 rounded-full">
+                  <button className="px-4 py-1.5 bg-slate-900/40 backdrop-blur-xl shadow-sm rounded-full text-xs font-semibold text-white">7 Days</button>
+                  <button className="px-4 py-1.5 text-slate-400 text-xs font-medium hover:text-white">30 Days</button>
+                  <button className="px-4 py-1.5 text-slate-400 text-xs font-medium hover:text-white">90 Days</button>
                 </div>
               </div>
               
@@ -148,7 +148,7 @@ export default function WebsiteAnalyticsPage() {
                     <circle cx="800" cy="120" r="3" fill="#86efac" />
                     <circle cx="950" cy="200" r="3" fill="#86efac" />
                  </svg>
-                 <div className="absolute bottom-0 w-full flex justify-between text-xs text-[#94a3b8] border-t border-[#e2e8f0] pt-2 px-[5%]">
+                 <div className="absolute bottom-0 w-full flex justify-between text-xs text-slate-500 border-t border-white/10 pt-2 px-[5%]">
                     <span>Mar 03</span>
                     <span>Mar 04</span>
                     <span>Mar 05</span>
@@ -159,83 +159,83 @@ export default function WebsiteAnalyticsPage() {
                     <span>Mar 10</span>
                  </div>
                  <div className="absolute left-0 bottom-2 w-4 h-full flex items-end">
-                    <span className="text-xs text-[#94a3b8] -translate-x-full pr-1">0</span>
+                    <span className="text-xs text-slate-500 -translate-x-full pr-1">0</span>
                  </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-6">
                 <div>
-                  <h4 className="text-[14px] font-medium text-[#475569] mb-5">Top Traffic Sources</h4>
+                  <h4 className="text-[14px] font-medium text-slate-300 mb-5">Top Traffic Sources</h4>
                   <div className="space-y-4 text-sm">
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-2 text-[#475569]">
+                      <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div> Direct
                       </div>
-                      <span className="font-medium text-[#0f172a]">34.3%</span>
+                      <span className="font-medium text-white">34.3%</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-2 text-[#475569]">
+                      <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div> Referral
                       </div>
-                      <span className="font-medium text-[#0f172a]">29.3%</span>
+                      <span className="font-medium text-white">29.3%</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-2 text-[#475569]">
+                      <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-2.5 h-2.5 rounded-full bg-purple-500"></div> Organic Search
                       </div>
-                      <span className="font-medium text-[#0f172a]">24.2%</span>
+                      <span className="font-medium text-white">24.2%</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-2 text-[#475569]">
+                      <div className="flex items-center gap-2 text-slate-300">
                         <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div> Unassigned
                       </div>
-                      <span className="font-medium text-[#0f172a]">12.1%</span>
+                      <span className="font-medium text-white">12.1%</span>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-medium text-[#475569] mb-5">Device Breakdown</h4>
+                  <h4 className="text-[14px] font-medium text-slate-300 mb-5">Device Breakdown</h4>
                   <div className="space-y-6 text-sm">
                     <div>
-                      <div className="flex justify-between items-center mb-1 text-[#475569]">
+                      <div className="flex justify-between items-center mb-1 text-slate-300">
                         <span className="flex items-center gap-2"><Smartphone className="w-4 h-4 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-400" /> Mobile</span>
                       </div>
-                      <div className="text-[13px] text-[#94a3b8] mb-1">15%</div>
+                      <div className="text-[13px] text-slate-500 mb-1">15%</div>
                     </div>
                     <div>
-                      <div className="flex justify-between items-center mb-1 text-[#475569]">
+                      <div className="flex justify-between items-center mb-1 text-slate-300">
                         <span className="flex items-center gap-2"><Monitor className="w-4 h-4 text-blue-400" /> Desktop</span>
                       </div>
-                      <div className="text-[13px] text-[#94a3b8] mb-1">85%</div>
+                      <div className="text-[13px] text-slate-500 mb-1">85%</div>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-medium text-[#475569] mb-5">Top Locations</h4>
+                  <h4 className="text-[14px] font-medium text-slate-300 mb-5">Top Locations</h4>
                   <div className="space-y-4 text-sm">
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-2 text-[#475569]">
-                        <MapPin className="w-3.5 h-3.5 text-[#94a3b8]" /> Unknown, Eastern Visayas
+                      <div className="flex items-center gap-2 text-slate-300">
+                        <MapPin className="w-3.5 h-3.5 text-slate-500" /> Unknown, Eastern Visayas
                       </div>
-                      <span className="font-medium text-[#0f172a]">4</span>
+                      <span className="font-medium text-white">4</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-2 text-[#475569]">
-                        <MapPin className="w-3.5 h-3.5 text-[#94a3b8]" /> Chandigarh, Ropar Division
+                      <div className="flex items-center gap-2 text-slate-300">
+                        <MapPin className="w-3.5 h-3.5 text-slate-500" /> Chandigarh, Ropar Division
                       </div>
-                      <span className="font-medium text-[#0f172a]">4</span>
+                      <span className="font-medium text-white">4</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-2 text-[#475569]">
-                        <MapPin className="w-3.5 h-3.5 text-[#94a3b8]" /> Sahibzada Ajit Singh Nagar, Punjab
+                      <div className="flex items-center gap-2 text-slate-300">
+                        <MapPin className="w-3.5 h-3.5 text-slate-500" /> Sahibzada Ajit Singh Nagar, Punjab
                       </div>
-                      <span className="font-medium text-[#0f172a]">4</span>
+                      <span className="font-medium text-white">4</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-2 text-[#475569]">
-                        <MapPin className="w-3.5 h-3.5 text-[#94a3b8]" /> , Eastern Visayas
+                      <div className="flex items-center gap-2 text-slate-300">
+                        <MapPin className="w-3.5 h-3.5 text-slate-500" /> , Eastern Visayas
                       </div>
-                      <span className="font-medium text-[#0f172a]">2</span>
+                      <span className="font-medium text-white">2</span>
                     </div>
                   </div>
                 </div>
@@ -243,85 +243,85 @@ export default function WebsiteAnalyticsPage() {
             </div>
 
             {/* Leads & Conversions */}
-            <div className="modern-card p-6 mb-6 shadow-sm border border-[#e2e8f0] min-h-[300px] flex flex-col">
-              <h3 className="text-[15px] font-semibold text-[#0f172a] mb-1">Leads & Conversions</h3>
-              <p className="text-[13px] text-[#94a3b8]">Comparing website visitors to leads captured</p>
+            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-6 shadow-sm border border-white/10 min-h-[300px] flex flex-col">
+              <h3 className="text-[15px] font-semibold text-white mb-1">Leads & Conversions</h3>
+              <p className="text-[13px] text-slate-500">Comparing website visitors to leads captured</p>
               <div className="flex-1 flex items-center justify-center">
-                <span className="text-sm text-[#94a3b8]">No data available</span>
+                <span className="text-sm text-slate-500">No data available</span>
               </div>
             </div>
 
             {/* Top Pages & Engagement Metrics */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              <div className="modern-card p-6 shadow-sm border border-[#e2e8f0]">
-                 <h3 className="text-[15px] font-semibold text-[#0f172a] mb-6">Top Pages</h3>
+              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 shadow-sm border border-white/10">
+                 <h3 className="text-[15px] font-semibold text-white mb-6">Top Pages</h3>
                  <div className="space-y-0 divide-y divide-[#f1f5f9]">
                    <div className="flex justify-between items-center py-4">
                      <div className="flex flex-col">
-                       <span className="text-[14px] text-[#475569]">Home Renovation - Pink Gorilla Agency</span>
-                       <span className="text-xs text-[#94a3b8] mt-1">97 views</span>
+                       <span className="text-[14px] text-slate-300">Home Renovation - Pink Gorilla Agency</span>
+                       <span className="text-xs text-slate-500 mt-1">97 views</span>
                      </div>
-                     <span className="text-sm font-medium text-[#475569]">97</span>
+                     <span className="text-sm font-medium text-slate-300">97</span>
                    </div>
                    <div className="flex justify-between items-center py-4">
                      <div className="flex flex-col">
-                       <span className="text-[14px] text-[#475569]">Mortgage Loan - Pink Gorilla Agency</span>
-                       <span className="text-xs text-[#94a3b8] mt-1">87 views</span>
+                       <span className="text-[14px] text-slate-300">Mortgage Loan - Pink Gorilla Agency</span>
+                       <span className="text-xs text-slate-500 mt-1">87 views</span>
                      </div>
-                     <span className="text-sm font-medium text-[#475569]">87</span>
+                     <span className="text-sm font-medium text-slate-300">87</span>
                    </div>
                    <div className="flex justify-between items-center py-4">
                      <div className="flex flex-col">
-                       <span className="text-[14px] text-[#475569]">Pink Gorilla Agency</span>
-                       <span className="text-xs text-[#94a3b8] mt-1">67 views</span>
+                       <span className="text-[14px] text-slate-300">Pink Gorilla Agency</span>
+                       <span className="text-xs text-slate-500 mt-1">67 views</span>
                      </div>
-                     <span className="text-sm font-medium text-[#475569]">67</span>
+                     <span className="text-sm font-medium text-slate-300">67</span>
                    </div>
                    <div className="flex justify-between items-center py-4">
                      <div className="flex flex-col">
-                       <span className="text-[14px] text-[#475569]">Doctor & Clinic - Pink Gorilla Agency</span>
-                       <span className="text-xs text-[#94a3b8] mt-1">51 views</span>
+                       <span className="text-[14px] text-slate-300">Doctor & Clinic - Pink Gorilla Agency</span>
+                       <span className="text-xs text-slate-500 mt-1">51 views</span>
                      </div>
-                     <span className="text-sm font-medium text-[#475569]">51</span>
+                     <span className="text-sm font-medium text-slate-300">51</span>
                    </div>
                    <div className="flex justify-between items-center py-4">
                      <div className="flex flex-col">
-                       <span className="text-[14px] text-[#475569]">Pool Cleaning - Pink Gorilla Agency</span>
-                       <span className="text-xs text-[#94a3b8] mt-1">38 views</span>
+                       <span className="text-[14px] text-slate-300">Pool Cleaning - Pink Gorilla Agency</span>
+                       <span className="text-xs text-slate-500 mt-1">38 views</span>
                      </div>
-                     <span className="text-sm font-medium text-[#475569]">38</span>
+                     <span className="text-sm font-medium text-slate-300">38</span>
                    </div>
                  </div>
               </div>
               
-              <div className="modern-card p-6 shadow-sm border border-[#e2e8f0]">
-                 <h3 className="text-[15px] font-semibold text-[#0f172a] mb-6">Engagement Metrics</h3>
+              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 shadow-sm border border-white/10">
+                 <h3 className="text-[15px] font-semibold text-white mb-6">Engagement Metrics</h3>
                  <div className="space-y-4">
-                   <div className="border border-[#e2e8f0] rounded-lg p-4 flex items-center gap-4">
+                   <div className="border border-white/10 rounded-lg p-4 flex items-center gap-4">
                      <div className="w-10 h-10 rounded-lg bg-indigo-500 text-white flex items-center justify-center shrink-0">
                        <Clock className="w-5 h-5" />
                      </div>
                      <div className="flex flex-col">
-                       <span className="text-xs text-[#64748b]">Average Time on Site</span>
-                       <span className="text-[15px] font-medium text-[#0f172a]">15m 50s</span>
+                       <span className="text-xs text-slate-400">Average Time on Site</span>
+                       <span className="text-[15px] font-medium text-white">15m 50s</span>
                      </div>
                    </div>
-                   <div className="border border-[#e2e8f0] rounded-lg p-4 flex items-center gap-4">
+                   <div className="border border-white/10 rounded-lg p-4 flex items-center gap-4">
                      <div className="w-10 h-10 rounded-lg bg-emerald-400 text-white flex items-center justify-center shrink-0">
                        <Target className="w-5 h-5" />
                      </div>
                      <div className="flex flex-col">
-                       <span className="text-xs text-[#64748b]">Pages per Session</span>
-                       <span className="text-[15px] font-medium text-[#0f172a]">5.1</span>
+                       <span className="text-xs text-slate-400">Pages per Session</span>
+                       <span className="text-[15px] font-medium text-white">5.1</span>
                      </div>
                    </div>
-                   <div className="border border-[#e2e8f0] rounded-lg p-4 flex items-center gap-4">
+                   <div className="border border-white/10 rounded-lg p-4 flex items-center gap-4">
                      <div className="w-10 h-10 rounded-lg bg-orange-400 text-white flex items-center justify-center shrink-0">
                        <TrendingUp className="w-5 h-5" />
                      </div>
                      <div className="flex flex-col">
-                       <span className="text-xs text-[#64748b]">Bounce Rate</span>
-                       <span className="text-[15px] font-medium text-[#0f172a]">0.5%</span>
+                       <span className="text-xs text-slate-400">Bounce Rate</span>
+                       <span className="text-[15px] font-medium text-white">0.5%</span>
                      </div>
                    </div>
                  </div>
@@ -329,33 +329,33 @@ export default function WebsiteAnalyticsPage() {
             </div>
 
             {/* Business Summary */}
-            <div className="modern-card p-6 mb-6 shadow-sm border border-[#e2e8f0]">
-               <h3 className="text-[15px] font-semibold text-[#64748b] mb-1">Business Summary (This Month)</h3>
-               <p className="text-[13px] text-[#94a3b8] mb-6">Performance metrics from your CRM</p>
+            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-6 shadow-sm border border-white/10">
+               <h3 className="text-[15px] font-semibold text-slate-400 mb-1">Business Summary (This Month)</h3>
+               <p className="text-[13px] text-slate-500 mb-6">Performance metrics from your CRM</p>
                
                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                  <div className="bg-emerald-50 rounded-lg p-5">
                    <p className="text-[13px] font-medium text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]merald-500 mb-2">Total Jobs Completed</p>
-                   <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">87</h4>
-                   <p className="text-sm font-semibold text-[#0f172a]">+12 from last month</p>
+                   <h4 className="text-[26px] font-medium text-white mb-2">87</h4>
+                   <p className="text-sm font-semibold text-white">+12 from last month</p>
                  </div>
                  
                  <div className="bg-blue-50 rounded-lg p-5">
                    <p className="text-[13px] font-medium text-blue-500 mb-2">Total Revenue</p>
-                   <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">$124,350</h4>
-                   <p className="text-sm font-semibold text-[#0f172a]">+18% from last month</p>
+                   <h4 className="text-[26px] font-medium text-white mb-2">$124,350</h4>
+                   <p className="text-sm font-semibold text-white">+18% from last month</p>
                  </div>
                  
                  <div className="bg-purple-50 rounded-lg p-5">
                    <p className="text-[13px] font-medium text-purple-500 mb-2">Average Job Value</p>
-                   <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">$1,429</h4>
-                   <p className="text-sm font-semibold text-[#0f172a]">Industry standard: $1,200</p>
+                   <h4 className="text-[26px] font-medium text-white mb-2">$1,429</h4>
+                   <p className="text-sm font-semibold text-white">Industry standard: $1,200</p>
                  </div>
                  
                  <div className="bg-orange-50 rounded-lg p-5">
                    <p className="text-[13px] font-medium text-orange-500 mb-2">Repeat Customers</p>
-                   <h4 className="text-[26px] font-medium text-[#0f172a] mb-2">68%</h4>
-                   <p className="text-sm font-semibold text-[#0f172a]">Excellent retention rate</p>
+                   <h4 className="text-[26px] font-medium text-white mb-2">68%</h4>
+                   <p className="text-sm font-semibold text-white">Excellent retention rate</p>
                  </div>
                </div>
             </div>
