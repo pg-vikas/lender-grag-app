@@ -21,7 +21,7 @@ export default function ProjectDetailsPage() {
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-[1400px] mx-auto">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-white tracking-tight">
+              
               <h1 className="text-[22px] font-semibold text-white">Project Details</h1>
               <button className="flex items-center gap-2 px-4 py-2 bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-sm font-medium text-slate-300 shadow-sm hover:bg-slate-900/40 backdrop-blur-xl/50 transition-colors">
                 <Edit2 className="w-4 h-4" /> Edit
@@ -146,7 +146,7 @@ export default function ProjectDetailsPage() {
                 {/* Tasks */}
                 <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl p-6 shadow-sm border border-white/10 min-h-[300px] flex flex-col">
                    <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-white tracking-tight">
+              
                      <h2 className="text-[16px] font-bold text-white">Tasks</h2>
                      <div className="flex items-center gap-2">
                         <button className="w-8 h-8 flex items-center justify-center rounded border border-white/10 text-slate-500 bg-slate-900/40 backdrop-blur-xl/50 hover:bg-slate-800 transition-colors">
@@ -185,7 +185,7 @@ export default function ProjectDetailsPage() {
                 {/* Notes */}
                 <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl p-6 shadow-sm border border-white/10">
                    <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-white tracking-tight">
+              
                      <h2 className="text-[16px] font-bold text-white">Notes</h2>
                      <button className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg text-sm font-medium text-slate-300 shadow-sm hover:bg-slate-800 transition-colors">
                        <Plus className="w-4 h-4" /> Add Note

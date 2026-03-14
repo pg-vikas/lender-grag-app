@@ -22,7 +22,7 @@ export default function TicketDetailsPage() {
           <div className="max-w-[1400px] mx-auto">
             
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-white tracking-tight">
+              
               <h1 className="text-[22px] font-bold text-white">Testing the Support features</h1>
               <div className="flex items-center gap-2">
                 <button className="w-9 h-9 flex items-center justify-center bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-500 hover:text-white hover:bg-slate-800 transition-colors shadow-sm">
