@@ -36,6 +36,8 @@ export default function TasksPage() {
   const searchParams = new URLSearchParams(searchString || window.location.search);
   const currentTab = searchParams.get('tab') || 'today';
 
+  const [tasksData, setTasksData] = useState(MOCK_TASKS);
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,7 +63,18 @@ export default function TasksPage() {
     setIsDeleteModalOpen(true);
   };
 
-  const tasks = MOCK_TASKS[currentTab as keyof typeof MOCK_TASKS] || [];
+  const handleDelete = () => {
+    if (selectedTask) {
+      setTasksData(prev => ({
+        ...prev,
+        [currentTab]: prev[currentTab as keyof typeof prev].filter(t => t.id !== selectedTask.id)
+      }));
+    }
+    setIsDeleteModalOpen(false);
+    setSelectedTask(null);
+  };
+
+  const tasks = tasksData[currentTab as keyof typeof tasksData] || [];
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
@@ -280,32 +293,26 @@ export default function TasksPage() {
 
       {/* Delete Task Modal */}
       {isDeleteModalOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" 
-          onClick={() => setIsDeleteModalOpen(false)}
-        >
-          <div 
-            className="bg-slate-900 border-t-4 border-t-purple-600 border-x border-b border-slate-700 rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 text-center" 
-            onClick={e => e.stopPropagation()}
-          >
-            <div className="p-8">
-              <h2 className="text-2xl font-bold text-white mb-2">Delete Task</h2>
-              <p className="text-slate-400 mb-8">Are you sure?</p>
-              
-              <div className="flex justify-center gap-4">
-                <button 
-                  onClick={() => setIsDeleteModalOpen(false)} 
-                  className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
-                >
-                  Cancel
-                </button>
-                <button 
-                  onClick={() => setIsDeleteModalOpen(false)} 
-                  className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
-                >
-                  Continue
-                </button>
-              </div>
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <div className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl w-full max-w-[400px] p-8 flex flex-col items-center animate-in zoom-in-95 duration-200">
+            <h2 className="text-[20px] font-bold text-white mb-2">Delete Task</h2>
+            <p className="text-[15px] text-slate-300 mb-8">
+              Are you sure?
+            </p>
+            
+            <div className="flex items-center justify-center gap-4 w-full">
+              <button 
+                onClick={() => setIsDeleteModalOpen(false)} 
+                className="px-6 py-2.5 bg-[#1e293b] border border-slate-700 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleDelete} 
+                className="px-6 py-2.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all w-28 shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+              >
+                Continue
+              </button>
             </div>
           </div>
         </div>

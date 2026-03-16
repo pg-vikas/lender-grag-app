@@ -17,13 +17,15 @@ export default function ProjectsPage() {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
-  const projectsList = [
+  const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
+
+  const [projectsList, setProjectsList] = useState([
     { name: "Twilio ticket + domain verify", client: "Pink Gorilla Ag...", dueDate: "---", priority: "Low", createdBy: "Vikas", assignee: "user1", status: "Pending Approval" },
     { name: "Design Car Washing Service with Replit", client: "---", dueDate: "---", priority: "Normal", createdBy: "Neeraj", assignee: "user2", status: "In Progress" },
     { name: "El hefe-you're not the same without the...", client: "Juicy Whip", dueDate: "---", priority: "Normal", createdBy: "Manraj", assignee: "user3", status: "In Progress" },
     { name: "Website Redesign & SEO Optimization", client: "Tech Flow", dueDate: "15-11-2025", priority: "High", createdBy: "Sarah", assignee: "user4", status: "Completed" },
     { name: "Mobile App Development MVP", client: "StartUp Inc", dueDate: "20-10-2025", priority: "Urgent", createdBy: "John", assignee: "user1", status: "Completed" },
-  ];
+  ]);
 
   const filteredProjects = projectsList.filter(project => {
     if (statusFilter === 'completed') {
@@ -253,7 +255,10 @@ export default function ProjectsPage() {
                               <Edit2 className="w-[15px] h-[15px]" />
                             </button>
                             <button 
-                              onClick={() => setIsDeleteModalOpen(true)}
+                              onClick={() => {
+                                setProjectToDelete(i);
+                                setIsDeleteModalOpen(true);
+                              }}
                               className="p-1.5 text-slate-500 hover:text-red-400 transition-colors"
                               title="Delete Project"
                             >
@@ -297,7 +302,11 @@ export default function ProjectsPage() {
                                 <Edit2 className="w-3.5 h-3.5" />
                               </button>
                               <button 
-                                onClick={(e) => { e.stopPropagation(); setIsDeleteModalOpen(true); }}
+                                onClick={(e) => { 
+                                  e.stopPropagation(); 
+                                  setProjectToDelete(i);
+                                  setIsDeleteModalOpen(true); 
+                                }}
                                 className="p-1.5 text-slate-400 hover:text-red-400 bg-slate-800 rounded-md transition-colors"
                               >
                                 <Trash2 className="w-3.5 h-3.5" />
@@ -514,31 +523,30 @@ export default function ProjectsPage() {
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setIsDeleteModalOpen(false)}
-        >
-          <div 
-            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Content */}
-            <div className="p-8 text-center space-y-4">
-              <h2 className="text-2xl font-bold text-white mb-2">Delete Project</h2>
-              <p className="text-slate-300 text-lg">Are you sure?</p>
-            </div>
-
-            {/* Modal Footer */}
-            <div className="px-8 py-6 bg-slate-900/80 flex justify-center gap-4">
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <div className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl w-full max-w-[400px] p-8 flex flex-col items-center animate-in zoom-in-95 duration-200">
+            <h2 className="text-[20px] font-bold text-white mb-2">Delete Project</h2>
+            <p className="text-[15px] text-slate-300 mb-8">
+              Are you sure?
+            </p>
+            
+            <div className="flex items-center justify-center gap-4 w-full">
               <button 
-                onClick={() => setIsDeleteModalOpen(false)}
-                className="px-6 py-2.5 bg-slate-800 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg font-medium transition-colors min-w-[120px]"
+                onClick={() => {
+                  setIsDeleteModalOpen(false);
+                  setProjectToDelete(null);
+                }}
+                className="px-6 py-2.5 bg-[#1e293b] border border-slate-700 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
               >
                 Cancel
               </button>
               <button 
-                onClick={() => setIsDeleteModalOpen(false)}
-                className="px-6 py-2.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-lg font-medium shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all min-w-[120px]"
+                onClick={() => {
+                  setProjectsList(prev => prev.filter((_, idx) => idx !== projectToDelete));
+                  setIsDeleteModalOpen(false);
+                  setProjectToDelete(null);
+                }}
+                className="px-6 py-2.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all w-28 shadow-[0_0_15px_rgba(139,92,246,0.3)]"
               >
                 Continue
               </button>
