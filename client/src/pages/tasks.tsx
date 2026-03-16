@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, Pencil, Trash2 } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, useSearch } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 const MOCK_TASKS = {
@@ -31,8 +31,9 @@ const MOCK_TASKS = {
 export default function TasksPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
   const [location, setLocation] = useLocation();
+  const searchString = useSearch();
 
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = new URLSearchParams(searchString || window.location.search);
   const currentTab = searchParams.get('tab') || 'today';
 
   const handleTabClick = (tab: string) => {
@@ -155,7 +156,7 @@ export default function TasksPage() {
                               </div>
                             </td>
                             <td className="py-4 px-6">
-                              <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <div className="flex items-center gap-3">
                                 <button className="text-slate-400 hover:text-indigo-400 transition-colors">
                                   <Pencil className="w-4 h-4" />
                                 </button>
