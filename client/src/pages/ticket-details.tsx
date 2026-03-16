@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { Edit2, Settings } from "lucide-react";
+import { Edit2, Settings, Trash2, X } from "lucide-react";
 
 export default function TicketDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('support');
