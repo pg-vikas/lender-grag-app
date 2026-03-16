@@ -252,8 +252,8 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
                     Reports
                   </div>
                 </Link>
-                <Link href="/analytics">
-                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/analytics' ? 'bg-orange-500/20 text-orange-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                <Link href="/performance">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/performance' ? 'bg-orange-500/20 text-orange-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
                     Performance Report
                   </div>
                 </Link>

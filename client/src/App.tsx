@@ -22,6 +22,7 @@ import TemplatesPage from "@/pages/templates";
 import TicketsPage from "@/pages/tickets";
 import TicketDetailsPage from "@/pages/ticket-details";
 import ReportsPage from "@/pages/reports";
+import PerformancePage from "@/pages/performance";
 import KnowledgebasePage from "@/pages/knowledgebase";
 import UsersPage from "@/pages/users";
 import WebsiteAnalyticsPage from "@/pages/analytics";
@@ -53,6 +54,7 @@ function Router() {
       <Route path="/tickets/:id" component={TicketDetailsPage} />
       <Route path="/knowledgebase" component={KnowledgebasePage} />
       <Route path="/reports" component={ReportsPage} />
+      <Route path="/performance" component={PerformancePage} />
       <Route path="/users" component={UsersPage} />
       <Route path="/analytics" component={WebsiteAnalyticsPage} />
       <Route path="/">
