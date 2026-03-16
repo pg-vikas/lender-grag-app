@@ -358,6 +358,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
   const [isAddClientModalOpen, setIsAddClientModalOpen] = useState(false);
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [isSendMailModalOpen, setIsSendMailModalOpen] = useState(false);
+  const [isSuspendModalOpen, setIsSuspendModalOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [isStateSectionOpen, setIsStateSectionOpen] = useState(false);
   const [pinnedClients, setPinnedClients] = useState<Set<number>>(new Set());
@@ -604,7 +605,13 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                                   <Star className="w-4 h-4" /> {isStarred ? 'Unstar Client' : 'Star Client'}
                                 </button>
                                 <div className="h-px bg-slate-800 my-1"></div>
-                                <button className="w-full text-left px-4 py-2 text-sm text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-colors flex items-center gap-2">
+                                <button 
+                                  onClick={() => {
+                                    setIsSuspendModalOpen(true);
+                                    setActiveDropdown(null);
+                                  }}
+                                  className="w-full text-left px-4 py-2 text-sm text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-colors flex items-center gap-2"
+                                >
                                   Suspend Account
                                 </button>
                               </div>
@@ -1266,6 +1273,41 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
               >
                 Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Suspend Client Modal */}
+      {isSuspendModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsSuspendModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Content */}
+            <div className="p-8 text-center space-y-4">
+              <h2 className="text-2xl font-bold text-white mb-2">Delete Client</h2>
+              <p className="text-slate-300 text-lg">Are you sure?</p>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-8 py-6 bg-slate-900/80 flex justify-center gap-4">
+              <button 
+                onClick={() => setIsSuspendModalOpen(false)}
+                className="px-6 py-2.5 bg-slate-800 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg font-medium transition-colors min-w-[120px]"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => setIsSuspendModalOpen(false)}
+                className="px-6 py-2.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-lg font-medium shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all min-w-[120px]"
+              >
+                Continue
               </button>
             </div>
           </div>
