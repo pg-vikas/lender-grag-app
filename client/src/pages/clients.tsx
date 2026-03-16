@@ -29,7 +29,16 @@ import {
   Pin,
   Star,
   Activity,
-  TrendingUp
+  TrendingUp,
+  Link as LinkIcon,
+  List,
+  Image as ImageIcon,
+  Video,
+  AlignLeft,
+  UploadCloud,
+  Bold,
+  Italic,
+  Underline
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { useAppStore } from "@/lib/store";
@@ -348,8 +357,11 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
   const [openMenus, setOpenMenus] = useState<string>('crm');
   const [isAddClientModalOpen, setIsAddClientModalOpen] = useState(false);
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
+  const [isSendMailModalOpen, setIsSendMailModalOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [isStateSectionOpen, setIsStateSectionOpen] = useState(false);
+  const [pinnedClients, setPinnedClients] = useState<Set<number>>(new Set());
+  const [starredClients, setStarredClients] = useState<Set<number>>(new Set());
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
@@ -358,6 +370,24 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
 
   const toggleDropdown = (index: number) => {
     setActiveDropdown(activeDropdown === index ? null : index);
+  };
+
+  const togglePin = (index: number) => {
+    setPinnedClients(prev => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  };
+
+  const toggleStar = (index: number) => {
+    setStarredClients(prev => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
   };
 
   const title = isActiveOnly ? "Active Clients" : "Clients";
@@ -492,15 +522,22 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       </tr>
                     </thead>
                     <tbody>
-                      {clientsList.map((client, i) => (
-                        <tr key={i} className="group">
+                      {clientsList.map((client, i) => {
+                        const isPinned = pinnedClients.has(i);
+                        const isStarred = starredClients.has(i);
+                        
+                        return (
+                        <tr key={i} className={`group ${isPinned ? 'bg-amber-500/5 border-l-2 border-l-amber-400' : 'border-l-2 border-l-transparent'}`}>
                           <td className="py-4 px-6">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 rounded bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-colors">
                                 <Building2 className="w-4 h-4" />
                               </div>
                               <Link href={`/clients/${i + 1}`}>
-                                <span className="text-sm font-bold text-white hover:text-cyan-400 transition-colors cursor-pointer">{client.name}</span>
+                                <span className="text-sm font-bold text-white hover:text-cyan-400 transition-colors cursor-pointer flex items-center gap-2">
+                                  {client.name}
+                                  {isStarred && <Star className="w-4 h-4 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" />}
+                                </span>
                               </Link>
                             </div>
                           </td>
@@ -539,14 +576,32 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                                 >
                                   <Edit className="w-4 h-4" /> Edit Profile
                                 </button>
-                                <button className="w-full text-left px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-2">
+                                <button 
+                                  onClick={() => {
+                                    setIsSendMailModalOpen(true);
+                                    setActiveDropdown(null);
+                                  }}
+                                  className="w-full text-left px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-2"
+                                >
                                   <Mail className="w-4 h-4" /> Send Mail
                                 </button>
-                                <button className="w-full text-left px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-2">
-                                  <Pin className="w-4 h-4" /> Pin
+                                <button 
+                                  onClick={() => {
+                                    togglePin(i);
+                                    setActiveDropdown(null);
+                                  }}
+                                  className="w-full text-left px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-2"
+                                >
+                                  <Pin className="w-4 h-4" /> {isPinned ? 'Unpin' : 'Pin'}
                                 </button>
-                                <button className="w-full text-left px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-2">
-                                  <Star className="w-4 h-4" /> Star Client
+                                <button 
+                                  onClick={() => {
+                                    toggleStar(i);
+                                    setActiveDropdown(null);
+                                  }}
+                                  className="w-full text-left px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-2"
+                                >
+                                  <Star className="w-4 h-4" /> {isStarred ? 'Unstar Client' : 'Star Client'}
                                 </button>
                                 <div className="h-px bg-slate-800 my-1"></div>
                                 <button className="w-full text-left px-4 py-2 text-sm text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-colors flex items-center gap-2">
@@ -556,7 +611,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             )}
                           </td>
                         </tr>
-                      ))}
+                      )})}
                     </tbody>
                   </table>
                 </div>
@@ -1118,6 +1173,99 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
               >
                 Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Send Mail Modal */}
+      {isSendMailModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsSendMailModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+              <h2 className="text-xl font-bold text-white">Send email</h2>
+              <button 
+                onClick={() => setIsSendMailModalOpen(false)}
+                className="text-slate-400 hover:text-white p-2 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">To</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                  <option>Select recipient...</option>
+                  <option>vikas@pinkgorillasoftware.com</option>
+                  <option>maria@pir</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Subject</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter subject"
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Use A Template</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                  <option>Select template...</option>
+                  <option>Welcome Email</option>
+                  <option>Follow Up</option>
+                </select>
+              </div>
+
+              {/* Rich Text Editor */}
+              <div className="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
+                <div className="px-4 py-2 border-b border-slate-700 flex items-center gap-4 text-slate-400 overflow-x-auto">
+                  <button className="hover:text-white transition-colors"><Bold className="w-4 h-4" /></button>
+                  <button className="hover:text-white transition-colors"><LinkIcon className="w-4 h-4" /></button>
+                  <button className="hover:text-white transition-colors"><List className="w-4 h-4" /></button>
+                  <button className="hover:text-white transition-colors"><AlignLeft className="w-4 h-4" /></button>
+                  <div className="w-px h-4 bg-slate-700"></div>
+                  <button className="hover:text-white transition-colors"><ImageIcon className="w-4 h-4" /></button>
+                  <button className="hover:text-white transition-colors"><Video className="w-4 h-4" /></button>
+                </div>
+                <textarea 
+                  className="w-full h-48 px-4 py-3 bg-transparent text-sm text-white focus:outline-none resize-none placeholder:text-slate-600"
+                  placeholder="Write your email here..."
+                ></textarea>
+              </div>
+
+              {/* File Upload Dropzone */}
+              <div className="border-2 border-dashed border-slate-700 rounded-xl p-8 flex flex-col items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 hover:bg-slate-800/50 transition-all cursor-pointer group">
+                <UploadCloud className="w-10 h-10 mb-3 text-slate-500 group-hover:text-cyan-400 transition-colors" />
+                <p className="text-sm font-medium">Drop files here or click to upload</p>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsSendMailModalOpen(false)}
+                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={() => setIsSendMailModalOpen(false)}
+                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+              >
+                Submit
               </button>
             </div>
           </div>
