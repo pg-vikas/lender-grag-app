@@ -247,7 +247,7 @@ export default function TicketsPage() {
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
-        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center p-4">
           <div className="bg-[#111827] rounded-xl w-full max-w-sm border border-slate-800 shadow-2xl p-6 relative">
             <button 
               onClick={() => setIsDeleteModalOpen(false)}
@@ -288,12 +288,21 @@ export default function TicketsPage() {
           <div className="bg-[#111827] rounded-xl w-full max-w-2xl border border-slate-800 shadow-2xl flex flex-col my-8">
             <div className="flex justify-between items-center p-6 border-b border-slate-800">
               <h2 className="text-xl font-bold text-white">Edit Support Ticket</h2>
-              <button 
-                onClick={() => setIsEditModalOpen(false)}
-                className="text-slate-400 hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={() => setIsDeleteModalOpen(true)}
+                  className="text-slate-400 hover:text-rose-400 transition-colors p-1"
+                  title="Delete Ticket"
+                >
+                  <Trash2 className="w-5 h-5" />
+                </button>
+                <button 
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="text-slate-400 hover:text-white transition-colors p-1"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
             
             <div className="p-6 space-y-6">

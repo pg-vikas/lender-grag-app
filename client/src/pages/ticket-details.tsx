@@ -5,7 +5,9 @@ import { Edit2, Settings } from "lucide-react";
 
 export default function TicketDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('support');
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -25,7 +27,10 @@ export default function TicketDetailsPage() {
               
               <h1 className="text-[22px] font-bold text-white">Testing the Support features</h1>
               <div className="flex items-center gap-2">
-                <button className="w-9 h-9 flex items-center justify-center bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-500 hover:text-white hover:bg-slate-800 transition-colors shadow-sm">
+                <button 
+                  onClick={() => setIsEditModalOpen(true)}
+                  className="w-9 h-9 flex items-center justify-center bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-500 hover:text-white hover:bg-slate-800 transition-colors shadow-sm"
+                >
                   <Edit2 className="w-4 h-4" />
                 </button>
                 <button className="w-9 h-9 flex items-center justify-center bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-500 hover:text-white hover:bg-slate-800 transition-colors shadow-sm">
@@ -95,7 +100,10 @@ export default function TicketDetailsPage() {
                     </div>
                     
                     <div className="pt-2">
-                      <button className="w-full py-2 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg text-[13px] font-semibold transition-colors shadow-sm">
+                      <button 
+                        onClick={() => setIsEditModalOpen(true)}
+                        className="w-full py-2 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg text-[13px] font-semibold transition-colors shadow-sm"
+                      >
                         Edit Support Ticket
                       </button>
                     </div>
@@ -176,6 +184,151 @@ export default function TicketDetailsPage() {
           </div>
         </main>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center p-4">
+          <div className="bg-[#111827] rounded-xl w-full max-w-sm border border-slate-800 shadow-2xl p-6 relative">
+            <button 
+              onClick={() => setIsDeleteModalOpen(false)}
+              className="absolute right-4 top-4 text-slate-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <div className="flex flex-col items-center text-center mt-2 mb-6">
+              <div className="w-12 h-12 bg-rose-500/20 text-rose-500 rounded-full flex items-center justify-center mb-4">
+                <Trash2 className="w-6 h-6" />
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Are you sure?</h2>
+              <p className="text-slate-400 text-sm">
+                Do you really want to delete this ticket? This process cannot be undone.
+              </p>
+            </div>
+            <div className="flex gap-3 justify-center">
+              <button 
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="px-4 py-2 bg-[#1e293b] hover:bg-slate-700 text-white rounded-lg transition-colors border border-slate-700 w-28"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => {
+                  setIsDeleteModalOpen(false);
+                  setLocation('/tickets');
+                }}
+                className="px-4 py-2 bg-[#8b5cf6] hover:bg-purple-500 text-white rounded-lg transition-all w-28 shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Support Ticket Modal */}
+      {isEditModalOpen && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#111827] rounded-xl w-full max-w-2xl border border-slate-800 shadow-2xl flex flex-col my-8">
+            <div className="flex justify-between items-center p-6 border-b border-slate-800">
+              <h2 className="text-xl font-bold text-white">Edit Support Ticket</h2>
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={() => setIsDeleteModalOpen(true)}
+                  className="text-slate-400 hover:text-rose-400 transition-colors p-1"
+                  title="Delete Ticket"
+                >
+                  <Trash2 className="w-5 h-5" />
+                </button>
+                <button 
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="text-slate-400 hover:text-white transition-colors p-1"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Subject*</label>
+                <input 
+                  type="text" 
+                  defaultValue="Test"
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Message*</label>
+                <div className="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
+                  <div className="bg-slate-800/50 border-b border-slate-700 p-2 flex gap-1 flex-wrap">
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded font-bold">B</button>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded italic">I</button>
+                    <div className="w-px bg-slate-700 mx-1"></div>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">Link</button>
+                    <div className="w-px bg-slate-700 mx-1"></div>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">Img</button>
+                  </div>
+                  <textarea 
+                    rows={8}
+                    className="w-full px-4 py-3 bg-transparent text-sm text-white focus:outline-none placeholder:text-slate-500 resize-none"
+                    defaultValue="This is test purpose"
+                  ></textarea>
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Department*</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                  <option>Sales</option>
+                  <option selected>Support</option>
+                  <option>Billing</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Status*</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                  <option>Open</option>
+                  <option>In Progress</option>
+                  <option selected>Answered</option>
+                  <option>On Hold</option>
+                  <option>Closed</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Priority*</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                  <option>Low</option>
+                  <option selected>Normal</option>
+                  <option>High</option>
+                  <option>Urgent</option>
+                </select>
+              </div>
+            </div>
+            
+            <div className="p-6 border-t border-slate-800 flex justify-between items-center">
+              <span className="text-xs text-slate-500">* Required</span>
+              <div className="flex gap-3">
+                <button 
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="px-6 py-2 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors font-medium"
+                >
+                  Close
+                </button>
+                <button 
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="px-6 py-2 bg-[#8b5cf6] hover:bg-purple-500 text-white rounded-lg transition-all font-medium shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
