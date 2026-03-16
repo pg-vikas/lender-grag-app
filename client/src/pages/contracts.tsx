@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Filter, Plus, Edit2, Trash2, Pin, Eye, X, ChevronUp } from "lucide-react";
+import { Search, Filter, Plus, Edit2, Trash2, Pin, Eye, X, ChevronUp, ChevronDown } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
@@ -9,6 +9,7 @@ export default function ContractsPage() {
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [showStats, setShowStats] = useState(true);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -63,8 +64,12 @@ export default function ContractsPage() {
                   />
                 </div>
                 
-                <button className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 transition-all shadow-sm hover:shadow whitespace-nowrap">
-                  <span className="hidden sm:inline">Quick Stats</span> <ChevronUp className="w-3.5 h-3.5" />
+                <button 
+                  onClick={() => setShowStats(!showStats)}
+                  className={`flex items-center gap-2 px-4 py-2.5 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium transition-all shadow-sm hover:shadow whitespace-nowrap ${showStats ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-slate-900/40 text-slate-300 hover:bg-slate-900/40'}`}
+                >
+                  <span className="hidden sm:inline">Quick Stats</span> 
+                  {showStats ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                 </button>
                 <button className="flex items-center justify-center p-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-slate-300 hover:bg-slate-900/40 transition-all shadow-sm hover:shadow shrink-0">
                   <Filter className="w-4 h-4" />
@@ -79,34 +84,36 @@ export default function ContractsPage() {
             </div>
 
             {/* Stats Row */}
-            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8 shadow-sm border border-white/10">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div 
-                  className={`flex flex-col group cursor-pointer p-4 rounded-xl transition-all ${activeFilter === 'Active' ? 'bg-slate-800/50 shadow-inner' : 'hover:bg-slate-800/30'}`}
-                  onClick={() => setActiveFilter(activeFilter === 'Active' ? 'All' : 'Active')}
-                >
-                  <span className="text-[28px] font-medium text-white mb-1">{stats.Active}</span>
-                  <span className="text-[13px] text-slate-400 mb-4">Active</span>
-                  <div className={`h-[3px] w-full rounded-full ${activeFilter === 'Active' ? 'bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]' : 'bg-indigo-500/50'}`} />
-                </div>
-                <div 
-                  className={`flex flex-col group cursor-pointer p-4 rounded-xl transition-all ${activeFilter === 'Awaiting Signatures' ? 'bg-slate-800/50 shadow-inner' : 'hover:bg-slate-800/30'}`}
-                  onClick={() => setActiveFilter(activeFilter === 'Awaiting Signatures' ? 'All' : 'Awaiting Signatures')}
-                >
-                  <span className="text-[28px] font-medium text-white mb-1">{stats['Awaiting Signatures']}</span>
-                  <span className="text-[13px] text-slate-400 mb-4">Awaiting Signatures</span>
-                  <div className={`h-[3px] w-full rounded-full ${activeFilter === 'Awaiting Signatures' ? 'bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]' : 'bg-orange-500/50'}`} />
-                </div>
-                <div 
-                  className={`flex flex-col group cursor-pointer p-4 rounded-xl transition-all ${activeFilter === 'Expired' ? 'bg-slate-800/50 shadow-inner' : 'hover:bg-slate-800/30'}`}
-                  onClick={() => setActiveFilter(activeFilter === 'Expired' ? 'All' : 'Expired')}
-                >
-                  <span className="text-[28px] font-medium text-white mb-1">{stats.Expired}</span>
-                  <span className="text-[13px] text-slate-400 mb-4">Expired</span>
-                  <div className={`h-[3px] w-full rounded-full ${activeFilter === 'Expired' ? 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]' : 'bg-rose-500/50'}`} />
+            {showStats && (
+              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8 shadow-sm border border-white/10 animate-in slide-in-from-top-4 fade-in duration-300">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div 
+                    className={`flex flex-col group cursor-pointer p-4 rounded-xl transition-all ${activeFilter === 'Active' ? 'bg-slate-800/50 shadow-inner' : 'hover:bg-slate-800/30'}`}
+                    onClick={() => setActiveFilter(activeFilter === 'Active' ? 'All' : 'Active')}
+                  >
+                    <span className="text-[28px] font-medium text-white mb-1">{stats.Active}</span>
+                    <span className="text-[13px] text-slate-400 mb-4">Active</span>
+                    <div className={`h-[3px] w-full rounded-full ${activeFilter === 'Active' ? 'bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]' : 'bg-indigo-500/50'}`} />
+                  </div>
+                  <div 
+                    className={`flex flex-col group cursor-pointer p-4 rounded-xl transition-all ${activeFilter === 'Awaiting Signatures' ? 'bg-slate-800/50 shadow-inner' : 'hover:bg-slate-800/30'}`}
+                    onClick={() => setActiveFilter(activeFilter === 'Awaiting Signatures' ? 'All' : 'Awaiting Signatures')}
+                  >
+                    <span className="text-[28px] font-medium text-white mb-1">{stats['Awaiting Signatures']}</span>
+                    <span className="text-[13px] text-slate-400 mb-4">Awaiting Signatures</span>
+                    <div className={`h-[3px] w-full rounded-full ${activeFilter === 'Awaiting Signatures' ? 'bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]' : 'bg-orange-500/50'}`} />
+                  </div>
+                  <div 
+                    className={`flex flex-col group cursor-pointer p-4 rounded-xl transition-all ${activeFilter === 'Expired' ? 'bg-slate-800/50 shadow-inner' : 'hover:bg-slate-800/30'}`}
+                    onClick={() => setActiveFilter(activeFilter === 'Expired' ? 'All' : 'Expired')}
+                  >
+                    <span className="text-[28px] font-medium text-white mb-1">{stats.Expired}</span>
+                    <span className="text-[13px] text-slate-400 mb-4">Expired</span>
+                    <div className={`h-[3px] w-full rounded-full ${activeFilter === 'Expired' ? 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]' : 'bg-rose-500/50'}`} />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <div className="overflow-x-auto pb-4">
               <table className="w-full text-sm text-left whitespace-nowrap border-separate" style={{ borderSpacing: '0 12px' }}>
