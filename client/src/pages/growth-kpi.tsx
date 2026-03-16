@@ -8,12 +8,14 @@ export default function GrowthKPIPage() {
   const { sidebarOpen } = useAppStore();
   const [openMenus, setOpenMenus] = useState<string>('crm');
   const [location] = useLocation();
+  const [activeTimeFilter, setActiveTimeFilter] = useState<string | null>(null);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
-  const kpis = [
+  // Base dummy data
+  const baseKpis = [
     { title: 'Outreach Calls', value: 1, icon: Phone },
     { title: 'Outreach Texts', value: 1, icon: MessageSquare },
     { title: 'Outreach Emails', value: 0, icon: Mail },
@@ -23,6 +25,27 @@ export default function GrowthKPIPage() {
     { title: 'Tasks Completed', value: 11, icon: CheckSquare },
     { title: 'Conversion Percentage', value: '0.00%', icon: LineChart }
   ];
+
+  const baseRows = [
+    { name: 'Sale Advisor', email: 'sale@yopmail.com', calls: 1, texts: 1, emails: 0, contacts: 1, clients: 0, notes: 1, followups: 6, tasks: 11 },
+    { name: 'Marketing Pro', email: 'marketing@yopmail.com', calls: 5, texts: 2, emails: 10, contacts: 3, clients: 1, notes: 4, followups: 2, tasks: 5 },
+    { name: 'Support Rep', email: 'support@yopmail.com', calls: 12, texts: 8, emails: 25, contacts: 0, clients: 0, notes: 15, followups: 1, tasks: 20 },
+  ];
+
+  // Derived dummy data based on filter
+  let kpis = [...baseKpis];
+  let tableRows = [...baseRows];
+
+  if (activeTimeFilter === '24h') {
+    kpis = baseKpis.map(k => ({ ...k, value: typeof k.value === 'number' ? Math.floor(k.value * 0.3) : k.value }));
+    tableRows = baseRows.slice(0, 1);
+  } else if (activeTimeFilter === '48h') {
+    kpis = baseKpis.map(k => ({ ...k, value: typeof k.value === 'number' ? Math.floor(k.value * 0.6) : k.value }));
+    tableRows = baseRows.slice(0, 2);
+  } else if (activeTimeFilter === '7d') {
+    kpis = baseKpis.map(k => ({ ...k, value: typeof k.value === 'number' ? k.value * 2 : k.value }));
+    tableRows = [...baseRows, { name: 'New Hire', email: 'new@yopmail.com', calls: 20, texts: 15, emails: 50, contacts: 8, clients: 2, notes: 25, followups: 10, tasks: 35 }];
+  }
 
   return (
     <div className="h-screen w-full overflow-hidden bg-[#0f172a] flex font-sans text-[#e2e8f0]">
@@ -60,16 +83,40 @@ export default function GrowthKPIPage() {
                   <option>Inactive</option>
                 </select>
                 <span className="text-sm font-medium text-slate-400 px-1">Filter</span>
-                <button className="px-4 py-2 border border-slate-700 bg-slate-800/50 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors text-white">
+                <button 
+                  onClick={() => setActiveTimeFilter(null)}
+                  className="px-4 py-2 border border-slate-700 bg-slate-800/50 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors text-white"
+                >
                   Reset
                 </button>
-                <button className="px-4 py-2 border border-slate-700 bg-slate-800/50 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors text-white">
+                <button 
+                  onClick={() => setActiveTimeFilter('24h')}
+                  className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${
+                    activeTimeFilter === '24h' 
+                      ? 'bg-purple-600 border-purple-500 text-white shadow-[0_0_10px_rgba(147,51,234,0.3)]' 
+                      : 'border-slate-700 bg-slate-800/50 hover:bg-slate-700 text-white'
+                  }`}
+                >
                   Last 24 hours
                 </button>
-                <button className="px-4 py-2 border border-slate-700 bg-slate-800/50 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors text-white">
+                <button 
+                  onClick={() => setActiveTimeFilter('48h')}
+                  className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${
+                    activeTimeFilter === '48h' 
+                      ? 'bg-purple-600 border-purple-500 text-white shadow-[0_0_10px_rgba(147,51,234,0.3)]' 
+                      : 'border-slate-700 bg-slate-800/50 hover:bg-slate-700 text-white'
+                  }`}
+                >
                   Last 48 hours
                 </button>
-                <button className="px-4 py-2 border border-slate-700 bg-slate-800/50 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors text-white">
+                <button 
+                  onClick={() => setActiveTimeFilter('7d')}
+                  className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${
+                    activeTimeFilter === '7d' 
+                      ? 'bg-purple-600 border-purple-500 text-white shadow-[0_0_10px_rgba(147,51,234,0.3)]' 
+                      : 'border-slate-700 bg-slate-800/50 hover:bg-slate-700 text-white'
+                  }`}
+                >
                   Last 7 days
                 </button>
               </div>
@@ -111,20 +158,22 @@ export default function GrowthKPIPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/50">
-                    <tr className="hover:bg-slate-800/30 transition-colors">
-                      <td className="py-4 px-6">
-                        <div className="font-medium text-white">Sale Advisor</div>
-                        <div className="text-xs text-slate-500">sale@yopmail.com</div>
-                      </td>
-                      <td className="py-4 px-4 text-center text-slate-300 bg-orange-500/5 border-l border-slate-800/50 font-medium">1</td>
-                      <td className="py-4 px-4 text-center text-slate-300 bg-orange-500/5 border-l border-slate-800/50 font-medium">1</td>
-                      <td className="py-4 px-4 text-center text-slate-300 bg-orange-500/5 border-l border-slate-800/50 font-medium">0</td>
-                      <td className="py-4 px-4 text-center text-slate-300 bg-purple-500/5 border-l border-slate-800/50 font-medium">1</td>
-                      <td className="py-4 px-4 text-center text-slate-300 bg-purple-500/5 border-l border-slate-800/50 font-medium">0</td>
-                      <td className="py-4 px-4 text-center text-slate-300 bg-indigo-500/5 border-l border-slate-800/50 font-medium">1</td>
-                      <td className="py-4 px-4 text-center text-slate-300 bg-cyan-500/5 border-l border-slate-800/50 font-medium">6</td>
-                      <td className="py-4 px-4 text-center text-slate-300 bg-cyan-500/5 border-l border-slate-800/50 font-medium">11</td>
-                    </tr>
+                    {tableRows.map((row, idx) => (
+                      <tr key={idx} className="hover:bg-slate-800/30 transition-colors">
+                        <td className="py-4 px-6">
+                          <div className="font-medium text-white">{row.name}</div>
+                          <div className="text-xs text-slate-500">{row.email}</div>
+                        </td>
+                        <td className="py-4 px-4 text-center text-slate-300 bg-orange-500/5 border-l border-slate-800/50 font-medium">{row.calls}</td>
+                        <td className="py-4 px-4 text-center text-slate-300 bg-orange-500/5 border-l border-slate-800/50 font-medium">{row.texts}</td>
+                        <td className="py-4 px-4 text-center text-slate-300 bg-orange-500/5 border-l border-slate-800/50 font-medium">{row.emails}</td>
+                        <td className="py-4 px-4 text-center text-slate-300 bg-purple-500/5 border-l border-slate-800/50 font-medium">{row.contacts}</td>
+                        <td className="py-4 px-4 text-center text-slate-300 bg-purple-500/5 border-l border-slate-800/50 font-medium">{row.clients}</td>
+                        <td className="py-4 px-4 text-center text-slate-300 bg-indigo-500/5 border-l border-slate-800/50 font-medium">{row.notes}</td>
+                        <td className="py-4 px-4 text-center text-slate-300 bg-cyan-500/5 border-l border-slate-800/50 font-medium">{row.followups}</td>
+                        <td className="py-4 px-4 text-center text-slate-300 bg-cyan-500/5 border-l border-slate-800/50 font-medium">{row.tasks}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
