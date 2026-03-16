@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Filter, Plus, Edit2, Trash2, Pin, Eye, X, ChevronUp, ChevronDown } from "lucide-react";
+import { Search, Filter, Plus, Edit2, Trash2, Pin, Eye, X, ChevronUp, ChevronDown, TrendingUp } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
@@ -66,10 +66,10 @@ export default function ContractsPage() {
                 
                 <button 
                   onClick={() => setShowStats(!showStats)}
-                  className={`flex items-center gap-2 px-4 py-2.5 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium transition-all shadow-sm hover:shadow whitespace-nowrap ${showStats ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-slate-900/40 text-slate-300 hover:bg-slate-900/40'}`}
+                  className={`flex items-center justify-center p-2.5 backdrop-blur-xl border rounded-xl transition-all shadow-sm hover:shadow shrink-0 ${showStats ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-slate-900/40 text-slate-300 border-white/10 hover:bg-slate-900/40'}`}
+                  title="Toggle Quick Stats"
                 >
-                  <span className="hidden sm:inline">Quick Stats</span> 
-                  {showStats ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                  <TrendingUp className="w-4 h-4" />
                 </button>
                 <button className="flex items-center justify-center p-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-slate-300 hover:bg-slate-900/40 transition-all shadow-sm hover:shadow shrink-0">
                   <Filter className="w-4 h-4" />
