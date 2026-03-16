@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Filter, Plus, FileText, Download, CheckCircle2, Clock, Trash2, ExternalLink, MoreHorizontal, Pin, X, RefreshCw } from "lucide-react";
+import { Search, Filter, Plus, FileText, Download, CheckCircle2, Clock, Trash2, ExternalLink, MoreHorizontal, Pin, X, RefreshCw, TrendingUp } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
@@ -8,6 +8,8 @@ export default function InvoicesPage() {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [isEditInvoiceModalOpen, setIsEditInvoiceModalOpen] = useState(false);
   const [isAddPaymentModalOpen, setIsAddPaymentModalOpen] = useState(false);
+  const [isCreateInvoiceModalOpen, setIsCreateInvoiceModalOpen] = useState(false);
+  const [showStats, setShowStats] = useState(true);
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
@@ -35,41 +37,55 @@ export default function InvoicesPage() {
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-between mb-6">
               <h1 className="text-[22px] text-white font-semibold">Invoices</h1>
-              <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] hover:from-[#4f46e5] hover:to-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
-                <Plus className="w-4 h-4" /> Create Invoice
-              </button>
+              <div className="flex items-center gap-3">
+                <button 
+                  onClick={() => setShowStats(!showStats)}
+                  className={`flex items-center justify-center p-2.5 backdrop-blur-xl border rounded-xl transition-all shadow-sm hover:shadow shrink-0 ${showStats ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-slate-900/40 text-slate-300 border-white/10 hover:bg-slate-900/40'}`}
+                  title="Toggle Quick Stats"
+                >
+                  <TrendingUp className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={() => setIsCreateInvoiceModalOpen(true)}
+                  className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] hover:from-[#4f46e5] hover:to-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                >
+                  <Plus className="w-4 h-4" /> Create Invoice
+                </button>
+              </div>
             </div>
 
             {/* Stats Row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6  border border-white/10 flex items-center justify-between">
-                 <div>
-                   <p className="text-sm font-medium text-slate-400 mb-1">Total Paid</p>
-                   <h3 className="text-3xl font-bold text-white">$14,500.00</h3>
-                 </div>
-                 <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center">
-                    <CheckCircle2 className="w-6 h-6 text-green-500" />
-                 </div>
+            {showStats && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 animate-in slide-in-from-top-4 fade-in duration-300">
+                <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6  border border-white/10 flex items-center justify-between">
+                   <div>
+                     <p className="text-sm font-medium text-slate-400 mb-1">Total Paid</p>
+                     <h3 className="text-3xl font-bold text-white">$14,500.00</h3>
+                   </div>
+                   <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                      <CheckCircle2 className="w-6 h-6 text-emerald-400" />
+                   </div>
+                </div>
+                <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6  border border-white/10 flex items-center justify-between">
+                   <div>
+                     <p className="text-sm font-medium text-slate-400 mb-1">Total Pending</p>
+                     <h3 className="text-3xl font-bold text-white">$3,200.00</h3>
+                   </div>
+                   <div className="w-12 h-12 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-orange-400" />
+                   </div>
+                </div>
+                <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6  border border-white/10 flex items-center justify-between">
+                   <div>
+                     <p className="text-sm font-medium text-slate-400 mb-1">Total Overdue</p>
+                     <h3 className="text-3xl font-bold text-white">$2,400.00</h3>
+                   </div>
+                   <div className="w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
+                      <FileText className="w-6 h-6 text-rose-400" />
+                   </div>
+                </div>
               </div>
-              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6  border border-white/10 flex items-center justify-between">
-                 <div>
-                   <p className="text-sm font-medium text-slate-400 mb-1">Total Pending</p>
-                   <h3 className="text-3xl font-bold text-white">$3,200.00</h3>
-                 </div>
-                 <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center">
-                    <Clock className="w-6 h-6 text-amber-500" />
-                 </div>
-              </div>
-              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6  border border-white/10 flex items-center justify-between">
-                 <div>
-                   <p className="text-sm font-medium text-slate-400 mb-1">Total Overdue</p>
-                   <h3 className="text-3xl font-bold text-white">$2,400.00</h3>
-                 </div>
-                 <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center">
-                    <FileText className="w-6 h-6 text-red-500" />
-                 </div>
-              </div>
-            </div>
+            )}
 
             <div className="glass-panel rounded-2xl border-t border-indigo-500/20  overflow-hidden border border-white/10">
               <div className="p-4 border-b border-white/10 flex flex-col sm:flex-row gap-4 justify-between items-center bg-slate-900/40 backdrop-blur-xl/50">
@@ -329,6 +345,89 @@ export default function InvoicesPage() {
               </button>
               <button className="px-6 py-2.5 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] hover:from-[#4f46e5] hover:to-[#7c3aed] text-white rounded-xl text-[14px] font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
                 Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Create Invoice Modal */}
+      {isCreateInvoiceModalOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="glass-panel rounded-2xl border-t border-indigo-500/20 shadow-xl w-full max-w-[700px] my-8 flex flex-col relative max-h-[90vh]">
+            <div className="flex flex-col p-6 border-b border-white/10 shrink-0 sticky top-0 bg-slate-900/40 backdrop-blur-xl z-10 rounded-t-lg">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-bold text-white">Create Invoice</h2>
+                <button 
+                  onClick={() => setIsCreateInvoiceModalOpen(false)}
+                  className="text-slate-500 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            
+            <div className="p-6 overflow-y-auto">
+              <div className="grid grid-cols-1 gap-y-5">
+                <div className="grid grid-cols-[160px_1fr] items-center">
+                  <label className="text-[13px] font-medium text-slate-300">Client Name*</label>
+                  <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 rounded-md text-[13px] text-slate-300 focus:outline-none">
+                    <option></option>
+                    <option>Pink Gorilla Software</option>
+                    <option>Estate Landscape</option>
+                    <option>Summit Cabinets</option>
+                    <option>Urban Edge</option>
+                  </select>
+                </div>
+
+                <div className="grid grid-cols-[160px_1fr] items-center">
+                  <label className="text-[13px] font-medium text-slate-300">Invoice Number*</label>
+                  <input type="text" placeholder="INV-2026-005" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
+                </div>
+                
+                <div className="grid grid-cols-[160px_1fr] items-center">
+                  <label className="text-[13px] font-medium text-slate-300">Date*</label>
+                  <input type="date" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" style={{ colorScheme: 'dark' }} />
+                </div>
+                
+                <div className="grid grid-cols-[160px_1fr] items-center">
+                  <label className="text-[13px] font-medium text-slate-300">Amount*</label>
+                  <div className="flex">
+                    <span className="inline-flex items-center px-3 bg-slate-900/40 backdrop-blur-xl/50 border border-r-0 border-white/10 rounded-l-md text-[13px] text-slate-500">
+                      $
+                    </span>
+                    <input type="text" placeholder="0.00" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-r-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-[160px_1fr] items-center">
+                  <label className="text-[13px] font-medium text-slate-300">Status*</label>
+                  <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 rounded-md text-[13px] text-slate-300 focus:outline-none">
+                    <option>Pending</option>
+                    <option>Paid</option>
+                    <option>Overdue</option>
+                  </select>
+                </div>
+                
+                <div className="grid grid-cols-[160px_1fr] items-start">
+                  <label className="text-[13px] font-medium text-slate-300 mt-2.5">Notes</label>
+                  <textarea rows={3} placeholder="Add any notes here..." className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50"></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-white/10 bg-slate-900/40 backdrop-blur-xl rounded-b-lg shrink-0 sticky bottom-0">
+              <button 
+                onClick={() => setIsCreateInvoiceModalOpen(false)}
+                className="px-5 py-2 bg-slate-900/40 backdrop-blur-xl border border-white/10 hover:bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 rounded-md text-[14px] font-medium transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => setIsCreateInvoiceModalOpen(false)}
+                className="px-6 py-2.5 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] hover:from-[#4f46e5] hover:to-[#7c3aed] text-white rounded-xl text-[14px] font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              >
+                Create Invoice
               </button>
             </div>
           </div>
