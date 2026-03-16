@@ -50,14 +50,32 @@ export default function ContractsPage() {
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
               <h1 className="text-[22px] text-white font-semibold">Contracts</h1>
-              <button 
-                onClick={() => setIsCreateModalOpen(true)}
-                className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] hover:from-[#4f46e5] hover:to-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-              >
-                <Plus className="w-4 h-4" /> Add New
-              </button>
+              
+              <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                <div className="relative flex-1 md:w-64 min-w-[200px]">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                  <input 
+                    type="text"
+                    placeholder="Search" 
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-white/10 rounded-xl text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                  />
+                </div>
+                
+                <button className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 transition-all shadow-sm hover:shadow whitespace-nowrap">
+                  <span className="hidden sm:inline">Quick Stats</span> <ChevronUp className="w-3.5 h-3.5" />
+                </button>
+                <button className="flex items-center justify-center p-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-slate-300 hover:bg-slate-900/40 transition-all shadow-sm hover:shadow shrink-0">
+                  <Filter className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={() => setIsCreateModalOpen(true)}
+                  className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] hover:from-[#4f46e5] hover:to-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 shrink-0"
+                >
+                  <Plus className="w-4 h-4" /> Add New
+                </button>
+              </div>
             </div>
 
             {/* Stats Row */}
@@ -86,21 +104,6 @@ export default function ContractsPage() {
                   <span className="text-[28px] font-medium text-white mb-1">{stats.Expired}</span>
                   <span className="text-[13px] text-slate-400 mb-4">Expired</span>
                   <div className={`h-[3px] w-full rounded-full ${activeFilter === 'Expired' ? 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]' : 'bg-rose-500/50'}`} />
-                </div>
-              </div>
-            </div>
-
-            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-4 mb-6 shadow-sm border border-white/10">
-              <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-                <div className="flex items-center gap-3 w-full sm:w-auto flex-1">
-                  <div className="relative flex-1 max-w-[300px]">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                    <input 
-                      type="text"
-                      placeholder="Search" 
-                      className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-white/10 rounded-lg text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
-                    />
-                  </div>
                 </div>
               </div>
             </div>
