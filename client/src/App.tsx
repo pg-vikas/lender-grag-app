@@ -20,6 +20,7 @@ import ContractsPage from "@/pages/contracts";
 import ContractDetailsPage from "@/pages/contract-details";
 import TemplatesPage from "@/pages/templates";
 import TicketsPage from "@/pages/tickets";
+import TicketCreatePage from "@/pages/tickets-create";
 import TicketDetailsPage from "@/pages/ticket-details";
 import ReportsPage from "@/pages/reports";
 import PerformancePage from "@/pages/performance";
@@ -52,6 +53,7 @@ function Router() {
       <Route path="/contracts" component={ContractsPage} />
       <Route path="/contracts/:id" component={ContractDetailsPage} />
       <Route path="/templates" component={TemplatesPage} />
+      <Route path="/tickets/create" component={TicketCreatePage} />
       <Route path="/tickets" component={TicketsPage} />
       <Route path="/tickets/:id" component={TicketDetailsPage} />
       <Route path="/knowledgebase" component={KnowledgebasePage} />

@@ -1,18 +1,56 @@
 import { useState } from "react";
-import { Search, Filter, Plus, Edit2, ExternalLink, Pin, ChevronUp, Box, TrendingUp } from "lucide-react";
+import { Search, Filter, Plus, Edit2, ExternalLink, Pin, ChevronUp, Box, TrendingUp, Trash2, X } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function TicketsPage() {
   const [openMenus, setOpenMenus] = useState<string>('support');
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+  const [showStats, setShowStats] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  
+  // Modals state
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [ticketToDelete, setTicketToDelete] = useState<number | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [ticketToEdit, setTicketToEdit] = useState<number | null>(null);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
-  const ticketsList = [
+  const [ticketsList, setTicketsList] = useState([
     { id: "2", subject: "Testing the Support features", user: "Milhan Farooque", client: "Pink Gorilla Ag...", date: "31-10-2025", priority: "Normal", activity: "4 months ago", status: "Answered" }
+  ]);
+
+  const handleDelete = () => {
+    if (ticketToDelete !== null) {
+      const updatedList = [...ticketsList];
+      updatedList.splice(ticketToDelete, 1);
+      setTicketsList(updatedList);
+      setIsDeleteModalOpen(false);
+      setTicketToDelete(null);
+    }
+  };
+
+  const handleStatsFilter = (status: string) => {
+    if (activeFilter === status) {
+      setActiveFilter(null);
+    } else {
+      setActiveFilter(status);
+    }
+  };
+
+  const filteredTickets = activeFilter 
+    ? ticketsList.filter(t => t.status === activeFilter)
+    : ticketsList;
+
+  // Stats data
+  const stats = [
+    { label: "Open", count: ticketsList.filter(t => t.status === "Open").length, color: "bg-indigo-500", filterValue: "Open" },
+    { label: "On Hold", count: ticketsList.filter(t => t.status === "On Hold").length, color: "bg-[#fdba74]", filterValue: "On Hold" },
+    { label: "Answered", count: ticketsList.filter(t => t.status === "Answered").length, color: "bg-indigo-500", filterValue: "Answered" },
+    { label: "Closed", count: ticketsList.filter(t => t.status === "Closed").length, color: "bg-[#e2e8f0]", filterValue: "Closed" },
   ];
 
   return (
@@ -26,7 +64,7 @@ export default function TicketsPage() {
           <div className="max-w-7xl mx-auto">
             <h1 className="text-[22px] font-semibold text-white mb-6">Tickets</h1>
 
-            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-4 mb-6  border border-white/10">
+            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-4 mb-6 border border-white/10">
               <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 max-w-[300px]">
@@ -40,7 +78,14 @@ export default function TicketsPage() {
                   <button className="p-2.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg text-slate-400 hover:bg-slate-800 transition-colors">
                     <Box className="w-4 h-4" />
                   </button>
-                  <button className="p-2.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg text-slate-400 hover:bg-slate-800 transition-colors">
+                  <button 
+                    onClick={() => setShowStats(!showStats)}
+                    className={`p-2.5 backdrop-blur-xl/50 border rounded-lg transition-colors ${
+                      showStats 
+                        ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-400' 
+                        : 'bg-slate-900/40 border-white/10 text-slate-400 hover:bg-slate-800'
+                    }`}
+                  >
                     <TrendingUp className="w-4 h-4" />
                   </button>
                   <button className="p-2.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg text-slate-400 hover:bg-slate-800 transition-colors">
@@ -48,37 +93,37 @@ export default function TicketsPage() {
                   </button>
                 </div>
                 
-                <button className="flex items-center gap-2 px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg text-sm font-medium transition-colors shadow-sm w-full sm:w-auto justify-center">
+                <button 
+                  onClick={() => setLocation('/tickets/create')}
+                  className="flex items-center gap-2 px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg text-sm font-medium transition-colors shadow-sm w-full sm:w-auto justify-center"
+                >
                   <Plus className="w-4 h-4" /> Add New Ticket
                 </button>
               </div>
             </div>
 
             {/* Stats Row */}
-            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8  border border-white/10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div className="flex flex-col group cursor-pointer">
-                  <span className="text-[28px] font-medium text-white mb-1">0</span>
-                  <span className="text-[13px] text-slate-500 mb-4">Open</span>
-                  <div className="h-[3px] w-full rounded-full bg-indigo-500" />
-                </div>
-                <div className="flex flex-col group cursor-pointer">
-                  <span className="text-[28px] font-medium text-white mb-1">0</span>
-                  <span className="text-[13px] text-slate-500 mb-4">On Hold</span>
-                  <div className="h-[3px] w-full rounded-full bg-[#fdba74]" />
-                </div>
-                <div className="flex flex-col group cursor-pointer">
-                  <span className="text-[28px] font-medium text-white mb-1">1</span>
-                  <span className="text-[13px] text-slate-500 mb-4">Answered</span>
-                  <div className="h-[3px] w-full rounded-full bg-indigo-500" />
-                </div>
-                <div className="flex flex-col group cursor-pointer">
-                  <span className="text-[28px] font-medium text-white mb-1">0</span>
-                  <span className="text-[13px] text-slate-500 mb-4">Closed</span>
-                  <div className="h-[3px] w-full rounded-full bg-[#e2e8f0]" />
+            {showStats && (
+              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8 border border-white/10 animate-in slide-in-from-top-4 duration-200">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  {stats.map((stat, idx) => (
+                    <div 
+                      key={idx} 
+                      className={`flex flex-col group cursor-pointer p-4 rounded-xl transition-all ${
+                        activeFilter === stat.filterValue ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'
+                      }`}
+                      onClick={() => handleStatsFilter(stat.filterValue)}
+                    >
+                      <span className="text-[28px] font-medium text-white mb-1">{stat.count}</span>
+                      <span className={`text-[13px] mb-4 ${activeFilter === stat.filterValue ? 'text-indigo-400' : 'text-slate-500'}`}>
+                        {stat.label}
+                      </span>
+                      <div className={`h-[3px] w-full rounded-full ${stat.color} opacity-80 group-hover:opacity-100 transition-opacity`} />
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
 
             <div className="overflow-x-auto pb-4">
               <table className="w-full text-sm text-left whitespace-nowrap border-separate" style={{ borderSpacing: '0 12px' }}>
@@ -115,7 +160,7 @@ export default function TicketsPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {ticketsList.map((ticket, i) => (
+                  {filteredTickets.map((ticket, i) => (
                     <tr key={i} className="bg-slate-900/40 backdrop-blur-xl group ">
                       <td className="py-4 px-6 rounded-l-[12px] border-y border-l border-white/10 group-hover:border-[#cbd5e1] transition-colors">
                          <div className="w-4 h-4 rounded border border-[#cbd5e1] bg-slate-900/40 backdrop-blur-xl"></div>
@@ -142,19 +187,41 @@ export default function TicketsPage() {
                       </td>
                       <td className="py-4 px-6 border-y border-r border-white/10 group-hover:border-[#cbd5e1] transition-colors rounded-r-[12px]">
                          <div className="flex items-center gap-3 text-slate-500">
-                           <button className="hover:text-white transition-colors">
+                           <button 
+                             onClick={() => {
+                               setTicketToEdit(i);
+                               setIsEditModalOpen(true);
+                             }}
+                             className="hover:text-indigo-400 transition-colors"
+                           >
                              <Edit2 className="w-[15px] h-[15px]" />
                            </button>
                            <Link href={`/tickets/${ticket.id}`} className="hover:text-white transition-colors">
                              <ExternalLink className="w-[15px] h-[15px]" />
                            </Link>
-                           <button className="hover:text-white transition-colors">
+                           <button className="hover:text-indigo-400 transition-colors">
                              <Pin className="w-[15px] h-[15px]" />
+                           </button>
+                           <button 
+                             onClick={() => {
+                               setTicketToDelete(i);
+                               setIsDeleteModalOpen(true);
+                             }}
+                             className="hover:text-rose-400 transition-colors"
+                           >
+                             <Trash2 className="w-[15px] h-[15px]" />
                            </button>
                          </div>
                       </td>
                     </tr>
                   ))}
+                  {filteredTickets.length === 0 && (
+                    <tr>
+                      <td colSpan={10} className="py-8 text-center text-slate-500 bg-slate-900/40 rounded-xl border border-white/10">
+                        No tickets found matching the selected filter.
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -162,6 +229,139 @@ export default function TicketsPage() {
           </div>
         </main>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <div className="bg-[#111827] rounded-xl w-full max-w-sm border border-slate-800 shadow-2xl p-6 relative">
+            <button 
+              onClick={() => setIsDeleteModalOpen(false)}
+              className="absolute right-4 top-4 text-slate-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <div className="flex flex-col items-center text-center mt-2 mb-6">
+              <div className="w-12 h-12 bg-rose-500/20 text-rose-500 rounded-full flex items-center justify-center mb-4">
+                <Trash2 className="w-6 h-6" />
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Are you sure?</h2>
+              <p className="text-slate-400 text-sm">
+                Do you really want to delete this ticket? This process cannot be undone.
+              </p>
+            </div>
+            <div className="flex gap-3 justify-center">
+              <button 
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="px-4 py-2 bg-[#1e293b] hover:bg-slate-700 text-white rounded-lg transition-colors border border-slate-700 w-28"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleDelete}
+                className="px-4 py-2 bg-[#8b5cf6] hover:bg-purple-500 text-white rounded-lg transition-all w-28 shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Support Ticket Modal */}
+      {isEditModalOpen && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#111827] rounded-xl w-full max-w-2xl border border-slate-800 shadow-2xl flex flex-col my-8">
+            <div className="flex justify-between items-center p-6 border-b border-slate-800">
+              <h2 className="text-xl font-bold text-white">Edit Support Ticket</h2>
+              <button 
+                onClick={() => setIsEditModalOpen(false)}
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Subject*</label>
+                <input 
+                  type="text" 
+                  defaultValue="Test"
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Message*</label>
+                <div className="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
+                  <div className="bg-slate-800/50 border-b border-slate-700 p-2 flex gap-1 flex-wrap">
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded font-bold">B</button>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded italic">I</button>
+                    <div className="w-px bg-slate-700 mx-1"></div>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">Link</button>
+                    <div className="w-px bg-slate-700 mx-1"></div>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">Img</button>
+                  </div>
+                  <textarea 
+                    rows={8}
+                    className="w-full px-4 py-3 bg-transparent text-sm text-white focus:outline-none placeholder:text-slate-500 resize-none"
+                    defaultValue="This is test purpose"
+                  ></textarea>
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Department*</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                  <option>Sales</option>
+                  <option>Support</option>
+                  <option>Billing</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Status*</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                  <option>Open</option>
+                  <option>In Progress</option>
+                  <option>Answered</option>
+                  <option>On Hold</option>
+                  <option>Closed</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Priority*</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                  <option>Low</option>
+                  <option>Normal</option>
+                  <option selected>High</option>
+                  <option>Urgent</option>
+                </select>
+              </div>
+            </div>
+            
+            <div className="p-6 border-t border-slate-800 flex justify-between items-center">
+              <span className="text-xs text-slate-500">* Required</span>
+              <div className="flex gap-3">
+                <button 
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="px-6 py-2 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors font-medium"
+                >
+                  Close
+                </button>
+                <button 
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="px-6 py-2 bg-[#8b5cf6] hover:bg-purple-500 text-white rounded-lg transition-all font-medium shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
