@@ -66,16 +66,16 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
           <div className="relative group">
             <button 
               onClick={() => sidebarOpen ? toggleMenu('crm') : null}
-              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/clients') || currentPath.includes('/tasks') ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/clients') || currentPath.includes('/tasks') || currentPath.includes('/growth') ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
               title={!sidebarOpen ? "CRM" : ""}
             >
               <div className="flex items-center space-x-3">
-                <Users className={`w-5 h-5 shrink-0 ${currentPath.includes('/clients') ? 'text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'group-hover:text-slate-300'}`} />
+                <Users className={`w-5 h-5 shrink-0 ${currentPath.includes('/clients') || currentPath.includes('/tasks') || currentPath.includes('/growth') ? 'text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'group-hover:text-slate-300'}`} />
                 {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">CRM</span>}
               </div>
-              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'crm' || currentPath.includes('/clients') ? '' : '-rotate-90'}`} />}
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'crm' || currentPath.includes('/clients') || currentPath.includes('/tasks') || currentPath.includes('/growth') ? '' : '-rotate-90'}`} />}
             </button>
-            {useAppStore.getState().sidebarOpen && (openMenus === 'crm' || currentPath.includes('/clients')) && (
+            {useAppStore.getState().sidebarOpen && (openMenus === 'crm' || currentPath.includes('/clients') || currentPath.includes('/tasks') || currentPath.includes('/growth')) && (
               <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
                 <Link href="/clients/active">
                   <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/clients/active' ? 'bg-cyan-500/20 text-cyan-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
@@ -92,8 +92,8 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
                     Tasks
                   </div>
                 </Link>
-                <Link href="/growth-kpi">
-                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/growth-kpi' ? 'bg-cyan-500/20 text-cyan-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                <Link href="/growth/kpi-overview">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/growth/kpi-overview' ? 'bg-cyan-500/20 text-cyan-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
                     Growth KPI
                   </div>
                 </Link>
