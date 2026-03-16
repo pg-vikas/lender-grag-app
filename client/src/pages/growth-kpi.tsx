@@ -14,22 +14,24 @@ export default function GrowthKPIPage() {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
-  // Base dummy data
+  // Base dummy data (All Time / Reset state)
   const baseKpis = [
-    { title: 'Outreach Calls', value: 1, icon: Phone },
-    { title: 'Outreach Texts', value: 1, icon: MessageSquare },
-    { title: 'Outreach Emails', value: 0, icon: Mail },
-    { title: 'New Contacts', value: 1, icon: UserPlus },
-    { title: 'Notes Entered', value: 1, icon: FileText },
-    { title: 'Follow-up Scheduled', value: 6, icon: CalendarCheck },
-    { title: 'Tasks Completed', value: 11, icon: CheckSquare },
-    { title: 'Conversion Percentage', value: '0.00%', icon: LineChart }
+    { title: 'Outreach Calls', value: 245, icon: Phone },
+    { title: 'Outreach Texts', value: 180, icon: MessageSquare },
+    { title: 'Outreach Emails', value: 350, icon: Mail },
+    { title: 'New Contacts', value: 42, icon: UserPlus },
+    { title: 'Notes Entered', value: 86, icon: FileText },
+    { title: 'Follow-up Scheduled', value: 124, icon: CalendarCheck },
+    { title: 'Tasks Completed', value: 210, icon: CheckSquare },
+    { title: 'Conversion Percentage', value: '12.5%', icon: LineChart }
   ];
 
   const baseRows = [
-    { name: 'Sale Advisor', email: 'sale@yopmail.com', calls: 1, texts: 1, emails: 0, contacts: 1, clients: 0, notes: 1, followups: 6, tasks: 11 },
-    { name: 'Marketing Pro', email: 'marketing@yopmail.com', calls: 5, texts: 2, emails: 10, contacts: 3, clients: 1, notes: 4, followups: 2, tasks: 5 },
-    { name: 'Support Rep', email: 'support@yopmail.com', calls: 12, texts: 8, emails: 25, contacts: 0, clients: 0, notes: 15, followups: 1, tasks: 20 },
+    { name: 'Sale Advisor', email: 'sale@yopmail.com', calls: 45, texts: 30, emails: 50, contacts: 10, clients: 5, notes: 20, followups: 25, tasks: 40 },
+    { name: 'Marketing Pro', email: 'marketing@yopmail.com', calls: 35, texts: 25, emails: 120, contacts: 8, clients: 3, notes: 15, followups: 15, tasks: 35 },
+    { name: 'Support Rep', email: 'support@yopmail.com', calls: 60, texts: 40, emails: 80, contacts: 5, clients: 1, notes: 30, followups: 20, tasks: 55 },
+    { name: 'New Hire', email: 'new@yopmail.com', calls: 80, texts: 60, emails: 70, contacts: 12, clients: 4, notes: 18, followups: 35, tasks: 60 },
+    { name: 'Lead Generator', email: 'lead@yopmail.com', calls: 25, texts: 25, emails: 30, contacts: 7, clients: 2, notes: 3, followups: 29, tasks: 20 }
   ];
 
   // Derived dummy data based on filter
@@ -37,14 +39,14 @@ export default function GrowthKPIPage() {
   let tableRows = [...baseRows];
 
   if (activeTimeFilter === '24h') {
-    kpis = baseKpis.map(k => ({ ...k, value: typeof k.value === 'number' ? Math.floor(k.value * 0.3) : k.value }));
-    tableRows = baseRows.slice(0, 1);
-  } else if (activeTimeFilter === '48h') {
-    kpis = baseKpis.map(k => ({ ...k, value: typeof k.value === 'number' ? Math.floor(k.value * 0.6) : k.value }));
+    kpis = baseKpis.map(k => ({ ...k, value: typeof k.value === 'number' ? Math.floor(k.value * 0.15) : '2.1%' }));
     tableRows = baseRows.slice(0, 2);
+  } else if (activeTimeFilter === '48h') {
+    kpis = baseKpis.map(k => ({ ...k, value: typeof k.value === 'number' ? Math.floor(k.value * 0.3) : '4.5%' }));
+    tableRows = baseRows.slice(0, 3);
   } else if (activeTimeFilter === '7d') {
-    kpis = baseKpis.map(k => ({ ...k, value: typeof k.value === 'number' ? k.value * 2 : k.value }));
-    tableRows = [...baseRows, { name: 'New Hire', email: 'new@yopmail.com', calls: 20, texts: 15, emails: 50, contacts: 8, clients: 2, notes: 25, followups: 10, tasks: 35 }];
+    kpis = baseKpis.map(k => ({ ...k, value: typeof k.value === 'number' ? Math.floor(k.value * 0.6) : '8.2%' }));
+    tableRows = baseRows.slice(0, 4);
   }
 
   return (
