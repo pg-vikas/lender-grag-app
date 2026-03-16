@@ -5,7 +5,14 @@ import { Sidebar, Header } from "./clients";
 
 export default function TasksPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const currentTab = searchParams.get('tab') || 'today';
+
+  const handleTabClick = (tab: string) => {
+    setLocation(`/tasks?tab=${tab}`);
+  };
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -52,19 +59,34 @@ export default function TasksPage() {
             <div className="bg-slate-900/40 backdrop-blur-xl min-h-[400px] rounded-lg  border border-white/10">
               <div className="p-6 overflow-x-auto border-b border-white/10">
                 <div className="flex gap-3 min-w-max">
-                  <button className="px-4 py-2 bg-indigo-500 text-white rounded-md text-[13px] font-medium transition-colors">
+                  <button 
+                    onClick={() => handleTabClick('today')}
+                    className={`px-4 py-2 rounded-md text-[13px] font-medium transition-colors ${currentTab === 'today' ? 'bg-indigo-500 text-white' : 'bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 hover:bg-slate-800'}`}
+                  >
                     Today's Tasks (0)
                   </button>
-                  <button className="px-4 py-2 bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 hover:bg-slate-800 rounded-md text-[13px] font-medium transition-colors">
+                  <button 
+                    onClick={() => handleTabClick('overdue')}
+                    className={`px-4 py-2 rounded-md text-[13px] font-medium transition-colors ${currentTab === 'overdue' ? 'bg-indigo-500 text-white' : 'bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 hover:bg-slate-800'}`}
+                  >
                     Overdue Tasks (0)
                   </button>
-                  <button className="px-4 py-2 bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 hover:bg-slate-800 rounded-md text-[13px] font-medium transition-colors">
+                  <button 
+                    onClick={() => handleTabClick('future')}
+                    className={`px-4 py-2 rounded-md text-[13px] font-medium transition-colors ${currentTab === 'future' ? 'bg-indigo-500 text-white' : 'bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 hover:bg-slate-800'}`}
+                  >
                     Future Tasks (0)
                   </button>
-                  <button className="px-4 py-2 bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 hover:bg-slate-800 rounded-md text-[13px] font-medium transition-colors">
+                  <button 
+                    onClick={() => handleTabClick('completed')}
+                    className={`px-4 py-2 rounded-md text-[13px] font-medium transition-colors ${currentTab === 'completed' ? 'bg-indigo-500 text-white' : 'bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 hover:bg-slate-800'}`}
+                  >
                     Completed Tasks (0)
                   </button>
-                  <button className="px-4 py-2 bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 hover:bg-slate-800 rounded-md text-[13px] font-medium transition-colors">
+                  <button 
+                    onClick={() => handleTabClick('missing')}
+                    className={`px-4 py-2 rounded-md text-[13px] font-medium transition-colors ${currentTab === 'missing' ? 'bg-indigo-500 text-white' : 'bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 hover:bg-slate-800'}`}
+                  >
                     Clients Missing Task (0)
                   </button>
                 </div>

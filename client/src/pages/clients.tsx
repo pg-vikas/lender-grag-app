@@ -419,8 +419,12 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     </button>
 
                     <div className="flex items-center gap-2 shrink-0">
-                      <span className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-slate-300 font-medium">Tasks 0</span>
-                      <span className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-slate-300 font-medium">Missing Tasks 0</span>
+                      <Link href="/tasks?tab=today">
+                        <button className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-slate-300 font-medium hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">Tasks 0</button>
+                      </Link>
+                      <Link href="/tasks?tab=missing">
+                        <button className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-slate-300 font-medium hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">Missing Tasks 0</button>
+                      </Link>
                     </div>
                   </div>
                   
