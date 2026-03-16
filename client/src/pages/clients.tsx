@@ -507,8 +507,8 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
               </div>
 
               {/* Table */}
-              <div className="glass-panel rounded-2xl overflow-hidden border-t border-indigo-500/20">
-                <div className="overflow-x-auto">
+              <div className="glass-panel rounded-2xl overflow-visible border-t border-indigo-500/20 pb-[100px]">
+                <div className="overflow-visible">
                   <table className="w-full text-left dark-table">
                     <thead>
                       <tr>
