@@ -70,16 +70,16 @@ export default function UserPerformancePage() {
   ];
 
   const recentActionsData = [
-    { date: "Oct 27, 2023 10:00 AM", action: "Lead Added", description: "Added new lead John Doe", client: "John Doe" },
-    { date: "Oct 27, 2023 10:45 AM", action: "Email Sent", description: "Sent follow-up email", client: "Sarah Smith" },
-    { date: "Oct 26, 2023 02:15 PM", action: "Call Logged", description: "Introductory call (15 mins)", client: "Tech Corp" },
-    { date: "Oct 26, 2023 04:30 PM", action: "Note Added", description: "Client requested new proposal", client: "Acme Inc" },
-    { date: "Oct 25, 2023 09:10 AM", action: "Task Completed", description: "Prepare Q3 report", client: "Internal" },
-    { date: "Oct 25, 2023 11:20 AM", action: "Meeting Set", description: "Scheduled demo for next week", client: "Global UI" },
-    { date: "Oct 24, 2023 01:05 PM", action: "Lead Added", description: "Added new lead Michael Brown", client: "Michael Brown" },
-    { date: "Oct 24, 2023 03:50 PM", action: "Email Sent", description: "Sent requested pricing info", client: "Tech Corp" },
-    { date: "Oct 23, 2023 10:15 AM", action: "Call Logged", description: "Follow up call (5 mins)", client: "Sarah Smith" },
-    { date: "Oct 23, 2023 04:45 PM", action: "Task Completed", description: "Update client CRM data", client: "Internal" }
+    { date: "Oct 27, 2023 10:00 AM", action: "Lead Added", description: "Added new lead John Doe", client: "John Doe", clientId: "1" },
+    { date: "Oct 27, 2023 10:45 AM", action: "Email Sent", description: "Sent follow-up email", client: "Sarah Smith", clientId: "2" },
+    { date: "Oct 26, 2023 02:15 PM", action: "Call Logged", description: "Introductory call (15 mins)", client: "Tech Corp", clientId: "3" },
+    { date: "Oct 26, 2023 04:30 PM", action: "Note Added", description: "Client requested new proposal", client: "Acme Inc", clientId: "4" },
+    { date: "Oct 25, 2023 09:10 AM", action: "Task Completed", description: "Prepare Q3 report", client: "Internal", clientId: "1" },
+    { date: "Oct 25, 2023 11:20 AM", action: "Meeting Set", description: "Scheduled demo for next week", client: "Global UI", clientId: "2" },
+    { date: "Oct 24, 2023 01:05 PM", action: "Lead Added", description: "Added new lead Michael Brown", client: "Michael Brown", clientId: "3" },
+    { date: "Oct 24, 2023 03:50 PM", action: "Email Sent", description: "Sent requested pricing info", client: "Tech Corp", clientId: "4" },
+    { date: "Oct 23, 2023 10:15 AM", action: "Call Logged", description: "Follow up call (5 mins)", client: "Sarah Smith", clientId: "1" },
+    { date: "Oct 23, 2023 04:45 PM", action: "Task Completed", description: "Update client CRM data", client: "Internal", clientId: "2" }
   ].slice(0, Math.max(3, Math.floor(10 * multiplier)));
 
   const allUsers = [
@@ -397,7 +397,11 @@ export default function UserPerformancePage() {
                           </span>
                         </td>
                         <td className="py-4 px-4 text-sm text-slate-300">{row.description}</td>
-                        <td className="py-4 px-4 text-sm font-medium text-indigo-400">{row.client}</td>
+                        <td className="py-4 px-4 text-sm font-medium">
+                          <Link href={`/clients/${row.clientId || '1'}`}>
+                            <span className="text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer hover:underline">{row.client}</span>
+                          </Link>
+                        </td>
                       </tr>
                     )) : (
                       <tr>
