@@ -4,11 +4,12 @@ import { Sidebar, Header } from "./clients";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
 import { AlertTriangle } from "lucide-react";
 
-export default function PerformancePage() {
+export default function UserPerformancePage() {
   const [openMenus, setOpenMenus] = useState<string>('reports');
   const [location, setLocation] = useLocation();
-  const params = useParams<{ filter?: string }>();
+  const params = useParams<{ id: string, filter?: string }>();
   
+  const userId = params.id;
   const filter = params.filter || 'all';
   const activeTab = filter === 'today' ? 'Today' : filter === 'week' ? 'This week' : filter === 'month' ? 'This month' : 'Time so far';
 
@@ -18,7 +19,7 @@ export default function PerformancePage() {
 
   const handleTabClick = (tab: string) => {
     const newFilter = tab === 'Today' ? 'today' : tab === 'This week' ? 'week' : tab === 'This month' ? 'month' : 'all';
-    setLocation(`/performance/${newFilter}`);
+    setLocation(`/performance/user/${userId}/${newFilter}`);
   };
 
   // Varing the data based on filter to show it updates
@@ -78,18 +79,20 @@ export default function PerformancePage() {
     actions: user.actions
   }));
 
+  const currentUser = leaderboardData.find(u => u.id === parseInt(userId || '0')) || { name: 'User' };
+
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
       
       <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
-        <Header title="Performance Dashboard" />
+        <Header title={`${currentUser.name}'s Performance`} />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 scrollbar-hide">
           <div className="max-w-7xl mx-auto space-y-6">
             
             <div className="flex flex-col mb-4">
-              <h1 className="text-2xl font-bold text-white tracking-tight mb-4">Performance Dashboard</h1>
+              <h1 className="text-2xl font-bold text-white tracking-tight mb-4">{currentUser.name}'s Performance Dashboard</h1>
               
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <div className="flex border border-purple-500/30 rounded-lg overflow-hidden glass-panel">
