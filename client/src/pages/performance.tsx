@@ -10,14 +10,14 @@ export default function PerformancePage() {
   const params = useParams<{ filter?: string }>();
   
   const filter = params.filter || 'all';
-  const activeTab = filter === 'today' ? 'Today' : filter === 'week' ? 'This week' : filter === 'month' ? 'This month' : 'Time so far';
+  const activeTab = filter === 'today' ? 'Today' : filter === 'week' ? 'This Week' : filter === 'month' ? 'This Month' : 'All Time';
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
   const handleTabClick = (tab: string) => {
-    const newFilter = tab === 'Today' ? 'today' : tab === 'This week' ? 'week' : tab === 'This month' ? 'month' : 'all';
+    const newFilter = tab === 'Today' ? 'today' : tab === 'This Week' ? 'week' : tab === 'This Month' ? 'month' : 'all';
     setLocation(`/performance/${newFilter}`);
   };
 
@@ -93,7 +93,7 @@ export default function PerformancePage() {
               
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <div className="flex border border-purple-500/30 rounded-lg overflow-hidden glass-panel">
-                  {['Today', 'This week', 'This month', 'Time so far'].map((tab) => (
+                  {['Today', 'This Week', 'This Month', 'All Time'].map((tab) => (
                     <button 
                       key={tab}
                       onClick={() => handleTabClick(tab)}

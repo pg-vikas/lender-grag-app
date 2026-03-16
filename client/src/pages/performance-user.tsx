@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useLocation, useParams } from "wouter";
+import { useLocation, useParams, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
-import { AlertTriangle } from "lucide-react";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, Legend } from "recharts";
+import { ChevronLeft } from "lucide-react";
 
 export default function UserPerformancePage() {
   const [openMenus, setOpenMenus] = useState<string>('reports');
@@ -11,14 +11,14 @@ export default function UserPerformancePage() {
   
   const userId = params.id;
   const filter = params.filter || 'all';
-  const activeTab = filter === 'today' ? 'Today' : filter === 'week' ? 'This week' : filter === 'month' ? 'This month' : 'Time so far';
+  const activeTab = filter === 'today' ? 'Today' : filter === 'week' ? 'This Week' : filter === 'month' ? 'This Month' : 'All Time';
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
   const handleTabClick = (tab: string) => {
-    const newFilter = tab === 'Today' ? 'today' : tab === 'This week' ? 'week' : tab === 'This month' ? 'month' : 'all';
+    const newFilter = tab === 'Today' ? 'today' : tab === 'This Week' ? 'week' : tab === 'This Month' ? 'month' : 'all';
     setLocation(`/performance/user/${userId}/${newFilter}`);
   };
 
@@ -60,72 +60,109 @@ export default function UserPerformancePage() {
     { date: '2023-12-24', actions: 24 }
   ].map(d => ({ ...d, actions: Math.floor(d.actions * multiplier) }));
 
-  const leaderboardData = [
-    { id: 1, rank: "#1", name: "PR Admin", actions: Math.floor(173 * multiplier), active: "3 hrs 49 mins", idle: "75 hrs 45 mins", sessions: "1 hr 25 mins", color: "bg-orange-500" },
-    { id: 2, rank: "#2", name: "Sale Admin", actions: Math.floor(32 * multiplier), active: "21 minutes", idle: "25 minutes", sessions: "22 minutes", color: "bg-slate-400" },
-    { id: 3, rank: "#3", name: "Vikas Dev", actions: Math.floor(21 * multiplier), active: "1 hr 16 mins", idle: "2 hrs 12 mins", sessions: "0 second", color: "bg-cyan-500" },
-    { id: 4, rank: "#4", name: "Chayan", actions: Math.floor(15 * multiplier), active: "0 second", idle: "0 second", sessions: "0 second", color: "" },
-    { id: 5, rank: "#5", name: "Neeraj", actions: Math.floor(5 * multiplier), active: "0 second", idle: "1 hr 53 mins", sessions: "0 second", color: "" },
-    { id: 6, rank: "#6", name: "Jordan", actions: Math.floor(2 * multiplier), active: "0 second", idle: "0 second", sessions: "0 second", color: "" }
+  const pieData = [
+    { name: 'Lead Added', value: Math.floor(40 * multiplier), color: '#60a5fa' },
+    { name: 'Email Sent', value: Math.floor(30 * multiplier), color: '#34d399' },
+    { name: 'Call Logged', value: Math.floor(20 * multiplier), color: '#f472b6' },
+    { name: 'Note Added', value: Math.floor(10 * multiplier), color: '#fbbf24' },
+    { name: 'Task Completed', value: Math.floor(15 * multiplier), color: '#a78bfa' },
+    { name: 'Meeting Set', value: Math.floor(5 * multiplier), color: '#38bdf8' }
   ];
 
-  const lowActivityData = [
-    { name: "Neeraj", actions: Math.floor(5 * multiplier), threshold: 10, status: "Below Threshold" },
-    { name: "Jordan", actions: Math.floor(2 * multiplier), threshold: 10, status: "Below Threshold" }
+  const recentActionsData = [
+    { date: "Oct 27, 2023 10:00 AM", action: "Lead Added", description: "Added new lead John Doe", client: "John Doe" },
+    { date: "Oct 27, 2023 10:45 AM", action: "Email Sent", description: "Sent follow-up email", client: "Sarah Smith" },
+    { date: "Oct 26, 2023 02:15 PM", action: "Call Logged", description: "Introductory call (15 mins)", client: "Tech Corp" },
+    { date: "Oct 26, 2023 04:30 PM", action: "Note Added", description: "Client requested new proposal", client: "Acme Inc" },
+    { date: "Oct 25, 2023 09:10 AM", action: "Task Completed", description: "Prepare Q3 report", client: "Internal" },
+    { date: "Oct 25, 2023 11:20 AM", action: "Meeting Set", description: "Scheduled demo for next week", client: "Global UI" },
+    { date: "Oct 24, 2023 01:05 PM", action: "Lead Added", description: "Added new lead Michael Brown", client: "Michael Brown" },
+    { date: "Oct 24, 2023 03:50 PM", action: "Email Sent", description: "Sent requested pricing info", client: "Tech Corp" },
+    { date: "Oct 23, 2023 10:15 AM", action: "Call Logged", description: "Follow up call (5 mins)", client: "Sarah Smith" },
+    { date: "Oct 23, 2023 04:45 PM", action: "Task Completed", description: "Update client CRM data", client: "Internal" }
+  ].slice(0, Math.max(3, Math.floor(10 * multiplier)));
+
+  const allUsers = [
+    { id: 1, name: "PR Admin", role: "Super Admin", email: "admin@pinkgorilla.agency" },
+    { id: 2, name: "Sale Admin", role: "Sales Lead", email: "sales@pinkgorilla.agency" },
+    { id: 3, name: "Vikas Dev", role: "Developer", email: "vikas@pinkgorilla.agency" },
+    { id: 4, name: "Chayan", role: "Designer", email: "chayan@pinkgorilla.agency" },
+    { id: 5, name: "Neeraj", role: "Marketing", email: "neeraj@pinkgorilla.agency" },
+    { id: 6, name: "Jordan", role: "Consultant", email: "jordan@pinkgorilla.agency" }
   ];
 
-  const barChartData = leaderboardData.map(user => ({
-    name: user.name,
-    actions: user.actions
-  }));
-
-  const currentUser = leaderboardData.find(u => u.id === parseInt(userId || '0')) || { name: 'User' };
+  const currentUser = allUsers.find(u => u.id === parseInt(userId || '0')) || allUsers[2];
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
       
       <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
-        <Header title={`${currentUser.name}'s Performance`} />
+        <Header title={`Performance Details - ${currentUser.name}`} />
 
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 scrollbar-hide">
           <div className="max-w-7xl mx-auto space-y-6">
             
-            <div className="flex flex-col mb-4">
-              <h1 className="text-2xl font-bold text-white tracking-tight mb-4">{currentUser.name}'s Performance Dashboard</h1>
-              
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <div className="flex border border-purple-500/30 rounded-lg overflow-hidden glass-panel">
-                  {['Today', 'This week', 'This month', 'Time so far'].map((tab) => (
-                    <button 
-                      key={tab}
-                      onClick={() => handleTabClick(tab)}
-                      className={`px-4 py-2 text-sm font-medium transition-colors ${
-                        activeTab === tab 
-                          ? 'bg-purple-600 text-white shadow-[0_0_10px_rgba(147,51,234,0.5)]' 
-                          : 'text-purple-300 hover:bg-purple-500/10 border-r border-purple-500/30 last:border-r-0'
-                      }`}
-                    >
-                      {tab}
-                    </button>
-                  ))}
-                </div>
+            <div className="flex flex-col mb-2">
+              <div className="flex items-center gap-4 mb-4">
+                <Link href={`/performance/${filter}`}>
+                  <button className="text-slate-400 hover:text-white flex items-center gap-1 text-sm font-medium transition-colors">
+                    <ChevronLeft className="w-4 h-4" /> Back to directory
+                  </button>
+                </Link>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                <h1 className="text-2xl font-bold text-white tracking-tight">Performance Details - {currentUser.name}</h1>
                 
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-slate-400">From</span>
-                  <input type="date" className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
-                  <span className="text-sm text-slate-400">To</span>
-                  <input type="date" className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
-                  <button className="bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors">
-                    Apply
-                  </button>
+                  <div className="flex border border-purple-500/30 rounded-lg overflow-hidden glass-panel">
+                    {['Today', 'This Week', 'This Month', 'All Time'].map((tab) => (
+                      <button 
+                        key={tab}
+                        onClick={() => handleTabClick(tab)}
+                        className={`px-4 py-2 text-sm font-medium transition-colors ${
+                          activeTab === tab 
+                            ? 'bg-purple-600 text-white shadow-[0_0_10px_rgba(147,51,234,0.5)]' 
+                            : 'text-purple-300 hover:bg-purple-500/10 border-r border-purple-500/30 last:border-r-0'
+                        }`}
+                      >
+                        {tab}
+                      </button>
+                    ))}
+                  </div>
+                  
+                  <div className="flex items-center gap-2 ml-2">
+                    <span className="text-sm text-slate-400">From</span>
+                    <input type="date" className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
+                    <span className="text-sm text-slate-400">To</span>
+                    <input type="date" className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
+                    <button className="bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors">
+                      Apply
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Team Performance Metrics Grid */}
+            {/* User Profile Card */}
+            <div className="glass-panel p-6 rounded-2xl border border-white/10 flex justify-between items-center">
+              <div>
+                <h2 className="text-xl font-bold text-white mb-1">{currentUser.name}</h2>
+                <div className="flex items-center gap-4 text-sm">
+                  <span className="text-slate-400">{currentUser.email}</span>
+                  <span className="text-slate-600">•</span>
+                  <span className="text-purple-400 font-medium">{currentUser.role}</span>
+                </div>
+              </div>
+              <button className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors border border-slate-700">
+                Update
+              </button>
+            </div>
+
+            {/* Performance Metrics Summary Grid */}
             <div className="glass-panel p-6 rounded-2xl border border-white/10">
-              <h2 className="text-lg font-medium text-slate-300 mb-6">Team Performance Metrics</h2>
+              <h2 className="text-lg font-medium text-slate-300 mb-6">Performance Metrics Summary</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-4">
                 {performanceMetrics.map((metric, index) => (
                   <div key={index} className="bg-slate-900/50 border border-white/5 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-slate-800/50 transition-colors shadow-sm">
@@ -136,6 +173,88 @@ export default function UserPerformancePage() {
               </div>
             </div>
 
+            {/* Timer Sessions */}
+            <div className="glass-panel p-6 rounded-2xl border border-white/10">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-lg font-medium text-slate-300">Timer Sessions</h2>
+                <span className="text-xs text-slate-500">For {filter === 'today' ? 'today' : filter === 'week' ? 'this week' : filter === 'month' ? 'this month' : 'all time'} based on filter selection</span>
+              </div>
+              
+              <div className="space-y-6">
+                <div>
+                  <div className="flex justify-between text-xs text-slate-400 mb-2">
+                    <span>Active Time</span>
+                    <span className="text-emerald-400 font-medium">65%</span>
+                  </div>
+                  <div className="h-3 bg-slate-800 rounded-full overflow-hidden w-full relative">
+                    {/* Simulated timeline blocks for active time */}
+                    <div className="absolute top-0 bottom-0 left-[5%] w-[20%] bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                    <div className="absolute top-0 bottom-0 left-[30%] w-[15%] bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                    <div className="absolute top-0 bottom-0 left-[50%] w-[30%] bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                  </div>
+                  <div className="flex justify-between text-[10px] text-slate-500 mt-1">
+                    <span>09:00</span>
+                    <span>12:00</span>
+                    <span>15:00</span>
+                    <span>18:00</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-xs text-slate-400 mb-2">
+                    <span>Idle Time</span>
+                    <span className="text-slate-300 font-medium">35%</span>
+                  </div>
+                  <div className="h-3 bg-slate-800 rounded-full overflow-hidden w-full relative">
+                    {/* Simulated timeline blocks for idle time */}
+                    <div className="absolute top-0 bottom-0 left-[25%] w-[5%] bg-slate-500"></div>
+                    <div className="absolute top-0 bottom-0 left-[45%] w-[5%] bg-slate-500"></div>
+                    <div className="absolute top-0 bottom-0 left-[80%] w-[20%] bg-slate-500"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Daily Actions Bar Chart */}
+            <div className="glass-panel p-6 rounded-2xl border border-white/10">
+              <h2 className="text-lg font-medium text-slate-300 mb-6">Daily Actions</h2>
+              <div className="h-[300px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={trendData} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                    <XAxis 
+                      dataKey="date" 
+                      stroke="#64748b" 
+                      fontSize={10} 
+                      tickMargin={10} 
+                      axisLine={false} 
+                      tickLine={false} 
+                      angle={-45}
+                      textAnchor="end"
+                    />
+                    <YAxis 
+                      stroke="#64748b" 
+                      fontSize={12} 
+                      tickMargin={10} 
+                      axisLine={false} 
+                      tickLine={false}
+                    />
+                    <RechartsTooltip 
+                      contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
+                      cursor={{ fill: '#1e293b' }}
+                    />
+                    <Bar 
+                      name="Actions"
+                      dataKey="actions" 
+                      fill="#3b82f6" 
+                      radius={[4, 4, 0, 0]} 
+                      barSize={20}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
             {/* Consistency Trends */}
             <div className="glass-panel p-6 rounded-2xl border border-white/10">
               <h2 className="text-lg font-medium text-slate-300 mb-6">Consistency Trends</h2>
@@ -143,7 +262,7 @@ export default function UserPerformancePage() {
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={trendData} margin={{ top: 5, right: 20, bottom: 25, left: 0 }}>
                     <defs>
-                      <linearGradient id="colorActions" x1="0" y1="0" x2="0" y2="1">
+                      <linearGradient id="colorActionsUser" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#2dd4bf" stopOpacity={0.3}/>
                         <stop offset="95%" stopColor="#2dd4bf" stopOpacity={0}/>
                       </linearGradient>
@@ -170,7 +289,7 @@ export default function UserPerformancePage() {
                       stroke="#2dd4bf" 
                       strokeWidth={2} 
                       fillOpacity={1} 
-                      fill="url(#colorActions)" 
+                      fill="url(#colorActionsUser)" 
                       activeDot={{ r: 5, fill: '#fff', stroke: '#2dd4bf', strokeWidth: 2 }}
                     />
                   </AreaChart>
@@ -178,121 +297,127 @@ export default function UserPerformancePage() {
               </div>
             </div>
 
-            {/* Team Leaderboard */}
-            <div className="glass-panel p-6 rounded-2xl border border-white/10">
-              <h2 className="text-lg font-medium text-slate-300 mb-6">Team Leaderboard</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left dark-table">
-                  <thead>
-                    <tr className="border-b border-slate-800">
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Rank</th>
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Name</th>
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Total Actions</th>
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Active Minutes</th>
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Idle Minutes</th>
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Timer Sessions</th>
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-800/50">
-                    {leaderboardData.map((row, i) => (
-                      <tr key={i} className="hover:bg-slate-800/30 transition-colors">
-                        <td className="py-4 px-4">
-                          <div className="flex items-center gap-2 text-sm font-medium">
-                            {row.color && (
-                              <div className={`w-4 h-3 rounded-sm ${row.color}`}></div>
-                            )}
-                            <span className="text-slate-300">{row.rank}</span>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4 text-sm font-medium text-indigo-400">{row.name}</td>
-                        <td className="py-4 px-4 text-sm text-slate-300">{row.actions}</td>
-                        <td className="py-4 px-4 text-sm text-slate-300">{row.active}</td>
-                        <td className="py-4 px-4 text-sm text-slate-300">{row.idle}</td>
-                        <td className="py-4 px-4 text-sm text-slate-300">{row.sessions}</td>
-                        <td className="py-4 px-4">
-                          <button 
-                            onClick={() => setLocation(`/performance/user/${row.id}/${filter}`)}
-                            className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium px-4 py-1.5 rounded transition-colors shadow-[0_0_10px_rgba(79,70,229,0.3)]">
-                            View Details
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Action Breakdown by Type */}
+              <div className="glass-panel p-6 rounded-2xl border border-white/10">
+                <h2 className="text-lg font-medium text-slate-300 mb-6">Action Breakdown by Type</h2>
+                <div className="h-[300px] w-full flex items-center justify-center">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={pieData}
+                        cx="50%"
+                        cy="45%"
+                        innerRadius={60}
+                        outerRadius={90}
+                        paddingAngle={5}
+                        dataKey="value"
+                        stroke="none"
+                      >
+                        {pieData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <RechartsTooltip 
+                        contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
+                        itemStyle={{ color: '#fff' }}
+                      />
+                      <Legend 
+                        layout="horizontal" 
+                        verticalAlign="bottom" 
+                        align="center"
+                        wrapperStyle={{ fontSize: '12px', paddingTop: '20px' }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              {/* Conversion Breakdown */}
+              <div className="glass-panel p-6 rounded-2xl border border-white/10">
+                <h2 className="text-lg font-medium text-slate-300 mb-6">Conversion Breakdown</h2>
+                <div className="grid grid-cols-2 gap-6 h-full pb-8">
+                  <div className="bg-slate-900/40 rounded-xl p-5 border border-slate-800">
+                    <h3 className="text-sm font-semibold text-slate-300 mb-4 pb-2 border-b border-slate-800 text-center uppercase tracking-wider">Status Check In</h3>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-slate-400">New Lead</span>
+                        <span className="text-white font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(12 * multiplier)}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-slate-400">Contacted</span>
+                        <span className="text-white font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(8 * multiplier)}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-slate-400">In Progress</span>
+                        <span className="text-white font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(5 * multiplier)}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-slate-400">On Hold</span>
+                        <span className="text-white font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(2 * multiplier)}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-slate-900/40 rounded-xl p-5 border border-slate-800">
+                    <h3 className="text-sm font-semibold text-slate-300 mb-4 pb-2 border-b border-slate-800 text-center uppercase tracking-wider">Status Check Out</h3>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-slate-400">Won</span>
+                        <span className="text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded">{Math.floor(6 * multiplier)}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-slate-400">Lost</span>
+                        <span className="text-rose-400 font-medium bg-rose-500/10 px-2 py-0.5 rounded">{Math.floor(3 * multiplier)}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-slate-400">Archived</span>
+                        <span className="text-slate-400 font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(1 * multiplier)}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Low Activity Alerts */}
-            <div className="glass-panel p-6 rounded-2xl border border-rose-500/20">
-              <div className="flex items-center gap-2 mb-6">
-                <AlertTriangle className="w-5 h-5 text-rose-500" />
-                <h2 className="text-lg font-medium text-rose-400">Low Activity Alerts</h2>
-              </div>
+            {/* Recent Actions Tracker */}
+            <div className="glass-panel p-6 rounded-2xl border border-white/10">
+              <h2 className="text-lg font-medium text-slate-300 mb-6">Recent Actions Tracker</h2>
               <div className="overflow-x-auto">
                 <table className="w-full text-left dark-table">
                   <thead>
                     <tr className="border-b border-slate-800">
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider w-1/4">Advisor</th>
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider w-1/4">Total Actions</th>
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider w-1/4">Threshold</th>
-                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider w-1/4">Status</th>
+                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Date</th>
+                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Action</th>
+                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Description</th>
+                      <th className="py-3 px-4 text-xs font-semibold text-slate-400 tracking-wider">Client</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/50">
-                    {lowActivityData.map((row, i) => (
+                    {recentActionsData.length > 0 ? recentActionsData.map((row, i) => (
                       <tr key={i} className="hover:bg-slate-800/30 transition-colors">
-                        <td className="py-4 px-4 text-sm font-medium text-slate-300">{row.name}</td>
-                        <td className="py-4 px-4 text-sm text-slate-300">{row.actions}</td>
-                        <td className="py-4 px-4 text-sm text-slate-300">{row.threshold}</td>
+                        <td className="py-4 px-4 text-sm text-slate-400 whitespace-nowrap">{row.date}</td>
                         <td className="py-4 px-4">
-                          <span className="bg-rose-500/10 text-rose-400 border border-rose-500/20 px-3 py-1 rounded text-xs font-medium inline-block">
-                            {row.status}
+                          <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+                            row.action === 'Lead Added' ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' :
+                            row.action === 'Email Sent' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' :
+                            row.action === 'Call Logged' ? 'bg-pink-500/10 text-pink-400 border border-pink-500/20' :
+                            row.action === 'Note Added' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' :
+                            row.action === 'Task Completed' ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' :
+                            'bg-sky-500/10 text-sky-400 border border-sky-500/20'
+                          }`}>
+                            {row.action}
                           </span>
                         </td>
+                        <td className="py-4 px-4 text-sm text-slate-300">{row.description}</td>
+                        <td className="py-4 px-4 text-sm font-medium text-indigo-400">{row.client}</td>
                       </tr>
-                    ))}
+                    )) : (
+                      <tr>
+                        <td colSpan={4} className="py-8 text-center text-slate-500 text-sm">No recent actions found for this time period.</td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
-              </div>
-            </div>
-
-            {/* Team Member Overview */}
-            <div className="glass-panel p-6 rounded-2xl border border-white/10 mb-8">
-              <h2 className="text-lg font-medium text-slate-300 mb-6">Team Member Overview</h2>
-              <div className="h-[350px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={barChartData} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                    <XAxis 
-                      dataKey="name" 
-                      stroke="#64748b" 
-                      fontSize={12} 
-                      tickMargin={10} 
-                      axisLine={false} 
-                      tickLine={false} 
-                    />
-                    <YAxis 
-                      stroke="#64748b" 
-                      fontSize={12} 
-                      tickMargin={10} 
-                      axisLine={false} 
-                      tickLine={false}
-                    />
-                    <RechartsTooltip 
-                      contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
-                      cursor={{ fill: '#1e293b' }}
-                    />
-                    <Bar 
-                      name="Total Actions"
-                      dataKey="actions" 
-                      fill="#60a5fa" 
-                      radius={[4, 4, 0, 0]} 
-                      barSize={60}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
               </div>
             </div>
 
