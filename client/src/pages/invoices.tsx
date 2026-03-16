@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Search, Filter, Plus, FileText, Download, CheckCircle2, Clock, Trash2, ExternalLink, MoreHorizontal, Pin, X, RefreshCw, TrendingUp } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
+import * as XLSX from 'xlsx';
 
 export default function InvoicesPage() {
   const [openMenus, setOpenMenus] = useState<string>('sales');
@@ -9,6 +10,8 @@ export default function InvoicesPage() {
   const [isEditInvoiceModalOpen, setIsEditInvoiceModalOpen] = useState(false);
   const [isAddPaymentModalOpen, setIsAddPaymentModalOpen] = useState(false);
   const [isCreateInvoiceModalOpen, setIsCreateInvoiceModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [invoiceToDelete, setInvoiceToDelete] = useState<string | null>(null);
   const [showStats, setShowStats] = useState(true);
   const [location] = useLocation();
 
@@ -20,12 +23,19 @@ export default function InvoicesPage() {
     setActiveDropdown(activeDropdown === index ? null : index);
   };
 
-  const invoicesList = [
+  const [invoicesList, setInvoicesList] = useState([
     { id: "INV-2026-001", client: "Pink Gorilla Software", amount: "$1,250.00", date: "Oct 01, 2026", dueDate: "Oct 15, 2026", status: "Paid" },
     { id: "INV-2026-002", client: "Estate Landscape", amount: "$850.00", date: "Oct 05, 2026", dueDate: "Oct 20, 2026", status: "Pending" },
     { id: "INV-2026-003", client: "Summit Cabinets", amount: "$2,400.00", date: "Sep 28, 2026", dueDate: "Oct 12, 2026", status: "Overdue" },
     { id: "INV-2026-004", client: "Urban Edge", amount: "$450.00", date: "Oct 10, 2026", dueDate: "Oct 25, 2026", status: "Pending" },
-  ];
+  ]);
+
+  const handleDownloadAll = () => {
+    const worksheet = XLSX.utils.json_to_sheet(invoicesList);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Invoices");
+    XLSX.writeFile(workbook, "Invoices.xlsx");
+  };
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
@@ -102,12 +112,15 @@ export default function InvoicesPage() {
                     Filter <Filter className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <button className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow transition-colors">
+                <button 
+                  onClick={handleDownloadAll}
+                  className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow transition-colors"
+                >
                   <Download className="w-3.5 h-3.5" /> Download All
                 </button>
               </div>
 
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto pb-32">
                 <table className="w-full text-sm text-left whitespace-nowrap">
                   <thead className="bg-slate-900/40 backdrop-blur-xl border-b border-white/10">
                     <tr>
@@ -122,7 +135,7 @@ export default function InvoicesPage() {
                   </thead>
                   <tbody className="divide-y divide-[#f1f5f9]">
                     {invoicesList.map((invoice, i) => (
-                      <tr key={i} className="hover:bg-slate-900/40 backdrop-blur-xl/50/50 transition-colors bg-slate-900/40 backdrop-blur-xl">
+                      <tr key={i} className={`hover:bg-slate-900/40 backdrop-blur-xl/50/50 transition-colors bg-slate-900/40 backdrop-blur-xl ${activeDropdown === i ? 'relative z-50' : 'relative z-10'}`}>
                         <td className="py-4 px-6 font-semibold">
                           <Link href={`/invoices/${invoice.id}`} className="text-indigo-400 hover:text-[#7c3aed] transition-colors">{invoice.id}</Link>
                         </td>
@@ -139,7 +152,13 @@ export default function InvoicesPage() {
                         </td>
                         <td className="py-4 px-6 relative">
                           <div className="flex items-center gap-3">
-                            <button className="text-red-400 hover:text-red-500 transition-colors">
+                            <button 
+                              onClick={() => {
+                                setInvoiceToDelete(invoice.id);
+                                setIsDeleteModalOpen(true);
+                              }}
+                              className="text-red-400 hover:text-red-500 transition-colors"
+                            >
                               <Trash2 className="w-4 h-4" />
                             </button>
                             <Link href={`/invoices/${invoice.id}`} className="text-slate-300 hover:text-white transition-colors">
@@ -433,6 +452,45 @@ export default function InvoicesPage() {
           </div>
         </div>
       )}
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="glass-panel rounded-2xl border border-white/10 shadow-xl w-full max-w-[400px] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="p-6">
+              <div className="w-12 h-12 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
+                <Trash2 className="w-6 h-6 text-red-500" />
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Delete Invoice</h2>
+              <p className="text-sm text-slate-400">
+                Are you sure you want to delete invoice <span className="font-semibold text-white">{invoiceToDelete}</span>? This action cannot be undone.
+              </p>
+            </div>
+            
+            <div className="flex items-center justify-end gap-3 p-6 bg-slate-900/40 border-t border-white/10">
+              <button 
+                onClick={() => {
+                  setIsDeleteModalOpen(false);
+                  setInvoiceToDelete(null);
+                }}
+                className="px-4 py-2 bg-slate-900/40 backdrop-blur-xl border border-white/10 hover:bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 rounded-lg text-sm font-medium transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => {
+                  setInvoicesList(prev => prev.filter(inv => inv.id !== invoiceToDelete));
+                  setIsDeleteModalOpen(false);
+                  setInvoiceToDelete(null);
+                }}
+                className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white rounded-lg text-sm font-medium transition-all shadow-md shadow-red-500/20"
+              >
+                Delete Invoice
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
