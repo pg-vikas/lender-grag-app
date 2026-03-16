@@ -1,0 +1,55 @@
+Task: Implement full functionality for the **Contracts page** including stats filters, action icons, columns, and contract creation/editing.
+
+Requirements:
+
+1. **Stats Section Functionality**
+
+   * Implement the **stats boxes toggle filtering** exactly like the **Clients page**.
+   * Clicking a stats box should filter the contracts list based on the selected status.
+   * Only one stats filter should be active at a time.
+   * Apply hover effects and highlight the active stats box.
+
+2. **Action Column**
+   Add the following icons in the **Action column**:
+
+   * **Edit**
+   * **Delete**
+   * **View**
+   * **Pin**
+
+   Functionality:
+
+   * **Edit** → Open the **Contract Edit page** using dynamic routing.
+     Example URL: `/contracts/{contractId}/edit`
+     Example: https://staging-hub.pinkgorilla.agency/contracts/22/edit
+
+   * **Delete** → Open the existing **delete confirmation popup** used elsewhere in the dashboard.
+
+   * **View** → Navigate to the **Contract Details page**.
+
+   * **Pin** → Toggle pin state and visually highlight the pinned contract (same behavior as Clients page).
+
+3. **Additional Columns**
+
+   * Add the extra **table columns** mentioned in the attached screenshot.
+   * Ensure columns follow the same **table layout and styling** as other dashboard tables.
+
+4. **Create New Contract**
+
+   * Clicking **Create a New Contract** should open a **popup/modal**.
+   * The popup should match the design used in other dashboard forms.
+
+5. **UI & Behavior**
+
+   * Maintain consistent **dashboard styling, spacing, and responsiveness**.
+   * Ensure icons are always visible in the Action column.
+   * Ensure filtering and actions update dynamically without page reload.
+
+Expected Result:
+
+* Stats boxes filter contracts like the Clients page.
+* Action icons (Edit, Delete, View, Pin) are visible and functional.
+* New columns appear in the table as shown in the screenshot.
+* "Create New Contract" opens a popup.
+* Clicking Edit opens the contract edit page using `/contracts/{contractId}/edit`.
+* UI remains consistent with the existing dashboard.
