@@ -504,6 +504,279 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
           onClick={() => useAppStore.getState().toggleSidebar()}
         />
       )}
+
+      {/* Add Client Modal */}
+      {isAddClientModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsAddClientModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+              <h2 className="text-xl font-bold text-white">Add Client</h2>
+              <button 
+                onClick={() => setIsAddClientModalOpen(false)}
+                className="text-slate-400 hover:text-white p-2 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-8">
+              
+              {/* Company Details Section */}
+              <section className="space-y-6">
+                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Company Details</h3>
+                
+                <div className="space-y-4">
+                  {/* Logo Upload */}
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Company Logo</label>
+                    <div className="w-32 h-32 bg-slate-800/50 border border-slate-700 rounded-xl flex items-center justify-center mb-2">
+                      <Building2 className="w-8 h-8 text-slate-500" />
+                    </div>
+                    <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border border-slate-700">
+                      Upload
+                    </button>
+                  </div>
+
+                  {/* Form Grid 1 */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Name*</label>
+                      <input 
+                        type="text" 
+                        placeholder="Pink Gorilla"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Email</label>
+                      <input 
+                        type="email" 
+                        placeholder="vikas@pinkgorillasoftware.com"
+                        className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-sm text-indigo-300 focus:outline-none transition-all placeholder:text-indigo-400/50" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Phone Number*</label>
+                      <div className="flex">
+                        <select className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
+                          <option>+1</option>
+                        </select>
+                        <input 
+                          type="tel" 
+                          placeholder="9000000001"
+                          className="flex-1 px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Form Grid 2 */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Website</label>
+                      <input 
+                        type="url" 
+                        placeholder="https://pinkgorilla.agency"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Address</label>
+                      <input 
+                        type="text" 
+                        placeholder="po 12, ABCD, lame road, LA, CA"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Default Currency</label>
+                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                        <option>USD</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Form Grid 3 */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Default Time Zone</label>
+                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                        <option>America/Denver</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Language</label>
+                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                        <option>English - US</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Status</label>
+                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                        <option>Brand New</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Form Grid 4 */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Industry</label>
+                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                        <option>Retail Trade</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Year in Business</label>
+                      <input 
+                        type="text" 
+                        placeholder="1"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">No. of Employees</label>
+                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                        <option>1 - 3</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Business Discovery Section */}
+              <section className="space-y-6">
+                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Business Discovery</h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Yelp URL</label>
+                    <input 
+                      type="url" 
+                      placeholder="https://yelp.com/biz/..."
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Google URL</label>
+                    <input 
+                      type="url" 
+                      placeholder="https://google.com/maps/..."
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                    />
+                  </div>
+                </div>
+                
+                <button className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-2">
+                  <Plus className="w-4 h-4" /> Add Link
+                </button>
+
+                <div className="flex items-center justify-between border-t border-slate-800 pt-6">
+                  <span className="text-sm font-medium text-slate-300">Background</span>
+                  <button className="w-11 h-6 bg-slate-700 rounded-full relative transition-colors focus:outline-none cursor-pointer">
+                    <span className="absolute left-1 top-1 w-4 h-4 bg-slate-400 rounded-full transition-transform"></span>
+                  </button>
+                </div>
+              </section>
+
+              {/* Employee Details Section */}
+              <section className="space-y-6">
+                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Employee Details</h3>
+                
+                <div className="border border-slate-700 rounded-xl p-6 space-y-6 bg-slate-800/20">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">First Name</label>
+                      <input 
+                        type="text" 
+                        placeholder="Jordan"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Last Name</label>
+                      <input 
+                        type="text" 
+                        placeholder="Peterson"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
+                      <input 
+                        type="email" 
+                        placeholder="email@domain.com"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Phone</label>
+                      <div className="flex">
+                        <select className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
+                          <option>+1</option>
+                        </select>
+                        <input 
+                          type="tel" 
+                          placeholder="9876543210"
+                          className="flex-1 px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Title</label>
+                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                        <option>HR</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Password</label>
+                      <input 
+                        type="password" 
+                        placeholder="••••••••••"
+                        value="password123"
+                        className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-sm text-indigo-300 focus:outline-none transition-all placeholder:text-indigo-400/50" 
+                        readOnly
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <button className="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors border border-slate-700 flex items-center gap-2">
+                  <Plus className="w-4 h-4" /> Add Another
+                </button>
+              </section>
+
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsAddClientModalOpen(false)}
+                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={() => setIsAddClientModalOpen(false)}
+                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
