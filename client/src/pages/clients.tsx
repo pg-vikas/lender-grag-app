@@ -441,7 +441,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                               <div className="w-8 h-8 rounded bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-colors">
                                 <Building2 className="w-4 h-4" />
                               </div>
-                              <Link href="/client-details">
+                              <Link href={`/clients/${i + 1}`}>
                                 <span className="text-sm font-bold text-white hover:text-cyan-400 transition-colors cursor-pointer">{client.name}</span>
                               </Link>
                             </div>

@@ -1,11 +1,32 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
+import { useLocation, useParams } from "wouter";
 import { Sidebar, Header } from "./clients";
 import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, MessageSquare } from "lucide-react";
 
 export default function ClientDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
+  const [activeTab, setActiveTab] = useState<string>('email');
   const [location] = useLocation();
+  const params = useParams<{ id: string }>();
+
+  // Mock data for the specific client based on ID
+  const clientId = params.id || "1";
+  
+  // Array of mock clients to simulate a database
+  const clientsData = [
+    { id: "1", name: "Pink Gorilla Software", industry: "Information Technology Services", phone: "+1 555 123 4567", email: "contact@pinkgorilla.agency" },
+    { id: "2", name: "Estate Landscape", industry: "Retail Trade", phone: "+1 555 987 6543", email: "info@estatelandscape.com" },
+    { id: "3", name: "Summit Cabinets", industry: "Retail Trade", phone: "+1 555 456 7890", email: "sales@summitcabinets.com" },
+    { id: "90", name: "Test demo1", industry: "Health Care & Hospitals", phone: "+1 789 000 0070", email: "test.demo90@example.com" }
+  ];
+
+  const currentClient = clientsData.find(c => c.id === clientId) || { 
+    id: clientId, 
+    name: `Client ${clientId}`, 
+    industry: "Other", 
+    phone: "---", 
+    email: "---" 
+  };
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -22,7 +43,7 @@ export default function ClientDetailsPage() {
           <div className="max-w-[1400px] mx-auto">
             
             <div className="mb-6 flex items-center justify-between">
-              <h1 className="text-xl font-bold text-white">Client - Luciene Sant'Anna Takagi, PsyD</h1>
+              <h1 className="text-xl font-bold text-white">Client - {currentClient.name}</h1>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-6">
@@ -43,7 +64,7 @@ export default function ClientDetailsPage() {
                   </div>
                   <div className="p-5 space-y-4">
                     <div>
-                      <h3 className="text-[15px] font-bold text-white mb-1">Luciene Sant'Anna Takagi, PsyD</h3>
+                      <h3 className="text-[15px] font-bold text-white mb-1">{currentClient.name}</h3>
                       <span className="inline-block px-2 py-0.5 bg-slate-800 text-slate-400 text-[11px] rounded border border-white/10">No communication yet</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -250,73 +271,162 @@ export default function ClientDetailsPage() {
                   <div className="p-5 border-b border-white/10 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white">Communications</h2>
                     <div className="flex items-center gap-4">
-                      <button className="flex items-center gap-1.5 px-4 py-1.5 bg-[#ec4899] text-white rounded-md text-[13px] font-medium shadow-sm">
+                      <button 
+                        onClick={() => setActiveTab('email')}
+                        className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-[13px] font-medium shadow-sm transition-colors ${activeTab === 'email' ? 'bg-[#ec4899] text-white' : 'text-slate-400 hover:text-white'}`}>
                         <Mail className="w-3.5 h-3.5" /> Email
                       </button>
-                      <button className="flex items-center gap-1.5 text-slate-400 text-[13px] font-medium hover:text-white">
+                      <button 
+                        onClick={() => setActiveTab('sms')}
+                        className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-[13px] font-medium shadow-sm transition-colors ${activeTab === 'sms' ? 'bg-[#ec4899] text-white' : 'text-slate-400 hover:text-white'}`}>
                         <MessageSquare className="w-3.5 h-3.5" /> SMS
                       </button>
-                      <button className="flex items-center gap-1.5 text-slate-400 text-[13px] font-medium hover:text-white">
+                      <button 
+                        onClick={() => setActiveTab('call')}
+                        className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-[13px] font-medium shadow-sm transition-colors ${activeTab === 'call' ? 'bg-[#ec4899] text-white' : 'text-slate-400 hover:text-white'}`}>
                         <Phone className="w-3.5 h-3.5" /> Call
                       </button>
                     </div>
                   </div>
                   
                   <div className="p-6">
-                    <div className="border border-white/10 rounded-lg p-5 bg-slate-900/40 backdrop-blur-xl/50">
-                      <div className="space-y-4">
-                        <div>
-                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">To*</label>
-                          <input type="text" placeholder="Enter recipient email" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
-                          <p className="text-[11px] text-slate-400 mt-1">
-                            Type email address separated by commas to add multiple email address.<br/>
-                            Example: <span className="text-[#ec4899]">demo@pinkgorilla.agency, demo2@pinkgorilla.agency</span>
-                          </p>
-                        </div>
-                        
-                        <div>
-                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">From*</label>
-                          <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none">
-                            <option>Neeraj Kumar (neeraj@pinkgorillasoftware.com)</option>
-                          </select>
-                        </div>
-                        
-                        <div>
-                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Subject*</label>
-                          <input type="text" placeholder="Enter email subject" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
-                        </div>
-                        
-                        <div>
-                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Email Template</label>
-                          <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-slate-400 focus:outline-none">
-                            <option>Select Template</option>
-                          </select>
-                        </div>
-                        
-                        <div>
-                          <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Message*</label>
-                          <div className="border border-white/10 rounded-md bg-slate-900/40 backdrop-blur-xl overflow-hidden flex flex-col">
-                            <div className="flex items-center gap-1 border-b border-white/10 p-1.5 bg-slate-900/40 backdrop-blur-xl/50">
-                              <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="font-bold text-[12px] px-1">B</span></button>
-                              <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="italic text-[12px] px-1">I</span></button>
-                              <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="underline text-[12px] px-1">U</span></button>
-                              <div className="w-[1px] h-4 bg-[#cbd5e1] mx-1"></div>
-                              <button className="p-1 hover:bg-[#e2e8f0] rounded"><svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+                    {activeTab === 'email' && (
+                      <div className="border border-white/10 rounded-lg p-5 bg-slate-900/40 backdrop-blur-xl/50">
+                        <div className="space-y-4">
+                          <div>
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">To*</label>
+                            <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="Enter recipient email" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
+                            <p className="text-[11px] text-slate-400 mt-1">
+                              Type email address separated by commas to add multiple email address.<br/>
+                              Example: <span className="text-[#ec4899]">demo@pinkgorilla.agency, demo2@pinkgorilla.agency</span>
+                            </p>
+                          </div>
+                          
+                          <div>
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">From*</label>
+                            <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none">
+                              <option>Neeraj Kumar (neeraj@pinkgorillasoftware.com)</option>
+                            </select>
+                          </div>
+                          
+                          <div>
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Subject*</label>
+                            <input type="text" placeholder="Enter email subject" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Email Template</label>
+                            <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-slate-400 focus:outline-none">
+                              <option>Select Template</option>
+                            </select>
+                          </div>
+                          
+                          <div>
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Message*</label>
+                            <div className="border border-white/10 rounded-md bg-slate-900/40 backdrop-blur-xl overflow-hidden flex flex-col">
+                              <div className="flex items-center gap-1 border-b border-white/10 p-1.5 bg-slate-900/40 backdrop-blur-xl/50">
+                                <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="font-bold text-[12px] px-1">B</span></button>
+                                <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="italic text-[12px] px-1">I</span></button>
+                                <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="underline text-[12px] px-1">U</span></button>
+                                <div className="w-[1px] h-4 bg-[#cbd5e1] mx-1"></div>
+                                <button className="p-1 hover:bg-[#e2e8f0] rounded"><svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+                              </div>
+                              <textarea className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 p-3 min-h-[150px] resize-none focus:outline-none text-[13px] text-white bg-transparent"></textarea>
                             </div>
-                            <textarea className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 p-3 min-h-[150px] resize-none focus:outline-none text-[13px]"></textarea>
+                          </div>
+                          
+                          <div className="flex justify-between items-center pt-2">
+                            <button className="px-3 py-1.5 border border-white/10 bg-slate-900/40 backdrop-blur-xl text-slate-300 rounded text-[12px] font-medium flex items-center gap-1.5 hover:bg-slate-900/40 backdrop-blur-xl/50">
+                              <Plus className="w-3.5 h-3.5" /> Attach Files
+                            </button>
+                            <button className="px-5 py-2 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-md text-[13px] font-medium transition-colors shadow-sm">
+                              Send Email
+                            </button>
                           </div>
                         </div>
-                        
-                        <div className="flex justify-between items-center pt-2">
-                          <button className="px-3 py-1.5 border border-white/10 bg-slate-900/40 backdrop-blur-xl text-slate-300 rounded text-[12px] font-medium flex items-center gap-1.5 hover:bg-slate-900/40 backdrop-blur-xl/50">
-                            <Plus className="w-3.5 h-3.5" /> Attach Files
-                          </button>
-                          <button className="px-5 py-2 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-md text-[13px] font-medium transition-colors shadow-sm">
-                            Send Email
-                          </button>
+                      </div>
+                    )}
+                    
+                    {activeTab === 'sms' && (
+                      <div className="border border-white/10 rounded-lg p-5 bg-slate-900/40 backdrop-blur-xl/50">
+                        <div className="space-y-4">
+                          <div>
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">To (Phone)*</label>
+                            <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="Enter recipient phone number" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">From*</label>
+                            <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none">
+                              <option>Company Phone (+1 800 123 4567)</option>
+                            </select>
+                          </div>
+                          
+                          <div>
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">SMS Template</label>
+                            <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-slate-400 focus:outline-none">
+                              <option>Select Template</option>
+                            </select>
+                          </div>
+                          
+                          <div>
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Message*</label>
+                            <textarea placeholder="Type your SMS message here..." className="w-full bg-slate-900/80 border border-white/10 rounded-md focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 p-3 min-h-[120px] resize-none focus:outline-none text-[13px] text-white"></textarea>
+                            <div className="flex justify-end mt-1">
+                              <span className="text-[11px] text-slate-500">0/160 characters</span>
+                            </div>
+                          </div>
+                          
+                          <div className="flex justify-end items-center pt-2">
+                            <button className="px-5 py-2 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-md text-[13px] font-medium transition-colors shadow-sm">
+                              Send SMS
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    )}
+
+                    {activeTab === 'call' && (
+                      <div className="border border-white/10 rounded-lg p-5 bg-slate-900/40 backdrop-blur-xl/50">
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-4 mb-2">
+                            <div className="flex-1">
+                              <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">To (Phone)*</label>
+                              <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="Enter phone number" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
+                            </div>
+                            <div className="flex-1">
+                              <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">From*</label>
+                              <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none">
+                                <option>Company Phone (+1 800 123 4567)</option>
+                              </select>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-center justify-center py-6">
+                            <button className="w-16 h-16 rounded-full bg-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-white shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all transform hover:scale-105">
+                              <Phone className="w-6 h-6 fill-white" />
+                            </button>
+                          </div>
+                          
+                          <div className="border-t border-white/10 pt-4 mt-2">
+                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Log Call Notes</label>
+                            <textarea placeholder="Add notes about this call..." className="w-full bg-slate-900/80 border border-white/10 rounded-md focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 p-3 min-h-[100px] resize-none focus:outline-none text-[13px] text-white"></textarea>
+                          </div>
+                          
+                          <div className="flex justify-between items-center pt-2">
+                            <select className="border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-1.5 bg-slate-900/80 rounded-md text-[12px] text-white focus:outline-none">
+                              <option>Call Outcome: Connected</option>
+                              <option>Left Voicemail</option>
+                              <option>No Answer</option>
+                              <option>Wrong Number</option>
+                            </select>
+                            <button className="px-5 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-md text-[13px] font-medium transition-colors shadow-sm">
+                              Log Call
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
