@@ -28,7 +28,8 @@ import {
   Mail,
   Pin,
   Star,
-  Activity
+  Activity,
+  TrendingUp
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { useAppStore } from "@/lib/store";
@@ -348,6 +349,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
   const [isAddClientModalOpen, setIsAddClientModalOpen] = useState(false);
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+  const [isStateSectionOpen, setIsStateSectionOpen] = useState(false);
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
@@ -392,30 +394,82 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 </Button>
               </div>
 
-              {/* Filters */}
-              <div className="glass-panel p-4 mb-6 rounded-2xl border-t border-cyan-500/20">
-                <div className="flex flex-col md:flex-row gap-4">
-                  <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                    <input 
-                      type="text" 
-                      placeholder="Search agencies..." 
-                      className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
-                    />
+              {/* Action Bar & Filters */}
+              <div className="flex flex-col gap-4 mb-6">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-4 glass-panel p-4 rounded-2xl border-t border-cyan-500/20">
+                  <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+                    <div className="relative min-w-[200px] flex-1 md:flex-none">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                      <input 
+                        type="text" 
+                        placeholder="Search..." 
+                        className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                    
+                    <button className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium shrink-0">
+                      Filter <Filter className="w-4 h-4" />
+                    </button>
+
+                    <button 
+                      onClick={() => setIsStateSectionOpen(!isStateSectionOpen)}
+                      className={`p-2.5 border rounded-xl transition-all flex items-center justify-center shrink-0 ${isStateSectionOpen ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-400 shadow-[0_0_10px_rgba(99,102,241,0.2)]' : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-white hover:bg-slate-700'}`}
+                    >
+                      <TrendingUp className="w-5 h-5" />
+                    </button>
+
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-slate-300 font-medium">Tasks 0</span>
+                      <span className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-slate-300 font-medium">Missing Tasks 0</span>
+                    </div>
                   </div>
                   
-                  <div className="flex gap-3">
-                    <select className="px-4 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all appearance-none pr-8 relative">
-                      <option value="">All Industries</option>
-                      <option value="it">IT Services</option>
-                      <option value="retail">Retail</option>
-                    </select>
-                    
+                  <div className="flex items-center gap-3 w-full md:w-auto shrink-0">
                     <button className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium">
-                      <Filter className="w-4 h-4" /> Filters
+                      <Download className="w-4 h-4" /> Export <ChevronDown className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
+
+                {/* State Section Toggle */}
+                {isStateSectionOpen && (
+                  <div className="glass-panel p-6 rounded-2xl border-t border-indigo-500/30 animate-in slide-in-from-top-4 fade-in duration-300 overflow-x-auto scrollbar-hide">
+                    <div className="flex md:grid md:grid-cols-4 lg:grid-cols-8 gap-6 min-w-[800px]">
+                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-purple-500 pb-3">
+                        <span className="text-3xl font-bold text-white">14</span>
+                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Clients</span>
+                      </div>
+                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-purple-400 pb-3">
+                        <span className="text-3xl font-bold text-white">10</span>
+                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Clients</span>
+                      </div>
+                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-indigo-400 pb-3">
+                        <span className="text-3xl font-bold text-white">2</span>
+                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Brand New Clients</span>
+                      </div>
+                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-blue-500 pb-3">
+                        <span className="text-3xl font-bold text-white">1</span>
+                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Lead Clients</span>
+                      </div>
+                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-cyan-500 pb-3">
+                        <span className="text-3xl font-bold text-white">0</span>
+                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nurture Clients</span>
+                      </div>
+                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-orange-400 pb-3">
+                        <span className="text-3xl font-bold text-white">0</span>
+                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Suspended Clients</span>
+                      </div>
+                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-orange-300 pb-3">
+                        <span className="text-3xl font-bold text-white">0</span>
+                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Hot Clients</span>
+                      </div>
+                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-rose-400 pb-3">
+                        <span className="text-3xl font-bold text-white">1</span>
+                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Inactive Clients</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Table */}
