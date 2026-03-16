@@ -92,18 +92,72 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
                     Tasks
                   </div>
                 </Link>
+                <Link href="/growth-kpi">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/growth-kpi' ? 'bg-cyan-500/20 text-cyan-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Growth KPI
+                  </div>
+                </Link>
               </div>
             )}
           </div>
 
-          <Link href="/projects">
-            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/projects') ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+          {/* Launchpads Group */}
+          <div className="relative group">
+            <button 
+              onClick={() => sidebarOpen ? toggleMenu('launchpads') : null}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/projects') || currentPath.includes('/launchpads') ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              title={!sidebarOpen ? "Launchpads" : ""}
+            >
               <div className="flex items-center space-x-3">
-                <FolderOpen className={`w-5 h-5 shrink-0 ${currentPath.includes('/projects') ? 'text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]' : 'group-hover:text-slate-300'}`} />
-                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Projects</span>}
+                <FolderOpen className={`w-5 h-5 shrink-0 ${currentPath.includes('/projects') || currentPath.includes('/launchpads') ? 'text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Launchpads</span>}
               </div>
-            </div>
-          </Link>
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'launchpads' || currentPath.includes('/projects') || currentPath.includes('/launchpads') ? '' : '-rotate-90'}`} />}
+            </button>
+            {useAppStore.getState().sidebarOpen && (openMenus === 'launchpads' || currentPath.includes('/projects') || currentPath.includes('/launchpads')) && (
+              <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
+                <Link href="/projects">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/projects') ? 'bg-purple-500/20 text-purple-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Active Projects
+                  </div>
+                </Link>
+                <Link href="/launchpads/templates">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/launchpads/templates') ? 'bg-purple-500/20 text-purple-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Templates
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Contracts Group */}
+          <div className="relative group">
+            <button 
+              onClick={() => sidebarOpen ? toggleMenu('contracts') : null}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/contracts') ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              title={!sidebarOpen ? "Contracts" : ""}
+            >
+              <div className="flex items-center space-x-3">
+                <FileText className={`w-5 h-5 shrink-0 ${currentPath.includes('/contracts') ? 'text-yellow-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Contracts</span>}
+              </div>
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'contracts' || currentPath.includes('/contracts') ? '' : '-rotate-90'}`} />}
+            </button>
+            {useAppStore.getState().sidebarOpen && (openMenus === 'contracts' || currentPath.includes('/contracts')) && (
+              <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
+                <Link href="/contracts">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/contracts' ? 'bg-yellow-500/20 text-yellow-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Contracts
+                  </div>
+                </Link>
+                <Link href="/contracts/templates">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/contracts/templates' ? 'bg-yellow-500/20 text-yellow-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Templates
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
 
           {/* Sales Group */}
           <div className="relative group">
@@ -143,34 +197,69 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
           <div className="relative group">
             <button 
               onClick={() => sidebarOpen ? toggleMenu('support') : null}
-              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/tickets') ? 'bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/30 shadow-[0_0_15px_rgba(217,70,239,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/tickets') || currentPath.includes('/messages') ? 'bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/30 shadow-[0_0_15px_rgba(217,70,239,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
               title={!sidebarOpen ? "Support" : ""}
             >
               <div className="flex items-center space-x-3">
-                <HelpCircle className={`w-5 h-5 shrink-0 ${currentPath.includes('/tickets') ? 'text-fuchsia-400 drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]' : 'group-hover:text-slate-300'}`} />
+                <HelpCircle className={`w-5 h-5 shrink-0 ${currentPath.includes('/tickets') || currentPath.includes('/messages') ? 'text-fuchsia-400 drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]' : 'group-hover:text-slate-300'}`} />
                 {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Support</span>}
               </div>
-              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'support' || currentPath.includes('/tickets') ? '' : '-rotate-90'}`} />}
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'support' || currentPath.includes('/tickets') || currentPath.includes('/messages') ? '' : '-rotate-90'}`} />}
             </button>
-            {useAppStore.getState().sidebarOpen && (openMenus === 'support' || currentPath.includes('/tickets')) && (
+            {useAppStore.getState().sidebarOpen && (openMenus === 'support' || currentPath.includes('/tickets') || currentPath.includes('/messages')) && (
               <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
                 <Link href="/tickets">
                   <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/tickets') ? 'bg-fuchsia-500/20 text-fuchsia-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
                     Active Tickets
                   </div>
                 </Link>
+                <Link href="/messages">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/messages') ? 'bg-fuchsia-500/20 text-fuchsia-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Messages
+                  </div>
+                </Link>
               </div>
             )}
           </div>
 
-          <Link href="/analytics">
-            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/analytics') ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30 shadow-[0_0_15px_rgba(249,115,22,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+          {/* User Standalone */}
+          <Link href="/users">
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/users') ? 'bg-rose-500/10 text-rose-400 border border-rose-500/30 shadow-[0_0_15px_rgba(244,63,94,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
               <div className="flex items-center space-x-3">
-                <BarChart2 className={`w-5 h-5 shrink-0 ${currentPath.includes('/analytics') ? 'text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]' : 'group-hover:text-slate-300'}`} />
-                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">System Analytics</span>}
+                <User className={`w-5 h-5 shrink-0 ${currentPath.includes('/users') ? 'text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">User</span>}
               </div>
             </div>
           </Link>
+
+          {/* Reports Group */}
+          <div className="relative group">
+            <button 
+              onClick={() => sidebarOpen ? toggleMenu('reports') : null}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/reports') || currentPath.includes('/analytics') ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30 shadow-[0_0_15px_rgba(249,115,22,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              title={!sidebarOpen ? "Reports" : ""}
+            >
+              <div className="flex items-center space-x-3">
+                <BarChart2 className={`w-5 h-5 shrink-0 ${currentPath.includes('/reports') || currentPath.includes('/analytics') ? 'text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Reports</span>}
+              </div>
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'reports' || currentPath.includes('/reports') || currentPath.includes('/analytics') ? '' : '-rotate-90'}`} />}
+            </button>
+            {useAppStore.getState().sidebarOpen && (openMenus === 'reports' || currentPath.includes('/reports') || currentPath.includes('/analytics')) && (
+              <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
+                <Link href="/reports">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/reports' ? 'bg-orange-500/20 text-orange-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Reports
+                  </div>
+                </Link>
+                <Link href="/analytics">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/analytics' ? 'bg-orange-500/20 text-orange-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Performance Report
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
         </nav>
       </div>
       
