@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation, useParams, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, Legend } from "recharts";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, UserPlus, Mail, Phone, FileText, CheckSquare, Calendar, MessageSquare, RefreshCw, Briefcase, CheckCircle, FilePlus, Activity, Image, MessageCircle, Headphones } from "lucide-react";
 
 export default function UserPerformancePage() {
   const [openMenus, setOpenMenus] = useState<string>('reports');
@@ -333,48 +333,36 @@ export default function UserPerformancePage() {
                 </div>
               </div>
 
-              {/* Conversion Breakdown */}
-              <div className="glass-panel p-6 rounded-2xl border border-white/10">
-                <h2 className="text-lg font-medium text-slate-300 mb-6">Conversion Breakdown</h2>
-                <div className="grid grid-cols-2 gap-6 h-full pb-8">
-                  <div className="bg-slate-900/40 rounded-xl p-5 border border-slate-800">
-                    <h3 className="text-sm font-semibold text-slate-300 mb-4 pb-2 border-b border-slate-800 text-center uppercase tracking-wider">Status Check In</h3>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-slate-400">New Lead</span>
-                        <span className="text-white font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(12 * multiplier)}</span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-slate-400">Contacted</span>
-                        <span className="text-white font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(8 * multiplier)}</span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-slate-400">In Progress</span>
-                        <span className="text-white font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(5 * multiplier)}</span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-slate-400">On Hold</span>
-                        <span className="text-white font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(2 * multiplier)}</span>
-                      </div>
-                    </div>
+              {/* Conversion Indicators */}
+              <div className="glass-panel p-6 rounded-2xl border border-white/10 flex flex-col">
+                <h2 className="text-lg font-medium text-slate-300 mb-6">Conversion Indicators</h2>
+                
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="bg-slate-900/40 rounded-xl p-6 flex flex-col items-center justify-center border border-slate-800">
+                    <span className="text-3xl font-semibold text-teal-400 mb-2">{pieData.find(d => d.name === 'Lead Added')?.value || 0}</span>
+                    <span className="text-sm font-medium text-slate-400">Leads Converted</span>
                   </div>
-                  <div className="bg-slate-900/40 rounded-xl p-5 border border-slate-800">
-                    <h3 className="text-sm font-semibold text-slate-300 mb-4 pb-2 border-b border-slate-800 text-center uppercase tracking-wider">Status Check Out</h3>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-slate-400">Won</span>
-                        <span className="text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded">{Math.floor(6 * multiplier)}</span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-slate-400">Lost</span>
-                        <span className="text-rose-400 font-medium bg-rose-500/10 px-2 py-0.5 rounded">{Math.floor(3 * multiplier)}</span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-slate-400">Archived</span>
-                        <span className="text-slate-400 font-medium bg-slate-800 px-2 py-0.5 rounded">{Math.floor(1 * multiplier)}</span>
-                      </div>
-                    </div>
+                  <div className="bg-slate-900/40 rounded-xl p-6 flex flex-col items-center justify-center border border-slate-800">
+                    <span className="text-3xl font-semibold text-purple-400 mb-2">{pieData.find(d => d.name === 'Task Completed')?.value || 0}</span>
+                    <span className="text-sm font-medium text-slate-400">Tasks Completed</span>
                   </div>
+                </div>
+
+                <h3 className="text-sm font-medium text-slate-400 mb-5">Action Breakdown:</h3>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
+                  {pieData.map((item, idx) => (
+                    <div key={idx} className="flex items-center text-sm gap-2">
+                      {item.name === 'Lead Added' && <UserPlus className="w-4 h-4 shrink-0" style={{ color: item.color }} />}
+                      {item.name === 'Email Sent' && <Mail className="w-4 h-4 shrink-0" style={{ color: item.color }} />}
+                      {item.name === 'Call Logged' && <Phone className="w-4 h-4 shrink-0" style={{ color: item.color }} />}
+                      {item.name === 'Note Added' && <FileText className="w-4 h-4 shrink-0" style={{ color: item.color }} />}
+                      {item.name === 'Task Completed' && <CheckSquare className="w-4 h-4 shrink-0" style={{ color: item.color }} />}
+                      {item.name === 'Meeting Set' && <Calendar className="w-4 h-4 shrink-0" style={{ color: item.color }} />}
+                      <span className="text-slate-300 font-medium">{item.name}:</span>
+                      <span className="text-white font-bold">{item.value}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
