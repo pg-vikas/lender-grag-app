@@ -558,7 +558,17 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             </div>
                           </td>
                           <td className="py-4 px-6 text-center">
-                            <span className="inline-flex items-center px-2.5 py-1 rounded text-xs font-bold border text-emerald-400 bg-emerald-400/10 border-emerald-400/20 shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+                            <span className={`inline-flex items-center px-2.5 py-1 rounded text-xs font-bold border ${
+                              client.status === 'Active' ? 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20 shadow-[0_0_10px_rgba(16,185,129,0.1)]' :
+                              client.status === 'Pending' ? 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20 shadow-[0_0_10px_rgba(250,204,21,0.1)]' :
+                              client.status === 'Suspended' ? 'text-red-400 bg-red-400/10 border-red-400/20 shadow-[0_0_10px_rgba(248,113,113,0.1)]' :
+                              client.status === 'Star Client' ? 'text-blue-400 bg-blue-400/10 border-blue-400/20 shadow-[0_0_10px_rgba(96,165,250,0.1)]' :
+                              client.status === 'Brand New' ? 'text-indigo-400 bg-indigo-400/10 border-indigo-400/20 shadow-[0_0_10px_rgba(129,140,248,0.1)]' :
+                              client.status === 'Lead' ? 'text-cyan-400 bg-cyan-400/10 border-cyan-400/20 shadow-[0_0_10px_rgba(34,211,238,0.1)]' :
+                              client.status === 'Nurture' ? 'text-purple-400 bg-purple-400/10 border-purple-400/20 shadow-[0_0_10px_rgba(192,132,252,0.1)]' :
+                              client.status === 'Hot' ? 'text-orange-400 bg-orange-400/10 border-orange-400/20 shadow-[0_0_10px_rgba(251,146,60,0.1)]' :
+                              'text-slate-400 bg-slate-400/10 border-slate-400/20 shadow-[0_0_10px_rgba(148,163,184,0.1)]'
+                            }`}>
                               {client.status}
                             </span>
                           </td>
