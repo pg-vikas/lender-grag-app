@@ -361,9 +361,10 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
   const [isSuspendModalOpen, setIsSuspendModalOpen] = useState(false);
   const [isExportPanelOpen, setIsExportPanelOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
-  const [isStateSectionOpen, setIsStateSectionOpen] = useState(false);
+  const [isStateSectionOpen, setIsStateSectionOpen] = useState(true);
   const [pinnedClients, setPinnedClients] = useState<Set<number>>(new Set());
   const [starredClients, setStarredClients] = useState<Set<number>>(new Set());
+  const [activeFilter, setActiveFilter] = useState<string>('All');
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
@@ -394,10 +395,31 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
 
   const title = isActiveOnly ? "Active Clients" : "Clients";
 
-  const clientsList = [
-    { name: "Pink Gorilla Software", industry: "Information Technology Se...", compliance: false, revenue: "$0.00", billing: "---", contacted: "5 days ago", assigned: "Vinayak Sharma (vinayak@", status: "Active" },
+  const allClients = [
+    { name: "Pink Gorilla Software", industry: "Information Technology", compliance: false, revenue: "$0.00", billing: "---", contacted: "5 days ago", assigned: "Vinayak Sharma (vinayak@", status: "Active" },
     { name: "Estate Landscape", industry: "Retail Trade", compliance: false, revenue: "$0.00", billing: "---", contacted: "---", assigned: "Maria Christina (maria@pir", status: "Active" },
     { name: "Summit Cabinets", industry: "Retail Trade", compliance: false, revenue: "$0.00", billing: "---", contacted: "---", assigned: "Chayan Alavi (chayan@pin", status: "Active" },
+    { name: "NexGen Dynamics", industry: "Software", compliance: true, revenue: "$150.00", billing: "Paid", contacted: "1 day ago", assigned: "Sarah Connor (sarah@pin", status: "Brand New" },
+    { name: "Aqua Pure", industry: "Utilities", compliance: true, revenue: "$50.00", billing: "Pending", contacted: "12 hours ago", assigned: "Mike Ross (mike@pin", status: "Lead" },
+    { name: "HealthPlus+", industry: "Healthcare", compliance: false, revenue: "$0.00", billing: "---", contacted: "1 week ago", assigned: "Vinayak Sharma (vinayak@", status: "Nurture" },
+    { name: "Blocked Co", industry: "Retail Trade", compliance: false, revenue: "$0.00", billing: "---", contacted: "2 months ago", assigned: "Admin", status: "Suspended" },
+    { name: "Red Hot Sales", industry: "Marketing", compliance: true, revenue: "$500.00", billing: "Paid", contacted: "1 hour ago", assigned: "Chayan Alavi (chayan@pin", status: "Hot" },
+    { name: "Old Agency", industry: "Real Estate", compliance: false, revenue: "$0.00", billing: "---", contacted: "6 months ago", assigned: "Maria Christina (maria@pir", status: "Inactive" },
+  ];
+
+  const filteredClients = activeFilter === 'All' 
+    ? allClients 
+    : allClients.filter(c => c.status === activeFilter);
+
+  const stats = [
+    { label: 'Clients', count: allClients.length, colorClass: 'border-purple-500', filterValue: 'All' },
+    { label: 'Active Clients', count: allClients.filter(c=>c.status==='Active').length, colorClass: 'border-purple-400', filterValue: 'Active' },
+    { label: 'Brand New Clients', count: allClients.filter(c=>c.status==='Brand New').length, colorClass: 'border-indigo-400', filterValue: 'Brand New' },
+    { label: 'Lead Clients', count: allClients.filter(c=>c.status==='Lead').length, colorClass: 'border-blue-500', filterValue: 'Lead' },
+    { label: 'Nurture Clients', count: allClients.filter(c=>c.status==='Nurture').length, colorClass: 'border-cyan-500', filterValue: 'Nurture' },
+    { label: 'Suspended Clients', count: allClients.filter(c=>c.status==='Suspended').length, colorClass: 'border-orange-400', filterValue: 'Suspended' },
+    { label: 'Hot Clients', count: allClients.filter(c=>c.status==='Hot').length, colorClass: 'border-orange-300', filterValue: 'Hot' },
+    { label: 'Inactive Clients', count: allClients.filter(c=>c.status==='Inactive').length, colorClass: 'border-rose-400', filterValue: 'Inactive' },
   ];
 
   return (
@@ -474,38 +496,16 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 {isStateSectionOpen && (
                   <div className="glass-panel p-6 rounded-2xl border-t border-indigo-500/30 animate-in slide-in-from-top-4 fade-in duration-300 overflow-x-auto scrollbar-hide">
                     <div className="flex md:grid md:grid-cols-4 lg:grid-cols-8 gap-6 min-w-[800px]">
-                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-purple-500 pb-3">
-                        <span className="text-3xl font-bold text-white">14</span>
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Clients</span>
-                      </div>
-                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-purple-400 pb-3">
-                        <span className="text-3xl font-bold text-white">10</span>
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Clients</span>
-                      </div>
-                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-indigo-400 pb-3">
-                        <span className="text-3xl font-bold text-white">2</span>
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Brand New Clients</span>
-                      </div>
-                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-blue-500 pb-3">
-                        <span className="text-3xl font-bold text-white">1</span>
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Lead Clients</span>
-                      </div>
-                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-cyan-500 pb-3">
-                        <span className="text-3xl font-bold text-white">0</span>
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nurture Clients</span>
-                      </div>
-                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-orange-400 pb-3">
-                        <span className="text-3xl font-bold text-white">0</span>
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Suspended Clients</span>
-                      </div>
-                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-orange-300 pb-3">
-                        <span className="text-3xl font-bold text-white">0</span>
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Hot Clients</span>
-                      </div>
-                      <div className="flex flex-col gap-2 flex-1 border-b-[3px] border-rose-400 pb-3">
-                        <span className="text-3xl font-bold text-white">1</span>
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Inactive Clients</span>
-                      </div>
+                      {stats.map((stat, idx) => (
+                        <div 
+                          key={idx}
+                          onClick={() => setActiveFilter(stat.filterValue)}
+                          className={`flex flex-col gap-2 flex-1 border-b-[3px] pb-3 cursor-pointer transition-all hover:bg-slate-800/30 rounded-t-lg px-2 pt-2 -mx-2 hover:-translate-y-1 ${stat.colorClass} ${activeFilter === stat.filterValue ? 'bg-slate-800/50 shadow-[inset_0_-4px_10px_-4px_rgba(255,255,255,0.1)]' : ''}`}
+                        >
+                          <span className="text-3xl font-bold text-white">{stat.count}</span>
+                          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{stat.label}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}
@@ -527,7 +527,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       </tr>
                     </thead>
                     <tbody>
-                      {clientsList.map((client, i) => {
+                      {filteredClients.map((client, i) => {
                         const isPinned = pinnedClients.has(i);
                         const isStarred = starredClients.has(i);
                         
