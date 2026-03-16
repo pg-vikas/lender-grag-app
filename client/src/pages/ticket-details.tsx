@@ -8,6 +8,8 @@ export default function TicketDetailsPage() {
   const [location, setLocation] = useLocation();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isAddNoteModalOpen, setIsAddNoteModalOpen] = useState(false);
+  const [isReplyModalOpen, setIsReplyModalOpen] = useState(false);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -170,10 +172,16 @@ export default function TicketDetailsPage() {
 
                 {/* Actions */}
                 <div className="flex justify-center gap-3 pt-4">
-                  <button className="px-5 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 hover:bg-slate-900/40 backdrop-blur-xl/50 text-slate-300 rounded-lg text-[14px] font-semibold transition-colors shadow-sm">
+                  <button 
+                    onClick={() => setIsAddNoteModalOpen(true)}
+                    className="px-5 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 hover:bg-slate-900/40 hover:backdrop-blur-xl/50 text-slate-300 rounded-lg text-[14px] font-semibold transition-colors shadow-sm"
+                  >
                     Add A Note
                   </button>
-                  <button className="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg text-[14px] font-semibold transition-colors shadow-sm">
+                  <button 
+                    onClick={() => setIsReplyModalOpen(true)}
+                    className="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg text-[14px] font-semibold transition-colors shadow-sm"
+                  >
                     Reply Support Ticket
                   </button>
                 </div>
@@ -319,6 +327,118 @@ export default function TicketDetailsPage() {
                 </button>
                 <button 
                   onClick={() => setIsEditModalOpen(false)}
+                  className="px-6 py-2 bg-[#8b5cf6] hover:bg-purple-500 text-white rounded-lg transition-all font-medium shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Note Modal */}
+      {isAddNoteModalOpen && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#111827] rounded-xl w-full max-w-2xl border border-slate-800 shadow-2xl flex flex-col my-8">
+            <div className="flex justify-between items-center p-6 border-b border-slate-800">
+              <h2 className="text-xl font-bold text-white">Add Note</h2>
+              <button 
+                onClick={() => setIsAddNoteModalOpen(false)}
+                className="text-slate-400 hover:text-white transition-colors p-1"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Note*</label>
+                <div className="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
+                  <div className="bg-slate-800/50 border-b border-slate-700 p-2 flex gap-1 flex-wrap">
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded font-bold">B</button>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded italic">I</button>
+                    <div className="w-px bg-slate-700 mx-1"></div>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">Link</button>
+                    <div className="w-px bg-slate-700 mx-1"></div>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">Img</button>
+                  </div>
+                  <textarea 
+                    rows={6}
+                    className="w-full px-4 py-3 bg-transparent text-sm text-white focus:outline-none placeholder:text-slate-500 resize-none"
+                    placeholder="Type your note here..."
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-6 border-t border-slate-800 flex justify-between items-center">
+              <span className="text-xs text-slate-500">* Required</span>
+              <div className="flex gap-3">
+                <button 
+                  onClick={() => setIsAddNoteModalOpen(false)}
+                  className="px-6 py-2 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors font-medium"
+                >
+                  Close
+                </button>
+                <button 
+                  onClick={() => setIsAddNoteModalOpen(false)}
+                  className="px-6 py-2 bg-[#8b5cf6] hover:bg-purple-500 text-white rounded-lg transition-all font-medium shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Reply Support Ticket Modal */}
+      {isReplyModalOpen && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-[#111827] rounded-xl w-full max-w-2xl border border-slate-800 shadow-2xl flex flex-col my-8">
+            <div className="flex justify-between items-center p-6 border-b border-slate-800">
+              <h2 className="text-xl font-bold text-white">Reply Support Ticket</h2>
+              <button 
+                onClick={() => setIsReplyModalOpen(false)}
+                className="text-slate-400 hover:text-white transition-colors p-1"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Message*</label>
+                <div className="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
+                  <div className="bg-slate-800/50 border-b border-slate-700 p-2 flex gap-1 flex-wrap">
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded font-bold">B</button>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded italic">I</button>
+                    <div className="w-px bg-slate-700 mx-1"></div>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">Link</button>
+                    <div className="w-px bg-slate-700 mx-1"></div>
+                    <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">Img</button>
+                  </div>
+                  <textarea 
+                    rows={8}
+                    className="w-full px-4 py-3 bg-transparent text-sm text-white focus:outline-none placeholder:text-slate-500 resize-none"
+                    placeholder="Type your reply here..."
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-6 border-t border-slate-800 flex justify-between items-center">
+              <span className="text-xs text-slate-500">* Required</span>
+              <div className="flex gap-3">
+                <button 
+                  onClick={() => setIsReplyModalOpen(false)}
+                  className="px-6 py-2 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors font-medium"
+                >
+                  Close
+                </button>
+                <button 
+                  onClick={() => setIsReplyModalOpen(false)}
                   className="px-6 py-2 bg-[#8b5cf6] hover:bg-purple-500 text-white rounded-lg transition-all font-medium shadow-[0_0_15px_rgba(139,92,246,0.3)]"
                 >
                   Submit
