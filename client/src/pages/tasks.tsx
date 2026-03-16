@@ -1,30 +1,30 @@
 import { useState } from "react";
-import { Search, Pencil, Trash2 } from "lucide-react";
-import { useLocation, useSearch } from "wouter";
+import { Search, Pencil, Trash2, X } from "lucide-react";
+import { useLocation, useSearch, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 const MOCK_TASKS = {
   today: [
-    { id: 1, name: 'Call new lead', client: 'Alpha Corp', dueDateStr: 'Today, 2:00 PM', daysText: 'Due today', isOverdue: false },
-    { id: 2, name: 'Send proposal', client: 'Omega Inc', dueDateStr: 'Today, 5:00 PM', daysText: 'Due today', isOverdue: false },
+    { id: 1, name: 'Call new lead', client: 'Alpha Corp', clientId: 1, dueDateStr: 'Today, 2:00 PM', daysText: 'Due today', isOverdue: false },
+    { id: 2, name: 'Send proposal', client: 'Omega Inc', clientId: 2, dueDateStr: 'Today, 5:00 PM', daysText: 'Due today', isOverdue: false },
   ],
   overdue: [
-    { id: 3, name: 'test 3', client: 'PG Development', dueDateStr: 'Dec 01, 2025', daysText: '105 days overdue', isOverdue: true },
-    { id: 4, name: 'Follow Up', client: 'Juicy Whip', dueDateStr: 'Dec 04, 2025', daysText: '102 days overdue', isOverdue: true },
-    { id: 5, name: 'Follow Up', client: 'PG Development', dueDateStr: 'Dec 05, 2025', daysText: '101 days overdue', isOverdue: true },
-    { id: 6, name: 'Test Task', client: 'Juicy Whip', dueDateStr: 'Dec 05, 2025', daysText: '101 days overdue', isOverdue: true },
-    { id: 7, name: 'Follow Up', client: 'Juicy Whip', dueDateStr: 'Dec 06, 2025', daysText: '100 days overdue', isOverdue: true },
+    { id: 3, name: 'test 3', client: 'PG Development', clientId: 3, dueDateStr: 'Dec 01, 2025', daysText: '105 days overdue', isOverdue: true },
+    { id: 4, name: 'Follow Up', client: 'Juicy Whip', clientId: 4, dueDateStr: 'Dec 04, 2025', daysText: '102 days overdue', isOverdue: true },
+    { id: 5, name: 'Follow Up', client: 'PG Development', clientId: 3, dueDateStr: 'Dec 05, 2025', daysText: '101 days overdue', isOverdue: true },
+    { id: 6, name: 'Test Task', client: 'Juicy Whip', clientId: 4, dueDateStr: 'Dec 05, 2025', daysText: '101 days overdue', isOverdue: true },
+    { id: 7, name: 'Follow Up', client: 'Juicy Whip', clientId: 4, dueDateStr: 'Dec 06, 2025', daysText: '100 days overdue', isOverdue: true },
   ],
   future: [
-    { id: 8, name: 'Quarterly Review', client: 'Beta LLC', dueDateStr: 'Next Week', daysText: '7 days from now', isOverdue: false },
-    { id: 11, name: 'Check-in Meeting', client: 'Delta Co', dueDateStr: 'In 2 Weeks', daysText: '14 days from now', isOverdue: false },
+    { id: 8, name: 'Quarterly Review', client: 'Beta LLC', clientId: 5, dueDateStr: 'Next Week', daysText: '7 days from now', isOverdue: false },
+    { id: 11, name: 'Check-in Meeting', client: 'Delta Co', clientId: 6, dueDateStr: 'In 2 Weeks', daysText: '14 days from now', isOverdue: false },
   ],
   completed: [
-    { id: 9, name: 'Initial setup', client: 'Gamma Group', dueDateStr: 'Last Week', daysText: 'Completed on time', isOverdue: false, isCompleted: true },
+    { id: 9, name: 'Initial setup', client: 'Gamma Group', clientId: 7, dueDateStr: 'Last Week', daysText: 'Completed on time', isOverdue: false, isCompleted: true },
   ],
   missing: [
-    { id: 10, name: 'Upload Logo', client: 'Delta Co', dueDateStr: 'No date set', daysText: 'Action required', isOverdue: true },
-    { id: 12, name: 'Sign Agreement', client: 'Zeta Corp', dueDateStr: 'No date set', daysText: 'Action required', isOverdue: true },
+    { id: 10, name: 'Upload Logo', client: 'Delta Co', clientId: 6, dueDateStr: 'No date set', daysText: 'Action required', isOverdue: true },
+    { id: 12, name: 'Sign Agreement', client: 'Zeta Corp', clientId: 8, dueDateStr: 'No date set', daysText: 'Action required', isOverdue: true },
   ]
 };
 
@@ -36,12 +36,29 @@ export default function TasksPage() {
   const searchParams = new URLSearchParams(searchString || window.location.search);
   const currentTab = searchParams.get('tab') || 'today';
 
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [selectedTask, setSelectedTask] = useState<any>(null);
+
   const handleTabClick = (tab: string) => {
     setLocation(`/tasks?tab=${tab}`);
   };
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const openEditModal = (task: any) => {
+    setSelectedTask(task);
+    setIsEditModalOpen(true);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const openDeleteModal = (task: any) => {
+    setSelectedTask(task);
+    setIsDeleteModalOpen(true);
   };
 
   const tasks = MOCK_TASKS[currentTab as keyof typeof MOCK_TASKS] || [];
@@ -147,7 +164,9 @@ export default function TasksPage() {
                               <span className="text-sm font-semibold text-white">{task.name}</span>
                             </td>
                             <td className="py-4 px-6">
-                              <span className="text-sm text-indigo-400 hover:text-indigo-300 cursor-pointer transition-colors">{task.client}</span>
+                              <Link href={`/clients/${task.clientId}`}>
+                                <span className="text-sm text-indigo-400 hover:text-indigo-300 cursor-pointer transition-colors block">{task.client}</span>
+                              </Link>
                             </td>
                             <td className="py-4 px-6">
                               <div className="flex flex-col gap-0.5">
@@ -157,10 +176,16 @@ export default function TasksPage() {
                             </td>
                             <td className="py-4 px-6">
                               <div className="flex items-center gap-3">
-                                <button className="text-slate-400 hover:text-indigo-400 transition-colors">
+                                <button 
+                                  onClick={() => openEditModal(task)}
+                                  className="text-slate-400 hover:text-indigo-400 transition-colors"
+                                >
                                   <Pencil className="w-4 h-4" />
                                 </button>
-                                <button className="text-slate-400 hover:text-rose-400 transition-colors">
+                                <button 
+                                  onClick={() => openDeleteModal(task)}
+                                  className="text-slate-400 hover:text-rose-400 transition-colors"
+                                >
                                   <Trash2 className="w-4 h-4" />
                                 </button>
                               </div>
@@ -187,6 +212,105 @@ export default function TasksPage() {
           </div>
         </main>
       </div>
+
+      {/* Edit Task Modal */}
+      {isEditModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" 
+          onClick={() => setIsEditModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200" 
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="px-6 py-4 flex justify-between items-center border-b border-slate-800 bg-slate-900/50">
+              <h2 className="text-xl font-bold text-white">Edit Task</h2>
+              <button 
+                onClick={() => setIsEditModalOpen(false)} 
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-5">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Task title*</label>
+                <input 
+                  type="text" 
+                  defaultValue={selectedTask?.name} 
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Due Date</label>
+                <input 
+                  type="text" 
+                  defaultValue="01-12-2025" 
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Assignee</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none">
+                  <option>Jordan (jordan@yopmail.com)</option>
+                  <option>Alex (alex@yopmail.com)</option>
+                  <option>Sam (sam@yopmail.com)</option>
+                </select>
+              </div>
+            </div>
+            
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsEditModalOpen(false)} 
+                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={() => setIsEditModalOpen(false)} 
+                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Task Modal */}
+      {isDeleteModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" 
+          onClick={() => setIsDeleteModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border-t-4 border-t-purple-600 border-x border-b border-slate-700 rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 text-center" 
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="p-8">
+              <h2 className="text-2xl font-bold text-white mb-2">Delete Task</h2>
+              <p className="text-slate-400 mb-8">Are you sure?</p>
+              
+              <div className="flex justify-center gap-4">
+                <button 
+                  onClick={() => setIsDeleteModalOpen(false)} 
+                  className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={() => setIsDeleteModalOpen(false)} 
+                  className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
