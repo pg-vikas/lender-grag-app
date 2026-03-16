@@ -11,7 +11,9 @@ import {
   Zap,
   TrendingUp,
   ShieldAlert,
-  Server
+  Server,
+  Briefcase,
+  ArrowRight
 } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
@@ -330,6 +332,64 @@ export default function Home() {
                   </div>
                 </div>
 
+              </div>
+
+              {/* Projects List Section */}
+              <div className="glass-panel rounded-2xl overflow-hidden border-t border-indigo-500/20 mb-8 mt-6">
+                <div className="p-6 border-b border-white/5 flex justify-between items-center bg-slate-900/50">
+                  <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                    <Briefcase className="w-5 h-5 text-indigo-400" /> Total Projects
+                  </h2>
+                  <Link href="/projects">
+                    <button className="px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 text-sm font-medium hover:bg-slate-700/80 transition-colors flex items-center gap-2">
+                      View All Projects <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </Link>
+                </div>
+                
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left dark-table">
+                    <thead>
+                      <tr>
+                        <th className="py-4 px-6 text-sm font-semibold text-slate-400">Project Name</th>
+                        <th className="py-4 px-6 text-sm font-semibold text-slate-400">Client</th>
+                        <th className="py-4 px-6 text-sm font-semibold text-slate-400">Date</th>
+                        <th className="py-4 px-6 text-sm font-semibold text-slate-400 text-center">Status</th>
+                        <th className="py-4 px-6 text-sm font-semibold text-slate-400 text-center">Priority</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-800/50">
+                      {[
+                        { id: 1, name: 'Add new Status Colum', client: 'Pink Gorilla Softwar...', date: '29 Dec - 29 Dec, 2025', status: 'Completed', statusColor: 'text-emerald-400 border-emerald-400/30', priority: 'Normal', priorityColor: 'text-cyan-400 border-cyan-400/30' },
+                        { id: 2, name: 'SSL Failed on Generated Websites (but no...', client: 'Pink Gorilla Softwar...', date: '22 Dec - 29 Dec, 2025', status: 'Pending Approval', statusColor: 'text-orange-400 border-orange-400/30', priority: 'Urgent', priorityColor: 'text-rose-400 border-rose-400/30' },
+                        { id: 3, name: 'WIREFRAME DESIGN SUMMIT', client: 'PG Development', date: '02 Nov - 09 Nov, 2025', status: 'Completed', statusColor: 'text-emerald-400 border-emerald-400/30', priority: 'Normal', priorityColor: 'text-cyan-400 border-cyan-400/30' },
+                        { id: 4, name: 'Agreement function CRM', client: 'Pink Gorilla Softwar...', date: '15 Oct - 15 Mar, 2026', status: 'Not Started', statusColor: 'text-slate-400 border-slate-500/30', priority: 'Low', priorityColor: 'text-slate-400 border-slate-500/30' },
+                        { id: 5, name: 'Bug Assignee is not selected', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Cancelled', statusColor: 'text-rose-400 border-rose-400/30', priority: 'Normal', priorityColor: 'text-cyan-400 border-cyan-400/30' },
+                        { id: 6, name: 'Dash Board - Pencil Frame HTML', client: 'Pink Gorilla Softwar...', date: '11 Oct - 30 Oct, 2025', status: 'Pending', statusColor: 'text-cyan-400 border-cyan-400/30', priority: 'Normal', priorityColor: 'text-cyan-400 border-cyan-400/30' },
+                      ].map((project, i) => (
+                        <tr key={i} className="hover:bg-slate-800/30 transition-colors">
+                          <td className="py-4 px-6">
+                            <Link href={`/projects/${project.id}`}>
+                              <span className="text-sm font-medium text-white hover:text-indigo-400 transition-colors cursor-pointer">{project.name}</span>
+                            </Link>
+                          </td>
+                          <td className="py-4 px-6 text-sm text-slate-300">{project.client}</td>
+                          <td className="py-4 px-6 text-sm text-slate-400">{project.date}</td>
+                          <td className="py-4 px-6 text-center">
+                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-medium border bg-slate-900/50 min-w-[120px] ${project.statusColor}`}>
+                              {project.status}
+                            </span>
+                          </td>
+                          <td className="py-4 px-6 text-center">
+                            <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-medium border bg-slate-900/50 min-w-[80px] ${project.priorityColor}`}>
+                              {project.priority}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
               
             </div>
