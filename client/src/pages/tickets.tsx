@@ -14,6 +14,7 @@ export default function TicketsPage() {
   const [ticketToDelete, setTicketToDelete] = useState<number | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [ticketToEdit, setTicketToEdit] = useState<number | null>(null);
+  const [selectedUser, setSelectedUser] = useState<any>(null);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -171,7 +172,21 @@ export default function TicketsPage() {
                       <td className="py-4 px-6 font-medium text-white border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
                         <Link href={`/tickets/${ticket.id}`} className="hover:text-indigo-400 transition-colors">{ticket.subject}</Link>
                       </td>
-                      <td className="py-4 px-6 font-medium text-white border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">{ticket.user}</td>
+                      <td className="py-4 px-6 font-medium text-white border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
+                        <button 
+                          onClick={() => setSelectedUser({
+                            name: ticket.user,
+                            email: ticket.user.toLowerCase().replace(' ', '.') + '@example.com',
+                            phone: '+1 555 123 4567',
+                            role: 'Administrator',
+                            dateAdded: '15-08-2025',
+                            lastLogin: 'Just now'
+                          })}
+                          className="hover:text-indigo-400 transition-colors"
+                        >
+                          {ticket.user}
+                        </button>
+                      </td>
                       <td className="py-4 px-6 font-medium text-white border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">{ticket.client}</td>
                       <td className="py-4 px-6 font-medium text-white border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">{ticket.date}</td>
                       <td className="py-4 px-6 border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
@@ -356,6 +371,53 @@ export default function TicketsPage() {
                 >
                   Submit
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* User Details Modal */}
+      {selectedUser && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="glass-panel rounded-2xl border-t border-indigo-500/20 shadow-xl w-full max-w-2xl overflow-hidden flex flex-col relative">
+            <button 
+              onClick={() => setSelectedUser(null)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            <div className="p-8">
+              <div className="mb-6">
+                <div className="w-24 h-24 rounded-full bg-[#93c5fd] text-white flex items-center justify-center mb-4 overflow-hidden shadow-sm">
+                  <svg className="w-16 h-16 text-white mt-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h2 className="text-xl font-medium text-[#e2e8f0]">{selectedUser.name}</h2>
+                <p className="text-slate-400 text-[15px]">{selectedUser.email}</p>
+              </div>
+              
+              <div className="h-[1px] w-full bg-[#e2e8f0] mb-8"></div>
+              
+              <div className="grid grid-cols-2 gap-y-8 gap-x-12">
+                <div>
+                  <h3 className="text-[#e2e8f0] font-medium mb-1">Phone</h3>
+                  <p className="text-slate-300">{selectedUser.phone || '---'}</p>
+                </div>
+                <div>
+                  <h3 className="text-[#e2e8f0] font-medium mb-1">Designation</h3>
+                  <p className="text-slate-300">{selectedUser.role}</p>
+                </div>
+                <div>
+                  <h3 className="text-[#e2e8f0] font-medium mb-1">Date Added</h3>
+                  <p className="text-slate-300">{selectedUser.dateAdded || '---'}</p>
+                </div>
+                <div>
+                  <h3 className="text-[#e2e8f0] font-medium mb-1">Last Seen</h3>
+                  <p className="text-slate-300">{selectedUser.lastLogin}</p>
+                </div>
               </div>
             </div>
           </div>
