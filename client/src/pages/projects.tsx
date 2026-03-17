@@ -51,16 +51,14 @@ export default function ProjectsPage() {
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
-      <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
+      <Sidebar openMenus="" toggleMenu={() => {}} currentPath={location} />
 
       <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Projects" />
 
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
-          <div className="max-w-7xl mx-auto">
-            <h1 className="text-[22px] font-semibold text-white mb-6">Projects</h1>
-
-            <div className="flex items-center justify-between mb-8">
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative scrollbar-hide">
+          <div className="max-w-7xl mx-auto space-y-6">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <span className="text-sm font-medium text-slate-300">View:</span>
                 <div className="flex items-center gap-2">

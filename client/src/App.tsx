@@ -19,6 +19,7 @@ import PaymentsPage from "@/pages/payments";
 import ContractsPage from "@/pages/contracts";
 import ContractDetailsPage from "@/pages/contract-details";
 import TemplatesPage from "@/pages/templates";
+import LaunchpadsPage from "@/pages/launchpads";
 import TicketsPage from "@/pages/tickets";
 import TicketCreatePage from "@/pages/tickets-create";
 import TicketDetailsPage from "@/pages/ticket-details";
@@ -45,6 +46,7 @@ function Router() {
       <Route path="/tasks" component={TasksPage} />
       <Route path="/projects" component={ProjectsPage} />
       <Route path="/projects/:id" component={ProjectDetailsPage} />
+      <Route path="/launchpads" component={LaunchpadsPage} />
       <Route path="/invoices" component={InvoicesPage} />
       <Route path="/invoices/:id" component={InvoiceDetailsPage} />
       <Route path="/subscriptions" component={SubscriptionsPage} />

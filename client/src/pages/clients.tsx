@@ -38,7 +38,8 @@ import {
   UploadCloud,
   Bold,
   Italic,
-  Underline
+  Underline,
+  Rocket
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { useAppStore } from "@/lib/store";
@@ -111,34 +112,39 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             )}
           </div>
 
-          {/* Launchpads Group */}
+          {/* Projects Group */}
           <div className="relative group">
             <button 
-              onClick={() => sidebarOpen ? toggleMenu('launchpads') : null}
-              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/projects') || currentPath.includes('/launchpads') ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
-              title={!sidebarOpen ? "Launchpads" : ""}
+              onClick={() => sidebarOpen ? toggleMenu('projects') : null}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/projects') ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              title={!sidebarOpen ? "Projects" : ""}
             >
               <div className="flex items-center space-x-3">
-                <FolderOpen className={`w-5 h-5 shrink-0 ${currentPath.includes('/projects') || currentPath.includes('/launchpads') ? 'text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]' : 'group-hover:text-slate-300'}`} />
-                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Launchpads</span>}
+                <FolderOpen className={`w-5 h-5 shrink-0 ${currentPath.includes('/projects') ? 'text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Projects</span>}
               </div>
-              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'launchpads' || currentPath.includes('/projects') || currentPath.includes('/launchpads') ? '' : '-rotate-90'}`} />}
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'projects' || currentPath.includes('/projects') ? '' : '-rotate-90'}`} />}
             </button>
-            {useAppStore.getState().sidebarOpen && (openMenus === 'launchpads' || currentPath.includes('/projects') || currentPath.includes('/launchpads')) && (
+            {useAppStore.getState().sidebarOpen && (openMenus === 'projects' || currentPath.includes('/projects')) && (
               <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
                 <Link href="/projects">
                   <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/projects') ? 'bg-purple-500/20 text-purple-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
                     Active Projects
                   </div>
                 </Link>
-                <Link href="/launchpads/templates">
-                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/launchpads/templates') ? 'bg-purple-500/20 text-purple-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
-                    Templates
-                  </div>
-                </Link>
               </div>
             )}
           </div>
+
+          {/* Launchpads Standalone */}
+          <Link href="/launchpads">
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/launchpads') ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+              <div className="flex items-center space-x-3">
+                <Rocket className={`w-5 h-5 shrink-0 ${currentPath.includes('/launchpads') ? 'text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Launchpads</span>}
+              </div>
+            </div>
+          </Link>
 
           {/* Contracts Group */}
           <div className="relative group">
@@ -1410,7 +1416,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 onClick={() => {
                   // Client export logic
                   import('xlsx').then(XLSX => {
-                    const ws = XLSX.utils.json_to_sheet(clientsList);
+                    const ws = XLSX.utils.json_to_sheet(allClients);
                     const wb = XLSX.utils.book_new();
                     XLSX.utils.book_append_sheet(wb, ws, "Clients");
                     XLSX.writeFile(wb, "clients_export.xlsx");
