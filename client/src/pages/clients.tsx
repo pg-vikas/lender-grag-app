@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { 
   Menu, 
@@ -425,6 +425,21 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
     });
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setActiveDropdown(null);
+    };
+    
+    if (activeDropdown !== null) {
+      document.addEventListener('click', handleClickOutside);
+    }
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [activeDropdown]);
+
   const title = isActiveOnly ? "Active Clients" : "Clients";
 
   const allClients = [
@@ -632,34 +647,52 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             </span>
                           </td>
                           <td className="py-4 px-6 text-right relative">
-                            <div className="flex items-center justify-end gap-2">
-                              <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative">
-                                <Eye className="w-4 h-4" />
-                                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">View Details</span>
-                              </button>
-                              <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" onClick={(e) => { e.stopPropagation(); setIsEditClientModalOpen(true); }}>
-                                <Edit className="w-4 h-4" />
-                                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Edit Client</span>
-                              </button>
-                              <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" onClick={(e) => { e.stopPropagation(); setIsSendMailModalOpen(true); }}>
-                                <Mail className="w-4 h-4" />
-                                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Send Email</span>
-                              </button>
-                              <button 
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  togglePin(i);
-                                }}
-                                className={`p-2 rounded-lg transition-colors group/tooltip relative ${pinnedClients.has(i) ? 'text-indigo-400 bg-slate-800' : 'text-slate-400 hover:text-indigo-400 hover:bg-slate-800'}`}
-                              >
-                                 <Pin className="w-4 h-4" />
-                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">{pinnedClients.has(i) ? 'Unpin Client' : 'Pin Client'}</span>
-                              </button>
-                              <button className="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" onClick={(e) => { e.stopPropagation(); setIsSuspendModalOpen(true); }}>
-                                <Trash2 className="w-4 h-4" />
-                                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Delete Client</span>
-                              </button>
-                            </div>
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveDropdown(activeDropdown === i ? null : i);
+                              }}
+                              className="bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ml-auto"
+                            >
+                              Action <ChevronDown className="w-4 h-4" />
+                            </button>
+
+                            {activeDropdown === i && (
+                              <div className="absolute right-6 top-full mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95">
+                                <div className="py-1">
+                                  <button 
+                                    onClick={(e) => { e.stopPropagation(); setIsSuspendModalOpen(true); setActiveDropdown(null); }}
+                                    className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                  >
+                                    <Trash2 className="w-4 h-4 text-rose-400" /> Delete
+                                  </button>
+                                  <button 
+                                    onClick={(e) => { e.stopPropagation(); setIsEditClientModalOpen(true); setActiveDropdown(null); }}
+                                    className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                  >
+                                    <Edit className="w-4 h-4 text-teal-400" /> Edit
+                                  </button>
+                                  <button 
+                                    onClick={(e) => { e.stopPropagation(); setIsSendMailModalOpen(true); setActiveDropdown(null); }}
+                                    className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                  >
+                                    <Mail className="w-4 h-4 text-purple-400" /> Send email
+                                  </button>
+                                  <button 
+                                    onClick={(e) => { e.stopPropagation(); togglePin(i); setActiveDropdown(null); }}
+                                    className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                  >
+                                    <Pin className={`w-4 h-4 ${pinnedClients.has(i) ? 'text-indigo-400 fill-indigo-400' : 'text-slate-400'}`} /> Pinning
+                                  </button>
+                                  <button 
+                                    onClick={(e) => { e.stopPropagation(); toggleStar(i); setActiveDropdown(null); }}
+                                    className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                  >
+                                    <Star className={`w-4 h-4 ${starredClients.has(i) ? 'text-yellow-400 fill-yellow-400' : 'text-slate-400'}`} /> Star Client
+                                  </button>
+                                </div>
+                              </div>
+                            )}
                           </td>
                         </tr>
                           );
