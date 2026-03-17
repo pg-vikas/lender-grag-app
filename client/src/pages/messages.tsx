@@ -55,9 +55,11 @@ export default function MessagesPage() {
       unread: 0,
       status: "offline",
       messages: [
-        { id: 1, sender: 'customer', text: "How do I update my profile picture?", time: "2:15 PM", status: "read" },
-        { id: 2, sender: 'support', text: "Hi Sarah! You can update your profile picture by going to Settings > Profile > Avatar and clicking 'Upload'.", time: "2:20 PM", status: "read" },
-        { id: 3, sender: 'customer', text: "Thank you, that solved my problem!", time: "2:45 PM", status: "read" }
+        { id: 1, sender: 'customer', text: "Hi, I'm having trouble finding the setting to update my profile picture.", time: "2:10 PM", status: "read" },
+        { id: 2, sender: 'support', text: "Hello Sarah! I can certainly help you with that.", time: "2:12 PM", status: "read" },
+        { id: 3, sender: 'customer', text: "Great, how do I do it?", time: "2:15 PM", status: "read" },
+        { id: 4, sender: 'support', text: "You can update your profile picture by going to Settings > Profile > Avatar and clicking 'Upload'.", time: "2:20 PM", status: "read" },
+        { id: 5, sender: 'customer', text: "Thank you, that solved my problem!", time: "2:45 PM", status: "read" }
       ]
     },
     {
@@ -66,14 +68,16 @@ export default function MessagesPage() {
       email: "mike.j@techcorp.com",
       avatar: "MJ",
       color: "bg-rose-500",
-      lastMessage: "Is the API down right now?",
-      time: "Yesterday",
-      unread: 0,
+      lastMessage: "Thanks for the update. Do you have an ETA?",
+      time: "9:15 AM",
+      unread: 1,
       status: "away",
       messages: [
         { id: 1, sender: 'customer', text: "Is the API down right now?", time: "9:05 AM", status: "read" },
-        { id: 2, sender: 'support', text: "Hello Mike. We are currently experiencing some degraded performance on our US-East endpoints. Our team is actively working on it.", time: "9:12 AM", status: "read" },
-        { id: 3, sender: 'support', text: "You can check our status page at status.gorillahub.com for real-time updates.", time: "9:13 AM", status: "read" }
+        { id: 2, sender: 'support', text: "Hello Mike. We are currently experiencing some degraded performance on our US-East endpoints.", time: "9:11 AM", status: "read" },
+        { id: 3, sender: 'support', text: "Our engineering team is actively working on resolving it.", time: "9:12 AM", status: "read" },
+        { id: 4, sender: 'support', text: "You can check our status page at status.gorillahub.com for real-time updates.", time: "9:13 AM", status: "read" },
+        { id: 5, sender: 'customer', text: "Thanks for the update. Do you have an ETA?", time: "9:15 AM", status: "unread" }
       ]
     },
     {
@@ -82,12 +86,16 @@ export default function MessagesPage() {
       email: "emily@designstudio.net",
       avatar: "EC",
       color: "bg-purple-500",
-      lastMessage: "I'd like to upgrade my plan.",
+      lastMessage: "I would like to pay annually if there is a discount.",
       time: "Mon",
       unread: 0,
       status: "online",
       messages: [
-        { id: 1, sender: 'customer', text: "Hi there, I'd like to upgrade my plan.", time: "11:20 AM", status: "read" }
+        { id: 1, sender: 'customer', text: "Hi there, I'd like to upgrade my plan.", time: "11:20 AM", status: "read" },
+        { id: 2, sender: 'support', text: "Hi Emily! Thanks for reaching out. We have Pro and Enterprise plans available.", time: "11:25 AM", status: "read" },
+        { id: 3, sender: 'customer', text: "What's the main difference between Pro and Enterprise?", time: "11:30 AM", status: "read" },
+        { id: 4, sender: 'support', text: "Enterprise includes dedicated account management, custom SLA, and priority support.", time: "11:35 AM", status: "read" },
+        { id: 5, sender: 'customer', text: "I think Pro is enough for us right now. I would like to pay annually if there is a discount.", time: "11:40 AM", status: "read" }
       ]
     },
     {
@@ -96,13 +104,16 @@ export default function MessagesPage() {
       email: "david.w@retailer.com",
       avatar: "DW",
       color: "bg-amber-500",
-      lastMessage: "When will the new reporting features be available?",
+      lastMessage: "I will keep an eye out for the email.",
       time: "Last week",
       unread: 0,
       status: "offline",
       messages: [
-        { id: 1, sender: 'customer', text: "When will the new reporting features be available?", time: "4:30 PM", status: "read" },
-        { id: 2, sender: 'support', text: "Hi David! We are aiming to release the new reporting features in Q3. We'll send an email announcement once they're live.", time: "4:45 PM", status: "read" }
+        { id: 1, sender: 'customer', text: "Hi, I saw a preview of the new reporting features.", time: "4:28 PM", status: "read" },
+        { id: 2, sender: 'customer', text: "When will the new reporting features be available?", time: "4:30 PM", status: "read" },
+        { id: 3, sender: 'support', text: "Hi David! We are aiming to release the new reporting features in Q3.", time: "4:45 PM", status: "read" },
+        { id: 4, sender: 'support', text: "We'll send an email announcement once they're live and available in your dashboard.", time: "4:46 PM", status: "read" },
+        { id: 5, sender: 'customer', text: "Sounds good, thanks. I will keep an eye out for the email.", time: "5:00 PM", status: "read" }
       ]
     }
   ]);
@@ -178,8 +189,11 @@ export default function MessagesPage() {
                     {filteredThreads.map((thread) => (
                       <button
                         key={thread.id}
-                        onClick={() => setActiveThreadId(thread.id)}
-                        className={`w-full p-4 flex items-start gap-3 border-b border-slate-800/30 transition-all hover:bg-slate-800/40 text-left ${activeThreadId === thread.id ? 'bg-indigo-500/10 border-l-2 border-l-indigo-500' : 'border-l-2 border-l-transparent'}`}
+                        onClick={() => {
+                          setActiveThreadId(thread.id);
+                          setThreads(prev => prev.map(t => t.id === thread.id ? { ...t, unread: 0 } : t));
+                        }}
+                        className={`w-full p-4 flex items-start gap-3 border-b border-slate-800/30 transition-all hover:bg-slate-800/40 text-left ${activeThreadId === thread.id ? 'bg-indigo-500/10 border-l-2 border-l-indigo-500' : thread.unread > 0 ? 'bg-slate-800/30 border-l-2 border-l-transparent' : 'border-l-2 border-l-transparent'}`}
                       >
                         <div className="relative shrink-0">
                           <div className={`w-10 h-10 rounded-full ${thread.color} text-white flex items-center justify-center font-semibold text-sm shadow-sm`}>
@@ -190,17 +204,17 @@ export default function MessagesPage() {
                         
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between mb-1">
-                            <h3 className={`text-sm font-medium truncate ${activeThreadId === thread.id ? 'text-indigo-300' : 'text-slate-200'}`}>
+                            <h3 className={`text-sm truncate ${activeThreadId === thread.id ? 'text-indigo-300 font-semibold' : thread.unread > 0 ? 'text-white font-bold' : 'text-slate-300 font-medium'}`}>
                               {thread.name}
                             </h3>
-                            <span className="text-xs text-slate-500 shrink-0 ml-2">{thread.time}</span>
+                            <span className={`text-xs shrink-0 ml-2 ${thread.unread > 0 ? 'text-indigo-400 font-semibold' : 'text-slate-500'}`}>{thread.time}</span>
                           </div>
                           <div className="flex items-center justify-between gap-2">
                             <p className={`text-xs truncate ${thread.unread > 0 ? 'text-slate-300 font-medium' : 'text-slate-500'}`}>
                               {thread.lastMessage}
                             </p>
                             {thread.unread > 0 && (
-                              <span className="w-4 h-4 rounded-full bg-indigo-500 text-[10px] font-bold text-white flex items-center justify-center shrink-0">
+                              <span className="w-4 h-4 rounded-full bg-indigo-500 text-[10px] font-bold text-white flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(99,102,241,0.5)]">
                                 {thread.unread}
                               </span>
                             )}
