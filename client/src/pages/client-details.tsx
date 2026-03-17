@@ -33,7 +33,7 @@ export default function ClientDetailsPage() {
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
-  const [isChoosePlanModalOpen, setIsChoosePlanModalOpen] = useState(false);
+  const [isEditBackgroundModalOpen, setIsEditBackgroundModalOpen] = useState(false);
   const [selectedPlanTab, setSelectedPlanTab] = useState<'plans' | 'checkout'>('plans');
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
   const [expandedPlans, setExpandedPlans] = useState<Record<string, boolean>>({});
@@ -367,7 +367,10 @@ export default function ClientDetailsPage() {
                 <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
                   <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
                     <span className="font-semibold text-white text-[14px]">Background</span>
-                    <button className="text-indigo-400">
+                    <button 
+                      onClick={() => setIsEditBackgroundModalOpen(true)}
+                      className="text-indigo-400 hover:text-indigo-300 transition-colors"
+                    >
                       <Edit2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -1244,6 +1247,83 @@ export default function ClientDetailsPage() {
           </div>
         </div>
       )}
+      {/* Edit Background Modal */}
+      {isEditBackgroundModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsEditBackgroundModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-lg font-semibold text-white">Edit Background</h2>
+              <button 
+                onClick={() => setIsEditBackgroundModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Body */}
+            <div className="p-6">
+              <div className="mb-4">
+                <label className="block text-[13px] font-medium text-slate-300 mb-2">Background</label>
+                
+                {/* Mock Rich Text Editor */}
+                <div className="border border-slate-700 rounded-lg overflow-hidden bg-slate-900/50">
+                  {/* Toolbar */}
+                  <div className="flex flex-wrap items-center gap-1 p-2 border-b border-slate-700 bg-slate-800/50 text-slate-400">
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><span className="font-bold font-serif px-1">B</span></button>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+                    <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></button>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="10" y1="18" x2="21" y2="18"></line><polyline points="3 6 4 7 6 5"></polyline><polyline points="3 12 4 13 6 11"></polyline><polyline points="3 18 4 19 6 17"></polyline></svg></button>
+                    <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></button>
+                    <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="15" y1="12" x2="3" y2="12"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg></button>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="12" x2="3" y2="12"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="19" y1="12" x2="5" y2="12"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg></button>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="21" y1="6" x2="9" y2="6"></line><line x1="21" y1="12" x2="3" y2="12"></line><line x1="21" y1="18" x2="9" y2="18"></line></svg></button>
+                    <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></button>
+                    <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></button>
+                    <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></button>
+                  </div>
+                  
+                  {/* Editor Area */}
+                  <div className="p-3 bg-slate-800/30">
+                    <textarea 
+                      defaultValue="https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists"
+                      className="w-full h-48 bg-slate-800/50 border border-slate-700/50 rounded p-4 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 resize-none custom-scrollbar"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Footer */}
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsEditBackgroundModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={() => setIsEditBackgroundModalOpen(false)}
+                className="px-5 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)]"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Analytics Modal */}
       {isAnalyticsModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
