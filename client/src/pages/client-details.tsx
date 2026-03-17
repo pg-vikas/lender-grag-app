@@ -83,8 +83,16 @@ export default function ClientDetailsPage() {
         "Website Design & Rebranding Up to 10 Pages",
         "Responsive design (mobile/tablet optimization)",
         "Domain Registration & Automated Web Renewal",
-        "SSL Setup, Management and Renewal Service",
-        "Shared Hosting Management & 99.9% Uptime"
+        "SSL Setup, Management and Renewal Serivce",
+        "Shared Hosting Management & 99.9% Uptime",
+        "Social Icons - Facebook, Youtube, LinkedIn, Yelp, Google",
+        "Extra Pages, Google Profile, Social Feed",
+        "Dedicated Account Manager",
+        "3 Professional Dedicated Email Address Service",
+        "Analytics and Statistics Profiles",
+        "Dedicated Backend Software Dashboard",
+        "Dedicated Backend Software Dashboard - CRM",
+        "Dedicated Backend Software Dashboard - Project Tracker"
       ]
     },
     {
@@ -98,8 +106,16 @@ export default function ClientDetailsPage() {
         "Website Design & Rebranding Up to 25 Pages",
         "Responsive design (mobile/tablet optimization)",
         "Domain Registration & Automated Web Renewal",
-        "SSL Setup, Management and Renewal Service",
-        "Dedicated Hosting Management & 99.9% Uptime"
+        "SSL Setup, Management and Renewal Serivce",
+        "Dedicated Hosting Management & 99.9% Uptime",
+        "Social Icons - Facebook, Youtube, LinkedIn, Yelp, Google",
+        "Extra Pages, Google Profile, Social Feed",
+        "Dedicated Account Manager",
+        "3 Professional Dedicated Email Address Service",
+        "Analytics and Statistics Profiles",
+        "Dedicated Backend Software Dashboard",
+        "Dedicated Backend Software Dashboard - CRM",
+        "Dedicated Backend Software Dashboard - Project Tracker"
       ]
     },
     {
@@ -113,8 +129,20 @@ export default function ClientDetailsPage() {
         "Website Design & Rebranding Unlimited Pages",
         "Responsive design (mobile/tablet optimization)",
         "Domain Registration & Automated Web Renewal",
-        "SSL Setup, Management and Renewal Service",
-        "Cloud Hosting Management & 99.9% Uptime"
+        "SSL Setup, Management and Renewal Serivce",
+        "Cloud Hosting Management & 99.9% Uptime",
+        "Social Icons - Facebook, Youtube, LinkedIn, Yelp, Google",
+        "Extra Pages, Google Profile, Social Feed",
+        "Dedicated Account Manager",
+        "20 Professional Dedicated Email Address Service",
+        "Analytics and Statistics Profiles",
+        "Dedicated Backend Software Dashboard",
+        "Dedicated Backend Software Dashboard - CRM",
+        "Dedicated Backend Software Dashboard - Project Tracker",
+        "Dedicated Backend Software Dashboard - Billing Tool",
+        "Dedicated Backend Software Dashboard - Social Media Manager",
+        "Dedicated Backend Software Dashboard - Support Ticket Manager",
+        "Dedicated Backend Software Dashboard - Chat Manager"
       ]
     },
     {

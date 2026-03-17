@@ -1,0 +1,42 @@
+Task: Implement Themed "Choose Plan" Popup Using Screenshots for Content
+
+Requirements:
+
+1. **Choose Plan Button**
+   - Clicking the **Choose Plan** button opens the **Choose Plan** popup.
+   - Use the **dashboard/other popup theme** for styling (not the attached screenshots).  
+   - The attached screenshots are only for **plan content**, not styling.
+
+2. **Plan Cards**
+   - Each plan should display the content exactly as shown in the screenshots.  
+   - Ensure all content is **fully visible, readable, and properly aligned**.
+
+3. **Per-Plan Read More / Read Less**
+   - Each plan card should have a **Read More / Read Less** button at the bottom.  
+   - Clicking **Read More** expands the full description; **Read Less** collapses it.  
+   - Maintain proper spacing and alignment for expanded content.
+
+4. **Plan Selection / Tab Navigation**
+   - Each plan card should have a **Choose Plan** button.  
+   - Clicking it navigates to the **next tab** within the popup.  
+   - Smooth transition and proper state handling required.
+
+5. **Agreement Link**
+   - Include an **Agreement** link inside the popup.  
+   - Clicking it opens the **Contract page**.  
+   - Maintain visibility and styling consistent with the theme.
+
+6. **UI & Responsiveness**
+   - Follow the **dashboard/other popup theme**: fonts, colors, buttons, spacing, hover effects.  
+   - Ensure content inside each plan card is fully visible and readable.  
+   - Popup must be responsive across all devices.
+
+Expected Result:
+
+- Clicking **Choose Plan** opens a themed popup with all plan cards.  
+- Plan content matches the attached screenshots.  
+- Each plan has a **Read More / Read Less** button that expands/collapses description smoothly.  
+- Clicking **Choose Plan** in a plan navigates to the next tab.  
+- Clicking **Agreement** opens the Contract page.  
+- Popup is fully responsive, visually aligned with the dashboard theme, and all interactions work smoothly.  
+- Content is clearly visible, readable, and properly aligned.
