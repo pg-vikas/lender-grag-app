@@ -10,7 +10,7 @@ export default function ProjectsPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isExportPanelOpen, setIsExportPanelOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'table' | 'board'>('table');
-  const [statusFilter, setStatusFilter] = useState<'all' | 'completed' | 'in_progress'>('all');
+  const [statusFilter, setStatusFilter] = useState<'all' | 'completed' | 'in_progress' | 'on_hold'>('all');
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
@@ -31,10 +31,19 @@ export default function ProjectsPage() {
     if (statusFilter === 'completed') {
       return project.status === 'Completed';
     } else if (statusFilter === 'in_progress') {
-      return project.status !== 'Completed';
+      return project.status === 'In Progress';
+    } else if (statusFilter === 'on_hold') {
+      return project.status === 'On Hold';
     }
     return true; // 'all'
   });
+
+  const stats = {
+    all: projectsList.length,
+    in_progress: projectsList.filter(p => p.status === 'In Progress').length,
+    on_hold: projectsList.filter(p => p.status === 'On Hold').length,
+    completed: projectsList.filter(p => p.status === 'Completed').length,
+  };
 
   const getStatusStyle = (status: string) => {
     if (status === 'Pending Approval') return 'text-orange-500 border border-orange-200 bg-orange-50/50';
@@ -154,25 +163,37 @@ export default function ProjectsPage() {
             {/* Stats Row */}
             <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8 shadow-sm border border-white/10">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div className="flex flex-col group cursor-pointer">
-                  <span className="text-[28px] font-medium text-white mb-1">181</span>
-                  <span className="text-[13px] text-slate-500 mb-4">All</span>
-                  <div className="h-[3px] w-full rounded-full bg-indigo-500" />
+                <div 
+                  className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'all' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
+                  onClick={() => setStatusFilter('all')}
+                >
+                  <span className="text-[28px] font-medium text-white mb-1">{stats.all}</span>
+                  <span className={`text-[13px] mb-4 ${statusFilter === 'all' ? 'text-indigo-400' : 'text-slate-500'}`}>All</span>
+                  <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'all' ? 'bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]' : 'bg-indigo-500/30 group-hover:bg-indigo-500/60'}`} />
                 </div>
-                <div className="flex flex-col group cursor-pointer">
-                  <span className="text-[28px] font-medium text-white mb-1">15</span>
-                  <span className="text-[13px] text-slate-500 mb-4">In Progress</span>
-                  <div className="h-[3px] w-full rounded-full bg-[#a855f7]" />
+                <div 
+                  className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'in_progress' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
+                  onClick={() => setStatusFilter('in_progress')}
+                >
+                  <span className="text-[28px] font-medium text-white mb-1">{stats.in_progress}</span>
+                  <span className={`text-[13px] mb-4 ${statusFilter === 'in_progress' ? 'text-indigo-400' : 'text-slate-500'}`}>In Progress</span>
+                  <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'in_progress' ? 'bg-[#a855f7] shadow-[0_0_10px_rgba(168,85,247,0.5)]' : 'bg-[#a855f7]/30 group-hover:bg-[#a855f7]/60'}`} />
                 </div>
-                <div className="flex flex-col group cursor-pointer">
-                  <span className="text-[28px] font-medium text-white mb-1">1</span>
-                  <span className="text-[13px] text-slate-500 mb-4">On Hold</span>
-                  <div className="h-[3px] w-full rounded-full bg-[#fdba74]" />
+                <div 
+                  className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'on_hold' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
+                  onClick={() => setStatusFilter('on_hold')}
+                >
+                  <span className="text-[28px] font-medium text-white mb-1">{stats.on_hold}</span>
+                  <span className={`text-[13px] mb-4 ${statusFilter === 'on_hold' ? 'text-indigo-400' : 'text-slate-500'}`}>On Hold</span>
+                  <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'on_hold' ? 'bg-[#fdba74] shadow-[0_0_10px_rgba(253,186,116,0.5)]' : 'bg-[#fdba74]/30 group-hover:bg-[#fdba74]/60'}`} />
                 </div>
-                <div className="flex flex-col group cursor-pointer">
-                  <span className="text-[28px] font-medium text-white mb-1">95</span>
-                  <span className="text-[13px] text-slate-500 mb-4">Completed</span>
-                  <div className="h-[3px] w-full rounded-full bg-indigo-500" />
+                <div 
+                  className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'completed' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
+                  onClick={() => setStatusFilter('completed')}
+                >
+                  <span className="text-[28px] font-medium text-white mb-1">{stats.completed}</span>
+                  <span className={`text-[13px] mb-4 ${statusFilter === 'completed' ? 'text-indigo-400' : 'text-slate-500'}`}>Completed</span>
+                  <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'completed' ? 'bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]' : 'bg-indigo-500/30 group-hover:bg-indigo-500/60'}`} />
                 </div>
               </div>
             </div>
