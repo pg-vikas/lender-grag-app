@@ -9,25 +9,50 @@ export default function PerformancePage() {
   const [location, setLocation] = useLocation();
   const params = useParams<{ filter?: string }>();
   
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [dateError, setDateError] = useState("");
+  const [appliedDateRange, setAppliedDateRange] = useState<{from: string, to: string} | null>(null);
+  
   const filter = params.filter || 'all';
-  const activeTab = filter === 'today' ? 'Today' : filter === 'week' ? 'This Week' : filter === 'month' ? 'This Month' : 'All Time';
+  const activeTab = appliedDateRange ? 'Custom' : filter === 'today' ? 'Today' : filter === 'week' ? 'This Week' : filter === 'month' ? 'This Month' : 'All Time';
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
   const handleTabClick = (tab: string) => {
+    if (tab === 'Custom') return;
+    setAppliedDateRange(null);
+    setFromDate("");
+    setToDate("");
+    setDateError("");
     const newFilter = tab === 'Today' ? 'today' : tab === 'This Week' ? 'week' : tab === 'This Month' ? 'month' : 'all';
     setLocation(`/performance/${newFilter}`);
   };
 
+  const handleApplyDateRange = () => {
+    if (!fromDate || !toDate) {
+      setDateError("Please select both dates");
+      return;
+    }
+    
+    if (new Date(fromDate) > new Date(toDate)) {
+      setDateError("From Date cannot be after To Date");
+      return;
+    }
+    
+    setDateError("");
+    setAppliedDateRange({ from: fromDate, to: toDate });
+  };
+
   // Varing the data based on filter to show it updates
-  const multiplier = filter === 'today' ? 0.1 : filter === 'week' ? 0.3 : filter === 'month' ? 0.7 : 1;
+  const multiplier = appliedDateRange ? 0.4 : filter === 'today' ? 0.1 : filter === 'week' ? 0.3 : filter === 'month' ? 0.7 : 1;
 
   const performanceMetrics = [
     { title: "Total Actions", value: Math.floor(263 * multiplier), color: "text-indigo-400" },
-    { title: "Active Minutes", value: filter === 'today' ? "45 mins" : "5 hrs 26 mins", color: "text-emerald-400" },
-    { title: "Idle Minutes", value: filter === 'today' ? "2 hrs 10 mins" : "80 hrs 15 mins", color: "text-slate-400" },
+    { title: "Active Minutes", value: appliedDateRange ? "18 hrs 10 mins" : filter === 'today' ? "45 mins" : "5 hrs 26 mins", color: "text-emerald-400" },
+    { title: "Idle Minutes", value: appliedDateRange ? "20 hrs 30 mins" : filter === 'today' ? "2 hrs 10 mins" : "80 hrs 15 mins", color: "text-slate-400" },
     { title: "Leads Contacted", value: Math.floor(4 * multiplier), color: "text-purple-400" },
     { title: "Follow-ups Completed", value: Math.floor(14 * multiplier), color: "text-orange-400" },
     { title: "Response Rate", value: "0.0%", color: "text-rose-400" },
@@ -106,18 +131,50 @@ export default function PerformancePage() {
                       {tab}
                     </button>
                   ))}
+                  {appliedDateRange && (
+                    <button 
+                      className="px-4 py-2 text-sm font-medium bg-purple-600 text-white shadow-[0_0_10px_rgba(147,51,234,0.5)]"
+                    >
+                      Custom
+                    </button>
+                  )}
                 </div>
                 
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-slate-400">From</span>
-                  <input type="date" className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
+                  <input 
+                    type="date" 
+                    value={fromDate}
+                    onChange={(e) => setFromDate(e.target.value)}
+                    className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" 
+                  />
                   <span className="text-sm text-slate-400">To</span>
-                  <input type="date" className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
-                  <button className="bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors">
+                  <input 
+                    type="date" 
+                    value={toDate}
+                    onChange={(e) => setToDate(e.target.value)}
+                    className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" 
+                  />
+                  <button 
+                    onClick={handleApplyDateRange}
+                    className="bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors"
+                  >
                     Apply
                   </button>
                 </div>
               </div>
+              
+              {dateError && (
+                <div className="text-sm text-rose-400 mt-2 font-medium flex items-center gap-1.5">
+                  <AlertTriangle className="w-4 h-4" />
+                  {dateError}
+                </div>
+              )}
+              {appliedDateRange && !dateError && (
+                <div className="text-sm text-indigo-400 mt-2 font-medium">
+                  Showing data from {new Date(appliedDateRange.from).toLocaleDateString()} to {new Date(appliedDateRange.to).toLocaleDateString()}
+                </div>
+              )}
             </div>
 
             {/* Team Performance Metrics Grid */}
