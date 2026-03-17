@@ -53,7 +53,8 @@ export default function GrowthKPIPage() {
   ];
 
   // Derived dummy data based on filter
-  let kpis = [...baseKpis];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let kpis: any[] = [...baseKpis];
   let tableRows = [...baseRows];
 
   if (activeTimeFilter === '24h') {

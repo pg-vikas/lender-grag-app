@@ -376,7 +376,25 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
   const [pinnedClients, setPinnedClients] = useState<Set<number>>(new Set());
   const [starredClients, setStarredClients] = useState<Set<number>>(new Set());
   const [activeFilter, setActiveFilter] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
   const [location] = useLocation();
+
+  const handleSearch = () => {
+    setAppliedSearchQuery(searchQuery);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setAppliedSearchQuery('');
+    setActiveFilter('All');
+  };
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -418,9 +436,14 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
     { name: "Old Agency", industry: "Real Estate", compliance: false, revenue: "$0.00", billing: "---", contacted: "6 months ago", assigned: "Maria Christina (maria@pir", status: "Inactive" },
   ];
 
-  const filteredClients = activeFilter === 'All' 
-    ? allClients 
-    : allClients.filter(c => c.status === activeFilter);
+  const filteredClients = allClients.filter(c => {
+    const matchesFilter = activeFilter === 'All' || c.status === activeFilter;
+    const matchesSearch = !appliedSearchQuery || 
+      c.name.toLowerCase().includes(appliedSearchQuery.toLowerCase()) ||
+      c.industry.toLowerCase().includes(appliedSearchQuery.toLowerCase()) ||
+      c.assigned.toLowerCase().includes(appliedSearchQuery.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
 
   const stats = [
     { label: 'Clients', count: allClients.length, colorClass: 'border-purple-500', filterValue: 'All' },
@@ -468,13 +491,28 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <input 
                         type="text" 
                         placeholder="Search..." 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleKeyDown}
                         className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     
-                    <button className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium shrink-0">
+                    <button 
+                      onClick={handleSearch}
+                      className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium shrink-0"
+                    >
                       Filter <Filter className="w-4 h-4" />
                     </button>
+
+                    {(appliedSearchQuery || activeFilter !== 'All') && (
+                      <button 
+                        onClick={handleReset}
+                        className="px-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-xl text-slate-400 hover:text-white hover:bg-slate-700 transition-all text-sm font-medium shrink-0"
+                      >
+                        Reset
+                      </button>
+                    )}
 
                     <button 
                       onClick={() => setIsStateSectionOpen(!isStateSectionOpen)}
@@ -538,12 +576,19 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredClients.map((client, i) => {
-                        const isPinned = pinnedClients.has(i);
-                        const isStarred = starredClients.has(i);
-                        
-                        return (
-                        <tr key={i} className={`group ${isPinned ? 'bg-amber-500/5 border-l-2 border-l-amber-400' : 'border-l-2 border-l-transparent'}`}>
+                      {filteredClients.length === 0 ? (
+                        <tr>
+                          <td colSpan={7} className="py-8 text-center text-slate-400">
+                            No agencies found matching your criteria.
+                          </td>
+                        </tr>
+                      ) : (
+                        filteredClients.map((client, i) => {
+                          const isPinned = pinnedClients.has(i);
+                          const isStarred = starredClients.has(i);
+                          
+                          return (
+                          <tr key={i} className={`group ${isPinned ? 'bg-amber-500/5 border-l-2 border-l-amber-400' : 'border-l-2 border-l-transparent'}`}>
                           <td className="py-4 px-6">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 rounded bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-colors">
@@ -643,7 +688,9 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             )}
                           </td>
                         </tr>
-                      )})}
+                          );
+                        })
+                      )}
                     </tbody>
                   </table>
                 </div>
