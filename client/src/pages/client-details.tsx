@@ -515,8 +515,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
+                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl border border-white/10 relative">
+                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center rounded-t-xl">
                     <span className="font-semibold text-white text-[15px]">Tasks</span>
                     <div className="flex gap-2 relative">
                       {/* View All */}
@@ -525,7 +525,7 @@ export default function ClientDetailsPage() {
                         className="w-8 h-8 rounded-lg bg-rose-500 hover:bg-rose-600 flex items-center justify-center text-white shadow-[0_0_10px_rgba(244,63,94,0.3)] transition-colors group relative"
                       >
                         <Eye className="w-4 h-4" />
-                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10 shadow-lg border border-slate-700 before:content-[''] before:absolute before:-bottom-1 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-slate-800">
+                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800">
                           View All
                         </div>
                       </button>
@@ -534,17 +534,17 @@ export default function ClientDetailsPage() {
                       <div className="relative">
                         <button 
                           onClick={() => setIsTaskDropdownOpen(!isTaskDropdownOpen)}
-                          className="w-8 h-8 rounded-lg bg-purple-600 hover:bg-purple-500 flex items-center justify-center text-white shadow-[0_0_10px_rgba(147,51,234,0.3)] transition-colors"
+                          className="w-8 h-8 rounded-lg bg-purple-600 hover:bg-purple-500 flex items-center justify-center text-white shadow-[0_0_10px_rgba(147,51,234,0.3)] transition-colors relative z-[60]"
                         >
                           <Zap className="w-4 h-4" />
                         </button>
                         
                         {isTaskDropdownOpen && (
                           <>
-                            <div className="fixed inset-0 z-10" onClick={() => setIsTaskDropdownOpen(false)}></div>
-                            <div className="absolute right-0 top-10 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-20 animate-in fade-in slide-in-from-top-2">
+                            <div className="fixed inset-0 z-[50]" onClick={() => setIsTaskDropdownOpen(false)}></div>
+                            <div className="absolute right-0 top-full mt-2 w-48 bg-slate-800 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-slate-600 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right">
                               {['1 Day Follow Up', '3 Day Follow Up', '1 Week Follow Up', '2 Week Follow Up', '1 Month Follow Up', '3 Month Follow Up', '6 Month Follow Up', '12 Month Follow Up'].map((item) => (
-                                <button key={item} className="w-full text-left px-4 py-2 text-[13px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                                <button key={item} onClick={() => setIsTaskDropdownOpen(false)} className="w-full text-left px-4 py-2 text-[13px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
                                   {item}
                                 </button>
                               ))}
@@ -559,13 +559,13 @@ export default function ClientDetailsPage() {
                         className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 shadow-sm transition-colors group relative border border-slate-700"
                       >
                         <Plus className="w-4 h-4" />
-                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10 shadow-lg border border-slate-700 before:content-[''] before:absolute before:-bottom-1 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-slate-800">
+                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800">
                           Add Task
                         </div>
                       </button>
                     </div>
                   </div>
-                  <div className="p-10 flex flex-col items-center justify-center text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter bg-slate-900/40 backdrop-blur-xl/50">
+                  <div className="p-10 flex flex-col items-center justify-center text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter bg-slate-900/40 backdrop-blur-xl/50 rounded-b-xl">
                     <div className="w-12 h-12 mb-3 flex items-center justify-center text-slate-500">
                       <Search className="w-8 h-8" />
                     </div>
