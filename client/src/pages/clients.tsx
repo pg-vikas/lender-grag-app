@@ -136,15 +136,34 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             )}
           </div>
 
-          {/* Launchpads Standalone */}
-          <Link href="/launchpads">
-            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/launchpads') ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+          {/* Launchpads Group */}
+          <div className="relative group">
+            <button 
+              onClick={() => sidebarOpen ? toggleMenu('launchpads') : null}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/launchpads') ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              title={!sidebarOpen ? "Launchpads" : ""}
+            >
               <div className="flex items-center space-x-3">
                 <Rocket className={`w-5 h-5 shrink-0 ${currentPath.includes('/launchpads') ? 'text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]' : 'group-hover:text-slate-300'}`} />
                 {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Launchpads</span>}
               </div>
-            </div>
-          </Link>
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'launchpads' || currentPath.includes('/launchpads') ? '' : '-rotate-90'}`} />}
+            </button>
+            {useAppStore.getState().sidebarOpen && (openMenus === 'launchpads' || currentPath.includes('/launchpads')) && (
+              <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
+                <Link href="/launchpads">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/launchpads' ? 'bg-purple-500/20 text-purple-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Active Projects
+                  </div>
+                </Link>
+                <Link href="/launchpads/templates">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/launchpads/templates') ? 'bg-purple-500/20 text-purple-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Templates
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
 
           {/* Contracts Group */}
           <div className="relative group">
