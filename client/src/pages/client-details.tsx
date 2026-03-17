@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useParams } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2 } from "lucide-react";
+import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2, FileText } from "lucide-react";
 
 export default function ClientDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
@@ -32,6 +32,58 @@ export default function ClientDetailsPage() {
   const [isTaskDropdownOpen, setIsTaskDropdownOpen] = useState(false);
   const [isActivityDropdownOpen, setIsActivityDropdownOpen] = useState(false);
   const [activityFilter, setActivityFilter] = useState('All Activities');
+  
+  const activities = [
+    {
+      id: 1,
+      type: 'Tasks',
+      title: 'Follow Up task added.',
+      date: 'Mar 09, 2026',
+      time: '02:40 PM',
+      author: 'Maria Christina',
+      icon: <CheckCircle2 className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
+    },
+    {
+      id: 2,
+      type: 'Emails',
+      title: "Hi! Saw your business on Yelp. We're a web development company offerin...",
+      date: 'Mar 09, 2026',
+      time: '02:40 PM',
+      author: 'Maria Christina',
+      icon: <MessageSquare className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
+    },
+    {
+      id: 3,
+      type: 'Notes',
+      title: 'Discussed new contract terms with client.',
+      date: 'Mar 08, 2026',
+      time: '11:15 AM',
+      author: 'Admin Gorilla',
+      icon: <FileText className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
+    },
+    {
+      id: 4,
+      type: 'Call',
+      title: 'Outbound call: Left voicemail.',
+      date: 'Mar 07, 2026',
+      time: '04:30 PM',
+      author: 'Maria Christina',
+      icon: <Phone className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
+    },
+    {
+      id: 5,
+      type: 'Text / SMS',
+      title: 'Sent promotional text message about new features.',
+      date: 'Mar 06, 2026',
+      time: '10:00 AM',
+      author: 'System',
+      icon: <MessageSquare className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
+    }
+  ];
+
+  const filteredActivities = activityFilter === 'All Activities' 
+    ? activities 
+    : activities.filter(a => a.type === activityFilter);
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
@@ -1239,33 +1291,26 @@ export default function ClientDetailsPage() {
                   </div>
                   <div className="p-4 space-y-3 relative z-10">
                     
-                    {/* Activity 1 */}
-                    <div className="bg-[#fefce8] border border-[#fde047] rounded-lg p-3 relative">
-                      <div className="flex gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-[13px] font-medium text-[#e2e8f0] leading-tight">Follow Up task added.</p>
-                          <div className="flex flex-col mt-2 gap-0.5 text-[11px] text-slate-400">
-                            <span>Mar 09, 2026 - 02:40 PM</span>
-                            <span>Added By Maria Christina</span>
+                    {filteredActivities.length > 0 ? (
+                      filteredActivities.map((activity) => (
+                        <div key={activity.id} className="bg-[#fefce8] border border-[#fde047] rounded-lg p-3 relative">
+                          <div className="flex gap-2">
+                            {activity.icon}
+                            <div>
+                              <p className="text-[13px] font-medium text-[#e2e8f0] leading-tight line-clamp-2">{activity.title}</p>
+                              <div className="flex flex-col mt-2 gap-0.5 text-[11px] text-slate-400">
+                                <span>{activity.date} - {activity.time}</span>
+                                <span>{activity.type === 'Tasks' ? 'Added By' : activity.type === 'Emails' || activity.type === 'Text / SMS' ? 'Sent by' : 'By'} {activity.author}</span>
+                              </div>
+                            </div>
                           </div>
                         </div>
+                      ))
+                    ) : (
+                      <div className="text-center py-6">
+                        <p className="text-[13px] text-slate-400">No activities found for this filter.</p>
                       </div>
-                    </div>
-
-                    {/* Activity 2 */}
-                    <div className="bg-[#fefce8] border border-[#fde047] rounded-lg p-3 relative">
-                      <div className="flex gap-2">
-                        <MessageSquare className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-[13px] font-medium text-[#e2e8f0] leading-tight line-clamp-2">Hi! Saw your business on Yelp. We're a web development company offerin...</p>
-                          <div className="flex flex-col mt-2 gap-0.5 text-[11px] text-slate-400">
-                            <span>Mar 09, 2026 - 02:40 PM</span>
-                            <span>Sent by Maria Christina</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    )}
 
                   </div>
                 </div>
