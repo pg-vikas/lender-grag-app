@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useParams } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, MessageSquare, Eye, Zap, X } from "lucide-react";
+import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2 } from "lucide-react";
 
 export default function ClientDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
@@ -35,6 +35,64 @@ export default function ClientDetailsPage() {
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
   const [isChoosePlanModalOpen, setIsChoosePlanModalOpen] = useState(false);
   const [isAddEmployeeModalOpen, setIsAddEmployeeModalOpen] = useState(false);
+  
+  // State for added employees
+  const [employees, setEmployees] = useState([
+    {
+      id: 1,
+      firstName: 'Test',
+      lastName: 'Neeraj',
+      email: 'vikas.pink@pinkgorillasoftware.com',
+      phone: '+1 258 963 1470',
+      designation: 'HR'
+    },
+    {
+      id: 2,
+      firstName: 'Jerry',
+      lastName: 'Neeraj',
+      email: 'neerajpinkgorillasoftware@gmail.com',
+      phone: '+1 987 654 3210',
+      designation: 'HR'
+    }
+  ]);
+  
+  // State for new employee form
+  const [newEmployee, setNewEmployee] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneCode: '+1',
+    phoneNumber: '',
+    designation: 'HR',
+    password: ''
+  });
+
+  const handleAddEmployee = () => {
+    if (newEmployee.firstName && newEmployee.email) {
+      setEmployees([
+        ...employees,
+        {
+          id: Date.now(),
+          firstName: newEmployee.firstName,
+          lastName: newEmployee.lastName,
+          email: newEmployee.email,
+          phone: `${newEmployee.phoneCode} ${newEmployee.phoneNumber}`,
+          designation: newEmployee.designation
+        }
+      ]);
+      // Reset form
+      setNewEmployee({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneCode: '+1',
+        phoneNumber: '',
+        designation: 'HR',
+        password: ''
+      });
+      setIsAddEmployeeModalOpen(false);
+    }
+  };
   const [isEditBackgroundModalOpen, setIsEditBackgroundModalOpen] = useState(false);
   const [selectedPlanTab, setSelectedPlanTab] = useState<'plans' | 'checkout'>('plans');
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
@@ -426,8 +484,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Employee Details */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 flex justify-between items-center">
+                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden flex flex-col max-h-[400px]">
+                  <div className="p-4 flex justify-between items-center border-b border-white/10 bg-slate-900/40 backdrop-blur-xl/50 sticky top-0 z-10 shrink-0">
                     <span className="font-semibold text-white text-[14px]">Employee Details</span>
                     <button 
                       onClick={() => setIsAddEmployeeModalOpen(true)}
@@ -435,6 +493,53 @@ export default function ClientDetailsPage() {
                     >
                       <Plus className="w-4 h-4" />
                     </button>
+                  </div>
+                  <div className="p-0 overflow-y-auto custom-scrollbar flex-1 relative">
+                    {employees.map((employee, index) => (
+                      <div key={employee.id} className={`p-4 ${index !== employees.length - 1 ? 'border-b border-white/10' : ''}`}>
+                        <div className="flex justify-end gap-2 mb-2">
+                          <button className="text-slate-400 hover:text-indigo-400 transition-colors">
+                            <Edit2 className="w-3.5 h-3.5" />
+                          </button>
+                          <button className="text-slate-400 hover:text-slate-200 transition-colors">
+                            <Lock className="w-3.5 h-3.5" />
+                          </button>
+                          <button className="text-slate-400 hover:text-rose-400 transition-colors">
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                        <div className="space-y-3">
+                          <div className="flex items-start gap-2 text-[13px]">
+                            <User className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                            <div>
+                              <span className="font-semibold text-white">Name: </span>
+                              <span className="text-slate-300">{employee.firstName} {employee.lastName}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2 text-[13px]">
+                            <Mail className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                            <div className="min-w-0 flex-1">
+                              <span className="font-semibold text-white">Email: </span>
+                              <p className="text-slate-300 break-words mt-0.5">{employee.email}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2 text-[13px]">
+                            <Phone className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                            <div>
+                              <span className="font-semibold text-white">Phone Number: </span>
+                              <span className="text-slate-300">{employee.phone}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2 text-[13px]">
+                            <Briefcase className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                            <div>
+                              <span className="font-semibold text-white">Title: </span>
+                              <span className="text-slate-300">{employee.designation}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -1278,6 +1383,8 @@ export default function ClientDetailsPage() {
                   <input 
                     type="text" 
                     placeholder="Jordan"
+                    value={newEmployee.firstName}
+                    onChange={(e) => setNewEmployee({...newEmployee, firstName: e.target.value})}
                     className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
@@ -1288,6 +1395,8 @@ export default function ClientDetailsPage() {
                   <input 
                     type="text" 
                     placeholder="Peterson"
+                    value={newEmployee.lastName}
+                    onChange={(e) => setNewEmployee({...newEmployee, lastName: e.target.value})}
                     className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
@@ -1298,7 +1407,8 @@ export default function ClientDetailsPage() {
                   <input 
                     type="email" 
                     placeholder="vikas@pinkgorillasoftware.com"
-                    defaultValue="vikas@pinkgorillasoftware.com"
+                    value={newEmployee.email}
+                    onChange={(e) => setNewEmployee({...newEmployee, email: e.target.value})}
                     className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                   />
                 </div>
@@ -1307,14 +1417,20 @@ export default function ClientDetailsPage() {
                 <div>
                   <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Phone</label>
                   <div className="flex">
-                    <select className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 rounded-l-lg border-r-0 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none outline-none">
-                      <option>+1</option>
-                      <option>+44</option>
-                      <option>+91</option>
+                    <select 
+                      value={newEmployee.phoneCode}
+                      onChange={(e) => setNewEmployee({...newEmployee, phoneCode: e.target.value})}
+                      className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 rounded-l-lg border-r-0 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none outline-none"
+                    >
+                      <option value="+1">+1</option>
+                      <option value="+44">+44</option>
+                      <option value="+91">+91</option>
                     </select>
                     <input 
                       type="text" 
                       placeholder="9876543210"
+                      value={newEmployee.phoneNumber}
+                      onChange={(e) => setNewEmployee({...newEmployee, phoneNumber: e.target.value})}
                       className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                     />
                   </div>
@@ -1323,11 +1439,15 @@ export default function ClientDetailsPage() {
                 {/* Designation */}
                 <div>
                   <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Designation</label>
-                  <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none">
-                    <option>HR</option>
-                    <option>Manager</option>
-                    <option>Developer</option>
-                    <option>Designer</option>
+                  <select 
+                    value={newEmployee.designation}
+                    onChange={(e) => setNewEmployee({...newEmployee, designation: e.target.value})}
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
+                  >
+                    <option value="HR">HR</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Developer">Developer</option>
+                    <option value="Designer">Designer</option>
                   </select>
                 </div>
                 
@@ -1336,7 +1456,9 @@ export default function ClientDetailsPage() {
                   <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Password*</label>
                   <input 
                     type="password" 
-                    defaultValue="..........."
+                    value={newEmployee.password}
+                    onChange={(e) => setNewEmployee({...newEmployee, password: e.target.value})}
+                    placeholder="..........."
                     className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all font-mono tracking-widest"
                   />
                 </div>
@@ -1352,8 +1474,9 @@ export default function ClientDetailsPage() {
                 Close
               </button>
               <button 
-                onClick={() => setIsAddEmployeeModalOpen(false)}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                onClick={handleAddEmployee}
+                disabled={!newEmployee.firstName || !newEmployee.email}
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Submit
               </button>
