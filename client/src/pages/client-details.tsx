@@ -31,6 +31,15 @@ export default function ClientDetailsPage() {
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
   const [isTaskDropdownOpen, setIsTaskDropdownOpen] = useState(false);
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
+  const [isAssigneeDropdownOpen, setIsAssigneeDropdownOpen] = useState(false);
+  const [selectedAssignee, setSelectedAssignee] = useState('Maria Christina (maria@pinkgorilla...)');
+  
+  const assigneesList = [
+    'Maria Christina (maria@pinkgorilla...)',
+    'Vinayak Sharma (vinayak@...)',
+    'Admin Gorilla (admin@...)',
+    'John Doe (john@...)'
+  ];
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -78,12 +87,35 @@ export default function ClientDetailsPage() {
                       <span className="text-[12px] text-slate-400">Status:</span>
                       <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-[11px] font-semibold text-amber-600 border border-amber-200 bg-amber-50">Brand New</span>
                     </div>
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1 relative">
                       <span className="text-[12px] text-slate-400">Assigned to:</span>
-                      <div className="px-3 py-1.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded text-[12px] text-white flex justify-between items-center">
-                        <span className="truncate">Maria Christina (maria@pinkgorilla...)</span>
+                      <button 
+                        onClick={() => setIsAssigneeDropdownOpen(!isAssigneeDropdownOpen)}
+                        className="px-3 py-1.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded text-[12px] text-white flex justify-between items-center w-full hover:bg-slate-800 transition-colors"
+                      >
+                        <span className="truncate">{selectedAssignee}</span>
                         <ChevronDown className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                      </div>
+                      </button>
+                      
+                      {isAssigneeDropdownOpen && (
+                        <>
+                          <div className="fixed inset-0 z-[50]" onClick={() => setIsAssigneeDropdownOpen(false)}></div>
+                          <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-xl z-[60] py-1 max-h-48 overflow-y-auto custom-scrollbar animate-in fade-in slide-in-from-top-2">
+                            {assigneesList.map((assignee, idx) => (
+                              <button 
+                                key={idx}
+                                onClick={() => {
+                                  setSelectedAssignee(assignee);
+                                  setIsAssigneeDropdownOpen(false);
+                                }}
+                                className="w-full text-left px-3 py-2 text-[12px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
+                              >
+                                {assignee}
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
