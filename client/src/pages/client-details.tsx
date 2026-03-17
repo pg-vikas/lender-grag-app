@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useLocation, useParams } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, MessageSquare } from "lucide-react";
+import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, MessageSquare, Eye, Zap, X } from "lucide-react";
 
 export default function ClientDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
   const [activeTab, setActiveTab] = useState<string>('email');
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const params = useParams<{ id: string }>();
 
   // Mock data for the specific client based on ID
@@ -27,6 +27,9 @@ export default function ClientDetailsPage() {
     phone: "---", 
     email: "---" 
   };
+
+  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
+  const [isTaskDropdownOpen, setIsTaskDropdownOpen] = useState(false);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -512,13 +515,54 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-[#f0fdf4] border-b border-[#bbf7d0] flex justify-between items-center">
-                    <span className="font-semibold text-[#166534] text-[15px]">Tasks</span>
-                    <div className="flex gap-2">
-                      <button className="w-6 h-6 rounded-full bg-slate-900/40 backdrop-blur-xl flex items-center justify-center text-[#22c55e] shadow-sm"><Globe className="w-3.5 h-3.5" /></button>
-                      <button className="w-6 h-6 rounded-full bg-[#22c55e] flex items-center justify-center text-white shadow-sm"><svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></button>
-                      <button className="w-6 h-6 rounded-full bg-slate-900/40 backdrop-blur-xl flex items-center justify-center text-[#22c55e] shadow-sm"><Plus className="w-4 h-4" /></button>
+                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden">
+                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
+                    <span className="font-semibold text-white text-[15px]">Tasks</span>
+                    <div className="flex gap-2 relative">
+                      {/* View All */}
+                      <button 
+                        onClick={() => setLocation('/tasks')}
+                        className="w-8 h-8 rounded-lg bg-rose-500 hover:bg-rose-600 flex items-center justify-center text-white shadow-[0_0_10px_rgba(244,63,94,0.3)] transition-colors group relative"
+                      >
+                        <Eye className="w-4 h-4" />
+                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10 shadow-lg border border-slate-700 before:content-[''] before:absolute before:-bottom-1 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-slate-800">
+                          View All
+                        </div>
+                      </button>
+                      
+                      {/* Dropdown */}
+                      <div className="relative">
+                        <button 
+                          onClick={() => setIsTaskDropdownOpen(!isTaskDropdownOpen)}
+                          className="w-8 h-8 rounded-lg bg-purple-600 hover:bg-purple-500 flex items-center justify-center text-white shadow-[0_0_10px_rgba(147,51,234,0.3)] transition-colors"
+                        >
+                          <Zap className="w-4 h-4" />
+                        </button>
+                        
+                        {isTaskDropdownOpen && (
+                          <>
+                            <div className="fixed inset-0 z-10" onClick={() => setIsTaskDropdownOpen(false)}></div>
+                            <div className="absolute right-0 top-10 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-20 animate-in fade-in slide-in-from-top-2">
+                              {['1 Day Follow Up', '3 Day Follow Up', '1 Week Follow Up', '2 Week Follow Up', '1 Month Follow Up', '3 Month Follow Up', '6 Month Follow Up', '12 Month Follow Up'].map((item) => (
+                                <button key={item} className="w-full text-left px-4 py-2 text-[13px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                                  {item}
+                                </button>
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      </div>
+                      
+                      {/* Add Task */}
+                      <button 
+                        onClick={() => setIsAddTaskModalOpen(true)}
+                        className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 shadow-sm transition-colors group relative border border-slate-700"
+                      >
+                        <Plus className="w-4 h-4" />
+                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10 shadow-lg border border-slate-700 before:content-[''] before:absolute before:-bottom-1 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-t-slate-800">
+                          Add Task
+                        </div>
+                      </button>
                     </div>
                   </div>
                   <div className="p-10 flex flex-col items-center justify-center text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter bg-slate-900/40 backdrop-blur-xl/50">
@@ -578,6 +622,75 @@ export default function ClientDetailsPage() {
           </div>
         </main>
       </div>
+
+      {/* Add Task Modal */}
+      {isAddTaskModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsAddTaskModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-[500px] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+              <h2 className="text-xl font-bold text-white">Add A New Task</h2>
+              <button 
+                onClick={() => setIsAddTaskModalOpen(false)}
+                className="text-slate-400 hover:text-white p-2 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Task title*</label>
+                <input 
+                  type="text" 
+                  placeholder="Create MVP for wisdom rules"
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all placeholder:text-slate-500" 
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Due Date</label>
+                <input 
+                  type="date" 
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all placeholder:text-slate-500" 
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Assignee</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
+                  <option value="">Select assignee...</option>
+                  <option value="1">Maria Christina</option>
+                  <option value="2">Admin Gorilla</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsAddTaskModalOpen(false)}
+                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={() => setIsAddTaskModalOpen(false)}
+                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
