@@ -245,38 +245,38 @@ export default function UsersPage() {
                            <div className="flex items-center justify-end gap-2">
                               <button 
                                 onClick={() => { setSelectedUser(user); setIsActivityModalOpen(true); }}
-                                className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group relative" 
+                                className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" 
                               >
                                  <Eye className="w-4 h-4" />
-                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">View Activity</span>
+                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">View Activity</span>
                               </button>
                               <button 
                                 onClick={() => { setSelectedUser(user); setIsEditUserModalOpen(true); }}
-                                className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group relative" 
+                                className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" 
                               >
                                  <Edit className="w-4 h-4" />
-                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">Edit User</span>
+                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Edit User</span>
                               </button>
                               <button 
                                 onClick={() => { setSelectedUser(user); setIsPasswordModalOpen(true); }}
-                                className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group relative" 
+                                className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" 
                               >
                                  <Lock className="w-4 h-4" />
-                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">Update Password</span>
+                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Update Password</span>
                               </button>
                               <button 
                                 onClick={() => togglePin(user.id)}
-                                className={`p-2 rounded-lg transition-colors group relative ${pinnedUsers.has(user.id) ? 'text-indigo-400 bg-slate-800' : 'text-slate-400 hover:text-indigo-400 hover:bg-slate-800'}`}
+                                className={`p-2 rounded-lg transition-colors group/tooltip relative ${pinnedUsers.has(user.id) ? 'text-indigo-400 bg-slate-800' : 'text-slate-400 hover:text-indigo-400 hover:bg-slate-800'}`}
                               >
                                  <Pin className="w-4 h-4" />
-                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">{pinnedUsers.has(user.id) ? 'Unpin User' : 'Pin User'}</span>
+                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">{pinnedUsers.has(user.id) ? 'Unpin User' : 'Pin User'}</span>
                               </button>
                               <button 
                                 onClick={() => { setSelectedUser(user); setIsDeleteModalOpen(true); }}
-                                className="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors group relative" 
+                                className="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" 
                               >
                                  <Trash2 className="w-4 h-4" />
-                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">Delete User</span>
+                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Delete User</span>
                               </button>
                            </div>
                         </td>

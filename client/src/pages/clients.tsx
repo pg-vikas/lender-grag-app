@@ -632,34 +632,34 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             </span>
                           </td>
                           <td className="py-4 px-6 text-right relative">
-                           <div className="flex items-center justify-end gap-2">
-                             <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group relative">
-                               <Eye className="w-4 h-4" />
-                               <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">View Details</span>
-                             </button>
-                             <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group relative" onClick={(e) => { e.stopPropagation(); setIsEditClientModalOpen(true); }}>
-                               <Edit className="w-4 h-4" />
-                               <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Edit Client</span>
-                             </button>
-                             <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group relative" onClick={(e) => { e.stopPropagation(); setIsSendMailModalOpen(true); }}>
-                               <Mail className="w-4 h-4" />
-                               <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Send Email</span>
-                             </button>
-                             <button 
-                               onClick={(e) => {
-                                 e.stopPropagation();
-                                 togglePin(i);
-                               }}
-                               className={`p-2 rounded-lg transition-colors group relative ${pinnedClients.has(i) ? 'text-indigo-400 bg-slate-800' : 'text-slate-400 hover:text-indigo-400 hover:bg-slate-800'}`}
-                             >
-                                <Pin className="w-4 h-4" />
-                                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">{pinnedClients.has(i) ? 'Unpin Client' : 'Pin Client'}</span>
-                             </button>
-                             <button className="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors group relative" onClick={(e) => { e.stopPropagation(); setIsSuspendModalOpen(true); }}>
-                               <Trash2 className="w-4 h-4" />
-                               <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Delete Client</span>
-                             </button>
-                           </div>
+                            <div className="flex items-center justify-end gap-2">
+                              <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative">
+                                <Eye className="w-4 h-4" />
+                                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">View Details</span>
+                              </button>
+                              <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" onClick={(e) => { e.stopPropagation(); setIsEditClientModalOpen(true); }}>
+                                <Edit className="w-4 h-4" />
+                                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Edit Client</span>
+                              </button>
+                              <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" onClick={(e) => { e.stopPropagation(); setIsSendMailModalOpen(true); }}>
+                                <Mail className="w-4 h-4" />
+                                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Send Email</span>
+                              </button>
+                              <button 
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  togglePin(i);
+                                }}
+                                className={`p-2 rounded-lg transition-colors group/tooltip relative ${pinnedClients.has(i) ? 'text-indigo-400 bg-slate-800' : 'text-slate-400 hover:text-indigo-400 hover:bg-slate-800'}`}
+                              >
+                                 <Pin className="w-4 h-4" />
+                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">{pinnedClients.has(i) ? 'Unpin Client' : 'Pin Client'}</span>
+                              </button>
+                              <button className="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors group/tooltip relative" onClick={(e) => { e.stopPropagation(); setIsSuspendModalOpen(true); }}>
+                                <Trash2 className="w-4 h-4" />
+                                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover/tooltip:opacity-100 whitespace-nowrap pointer-events-none transition-opacity z-50">Delete Client</span>
+                              </button>
+                            </div>
                           </td>
                         </tr>
                           );
