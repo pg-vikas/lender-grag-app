@@ -65,8 +65,8 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Company Details */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
+                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl border border-white/10 relative z-30">
+                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
                       <Building2 className="w-4 h-4 text-indigo-400" />
                       <span className="font-semibold text-white text-[14px]">Company Details</span>
