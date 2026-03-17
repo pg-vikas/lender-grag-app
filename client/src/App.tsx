@@ -30,6 +30,7 @@ import KnowledgebasePage from "@/pages/knowledgebase";
 import UsersPage from "@/pages/users";
 import WebsiteAnalyticsPage from "@/pages/analytics";
 import GrowthKPIPage from "@/pages/growth-kpi";
+import MessagesPage from "@/pages/messages";
 
 function Router() {
   return (
@@ -65,6 +66,7 @@ function Router() {
       <Route path="/users" component={UsersPage} />
       <Route path="/analytics" component={WebsiteAnalyticsPage} />
       <Route path="/growth/kpi-overview" component={GrowthKPIPage} />
+      <Route path="/messages" component={MessagesPage} />
       <Route path="/">
         <Redirect to="/home" />
       </Route>
