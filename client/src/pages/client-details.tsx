@@ -30,6 +30,8 @@ export default function ClientDetailsPage() {
 
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
   const [isTaskDropdownOpen, setIsTaskDropdownOpen] = useState(false);
+  const [isActivityDropdownOpen, setIsActivityDropdownOpen] = useState(false);
+  const [activityFilter, setActivityFilter] = useState('All Activities');
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
@@ -1199,14 +1201,43 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 border-b border-white/10 flex justify-between items-center">
+                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-visible relative z-[40]">
+                  <div className="p-4 border-b border-white/10 flex justify-between items-center relative z-[45]">
                     <span className="font-semibold text-white text-[15px]">Activity Log</span>
-                    <button className="flex items-center gap-1 text-[12px] text-slate-400 bg-slate-900/40 backdrop-blur-xl/50 px-2 py-1 rounded border border-white/10">
-                      All Activities <ChevronDown className="w-3 h-3" />
-                    </button>
+                    <div className="relative">
+                      <button 
+                        onClick={() => setIsActivityDropdownOpen(!isActivityDropdownOpen)}
+                        className="flex items-center gap-1.5 text-[13px] font-medium text-slate-300 hover:text-white bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-600 transition-colors"
+                      >
+                        {activityFilter} <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isActivityDropdownOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      
+                      {isActivityDropdownOpen && (
+                        <>
+                          <div className="fixed inset-0 z-[50]" onClick={() => setIsActivityDropdownOpen(false)}></div>
+                          <div className="absolute right-0 top-full mt-1.5 w-[180px] bg-[#1e293b] rounded-lg shadow-xl border border-slate-700 py-1.5 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
+                            {['All Activities', 'Text / SMS', 'Emails', 'Tasks', 'Notes', 'Call'].map((item) => (
+                              <button 
+                                key={item} 
+                                onClick={() => {
+                                  setActivityFilter(item);
+                                  setIsActivityDropdownOpen(false);
+                                }} 
+                                className={`w-full text-left px-4 py-2.5 text-[14px] transition-colors relative z-10
+                                  ${item === activityFilter 
+                                    ? 'bg-[#3b82f6] text-white font-medium' 
+                                    : 'text-[#e2e8f0] hover:bg-slate-800'
+                                  }`}
+                              >
+                                {item}
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </div>
-                  <div className="p-4 space-y-3">
+                  <div className="p-4 space-y-3 relative z-10">
                     
                     {/* Activity 1 */}
                     <div className="bg-[#fefce8] border border-[#fde047] rounded-lg p-3 relative">
