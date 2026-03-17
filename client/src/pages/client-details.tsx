@@ -35,6 +35,13 @@ export default function ClientDetailsPage() {
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
   const [isChoosePlanModalOpen, setIsChoosePlanModalOpen] = useState(false);
   const [isAddEmployeeModalOpen, setIsAddEmployeeModalOpen] = useState(false);
+  const [isEditEmployeeModalOpen, setIsEditEmployeeModalOpen] = useState(false);
+  const [isUpdatePasswordModalOpen, setIsUpdatePasswordModalOpen] = useState(false);
+  const [isDeleteEmployeeModalOpen, setIsDeleteEmployeeModalOpen] = useState(false);
+  
+  const [editingEmployee, setEditingEmployee] = useState<any>(null);
+  const [updatingPasswordEmployee, setUpdatingPasswordEmployee] = useState<any>(null);
+  const [deletingEmployee, setDeletingEmployee] = useState<any>(null);
   
   // State for added employees
   const [employees, setEmployees] = useState([
@@ -91,6 +98,35 @@ export default function ClientDetailsPage() {
         password: ''
       });
       setIsAddEmployeeModalOpen(false);
+    }
+  };
+
+  const handleEditEmployee = () => {
+    if (editingEmployee && editingEmployee.firstName && editingEmployee.email) {
+      setEmployees(employees.map(emp => 
+        emp.id === editingEmployee.id ? { ...emp, ...editingEmployee } : emp
+      ));
+      setIsEditEmployeeModalOpen(false);
+      setEditingEmployee(null);
+    }
+  };
+
+  const [passwordForm, setPasswordForm] = useState({ newPassword: '', confirmPassword: '' });
+
+  const handleUpdatePassword = () => {
+    if (passwordForm.newPassword && passwordForm.newPassword === passwordForm.confirmPassword) {
+      setIsUpdatePasswordModalOpen(false);
+      setUpdatingPasswordEmployee(null);
+      setPasswordForm({ newPassword: '', confirmPassword: '' });
+      // In a real app, update password API call goes here
+    }
+  };
+
+  const handleDeleteEmployee = () => {
+    if (deletingEmployee) {
+      setEmployees(employees.filter(emp => emp.id !== deletingEmployee.id));
+      setIsDeleteEmployeeModalOpen(false);
+      setDeletingEmployee(null);
     }
   };
   const [isEditBackgroundModalOpen, setIsEditBackgroundModalOpen] = useState(false);
@@ -498,13 +534,35 @@ export default function ClientDetailsPage() {
                     {employees.map((employee, index) => (
                       <div key={employee.id} className={`p-4 ${index !== employees.length - 1 ? 'border-b border-white/10' : ''}`}>
                         <div className="flex justify-end gap-2 mb-2">
-                          <button className="text-slate-400 hover:text-indigo-400 transition-colors">
+                          <button 
+                            onClick={() => {
+                              setEditingEmployee({
+                                ...employee,
+                                phoneCode: employee.phone.split(' ')[0] || '+1',
+                                phoneNumber: employee.phone.split(' ').slice(1).join(' ') || ''
+                              });
+                              setIsEditEmployeeModalOpen(true);
+                            }}
+                            className="text-slate-400 hover:text-indigo-400 transition-colors"
+                          >
                             <Edit2 className="w-3.5 h-3.5" />
                           </button>
-                          <button className="text-slate-400 hover:text-slate-200 transition-colors">
+                          <button 
+                            onClick={() => {
+                              setUpdatingPasswordEmployee(employee);
+                              setIsUpdatePasswordModalOpen(true);
+                            }}
+                            className="text-slate-400 hover:text-slate-200 transition-colors"
+                          >
                             <Lock className="w-3.5 h-3.5" />
                           </button>
-                          <button className="text-slate-400 hover:text-rose-400 transition-colors">
+                          <button 
+                            onClick={() => {
+                              setDeletingEmployee(employee);
+                              setIsDeleteEmployeeModalOpen(true);
+                            }}
+                            className="text-slate-400 hover:text-rose-400 transition-colors"
+                          >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
@@ -1480,6 +1538,230 @@ export default function ClientDetailsPage() {
               >
                 Submit
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Employee Modal */}
+      {isEditEmployeeModalOpen && editingEmployee && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsEditEmployeeModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-xl font-bold text-white">Edit User</h2>
+              <button 
+                onClick={() => setIsEditEmployeeModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Body */}
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {/* First Name */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">First Name*</label>
+                  <input 
+                    type="text" 
+                    placeholder="Jordan"
+                    value={editingEmployee.firstName}
+                    onChange={(e) => setEditingEmployee({...editingEmployee, firstName: e.target.value})}
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                  />
+                </div>
+                
+                {/* Last Name */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Last Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="Peterson"
+                    value={editingEmployee.lastName}
+                    onChange={(e) => setEditingEmployee({...editingEmployee, lastName: e.target.value})}
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                  />
+                </div>
+                
+                {/* Email Address */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Email Address*</label>
+                  <input 
+                    type="email" 
+                    placeholder="vikas@pinkgorillasoftware.com"
+                    value={editingEmployee.email}
+                    onChange={(e) => setEditingEmployee({...editingEmployee, email: e.target.value})}
+                    className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                  />
+                </div>
+                
+                {/* Phone */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Phone</label>
+                  <div className="flex">
+                    <select 
+                      value={editingEmployee.phoneCode}
+                      onChange={(e) => setEditingEmployee({...editingEmployee, phoneCode: e.target.value})}
+                      className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 rounded-l-lg border-r-0 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none outline-none"
+                    >
+                      <option value="+1">+1</option>
+                      <option value="+44">+44</option>
+                      <option value="+91">+91</option>
+                    </select>
+                    <input 
+                      type="text" 
+                      placeholder="9876543210"
+                      value={editingEmployee.phoneNumber}
+                      onChange={(e) => setEditingEmployee({...editingEmployee, phoneNumber: e.target.value})}
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                    />
+                  </div>
+                </div>
+                
+                {/* Designation */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Designation</label>
+                  <select 
+                    value={editingEmployee.designation}
+                    onChange={(e) => setEditingEmployee({...editingEmployee, designation: e.target.value})}
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
+                  >
+                    <option value="HR">HR</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Developer">Developer</option>
+                    <option value="Designer">Designer</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            {/* Footer */}
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsEditEmployeeModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={handleEditEmployee}
+                disabled={!editingEmployee.firstName || !editingEmployee.email}
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Update Password Modal */}
+      {isUpdatePasswordModalOpen && updatingPasswordEmployee && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsUpdatePasswordModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-md flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-xl font-bold text-white">Update Password</h2>
+              <button 
+                onClick={() => setIsUpdatePasswordModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Body */}
+            <div className="p-6">
+              <div className="space-y-4">
+                <div className="mb-2 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                  <p className="text-[13px] text-slate-300">Updating password for <strong>{updatingPasswordEmployee.firstName} {updatingPasswordEmployee.lastName}</strong></p>
+                </div>
+                
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">New Password*</label>
+                  <input 
+                    type="password" 
+                    value={passwordForm.newPassword}
+                    onChange={(e) => setPasswordForm({...passwordForm, newPassword: e.target.value})}
+                    placeholder="Enter new password"
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all font-mono tracking-widest placeholder:tracking-normal placeholder:font-sans"
+                  />
+                  {passwordForm.newPassword && passwordForm.newPassword.length < 6 && (
+                    <p className="text-rose-400 text-[11px] mt-1">Password must be at least 6 characters long.</p>
+                  )}
+                </div>
+                
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Confirm Password*</label>
+                  <input 
+                    type="password" 
+                    value={passwordForm.confirmPassword}
+                    onChange={(e) => setPasswordForm({...passwordForm, confirmPassword: e.target.value})}
+                    placeholder="Confirm new password"
+                    className={`w-full px-4 py-2.5 bg-slate-900/50 border rounded-lg text-[13px] text-white focus:outline-none focus:ring-1 transition-all font-mono tracking-widest placeholder:tracking-normal placeholder:font-sans ${passwordForm.confirmPassword && passwordForm.newPassword !== passwordForm.confirmPassword ? 'border-rose-500/50 focus:border-rose-500/50 focus:ring-rose-500/50' : 'border-slate-700 focus:border-indigo-500/50 focus:ring-indigo-500/50'}`}
+                  />
+                  {passwordForm.confirmPassword && passwordForm.newPassword !== passwordForm.confirmPassword && (
+                    <p className="text-rose-400 text-[11px] mt-1">Passwords do not match.</p>
+                  )}
+                </div>
+              </div>
+            </div>
+            
+            {/* Footer */}
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsUpdatePasswordModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleUpdatePassword}
+                disabled={!passwordForm.newPassword || passwordForm.newPassword.length < 6 || passwordForm.newPassword !== passwordForm.confirmPassword}
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Employee Confirmation Modal */}
+      {isDeleteEmployeeModalOpen && deletingEmployee && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsDeleteEmployeeModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 text-center">
+              <div className="w-16 h-16 rounded-full bg-rose-500/10 flex items-center justify-center mx-auto mb-4 border border-rose-500/20">
+                <Trash2 className="w-8 h-8 text-rose-500" />
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Delete Employee?</h2>
+              <p className="text-[14px] text-slate-300 mb-6">
+                Are you sure you want to delete <strong>{deletingEmployee.firstName} {deletingEmployee.lastName}</strong>? This action cannot be undone.
+              </p>
+              
+              <div className="flex justify-center gap-3">
+                <button 
+                  onClick={() => setIsDeleteEmployeeModalOpen(false)}
+                  className="px-5 py-2.5 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors w-full"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={handleDeleteEmployee}
+                  className="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(225,29,72,0.3)] w-full"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         </div>
