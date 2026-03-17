@@ -12,6 +12,8 @@ export default function ProjectsPage() {
   const [showStats, setShowStats] = useState(true);
   const [viewMode, setViewMode] = useState<'table' | 'board'>('table');
   const [statusFilter, setStatusFilter] = useState<'all' | 'completed' | 'in_progress' | 'on_hold'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
   const [location] = useLocation();
 
   const toggleMenu = (menu: string) => {
@@ -29,15 +31,31 @@ export default function ProjectsPage() {
   ]);
 
   const filteredProjects = projectsList.filter(project => {
+    let match = true;
     if (statusFilter === 'completed') {
-      return project.status === 'Completed';
+      match = project.status === 'Completed';
     } else if (statusFilter === 'in_progress') {
-      return project.status === 'In Progress';
+      match = project.status === 'In Progress';
     } else if (statusFilter === 'on_hold') {
-      return project.status === 'On Hold';
+      match = project.status === 'On Hold';
     }
-    return true; // 'all'
+    
+    if (match && appliedSearchQuery) {
+      const query = appliedSearchQuery.toLowerCase();
+      match = project.name.toLowerCase().includes(query) || 
+              project.client.toLowerCase().includes(query) ||
+              project.assignee.toLowerCase().includes(query) ||
+              project.createdBy.toLowerCase().includes(query);
+    }
+    
+    return match;
   });
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setAppliedSearchQuery('');
+    setStatusFilter('all');
+  };
 
   const stats = {
     all: projectsList.length,
@@ -125,26 +143,32 @@ export default function ProjectsPage() {
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input 
                       type="text"
-                      placeholder="Search" 
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && setAppliedSearchQuery(searchQuery)}
+                      placeholder="Search projects..." 
                       className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-white/10 rounded-lg text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                     />
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow transition-colors">
+                  <button 
+                    onClick={() => setAppliedSearchQuery(searchQuery)}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow transition-colors"
+                  >
                     Filter <Filter className="w-4 h-4" />
+                  </button>
+                  <button 
+                    onClick={handleReset}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow transition-colors"
+                  >
+                    Reset <X className="w-4 h-4" />
                   </button>
                   <button 
                     onClick={() => setShowStats(!showStats)}
                     className="p-2 bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl/50 transition-colors"
+                    title="Toggle Quick Stats"
                   >
                     <TrendingUp className="w-4 h-4" />
                   </button>
-                  <div className="relative flex-1 max-w-[200px]">
-                    <input 
-                      type="text"
-                      placeholder="Assigned" 
-                      className="w-full px-4 py-2 bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
-                    />
-                  </div>
                 </div>
                 
                 <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -293,11 +317,23 @@ export default function ProjectsPage() {
                         </td>
                       </tr>
                     ))}
+                    {filteredProjects.length === 0 && (
+                      <tr>
+                        <td colSpan={8} className="py-8 text-center text-slate-500 bg-slate-900/40 rounded-xl border border-white/10">
+                          No projects found matching the selected criteria.
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-4">
+                {filteredProjects.length === 0 && (
+                  <div className="col-span-1 md:col-span-3 py-12 text-center text-slate-500 bg-slate-900/40 rounded-xl border border-white/10">
+                    No projects found matching the selected criteria.
+                  </div>
+                )}
                 {/* Board Columns */}
                 {['Pending Approval', 'In Progress', 'Completed'].map((status) => {
                   const columnProjects = filteredProjects.filter(p => p.status === status);

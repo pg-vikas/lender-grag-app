@@ -8,6 +8,8 @@ export default function TicketsPage() {
   const [location, setLocation] = useLocation();
   const [showStats, setShowStats] = useState(false);
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
   
   // Modals state
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -42,9 +44,25 @@ export default function TicketsPage() {
     }
   };
 
-  const filteredTickets = activeFilter 
+  const filteredTickets = (activeFilter 
     ? ticketsList.filter(t => t.status === activeFilter)
-    : ticketsList;
+    : ticketsList
+  ).filter(t => {
+    if (appliedSearchQuery) {
+      const query = appliedSearchQuery.toLowerCase();
+      return t.subject.toLowerCase().includes(query) ||
+             t.user.toLowerCase().includes(query) ||
+             t.client.toLowerCase().includes(query) ||
+             t.id.toLowerCase().includes(query);
+    }
+    return true;
+  });
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setAppliedSearchQuery('');
+    setActiveFilter(null);
+  };
 
   // Stats data
   const stats = [
@@ -67,16 +85,31 @@ export default function TicketsPage() {
 
             <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-4 mb-6 border border-white/10">
               <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-                <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <div className="relative flex-1 max-w-[300px]">
+                <div className="flex items-center gap-3 w-full sm:w-auto flex-wrap">
+                  <div className="relative flex-1 min-w-[200px] max-w-[300px]">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input 
                       type="text"
-                      placeholder="Search" 
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && setAppliedSearchQuery(searchQuery)}
+                      placeholder="Search tickets..." 
                       className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-white/10 rounded-lg text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                     />
                   </div>
-                  <button className="p-2.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg text-slate-400 hover:bg-slate-800 transition-colors">
+                  <button 
+                    onClick={() => setAppliedSearchQuery(searchQuery)}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 transition-colors"
+                  >
+                    Filter <Filter className="w-4 h-4" />
+                  </button>
+                  <button 
+                    onClick={handleReset}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 transition-colors"
+                  >
+                    Reset <X className="w-4 h-4" />
+                  </button>
+                  <button className="p-2.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg text-slate-400 hover:bg-slate-800 transition-colors" title="Box View">
                     <Box className="w-4 h-4" />
                   </button>
                   <button 
@@ -86,11 +119,9 @@ export default function TicketsPage() {
                         ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-400' 
                         : 'bg-slate-900/40 border-white/10 text-slate-400 hover:bg-slate-800'
                     }`}
+                    title="Toggle Stats"
                   >
                     <TrendingUp className="w-4 h-4" />
-                  </button>
-                  <button className="p-2.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg text-slate-400 hover:bg-slate-800 transition-colors">
-                    <Filter className="w-4 h-4" />
                   </button>
                 </div>
                 

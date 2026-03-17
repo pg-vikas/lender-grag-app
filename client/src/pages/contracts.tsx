@@ -11,6 +11,8 @@ export default function ContractsPage() {
   const [contractToDelete, setContractToDelete] = useState<string | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [showStats, setShowStats] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -33,9 +35,26 @@ export default function ContractsPage() {
   };
 
   const filteredContracts = contractsList.filter(c => {
-    if (activeFilter === 'All') return true;
-    return c.status === activeFilter;
+    let match = true;
+    if (activeFilter !== 'All') {
+      match = c.status === activeFilter;
+    }
+    
+    if (match && appliedSearchQuery) {
+      const query = appliedSearchQuery.toLowerCase();
+      match = c.title.toLowerCase().includes(query) ||
+              c.client.toLowerCase().includes(query) ||
+              c.id.toLowerCase().includes(query);
+    }
+    
+    return match;
   });
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setAppliedSearchQuery('');
+    setActiveFilter('All');
+  };
 
   // Calculate stats
   const stats = {
@@ -55,25 +74,37 @@ export default function ContractsPage() {
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
               <h1 className="text-[22px] text-white font-semibold">Contracts</h1>
               
-              <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+              <div className="flex flex-wrap items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
                 <div className="relative flex-1 md:w-64 min-w-[200px]">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                   <input 
                     type="text"
-                    placeholder="Search" 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && setAppliedSearchQuery(searchQuery)}
+                    placeholder="Search contracts..." 
                     className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-white/10 rounded-xl text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
                 
+                <button 
+                  onClick={() => setAppliedSearchQuery(searchQuery)}
+                  className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow shrink-0"
+                >
+                  Filter <Filter className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={handleReset}
+                  className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow shrink-0"
+                >
+                  Reset <X className="w-4 h-4" />
+                </button>
                 <button 
                   onClick={() => setShowStats(!showStats)}
                   className={`flex items-center justify-center p-2.5 backdrop-blur-xl border rounded-xl transition-all shadow-sm hover:shadow shrink-0 ${showStats ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30' : 'bg-slate-900/40 text-slate-300 border-white/10 hover:bg-slate-900/40'}`}
                   title="Toggle Quick Stats"
                 >
                   <TrendingUp className="w-4 h-4" />
-                </button>
-                <button className="flex items-center justify-center p-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-slate-300 hover:bg-slate-900/40 transition-all shadow-sm hover:shadow shrink-0">
-                  <Filter className="w-4 h-4" />
                 </button>
                 <button 
                   onClick={() => setIsCreateModalOpen(true)}
@@ -218,6 +249,13 @@ export default function ContractsPage() {
                       </td>
                     </tr>
                   ))}
+                  {filteredContracts.length === 0 && (
+                    <tr>
+                      <td colSpan={8} className="py-8 text-center text-slate-500 bg-slate-900/40 rounded-xl border border-white/10">
+                        No contracts found matching the selected filter.
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>

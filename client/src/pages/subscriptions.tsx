@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Search, Filter, ExternalLink, Pin, ChevronUp } from "lucide-react";
+import { Search, Filter, ExternalLink, Pin, ChevronUp, X } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 
 export default function SubscriptionsPage() {
   const [openMenus, setOpenMenus] = useState<string>('sales');
   const [location] = useLocation();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -15,6 +17,21 @@ export default function SubscriptionsPage() {
     { id: "SUB-000002", client: "Vs Test", plan: "Core Starter", amount: "$99.00", renewed: "27-02-2026", payments: "$0.00", status: "Active" },
     { id: "SUB-000001", client: "Pink Gorilla...", plan: "Core Starter", amount: "$1.00", renewed: "21-01-2026", payments: "$2.00", status: "Cancelled" },
   ];
+
+  const filteredSubscriptions = subscriptionsList.filter(sub => {
+    if (appliedSearchQuery) {
+      const query = appliedSearchQuery.toLowerCase();
+      return sub.id.toLowerCase().includes(query) ||
+             sub.client.toLowerCase().includes(query) ||
+             sub.plan.toLowerCase().includes(query);
+    }
+    return true;
+  });
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setAppliedSearchQuery('');
+  };
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
@@ -33,12 +50,24 @@ export default function SubscriptionsPage() {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                   <input 
                     type="text"
-                    placeholder="Search" 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && setAppliedSearchQuery(searchQuery)}
+                    placeholder="Search subscriptions..." 
                     className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-white/10 rounded-lg text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
-                <button className="flex items-center justify-center w-10 h-10 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg text-slate-500 hover:bg-slate-800 transition-colors">
-                  <Filter className="w-4 h-4" />
+                <button 
+                  onClick={() => setAppliedSearchQuery(searchQuery)}
+                  className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow transition-colors"
+                >
+                  Filter <Filter className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={handleReset}
+                  className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow transition-colors"
+                >
+                  Reset <X className="w-4 h-4" />
                 </button>
               </div>
 
@@ -71,7 +100,7 @@ export default function SubscriptionsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {subscriptionsList.map((sub, i) => (
+                    {filteredSubscriptions.map((sub, i) => (
                       <tr key={i} className="bg-slate-900/40 backdrop-blur-xl group">
                         <td className="py-4 px-6 font-medium rounded-l-[12px] border-y border-l border-white/10 group-hover:border-[#cbd5e1] transition-colors">
                           <Link href={`/subscriptions/${sub.id}`} className="text-indigo-400 hover:text-[#7c3aed] transition-colors">
@@ -102,6 +131,13 @@ export default function SubscriptionsPage() {
                         </td>
                       </tr>
                     ))}
+                    {filteredSubscriptions.length === 0 && (
+                      <tr>
+                        <td colSpan={8} className="py-8 text-center text-slate-500 bg-slate-900/40 rounded-xl border border-white/10">
+                          No subscriptions found matching the selected filter.
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
