@@ -260,14 +260,22 @@ export default function Home() {
                       </thead>
                       <tbody>
                         {[
-                          { id: '#T-4921', agency: 'Pink Gorilla', issue: 'API Webhook failing', status: 'Escalated', color: 'text-rose-400 bg-rose-400/10 border-rose-400/20' },
-                          { id: '#T-4920', agency: 'Acme Digital', issue: 'Billing portal error', status: 'In Progress', color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
-                          { id: '#T-4915', agency: 'Creative LLC', issue: 'Custom domain setup', status: 'Waiting on Client', color: 'text-indigo-400 bg-indigo-400/10 border-indigo-400/20' },
-                          { id: '#T-4908', agency: 'Global Tech', issue: 'White label config', status: 'In Progress', color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
+                          { id: '#T-4921', rawId: '4921', agency: 'Pink Gorilla', agencyId: '1', issue: 'API Webhook failing', status: 'Escalated', color: 'text-rose-400 bg-rose-400/10 border-rose-400/20' },
+                          { id: '#T-4920', rawId: '4920', agency: 'Acme Digital', agencyId: '2', issue: 'Billing portal error', status: 'In Progress', color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
+                          { id: '#T-4915', rawId: '4915', agency: 'Creative LLC', agencyId: '3', issue: 'Custom domain setup', status: 'Waiting on Client', color: 'text-indigo-400 bg-indigo-400/10 border-indigo-400/20' },
+                          { id: '#T-4908', rawId: '4908', agency: 'Global Tech', agencyId: '4', issue: 'White label config', status: 'In Progress', color: 'text-amber-400 bg-amber-400/10 border-amber-400/20' },
                         ].map((ticket, i) => (
-                          <tr key={i} className="group cursor-pointer">
-                            <td className="py-4 px-6 font-mono text-xs text-slate-400 group-hover:text-slate-300">{ticket.id}</td>
-                            <td className="py-4 px-6 text-sm font-semibold text-white">{ticket.agency}</td>
+                          <tr key={i} className="group hover:bg-slate-800/30 transition-colors">
+                            <td className="py-4 px-6 font-mono text-xs text-slate-400">
+                              <Link href={`/tickets/${ticket.rawId}`}>
+                                <span className="cursor-pointer group-hover:text-slate-300 hover:text-fuchsia-400 transition-colors">{ticket.id}</span>
+                              </Link>
+                            </td>
+                            <td className="py-4 px-6 text-sm font-semibold text-white">
+                              <Link href={`/clients/${ticket.agencyId}`}>
+                                <span className="cursor-pointer hover:text-fuchsia-400 transition-colors">{ticket.agency}</span>
+                              </Link>
+                            </td>
                             <td className="py-4 px-6 text-sm text-slate-300">{ticket.issue}</td>
                             <td className="py-4 px-6">
                               <span className={`inline-flex items-center px-2.5 py-1 rounded text-xs font-bold border ${ticket.color}`}>
@@ -304,18 +312,20 @@ export default function Home() {
                       </thead>
                       <tbody>
                         {[
-                          { name: 'Nexus Digital', plan: 'Enterprise', mrr: '$499', joined: 'Today, 2:40 PM' },
-                          { name: 'Studio Elevate', plan: 'Pro', mrr: '$199', joined: 'Today, 10:15 AM' },
-                          { name: 'Blue Ocean Media', plan: 'Starter', mrr: '$99', joined: 'Yesterday' },
-                          { name: 'Apex Marketing', plan: 'Enterprise', mrr: '$499', joined: 'Yesterday' },
+                          { id: '1', name: 'Nexus Digital', plan: 'Enterprise', mrr: '$499', joined: 'Today, 2:40 PM' },
+                          { id: '2', name: 'Studio Elevate', plan: 'Pro', mrr: '$199', joined: 'Today, 10:15 AM' },
+                          { id: '3', name: 'Blue Ocean Media', plan: 'Starter', mrr: '$99', joined: 'Yesterday' },
+                          { id: '4', name: 'Apex Marketing', plan: 'Enterprise', mrr: '$499', joined: 'Yesterday' },
                         ].map((agency, i) => (
-                          <tr key={i} className="group cursor-pointer">
+                          <tr key={i} className="group hover:bg-slate-800/30 transition-colors">
                             <td className="py-4 px-6">
                               <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 rounded bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-colors">
                                   <Building2 className="w-4 h-4" />
                                 </div>
-                                <span className="text-sm font-semibold text-white">{agency.name}</span>
+                                <Link href={`/clients/${agency.id}`}>
+                                  <span className="text-sm font-semibold text-white hover:text-cyan-400 transition-colors cursor-pointer">{agency.name}</span>
+                                </Link>
                               </div>
                             </td>
                             <td className="py-4 px-6 text-sm text-slate-300">
