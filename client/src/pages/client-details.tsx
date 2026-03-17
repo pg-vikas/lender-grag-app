@@ -31,7 +31,26 @@ export default function ClientDetailsPage() {
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
   const [isTaskDropdownOpen, setIsTaskDropdownOpen] = useState(false);
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
+  const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
+  const [businessLinks, setBusinessLinks] = useState([{ label: '', url: '' }]);
   const [isAssigneeDropdownOpen, setIsAssigneeDropdownOpen] = useState(false);
+
+  const addBusinessLink = () => {
+    if (businessLinks.length < 6) {
+      setBusinessLinks([...businessLinks, { label: '', url: '' }]);
+    }
+  };
+
+  const removeBusinessLink = (index: number) => {
+    const newLinks = businessLinks.filter((_, i) => i !== index);
+    setBusinessLinks(newLinks);
+  };
+
+  const updateBusinessLink = (index: number, field: 'label' | 'url', value: string) => {
+    const newLinks = [...businessLinks];
+    newLinks[index][field] = value;
+    setBusinessLinks(newLinks);
+  };
   const [selectedAssignee, setSelectedAssignee] = useState('Maria Christina (maria@pinkgorilla...)');
   
   const assigneesList = [
@@ -163,13 +182,13 @@ export default function ClientDetailsPage() {
                       <Compass className="w-4 h-4 text-[#f97316]" />
                       <span className="font-semibold text-white text-[14px]">Business Discovery</span>
                     </div>
-                    <button className="text-indigo-400">
+                    <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="text-indigo-400">
                       <Edit2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
                   <div className="p-5">
                     <p className="text-[13px] text-slate-400 mb-4">No business discovery links added yet.</p>
-                    <button className="w-full py-2 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 hover:bg-slate-800 text-[#f97316] rounded-md text-[13px] font-medium transition-colors flex items-center justify-center gap-2">
+                    <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="w-full py-2 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 hover:bg-slate-800 text-[#f97316] rounded-md text-[13px] font-medium transition-colors flex items-center justify-center gap-2">
                       <Plus className="w-3.5 h-3.5" /> Add More
                     </button>
                   </div>
@@ -1004,6 +1023,93 @@ export default function ClientDetailsPage() {
         </div>
       )}
 
+      {/* Business Discovery Modal */}
+      {isBusinessDiscoveryModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsBusinessDiscoveryModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-lg font-semibold text-white">Business Discovery</h2>
+              <button 
+                onClick={() => setIsBusinessDiscoveryModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Body */}
+            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-4">
+              {businessLinks.map((link, index) => (
+                <div key={index} className="flex items-start gap-4 p-4 bg-slate-800/30 border border-slate-700/50 rounded-lg relative group">
+                  <div className="flex-1 space-y-4">
+                    <div>
+                      <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Link Label*</label>
+                      <input 
+                        type="text" 
+                        value={link.label}
+                        onChange={(e) => updateBusinessLink(index, 'label', e.target.value)}
+                        placeholder="e.g., Website, Yelp, Facebook" 
+                        className="w-full px-3 py-2.5 bg-slate-900/80 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Link URL*</label>
+                      <input 
+                        type="url" 
+                        value={link.url}
+                        onChange={(e) => updateBusinessLink(index, 'url', e.target.value)}
+                        placeholder="https://" 
+                        className="w-full px-3 py-2.5 bg-slate-900/80 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                      />
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => removeBusinessLink(index)}
+                    className="w-8 h-8 shrink-0 flex items-center justify-center rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-400/10 transition-colors mt-6"
+                    title="Remove Link"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+
+              <div className="flex justify-between items-center mt-6 pt-4 border-t border-slate-800">
+                <span className="text-[12px] text-slate-500">{businessLinks.length}/6 links added</span>
+                <button
+                  onClick={addBusinessLink}
+                  disabled={businessLinks.length >= 6}
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+                    businessLinks.length >= 6 
+                      ? 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700' 
+                      : 'bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 border border-indigo-500/20'
+                  }`}
+                >
+                  <Plus className="w-4 h-4" /> Add Another
+                </button>
+              </div>
+            </div>
+            
+            {/* Footer */}
+            <div className="flex items-center justify-end gap-3 p-5 border-t border-slate-800 bg-slate-800/30 rounded-b-xl">
+              <button 
+                onClick={() => setIsBusinessDiscoveryModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => setIsBusinessDiscoveryModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-[0_0_15px_rgba(147,51,234,0.3)] transition-all"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
