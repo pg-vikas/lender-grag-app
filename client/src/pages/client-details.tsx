@@ -32,6 +32,7 @@ export default function ClientDetailsPage() {
   const [isTaskDropdownOpen, setIsTaskDropdownOpen] = useState(false);
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
+  const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
   const [businessLinks, setBusinessLinks] = useState([{ label: '', url: '' }]);
   const [isAssigneeDropdownOpen, setIsAssigneeDropdownOpen] = useState(false);
 
@@ -200,7 +201,13 @@ export default function ClientDetailsPage() {
                     <span className="font-semibold text-white text-[14px]">Google Analytics</span>
                   </div>
                   <div className="p-5">
-                    <button className="px-4 py-1.5 border border-[#3b82f6] text-[#3b82f6] hover:bg-blue-50 rounded-md text-[13px] font-medium transition-colors flex items-center gap-2">
+                    <p className="text-[13px] text-slate-400 mb-4 leading-relaxed">
+                      Connect your Google Analytics account to view analytics data in your dashboard.
+                    </p>
+                    <button 
+                      onClick={() => setIsAnalyticsModalOpen(true)}
+                      className="px-4 py-2 bg-slate-900/40 backdrop-blur-xl/50 border border-[#3b82f6]/50 text-[#3b82f6] hover:bg-[#3b82f6]/10 rounded-md text-[13px] font-medium transition-colors flex items-center justify-center gap-2 w-full"
+                    >
                       Connect
                     </button>
                   </div>
@@ -1105,6 +1112,110 @@ export default function ClientDetailsPage() {
                 className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-[0_0_15px_rgba(147,51,234,0.3)] transition-all"
               >
                 Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Analytics Modal */}
+      {isAnalyticsModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsAnalyticsModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-lg font-semibold text-white">Configure Google Analytics</h2>
+              <button 
+                onClick={() => setIsAnalyticsModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Body */}
+            <div className="p-6 space-y-6">
+              {/* Info Banner */}
+              <div className="flex items-start gap-3 p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-lg">
+                <Info className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-[13px] text-indigo-200/90 leading-relaxed">
+                    <strong className="text-indigo-300 font-semibold">Setup Instructions:</strong> Follow the step-by-step guide to configure Google Analytics. You need to provide your GA4 Property ID and upload your Google Cloud Service Account credentials file.
+                  </p>
+                </div>
+                <div className="flex gap-2 shrink-0">
+                  <button className="w-7 h-7 flex items-center justify-center rounded border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 transition-colors">
+                    <Eye className="w-3.5 h-3.5" />
+                  </button>
+                  <button className="w-7 h-7 flex items-center justify-center rounded border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 transition-colors">
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Form Fields */}
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-200 mb-1.5">
+                    GA4 Property ID <span className="text-rose-500">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    placeholder="123456789" 
+                    className="w-full px-3 py-2.5 bg-slate-900/80 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600"
+                  />
+                  <p className="text-[12px] text-slate-400 mt-2 leading-relaxed">
+                    Your Google Analytics 4 Property ID (numbers only). Get this from: Google Analytics &rarr; Admin &rarr; Property Settings
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-200 mb-1.5">
+                    Google Analytics Credentials (JSON) <span className="text-slate-400 font-normal">(Optional - for API access)</span>
+                  </label>
+                  <div className="flex gap-0">
+                    <label className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-l-lg text-[13px] text-white hover:bg-slate-700 transition-colors cursor-pointer shrink-0">
+                      Choose file
+                      <input type="file" className="hidden" accept=".json" />
+                    </label>
+                    <div className="flex-1 px-3 py-2.5 bg-slate-900/80 border border-l-0 border-slate-700 rounded-r-lg text-[13px] text-slate-500 flex items-center">
+                      No file chosen
+                    </div>
+                  </div>
+                  <div className="text-[12px] text-slate-400 mt-2 leading-relaxed space-y-1">
+                    <p><strong className="text-slate-300 font-medium">Upload your Google Cloud Service Account JSON file.</strong></p>
+                    <p>This file enables the dashboard to display real analytics data from Google Analytics API.</p>
+                    <p><strong className="text-slate-300 font-medium">How to get:</strong> Google Cloud Console &rarr; Service Account &rarr; Create Key (JSON format)</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Security Banner */}
+              <div className="flex items-center gap-2 p-3.5 bg-amber-500/10 border border-amber-500/20 rounded-lg mt-6">
+                <svg className="w-4 h-4 text-amber-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <p className="text-[13px] text-amber-200/90">
+                  <strong className="text-amber-500 font-medium">Security Note:</strong> Your credentials file is stored securely and is only accessible by your account.
+                </p>
+              </div>
+            </div>
+            
+            {/* Footer */}
+            <div className="flex items-center justify-end gap-3 p-5 border-t border-slate-800 bg-slate-800/30 rounded-b-xl">
+              <button 
+                onClick={() => setIsAnalyticsModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors border border-slate-700 bg-slate-800"
+              >
+                Close
+              </button>
+              <button 
+                onClick={() => setIsAnalyticsModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-[0_0_15px_rgba(147,51,234,0.3)] transition-all"
+              >
+                Submit
               </button>
             </div>
           </div>
