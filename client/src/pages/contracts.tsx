@@ -150,7 +150,7 @@ export default function ContractsPage() {
               </div>
             )}
 
-            <div className="overflow-x-auto pb-4">
+            <div className="overflow-visible pb-24">
               <table className="w-full text-sm text-left whitespace-nowrap border-separate" style={{ borderSpacing: '0 12px' }}>
                 <thead>
                   <tr className="bg-slate-900/40 backdrop-blur-xl/50 text-slate-400">
@@ -180,7 +180,7 @@ export default function ContractsPage() {
                 </thead>
                 <tbody>
                   {filteredContracts.map((contract, i) => (
-                    <tr key={i} className="bg-slate-900/40 backdrop-blur-xl group">
+                    <tr key={i} className={`bg-slate-800/40 group hover:bg-slate-800/60 transition-colors`}>
                       <td className="py-4 px-6 font-medium text-slate-300 rounded-l-[12px] border-y border-l border-white/10 group-hover:border-[#cbd5e1] transition-colors">
                         <Link href={`/contracts/${contract.id}`} className="hover:text-white transition-colors">
                           {contract.id}
