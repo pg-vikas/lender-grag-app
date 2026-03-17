@@ -180,11 +180,14 @@ export default function ContractsPage() {
                 </thead>
                 <tbody>
                   {filteredContracts.map((contract, i) => (
-                    <tr key={i} className={`bg-slate-800/40 group hover:bg-slate-800/60 transition-colors`}>
-                      <td className="py-4 px-6 font-medium text-slate-300 rounded-l-[12px] border-y border-l border-white/10 group-hover:border-[#cbd5e1] transition-colors">
-                        <Link href={`/contracts/${contract.id}`} className="hover:text-white transition-colors">
-                          {contract.id}
-                        </Link>
+                    <tr key={i} className={`group hover:bg-slate-800/60 transition-colors ${contract.pinned ? 'bg-amber-500/5 border-l-2 border-l-amber-400' : 'bg-slate-800/40 border-l-2 border-l-transparent'}`}>
+                      <td className="py-4 px-6 font-medium text-slate-300 rounded-l-[12px] border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
+                        <div className="flex items-center gap-2">
+                          <Link href={`/contracts/${contract.id}`} className="hover:text-white transition-colors">
+                            {contract.id}
+                          </Link>
+                          {contract.pinned && <Pin className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />}
+                        </div>
                       </td>
                       <td className="py-4 px-6 font-medium text-white border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
                         {contract.title}
@@ -310,7 +313,7 @@ export default function ContractsPage() {
                   setIsDeleteModalOpen(false);
                   setContractToDelete(null);
                 }}
-                className="px-6 py-2.5 bg-[#1e293b] border border-slate-700 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
+                className="px-6 py-2.5 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-white rounded-xl text-sm font-medium transition-colors w-28"
               >
                 Cancel
               </button>
@@ -322,9 +325,9 @@ export default function ContractsPage() {
                   setIsDeleteModalOpen(false);
                   setContractToDelete(null);
                 }}
-                className="px-6 py-2.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all w-28 shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+                className="px-6 py-2.5 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-sm font-medium transition-all w-28 shadow-[0_0_15px_rgba(244,63,94,0.3)]"
               >
-                Continue
+                Delete
               </button>
             </div>
           </div>
