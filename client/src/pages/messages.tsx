@@ -125,26 +125,32 @@ export default function MessagesPage() {
     const now = new Date();
     const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     
-    setThreads(prevThreads => prevThreads.map(thread => {
-      if (thread.id === activeThreadId) {
-        return {
-          ...thread,
-          lastMessage: newMessage,
-          time: timeString,
-          messages: [
-            ...thread.messages,
-            { 
-              id: thread.messages.length + 1, 
-              sender: 'support', 
-              text: newMessage, 
-              time: timeString, 
-              status: "read" 
-            }
-          ]
-        };
-      }
-      return thread;
-    }));
+    setThreads(prevThreads => {
+      const activeThreadIndex = prevThreads.findIndex(t => t.id === activeThreadId);
+      if (activeThreadIndex === -1) return prevThreads;
+      
+      const updatedThread = {
+        ...prevThreads[activeThreadIndex],
+        lastMessage: newMessage,
+        time: timeString,
+        messages: [
+          ...prevThreads[activeThreadIndex].messages,
+          { 
+            id: prevThreads[activeThreadIndex].messages.length + 1, 
+            sender: 'support', 
+            text: newMessage, 
+            time: timeString, 
+            status: "read" 
+          }
+        ]
+      };
+
+      const newThreads = [...prevThreads];
+      newThreads.splice(activeThreadIndex, 1);
+      newThreads.unshift(updatedThread);
+      
+      return newThreads;
+    });
     
     setNewMessage("");
     setTimeout(scrollToBottom, 100);
