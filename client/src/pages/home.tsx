@@ -21,9 +21,22 @@ import { Sidebar, Header } from "./clients";
 export default function Home() {
   const [openMenus, setOpenMenus] = useState<string>('');
   const [location] = useLocation();
+  const [timeRange, setTimeRange] = useState<'7D' | '30D' | '90D'>('30D');
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
+  };
+
+  const chartData = {
+    '7D': [50, 65, 55, 70, 85, 75, 90],
+    '30D': [40, 55, 45, 60, 75, 65, 80, 70, 85, 90, 80, 95, 85, 100],
+    '90D': [30, 45, 35, 50, 65, 55, 70, 60, 75, 80, 70, 85, 75, 90, 80, 95, 85, 100, 95, 100, 90]
+  };
+
+  const chartLabels = {
+    '7D': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    '30D': ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+    '90D': ['Month 1', 'Month 2', 'Month 3']
   };
 
   return (
@@ -150,9 +163,36 @@ export default function Home() {
                       <p className="text-sm text-slate-400">User acquisition & revenue over time</p>
                     </div>
                     <div className="flex gap-2">
-                      <button className="px-3 py-1.5 rounded bg-indigo-500/20 text-indigo-300 text-xs font-bold border border-indigo-500/30">7D</button>
-                      <button className="px-3 py-1.5 rounded bg-slate-800/80 text-slate-400 hover:text-[#e2e8f0] text-xs font-medium border border-slate-700">30D</button>
-                      <button className="px-3 py-1.5 rounded bg-slate-800/80 text-slate-400 hover:text-[#e2e8f0] text-xs font-medium border border-slate-700">90D</button>
+                      <button 
+                        onClick={() => setTimeRange('7D')}
+                        className={`px-3 py-1.5 rounded text-xs font-bold border transition-colors ${
+                          timeRange === '7D' 
+                            ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30' 
+                            : 'bg-slate-800/80 text-slate-400 hover:text-[#e2e8f0] border-slate-700'
+                        }`}
+                      >
+                        7D
+                      </button>
+                      <button 
+                        onClick={() => setTimeRange('30D')}
+                        className={`px-3 py-1.5 rounded text-xs font-bold border transition-colors ${
+                          timeRange === '30D' 
+                            ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30' 
+                            : 'bg-slate-800/80 text-slate-400 hover:text-[#e2e8f0] border-slate-700'
+                        }`}
+                      >
+                        30D
+                      </button>
+                      <button 
+                        onClick={() => setTimeRange('90D')}
+                        className={`px-3 py-1.5 rounded text-xs font-bold border transition-colors ${
+                          timeRange === '90D' 
+                            ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30' 
+                            : 'bg-slate-800/80 text-slate-400 hover:text-[#e2e8f0] border-slate-700'
+                        }`}
+                      >
+                        90D
+                      </button>
                     </div>
                   </div>
                   
@@ -173,7 +213,7 @@ export default function Home() {
                     
                     {/* Bars - Generated via map */}
                     <div className="ml-10 flex-1 flex items-end justify-between gap-1 sm:gap-2 h-[calc(100%-2rem)] z-10 relative group-hover:[&>div>div]:opacity-100">
-                      {[40, 55, 45, 60, 75, 65, 80, 70, 85, 90, 80, 95, 85, 100].map((height, i) => (
+                      {chartData[timeRange].map((height, i) => (
                         <div key={i} className="flex-1 flex flex-col justify-end group/bar cursor-pointer relative h-full">
                           {/* Tooltip */}
                           <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 border border-indigo-500/30 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity z-20 pointer-events-none whitespace-nowrap shadow-xl">
@@ -194,7 +234,9 @@ export default function Home() {
                   
                   {/* X Axis */}
                   <div className="flex justify-between text-xs text-slate-500 font-mono ml-10 mt-2 px-2">
-                    <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                    {chartLabels[timeRange].map((label, i) => (
+                      <span key={i}>{label}</span>
+                    ))}
                   </div>
                 </div>
 
