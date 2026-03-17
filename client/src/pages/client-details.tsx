@@ -34,6 +34,7 @@ export default function ClientDetailsPage() {
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
   const [isChoosePlanModalOpen, setIsChoosePlanModalOpen] = useState(false);
+  const [isAddEmployeeModalOpen, setIsAddEmployeeModalOpen] = useState(false);
   const [isEditBackgroundModalOpen, setIsEditBackgroundModalOpen] = useState(false);
   const [selectedPlanTab, setSelectedPlanTab] = useState<'plans' | 'checkout'>('plans');
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
@@ -428,7 +429,10 @@ export default function ClientDetailsPage() {
                 <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
                   <div className="p-4 flex justify-between items-center">
                     <span className="font-semibold text-white text-[14px]">Employee Details</span>
-                    <button className="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-indigo-400 hover:bg-[#e2e8f0]">
+                    <button 
+                      onClick={() => setIsAddEmployeeModalOpen(true)}
+                      className="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-indigo-400 hover:text-white hover:bg-slate-700 transition-colors"
+                    >
                       <Plus className="w-4 h-4" />
                     </button>
                   </div>
@@ -1248,6 +1252,116 @@ export default function ClientDetailsPage() {
           </div>
         </div>
       )}
+      {/* Add Employee Modal */}
+      {isAddEmployeeModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsAddEmployeeModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-xl font-bold text-white">Create A New User</h2>
+              <button 
+                onClick={() => setIsAddEmployeeModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Body */}
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {/* First Name */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">First Name*</label>
+                  <input 
+                    type="text" 
+                    placeholder="Jordan"
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                  />
+                </div>
+                
+                {/* Last Name */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Last Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="Peterson"
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                  />
+                </div>
+                
+                {/* Email Address */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Email Address*</label>
+                  <input 
+                    type="email" 
+                    placeholder="vikas@pinkgorillasoftware.com"
+                    defaultValue="vikas@pinkgorillasoftware.com"
+                    className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                  />
+                </div>
+                
+                {/* Phone */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Phone</label>
+                  <div className="flex">
+                    <select className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 rounded-l-lg border-r-0 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none outline-none">
+                      <option>+1</option>
+                      <option>+44</option>
+                      <option>+91</option>
+                    </select>
+                    <input 
+                      type="text" 
+                      placeholder="9876543210"
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                    />
+                  </div>
+                </div>
+                
+                {/* Designation */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Designation</label>
+                  <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none">
+                    <option>HR</option>
+                    <option>Manager</option>
+                    <option>Developer</option>
+                    <option>Designer</option>
+                  </select>
+                </div>
+                
+                {/* Password */}
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Password*</label>
+                  <input 
+                    type="password" 
+                    defaultValue="..........."
+                    className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all font-mono tracking-widest"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            {/* Footer */}
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsAddEmployeeModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={() => setIsAddEmployeeModalOpen(false)}
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Edit Background Modal */}
       {isEditBackgroundModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
