@@ -1,0 +1,38 @@
+Task: Implement Contract Details, Edit, and Delete Functionality on Contracts Page
+
+Requirements:
+
+1. **Contract Detail Page**
+   - Clicking on a **Contract ID** in the Contracts page should open the **Contract Detail page**.  
+   - Layout should be similar to: `https://staging-hub.pinkgorilla.agency/contracts/22`  
+   - Maintain the **current dashboard theme**, including fonts, spacing, colors, and buttons.  
+   - Display all contract information dynamically based on the **contract ID**.  
+
+2. **Edit Contract**
+   - In the Contracts page **Action dropdown**, clicking **Edit** should open the **Edit Contract page**.  
+   - Layout similar to: `https://staging-hub.pinkgorilla.agency/contracts/22/edit`  
+   - Users can edit contract details and save changes.  
+   - Saving updates the contract information **dynamically** without page reload where possible.  
+   - Validate input fields and show inline error messages if required.
+
+3. **Delete Contract**
+   - In the Action dropdown, clicking **Delete** should:
+     - Open a confirmation popup.  
+     - On confirmation, delete the contract from the list dynamically.  
+   - Functionality should be the **same as Delete elsewhere in the dashboard**.  
+
+4. **UI & Responsiveness**
+   - Maintain **dashboard theme consistency** across all pages (buttons, fonts, hover effects, spacing).  
+   - Popups and pages should be **fully responsive** for all screen sizes.  
+   - Ensure the layout and actions are clear, readable, and functional.  
+
+5. **Dummy/Example Data**
+   - If needed, use dummy contract data to demonstrate layout and dynamic updates.
+
+Expected Result:
+
+- Clicking **Contract ID** opens the Contract Detail page with correct information.  
+- Clicking **Edit** opens the Edit Contract page, allows changes, and updates the contract.  
+- Clicking **Delete** opens a confirmation and removes the contract.  
+- All actions work consistently with the current dashboard theme and are responsive.  
+- Functionality matches the behavior of other pages (Edit/Delete/Pin) in the dashboard.

@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, Filter, Plus, Edit2, Trash2, Pin, Eye, X, ChevronUp, ChevronDown, TrendingUp } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
+import { useAppStore } from "@/lib/store";
 
 export default function ContractsPage() {
   const [openMenus, setOpenMenus] = useState<string>('contracts');
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [contractToDelete, setContractToDelete] = useState<string | null>(null);
@@ -13,25 +14,27 @@ export default function ContractsPage() {
   const [showStats, setShowStats] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
+  const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+
+  const contractsList = useAppStore((state) => state.contracts);
+  const deleteContract = useAppStore((state) => state.deleteContract);
+  const updateContract = useAppStore((state) => state.updateContract);
+
+  useEffect(() => {
+    const handleClickOutside = () => setActiveDropdown(null);
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
-  const initialContracts = [
-    { id: "CO-00022", title: "Growth Advisor 7-18", client: "Pink Gorilla Software", date: "18-12-2025", clientStatus: "Pending", providerStatus: "Pending", status: "Awaiting Signatures", pinned: false },
-    { id: "CO-00021", title: "Dec 18th 2025 at 6:10", client: "Pink Gorilla Software", date: "18-12-2025", clientStatus: "Pending", providerStatus: "Signed", status: "Awaiting Signatures", pinned: false },
-    { id: "CO-00018", title: "test", client: "Recloud", date: "26-10-2025", clientStatus: "Pending", providerStatus: "Pending", status: "Draft", pinned: true },
-    { id: "CO-00017", title: "Demo", client: "PG Development", date: "27-10-2025", clientStatus: "Signed", providerStatus: "Signed", status: "Active", pinned: false },
-    { id: "CO-00016", title: "test4", client: "PG Development", date: "25-10-2025", clientStatus: "Signed", providerStatus: "Signed", status: "Active", pinned: false },
-  ];
-
-  const [contractsList, setContractsList] = useState(initialContracts);
-
   const togglePin = (id: string) => {
-    setContractsList(contractsList.map(contract => 
-      contract.id === id ? { ...contract, pinned: !contract.pinned } : contract
-    ));
+    const contract = contractsList.find(c => c.id === id);
+    if (contract) {
+      updateContract(id, { pinned: !contract.pinned });
+    }
   };
 
   const filteredContracts = contractsList.filter(c => {
@@ -179,7 +182,9 @@ export default function ContractsPage() {
                   {filteredContracts.map((contract, i) => (
                     <tr key={i} className="bg-slate-900/40 backdrop-blur-xl group">
                       <td className="py-4 px-6 font-medium text-slate-300 rounded-l-[12px] border-y border-l border-white/10 group-hover:border-[#cbd5e1] transition-colors">
-                        {contract.id}
+                        <Link href={`/contracts/${contract.id}`} className="hover:text-white transition-colors">
+                          {contract.id}
+                        </Link>
                       </td>
                       <td className="py-4 px-6 font-medium text-white border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
                         {contract.title}
@@ -213,38 +218,64 @@ export default function ContractsPage() {
                          </span>
                       </td>
                       <td className="py-4 px-6 border-y border-r border-white/10 group-hover:border-[#cbd5e1] transition-colors rounded-r-[12px]">
-                         <div className="flex items-center gap-2">
+                         <div className="relative flex justify-end">
                            <button 
-                             onClick={() => {
-                               setContractToDelete(contract.id);
-                               setIsDeleteModalOpen(true);
+                             onClick={(e) => {
+                               e.stopPropagation();
+                               setActiveDropdown(activeDropdown === i ? null : i);
                              }}
-                             className="p-1.5 text-slate-500 hover:text-red-400 transition-colors"
-                             title="Delete Contract"
+                             className="bg-[#7c3aed] hover:bg-[#6d28d9] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
                            >
-                             <Trash2 className="w-[15px] h-[15px]" />
+                             Action <ChevronDown className="w-4 h-4" />
                            </button>
-                           <Link 
-                             href={`/contracts/${contract.id}/edit`}
-                             className="p-1.5 text-slate-500 hover:text-white transition-colors"
-                             title="Edit Contract"
-                           >
-                             <Edit2 className="w-[15px] h-[15px]" />
-                           </Link>
-                           <Link 
-                             href={`/contracts/${contract.id}`}
-                             className="p-1.5 text-slate-500 hover:text-white transition-colors"
-                             title="View Contract"
-                           >
-                             <Eye className="w-[15px] h-[15px]" />
-                           </Link>
-                           <button 
-                             onClick={() => togglePin(contract.id)}
-                             className={`p-1.5 transition-colors ${contract.pinned ? 'text-indigo-400' : 'text-slate-500 hover:text-white'}`}
-                             title="Pin Contract"
-                           >
-                             <Pin className="w-[15px] h-[15px]" />
-                           </button>
+
+                           {activeDropdown === i && (
+                             <div className="absolute right-0 top-full mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95">
+                               <div className="py-1">
+                                 <button 
+                                   onClick={(e) => { 
+                                     e.stopPropagation(); 
+                                     setContractToDelete(contract.id); 
+                                     setIsDeleteModalOpen(true); 
+                                     setActiveDropdown(null); 
+                                   }}
+                                   className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                 >
+                                   <Trash2 className="w-4 h-4 text-rose-400" /> Delete
+                                 </button>
+                                 <button 
+                                   onClick={(e) => { 
+                                     e.stopPropagation(); 
+                                     setLocation(`/contracts/${contract.id}/edit`);
+                                     setActiveDropdown(null);
+                                   }}
+                                   className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                 >
+                                   <Edit2 className="w-4 h-4 text-emerald-400" /> Edit
+                                 </button>
+                                 <button 
+                                   onClick={(e) => { 
+                                     e.stopPropagation(); 
+                                     setLocation(`/contracts/${contract.id}`);
+                                     setActiveDropdown(null);
+                                   }}
+                                   className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                 >
+                                   <Eye className="w-4 h-4 text-cyan-400" /> View Details
+                                 </button>
+                                 <button 
+                                   onClick={(e) => { 
+                                     e.stopPropagation(); 
+                                     togglePin(contract.id);
+                                     setActiveDropdown(null);
+                                   }}
+                                   className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
+                                 >
+                                   <Pin className={`w-4 h-4 ${contract.pinned ? 'text-indigo-400' : 'text-slate-400'}`} /> {contract.pinned ? 'Unpin' : 'Pin'}
+                                 </button>
+                               </div>
+                             </div>
+                           )}
                          </div>
                       </td>
                     </tr>
@@ -285,7 +316,9 @@ export default function ContractsPage() {
               </button>
               <button 
                 onClick={() => {
-                  setContractsList(prev => prev.filter(c => c.id !== contractToDelete));
+                  if (contractToDelete) {
+                    deleteContract(contractToDelete);
+                  }
                   setIsDeleteModalOpen(false);
                   setContractToDelete(null);
                 }}
