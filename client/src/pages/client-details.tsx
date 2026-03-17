@@ -33,6 +33,11 @@ export default function ClientDetailsPage() {
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
+  const [isChoosePlanModalOpen, setIsChoosePlanModalOpen] = useState(false);
+  const [selectedPlanTab, setSelectedPlanTab] = useState<'plans' | 'checkout'>('plans');
+  const [selectedPlan, setSelectedPlan] = useState<any>(null);
+  const [expandedPlans, setExpandedPlans] = useState<Record<string, boolean>>({});
+  
   const [businessLinks, setBusinessLinks] = useState([{ label: '', url: '' }]);
   const [isAssigneeDropdownOpen, setIsAssigneeDropdownOpen] = useState(false);
 
@@ -54,6 +59,91 @@ export default function ClientDetailsPage() {
   };
   const [selectedAssignee, setSelectedAssignee] = useState('Maria Christina (maria@pinkgorilla...)');
   
+  const togglePlanExpansion = (planName: string) => {
+    setExpandedPlans(prev => ({
+      ...prev,
+      [planName]: !prev[planName]
+    }));
+  };
+
+  const handleChoosePlan = (plan: any) => {
+    setSelectedPlan(plan);
+    setSelectedPlanTab('checkout');
+  };
+
+  const plans = [
+    {
+      name: "Core Starter",
+      price: "$399",
+      period: "Per month",
+      launchCost: "$1,500",
+      launchTime: "4 - 6 weeks",
+      buttonText: "Choose",
+      features: [
+        "Website Design & Rebranding Up to 10 Pages",
+        "Responsive design (mobile/tablet optimization)",
+        "Domain Registration & Automated Web Renewal",
+        "SSL Setup, Management and Renewal Service",
+        "Shared Hosting Management & 99.9% Uptime"
+      ]
+    },
+    {
+      name: "Core Growth",
+      price: "$799",
+      period: "Per month",
+      launchCost: "$3,500",
+      launchTime: "4 - 8 weeks",
+      buttonText: "Choose",
+      features: [
+        "Website Design & Rebranding Up to 25 Pages",
+        "Responsive design (mobile/tablet optimization)",
+        "Domain Registration & Automated Web Renewal",
+        "SSL Setup, Management and Renewal Service",
+        "Dedicated Hosting Management & 99.9% Uptime"
+      ]
+    },
+    {
+      name: "Core Pro",
+      price: "$1,499",
+      period: "Per month",
+      launchCost: "$7,500",
+      launchTime: "8 - 16 weeks",
+      buttonText: "Choose",
+      features: [
+        "Website Design & Rebranding Unlimited Pages",
+        "Responsive design (mobile/tablet optimization)",
+        "Domain Registration & Automated Web Renewal",
+        "SSL Setup, Management and Renewal Service",
+        "Cloud Hosting Management & 99.9% Uptime"
+      ]
+    },
+    {
+      name: "Core Enterprise",
+      price: "Pay as you go",
+      period: "",
+      launchCost: "$20,000",
+      launchTime: "8 - 16 weeks",
+      buttonText: "Let's talk",
+      features: [
+        "Automated Booking - $18 Per Month",
+        "Wire Framing Customization - $1,800 One Time",
+        "AI Custom Video - $2,300 One Time",
+        "ADA Compliance - $9 Per Month",
+        "Automated Web Dedicated Chat Bot - $49 Per Month",
+        "Heatmap + Behavior Analytics Setup (Hotjar, Clarity) - $127 Per Month",
+        "Analytics and Statistics Profiles - $67 Per Month",
+        "E-Commerce Shopping Cart - $500 Per Month",
+        "Custom Mobile App Development - $2,000 One Time",
+        "Logo Creation - $495 One Time",
+        "Search Engine Optimization - $2,300 Per Month",
+        "Additional Dedicated Email Addresses - $4 Per Month",
+        "Monthly Blog Creation Wizard - $18 Per Month",
+        "SMS Notification System - $139 Per Month",
+        "Chatbot Integration (Sales or Support) - $118 Per Month"
+      ]
+    }
+  ];
+
   const assigneesList = [
     'Maria Christina (maria@pinkgorilla...)',
     'Vinayak Sharma (vinayak@...)',
@@ -226,10 +316,19 @@ export default function ClientDetailsPage() {
                       <span className="text-[13px] text-[#ec4899] font-medium">Plan Type - No Plan</span>
                     </div>
                     <div className="flex gap-2">
-                      <button className="px-4 py-1.5 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-md text-[12px] font-medium transition-colors">
+                      <button 
+                        onClick={() => {
+                          setSelectedPlanTab('plans');
+                          setIsChoosePlanModalOpen(true);
+                        }}
+                        className="px-4 py-1.5 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-md text-[12px] font-medium transition-colors"
+                      >
                         Choose Plan
                       </button>
-                      <button className="px-4 py-1.5 border border-[#ec4899] text-[#ec4899] hover:bg-pink-50 rounded-md text-[12px] font-medium transition-colors">
+                      <button 
+                        onClick={() => setLocation('/contracts')}
+                        className="px-4 py-1.5 border border-[#ec4899] text-[#ec4899] hover:bg-pink-50 rounded-md text-[12px] font-medium transition-colors"
+                      >
                         Agreement
                       </button>
                     </div>
@@ -1217,6 +1316,128 @@ export default function ClientDetailsPage() {
               >
                 Submit
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Choose Plan Modal */}
+      {isChoosePlanModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsChoosePlanModalOpen(false)}></div>
+          
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-[1000px] max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                {selectedPlanTab === 'checkout' && (
+                  <button 
+                    onClick={() => setSelectedPlanTab('plans')}
+                    className="text-gray-500 hover:text-gray-900 transition-colors"
+                  >
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                  </button>
+                )}
+                <h2 className="text-xl font-bold text-gray-900">Choose Plan</h2>
+              </div>
+              <button 
+                onClick={() => setIsChoosePlanModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            
+            {/* Body */}
+            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-gray-50/50">
+              {selectedPlanTab === 'plans' ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                  {plans.map((plan, idx) => (
+                    <div key={idx} className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
+                      <div className="mb-4">
+                        <h3 className="text-[15px] font-medium text-gray-900 mb-2">{plan.name}</h3>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-2xl font-bold text-gray-900">{plan.price}</span>
+                        </div>
+                        {plan.period && <p className="text-[12px] text-gray-500 mb-4">{plan.period}</p>}
+                        {!plan.period && <p className="text-[12px] text-transparent mb-4 select-none">Spacer</p>}
+                        
+                        <p className="text-[12px] text-gray-500 mb-4">
+                          Launch Cost Est. {plan.launchCost} | {plan.launchTime}
+                        </p>
+                        
+                        <button 
+                          onClick={() => handleChoosePlan(plan)}
+                          className="w-full py-2.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-white rounded-lg text-[14px] font-medium transition-colors"
+                        >
+                          {plan.buttonText}
+                        </button>
+                      </div>
+                      
+                      <div className="flex-1 space-y-3 relative">
+                        {(expandedPlans[plan.name] ? plan.features : plan.features.slice(0, 5)).map((feature, i) => (
+                          <div key={i} className="flex items-start gap-2">
+                            <div className="w-4 h-4 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
+                              <svg className="w-2.5 h-2.5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
+                            </div>
+                            <span className="text-[12px] text-gray-600 leading-tight">{feature}</span>
+                          </div>
+                        ))}
+                        
+                        {plan.features.length > 5 && (
+                          <div className="pt-2 text-center">
+                            <button 
+                              onClick={() => togglePlanExpansion(plan.name)}
+                              className="text-[13px] text-[#7c3aed] hover:text-[#6d28d9] font-medium underline"
+                            >
+                              {expandedPlans[plan.name] ? 'Read less' : 'Read more'}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                  <div className="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-gray-100 pb-6 mb-6">
+                    <div>
+                      <h3 className="text-lg font-medium text-gray-900 mb-1">{selectedPlan?.name} Plan</h3>
+                      <div className="flex items-baseline gap-1 mb-2">
+                        <span className="text-2xl font-bold text-gray-900">{selectedPlan?.price}</span>
+                        {selectedPlan?.period && <span className="text-sm text-gray-500">/ {selectedPlan?.period.toLowerCase().replace('per ', '')}</span>}
+                      </div>
+                      <p className="text-sm text-gray-500">( Launch Cost Est. {selectedPlan?.launchCost} | {selectedPlan?.launchTime} )</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4 mb-8">
+                    <div className="flex justify-between items-center pb-4 border-b border-gray-100">
+                      <span className="text-[15px] text-gray-600">Subscription Total</span>
+                      <span className="text-[15px] text-gray-900 font-medium">{selectedPlan?.price} {selectedPlan?.period ? `/ ${selectedPlan?.period.toLowerCase().replace('per ', '')}` : ''}</span>
+                    </div>
+                    <div className="flex justify-between items-center pb-4 border-b border-gray-100">
+                      <span className="text-[15px] text-gray-600">OneTime Total</span>
+                      <span className="text-[15px] text-gray-900 font-medium">{selectedPlan?.launchCost}</span>
+                    </div>
+                    <div className="flex justify-between items-center pt-2">
+                      <span className="text-lg font-medium text-gray-900">Total</span>
+                      <span className="text-lg font-bold text-gray-900">
+                        {/* Fake total calculation for display */}
+                        {selectedPlan?.price === 'Pay as you go' ? selectedPlan?.launchCost : `$${(parseInt(selectedPlan?.price.replace(/[^0-9]/g, '') || '0') + parseInt(selectedPlan?.launchCost.replace(/[^0-9]/g, '') || '0')).toLocaleString()}`}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-end">
+                    <button 
+                      onClick={() => setIsChoosePlanModalOpen(false)}
+                      className="px-6 py-2.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-white rounded-lg text-[14px] font-medium transition-colors shadow-md shadow-purple-500/20"
+                    >
+                      Pay & Upgrade
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
