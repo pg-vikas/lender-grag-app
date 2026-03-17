@@ -9,6 +9,7 @@ export default function ProjectsPage() {
   const [isEditProjectModalOpen, setIsEditProjectModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isExportPanelOpen, setIsExportPanelOpen] = useState(false);
+  const [showStats, setShowStats] = useState(true);
   const [viewMode, setViewMode] = useState<'table' | 'board'>('table');
   const [statusFilter, setStatusFilter] = useState<'all' | 'completed' | 'in_progress' | 'on_hold'>('all');
   const [location] = useLocation();
@@ -131,7 +132,10 @@ export default function ProjectsPage() {
                   <button className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow transition-colors">
                     Filter <Filter className="w-4 h-4" />
                   </button>
-                  <button className="p-2 bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl/50 transition-colors">
+                  <button 
+                    onClick={() => setShowStats(!showStats)}
+                    className="p-2 bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl/50 transition-colors"
+                  >
                     <TrendingUp className="w-4 h-4" />
                   </button>
                   <div className="relative flex-1 max-w-[200px]">
@@ -161,42 +165,44 @@ export default function ProjectsPage() {
             </div>
 
             {/* Stats Row */}
-            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8 shadow-sm border border-white/10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div 
-                  className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'all' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
-                  onClick={() => setStatusFilter('all')}
-                >
-                  <span className="text-[28px] font-medium text-white mb-1">{stats.all}</span>
-                  <span className={`text-[13px] mb-4 ${statusFilter === 'all' ? 'text-indigo-400' : 'text-slate-500'}`}>All</span>
-                  <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'all' ? 'bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]' : 'bg-indigo-500/30 group-hover:bg-indigo-500/60'}`} />
-                </div>
-                <div 
-                  className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'in_progress' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
-                  onClick={() => setStatusFilter('in_progress')}
-                >
-                  <span className="text-[28px] font-medium text-white mb-1">{stats.in_progress}</span>
-                  <span className={`text-[13px] mb-4 ${statusFilter === 'in_progress' ? 'text-indigo-400' : 'text-slate-500'}`}>In Progress</span>
-                  <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'in_progress' ? 'bg-[#a855f7] shadow-[0_0_10px_rgba(168,85,247,0.5)]' : 'bg-[#a855f7]/30 group-hover:bg-[#a855f7]/60'}`} />
-                </div>
-                <div 
-                  className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'on_hold' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
-                  onClick={() => setStatusFilter('on_hold')}
-                >
-                  <span className="text-[28px] font-medium text-white mb-1">{stats.on_hold}</span>
-                  <span className={`text-[13px] mb-4 ${statusFilter === 'on_hold' ? 'text-indigo-400' : 'text-slate-500'}`}>On Hold</span>
-                  <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'on_hold' ? 'bg-[#fdba74] shadow-[0_0_10px_rgba(253,186,116,0.5)]' : 'bg-[#fdba74]/30 group-hover:bg-[#fdba74]/60'}`} />
-                </div>
-                <div 
-                  className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'completed' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
-                  onClick={() => setStatusFilter('completed')}
-                >
-                  <span className="text-[28px] font-medium text-white mb-1">{stats.completed}</span>
-                  <span className={`text-[13px] mb-4 ${statusFilter === 'completed' ? 'text-indigo-400' : 'text-slate-500'}`}>Completed</span>
-                  <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'completed' ? 'bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]' : 'bg-indigo-500/30 group-hover:bg-indigo-500/60'}`} />
+            {showStats && (
+              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8 shadow-sm border border-white/10 animate-in slide-in-from-top-4 duration-200">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  <div 
+                    className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'all' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
+                    onClick={() => setStatusFilter('all')}
+                  >
+                    <span className="text-[28px] font-medium text-white mb-1">{stats.all}</span>
+                    <span className={`text-[13px] mb-4 ${statusFilter === 'all' ? 'text-indigo-400' : 'text-slate-500'}`}>All</span>
+                    <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'all' ? 'bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]' : 'bg-indigo-500/30 group-hover:bg-indigo-500/60'}`} />
+                  </div>
+                  <div 
+                    className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'in_progress' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
+                    onClick={() => setStatusFilter('in_progress')}
+                  >
+                    <span className="text-[28px] font-medium text-white mb-1">{stats.in_progress}</span>
+                    <span className={`text-[13px] mb-4 ${statusFilter === 'in_progress' ? 'text-indigo-400' : 'text-slate-500'}`}>In Progress</span>
+                    <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'in_progress' ? 'bg-[#a855f7] shadow-[0_0_10px_rgba(168,85,247,0.5)]' : 'bg-[#a855f7]/30 group-hover:bg-[#a855f7]/60'}`} />
+                  </div>
+                  <div 
+                    className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'on_hold' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
+                    onClick={() => setStatusFilter('on_hold')}
+                  >
+                    <span className="text-[28px] font-medium text-white mb-1">{stats.on_hold}</span>
+                    <span className={`text-[13px] mb-4 ${statusFilter === 'on_hold' ? 'text-indigo-400' : 'text-slate-500'}`}>On Hold</span>
+                    <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'on_hold' ? 'bg-[#fdba74] shadow-[0_0_10px_rgba(253,186,116,0.5)]' : 'bg-[#fdba74]/30 group-hover:bg-[#fdba74]/60'}`} />
+                  </div>
+                  <div 
+                    className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'completed' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
+                    onClick={() => setStatusFilter('completed')}
+                  >
+                    <span className="text-[28px] font-medium text-white mb-1">{stats.completed}</span>
+                    <span className={`text-[13px] mb-4 ${statusFilter === 'completed' ? 'text-indigo-400' : 'text-slate-500'}`}>Completed</span>
+                    <div className={`h-[3px] w-full rounded-full transition-all ${statusFilter === 'completed' ? 'bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]' : 'bg-indigo-500/30 group-hover:bg-indigo-500/60'}`} />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Projects Content based on View Mode */}
             {viewMode === 'table' ? (
