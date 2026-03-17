@@ -45,6 +45,76 @@ export default function ClientDetailsPage() {
   
   const [checkedComplianceItems, setCheckedComplianceItems] = useState<Record<number, boolean>>({});
 
+  // Note States
+  const [notes, setNotes] = useState([
+    {
+      id: 1,
+      title: 'brand new',
+      description: '-brand new-no logo no website-follow up in 3 days',
+      author: 'Maria',
+      date: '09 Mar, 2026',
+      time: '02:40 pm',
+      initial: 'M'
+    }
+  ]);
+  const [isAddNoteModalOpen, setIsAddNoteModalOpen] = useState(false);
+  const [isEditNoteModalOpen, setIsEditNoteModalOpen] = useState(false);
+  const [isDeleteNoteModalOpen, setIsDeleteNoteModalOpen] = useState(false);
+  const [isSendEmailNoteModalOpen, setIsSendEmailNoteModalOpen] = useState(false);
+  const [editingNote, setEditingNote] = useState<any>(null);
+  const [deletingNote, setDeletingNote] = useState<any>(null);
+  const [sendingEmailNote, setSendingEmailNote] = useState<any>(null);
+  const [newNote, setNewNote] = useState({ title: '', description: '' });
+
+  const [emailForm, setEmailForm] = useState({ to: '', subject: '', message: '' });
+
+  const handleAddNote = () => {
+    if (newNote.title && newNote.description) {
+      const now = new Date();
+      setNotes([
+        {
+          id: Date.now(),
+          title: newNote.title,
+          description: newNote.description,
+          author: 'Admin Gorilla',
+          date: now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+          time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }).toLowerCase(),
+          initial: 'A'
+        },
+        ...notes
+      ]);
+      setNewNote({ title: '', description: '' });
+      setIsAddNoteModalOpen(false);
+    }
+  };
+
+  const handleEditNote = () => {
+    if (editingNote && editingNote.title && editingNote.description) {
+      setNotes(notes.map(note => 
+        note.id === editingNote.id ? { ...note, ...editingNote } : note
+      ));
+      setIsEditNoteModalOpen(false);
+      setEditingNote(null);
+    }
+  };
+
+  const handleDeleteNote = () => {
+    if (deletingNote) {
+      setNotes(notes.filter(note => note.id !== deletingNote.id));
+      setIsDeleteNoteModalOpen(false);
+      setDeletingNote(null);
+    }
+  };
+
+  const handleSendEmailNote = () => {
+    if (emailForm.to && emailForm.subject && emailForm.message) {
+      setIsSendEmailNoteModalOpen(false);
+      setSendingEmailNote(null);
+      setEmailForm({ to: '', subject: '', message: '' });
+      // Logic to actually send email goes here
+    }
+  };
+
   const toggleComplianceItem = (index: number) => {
     setCheckedComplianceItems(prev => ({
       ...prev,
@@ -810,34 +880,81 @@ export default function ClientDetailsPage() {
                 <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
                   <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
                     <span className="font-semibold text-white text-[15px]">Notes</span>
-                    <button className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded text-[12px] font-medium text-slate-300 hover:bg-slate-800">
+                    <button 
+                      onClick={() => setIsAddNoteModalOpen(true)}
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded text-[12px] font-medium text-slate-300 hover:bg-slate-800 transition-colors"
+                    >
                       <PlusCircle className="w-3.5 h-3.5" /> Add Note
                     </button>
                   </div>
-                  <div className="p-5">
-                    <div className="bg-[#fefce8] border border-[#fde047] rounded-lg p-4 relative">
-                      <div className="absolute top-3 right-3 flex gap-2">
-                        <button className="text-indigo-400"><Edit2 className="w-3.5 h-3.5" /></button>
-                        <button className="text-rose-400"><svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg></button>
+                  <div className="p-5 space-y-4 max-h-[400px] overflow-y-auto custom-scrollbar">
+                    {notes.map(note => (
+                      <div key={note.id} className="bg-[#fefce8] border border-[#fde047] rounded-lg p-4 relative group">
+                        <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button 
+                            onClick={() => {
+                              setEmailForm({ 
+                                to: '', 
+                                subject: `Pink Gorilla - ${note.title} Update / Report (${note.date})`, 
+                                message: note.description 
+                              });
+                              setSendingEmailNote(note);
+                              setIsSendEmailNoteModalOpen(true);
+                            }}
+                            className="text-slate-400 hover:text-blue-500 transition-colors"
+                            title="Send Email"
+                          >
+                            <Mail className="w-3.5 h-3.5" />
+                          </button>
+                          <button 
+                            onClick={() => {
+                              setEditingNote(note);
+                              setIsEditNoteModalOpen(true);
+                            }}
+                            className="text-indigo-400 hover:text-indigo-600 transition-colors"
+                            title="Edit"
+                          >
+                            <Edit2 className="w-3.5 h-3.5" />
+                          </button>
+                          <button 
+                            onClick={() => {
+                              setDeletingNote(note);
+                              setIsDeleteNoteModalOpen(true);
+                            }}
+                            className="text-rose-400 hover:text-rose-600 transition-colors"
+                            title="Delete"
+                          >
+                            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>
+                          </button>
+                        </div>
+                        <h4 className="font-semibold text-slate-800 text-[14px] mb-2 pr-20">{note.title}</h4>
+                        <p className="text-[13px] text-slate-700 mb-4 whitespace-pre-wrap">{note.description}</p>
+                        
+                        <div className="flex flex-wrap items-center gap-4 text-[11px] text-slate-500">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">{note.initial}</div>
+                            <span>{note.author}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                            {note.date}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                            {note.time}
+                          </div>
+                        </div>
                       </div>
-                      <h4 className="font-semibold text-white text-[14px] mb-2">brand new</h4>
-                      <p className="text-[13px] text-slate-300 mb-4">-brand new-no logo no website-follow up in 3 days</p>
-                      
-                      <div className="flex items-center gap-4 text-[11px] text-slate-400">
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">M</div>
-                          <span>Maria</span>
+                    ))}
+                    
+                    {notes.length === 0 && (
+                      <div className="text-center py-8">
+                        <div className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center mx-auto mb-3">
+                          <FileText className="w-5 h-5 text-slate-500" />
                         </div>
-                        <div className="flex items-center gap-1">
-                          <span className="w-1 h-1 rounded-full bg-[#cbd5e1]"></span>
-                          09 Mar, 2026
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <span className="w-1 h-1 rounded-full bg-[#cbd5e1]"></span>
-                          02:40 pm
-                        </div>
+                        <p className="text-sm text-slate-400">No notes added yet.</p>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
 
@@ -1775,6 +1892,257 @@ export default function ClientDetailsPage() {
                   Delete
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Note Modal */}
+      {isAddNoteModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsAddNoteModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-xl font-bold text-white">Create A New Note</h2>
+              <button 
+                onClick={() => setIsAddNoteModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-5">
+              <div>
+                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Title*</label>
+                <input 
+                  type="text" 
+                  value={newNote.title}
+                  onChange={(e) => setNewNote({...newNote, title: e.target.value})}
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Description*</label>
+                <div className="border border-slate-700 rounded-lg bg-slate-900/50 overflow-hidden focus-within:border-purple-500/50 focus-within:ring-1 focus-within:ring-purple-500/50 transition-all">
+                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800/50 overflow-x-auto custom-scrollbar">
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="underline text-[13px] px-1">U</span></button>
+                    <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></button>
+                  </div>
+                  <textarea 
+                    value={newNote.description}
+                    onChange={(e) => setNewNote({...newNote, description: e.target.value})}
+                    className="w-full p-4 min-h-[200px] resize-none focus:outline-none text-[13px] text-white bg-transparent"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsAddNoteModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={handleAddNote}
+                disabled={!newNote.title || !newNote.description}
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Note Modal */}
+      {isEditNoteModalOpen && editingNote && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsEditNoteModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-xl font-bold text-white">Edit Note</h2>
+              <button 
+                onClick={() => setIsEditNoteModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-5">
+              <div>
+                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Title*</label>
+                <input 
+                  type="text" 
+                  value={editingNote.title}
+                  onChange={(e) => setEditingNote({...editingNote, title: e.target.value})}
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Description*</label>
+                <div className="border border-slate-700 rounded-lg bg-slate-900/50 overflow-hidden focus-within:border-purple-500/50 focus-within:ring-1 focus-within:ring-purple-500/50 transition-all">
+                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800/50 overflow-x-auto custom-scrollbar">
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="underline text-[13px] px-1">U</span></button>
+                    <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+                  </div>
+                  <textarea 
+                    value={editingNote.description}
+                    onChange={(e) => setEditingNote({...editingNote, description: e.target.value})}
+                    className="w-full p-4 min-h-[200px] resize-none focus:outline-none text-[13px] text-white bg-transparent"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsEditNoteModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={handleEditNote}
+                disabled={!editingNote.title || !editingNote.description}
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Note Modal */}
+      {isDeleteNoteModalOpen && deletingNote && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsDeleteNoteModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 text-center">
+              <div className="w-16 h-16 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4 border border-purple-500/20">
+                <svg className="w-8 h-8 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Delete Note</h2>
+              <p className="text-[14px] text-slate-300 mb-6">
+                Are you sure you want to delete this note?
+              </p>
+              
+              <div className="flex justify-center gap-3">
+                <button 
+                  onClick={() => setIsDeleteNoteModalOpen(false)}
+                  className="px-5 py-2.5 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors w-full"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={handleDeleteNote}
+                  className="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] w-full"
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Send Email Note Modal */}
+      {isSendEmailNoteModalOpen && sendingEmailNote && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsSendEmailNoteModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-xl font-bold text-white">Send email</h2>
+              <button 
+                onClick={() => setIsSendEmailNoteModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-4">
+              <div>
+                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">To*</label>
+                <input 
+                  type="email" 
+                  value={emailForm.to}
+                  onChange={(e) => setEmailForm({...emailForm, to: e.target.value})}
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Subject*</label>
+                <input 
+                  type="text" 
+                  value={emailForm.subject}
+                  onChange={(e) => setEmailForm({...emailForm, subject: e.target.value})}
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                />
+              </div>
+              
+              <div>
+                <div className="border border-slate-700 rounded-lg bg-slate-900/50 overflow-hidden focus-within:border-purple-500/50 focus-within:ring-1 focus-within:ring-purple-500/50 transition-all">
+                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800/50 overflow-x-auto custom-scrollbar">
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="underline text-[13px] px-1">U</span></button>
+                    <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
+                    <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+                  </div>
+                  <div className="p-4 bg-slate-800/30">
+                    <p className="text-[13px] text-slate-300 mb-4">Hi [EmployeeName],</p>
+                    <p className="text-[13px] text-slate-300 mb-4">A note has been created under {sendingEmailNote.title}.</p>
+                    <p className="text-[13px] text-slate-300 mb-1">Note:</p>
+                    <textarea 
+                      value={emailForm.message}
+                      onChange={(e) => setEmailForm({...emailForm, message: e.target.value})}
+                      className="w-full min-h-[100px] resize-none focus:outline-none text-[13px] text-white bg-transparent"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">From*</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all outline-none">
+                  <option>Staging Pink Gorilla (vikas@pinkgorillasoftware.com)</option>
+                </select>
+              </div>
+            </div>
+            
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsSendEmailNoteModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={handleSendEmailNote}
+                disabled={!emailForm.to || !emailForm.subject || !emailForm.message}
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>
