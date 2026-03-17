@@ -51,7 +51,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
-      <Sidebar openMenus="" toggleMenu={() => {}} currentPath={location} />
+      <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
 
       <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Projects" />

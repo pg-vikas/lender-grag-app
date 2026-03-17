@@ -7,6 +7,11 @@ import { Link, useLocation } from "wouter";
 export default function LaunchpadsPage() {
   const [location] = useLocation();
   const [activeFilter, setActiveFilter] = useState('All');
+  const [openMenus, setOpenMenus] = useState<string>('launchpads');
+
+  const toggleMenu = (menu: string) => {
+    setOpenMenus(prev => prev === menu ? '' : menu);
+  };
   
   const stats = [
     { label: 'Not Started', count: 3, colorClass: 'border-slate-500', icon: Clock, iconColor: 'text-slate-400', filterValue: 'Not Started' },
@@ -30,7 +35,7 @@ export default function LaunchpadsPage() {
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
-      <Sidebar openMenus="" toggleMenu={() => {}} currentPath={location} />
+      <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
       
       <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Launchpads" />

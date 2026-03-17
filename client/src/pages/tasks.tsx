@@ -5,26 +5,26 @@ import { Sidebar, Header } from "./clients";
 
 const MOCK_TASKS = {
   today: [
-    { id: 1, name: 'Call new lead', client: 'Alpha Corp', clientId: 1, dueDateStr: 'Today, 2:00 PM', daysText: 'Due today', isOverdue: false },
-    { id: 2, name: 'Send proposal', client: 'Omega Inc', clientId: 2, dueDateStr: 'Today, 5:00 PM', daysText: 'Due today', isOverdue: false },
+    { id: 1, name: 'Call new lead', client: 'Alpha Corp', clientId: 1, dueDateStr: 'Today, 2:00 PM', daysText: 'Due today', isOverdue: false, isCompleted: false },
+    { id: 2, name: 'Send proposal', client: 'Omega Inc', clientId: 2, dueDateStr: 'Today, 5:00 PM', daysText: 'Due today', isOverdue: false, isCompleted: false },
   ],
   overdue: [
-    { id: 3, name: 'test 3', client: 'PG Development', clientId: 3, dueDateStr: 'Dec 01, 2025', daysText: '105 days overdue', isOverdue: true },
-    { id: 4, name: 'Follow Up', client: 'Juicy Whip', clientId: 4, dueDateStr: 'Dec 04, 2025', daysText: '102 days overdue', isOverdue: true },
-    { id: 5, name: 'Follow Up', client: 'PG Development', clientId: 3, dueDateStr: 'Dec 05, 2025', daysText: '101 days overdue', isOverdue: true },
-    { id: 6, name: 'Test Task', client: 'Juicy Whip', clientId: 4, dueDateStr: 'Dec 05, 2025', daysText: '101 days overdue', isOverdue: true },
-    { id: 7, name: 'Follow Up', client: 'Juicy Whip', clientId: 4, dueDateStr: 'Dec 06, 2025', daysText: '100 days overdue', isOverdue: true },
+    { id: 3, name: 'test 3', client: 'PG Development', clientId: 3, dueDateStr: 'Dec 01, 2025', daysText: '105 days overdue', isOverdue: true, isCompleted: false },
+    { id: 4, name: 'Follow Up', client: 'Juicy Whip', clientId: 4, dueDateStr: 'Dec 04, 2025', daysText: '102 days overdue', isOverdue: true, isCompleted: false },
+    { id: 5, name: 'Follow Up', client: 'PG Development', clientId: 3, dueDateStr: 'Dec 05, 2025', daysText: '101 days overdue', isOverdue: true, isCompleted: false },
+    { id: 6, name: 'Test Task', client: 'Juicy Whip', clientId: 4, dueDateStr: 'Dec 05, 2025', daysText: '101 days overdue', isOverdue: true, isCompleted: false },
+    { id: 7, name: 'Follow Up', client: 'Juicy Whip', clientId: 4, dueDateStr: 'Dec 06, 2025', daysText: '100 days overdue', isOverdue: true, isCompleted: false },
   ],
   future: [
-    { id: 8, name: 'Quarterly Review', client: 'Beta LLC', clientId: 5, dueDateStr: 'Next Week', daysText: '7 days from now', isOverdue: false },
-    { id: 11, name: 'Check-in Meeting', client: 'Delta Co', clientId: 6, dueDateStr: 'In 2 Weeks', daysText: '14 days from now', isOverdue: false },
+    { id: 8, name: 'Quarterly Review', client: 'Beta LLC', clientId: 5, dueDateStr: 'Next Week', daysText: '7 days from now', isOverdue: false, isCompleted: false },
+    { id: 11, name: 'Check-in Meeting', client: 'Delta Co', clientId: 6, dueDateStr: 'In 2 Weeks', daysText: '14 days from now', isOverdue: false, isCompleted: false },
   ],
   completed: [
     { id: 9, name: 'Initial setup', client: 'Gamma Group', clientId: 7, dueDateStr: 'Last Week', daysText: 'Completed on time', isOverdue: false, isCompleted: true },
   ],
   missing: [
-    { id: 10, name: 'Upload Logo', client: 'Delta Co', clientId: 6, dueDateStr: 'No date set', daysText: 'Action required', isOverdue: true },
-    { id: 12, name: 'Sign Agreement', client: 'Zeta Corp', clientId: 8, dueDateStr: 'No date set', daysText: 'Action required', isOverdue: true },
+    { id: 10, name: 'Upload Logo', client: 'Delta Co', clientId: 6, dueDateStr: 'No date set', daysText: 'Action required', isOverdue: true, isCompleted: false },
+    { id: 12, name: 'Sign Agreement', client: 'Zeta Corp', clientId: 8, dueDateStr: 'No date set', daysText: 'Action required', isOverdue: true, isCompleted: false },
   ]
 };
 
