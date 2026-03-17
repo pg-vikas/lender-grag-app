@@ -220,7 +220,7 @@ export default function UsersPage() {
                              <div>
                                <div 
                                  className="font-semibold text-white cursor-pointer hover:text-indigo-400 transition-colors"
-                                 onClick={() => setSelectedUser(user)}
+                                 onClick={() => { setSelectedUser(user); setIsActivityModalOpen(true); }}
                                >
                                  {user.name}
                                </div>
