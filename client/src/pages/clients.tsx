@@ -381,6 +381,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
+  const [editingClientData, setEditingClientData] = useState({ name: "", email: "", phone: "", industry: "", status: "" });
   const [location] = useLocation();
 
   const handleSearch = () => {
@@ -442,7 +443,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
 
   const title = isActiveOnly ? "Active Clients" : "Clients";
 
-  const allClients = [
+  const [allClients, setAllClients] = useState([
     { name: "Pink Gorilla Software", industry: "Information Technology", compliance: false, revenue: "$0.00", billing: "---", contacted: "5 days ago", assigned: "Vinayak Sharma (vinayak@", status: "Active" },
     { name: "Estate Landscape", industry: "Retail Trade", compliance: false, revenue: "$0.00", billing: "---", contacted: "---", assigned: "Maria Christina (maria@pir", status: "Active" },
     { name: "Summit Cabinets", industry: "Retail Trade", compliance: false, revenue: "$0.00", billing: "---", contacted: "---", assigned: "Chayan Alavi (chayan@pin", status: "Active" },
@@ -452,7 +453,9 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
     { name: "Blocked Co", industry: "Retail Trade", compliance: false, revenue: "$0.00", billing: "---", contacted: "2 months ago", assigned: "Admin", status: "Suspended" },
     { name: "Red Hot Sales", industry: "Marketing", compliance: true, revenue: "$500.00", billing: "Paid", contacted: "1 hour ago", assigned: "Chayan Alavi (chayan@pin", status: "Hot" },
     { name: "Old Agency", industry: "Real Estate", compliance: false, revenue: "$0.00", billing: "---", contacted: "6 months ago", assigned: "Maria Christina (maria@pir", status: "Inactive" },
-  ];
+  ]);
+
+  const [selectedClientIndex, setSelectedClientIndex] = useState<number | null>(null);
 
   const filteredClients = allClients.filter(c => {
     const matchesFilter = activeFilter === 'All' || c.status === activeFilter;
@@ -661,13 +664,26 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                               <div className="absolute right-6 top-full mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95">
                                 <div className="py-1">
                                   <button 
-                                    onClick={(e) => { e.stopPropagation(); setIsSuspendModalOpen(true); setActiveDropdown(null); }}
+                                    onClick={(e) => { e.stopPropagation(); setSelectedClientIndex(i); setIsSuspendModalOpen(true); setActiveDropdown(null); }}
                                     className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
                                   >
                                     <Trash2 className="w-4 h-4 text-rose-400" /> Delete
                                   </button>
                                   <button 
-                                    onClick={(e) => { e.stopPropagation(); setIsEditClientModalOpen(true); setActiveDropdown(null); }}
+                                    onClick={(e) => { 
+                                      e.stopPropagation(); 
+                                      setSelectedClientIndex(i); 
+                                      const client = allClients[i];
+                                      setEditingClientData({
+                                        name: client.name,
+                                        email: client.assigned.includes('(') ? client.assigned.split('(')[1].replace(')', '') : "email@domain.com",
+                                        phone: "9000000001",
+                                        industry: client.industry,
+                                        status: client.status
+                                      });
+                                      setIsEditClientModalOpen(true); 
+                                      setActiveDropdown(null); 
+                                    }}
                                     className="w-full px-4 py-2.5 text-left text-sm text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-3"
                                   >
                                     <Edit className="w-4 h-4 text-teal-400" /> Edit
@@ -1103,9 +1119,18 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Status</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>Active</option>
-                        <option>Brand New</option>
+                      <select 
+                        value={editingClientData.status}
+                        onChange={(e) => setEditingClientData({...editingClientData, status: e.target.value})}
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none"
+                      >
+                        <option value="Active">Active</option>
+                        <option value="Brand New">Brand New</option>
+                        <option value="Lead">Lead</option>
+                        <option value="Nurture">Nurture</option>
+                        <option value="Suspended">Suspended</option>
+                        <option value="Hot">Hot</option>
+                        <option value="Inactive">Inactive</option>
                       </select>
                     </div>
                   </div>
@@ -1114,9 +1139,18 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Industry</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>Information Technology Services</option>
-                        <option>Retail Trade</option>
+                      <select 
+                        value={editingClientData.industry}
+                        onChange={(e) => setEditingClientData({...editingClientData, industry: e.target.value})}
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none"
+                      >
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Retail Trade">Retail Trade</option>
+                        <option value="Software">Software</option>
+                        <option value="Utilities">Utilities</option>
+                        <option value="Healthcare">Healthcare</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Real Estate">Real Estate</option>
                       </select>
                     </div>
                     <div>
@@ -1255,7 +1289,23 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 Close
               </button>
               <button 
-                onClick={() => setIsEditClientModalOpen(false)}
+                onClick={() => {
+                  if (selectedClientIndex !== null) {
+                    setAllClients(prev => {
+                      const newClients = [...prev];
+                      newClients[selectedClientIndex] = {
+                        ...newClients[selectedClientIndex],
+                        name: editingClientData.name,
+                        assigned: `${newClients[selectedClientIndex].assigned.split('(')[0]}(${editingClientData.email}`,
+                        industry: editingClientData.industry,
+                        status: editingClientData.status
+                      };
+                      return newClients;
+                    });
+                    setSelectedClientIndex(null);
+                  }
+                  setIsEditClientModalOpen(false);
+                }}
                 className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
               >
                 Save Changes
@@ -1375,7 +1425,13 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 Cancel
               </button>
               <button 
-                onClick={() => setIsSuspendModalOpen(false)}
+                onClick={() => {
+                  if (selectedClientIndex !== null) {
+                    setAllClients(prev => prev.filter((_, i) => i !== selectedClientIndex));
+                    setSelectedClientIndex(null);
+                  }
+                  setIsSuspendModalOpen(false);
+                }}
                 className="px-6 py-2.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-xl text-sm font-medium transition-all w-28 shadow-[0_0_15px_rgba(139,92,246,0.3)]"
               >
                 Continue
