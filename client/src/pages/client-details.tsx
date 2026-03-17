@@ -68,6 +68,82 @@ export default function ClientDetailsPage() {
 
   const [emailForm, setEmailForm] = useState({ to: '', subject: '', message: '' });
 
+  // Sample States
+  const [samples, setSamples] = useState<any[]>([
+    {
+      id: 1,
+      title: 'eee',
+      type: 'Website',
+      url: 'eee.pinkgorillasoftware.com',
+      author: 'Admin',
+      date: '17 Feb, 2026',
+      time: '11:53 pm',
+    },
+    {
+      id: 2,
+      title: 'test',
+      type: 'Logo',
+      url: 'staging-hub.pinkgorilla.agency/logo-sample/ODI',
+      author: 'Admin',
+      date: '17 Feb, 2026',
+      time: '11:53 pm',
+    }
+  ]);
+  const [isGenerateWebsiteModalOpen, setIsGenerateWebsiteModalOpen] = useState(false);
+  const [isAddLogoModalOpen, setIsAddLogoModalOpen] = useState(false);
+  const [newWebsiteSample, setNewWebsiteSample] = useState({ subdomain: '', template: 'Accountant1' });
+  const [newLogoSample, setNewLogoSample] = useState({ title: '' });
+  const [deletingSample, setDeletingSample] = useState<any>(null);
+  const [isDeleteSampleModalOpen, setIsDeleteSampleModalOpen] = useState(false);
+
+  const handleGenerateWebsite = () => {
+    if (newWebsiteSample.subdomain) {
+      const now = new Date();
+      setSamples([
+        {
+          id: Date.now(),
+          title: newWebsiteSample.subdomain,
+          type: 'Website',
+          url: `${newWebsiteSample.subdomain}.pinkgorillasoftware.com`,
+          author: 'Admin',
+          date: now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+          time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }).toLowerCase()
+        },
+        ...samples
+      ]);
+      setNewWebsiteSample({ subdomain: '', template: 'Accountant1' });
+      setIsGenerateWebsiteModalOpen(false);
+    }
+  };
+
+  const handleAddLogo = () => {
+    if (newLogoSample.title) {
+      const now = new Date();
+      setSamples([
+        {
+          id: Date.now(),
+          title: newLogoSample.title,
+          type: 'Logo',
+          url: `staging-hub.pinkgorilla.agency/logo-sample/${newLogoSample.title.substring(0, 3).toUpperCase()}`,
+          author: 'Admin',
+          date: now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+          time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }).toLowerCase()
+        },
+        ...samples
+      ]);
+      setNewLogoSample({ title: '' });
+      setIsAddLogoModalOpen(false);
+    }
+  };
+
+  const handleDeleteSample = () => {
+    if (deletingSample) {
+      setSamples(samples.filter(sample => sample.id !== deletingSample.id));
+      setIsDeleteSampleModalOpen(false);
+      setDeletingSample(null);
+    }
+  };
+
   const handleAddNote = () => {
     if (newNote.title && newNote.description) {
       const now = new Date();
@@ -963,20 +1039,76 @@ export default function ClientDetailsPage() {
                   <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
                     <span className="font-semibold text-white text-[15px]">Samples</span>
                     <div className="flex gap-2">
-                      <button className="flex items-center gap-1.5 px-3 py-1.5 border border-[#8b5cf6] text-indigo-400 rounded text-[12px] font-medium hover:bg-purple-50">
+                      <button 
+                        onClick={() => setIsGenerateWebsiteModalOpen(true)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 border border-[#8b5cf6] text-indigo-400 rounded text-[12px] font-medium hover:bg-purple-500/10 transition-colors"
+                      >
                         <Plus className="w-3.5 h-3.5" /> Generate Website
                       </button>
-                      <button className="flex items-center gap-1.5 px-3 py-1.5 border border-[#8b5cf6] text-indigo-400 rounded text-[12px] font-medium hover:bg-purple-50">
+                      <button 
+                        onClick={() => setIsAddLogoModalOpen(true)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 border border-[#8b5cf6] text-indigo-400 rounded text-[12px] font-medium hover:bg-purple-500/10 transition-colors"
+                      >
                         <Plus className="w-3.5 h-3.5" /> Add Logo Sample
                       </button>
                     </div>
                   </div>
-                  <div className="p-12 flex flex-col items-center justify-center text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter">
-                    <div className="w-16 h-16 mb-4 flex items-center justify-center bg-slate-800 rounded-full">
-                      <Search className="w-8 h-8 text-slate-500" />
-                    </div>
-                    <h3 className="text-[16px] font-semibold text-white mb-1">No records were found</h3>
-                    <p className="text-[13px] text-slate-400">Try a difference search</p>
+                  <div className="p-5 space-y-4">
+                    {samples.map(sample => (
+                      <div key={sample.id} className="bg-slate-900/60 rounded-lg border border-slate-700 p-4 relative overflow-hidden flex flex-col justify-center min-h-[90px] group shadow-lg">
+                        <div className="flex justify-between items-start mb-2 relative z-10">
+                          <h4 className="font-semibold text-white text-[14px]">{sample.title}</h4>
+                          <span className="text-[13px] text-slate-400 max-w-[50%] truncate">{sample.url}</span>
+                          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button className="text-slate-400 hover:text-slate-600 transition-colors" title="Copy URL">
+                              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                            <button 
+                              onClick={() => {
+                                setDeletingSample(sample);
+                                setIsDeleteSampleModalOpen(true);
+                              }}
+                              className="text-rose-400 hover:text-rose-600 transition-colors" 
+                              title="Delete"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-4 text-[12px] text-slate-500 relative z-10 mt-auto">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden">
+                              <svg className="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </div>
+                            <span>{sample.author}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                            {sample.date}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                            {sample.time}
+                          </div>
+                        </div>
+                        
+                        {/* Corner Ribbon */}
+                        <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#8b5cf6] transform rotate-45 flex items-start justify-center pt-2">
+                          <span className="text-white text-[10px] font-bold tracking-wider uppercase">{sample.type}</span>
+                        </div>
+                      </div>
+                    ))}
+                    
+                    {samples.length === 0 && (
+                      <div className="p-12 flex flex-col items-center justify-center text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter bg-slate-900/40 backdrop-blur-xl/50 rounded-xl">
+                        <div className="w-16 h-16 mb-4 flex items-center justify-center bg-slate-800 rounded-full">
+                          <Search className="w-8 h-8 text-slate-500" />
+                        </div>
+                        <h3 className="text-[16px] font-semibold text-white mb-1">No records were found</h3>
+                        <p className="text-[13px] text-slate-400">Try a difference search</p>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -2139,6 +2271,221 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleSendEmailNote}
                 disabled={!emailForm.to || !emailForm.subject || !emailForm.message}
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Sample Modal */}
+      {isDeleteSampleModalOpen && deletingSample && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsDeleteSampleModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 text-center">
+              <div className="w-16 h-16 rounded-full bg-rose-500/10 flex items-center justify-center mx-auto mb-4 border border-rose-500/20">
+                <Trash2 className="w-8 h-8 text-rose-500" />
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Delete Sample</h2>
+              <p className="text-[14px] text-slate-300 mb-6">
+                Are you sure you want to delete this {deletingSample.type.toLowerCase()} sample?
+              </p>
+              
+              <div className="flex justify-center gap-3">
+                <button 
+                  onClick={() => setIsDeleteSampleModalOpen(false)}
+                  className="px-5 py-2.5 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors w-full"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={handleDeleteSample}
+                  className="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(225,29,72,0.3)] w-full"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Generate Website Modal */}
+      {isGenerateWebsiteModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsGenerateWebsiteModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-4xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-xl font-bold text-white">Create Website</h2>
+              <button 
+                onClick={() => setIsGenerateWebsiteModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Subdomain*</label>
+                  <div className="flex">
+                    <input 
+                      type="text" 
+                      placeholder="app"
+                      value={newWebsiteSample.subdomain}
+                      onChange={(e) => setNewWebsiteSample({...newWebsiteSample, subdomain: e.target.value})}
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-l-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all border-r-0"
+                    />
+                    <div className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-r-lg text-[13px] text-slate-400 flex items-center">
+                      pinkgorillasoftware.com
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Logo (PNG/JPG)</label>
+                  <div className="flex items-center gap-3 w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-400">
+                    <button className="px-3 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-slate-300 transition-colors">
+                      Choose file
+                    </button>
+                    <span>No file chosen</span>
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Template*</label>
+                  <select 
+                    value={newWebsiteSample.template}
+                    onChange={(e) => setNewWebsiteSample({...newWebsiteSample, template: e.target.value})}
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all outline-none appearance-none"
+                  >
+                    <option value="Accountant1">Accountant1</option>
+                    <option value="Agency1">Agency1</option>
+                    <option value="Plumber1">Plumber1</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Template Preview Section */}
+              <div className="border border-slate-700 rounded-lg overflow-hidden flex flex-col bg-slate-800/30">
+                <div className="flex-1 bg-slate-900/80 p-4 relative flex items-center justify-center min-h-[250px]">
+                  <div className="w-full h-full bg-slate-800 rounded border border-slate-700 shadow-inner flex flex-col overflow-hidden">
+                    {/* Mock Website Preview */}
+                    <div className="h-6 border-b border-slate-700 bg-slate-800/80 flex items-center px-2 gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                      <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                      <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                    </div>
+                    <div className="flex-1 p-4 bg-white relative overflow-hidden">
+                      <div className="flex justify-between items-center mb-4">
+                        <div className="w-16 h-4 bg-blue-600 rounded"></div>
+                        <div className="flex gap-2">
+                          <div className="w-8 h-2 bg-slate-200 rounded"></div>
+                          <div className="w-8 h-2 bg-slate-200 rounded"></div>
+                          <div className="w-8 h-2 bg-slate-200 rounded"></div>
+                        </div>
+                      </div>
+                      <div className="flex gap-4">
+                        <div className="w-1/2 space-y-2 pt-2">
+                          <div className="w-3/4 h-5 bg-slate-800 rounded"></div>
+                          <div className="w-full h-5 bg-slate-800 rounded mb-4"></div>
+                          <div className="w-full h-2 bg-slate-300 rounded"></div>
+                          <div className="w-5/6 h-2 bg-slate-300 rounded"></div>
+                          <div className="w-4/6 h-2 bg-slate-300 rounded"></div>
+                          <div className="pt-2 flex gap-2">
+                            <div className="w-20 h-6 bg-blue-600 rounded"></div>
+                            <div className="w-20 h-6 border border-slate-300 rounded"></div>
+                          </div>
+                        </div>
+                        <div className="w-1/2 h-32 bg-slate-200 rounded flex items-center justify-center">
+                          <svg className="w-8 h-8 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                        </div>
+                      </div>
+                      <div className="absolute right-1 top-6 bottom-1 w-1.5 bg-slate-200 rounded-full">
+                        <div className="w-full h-8 bg-slate-400 rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-3 bg-slate-800 text-center border-t border-slate-700 text-[13px] text-slate-300 font-medium flex justify-center items-center gap-2">
+                  Template Preview
+                  <ChevronDown className="w-4 h-4 text-slate-500" />
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsGenerateWebsiteModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={handleGenerateWebsite}
+                disabled={!newWebsiteSample.subdomain}
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Logo Sample Modal */}
+      {isAddLogoModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsAddLogoModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-xl font-bold text-white">Add Logo Sample</h2>
+              <button 
+                onClick={() => setIsAddLogoModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-5">
+              <div>
+                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Title*</label>
+                <input 
+                  type="text" 
+                  placeholder="Sample"
+                  value={newLogoSample.title}
+                  onChange={(e) => setNewLogoSample({...newLogoSample, title: e.target.value})}
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500"
+                />
+              </div>
+              
+              <div className="border-2 border-dashed border-slate-700 hover:border-purple-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors cursor-pointer bg-slate-800/20 hover:bg-slate-800/40">
+                <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center mb-3">
+                  <svg className="w-6 h-6 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                </div>
+                <p className="text-[14px] text-slate-300 font-medium">Drop files here or click to upload</p>
+                <p className="text-[12px] text-slate-500 mt-1">PNG, JPG, SVG up to 5MB</p>
+              </div>
+            </div>
+            
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsAddLogoModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Close
+              </button>
+              <button 
+                onClick={handleAddLogo}
+                disabled={!newLogoSample.title}
                 className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Submit
