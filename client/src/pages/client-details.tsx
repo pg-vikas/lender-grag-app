@@ -1325,113 +1325,141 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsChoosePlanModalOpen(false)}></div>
           
-          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-[1000px] max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
               <div className="flex items-center gap-3">
                 {selectedPlanTab === 'checkout' && (
                   <button 
                     onClick={() => setSelectedPlanTab('plans')}
-                    className="text-gray-500 hover:text-gray-900 transition-colors"
+                    className="text-slate-400 hover:text-white transition-colors"
                   >
                     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                   </button>
                 )}
-                <h2 className="text-xl font-bold text-gray-900">Choose Plan</h2>
+                <h2 className="text-lg font-semibold text-white">Choose Plan</h2>
               </div>
               <button 
                 onClick={() => setIsChoosePlanModalOpen(false)}
-                className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors"
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
             </div>
             
             {/* Body */}
-            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-gray-50/50">
+            <div className="p-6 overflow-y-auto custom-scrollbar flex-1">
               {selectedPlanTab === 'plans' ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                  {plans.map((plan, idx) => (
-                    <div key={idx} className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
-                      <div className="mb-4">
-                        <h3 className="text-[15px] font-medium text-gray-900 mb-2">{plan.name}</h3>
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-2xl font-bold text-gray-900">{plan.price}</span>
-                        </div>
-                        {plan.period && <p className="text-[12px] text-gray-500 mb-4">{plan.period}</p>}
-                        {!plan.period && <p className="text-[12px] text-transparent mb-4 select-none">Spacer</p>}
-                        
-                        <p className="text-[12px] text-gray-500 mb-4">
-                          Launch Cost Est. {plan.launchCost} | {plan.launchTime}
-                        </p>
-                        
-                        <button 
-                          onClick={() => handleChoosePlan(plan)}
-                          className="w-full py-2.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-white rounded-lg text-[14px] font-medium transition-colors"
-                        >
-                          {plan.buttonText}
-                        </button>
-                      </div>
-                      
-                      <div className="flex-1 space-y-3 relative">
-                        {(expandedPlans[plan.name] ? plan.features : plan.features.slice(0, 5)).map((feature, i) => (
-                          <div key={i} className="flex items-start gap-2">
-                            <div className="w-4 h-4 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
-                              <svg className="w-2.5 h-2.5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
-                            </div>
-                            <span className="text-[12px] text-gray-600 leading-tight">{feature}</span>
+                <div className="flex flex-col h-full">
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 flex-1">
+                    {plans.map((plan, idx) => (
+                      <div key={idx} className="bg-slate-800/30 border border-slate-700/50 rounded-xl p-5 flex flex-col h-full shadow-sm hover:border-slate-600 transition-colors group">
+                        <div className="mb-4">
+                          <h3 className="text-[15px] font-medium text-white mb-2">{plan.name}</h3>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-2xl font-bold text-white">{plan.price}</span>
                           </div>
-                        ))}
+                          {plan.period && <p className="text-[12px] text-slate-400 mb-4">{plan.period}</p>}
+                          {!plan.period && <p className="text-[12px] text-transparent mb-4 select-none">Spacer</p>}
+                          
+                          <div className="bg-slate-800/50 rounded p-2 mb-4 border border-slate-700/50">
+                            <p className="text-[11px] text-slate-300">
+                              <span className="text-slate-500">Launch Cost Est.</span> <span className="text-indigo-400">{plan.launchCost}</span> | {plan.launchTime}
+                            </p>
+                          </div>
+                          
+                          <button 
+                            onClick={() => handleChoosePlan(plan)}
+                            className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)]"
+                          >
+                            {plan.buttonText}
+                          </button>
+                        </div>
+                        
+                        <div className="flex-1 space-y-3 mb-6">
+                          {(expandedPlans[plan.name] ? plan.features : plan.features.slice(0, 5)).map((feature, i) => (
+                            <div key={i} className={`flex items-start gap-2 ${i >= 5 ? 'animate-in fade-in slide-in-from-top-1 duration-300' : ''}`}>
+                              <div className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg className="w-2.5 h-2.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
+                              </div>
+                              <span className="text-[12px] text-slate-300 leading-tight">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
                         
                         {plan.features.length > 5 && (
-                          <div className="pt-2 text-center">
+                          <div className="mt-auto pt-4 border-t border-slate-700/50 text-center">
                             <button 
                               onClick={() => togglePlanExpansion(plan.name)}
-                              className="text-[13px] text-[#7c3aed] hover:text-[#6d28d9] font-medium underline"
+                              className="text-[12px] text-indigo-400 hover:text-indigo-300 font-medium underline decoration-indigo-400/30 underline-offset-2"
                             >
                               {expandedPlans[plan.name] ? 'Read less' : 'Read more'}
                             </button>
                           </div>
                         )}
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                  
+                  {/* Footer for Plans Tab */}
+                  <div className="flex items-center justify-between mt-6 pt-5 border-t border-slate-800">
+                    <p className="text-[13px] text-slate-400">Not sure which plan is right for you? Contact our support team.</p>
+                    <button 
+                      onClick={() => {
+                        setIsChoosePlanModalOpen(false);
+                        setLocation('/contracts');
+                      }}
+                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-lg text-[13px] font-medium transition-colors flex items-center gap-1.5"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                      View Agreement Details
+                    </button>
+                  </div>
                 </div>
               ) : (
-                <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                  <div className="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-gray-100 pb-6 mb-6">
+                <div className="max-w-2xl mx-auto bg-slate-800/30 border border-slate-700/50 rounded-xl p-6 shadow-sm">
+                  <div className="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-slate-700/50 pb-6 mb-6">
                     <div>
-                      <h3 className="text-lg font-medium text-gray-900 mb-1">{selectedPlan?.name} Plan</h3>
+                      <h3 className="text-lg font-medium text-white mb-1">{selectedPlan?.name} Plan</h3>
                       <div className="flex items-baseline gap-1 mb-2">
-                        <span className="text-2xl font-bold text-gray-900">{selectedPlan?.price}</span>
-                        {selectedPlan?.period && <span className="text-sm text-gray-500">/ {selectedPlan?.period.toLowerCase().replace('per ', '')}</span>}
+                        <span className="text-2xl font-bold text-white">{selectedPlan?.price}</span>
+                        {selectedPlan?.period && <span className="text-sm text-slate-400">/ {selectedPlan?.period.toLowerCase().replace('per ', '')}</span>}
                       </div>
-                      <p className="text-sm text-gray-500">( Launch Cost Est. {selectedPlan?.launchCost} | {selectedPlan?.launchTime} )</p>
+                      <p className="text-[13px] text-slate-400">( Launch Cost Est. <span className="text-indigo-400">{selectedPlan?.launchCost}</span> | {selectedPlan?.launchTime} )</p>
                     </div>
                   </div>
                   
                   <div className="space-y-4 mb-8">
-                    <div className="flex justify-between items-center pb-4 border-b border-gray-100">
-                      <span className="text-[15px] text-gray-600">Subscription Total</span>
-                      <span className="text-[15px] text-gray-900 font-medium">{selectedPlan?.price} {selectedPlan?.period ? `/ ${selectedPlan?.period.toLowerCase().replace('per ', '')}` : ''}</span>
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-700/50">
+                      <span className="text-[14px] text-slate-300">Subscription Total</span>
+                      <span className="text-[14px] text-white font-medium">{selectedPlan?.price} {selectedPlan?.period ? `/ ${selectedPlan?.period.toLowerCase().replace('per ', '')}` : ''}</span>
                     </div>
-                    <div className="flex justify-between items-center pb-4 border-b border-gray-100">
-                      <span className="text-[15px] text-gray-600">OneTime Total</span>
-                      <span className="text-[15px] text-gray-900 font-medium">{selectedPlan?.launchCost}</span>
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-700/50">
+                      <span className="text-[14px] text-slate-300">OneTime Total</span>
+                      <span className="text-[14px] text-white font-medium">{selectedPlan?.launchCost}</span>
                     </div>
                     <div className="flex justify-between items-center pt-2">
-                      <span className="text-lg font-medium text-gray-900">Total</span>
-                      <span className="text-lg font-bold text-gray-900">
-                        {/* Fake total calculation for display */}
+                      <span className="text-[16px] font-medium text-white">Total</span>
+                      <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
                         {selectedPlan?.price === 'Pay as you go' ? selectedPlan?.launchCost : `$${(parseInt(selectedPlan?.price.replace(/[^0-9]/g, '') || '0') + parseInt(selectedPlan?.launchCost.replace(/[^0-9]/g, '') || '0')).toLocaleString()}`}
                       </span>
                     </div>
                   </div>
                   
-                  <div className="flex justify-end">
+                  <div className="flex justify-between items-center pt-4 border-t border-slate-700/50">
+                    <button 
+                      onClick={() => {
+                        setIsChoosePlanModalOpen(false);
+                        setLocation('/contracts');
+                      }}
+                      className="text-[13px] text-indigo-400 hover:text-indigo-300 font-medium underline decoration-indigo-400/30 underline-offset-2 flex items-center gap-1.5"
+                    >
+                      <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                      View Agreement
+                    </button>
                     <button 
                       onClick={() => setIsChoosePlanModalOpen(false)}
-                      className="px-6 py-2.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-white rounded-lg text-[14px] font-medium transition-colors shadow-md shadow-purple-500/20"
+                      className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)]"
                     >
                       Pay & Upgrade
                     </button>
