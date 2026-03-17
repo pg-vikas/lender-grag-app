@@ -515,8 +515,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl border border-white/10 relative">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center rounded-t-xl">
+                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl border border-white/10 relative z-[50]">
+                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-semibold text-white text-[15px]">Tasks</span>
                     <div className="flex gap-2 relative">
                       {/* View All */}
@@ -542,9 +542,9 @@ export default function ClientDetailsPage() {
                         {isTaskDropdownOpen && (
                           <>
                             <div className="fixed inset-0 z-[50]" onClick={() => setIsTaskDropdownOpen(false)}></div>
-                            <div className="absolute right-0 top-full mt-2 w-48 bg-slate-800 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-slate-600 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right">
+                            <div className="absolute right-0 top-full mt-2 w-48 bg-slate-800 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-slate-600 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
                               {['1 Day Follow Up', '3 Day Follow Up', '1 Week Follow Up', '2 Week Follow Up', '1 Month Follow Up', '3 Month Follow Up', '6 Month Follow Up', '12 Month Follow Up'].map((item) => (
-                                <button key={item} onClick={() => setIsTaskDropdownOpen(false)} className="w-full text-left px-4 py-2 text-[13px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors">
+                                <button key={item} onClick={() => setIsTaskDropdownOpen(false)} className="w-full text-left px-4 py-2 text-[13px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors relative z-10">
                                   {item}
                                 </button>
                               ))}
