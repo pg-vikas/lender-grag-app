@@ -91,8 +91,8 @@ export default function ClientDetailsPage() {
   ]);
   const [isGenerateWebsiteModalOpen, setIsGenerateWebsiteModalOpen] = useState(false);
   const [isAddLogoModalOpen, setIsAddLogoModalOpen] = useState(false);
-  const [newWebsiteSample, setNewWebsiteSample] = useState({ subdomain: '', template: 'Accountant1' });
-  const [newLogoSample, setNewLogoSample] = useState({ title: '' });
+  const [newWebsiteSample, setNewWebsiteSample] = useState({ subdomain: '', template: 'Accountant1', logoFileName: '' });
+  const [newLogoSample, setNewLogoSample] = useState({ title: '', logoFileName: '' });
   const [deletingSample, setDeletingSample] = useState<any>(null);
   const [isDeleteSampleModalOpen, setIsDeleteSampleModalOpen] = useState(false);
 
@@ -111,7 +111,7 @@ export default function ClientDetailsPage() {
         },
         ...samples
       ]);
-      setNewWebsiteSample({ subdomain: '', template: 'Accountant1' });
+      setNewWebsiteSample({ subdomain: '', template: 'Accountant1', logoFileName: '' });
       setIsGenerateWebsiteModalOpen(false);
     }
   };
@@ -131,7 +131,7 @@ export default function ClientDetailsPage() {
         },
         ...samples
       ]);
-      setNewLogoSample({ title: '' });
+      setNewLogoSample({ title: '', logoFileName: '' });
       setIsAddLogoModalOpen(false);
     }
   };
@@ -1094,8 +1094,11 @@ export default function ClientDetailsPage() {
                         </div>
                         
                         {/* Corner Ribbon */}
-                        <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#8b5cf6] transform rotate-45 flex items-start justify-center pt-2">
-                          <span className="text-white text-[10px] font-bold tracking-wider uppercase">{sample.type}</span>
+                        <div className="absolute bottom-0 right-0 overflow-hidden w-20 h-20 rounded-br-lg">
+                          <div className={`absolute bottom-0 right-0 transform translate-x-[25%] translate-y-[25%] -rotate-45 w-28 py-1.5 flex items-center justify-center shadow-lg
+                            ${sample.type === 'Website' ? 'bg-purple-600' : 'bg-purple-600'}`}>
+                            <span className="text-white text-[10px] font-bold tracking-wider uppercase">{sample.type}</span>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -2350,11 +2353,26 @@ export default function ClientDetailsPage() {
                 
                 <div>
                   <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Logo (PNG/JPG)</label>
-                  <div className="flex items-center gap-3 w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-400">
-                    <button className="px-3 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-slate-300 transition-colors">
+                  <div className="flex items-center gap-3 w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-400 relative overflow-hidden group">
+                    <input 
+                      type="file" 
+                      accept=".png,.jpg,.jpeg"
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          if (file.size > 5 * 1024 * 1024) {
+                            alert("File size must be less than 5MB");
+                            return;
+                          }
+                          setNewWebsiteSample({...newWebsiteSample, logoFileName: file.name});
+                        }
+                      }}
+                    />
+                    <button type="button" className="px-3 py-1 bg-slate-800 group-hover:bg-slate-700 border border-slate-600 rounded text-slate-300 transition-colors pointer-events-none relative z-0">
                       Choose file
                     </button>
-                    <span>No file chosen</span>
+                    <span className="truncate relative z-0">{newWebsiteSample.logoFileName || 'No file chosen'}</span>
                   </div>
                 </div>
                 
@@ -2467,12 +2485,36 @@ export default function ClientDetailsPage() {
                 />
               </div>
               
-              <div className="border-2 border-dashed border-slate-700 hover:border-purple-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors cursor-pointer bg-slate-800/20 hover:bg-slate-800/40">
+              <div className="border-2 border-dashed border-slate-700 hover:border-purple-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors cursor-pointer bg-slate-800/20 hover:bg-slate-800/40 relative">
+                <input 
+                  type="file" 
+                  accept=".png,.jpg,.jpeg,.svg"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      if (file.size > 5 * 1024 * 1024) {
+                        alert("File size must be less than 5MB");
+                        return;
+                      }
+                      setNewLogoSample({...newLogoSample, logoFileName: file.name});
+                    }
+                  }}
+                />
                 <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center mb-3">
                   <svg className="w-6 h-6 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                 </div>
-                <p className="text-[14px] text-slate-300 font-medium">Drop files here or click to upload</p>
-                <p className="text-[12px] text-slate-500 mt-1">PNG, JPG, SVG up to 5MB</p>
+                {newLogoSample.logoFileName ? (
+                  <>
+                    <p className="text-[14px] text-purple-400 font-medium break-all max-w-[200px] truncate">{newLogoSample.logoFileName}</p>
+                    <p className="text-[12px] text-slate-500 mt-1">Click to change file</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-[14px] text-slate-300 font-medium">Drop files here or click to upload</p>
+                    <p className="text-[12px] text-slate-500 mt-1">PNG, JPG, SVG up to 5MB</p>
+                  </>
+                )}
               </div>
             </div>
             
