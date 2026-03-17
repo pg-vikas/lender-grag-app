@@ -33,6 +33,7 @@ export default function ClientDetailsPage() {
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
+  const [isChoosePlanModalOpen, setIsChoosePlanModalOpen] = useState(false);
   const [isEditBackgroundModalOpen, setIsEditBackgroundModalOpen] = useState(false);
   const [selectedPlanTab, setSelectedPlanTab] = useState<'plans' | 'checkout'>('plans');
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
