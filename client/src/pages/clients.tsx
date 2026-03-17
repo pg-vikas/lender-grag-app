@@ -257,16 +257,16 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
           <div className="relative group">
             <button 
               onClick={() => sidebarOpen ? toggleMenu('reports') : null}
-              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/reports') || currentPath.includes('/analytics') ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30 shadow-[0_0_15px_rgba(249,115,22,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/reports') || currentPath.includes('/performance') ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30 shadow-[0_0_15px_rgba(249,115,22,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
               title={!sidebarOpen ? "Reports" : ""}
             >
               <div className="flex items-center space-x-3">
-                <BarChart2 className={`w-5 h-5 shrink-0 ${currentPath.includes('/reports') || currentPath.includes('/analytics') ? 'text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]' : 'group-hover:text-slate-300'}`} />
+                <BarChart2 className={`w-5 h-5 shrink-0 ${currentPath.includes('/reports') || currentPath.includes('/performance') ? 'text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]' : 'group-hover:text-slate-300'}`} />
                 {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Reports</span>}
               </div>
-              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'reports' || currentPath.includes('/reports') || currentPath.includes('/analytics') ? '' : '-rotate-90'}`} />}
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'reports' || currentPath.includes('/reports') || currentPath.includes('/performance') ? '' : '-rotate-90'}`} />}
             </button>
-            {useAppStore.getState().sidebarOpen && (openMenus === 'reports' || currentPath.includes('/reports') || currentPath.includes('/analytics')) && (
+            {useAppStore.getState().sidebarOpen && (openMenus === 'reports' || currentPath.includes('/reports') || currentPath.includes('/performance')) && (
               <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
                 <Link href="/reports">
                   <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/reports' ? 'bg-orange-500/20 text-orange-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
@@ -284,9 +284,9 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
           
           {/* Analytics Standalone */}
           <Link href="/analytics">
-            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath === '/analytics' && openMenus !== 'reports' ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30 shadow-[0_0_15px_rgba(249,115,22,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/analytics') ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30 shadow-[0_0_15px_rgba(249,115,22,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
               <div className="flex items-center space-x-3">
-                <BarChart2 className={`w-5 h-5 shrink-0 ${currentPath === '/analytics' && openMenus !== 'reports' ? 'text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]' : 'group-hover:text-slate-300'}`} />
+                <BarChart2 className={`w-5 h-5 shrink-0 ${currentPath.includes('/analytics') ? 'text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]' : 'group-hover:text-slate-300'}`} />
                 {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Analytics</span>}
               </div>
             </div>
