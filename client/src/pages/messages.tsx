@@ -23,16 +23,7 @@ export default function MessagesPage() {
     scrollToBottom();
   }, [activeThreadId]);
 
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newMessage.trim()) return;
-    // In a real app, we'd add the message to the state here
-    setNewMessage("");
-    setTimeout(scrollToBottom, 100);
-  };
-
-  // Dummy Data
-  const threads = [
+  const [threads, setThreads] = useState([
     {
       id: 1,
       name: "John Doe",
@@ -114,10 +105,46 @@ export default function MessagesPage() {
         { id: 2, sender: 'support', text: "Hi David! We are aiming to release the new reporting features in Q3. We'll send an email announcement once they're live.", time: "4:45 PM", status: "read" }
       ]
     }
-  ];
+  ]);
+
+  const handleSendMessage = (e: React.FormEvent | React.KeyboardEvent) => {
+    e.preventDefault();
+    if (!newMessage.trim()) return;
+    
+    const now = new Date();
+    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    setThreads(prevThreads => prevThreads.map(thread => {
+      if (thread.id === activeThreadId) {
+        return {
+          ...thread,
+          lastMessage: newMessage,
+          time: timeString,
+          messages: [
+            ...thread.messages,
+            { 
+              id: thread.messages.length + 1, 
+              sender: 'support', 
+              text: newMessage, 
+              time: timeString, 
+              status: "read" 
+            }
+          ]
+        };
+      }
+      return thread;
+    }));
+    
+    setNewMessage("");
+    setTimeout(scrollToBottom, 100);
+  };
 
   const activeThread = threads.find(t => t.id === activeThreadId) || threads[0];
   const filteredThreads = threads.filter(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [activeThread.messages.length]);
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
