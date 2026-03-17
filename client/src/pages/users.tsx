@@ -7,6 +7,23 @@ export default function UsersPage() {
   const [openMenus, setOpenMenus] = useState<string>('');
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [location] = useLocation();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
+
+  const handleSearch = () => {
+    setAppliedSearchQuery(searchQuery);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setAppliedSearchQuery('');
+  };
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -18,6 +35,14 @@ export default function UsersPage() {
     { name: "Maria Christina", email: "maria@pinkgorilla.com", role: "Support Agent", status: "Active", lastLogin: "Yesterday", phone: "+1 555 987 6543", dateAdded: "10-10-2025" },
     { name: "Chayan Alavi", email: "chayan@pinkgorilla.com", role: "Developer", status: "Offline", lastLogin: "3 days ago", phone: "---", dateAdded: "05-11-2025" },
   ];
+
+  const filteredUsers = usersList.filter(user => {
+    const matchesSearch = !appliedSearchQuery || 
+      user.name.toLowerCase().includes(appliedSearchQuery.toLowerCase()) ||
+      user.email.toLowerCase().includes(appliedSearchQuery.toLowerCase()) ||
+      user.role.toLowerCase().includes(appliedSearchQuery.toLowerCase());
+    return matchesSearch;
+  });
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
@@ -63,9 +88,26 @@ export default function UsersPage() {
                     <input 
                       type="text"
                       placeholder="Search users" 
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={handleKeyDown}
                       className="w-full pl-9 pr-4 py-2 bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                     />
                   </div>
+                  <button 
+                    onClick={handleSearch}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-700 transition-all shadow-sm hover:shadow"
+                  >
+                    Filter <Filter className="w-3.5 h-3.5" />
+                  </button>
+                  {appliedSearchQuery && (
+                    <button 
+                      onClick={handleReset}
+                      className="px-4 py-2.5 bg-slate-800/50 border border-white/10 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all text-sm font-medium"
+                    >
+                      Reset
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -81,7 +123,14 @@ export default function UsersPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#f1f5f9]">
-                    {usersList.map((user, i) => (
+                    {filteredUsers.length === 0 ? (
+                      <tr>
+                        <td colSpan={5} className="py-8 text-center text-slate-400">
+                          No users found matching "{appliedSearchQuery}".
+                        </td>
+                      </tr>
+                    ) : (
+                    filteredUsers.map((user, i) => (
                       <tr key={i} className="hover:bg-slate-900/40 backdrop-blur-xl/50/50 transition-colors bg-slate-900/40 backdrop-blur-xl">
                         <td className="py-4 px-6">
                            <div className="flex items-center gap-3">
@@ -123,7 +172,7 @@ export default function UsersPage() {
                            </div>
                         </td>
                       </tr>
-                    ))}
+                    )))}
                   </tbody>
                 </table>
               </div>

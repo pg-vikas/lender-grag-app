@@ -10,6 +10,24 @@ export default function LaunchpadsPage() {
   const [openMenus, setOpenMenus] = useState<string>('launchpads');
   const [isAddLaunchpadOpen, setIsAddLaunchpadOpen] = useState(false);
   const [isExportPanelOpen, setIsExportPanelOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
+
+  const handleSearch = () => {
+    setAppliedSearchQuery(searchQuery);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setAppliedSearchQuery('');
+    setActiveFilter('All');
+  };
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -32,9 +50,14 @@ export default function LaunchpadsPage() {
     { name: "Demo 3", client: "Pink Gorilla Software", creator: "PG", creatorImg: "PG", status: "In Progress" },
   ];
 
-  const filteredLaunchpads = activeFilter === 'All' 
-    ? launchpads 
-    : launchpads.filter(l => l.status === activeFilter);
+  const filteredLaunchpads = launchpads.filter(l => {
+    const matchesFilter = activeFilter === 'All' || l.status === activeFilter;
+    const matchesSearch = !appliedSearchQuery || 
+      l.name.toLowerCase().includes(appliedSearchQuery.toLowerCase()) ||
+      l.client.toLowerCase().includes(appliedSearchQuery.toLowerCase()) ||
+      l.creator.toLowerCase().includes(appliedSearchQuery.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
@@ -74,13 +97,28 @@ export default function LaunchpadsPage() {
                     <input 
                       type="text" 
                       placeholder="Search..." 
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={handleKeyDown}
                       className="w-full pl-10 pr-4 py-2 bg-slate-900/80 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                     />
                   </div>
                   
-                  <button className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium">
+                  <button 
+                    onClick={handleSearch}
+                    className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
+                  >
                     Filter <Filter className="w-4 h-4" />
                   </button>
+
+                  {(appliedSearchQuery || activeFilter !== 'All') && (
+                    <button 
+                      onClick={handleReset}
+                      className="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-all text-sm font-medium"
+                    >
+                      Reset
+                    </button>
+                  )}
                 </div>
                 
                 <div className="flex items-center gap-3 w-full md:w-auto">
@@ -112,7 +150,14 @@ export default function LaunchpadsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredLaunchpads.map((item, i) => (
+                    {filteredLaunchpads.length === 0 ? (
+                      <tr>
+                        <td colSpan={5} className="py-8 text-center text-slate-400">
+                          No launchpads found matching your criteria.
+                        </td>
+                      </tr>
+                    ) : (
+                    filteredLaunchpads.map((item, i) => (
                       <tr key={i} className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
                         <td className="py-4 px-6">
                           <span className="text-sm font-bold text-white hover:text-purple-400 transition-colors cursor-pointer">
@@ -150,7 +195,7 @@ export default function LaunchpadsPage() {
                           </div>
                         </td>
                       </tr>
-                    ))}
+                    )))}
                   </tbody>
                 </table>
               </div>

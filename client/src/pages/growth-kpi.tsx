@@ -9,6 +9,24 @@ export default function GrowthKPIPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
   const [location] = useLocation();
   const [activeTimeFilter, setActiveTimeFilter] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
+
+  const handleSearch = () => {
+    setAppliedSearchQuery(searchQuery);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setAppliedSearchQuery('');
+    setActiveTimeFilter(null);
+  };
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -49,6 +67,12 @@ export default function GrowthKPIPage() {
     tableRows = baseRows.slice(0, 4);
   }
 
+  tableRows = tableRows.filter(row => {
+    return !appliedSearchQuery || 
+      row.name.toLowerCase().includes(appliedSearchQuery.toLowerCase()) ||
+      row.email.toLowerCase().includes(appliedSearchQuery.toLowerCase());
+  });
+
   return (
     <div className="h-screen w-full overflow-hidden bg-[#0f172a] flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
@@ -71,6 +95,9 @@ export default function GrowthKPIPage() {
                   <input 
                     type="text" 
                     placeholder="Search name or email" 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     className="w-[200px] px-3 py-2 bg-slate-900/80 border border-slate-700 rounded-md text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 placeholder:text-slate-500" 
                   />
                 </div>
@@ -84,9 +111,14 @@ export default function GrowthKPIPage() {
                   <option>Active</option>
                   <option>Inactive</option>
                 </select>
-                <span className="text-sm font-medium text-slate-400 px-1">Filter</span>
                 <button 
-                  onClick={() => setActiveTimeFilter(null)}
+                  onClick={handleSearch}
+                  className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
+                >
+                  Filter <Filter className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={handleReset}
                   className="px-4 py-2 border border-slate-700 bg-slate-800/50 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors text-white"
                 >
                   Reset
@@ -160,7 +192,14 @@ export default function GrowthKPIPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/50">
-                    {tableRows.map((row, idx) => (
+                    {tableRows.length === 0 ? (
+                      <tr>
+                        <td colSpan={9} className="py-8 text-center text-slate-400">
+                          No records found matching "{appliedSearchQuery}".
+                        </td>
+                      </tr>
+                    ) : (
+                    tableRows.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-800/30 transition-colors">
                         <td className="py-4 px-6">
                           <div className="font-medium text-white">{row.name}</div>
@@ -175,7 +214,7 @@ export default function GrowthKPIPage() {
                         <td className="py-4 px-4 text-center text-slate-300 bg-cyan-500/5 border-l border-slate-800/50 font-medium">{row.followups}</td>
                         <td className="py-4 px-4 text-center text-slate-300 bg-cyan-500/5 border-l border-slate-800/50 font-medium">{row.tasks}</td>
                       </tr>
-                    ))}
+                    )))}
                   </tbody>
                 </table>
               </div>

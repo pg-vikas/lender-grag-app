@@ -14,6 +14,23 @@ export default function InvoicesPage() {
   const [invoiceToDelete, setInvoiceToDelete] = useState<string | null>(null);
   const [showStats, setShowStats] = useState(true);
   const [location] = useLocation();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
+
+  const handleSearch = () => {
+    setAppliedSearchQuery(searchQuery);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setAppliedSearchQuery('');
+  };
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -33,6 +50,13 @@ export default function InvoicesPage() {
   const togglePin = (id: string) => {
     setInvoicesList(prev => prev.map(inv => inv.id === id ? { ...inv, pinned: !inv.pinned } : inv));
   };
+
+  const filteredInvoices = invoicesList.filter(inv => {
+    const matchesSearch = !appliedSearchQuery || 
+      inv.id.toLowerCase().includes(appliedSearchQuery.toLowerCase()) ||
+      inv.client.toLowerCase().includes(appliedSearchQuery.toLowerCase());
+    return matchesSearch;
+  });
 
   const handleDownloadAll = () => {
     const worksheet = XLSX.utils.json_to_sheet(invoicesList);
@@ -109,12 +133,26 @@ export default function InvoicesPage() {
                     <input 
                       type="text"
                       placeholder="Search invoices" 
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={handleKeyDown}
                       className="w-full pl-9 pr-4 py-2 bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                     />
                   </div>
-                  <button className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow transition-colors">
+                  <button 
+                    onClick={handleSearch}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-700 transition-all shadow-sm hover:shadow"
+                  >
                     Filter <Filter className="w-3.5 h-3.5" />
                   </button>
+                  {appliedSearchQuery && (
+                    <button 
+                      onClick={handleReset}
+                      className="px-4 py-2.5 bg-slate-800/50 border border-white/10 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all text-sm font-medium"
+                    >
+                      Reset
+                    </button>
+                  )}
                 </div>
                 <button 
                   onClick={handleDownloadAll}
@@ -138,7 +176,14 @@ export default function InvoicesPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#f1f5f9]">
-                    {invoicesList.map((invoice, i) => (
+                    {filteredInvoices.length === 0 ? (
+                      <tr>
+                        <td colSpan={7} className="py-8 text-center text-slate-400">
+                          No invoices found matching "{appliedSearchQuery}".
+                        </td>
+                      </tr>
+                    ) : (
+                    filteredInvoices.map((invoice, i) => (
                       <tr key={i} className={`hover:bg-slate-900/40 backdrop-blur-xl/50/50 transition-colors bg-slate-900/40 backdrop-blur-xl ${activeDropdown === i ? 'relative z-50' : 'relative z-10'}`}>
                         <td className="py-4 px-6 font-semibold">
                           <Link href={`/invoices/${invoice.id}`} className="text-indigo-400 hover:text-[#7c3aed] transition-colors">{invoice.id}</Link>
@@ -217,7 +262,7 @@ export default function InvoicesPage() {
                           </div>
                         </td>
                       </tr>
-                    ))}
+                    )))}
                   </tbody>
                 </table>
               </div>
