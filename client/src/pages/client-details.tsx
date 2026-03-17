@@ -1094,10 +1094,9 @@ export default function ClientDetailsPage() {
                         </div>
                         
                         {/* Corner Ribbon */}
-                        <div className="absolute bottom-0 right-0 overflow-hidden w-20 h-20 rounded-br-lg">
-                          <div className={`absolute bottom-0 right-0 transform translate-x-[25%] translate-y-[25%] -rotate-45 w-28 py-1.5 flex items-center justify-center shadow-lg
-                            ${sample.type === 'Website' ? 'bg-purple-600' : 'bg-purple-600'}`}>
-                            <span className="text-white text-[10px] font-bold tracking-wider uppercase">{sample.type}</span>
+                        <div className="absolute bottom-0 right-0 overflow-hidden w-[70px] h-[70px] rounded-br-lg z-0 pointer-events-none">
+                          <div className="absolute bottom-[10px] right-[-27px] transform -rotate-45 w-[105px] py-[3px] flex justify-center bg-[#9333ea] shadow-md">
+                            <span className="text-white text-[9px] font-extrabold tracking-widest uppercase">{sample.type}</span>
                           </div>
                         </div>
                       </div>
