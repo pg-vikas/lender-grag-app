@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Filter, Plus, Users as UsersIcon, Shield, Edit, X, Trash2, Activity, Key } from "lucide-react";
+import { Search, Filter, Plus, Users as UsersIcon, Shield, Edit, X, Trash2, Eye, Lock, Pin, Activity } from "lucide-react";
 import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
 
@@ -15,6 +15,16 @@ export default function UsersPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isActivityModalOpen, setIsActivityModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [pinnedUsers, setPinnedUsers] = useState<Set<number>>(new Set());
+
+  const togglePin = (index: number) => {
+    setPinnedUsers(prev => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  };
 
   const [users, setUsers] = useState([
     { id: 1, name: "Neeraj Kumar", email: "neeraj@pinkgorilla.com", role: "Administrator", status: "Active", lastLogin: "Just now", phone: "+1 555 123 4567", dateAdded: "15-08-2025" },
@@ -237,7 +247,7 @@ export default function UsersPage() {
                                 onClick={() => { setSelectedUser(user); setIsActivityModalOpen(true); }}
                                 className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group relative" 
                               >
-                                 <Activity className="w-4 h-4" />
+                                 <Eye className="w-4 h-4" />
                                  <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">View Activity</span>
                               </button>
                               <button 
@@ -251,8 +261,15 @@ export default function UsersPage() {
                                 onClick={() => { setSelectedUser(user); setIsPasswordModalOpen(true); }}
                                 className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition-colors group relative" 
                               >
-                                 <Key className="w-4 h-4" />
+                                 <Lock className="w-4 h-4" />
                                  <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">Update Password</span>
+                              </button>
+                              <button 
+                                onClick={() => togglePin(user.id)}
+                                className={`p-2 rounded-lg transition-colors group relative ${pinnedUsers.has(user.id) ? 'text-indigo-400 bg-slate-800' : 'text-slate-400 hover:text-indigo-400 hover:bg-slate-800'}`}
+                              >
+                                 <Pin className="w-4 h-4" />
+                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-xs text-white rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">{pinnedUsers.has(user.id) ? 'Unpin User' : 'Pin User'}</span>
                               </button>
                               <button 
                                 onClick={() => { setSelectedUser(user); setIsDeleteModalOpen(true); }}
@@ -472,20 +489,74 @@ export default function UsersPage() {
             </div>
             
             <div className="p-6 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">First Name*</label>
                   <input 
                     type="text" 
-                    defaultValue={selectedUser?.name}
+                    defaultValue={selectedUser?.name?.split(' ')[0]}
+                    placeholder="Jordan"
                     className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Last Name</label>
+                  <input 
+                    type="text" 
+                    defaultValue={selectedUser?.name?.split(' ').slice(1).join(' ')}
+                    placeholder="Peterson"
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Email Address*</label>
                   <input 
                     type="email" 
                     defaultValue={selectedUser?.email}
+                    placeholder="vikas@pinkgorillasoftware.com"
+                    className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-sm text-indigo-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Phone</label>
+                  <div className="flex">
+                    <select 
+                      defaultValue={selectedUser?.phone?.split(' ')[0] || '+1'}
+                      className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all w-20"
+                    >
+                      <option>+1</option>
+                      <option>+44</option>
+                      <option>+91</option>
+                    </select>
+                    <input 
+                      type="tel" 
+                      defaultValue={selectedUser?.phone?.split(' ').slice(1).join(' ') || ''}
+                      placeholder="9876543210"
+                      className="flex-1 px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Designation</label>
+                  <select 
+                    defaultValue="HR"
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
+                  >
+                    <option>HR</option>
+                    <option>Developer</option>
+                    <option>Manager</option>
+                    <option>Support</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Password*</label>
+                  <input 
+                    type="password" 
+                    defaultValue="********"
+                    placeholder="••••••••"
                     className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
@@ -493,7 +564,15 @@ export default function UsersPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Role</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Twilio Phone</label>
+                  <input 
+                    type="tel" 
+                    placeholder=""
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Role*</label>
                   <select 
                     defaultValue={selectedUser?.role}
                     className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
@@ -504,13 +583,21 @@ export default function UsersPage() {
                     <option>Developer</option>
                   </select>
                 </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Phone</label>
-                  <input 
-                    type="text" 
-                    defaultValue={selectedUser?.phone !== "---" ? selectedUser?.phone : ""}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
-                  />
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Timezone</label>
+                  <select 
+                    defaultValue="America/Denver"
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
+                  >
+                    <option>America/Denver</option>
+                    <option>America/New_York</option>
+                    <option>America/Los_Angeles</option>
+                    <option>Europe/London</option>
+                    <option>Asia/Kolkata</option>
+                  </select>
                 </div>
               </div>
             </div>

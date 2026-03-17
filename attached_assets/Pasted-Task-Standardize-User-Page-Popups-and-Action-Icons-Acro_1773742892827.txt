@@ -1,0 +1,37 @@
+Task: Standardize User Page Popups and Action Icons Across All Pages
+
+Requirements:
+
+1. **Add User & Edit User Popups**
+   - On the **User page**, the **Add User** popup and the **Edit User** popup should have **identical fields**.  
+   - Popups must maintain **dashboard/theme styling**: fonts, spacing, colors, hover effects, and alignment.  
+
+2. **Action Icons Update**
+   - **View Activity** icon should be replaced with a **view icon**.  
+   - **Update Password** icon should be replaced with a **lock icon**.  
+   - All action icons in the User list (**Delete, View Activity/View, Edit, Update Password/Lock, Pin**) must be functional:
+     - **Delete**: Deletes the user after confirmation.  
+     - **View**: Opens the activity view for that user.  
+     - **Edit**: Opens the Edit User popup.  
+     - **Update Password/Lock**: Opens the password update popup.  
+     - **Pin**: Pins the user if applicable.  
+   - Tooltips should appear on **hover**, describing each icon’s function (e.g., “Edit User”, “Delete User”, “View Activity”, “Update Password”).  
+
+3. **Icon Consistency Across Pages**
+   - The same icons should be used consistently across **all pages**.  
+   - For example:
+     - The **Edit icon** should look the same on all pages.  
+     - The **Delete icon** should look the same on all pages.  
+     - The **Update Password/Lock icon**, **View icon**, and **Pin icon** must also be consistent.  
+
+4. **UI & Design Consistency**
+   - Font family, button style, spacing, popups, and icons should remain **consistent throughout all pages**.  
+   - Maintain dashboard theme for alignment, hover effects, responsiveness, and readability.
+
+Expected Result:
+
+- Add User and Edit User popups have the same fields and styling.  
+- Action icons in the User list are updated (**View Activity → View icon, Update Password → Lock icon**).  
+- Tooltips correctly describe each action on hover.  
+- Icons are consistent across all pages.  
+- All UI elements follow the **dashboard design theme**, and popups, buttons, and lists remain fully responsive and functional.
