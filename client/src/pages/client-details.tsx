@@ -43,6 +43,15 @@ export default function ClientDetailsPage() {
   const [updatingPasswordEmployee, setUpdatingPasswordEmployee] = useState<any>(null);
   const [deletingEmployee, setDeletingEmployee] = useState<any>(null);
   
+  const [checkedComplianceItems, setCheckedComplianceItems] = useState<Record<number, boolean>>({});
+
+  const toggleComplianceItem = (index: number) => {
+    setCheckedComplianceItems(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+  
   // State for added employees
   const [employees, setEmployees] = useState([
     {
@@ -616,9 +625,13 @@ export default function ClientDetailsPage() {
                       "SSL Certificate (HTTPS Security) - not a page, but an essential requirement",
                       "Powered by Pink Gorilla Footer"
                     ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2">
-                        <div className="w-4 h-4 rounded border border-[#cbd5e1] mt-0.5 shrink-0"></div>
-                        <span className="text-[12px] text-slate-300 leading-tight">{item}</span>
+                      <div key={i} className="flex items-start gap-2 cursor-pointer group" onClick={() => toggleComplianceItem(i)}>
+                        <div className={`w-4 h-4 rounded border mt-0.5 shrink-0 flex items-center justify-center transition-colors ${checkedComplianceItems[i] ? 'bg-purple-600 border-purple-600' : 'border-[#cbd5e1] group-hover:border-purple-400'}`}>
+                          {checkedComplianceItems[i] && <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
+                        </div>
+                        <span className={`text-[12px] leading-tight transition-colors select-none ${checkedComplianceItems[i] ? 'text-white font-medium' : 'text-slate-300 group-hover:text-slate-200'}`}>
+                          {item}
+                        </span>
                       </div>
                     ))}
                   </div>
