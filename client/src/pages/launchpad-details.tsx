@@ -626,7 +626,7 @@ export default function LaunchpadDetailsPage() {
 
               {/* Right Column - Chat/Activity */}
               <div className="lg:col-span-2">
-                <div className="glass-panel rounded-2xl border border-white/10 h-full flex flex-col min-h-[600px] overflow-hidden">
+                <div className="glass-panel rounded-2xl border border-white/10 h-max flex flex-col overflow-hidden">
                   
                   <div className="flex border-b border-slate-800 overflow-x-auto scrollbar-hide">
                     {['Chat', 'Public Notes', 'Private Notes', 'Uploads', 'Activities'].map((tab) => (
