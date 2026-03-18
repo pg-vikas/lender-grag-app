@@ -126,28 +126,47 @@
 }
 
 @media print {
+  @page {
+    margin: 0;
+    size: auto;
+  }
+  
+  html, body {
+    width: 100vw !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    overflow: visible !important;
+  }
+
   body * {
     visibility: hidden;
   }
+
   #contract-document, #contract-document * {
     visibility: visible;
   }
+
   #contract-document {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100vw;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 20mm !important;
     box-shadow: none !important;
     border: none !important;
     background: white !important;
     color: black !important;
     border-radius: 0 !important;
+    box-sizing: border-box !important;
   }
-  @page {
-    margin: 20mm;
-    size: auto;
+
+  /* Force background colors and images to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
