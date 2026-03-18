@@ -15,6 +15,18 @@ export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
   const [location] = useLocation();
+  const [selectedAssignees, setSelectedAssignees] = useState<string[]>([]);
+  const [isAssigneeDropdownOpen, setIsAssigneeDropdownOpen] = useState(false);
+  
+  const assigneesList = ["Vikas Dev", "PG Admin", "Neeraj", "Jordan", "Chayan", "Sale Advisor"];
+
+  const toggleAssignee = (assignee: string) => {
+    setSelectedAssignees(prev => 
+      prev.includes(assignee) 
+        ? prev.filter(a => a !== assignee)
+        : [...prev, assignee]
+    );
+  };
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -172,17 +184,57 @@ export default function ProjectsPage() {
                 </div>
                 
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <select 
-                    className="px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/60 transition-all appearance-none pr-8 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2394a3b8%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:16px_16px] bg-[right_12px_center] bg-no-repeat min-w-[140px]"
-                  >
-                    <option value="">Assigned</option>
-                    <option value="Vikas Dev">Vikas Dev</option>
-                    <option value="PG Admin">PG Admin</option>
-                    <option value="Neeraj">Neeraj</option>
-                    <option value="Jordan">Jordan</option>
-                    <option value="Chayan">Chayan</option>
-                    <option value="Sale Advisor">Sale Advisor</option>
-                  </select>
+                  <div className="relative">
+                    <div 
+                      onClick={() => setIsAssigneeDropdownOpen(!isAssigneeDropdownOpen)}
+                      className="flex items-center flex-wrap gap-1.5 px-3 py-2 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/60 transition-all cursor-pointer min-w-[140px] max-w-[280px] min-h-[42px]"
+                    >
+                      {selectedAssignees.length === 0 ? (
+                        <span className="px-1 text-slate-400">Assigned</span>
+                      ) : (
+                        selectedAssignees.map(assignee => (
+                          <span 
+                            key={assignee} 
+                            className="flex items-center gap-1 px-2 py-0.5 bg-slate-800 rounded border border-slate-600 text-[13px] text-slate-200"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleAssignee(assignee);
+                            }}
+                          >
+                            <X className="w-3 h-3 hover:text-red-400 cursor-pointer" /> {assignee}
+                          </span>
+                        ))
+                      )}
+                      <ChevronDown className="w-3.5 h-3.5 ml-auto text-slate-400 shrink-0" />
+                    </div>
+                    
+                    {isAssigneeDropdownOpen && (
+                      <>
+                        <div 
+                          className="fixed inset-0 z-10" 
+                          onClick={() => setIsAssigneeDropdownOpen(false)}
+                        />
+                        <div className="absolute top-full left-0 mt-2 w-[220px] bg-white border border-slate-200 rounded-lg shadow-xl z-20 py-1 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 text-slate-800">
+                          {assigneesList.map(assignee => {
+                            const isSelected = selectedAssignees.includes(assignee);
+                            return (
+                              <div
+                                key={assignee}
+                                onClick={() => toggleAssignee(assignee)}
+                                className={`px-4 py-2.5 text-[14px] cursor-pointer transition-colors ${
+                                  isSelected 
+                                    ? 'bg-[#007bff] text-white' 
+                                    : 'hover:bg-slate-100'
+                                }`}
+                              >
+                                {assignee}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </>
+                    )}
+                  </div>
                   <button 
                     onClick={() => setIsExportPanelOpen(true)}
                     className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/60 transition-all shadow-sm hover:shadow"
