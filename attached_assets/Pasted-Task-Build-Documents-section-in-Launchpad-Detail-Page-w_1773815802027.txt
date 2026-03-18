@@ -1,0 +1,54 @@
+Task: Build **Documents section** in Launchpad Detail Page with the same functionality and UI as existing Launchpad workflow.
+
+Requirements:
+
+1. **Document List**
+   * Show documents in **categorized lists** (e.g., “Client Signed”, “Contractor Signed”, “Fully Executed”, “Not Signed”).
+   * Items display file name, upload date, and action icons **Edit** and **Delete**.
+   * Layout and styling should **match the existing Launchpad theme**.
+
+2. **Upload Popup**
+   * Add an **Upload button** in the Documents section.
+   * Clicking it opens a **popup/modal** matching current theme styling.
+   * Popup includes:
+     - File input (to select file)
+     - **Type dropdown** with options:
+       + Client Signed  
+       + Contractor Signed  
+       + Fully Executed  
+       + Not Signed (default selected)
+     - **Submit** and **Cancel** buttons
+   * On **Submit**:
+     - Save the selected file with the chosen type.
+     - The document should appear **only in the list matching the selected type**.
+     - No documents should show under other types unless they match.
+
+3. **Edit Popup**
+   * Each document card shows an **Edit icon**.
+   * Clicking Edit opens an **Edit popup/modal** matching current dashboard design.
+   * Popup allows updating:
+     - File name (if editable)
+     - Type (dropdown with same 4 options)
+   * Popup includes **Save** and **Cancel** buttons.
+   * On Save: update the document in place without page reload.
+
+4. **Delete Popup**
+   * Each document card shows a **Delete icon**.
+   * Clicking Delete opens the **existing delete confirmation popup** (already implemented).
+   * Popup shows:
+     - “Are you sure?” message
+     - **Confirm/Delete** button → removes the document
+     - **Cancel/Close** button → closes without deleting
+   * Ensure only the selected document is deleted.
+
+5. **UI & Behavior**
+   * All popups follow the **same design theme** as your Launchpad UI (colors, spacing, typography).
+   * Popups overlay and close properly.
+   * Document lists update **dynamically** after upload, edit, or delete without page refresh.
+
+Expected Result:
+
+* Upload popup opens with **Type dropdown**, saves document only in the selected category.
+* Edit popup updates document details correctly.
+* Delete popup works as before and removes selected document.
+* UI matches existing Launchpad document section styling exactly.

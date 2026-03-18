@@ -14,6 +14,8 @@ export default function LaunchpadDetailsPage() {
   const [isDocTemplateModalOpen, setIsDocTemplateModalOpen] = useState(false);
   const [isDocCategoryModalOpen, setIsDocCategoryModalOpen] = useState(false);
   const [isTaskCategoryModalOpen, setIsTaskCategoryModalOpen] = useState(false);
+  const [isEditDocumentModalOpen, setIsEditDocumentModalOpen] = useState(false);
+  const [documentToEdit, setDocumentToEdit] = useState<{name: string, type: string, documentType?: string} | null>(null);
   const [categoryToEdit, setCategoryToEdit] = useState<string | null>(null);
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState<{id: number | string, category: string, title: string, status?: string, hours?: string, subs?: string, date?: string} | null>(null);
@@ -117,6 +119,8 @@ export default function LaunchpadDetailsPage() {
       })));
     } else if (itemToDelete.type === 'category') {
       setTasks(prev => prev.filter(cat => cat.category !== itemToDelete.name));
+    } else if (itemToDelete.type === 'document') {
+      setUploadedFiles(prev => prev.filter(f => f.name !== itemToDelete.id));
     }
     
     setIsDeleteModalOpen(false);
@@ -357,9 +361,15 @@ export default function LaunchpadDetailsPage() {
                       </button>
                       <button 
                         onClick={() => setIsDocCategoryModalOpen(true)}
-                        className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700"
+                        className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700 hidden"
                       >
                         <Plus className="w-3.5 h-3.5" /> Add Category
+                      </button>
+                      <button 
+                        onClick={() => setIsUploadModalOpen(true)}
+                        className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium rounded-lg flex items-center gap-2 transition-colors shadow-[0_0_10px_rgba(16,185,129,0.3)]"
+                      >
+                        <Download className="w-3.5 h-3.5 rotate-180" /> Upload
                       </button>
                     </div>
                   </div>
@@ -374,18 +384,26 @@ export default function LaunchpadDetailsPage() {
                           <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{docType}</h3>
                           {typeFiles.map((file, idx) => (
                             <div key={idx} className="flex justify-between items-center p-4 bg-slate-900/50 rounded-xl border border-slate-800">
-                              <div className="flex items-center gap-3">
-                                {file.type.includes('image') ? (
-                                  <ImageIcon className="w-4 h-4 text-emerald-400" />
-                                ) : (
-                                  <FileIcon className="w-4 h-4 text-blue-400" />
-                                )}
-                                <div className="text-sm font-medium text-slate-200">{file.name}</div>
+                              <div className="flex items-start gap-3 flex-1 min-w-0 pr-4">
+                                <div className="mt-0.5">
+                                  {file.type.includes('image') ? (
+                                    <ImageIcon className="w-4 h-4 text-emerald-400" />
+                                  ) : (
+                                    <FileIcon className="w-4 h-4 text-blue-400" />
+                                  )}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-sm font-medium text-slate-200 truncate" title={file.name}>{file.name}</div>
+                                  <div className="text-[11px] text-slate-500 mt-0.5">{file.date}</div>
+                                </div>
                               </div>
-                              <div className="flex gap-3 text-slate-500">
+                              <div className="flex gap-3 text-slate-500 shrink-0">
                                 <button className="hover:text-purple-400"><Download className="w-4 h-4" /></button>
                                 <button 
-                                  onClick={() => setIsTaskCategoryModalOpen(true)}
+                                  onClick={() => {
+                                    setDocumentToEdit(file);
+                                    setIsEditDocumentModalOpen(true);
+                                  }}
                                   className="hover:text-cyan-400 transition-colors"
                                 >
                                   <Edit2 className="w-4 h-4" />
@@ -818,7 +836,19 @@ export default function LaunchpadDetailsPage() {
                                             <Download className="w-4 h-4" />
                                           </button>
                                           <button 
-                                            onClick={() => setUploadedFiles(prev => prev.filter(f => f.name !== file.name))}
+                                            onClick={() => {
+                                              setDocumentToEdit(file);
+                                              setIsEditDocumentModalOpen(true);
+                                            }}
+                                            className="p-1.5 text-slate-400 hover:text-cyan-400 transition-colors rounded"
+                                          >
+                                            <Edit2 className="w-4 h-4" />
+                                          </button>
+                                          <button 
+                                            onClick={() => {
+                                              setItemToDelete({type: 'document', id: file.name, name: file.name});
+                                              setIsDeleteModalOpen(true);
+                                            }}
                                             className="p-1.5 text-slate-400 hover:text-rose-400 transition-colors rounded"
                                           >
                                             <Trash2 className="w-4 h-4" />
@@ -911,6 +941,89 @@ export default function LaunchpadDetailsPage() {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Document Modal */}
+      {isEditDocumentModalOpen && documentToEdit && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-slate-200">Edit Document</h2>
+              <button 
+                onClick={() => {
+                  setIsEditDocumentModalOpen(false);
+                  setDocumentToEdit(null);
+                }}
+                className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const newName = formData.get('name') as string;
+                const newType = formData.get('documentType') as string;
+                
+                setUploadedFiles(prev => prev.map(f => 
+                  f.name === documentToEdit.name 
+                    ? { ...f, name: newName, documentType: newType } 
+                    : f
+                ));
+                
+                setIsEditDocumentModalOpen(false);
+                setDocumentToEdit(null);
+              }}
+              className="p-6 flex flex-col gap-6"
+            >
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-slate-400">File Name</label>
+                <input 
+                  type="text" 
+                  name="name"
+                  defaultValue={documentToEdit.name}
+                  className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium text-slate-400">Document Type</label>
+                <select 
+                  name="documentType"
+                  defaultValue={documentToEdit.documentType || 'Not Signed'}
+                  className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50"
+                >
+                  <option value="Not Signed">Not Signed</option>
+                  <option value="Client Signed">Client Signed</option>
+                  <option value="Contractor Signed">Contractor Signed</option>
+                  <option value="Fully Executed">Fully Executed</option>
+                </select>
+              </div>
+              
+              <div className="flex justify-end gap-3 mt-4">
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setIsEditDocumentModalOpen(false);
+                    setDocumentToEdit(null);
+                  }}
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-md border border-slate-700 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit"
+                  className="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium rounded-md shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
