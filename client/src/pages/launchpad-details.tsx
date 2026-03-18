@@ -14,15 +14,6 @@ export default function LaunchpadDetailsPage() {
   const [taskFilter, setTaskFilter] = useState<'All' | 'uncompleted' | 'completed'>('All');
   const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string}[]>([]);
 
-  const filteredTasks = tasks.map(category => ({
-    ...category,
-    items: category.items.filter(item => taskFilter === 'All' || item.status === taskFilter)
-  })).filter(category => category.items.length > 0);
-
-  // Calculate counts
-  const uncompletedCount = tasks.flatMap(c => c.items).filter(i => i.status === 'uncompleted').length;
-  const completedCount = tasks.flatMap(c => c.items).filter(i => i.status === 'completed').length;
-
   const tasks = [
     {
       category: "Trailer",
@@ -51,6 +42,15 @@ export default function LaunchpadDetailsPage() {
       items: []
     }
   ];
+
+  const filteredTasks = tasks.map(category => ({
+    ...category,
+    items: category.items.filter(item => taskFilter === 'All' || item.status === taskFilter)
+  })).filter(category => category.items.length > 0);
+
+  // Calculate counts
+  const uncompletedCount = tasks.flatMap(c => c.items).filter(i => i.status === 'uncompleted').length;
+  const completedCount = tasks.flatMap(c => c.items).filter(i => i.status === 'completed').length;
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
