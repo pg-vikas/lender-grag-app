@@ -1454,20 +1454,20 @@ export default function LaunchpadDetailsPage() {
       {/* Document Template Modal */}
       {isDocTemplateModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200 bg-white">
-            <div className="p-6 flex justify-between items-center border-b border-slate-200/50">
-              <h2 className="text-xl font-bold text-slate-900">Apply Document Template</h2>
+          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 flex justify-between items-center border-b border-slate-700/50">
+              <h2 className="text-xl font-bold text-white">Apply Document Template</h2>
               <button 
                 onClick={() => setIsDocTemplateModalOpen(false)}
-                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             
-            <div className="px-6 pb-2 bg-white">
-              <div className="flex items-center justify-between py-5 border-b border-slate-200/50">
-                <div className="flex items-center gap-3 text-slate-700">
+            <div className="px-6 pb-2 bg-slate-900/50">
+              <div className="flex items-center justify-between py-5 border-b border-slate-700/50">
+                <div className="flex items-center gap-3 text-slate-300">
                   <Check className="w-5 h-5" />
                   <span className="text-[15px] font-medium">Demo Document Template</span>
                 </div>
@@ -1475,8 +1475,8 @@ export default function LaunchpadDetailsPage() {
                   Apply
                 </button>
               </div>
-              <div className="flex items-center justify-between py-5 border-b border-slate-200/50">
-                <div className="flex items-center gap-3 text-slate-700">
+              <div className="flex items-center justify-between py-5 border-b border-slate-700/50">
+                <div className="flex items-center gap-3 text-slate-300">
                   <Check className="w-5 h-5" />
                   <span className="text-[15px] font-medium">Standard Document Template</span>
                 </div>
@@ -1486,9 +1486,9 @@ export default function LaunchpadDetailsPage() {
               </div>
             </div>
             
-            <div className="p-6 flex justify-between items-center mt-2 bg-white">
-              <span className="text-[15px] font-semibold text-slate-600">Create Your Own Template?</span>
-              <button className="px-6 py-2.5 bg-[#2DD4BF] hover:bg-[#2DD4BF]/90 text-white text-[13px] font-medium rounded shadow-sm transition-all flex items-center gap-2">
+            <div className="p-6 flex justify-between items-center mt-2 bg-slate-800/30">
+              <span className="text-[15px] font-semibold text-slate-400">Create Your Own Template?</span>
+              <button className="px-6 py-2.5 bg-[#2DD4BF] hover:bg-[#2DD4BF]/90 text-slate-900 text-[13px] font-bold rounded shadow-sm transition-all flex items-center gap-2">
                 <Plus className="w-4 h-4" /> Create
               </button>
             </div>
@@ -1499,40 +1499,40 @@ export default function LaunchpadDetailsPage() {
       {/* Document Category Modal */}
       {isDocCategoryModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200 bg-white">
-            <div className="p-6 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-slate-900">{docCategoryToEdit ? 'Edit' : 'Add'} Document Category</h2>
+          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 flex justify-between items-center border-b border-slate-700/50">
+              <h2 className="text-xl font-bold text-white">{docCategoryToEdit ? 'Edit' : 'Add'} Document Category</h2>
               <button 
                 onClick={() => setIsDocCategoryModalOpen(false)}
-                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             
             <form onSubmit={handleEditDocCategory}>
-              <div className="px-6 py-8 flex flex-col sm:flex-row sm:items-center gap-4 bg-white">
-                <label className="text-[15px] font-medium text-slate-600 whitespace-nowrap">Category Name*</label>
+              <div className="px-6 py-8 flex flex-col sm:flex-row sm:items-center gap-4 bg-slate-900/50">
+                <label className="text-[15px] font-medium text-slate-400 whitespace-nowrap">Category Name*</label>
                 <input 
                   type="text" 
                   name="docCategoryName"
                   defaultValue={docCategoryToEdit?.name || ''}
-                  className="flex-1 bg-white border border-slate-200 rounded-md px-4 py-2.5 text-[15px] text-slate-800 focus:outline-none focus:border-[#7c3aed]/50 focus:ring-1 focus:ring-[#7c3aed]/50 shadow-sm"
+                  className="flex-1 bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-[15px] text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 shadow-sm transition-all"
                   required
                 />
               </div>
               
-              <div className="p-6 flex justify-end gap-3 bg-white mt-8">
+              <div className="p-6 flex justify-end gap-3 bg-slate-800/30 mt-8 border-t border-slate-700/50">
                 <button 
                   type="button"
                   onClick={() => setIsDocCategoryModalOpen(false)}
-                  className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-600 text-[15px] font-medium rounded-xl border border-slate-200 transition-colors shadow-sm"
+                  className="px-6 py-2.5 bg-transparent hover:bg-slate-800 text-slate-300 text-[15px] font-medium rounded-xl border border-slate-700 transition-colors shadow-sm"
                 >
                   Close
                 </button>
                 <button 
                   type="submit"
-                  className="px-8 py-2.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-[15px] font-medium rounded-xl transition-all shadow-sm"
+                  className="px-8 py-2.5 bg-[#7c3aed] hover:bg-purple-600 text-white text-[15px] font-medium rounded-xl transition-all shadow-[0_0_15px_rgba(124,58,237,0.3)]"
                 >
                   Submit
                 </button>
@@ -1702,20 +1702,20 @@ export default function LaunchpadDetailsPage() {
       {/* Invite Client Modal */}
       {isInviteModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-slate-900">Invite Client</h2>
+          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-[640px] overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-7 pb-4 flex justify-between items-center border-b border-slate-700/50">
+              <h2 className="text-[22px] font-bold text-white">Invite Client</h2>
               <button 
                 onClick={() => setIsInviteModalOpen(false)}
-                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             
-            <div className="p-6 pt-2 space-y-8">
-              <div className="space-y-2">
-                <label className="text-[15px] font-semibold text-slate-600">Invite*</label>
+            <div className="p-7 space-y-6">
+              <div className="space-y-2.5">
+                <label className="text-[14px] font-medium text-slate-400">Invite*</label>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <div className="relative flex-1">
                     <input 
@@ -1728,30 +1728,29 @@ export default function LaunchpadDetailsPage() {
                           handleAddInviteMember();
                         }
                       }}
-                      placeholder=""
-                      className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-[15px] text-slate-800 focus:outline-none focus:border-[#7c3aed]/50 focus:ring-1 focus:ring-[#7c3aed]/50 shadow-sm"
+                      placeholder="Email address..."
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 h-11 text-[14px] text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-600"
                     />
                   </div>
                   <div className="flex gap-3 shrink-0">
                     <select
                       value={currentInviteRole}
                       onChange={(e) => setCurrentInviteRole(e.target.value)}
-                      className="bg-white border border-slate-200 rounded-lg px-4 py-3 text-[15px] text-slate-700 focus:outline-none focus:border-[#7c3aed]/50 focus:ring-1 focus:ring-[#7c3aed]/50 shadow-sm outline-none appearance-none pr-10 cursor-pointer min-w-[140px]"
-                      style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 0.75rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.5em 1.5em` }}
+                      className="bg-slate-900/50 border border-slate-700 rounded-lg px-4 h-11 text-[14px] text-slate-300 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none pr-10 cursor-pointer min-w-[130px]"
+                      style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 0.75rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.2em 1.2em` }}
                     >
-                      <option value="Client">Client</option>
-                      <option value="Team Member">Team Member</option>
+                      <option value="Client" className="bg-slate-800">Client</option>
+                      <option value="Team Member" className="bg-slate-800">Team Member</option>
                     </select>
                     <button 
                       onClick={() => {
                         if (currentInviteInput.trim()) {
                           handleAddInviteMember();
                         } else {
-                          // Submit action
                           setIsInviteModalOpen(false);
                         }
                       }}
-                      className="px-8 py-3 bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-[15px] font-bold rounded-lg transition-all shadow-sm"
+                      className="px-8 h-11 bg-[#7c3aed] hover:bg-purple-600 text-white text-[14px] font-semibold rounded-lg shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all"
                     >
                       Invite
                     </button>
@@ -1759,33 +1758,33 @@ export default function LaunchpadDetailsPage() {
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <h3 className="text-[15px] font-semibold text-slate-500">Members</h3>
-                <div className="space-y-4 max-h-[350px] overflow-y-auto pr-1 custom-scrollbar">
+              <div className="space-y-4 pt-2">
+                <h3 className="text-[14px] font-medium text-slate-400">Members</h3>
+                <div className="space-y-3 max-h-[350px] overflow-y-auto pr-1 custom-scrollbar">
                   {inviteMembers.map((member, index) => (
-                    <div key={index} className="flex items-center justify-between group">
-                      <div className="flex items-center gap-4">
-                        <div className="w-[42px] h-[42px] rounded-full bg-[#6366f1] flex items-center justify-center text-white text-[17px] font-bold shrink-0">
+                    <div key={index} className="flex items-center justify-between group p-3 bg-slate-800/30 border border-slate-700/50 rounded-xl hover:bg-slate-800/50 transition-colors">
+                      <div className="flex items-center gap-3.5">
+                        <div className="w-[40px] h-[40px] rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center text-[16px] font-semibold shrink-0">
                           {member.name.charAt(0).toUpperCase()}
                         </div>
                         <div className="overflow-hidden">
-                          <div className="text-[16px] font-bold text-slate-800 truncate mb-0.5">{member.name}</div>
-                          <div className="text-[14px] text-slate-400 truncate leading-none">{member.email}</div>
+                          <div className="text-[15px] font-bold text-slate-200 truncate mb-0.5">{member.name}</div>
+                          <div className="text-[13px] text-slate-400 truncate leading-none">{member.email}</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-3 shrink-0">
                         <select
                           value={member.role}
                           onChange={(e) => handleUpdateMemberRole(index, e.target.value)}
-                          className="bg-white border border-slate-200 rounded-lg px-4 py-2 text-[14px] font-medium text-slate-600 focus:outline-none focus:border-[#7c3aed]/50 shadow-sm cursor-pointer appearance-none pr-8 min-w-[130px]"
-                          style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 0.5rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.2em 1.2em` }}
+                          className="bg-slate-900/50 border border-slate-700 rounded-lg px-3.5 h-10 text-[13px] font-medium text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all cursor-pointer appearance-none pr-8 min-w-[130px]"
+                          style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 0.5rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.2em 1.2em` }}
                         >
-                          <option value="Client">Client</option>
-                          <option value="Team Member">Team Member</option>
+                          <option value="Client" className="bg-slate-800">Client</option>
+                          <option value="Team Member" className="bg-slate-800">Team Member</option>
                         </select>
                         <button 
                           onClick={() => handleRemoveInviteMember(index)}
-                          className="p-2 text-slate-400 hover:text-slate-600 rounded-lg transition-colors flex items-center justify-center"
+                          className="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-400/10 rounded-lg transition-colors flex items-center justify-center"
                         >
                           <Trash2 className="w-[18px] h-[18px]" strokeWidth={1.5} />
                         </button>
@@ -1793,7 +1792,7 @@ export default function LaunchpadDetailsPage() {
                     </div>
                   ))}
                   {inviteMembers.length === 0 && (
-                    <div className="text-center py-8 text-slate-500 text-sm">
+                    <div className="text-center py-8 text-slate-500 text-sm bg-slate-800/20 border border-slate-700/50 rounded-xl">
                       No members added yet.
                     </div>
                   )}
