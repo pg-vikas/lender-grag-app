@@ -1,0 +1,44 @@
+Task: Implement **Invite Client** functionality with member type selection in the popup.
+
+### Requirements:
+
+1. **Popup Design**
+   * The **popup** will open when the **Invite** button is clicked.
+   * Inside the popup:
+     - An **input field** to type in an invite (client name/email or user search).
+     - A **dropdown** for selecting **Client** or **Team Member**.
+     - A **Members List** showing already added members with their **role (Client or Team Member)** and a **Remove** button to delete a member.
+
+2. **Invite Dropdown**
+   * Dropdown to choose whether the user is a **Client** or a **Team Member**:
+     - Default is **Client**.
+     - Select between **Client** or **Team Member**.
+     - Change should be reflected for each individual member.
+
+3. **Add Members**
+   * Users can be selected and added to the invite list.
+   * Each added member should appear in the **Members List** showing:
+     - **Name**
+     - **Email**
+     - **Role (Client or Team Member)** in a dropdown.
+   * The **Remove** button should remove members from the list.
+
+4. **State Management**
+   * Use `useState` to manage the **list of members** and their selected role (Client or Team Member).
+   * For each member, store their **name**, **email**, and **role**.
+
+5. **Submit Behavior**
+   * Clicking **Invite** will **submit the list of members**.
+   * The user selection (Client or Team Member) should be processed before submitting.
+
+6. **UI & Theme**
+   * Follow the **existing dashboard styling** (consistent button style, input field appearance, hover effects).
+   * **Responsive design** for different screen sizes.
+   * Clear UI for adding and removing members with **easy interaction** (dropdowns, trash icons).
+
+### Expected Result:
+
+* Users can **select a Client or Team Member** for each invite.
+* Added members are listed in the **popup** with the option to **remove** them.
+* The **dropdown** next to each member shows their **role** (Client/Team Member).
+* **Invite** button submits the list and updates the UI dynamically with the added members.

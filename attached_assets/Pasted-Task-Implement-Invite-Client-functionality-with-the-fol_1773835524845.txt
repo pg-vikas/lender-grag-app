@@ -1,0 +1,73 @@
+Task: Implement **Invite Client** functionality with the following steps:
+
+### Requirements:
+
+1. **Invite Button Behavior**
+   - When the user clicks the **Invite** button:
+     - A popup should open where the user can **add a new client**.
+     - The popup should include the fields:
+       - **Client Name**
+       - **Client Email** (or any other required fields)
+       - **Submit** button to submit the form.
+       - **Cancel** button to close the popup.
+
+2. **Popup Design**
+   - The popup should have a **clean and simple layout** as per the provided screenshot.
+   - The popup should have an **input field** for entering client details (e.g., name, email).
+   - The **Submit** button should save the client information.
+   - **Cancel** button should close the popup without submitting.
+
+3. **Adding Client After Submission**
+   - Once the **Submit** button is clicked:
+     - Add the client to the **Invite List** (show them in a list format, like a card or thumbnail).
+     - Add a **thumbnail (image or initial)** for each client in the **left side panel**.
+     - The **client name** and **email** (or any relevant details) should be shown as a **user thumbnail** next to the Invite button.
+
+4. **Invite List Update**
+   - The **Invite List** should update dynamically to include the newly added client.
+   - Each invite should display:
+     - **Client name**
+     - **Client email**
+     - **Thumbnail image or initials**
+
+5. **UI & Theme**
+   - Ensure that the **popup design matches** the rest of the app’s theme (colors, spacing, typography).
+   - The **invite list and thumbnails** should be responsive and properly aligned next to the Invite button.
+   - Smooth transitions for **adding/removing clients** from the list and thumbnails.
+
+6. **State Management**
+   - Use state to manage the **client list** and the **popup visibility**:
+     ```javascript
+     const [clients, setClients] = useState([]);
+     const [isPopupOpen, setIsPopupOpen] = useState(false);
+     ```
+
+7. **Popup Control**
+   - Control the visibility of the popup:
+     ```javascript
+     const openPopup = () => setIsPopupOpen(true);
+     const closePopup = () => setIsPopupOpen(false);
+     ```
+
+8. **Adding a New Client**
+   - After form submission, add the new client to the `clients` state and close the popup:
+     ```javascript
+     const addClient = (clientData) => {
+       setClients([...clients, clientData]);
+       closePopup();
+     };
+     ```
+
+9. **Remove Client (Optional)**
+   - Add the option to **remove clients** from the invite list and thumbnails:
+     ```javascript
+     const removeClient = (clientId) => {
+       setClients(clients.filter(client => client.id !== clientId));
+     };
+     ```
+
+### Expected Result:
+* Clicking the **Invite** button opens a popup to enter client details.
+* The new client appears in the **Invite List** and the **left panel** as a user thumbnail.
+* The **Invite List** and **thumbnails** are updated dynamically.
+* The UI and design are consistent with the overall application style and responsive.

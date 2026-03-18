@@ -47,6 +47,14 @@ export default function LaunchpadDetailsPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<{type: 'task' | 'category' | 'document' | 'note' | 'docCategory', id: string | number, name: string} | null>(null);
   
+  const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
+  const [inviteMembers, setInviteMembers] = useState<{name: string, email: string, role: string}[]>([
+    { name: 'Chayan', email: 'chayan@yopmail.com', role: 'Client' },
+    { name: 'Neeraj', email: 'neeraj@pinkgorillasoftware.com', role: 'Team Member' }
+  ]);
+  const [currentInviteInput, setCurrentInviteInput] = useState('');
+  const [currentInviteRole, setCurrentInviteRole] = useState('Client');
+
   const [tasks, setTasks] = useState([
     {
       category: "Trailer",
@@ -146,6 +154,29 @@ export default function LaunchpadDetailsPage() {
     setTaskToEdit(null);
   };
 
+  const handleAddInviteMember = () => {
+    if (currentInviteInput.trim()) {
+      const isEmail = currentInviteInput.includes('@');
+      const newMember = {
+        name: isEmail ? currentInviteInput.split('@')[0] : currentInviteInput,
+        email: isEmail ? currentInviteInput : `${currentInviteInput.toLowerCase().replace(/\s+/g, '')}@example.com`,
+        role: currentInviteRole
+      };
+      setInviteMembers([...inviteMembers, newMember]);
+      setCurrentInviteInput('');
+    }
+  };
+
+  const handleRemoveInviteMember = (index: number) => {
+    setInviteMembers(inviteMembers.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateMemberRole = (index: number, newRole: string) => {
+    const updated = [...inviteMembers];
+    updated[index].role = newRole;
+    setInviteMembers(updated);
+  };
+
   const handleDeleteConfirm = () => {
     if (!itemToDelete) return;
     
@@ -214,7 +245,10 @@ export default function LaunchpadDetailsPage() {
                       <div className="w-6 h-6 rounded-full bg-slate-700 border-2 border-slate-900 flex items-center justify-center text-[10px]">MJ</div>
                       <div className="w-6 h-6 rounded-full bg-slate-600 border-2 border-slate-900 flex items-center justify-center text-[10px]">+1</div>
                     </div>
-                    <button className="px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium rounded-lg flex items-center gap-1 transition-colors">
+                    <button 
+                      onClick={() => setIsInviteModalOpen(true)}
+                      className="px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium rounded-lg flex items-center gap-1 transition-colors"
+                    >
                       <Plus className="w-3 h-3" /> Invite
                     </button>
                   </div>
@@ -1662,6 +1696,110 @@ export default function LaunchpadDetailsPage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+      {/* Invite Client Modal */}
+      {isInviteModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-slate-900">Invite Client</h2>
+              <button 
+                onClick={() => setIsInviteModalOpen(false)}
+                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 pt-2 space-y-8">
+              <div className="space-y-2">
+                <label className="text-[15px] font-semibold text-slate-600">Invite*</label>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="relative flex-1">
+                    <input 
+                      type="text"
+                      value={currentInviteInput}
+                      onChange={(e) => setCurrentInviteInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          handleAddInviteMember();
+                        }
+                      }}
+                      placeholder=""
+                      className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-[15px] text-slate-800 focus:outline-none focus:border-[#7c3aed]/50 focus:ring-1 focus:ring-[#7c3aed]/50 shadow-sm"
+                    />
+                  </div>
+                  <div className="flex gap-3 shrink-0">
+                    <select
+                      value={currentInviteRole}
+                      onChange={(e) => setCurrentInviteRole(e.target.value)}
+                      className="bg-white border border-slate-200 rounded-lg px-4 py-3 text-[15px] text-slate-700 focus:outline-none focus:border-[#7c3aed]/50 focus:ring-1 focus:ring-[#7c3aed]/50 shadow-sm outline-none appearance-none pr-10 cursor-pointer min-w-[140px]"
+                      style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 0.75rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.5em 1.5em` }}
+                    >
+                      <option value="Client">Client</option>
+                      <option value="Team Member">Team Member</option>
+                    </select>
+                    <button 
+                      onClick={() => {
+                        if (currentInviteInput.trim()) {
+                          handleAddInviteMember();
+                        } else {
+                          // Submit action
+                          setIsInviteModalOpen(false);
+                        }
+                      }}
+                      className="px-8 py-3 bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-[15px] font-bold rounded-lg transition-all shadow-sm"
+                    >
+                      Invite
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="text-[15px] font-semibold text-slate-500">Members</h3>
+                <div className="space-y-4 max-h-[350px] overflow-y-auto pr-1 custom-scrollbar">
+                  {inviteMembers.map((member, index) => (
+                    <div key={index} className="flex items-center justify-between group">
+                      <div className="flex items-center gap-4">
+                        <div className="w-[42px] h-[42px] rounded-full bg-[#6366f1] flex items-center justify-center text-white text-[17px] font-bold shrink-0">
+                          {member.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div className="overflow-hidden">
+                          <div className="text-[16px] font-bold text-slate-800 truncate mb-0.5">{member.name}</div>
+                          <div className="text-[14px] text-slate-400 truncate leading-none">{member.email}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3 shrink-0">
+                        <select
+                          value={member.role}
+                          onChange={(e) => handleUpdateMemberRole(index, e.target.value)}
+                          className="bg-white border border-slate-200 rounded-lg px-4 py-2 text-[14px] font-medium text-slate-600 focus:outline-none focus:border-[#7c3aed]/50 shadow-sm cursor-pointer appearance-none pr-8 min-w-[130px]"
+                          style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 0.5rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.2em 1.2em` }}
+                        >
+                          <option value="Client">Client</option>
+                          <option value="Team Member">Team Member</option>
+                        </select>
+                        <button 
+                          onClick={() => handleRemoveInviteMember(index)}
+                          className="p-2 text-slate-400 hover:text-slate-600 rounded-lg transition-colors flex items-center justify-center"
+                        >
+                          <Trash2 className="w-[18px] h-[18px]" strokeWidth={1.5} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                  {inviteMembers.length === 0 && (
+                    <div className="text-center py-8 text-slate-500 text-sm">
+                      No members added yet.
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
