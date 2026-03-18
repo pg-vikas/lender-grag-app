@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useParams, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { ArrowLeft, Plus, MoreHorizontal, MessageSquare, FileText, CheckCircle2, Circle, Clock, Check, MoreVertical, Edit2, Download, Search, Paperclip } from "lucide-react";
+import { ArrowLeft, Plus, MoreHorizontal, MessageSquare, FileText, CheckCircle2, Circle, Clock, Check, MoreVertical, Edit2, Download, Search, Paperclip, Bold, Link2, List as ListIcon, ListOrdered, Image as ImageIcon, Film, AlignLeft, AlignCenter, AlignRight, AlignJustify, Minus, Grid, Code, Maximize } from "lucide-react";
 
 export default function LaunchpadDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('launchpads');
@@ -328,32 +328,99 @@ export default function LaunchpadDetailsPage() {
                     )}
 
                     {activeTab === 'Public Notes' && (
-                      <div className="flex flex-col items-center justify-center h-full text-slate-400 space-y-4 pt-12">
-                        <FileText className="w-12 h-12 text-slate-600" />
-                        <p>No public notes yet.</p>
-                        <button className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium rounded-xl flex items-center gap-2 transition-colors">
-                          <Plus className="w-4 h-4" /> Add Public Note
-                        </button>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center mb-2">
+                          <p className="text-sm text-slate-400">No public notes yet.</p>
+                        </div>
+                        <div className="bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/50 shadow-sm">
+                          <div className="px-4 py-3 border-b border-slate-700/50 font-medium text-slate-200 bg-slate-800/50 flex justify-between items-center">
+                            <span>Message</span>
+                          </div>
+                          <div className="p-2 border-b border-slate-700/50 flex flex-wrap gap-1 items-center text-slate-400 bg-slate-900/50">
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Bold className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Link2 className="w-4 h-4" /></button>
+                            <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><ListIcon className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><ListOrdered className="w-4 h-4" /></button>
+                            <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><ImageIcon className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Film className="w-4 h-4" /></button>
+                            <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><AlignLeft className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><AlignCenter className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><AlignRight className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><AlignJustify className="w-4 h-4" /></button>
+                            <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Minus className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Grid className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Code className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Maximize className="w-4 h-4" /></button>
+                          </div>
+                          <div className="p-4 bg-slate-900/50 h-64">
+                            <div className="w-full h-full bg-slate-950 rounded-sm border border-slate-700/50"></div>
+                          </div>
+                          <div className="px-4 py-3 border-t border-slate-700/50 bg-slate-900/50 flex justify-end gap-3">
+                            <button className="px-4 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-md border border-slate-700 transition-colors">
+                              Clear
+                            </button>
+                            <button className="px-5 py-2 bg-[#7c3aed] hover:bg-purple-600 text-white text-sm font-medium rounded-md shadow-[0_0_10px_rgba(124,58,237,0.3)] transition-all">
+                              Send
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     )}
 
                     {activeTab === 'Private Notes' && (
-                      <div className="flex flex-col items-center justify-center h-full text-slate-400 space-y-4 pt-12">
-                        <FileText className="w-12 h-12 text-slate-600" />
-                        <p>No private notes yet. Visible only to team members.</p>
-                        <button className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium rounded-xl flex items-center gap-2 transition-colors">
-                          <Plus className="w-4 h-4" /> Add Private Note
-                        </button>
+                      <div className="space-y-4">
+                        <div className="bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/50 shadow-sm">
+                          <div className="px-4 py-3 border-b border-slate-700/50 font-medium text-slate-200 bg-slate-800/50 flex justify-between items-center">
+                            <span>Private Note</span>
+                          </div>
+                          <div className="p-2 border-b border-slate-700/50 flex flex-wrap gap-1 items-center text-slate-400 bg-slate-900/50">
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Bold className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Link2 className="w-4 h-4" /></button>
+                            <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><ListIcon className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><ListOrdered className="w-4 h-4" /></button>
+                            <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><ImageIcon className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Film className="w-4 h-4" /></button>
+                            <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><AlignLeft className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><AlignCenter className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><AlignRight className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><AlignJustify className="w-4 h-4" /></button>
+                            <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Minus className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Grid className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Code className="w-4 h-4" /></button>
+                            <button className="p-1.5 hover:bg-slate-800 hover:text-slate-200 rounded transition-colors"><Maximize className="w-4 h-4" /></button>
+                          </div>
+                          <div className="p-4 bg-slate-900/50 h-64">
+                            <div className="w-full h-full bg-slate-950 rounded-sm border border-slate-700/50"></div>
+                          </div>
+                          <div className="px-4 py-3 border-t border-slate-700/50 bg-slate-900/50 flex justify-start gap-3">
+                            <button className="px-5 py-2 bg-[#7c3aed] hover:bg-purple-600 text-white text-sm font-medium rounded-md shadow-[0_0_10px_rgba(124,58,237,0.3)] transition-all">
+                              Save
+                            </button>
+                            <button className="px-4 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-md border border-slate-700 transition-colors">
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     )}
 
                     {activeTab === 'Uploads' && (
-                      <div className="flex flex-col items-center justify-center h-full text-slate-400 space-y-4 pt-12">
-                        <Download className="w-12 h-12 text-slate-600" />
-                        <p>No files uploaded yet.</p>
-                        <button className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium rounded-xl border border-slate-700 flex items-center gap-2 transition-colors">
-                          <Plus className="w-4 h-4" /> Upload File
-                        </button>
+                      <div className="bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/50 shadow-sm p-6">
+                        <div className="flex justify-between items-center mb-6">
+                          <h3 className="text-lg font-medium text-slate-200">Uploads</h3>
+                          <button className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium rounded-md shadow-[0_0_10px_rgba(16,185,129,0.3)] flex items-center gap-2 transition-all">
+                            <Download className="w-4 h-4 rotate-180" /> Upload
+                          </button>
+                        </div>
+                        <p className="text-sm text-slate-400">No uploads found.</p>
                       </div>
                     )}
 
