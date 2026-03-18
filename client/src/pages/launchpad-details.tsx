@@ -527,13 +527,30 @@ export default function LaunchpadDetailsPage() {
             </div>
             
             <div className="p-8">
-              <div className="border-2 border-dashed border-slate-700 hover:border-emerald-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors bg-slate-900/50 cursor-pointer group">
+              <label className="border-2 border-dashed border-slate-700 hover:border-emerald-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors bg-slate-900/50 cursor-pointer group w-full">
+                <input 
+                  type="file" 
+                  className="hidden" 
+                  multiple 
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files.length > 0) {
+                      const newFiles = Array.from(e.target.files).map(file => ({
+                        name: file.name,
+                        size: (file.size / (1024 * 1024)).toFixed(1) + ' MB',
+                        date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+                        type: file.type.startsWith('image/') ? 'image' : 'document'
+                      }));
+                      setUploadedFiles(prev => [...prev, ...newFiles]);
+                      setIsUploadModalOpen(false);
+                    }
+                  }}
+                />
                 <UploadCloud className="w-12 h-12 text-slate-500 mb-4 group-hover:text-emerald-400 transition-colors" />
-                <h3 className="text-lg font-medium text-slate-300 mb-2">Drag your file(s) to start uploading</h3>
+                <h3 className="text-lg font-medium text-slate-300 mb-2">Drag your file(s) to start uploading or click to browse</h3>
                 <p className="text-sm text-slate-500">
                   Allowed: .png, .jpg, .jpeg, .pdf, .doc, .docx, .xls, .xlsx, .txt (max 15 MB each)
                 </p>
-              </div>
+              </label>
             </div>
             
             <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
