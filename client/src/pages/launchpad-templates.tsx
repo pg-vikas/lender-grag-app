@@ -62,7 +62,7 @@ export default function LaunchpadTemplatesPage() {
 
   return (
     <div className="flex h-screen bg-[#0f172a] text-slate-200 font-sans overflow-hidden">
-      <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} location={location} />
+      <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
       
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
         <Header location={location} />
