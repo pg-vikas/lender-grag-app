@@ -148,7 +148,7 @@ export default function ProjectsPage() {
               </div>
             </div>
 
-            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-4 mb-6 shadow-sm border border-white/10">
+            <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-4 mb-6 shadow-sm border border-white/10 relative z-50">
               <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div className="flex items-center gap-3 w-full sm:w-auto flex-1">
                   <div className="relative flex-1 max-w-[240px]">
@@ -184,7 +184,7 @@ export default function ProjectsPage() {
                 </div>
                 
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <div className="relative">
+                  <div className="relative z-[100]">
                     <div 
                       onClick={() => setIsAssigneeDropdownOpen(!isAssigneeDropdownOpen)}
                       className="flex items-center flex-wrap gap-1.5 px-3 py-1.5 bg-transparent border border-slate-700/80 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/30 transition-all cursor-pointer min-w-[140px] max-w-[280px] min-h-[40px]"
@@ -211,10 +211,10 @@ export default function ProjectsPage() {
                     {isAssigneeDropdownOpen && (
                       <>
                         <div 
-                          className="fixed inset-0 z-10" 
+                          className="fixed inset-0 z-40" 
                           onClick={() => setIsAssigneeDropdownOpen(false)}
                         />
-                        <div className="absolute top-full left-0 mt-1 w-full min-w-[200px] bg-white border border-slate-200 rounded-md shadow-lg z-50 py-1 overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
+                        <div className="absolute top-[calc(100%+4px)] left-0 w-full min-w-[200px] bg-white border border-slate-200 rounded-md shadow-2xl z-[150] py-1 animate-in fade-in slide-in-from-top-1 duration-150">
                           {assigneesList.map(assignee => {
                             const isSelected = selectedAssignees.includes(assignee);
                             return (
@@ -253,7 +253,7 @@ export default function ProjectsPage() {
 
             {/* Stats Row */}
             {showStats && (
-              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8 shadow-sm border border-white/10 animate-in slide-in-from-top-4 duration-200">
+              <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8 shadow-sm border border-white/10 animate-in slide-in-from-top-4 duration-200 relative z-0">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                   <div 
                     className={`flex flex-col group cursor-pointer p-2 -m-2 rounded-xl transition-all ${statusFilter === 'all' ? 'bg-slate-800/50' : 'hover:bg-slate-800/30'}`}
