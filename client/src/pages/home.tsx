@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
+import { WorkSession } from "../components/WorkSession";
 
 export default function Home() {
   const [openMenus, setOpenMenus] = useState<string>('');
@@ -103,6 +104,9 @@ export default function Home() {
                   </button>
                 </div>
               </div>
+              
+              {/* Work Session Tracker */}
+              <WorkSession />
 
               {/* Top Row - Major Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
