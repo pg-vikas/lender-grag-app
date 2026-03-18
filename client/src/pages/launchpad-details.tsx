@@ -10,6 +10,8 @@ export default function LaunchpadDetailsPage() {
   const [activeTab, setActiveTab] = useState<string>('Chat');
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [isTaskTemplateModalOpen, setIsTaskTemplateModalOpen] = useState(false);
+  const [isDocTemplateModalOpen, setIsDocTemplateModalOpen] = useState(false);
+  const [isDocCategoryModalOpen, setIsDocCategoryModalOpen] = useState(false);
   const [isTaskCategoryModalOpen, setIsTaskCategoryModalOpen] = useState(false);
   const [categoryToEdit, setCategoryToEdit] = useState<string | null>(null);
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
@@ -344,13 +346,13 @@ export default function LaunchpadDetailsPage() {
                     <h2 className="text-lg font-bold text-white">Documents</h2>
                     <div className="flex gap-2">
                       <button 
-                        onClick={() => setIsTaskTemplateModalOpen(true)}
+                        onClick={() => setIsDocTemplateModalOpen(true)}
                         className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg transition-colors border border-slate-700"
                       >
                         Apply Template
                       </button>
                       <button 
-                        onClick={() => setIsTaskCategoryModalOpen(true)}
+                        onClick={() => setIsDocCategoryModalOpen(true)}
                         className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700"
                       >
                         <Plus className="w-3.5 h-3.5" /> Add Category
@@ -1135,6 +1137,99 @@ export default function LaunchpadDetailsPage() {
                   className="px-6 py-2 bg-[#7c3aed] hover:bg-purple-600 shadow-[0_0_10px_rgba(124,58,237,0.3)] text-white text-sm font-medium rounded-xl transition-all"
                 >
                   {categoryToEdit ? 'Save' : 'Submit'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Document Template Modal */}
+      {isDocTemplateModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200 bg-white">
+            <div className="p-6 flex justify-between items-center border-b border-slate-200/50">
+              <h2 className="text-xl font-bold text-slate-900">Apply Document Template</h2>
+              <button 
+                onClick={() => setIsDocTemplateModalOpen(false)}
+                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="px-6 pb-2 bg-white">
+              <div className="flex items-center justify-between py-5 border-b border-slate-200/50">
+                <div className="flex items-center gap-3 text-slate-700">
+                  <Check className="w-5 h-5" />
+                  <span className="text-[15px] font-medium">Demo Document Template</span>
+                </div>
+                <button className="px-6 py-1.5 text-[#2DD4BF] border border-[#2DD4BF]/50 hover:bg-[#2DD4BF]/10 rounded text-[13px] font-medium transition-colors">
+                  Apply
+                </button>
+              </div>
+              <div className="flex items-center justify-between py-5 border-b border-slate-200/50">
+                <div className="flex items-center gap-3 text-slate-700">
+                  <Check className="w-5 h-5" />
+                  <span className="text-[15px] font-medium">Standard Document Template</span>
+                </div>
+                <button className="px-6 py-1.5 text-[#2DD4BF]/60 border border-[#2DD4BF]/30 rounded text-[13px] font-medium cursor-default">
+                  Applied
+                </button>
+              </div>
+            </div>
+            
+            <div className="p-6 flex justify-between items-center mt-2 bg-white">
+              <span className="text-[15px] font-semibold text-slate-600">Create Your Own Template?</span>
+              <button className="px-6 py-2.5 bg-[#2DD4BF] hover:bg-[#2DD4BF]/90 text-white text-[13px] font-medium rounded shadow-sm transition-all flex items-center gap-2">
+                <Plus className="w-4 h-4" /> Create
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Document Category Modal */}
+      {isDocCategoryModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200 bg-white">
+            <div className="p-6 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-slate-900">Add Document Category</h2>
+              <button 
+                onClick={() => setIsDocCategoryModalOpen(false)}
+                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              setIsDocCategoryModalOpen(false);
+            }}>
+              <div className="px-6 py-8 flex flex-col sm:flex-row sm:items-center gap-4 bg-white">
+                <label className="text-[15px] font-medium text-slate-600 whitespace-nowrap">Category Name*</label>
+                <input 
+                  type="text" 
+                  name="docCategoryName"
+                  className="flex-1 bg-white border border-slate-200 rounded-md px-4 py-2.5 text-[15px] text-slate-800 focus:outline-none focus:border-[#7c3aed]/50 focus:ring-1 focus:ring-[#7c3aed]/50 shadow-sm"
+                  required
+                />
+              </div>
+              
+              <div className="p-6 flex justify-end gap-3 bg-white mt-8">
+                <button 
+                  type="button"
+                  onClick={() => setIsDocCategoryModalOpen(false)}
+                  className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-600 text-[15px] font-medium rounded-xl border border-slate-200 transition-colors shadow-sm"
+                >
+                  Close
+                </button>
+                <button 
+                  type="submit"
+                  className="px-8 py-2.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-[15px] font-medium rounded-xl transition-all shadow-sm"
+                >
+                  Submit
                 </button>
               </div>
             </form>
