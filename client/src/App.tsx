@@ -23,6 +23,7 @@ import TemplatesPage from "@/pages/templates";
 import LaunchpadsPage from "@/pages/launchpads";
 import LaunchpadDetailsPage from "@/pages/launchpad-details";
 import LaunchpadTemplatesPage from "@/pages/launchpad-templates";
+import LaunchpadTemplateDetailsPage from "@/pages/launchpad-template-details";
 import TicketsPage from "@/pages/tickets";
 import TicketCreatePage from "@/pages/tickets-create";
 import TicketDetailsPage from "@/pages/ticket-details";
@@ -52,6 +53,7 @@ function Router() {
       <Route path="/projects/:id" component={ProjectDetailsPage} />
       <Route path="/launchpads" component={LaunchpadsPage} />
       <Route path="/launchpads/templates" component={LaunchpadTemplatesPage} />
+      <Route path="/launchpads/templates/:id" component={LaunchpadTemplateDetailsPage} />
       <Route path="/launchpads/:id" component={LaunchpadDetailsPage} />
       <Route path="/invoices" component={InvoicesPage} />
       <Route path="/invoices/:id" component={InvoiceDetailsPage} />

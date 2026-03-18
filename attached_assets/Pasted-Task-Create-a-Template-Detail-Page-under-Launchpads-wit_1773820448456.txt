@@ -1,0 +1,36 @@
+Task: Create a **Template Detail Page** under Launchpads with dynamic layout based on template type.
+
+Requirements:
+
+1. **Page Layout**
+   * Follow **existing Launchpad Detail Page theme**.
+   * Page header shows **Template Name** and **Type**.
+   * Layout is responsive and consistent with the dashboard design.
+
+2. **Dynamic Sections**
+   * If template type is **Task Template**:
+     - Render the **Task section layout** (task list, filters, actions, etc.).
+     - Include existing Task section **functionalities** (Add Task, Edit, Delete, Filter).
+   * If template type is **Document Template**:
+     - Render the **Document section layout** (document list, category, actions, upload, etc.).
+     - Include existing Document section **functionalities** (Add Category, Upload, Edit, Delete, Type filter).
+
+3. **UI & Popups**
+   * All popups (Add, Edit, Upload, Delete) follow the **dashboard theme**.
+   * Inputs, buttons, icons, hover effects, spacing, and responsiveness match the **screenshot reference**.
+   * Dynamic updates: adding/editing/deleting tasks or documents should **update the list immediately** without page reload.
+
+4. **Action Icons**
+   * Show **Edit/Delete** icons where applicable.
+   * Popups open on click of icons only; other interactions do not trigger popups.
+   * Upload functionality behaves like the reference: **type dropdown** (Client Signed, Contractor Signed, Fully Executed, Not Signed) and adds files dynamically to the list.
+
+5. **Empty State**
+   * If there are no tasks or documents, display a **clear message** or illustration as per the screenshot.
+
+Expected Result:
+
+* Template Detail Page dynamically shows **Task layout** for Task Templates and **Document layout** for Document Templates.
+* All popups, buttons, and lists follow **dashboard theme and screenshot UI**.
+* Adding/editing/deleting items updates lists dynamically.
+* Page is responsive, visually consistent, and provides a smooth user experience similar to Launchpad Detail Page design.

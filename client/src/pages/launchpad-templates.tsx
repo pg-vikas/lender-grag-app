@@ -158,12 +158,14 @@ export default function LaunchpadTemplatesPage() {
                       filteredTemplates.map((template) => (
                         <tr key={template.id} className="border-b border-slate-800/50 hover:bg-slate-800/20 transition-colors group">
                           <td className="py-4 px-6">
-                            <div className="flex items-center gap-3">
-                              <div className={`w-8 h-8 rounded bg-slate-800 flex items-center justify-center shrink-0 ${template.type === 'Task Templates' ? 'text-blue-400' : 'text-emerald-400'}`}>
-                                {template.type === 'Task Templates' ? <CheckCircle className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
+                            <Link href={`/launchpads/templates/${template.id}`}>
+                              <div className="flex items-center gap-3 cursor-pointer group/link">
+                                <div className={`w-8 h-8 rounded bg-slate-800 flex items-center justify-center shrink-0 ${template.type === 'Task Templates' ? 'text-blue-400 group-hover/link:bg-blue-500/20' : 'text-emerald-400 group-hover/link:bg-emerald-500/20'} transition-colors`}>
+                                  {template.type === 'Task Templates' ? <CheckCircle className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
+                                </div>
+                                <span className="text-sm font-medium text-slate-200 group-hover/link:text-purple-400 transition-colors">{template.name}</span>
                               </div>
-                              <span className="text-sm font-medium text-slate-200">{template.name}</span>
-                            </div>
+                            </Link>
                           </td>
                           <td className="py-4 px-6">
                             <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium border ${template.type === 'Task Templates' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'}`}>
