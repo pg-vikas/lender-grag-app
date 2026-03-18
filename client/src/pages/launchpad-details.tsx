@@ -443,7 +443,7 @@ export default function LaunchpadDetailsPage() {
                                   )}
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-sm font-medium text-slate-200 truncate">{file.name}</p>
+                                  <p className="text-sm font-medium text-slate-200 break-all line-clamp-2" title={file.name}>{file.name}</p>
                                   <div className="flex items-center gap-2 mt-1 text-xs text-slate-500">
                                     <span>{file.size}</span>
                                     <span>•</span>
