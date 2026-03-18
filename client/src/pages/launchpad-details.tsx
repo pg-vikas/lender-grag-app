@@ -432,7 +432,7 @@ export default function LaunchpadDetailsPage() {
                             <p>No uploads found.</p>
                           </div>
                         ) : (
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 gap-4">
                             {uploadedFiles.map((file, idx) => (
                               <div key={idx} className="flex items-start gap-4 p-4 rounded-xl border border-slate-700/50 bg-slate-800/30 group hover:border-emerald-500/50 transition-colors">
                                 <div className="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
