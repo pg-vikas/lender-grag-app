@@ -18,7 +18,6 @@ import SubscriptionDetailsPage from "@/pages/subscription-details";
 import PaymentsPage from "@/pages/payments";
 import ContractsPage from "@/pages/contracts";
 import ContractDetailsPage from "@/pages/contract-details";
-import ContractEditPage from "@/pages/contract-edit";
 import TemplatesPage from "@/pages/templates";
 import LaunchpadsPage from "@/pages/launchpads";
 import LaunchpadDetailsPage from "@/pages/launchpad-details";
@@ -61,7 +60,7 @@ function Router() {
       <Route path="/subscriptions/:id" component={SubscriptionDetailsPage} />
       <Route path="/payments" component={PaymentsPage} />
       <Route path="/contracts/templates" component={TemplatesPage} />
-      <Route path="/contracts/:id/edit" component={ContractEditPage} />
+      <Route path="/contracts/:id/edit" component={ContractDetailsPage} />
       <Route path="/contracts/:id" component={ContractDetailsPage} />
       <Route path="/contracts" component={ContractsPage} />
       <Route path="/tickets/create" component={TicketCreatePage} />

@@ -12,7 +12,18 @@ export default function ContractDetailsPage() {
   const { contracts, updateContract, deleteContract, addContract } = useAppStore();
   const contract = contracts.find(c => c.id === id);
 
-  const [isEditing, setIsEditing] = useState(false);
+  // If the path ends with /edit, initialize in edit mode
+  const [isEditing, setIsEditing] = useState(location.endsWith('/edit'));
+  
+  // Also update edit mode if location changes
+  useEffect(() => {
+    if (location.endsWith('/edit')) {
+      setIsEditing(true);
+    } else {
+      setIsEditing(false);
+    }
+  }, [location]);
+
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isMailModalOpen, setIsMailModalOpen] = useState(false);
   const [mailTo, setMailTo] = useState("");
@@ -58,6 +69,18 @@ export default function ContractDetailsPage() {
   const handleSave = () => {
     updateContract(contract.id, editedContract);
     setIsEditing(false);
+    // If we were on the /edit route, redirect back to the view route
+    if (location.endsWith('/edit')) {
+      setLocation(`/contracts/${contract.id}`);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    // If we were on the /edit route, redirect back to the view route
+    if (location.endsWith('/edit')) {
+      setLocation(`/contracts/${contract.id}`);
+    }
   };
 
   const handleDelete = () => {
@@ -128,7 +151,7 @@ export default function ContractDetailsPage() {
                 {isEditing ? (
                   <>
                     <button 
-                      onClick={() => setIsEditing(false)}
+                      onClick={handleCancelEdit}
                       className="p-2 text-slate-400 hover:text-slate-300 hover:bg-slate-800 rounded-lg transition-all"
                       title="Cancel Edit"
                     >
