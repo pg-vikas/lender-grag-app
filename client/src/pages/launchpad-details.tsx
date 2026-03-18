@@ -14,6 +14,10 @@ export default function LaunchpadDetailsPage() {
   const [taskFilter, setTaskFilter] = useState<'All' | 'uncompleted' | 'completed'>('All');
   const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string}[]>([]);
 
+  const toggleMenu = (menu: string) => {
+    setOpenMenus(prev => prev === menu ? '' : menu);
+  };
+
   const tasks = [
     {
       category: "Trailer",
