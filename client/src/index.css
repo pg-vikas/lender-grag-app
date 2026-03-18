@@ -124,3 +124,30 @@
     100% { background-position: 200% 0; }
   }
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #contract-document, #contract-document * {
+    visibility: visible;
+  }
+  #contract-document {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    color: black !important;
+    border-radius: 0 !important;
+  }
+  @page {
+    margin: 20mm;
+    size: auto;
+  }
+}
