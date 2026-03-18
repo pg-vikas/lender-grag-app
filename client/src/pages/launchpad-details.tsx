@@ -9,6 +9,7 @@ export default function LaunchpadDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<string>('Chat');
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [pendingUploadFiles, setPendingUploadFiles] = useState<{name: string, size: string, date: string, type: string}[]>([]);
   const [uploadDocumentType, setUploadDocumentType] = useState('Not Signed');
   const [isTaskTemplateModalOpen, setIsTaskTemplateModalOpen] = useState(false);
   const [isDocTemplateModalOpen, setIsDocTemplateModalOpen] = useState(false);
@@ -1111,7 +1112,10 @@ export default function LaunchpadDetailsPage() {
             <div className="p-6 border-b border-slate-700/50 flex justify-between items-center">
               <h2 className="text-xl font-semibold text-slate-200">Upload Document</h2>
               <button 
-                onClick={() => setIsUploadModalOpen(false)}
+                onClick={() => {
+                  setPendingUploadFiles([]);
+                  setIsUploadModalOpen(false);
+                }}
                 className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
@@ -1144,12 +1148,9 @@ export default function LaunchpadDetailsPage() {
                         name: file.name,
                         size: (file.size / (1024 * 1024)).toFixed(1) + ' MB',
                         date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
-                        type: file.type.startsWith('image/') ? 'image' : 'document',
-                        documentType: uploadDocumentType,
-                        categoryId: uploadCategory || undefined
+                        type: file.type.startsWith('image/') ? 'image' : 'document'
                       }));
-                      setUploadedFiles(prev => [...prev, ...newFiles]);
-                      setIsUploadModalOpen(false);
+                      setPendingUploadFiles(prev => [...prev, ...newFiles]);
                     }
                   }}
                 />
@@ -1159,25 +1160,56 @@ export default function LaunchpadDetailsPage() {
                   Allowed: .png, .jpg, .jpeg, .pdf, .doc, .docx, .xls, .xlsx, .txt (max 15 MB each)
                 </p>
               </label>
+
+              {pendingUploadFiles.length > 0 && (
+                <div className="mt-6 space-y-2">
+                  <h4 className="text-sm font-medium text-slate-300 mb-3">Selected Files ({pendingUploadFiles.length})</h4>
+                  <div className="max-h-40 overflow-y-auto space-y-2 pr-2 custom-scrollbar">
+                    {pendingUploadFiles.map((file, idx) => (
+                      <div key={idx} className="flex justify-between items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                        <div className="flex items-center gap-3">
+                          {file.type === 'image' ? <ImageIcon className="w-4 h-4 text-emerald-400" /> : <FileIcon className="w-4 h-4 text-blue-400" />}
+                          <span className="text-sm text-slate-200">{file.name}</span>
+                          <span className="text-xs text-slate-500">{file.size}</span>
+                        </div>
+                        <button 
+                          onClick={() => setPendingUploadFiles(prev => prev.filter((_, i) => i !== idx))}
+                          className="text-slate-500 hover:text-rose-400 transition-colors p-1"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
             
-            <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+            <div className="p-6 border-t border-slate-700/50 flex justify-end gap-3 bg-slate-900/20">
               <button 
-                onClick={() => setIsUploadModalOpen(false)}
+                onClick={() => {
+                  setPendingUploadFiles([]);
+                  setIsUploadModalOpen(false);
+                }}
                 className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-md border border-slate-700 transition-colors"
               >
                 Cancel
               </button>
               <button 
                 onClick={() => {
-                  setUploadedFiles(prev => [
-                    ...prev, 
-                    { name: `Document_${Math.floor(Math.random() * 1000)}.pdf`, size: '2.4 MB', date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }), type: 'pdf' },
-                    { name: `Design_Draft_${Math.floor(Math.random() * 1000)}.png`, size: '4.1 MB', date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }), type: 'image' }
-                  ]);
+                  if (pendingUploadFiles.length > 0) {
+                    const filesToUpload = pendingUploadFiles.map(f => ({
+                      ...f,
+                      documentType: uploadDocumentType,
+                      categoryId: uploadCategory || undefined
+                    }));
+                    setUploadedFiles(prev => [...prev, ...filesToUpload]);
+                  }
+                  setPendingUploadFiles([]);
                   setIsUploadModalOpen(false);
                 }}
-                className="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium rounded-md shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all"
+                className="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium rounded-md shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={pendingUploadFiles.length === 0}
               >
                 Save
               </button>
