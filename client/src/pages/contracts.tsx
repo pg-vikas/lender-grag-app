@@ -96,6 +96,12 @@ export default function ContractsPage() {
                 >
                   Filter <Filter className="w-4 h-4" />
                 </button>
+                
+                <Link href="/contracts/templates">
+                  <button className="flex items-center gap-2 px-4 py-2.5 bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 rounded-xl text-sm font-medium hover:bg-indigo-500/30 transition-all shadow-sm shrink-0">
+                    Templates
+                  </button>
+                </Link>
                 <button 
                   onClick={handleReset}
                   className="flex items-center gap-2 px-4 py-2.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-900/40 backdrop-blur-xl transition-all shadow-sm hover:shadow shrink-0"

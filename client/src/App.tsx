@@ -60,10 +60,10 @@ function Router() {
       <Route path="/subscriptions" component={SubscriptionsPage} />
       <Route path="/subscriptions/:id" component={SubscriptionDetailsPage} />
       <Route path="/payments" component={PaymentsPage} />
-      <Route path="/contracts" component={ContractsPage} />
+      <Route path="/contracts/templates" component={TemplatesPage} />
       <Route path="/contracts/:id/edit" component={ContractEditPage} />
       <Route path="/contracts/:id" component={ContractDetailsPage} />
-      <Route path="/templates" component={TemplatesPage} />
+      <Route path="/contracts" component={ContractsPage} />
       <Route path="/tickets/create" component={TicketCreatePage} />
       <Route path="/tickets" component={TicketsPage} />
       <Route path="/tickets/:id" component={TicketDetailsPage} />
