@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useLocation, useParams, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { ArrowLeft, Plus, MoreHorizontal, MessageSquare, FileText, CheckCircle2, Circle, Clock, Check, MoreVertical, Edit2, Download, Search, Paperclip, Bold, Link2, List as ListIcon, ListOrdered, Image as ImageIcon, Film, AlignLeft, AlignCenter, AlignRight, AlignJustify, Minus, Grid, Code, Maximize } from "lucide-react";
+import { ArrowLeft, Plus, MoreHorizontal, MessageSquare, FileText, CheckCircle2, Circle, Clock, Check, MoreVertical, Edit2, Download, Search, Paperclip, Bold, Link2, List as ListIcon, ListOrdered, Image as ImageIcon, Film, AlignLeft, AlignCenter, AlignRight, AlignJustify, Minus, Grid, Code, Maximize, X, UploadCloud, File as FileIcon, Trash2 } from "lucide-react";
 
 export default function LaunchpadDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('launchpads');
   const [location, setLocation] = useLocation();
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<string>('Chat');
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string}[]>([]);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -416,11 +418,53 @@ export default function LaunchpadDetailsPage() {
                       <div className="bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/50 shadow-sm p-6">
                         <div className="flex justify-between items-center mb-6">
                           <h3 className="text-lg font-medium text-slate-200">Uploads</h3>
-                          <button className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium rounded-md shadow-[0_0_10px_rgba(16,185,129,0.3)] flex items-center gap-2 transition-all">
+                          <button 
+                            onClick={() => setIsUploadModalOpen(true)}
+                            className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium rounded-md shadow-[0_0_10px_rgba(16,185,129,0.3)] flex items-center gap-2 transition-all"
+                          >
                             <Download className="w-4 h-4 rotate-180" /> Upload
                           </button>
                         </div>
-                        <p className="text-sm text-slate-400">No uploads found.</p>
+                        
+                        {uploadedFiles.length === 0 ? (
+                          <div className="flex flex-col items-center justify-center py-12 text-slate-400 border-2 border-dashed border-slate-800 rounded-xl">
+                            <UploadCloud className="w-12 h-12 text-slate-600 mb-4" />
+                            <p>No uploads found.</p>
+                          </div>
+                        ) : (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {uploadedFiles.map((file, idx) => (
+                              <div key={idx} className="flex items-start gap-4 p-4 rounded-xl border border-slate-700/50 bg-slate-800/30 group hover:border-emerald-500/50 transition-colors">
+                                <div className="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
+                                  {file.type.includes('image') ? (
+                                    <ImageIcon className="w-6 h-6 text-emerald-400" />
+                                  ) : (
+                                    <FileIcon className="w-6 h-6 text-blue-400" />
+                                  )}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-medium text-slate-200 truncate">{file.name}</p>
+                                  <div className="flex items-center gap-2 mt-1 text-xs text-slate-500">
+                                    <span>{file.size}</span>
+                                    <span>•</span>
+                                    <span>{file.date}</span>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                  <button className="p-1.5 text-slate-400 hover:text-emerald-400 transition-colors rounded">
+                                    <Download className="w-4 h-4" />
+                                  </button>
+                                  <button 
+                                    onClick={() => setUploadedFiles(prev => prev.filter((_, i) => i !== idx))}
+                                    className="p-1.5 text-slate-400 hover:text-rose-400 transition-colors rounded"
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     )}
 
@@ -467,6 +511,55 @@ export default function LaunchpadDetailsPage() {
           </div>
         </main>
       </div>
+
+      {/* Upload Modal */}
+      {isUploadModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-slate-200">Upload Document</h2>
+              <button 
+                onClick={() => setIsUploadModalOpen(false)}
+                className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-8">
+              <div className="border-2 border-dashed border-slate-700 hover:border-emerald-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors bg-slate-900/50 cursor-pointer group">
+                <UploadCloud className="w-12 h-12 text-slate-500 mb-4 group-hover:text-emerald-400 transition-colors" />
+                <h3 className="text-lg font-medium text-slate-300 mb-2">Drag your file(s) to start uploading</h3>
+                <p className="text-sm text-slate-500">
+                  Allowed: .png, .jpg, .jpeg, .pdf, .doc, .docx, .xls, .xlsx, .txt (max 15 MB each)
+                </p>
+              </div>
+            </div>
+            
+            <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsUploadModalOpen(false)}
+                className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-md border border-slate-700 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => {
+                  setUploadedFiles(prev => [
+                    ...prev, 
+                    { name: `Document_${Math.floor(Math.random() * 1000)}.pdf`, size: '2.4 MB', date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }), type: 'pdf' },
+                    { name: `Design_Draft_${Math.floor(Math.random() * 1000)}.png`, size: '4.1 MB', date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }), type: 'image' }
+                  ]);
+                  setIsUploadModalOpen(false);
+                }}
+                className="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium rounded-md shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
