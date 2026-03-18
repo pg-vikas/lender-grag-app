@@ -1,0 +1,63 @@
+Task: Implement the **Edit Client Profile** popup within the **Company Details** section on the **Client Details page** with the following functionality:
+
+Requirements:
+
+1. **Popup Trigger**
+   * The **Edit Client Profile** button in the **Company Details** section opens the **Edit Client Profile** popup.
+
+2. **Toggle Functionality**
+   * Add a **toggle switch** inside the popup.
+   * Default state: **OFF**.
+   * When toggle is **ON**:
+     - Show additional **editor section** with fields.
+   * When toggle is **OFF**:
+     - Hide the editor section.
+
+3. **Editor Section Fields**
+   * When the toggle is ON, the editor should display the following input fields:
+     - **Client Name** (pre-filled in Edit mode)
+     - **Email**
+     - **Phone**
+     - **Address / Notes** (optional)
+   * Fields should be styled according to **dashboard theme** (spacing, typography, colors).
+
+4. **Add Link Button**
+   * Add an **“Add Link”** button inside the popup.
+   * Clicking **Add Link** should add a new input row with:
+     - **Link Label** (input field)
+     - **Link URL** (input field)
+     - **Remove** (❌) icon to remove the field.
+
+5. **Dynamic Link Behavior**
+   * Multiple links can be added.
+   * Each row should have an individual **Remove (❌)** icon that removes the respective row.
+   * The list of links should be stored in state (array format).
+
+6. **Save and Cancel Buttons**
+   * **Save** should:
+     - Save the client data including links.
+     - Update the Client Details dynamically.
+   * **Cancel** should:
+     - Close the popup without saving any changes.
+
+7. **Pre-Filled Data for Edit Mode**
+   * If in Edit mode:
+     - Pre-fill existing client data.
+     - Display the current links if available in the company profile.
+   
+8. **UI & Theme**
+   * Follow **dashboard styling** for consistency:
+     - Responsive, aligned inputs
+     - Clear visibility for toggle switch, link fields, and editor
+   * Smooth transitions for adding/removing links.
+   * Ensure accessibility for toggle and input fields.
+
+Expected Result:
+
+* The **Edit Client Profile** popup opens with the **toggle** functionality.
+* Toggle ON shows the **editor fields** (Client Name, Email, Phone, Notes).
+* **Add Link** button adds new rows with Link Label and Link URL.
+* Each link row has a **Remove (❌)** icon to delete it.
+* Links, along with other data, are saved and updated dynamically.
+* Popup should reflect pre-filled data if editing an existing client.
+* UI is visually consistent with the overall dashboard.

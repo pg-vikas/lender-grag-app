@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useParams } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2, FileText } from "lucide-react";
+import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2, FileText, Bold, Link as LinkIcon, List, AlignLeft, Image as ImageIcon, Video } from "lucide-react";
 
 export default function ClientDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
@@ -98,6 +98,26 @@ export default function ClientDetailsPage() {
   const [deletingEmployee, setDeletingEmployee] = useState<any>(null);
   
   const [checkedComplianceItems, setCheckedComplianceItems] = useState<Record<number, boolean>>({});
+
+  // Business Discovery Links State
+  const [editClientLinks, setEditClientLinks] = useState([
+    { label: '', url: '' }
+  ]);
+  const [isEditorEnabled, setIsEditorEnabled] = useState(false);
+
+  const handleAddLink = () => {
+    setEditClientLinks([...editClientLinks, { label: '', url: '' }]);
+  };
+
+  const handleRemoveLink = (index: number) => {
+    setEditClientLinks(editClientLinks.filter((_, i) => i !== index));
+  };
+
+  const handleLinkChange = (index: number, field: 'label' | 'url', value: string) => {
+    const newLinks = [...editClientLinks];
+    newLinks[index] = { ...newLinks[index], [field]: value };
+    setEditClientLinks(newLinks);
+  };
 
   // Note States
   const [notes, setNotes] = useState([
@@ -1563,17 +1583,81 @@ export default function ClientDetailsPage() {
                     />
                   </div>
                 </div>
-                
-                <button className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-2">
-                  <Plus className="w-4 h-4" /> Add Link
-                </button>
 
-                <div className="flex items-center justify-between border-t border-slate-800 pt-6">
-                  <span className="text-sm font-medium text-slate-300">Background</span>
-                  <button className="w-11 h-6 bg-cyan-500 rounded-full relative transition-colors focus:outline-none cursor-pointer">
-                    <span className="absolute left-[22px] top-1 w-4 h-4 bg-white rounded-full transition-transform shadow-[0_0_5px_rgba(0,0,0,0.2)]"></span>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 gap-4">
+                    {editClientLinks.map((link, index) => (
+                      <div key={index} className="flex items-end gap-4">
+                        <div className="flex-1">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">Link Label</label>
+                          <input 
+                            type="text" 
+                            placeholder="e.g., Facebook, TripAdvisor"
+                            value={link.label}
+                            onChange={(e) => handleLinkChange(index, 'label', e.target.value)}
+                            className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <label className="block text-sm font-medium text-slate-300 mb-2">Link URL</label>
+                          <input 
+                            type="url" 
+                            placeholder="https://..."
+                            value={link.url}
+                            onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
+                            className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                          />
+                        </div>
+                        <button 
+                          onClick={() => handleRemoveLink(index)}
+                          className="w-[42px] h-[42px] rounded-xl bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-all shrink-0 shadow-sm"
+                          title="Remove Link"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <button 
+                    onClick={handleAddLink}
+                    className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2.5 rounded-xl text-sm transition-colors flex items-center gap-2 w-fit"
+                  >
+                    <Plus className="w-4 h-4" /> Add Link
                   </button>
                 </div>
+
+                <div className="flex items-center gap-4 border-t border-slate-800 pt-6">
+                  <span className="text-sm font-medium text-slate-300">Background</span>
+                  <button 
+                    onClick={() => setIsEditorEnabled(!isEditorEnabled)}
+                    className={`w-11 h-6 rounded-full relative transition-colors focus:outline-none cursor-pointer ${isEditorEnabled ? 'bg-purple-600' : 'bg-slate-700'}`}
+                  >
+                    <span className={`absolute top-1 w-4 h-4 rounded-full transition-transform shadow-[0_0_5px_rgba(0,0,0,0.2)] ${isEditorEnabled ? 'left-[22px] bg-white' : 'left-1 bg-slate-400'}`}></span>
+                  </button>
+                </div>
+
+                {isEditorEnabled && (
+                  <div className="animate-in fade-in slide-in-from-top-4 duration-300 border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
+                    <div className="bg-slate-800/80 border-b border-slate-700 p-2 flex items-center gap-1 flex-wrap">
+                      <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Bold className="w-4 h-4" /></button>
+                      <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><LinkIcon className="w-4 h-4" /></button>
+                      <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><List className="w-4 h-4" /></button>
+                      <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><AlignLeft className="w-4 h-4" /></button>
+                      <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><ImageIcon className="w-4 h-4" /></button>
+                      <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Video className="w-4 h-4" /></button>
+                    </div>
+                    <textarea 
+                      className="w-full h-48 bg-slate-400/20 p-4 text-sm text-white focus:outline-none resize-none placeholder:text-slate-500"
+                      placeholder="Enter client background information..."
+                    ></textarea>
+                    <div className="bg-slate-800/80 border-t border-slate-700 p-3 flex justify-end">
+                      <button className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors shadow-sm">
+                        Save Notes
+                      </button>
+                    </div>
+                  </div>
+                )}
               </section>
 
               {/* Employee Details Section */}
