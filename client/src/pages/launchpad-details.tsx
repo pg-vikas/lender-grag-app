@@ -13,19 +13,26 @@ export default function LaunchpadDetailsPage() {
   const [isTaskTemplateModalOpen, setIsTaskTemplateModalOpen] = useState(false);
   const [isDocTemplateModalOpen, setIsDocTemplateModalOpen] = useState(false);
   const [isDocCategoryModalOpen, setIsDocCategoryModalOpen] = useState(false);
+  const [docCategoryToEdit, setDocCategoryToEdit] = useState<{id: string, name: string} | null>(null);
+  const [uploadCategory, setUploadCategory] = useState<string | null>(null);
+  const [categoryDocFilters, setCategoryDocFilters] = useState<Record<string, string>>({});
+  const [documentCategories, setDocumentCategories] = useState<{id: string, name: string}[]>([
+    { id: '1', name: 'Agreement' },
+    { id: '2', name: 'Non-Disclosure Agreement' },
+    { id: '3', name: 'dfsdf' }
+  ]);
   const [isTaskCategoryModalOpen, setIsTaskCategoryModalOpen] = useState(false);
   const [isEditDocumentModalOpen, setIsEditDocumentModalOpen] = useState(false);
-  const [documentToEdit, setDocumentToEdit] = useState<{name: string, type: string, documentType?: string} | null>(null);
+  const [documentToEdit, setDocumentToEdit] = useState<{name: string, type: string, documentType?: string, categoryId?: string} | null>(null);
   const [categoryToEdit, setCategoryToEdit] = useState<string | null>(null);
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState<{id: number | string, category: string, title: string, status?: string, hours?: string, subs?: string, date?: string} | null>(null);
   const [taskFilter, setTaskFilter] = useState<'All' | 'uncompleted' | 'completed'>('All');
-  const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string, documentType?: string}[]>([
-    { name: 'Agreement.pdf', size: '2.4 MB', date: '17-10-2023', type: 'pdf', documentType: 'Not Signed' },
-    { name: 'Non-Disclosure Agreement.pdf', size: '1.2 MB', date: '17-10-2023', type: 'pdf', documentType: 'Client Signed' }
+  const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string, documentType?: string, categoryId?: string}[]>([
+    { name: 'image-1772441207150-4V.png', size: '1563 kb', date: '17-10-2023', type: 'image', documentType: 'Not Signed', categoryId: '2' }
   ]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState<{type: 'task' | 'category' | 'document' | 'note', id: string | number, name: string} | null>(null);
+  const [itemToDelete, setItemToDelete] = useState<{type: 'task' | 'category' | 'document' | 'note' | 'docCategory', id: string | number, name: string} | null>(null);
   
   const [tasks, setTasks] = useState([
     {
@@ -68,17 +75,34 @@ export default function LaunchpadDetailsPage() {
     if (!newName.trim()) return;
 
     if (categoryToEdit) {
-      // Edit existing category
       setTasks(prev => prev.map(cat => 
         cat.category === categoryToEdit ? { ...cat, category: newName } : cat
       ));
     } else {
-      // Add new category
       setTasks(prev => [...prev, { category: newName, items: [] }]);
     }
     
     setIsTaskCategoryModalOpen(false);
     setCategoryToEdit(null);
+  };
+
+  const handleEditDocCategory = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const newName = formData.get('docCategoryName') as string;
+    
+    if (!newName.trim()) return;
+
+    if (docCategoryToEdit) {
+      setDocumentCategories(prev => prev.map(cat => 
+        cat.id === docCategoryToEdit.id ? { ...cat, name: newName } : cat
+      ));
+    } else {
+      setDocumentCategories(prev => [...prev, { id: Date.now().toString(), name: newName }]);
+    }
+    
+    setIsDocCategoryModalOpen(false);
+    setDocCategoryToEdit(null);
   };
 
   const handleEditTask = (e: React.FormEvent<HTMLFormElement>) => {
@@ -121,6 +145,9 @@ export default function LaunchpadDetailsPage() {
       setTasks(prev => prev.filter(cat => cat.category !== itemToDelete.name));
     } else if (itemToDelete.type === 'document') {
       setUploadedFiles(prev => prev.filter(f => f.name !== itemToDelete.id));
+    } else if (itemToDelete.type === 'docCategory') {
+      setDocumentCategories(prev => prev.filter(cat => cat.id !== itemToDelete.id));
+      setUploadedFiles(prev => prev.filter(f => f.categoryId !== itemToDelete.id));
     }
     
     setIsDeleteModalOpen(false);
@@ -360,72 +387,121 @@ export default function LaunchpadDetailsPage() {
                         Apply Template
                       </button>
                       <button 
-                        onClick={() => setIsDocCategoryModalOpen(true)}
-                        className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700 hidden"
+                        onClick={() => {
+                          setDocCategoryToEdit(null);
+                          setIsDocCategoryModalOpen(true);
+                        }}
+                        className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700"
                       >
                         <Plus className="w-3.5 h-3.5" /> Add Category
-                      </button>
-                      <button 
-                        onClick={() => setIsUploadModalOpen(true)}
-                        className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium rounded-lg flex items-center gap-2 transition-colors shadow-[0_0_10px_rgba(16,185,129,0.3)]"
-                      >
-                        <Download className="w-3.5 h-3.5 rotate-180" /> Upload
                       </button>
                     </div>
                   </div>
 
                   <div className="space-y-6">
-                    {['Not Signed', 'Client Signed', 'Contractor Signed', 'Fully Executed'].map((docType) => {
-                      const typeFiles = uploadedFiles.filter(f => f.documentType === docType);
-                      if (typeFiles.length === 0) return null;
+                    {documentCategories.map((category) => {
+                      const categoryFiles = uploadedFiles.filter(f => f.categoryId === category.id);
+                      const currentFilter = categoryDocFilters[category.id] || 'Not Signed';
+                      const filteredCategoryFiles = categoryFiles.filter(f => f.documentType === currentFilter);
                       
                       return (
-                        <div key={docType} className="space-y-2">
-                          <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{docType}</h3>
-                          {typeFiles.map((file, idx) => (
-                            <div key={idx} className="flex justify-between items-center p-4 bg-slate-900/50 rounded-xl border border-slate-800">
-                              <div className="flex items-start gap-3 flex-1 min-w-0 pr-4">
-                                <div className="mt-0.5">
-                                  {file.type.includes('image') ? (
-                                    <ImageIcon className="w-4 h-4 text-emerald-400" />
-                                  ) : (
-                                    <FileIcon className="w-4 h-4 text-blue-400" />
-                                  )}
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <div className="text-sm font-medium text-slate-200 truncate" title={file.name}>{file.name}</div>
-                                  <div className="text-[11px] text-slate-500 mt-0.5">{file.date}</div>
-                                </div>
-                              </div>
-                              <div className="flex gap-3 text-slate-500 shrink-0">
-                                <button className="hover:text-purple-400"><Download className="w-4 h-4" /></button>
-                                <button 
-                                  onClick={() => {
-                                    setDocumentToEdit(file);
-                                    setIsEditDocumentModalOpen(true);
-                                  }}
-                                  className="hover:text-cyan-400 transition-colors"
-                                >
-                                  <Edit2 className="w-4 h-4" />
-                                </button>
-                                <button 
-                                  onClick={() => {
-                                    setItemToDelete({type: 'document', id: file.name, name: file.name});
-                                    setIsDeleteModalOpen(true);
-                                  }}
-                                  className="hover:text-rose-400 transition-colors"
-                                >
-                                  <Trash2 className="w-4 h-4" />
-                                </button>
-                              </div>
+                        <div key={category.id} className="space-y-4 pb-6 border-b border-slate-800 last:border-0 last:pb-0">
+                          <div className="flex justify-between items-center">
+                            <h3 className="text-base font-medium text-slate-200">{category.name}</h3>
+                            <div className="flex items-center gap-2">
+                              <button 
+                                onClick={() => {
+                                  setUploadCategory(category.id);
+                                  setUploadDocumentType('Not Signed');
+                                  setIsUploadModalOpen(true);
+                                }}
+                                className="p-1.5 text-slate-400 hover:text-emerald-400 transition-colors bg-slate-800 hover:bg-slate-700 rounded"
+                              >
+                                <UploadCloud className="w-4 h-4" />
+                              </button>
+                              <button 
+                                onClick={() => {
+                                  setDocCategoryToEdit(category);
+                                  setIsDocCategoryModalOpen(true);
+                                }}
+                                className="p-1.5 text-slate-400 hover:text-purple-400 transition-colors bg-slate-800 hover:bg-slate-700 rounded"
+                              >
+                                <Edit2 className="w-4 h-4" />
+                              </button>
+                              <button 
+                                onClick={() => {
+                                  setItemToDelete({type: 'docCategory', id: category.id, name: category.name});
+                                  setIsDeleteModalOpen(true);
+                                }}
+                                className="p-1.5 text-slate-400 hover:text-rose-400 transition-colors bg-slate-800 hover:bg-slate-700 rounded"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
                             </div>
-                          ))}
+                          </div>
+
+                          <div className="flex items-center gap-4">
+                            {['Client Signed', 'Contractor Signed', 'Fully Executed', 'Not Signed'].map((docType) => (
+                              <label key={docType} className="flex items-center gap-2 cursor-pointer group">
+                                <div className="relative flex items-center justify-center">
+                                  <input 
+                                    type="radio" 
+                                    name={`doctype-${category.id}`} 
+                                    value={docType}
+                                    checked={currentFilter === docType}
+                                    onChange={(e) => setCategoryDocFilters(prev => ({...prev, [category.id]: e.target.value}))}
+                                    className="peer sr-only"
+                                  />
+                                  <div className="w-4 h-4 rounded-full border border-slate-500 peer-checked:border-emerald-500 peer-checked:border-4 transition-all"></div>
+                                </div>
+                                <span className={`text-sm ${currentFilter === docType ? 'text-slate-200' : 'text-slate-400 group-hover:text-slate-300'} transition-colors`}>
+                                  {docType}
+                                </span>
+                              </label>
+                            ))}
+                          </div>
+
+                          {filteredCategoryFiles.length > 0 && (
+                            <div className="space-y-2 mt-2">
+                              {filteredCategoryFiles.map((file, idx) => (
+                                <div key={idx} className="flex justify-between items-center p-3 bg-slate-900/50 rounded-xl border border-slate-800 group hover:border-slate-700 transition-colors">
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded bg-slate-800 flex items-center justify-center">
+                                      {file.type.includes('image') ? (
+                                        <ImageIcon className="w-4 h-4 text-emerald-400" />
+                                      ) : (
+                                        <FileIcon className="w-4 h-4 text-blue-400" />
+                                      )}
+                                    </div>
+                                    <div>
+                                      <div className="text-sm font-medium text-slate-200">{file.name}</div>
+                                      <div className="text-[11px] text-slate-500 flex gap-2">
+                                        <span>• {file.size}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button 
+                                      onClick={() => {
+                                        setItemToDelete({type: 'document', id: file.name, name: file.name});
+                                        setIsDeleteModalOpen(true);
+                                      }}
+                                      className="p-1.5 text-slate-400 hover:text-rose-400 transition-colors"
+                                    >
+                                      <Trash2 className="w-4 h-4" />
+                                    </button>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       );
                     })}
-                    {uploadedFiles.length === 0 && (
+                    
+                    {documentCategories.length === 0 && (
                       <div className="text-center py-8 text-slate-500 text-sm border-2 border-dashed border-slate-800 rounded-xl">
-                        No documents uploaded yet.
+                        No document categories yet.
                       </div>
                     )}
                   </div>
@@ -1069,7 +1145,8 @@ export default function LaunchpadDetailsPage() {
                         size: (file.size / (1024 * 1024)).toFixed(1) + ' MB',
                         date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
                         type: file.type.startsWith('image/') ? 'image' : 'document',
-                        documentType: uploadDocumentType
+                        documentType: uploadDocumentType,
+                        categoryId: uploadCategory || undefined
                       }));
                       setUploadedFiles(prev => [...prev, ...newFiles]);
                       setIsUploadModalOpen(false);
@@ -1341,7 +1418,7 @@ export default function LaunchpadDetailsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
           <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200 bg-white">
             <div className="p-6 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-slate-900">Add Document Category</h2>
+              <h2 className="text-xl font-bold text-slate-900">{docCategoryToEdit ? 'Edit' : 'Add'} Document Category</h2>
               <button 
                 onClick={() => setIsDocCategoryModalOpen(false)}
                 className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
@@ -1350,15 +1427,13 @@ export default function LaunchpadDetailsPage() {
               </button>
             </div>
             
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              setIsDocCategoryModalOpen(false);
-            }}>
+            <form onSubmit={handleEditDocCategory}>
               <div className="px-6 py-8 flex flex-col sm:flex-row sm:items-center gap-4 bg-white">
                 <label className="text-[15px] font-medium text-slate-600 whitespace-nowrap">Category Name*</label>
                 <input 
                   type="text" 
                   name="docCategoryName"
+                  defaultValue={docCategoryToEdit?.name || ''}
                   className="flex-1 bg-white border border-slate-200 rounded-md px-4 py-2.5 text-[15px] text-slate-800 focus:outline-none focus:border-[#7c3aed]/50 focus:ring-1 focus:ring-[#7c3aed]/50 shadow-sm"
                   required
                 />
