@@ -24,6 +24,18 @@ export default function LaunchpadDetailsPage() {
   ]);
   const [isTaskCategoryModalOpen, setIsTaskCategoryModalOpen] = useState(false);
   const [isEditDocumentModalOpen, setIsEditDocumentModalOpen] = useState(false);
+  const [isEditProjectDetailsModalOpen, setIsEditProjectDetailsModalOpen] = useState(false);
+  const [projectDetails, setProjectDetails] = useState({
+    id: '8',
+    name: 'Demo 3',
+    client: 'Pink Gorilla Software',
+    startDate: '17-10-2023',
+    endDate: '',
+    priority: 'Low',
+    status: 'In Progress',
+    manager: '---',
+    description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy.'
+  });
   const [documentToEdit, setDocumentToEdit] = useState<{name: string, type: string, documentType?: string, categoryId?: string} | null>(null);
   const [categoryToEdit, setCategoryToEdit] = useState<string | null>(null);
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
@@ -512,40 +524,45 @@ export default function LaunchpadDetailsPage() {
                 <div className="glass-panel rounded-2xl border border-white/10 p-6">
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-lg font-bold text-white">Project Details</h2>
-                    <button className="text-slate-500 hover:text-slate-300"><Edit2 className="w-4 h-4" /></button>
+                    <button 
+                      onClick={() => setIsEditProjectDetailsModalOpen(true)}
+                      className="text-slate-500 hover:text-slate-300"
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </button>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-sm">
                     <div className="grid grid-cols-3">
                       <span className="text-slate-400">Project ID</span>
-                      <span className="col-span-2 text-white font-medium">8</span>
+                      <span className="col-span-2 text-white font-medium">{projectDetails.id}</span>
                     </div>
                     <div className="grid grid-cols-3">
                       <span className="text-slate-400">Project Client</span>
-                      <span className="col-span-2 text-white font-medium">-</span>
+                      <span className="col-span-2 text-white font-medium">{projectDetails.client || '-'}</span>
                     </div>
                     <div className="grid grid-cols-3">
                       <span className="text-slate-400">Start Date</span>
-                      <span className="col-span-2 text-white font-medium">17-10-2023</span>
+                      <span className="col-span-2 text-white font-medium">{projectDetails.startDate || '-'}</span>
                     </div>
                     <div className="grid grid-cols-3">
                       <span className="text-slate-400">End Date</span>
-                      <span className="col-span-2 text-white font-medium">-</span>
+                      <span className="col-span-2 text-white font-medium">{projectDetails.endDate || '-'}</span>
                     </div>
                     <div className="grid grid-cols-3">
                       <span className="text-slate-400">Priority</span>
-                      <span className="col-span-2"><span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">Low</span></span>
+                      <span className="col-span-2"><span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">{projectDetails.priority}</span></span>
                     </div>
                     <div className="grid grid-cols-3">
                       <span className="text-slate-400">Client Name</span>
                       <span className="col-span-2 text-white font-medium flex items-center gap-2">
                         <div className="w-5 h-5 rounded bg-slate-800 flex items-center justify-center text-[10px]">PG</div>
-                        Pink Gorilla Software
+                        {projectDetails.client}
                       </span>
                     </div>
                     <div className="grid grid-cols-3">
                       <span className="text-slate-400">Manager</span>
-                      <span className="col-span-2 text-white font-medium">---</span>
+                      <span className="col-span-2 text-white font-medium">{projectDetails.manager}</span>
                     </div>
                     <div className="grid grid-cols-3">
                       <span className="text-slate-400">Developer</span>
@@ -566,7 +583,7 @@ export default function LaunchpadDetailsPage() {
                   <div className="mt-6 pt-6 border-t border-slate-800">
                     <h3 className="text-sm font-medium text-slate-300 mb-2">Description</h3>
                     <p className="text-sm text-slate-400 leading-relaxed">
-                      It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                      {projectDetails.description}
                     </p>
                   </div>
                 </div>
@@ -1482,6 +1499,164 @@ export default function LaunchpadDetailsPage() {
                 <button 
                   type="submit"
                   className="px-8 py-2.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-[15px] font-medium rounded-xl transition-all shadow-sm"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      {/* Edit Project Details Modal */}
+      {isEditProjectDetailsModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-white">Edit Launchpad</h2>
+              <div className="flex items-center gap-4">
+                <span className="text-xs text-slate-400">Created By: PG | 17-12-2025</span>
+                <button 
+                  onClick={() => setIsEditProjectDetailsModalOpen(false)}
+                  className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.currentTarget);
+              setProjectDetails(prev => ({
+                ...prev,
+                name: formData.get('name') as string,
+                client: formData.get('client') as string,
+                startDate: formData.get('startDate') as string,
+                endDate: formData.get('endDate') as string,
+                priority: formData.get('priority') as string,
+                status: formData.get('status') as string,
+                description: formData.get('description') as string,
+              }));
+              setIsEditProjectDetailsModalOpen(false);
+            }}>
+              <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[13px] font-medium text-slate-400">Launchpad Name*</label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      defaultValue={projectDetails.name}
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[13px] font-medium text-slate-400">Client*</label>
+                    <select 
+                      name="client"
+                      defaultValue={projectDetails.client}
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
+                      required
+                    >
+                      <option value="Pink Gorilla Software">Pink Gorilla Software</option>
+                      <option value="Acme Corp">Acme Corp</option>
+                      <option value="Globex">Globex</option>
+                    </select>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label className="text-[13px] font-medium text-slate-400">Start Date*</label>
+                    <input 
+                      type="text" 
+                      name="startDate"
+                      defaultValue={projectDetails.startDate}
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[13px] font-medium text-slate-400">Est. End Date</label>
+                    <input 
+                      type="text" 
+                      name="endDate"
+                      defaultValue={projectDetails.endDate}
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[13px] font-medium text-slate-400">Priority</label>
+                    <select 
+                      name="priority"
+                      defaultValue={projectDetails.priority}
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
+                    >
+                      <option value="Low">Low</option>
+                      <option value="Medium">Medium</option>
+                      <option value="High">High</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[13px] font-medium text-slate-400">Status</label>
+                    <select 
+                      name="status"
+                      defaultValue={projectDetails.status}
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
+                    >
+                      <option value="In Progress">In Progress</option>
+                      <option value="Completed">Completed</option>
+                      <option value="On Hold">On Hold</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-slate-800">
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-sm font-medium text-slate-300">Description & Details</h3>
+                    <div className="w-10 h-5 bg-purple-500 rounded-full flex items-center p-0.5 cursor-pointer">
+                      <div className="w-4 h-4 bg-white rounded-full translate-x-5 shadow-sm transition-transform"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/50">
+                    <div className="p-2 border-b border-slate-700/50 flex flex-wrap gap-1 items-center text-slate-400 bg-slate-800/30">
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><Bold className="w-4 h-4" /></button>
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><Link2 className="w-4 h-4" /></button>
+                      <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><ListIcon className="w-4 h-4" /></button>
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><ListOrdered className="w-4 h-4" /></button>
+                      <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><ImageIcon className="w-4 h-4" /></button>
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><Film className="w-4 h-4" /></button>
+                      <div className="w-px h-4 bg-slate-700/50 mx-1"></div>
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><AlignLeft className="w-4 h-4" /></button>
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><AlignCenter className="w-4 h-4" /></button>
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><AlignRight className="w-4 h-4" /></button>
+                      <button type="button" className="p-1.5 hover:bg-slate-700 hover:text-slate-200 rounded transition-colors"><AlignJustify className="w-4 h-4" /></button>
+                    </div>
+                    <div className="p-4 bg-slate-900/50 h-40">
+                      <textarea 
+                        name="description"
+                        defaultValue={projectDetails.description}
+                        className="w-full h-full bg-transparent resize-none outline-none text-sm text-slate-300 placeholder:text-slate-600 leading-relaxed" 
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+                <button 
+                  type="button"
+                  onClick={() => setIsEditProjectDetailsModalOpen(false)}
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+                >
+                  Close
+                </button>
+                <button 
+                  type="submit"
+                  className="px-8 py-2 bg-[#7c3aed] hover:bg-purple-600 text-white text-sm font-medium rounded-lg shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all"
                 >
                   Submit
                 </button>
