@@ -692,12 +692,6 @@ export default function LaunchpadDetailsPage() {
                       <div className="space-y-6">
                         <div className="flex justify-between items-center mb-2">
                           <h3 className="text-lg font-medium text-slate-200">Public Notes</h3>
-                          <button 
-                            onClick={() => setIsTaskCategoryModalOpen(true)}
-                            className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700"
-                          >
-                            <Plus className="w-3 h-3" /> Add Category
-                          </button>
                         </div>
                         
                         {/* Note Composer */}
@@ -817,12 +811,6 @@ export default function LaunchpadDetailsPage() {
                       <div className="space-y-6">
                         <div className="flex justify-between items-center mb-2">
                           <h3 className="text-lg font-medium text-slate-200">Private Notes</h3>
-                          <button 
-                            onClick={() => setIsTaskCategoryModalOpen(true)}
-                            className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700"
-                          >
-                            <Plus className="w-3 h-3" /> Add Category
-                          </button>
                         </div>
                         
                         {/* Note Composer */}
@@ -912,12 +900,6 @@ export default function LaunchpadDetailsPage() {
                         <div className="flex justify-between items-center mb-6">
                           <h3 className="text-lg font-medium text-slate-200">Uploads</h3>
                           <div className="flex gap-2">
-                            <button 
-                              onClick={() => setIsTaskCategoryModalOpen(true)}
-                              className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700"
-                            >
-                              <Plus className="w-3 h-3" /> Add Category
-                            </button>
                             <button 
                               onClick={() => setIsUploadModalOpen(true)}
                               className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium rounded-md shadow-[0_0_10px_rgba(16,185,129,0.3)] flex items-center gap-2 transition-all"
