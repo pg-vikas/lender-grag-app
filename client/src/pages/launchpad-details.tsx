@@ -95,9 +95,9 @@ export default function LaunchpadDetailsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
               {/* Left Column - Main Content */}
-              <div className="lg:col-span-2 space-y-6">
+              <div className="lg:col-span-3 space-y-6">
                 
                 {/* Tasks Section */}
                 <div className="glass-panel rounded-2xl border border-white/10 p-6">
@@ -263,7 +263,7 @@ export default function LaunchpadDetailsPage() {
               </div>
 
               {/* Right Column - Chat/Activity */}
-              <div className="lg:col-span-1">
+              <div className="lg:col-span-2">
                 <div className="glass-panel rounded-2xl border border-white/10 h-full flex flex-col min-h-[600px] overflow-hidden">
                   
                   <div className="flex border-b border-slate-800 overflow-x-auto scrollbar-hide">
