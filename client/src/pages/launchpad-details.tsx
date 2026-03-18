@@ -11,11 +11,17 @@ export default function LaunchpadDetailsPage() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [isTaskTemplateModalOpen, setIsTaskTemplateModalOpen] = useState(false);
   const [isTaskCategoryModalOpen, setIsTaskCategoryModalOpen] = useState(false);
+  const [taskFilter, setTaskFilter] = useState<'All' | 'uncompleted' | 'completed'>('All');
   const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string}[]>([]);
 
-  const toggleMenu = (menu: string) => {
-    setOpenMenus(prev => prev === menu ? '' : menu);
-  };
+  const filteredTasks = tasks.map(category => ({
+    ...category,
+    items: category.items.filter(item => taskFilter === 'All' || item.status === taskFilter)
+  })).filter(category => category.items.length > 0);
+
+  // Calculate counts
+  const uncompletedCount = tasks.flatMap(c => c.items).filter(i => i.status === 'uncompleted').length;
+  const completedCount = tasks.flatMap(c => c.items).filter(i => i.status === 'completed').length;
 
   const tasks = [
     {
@@ -125,54 +131,100 @@ export default function LaunchpadDetailsPage() {
                   </div>
 
                   <div className="flex gap-2 mb-6">
-                    <button className="px-4 py-1.5 bg-purple-600 text-white text-xs font-medium rounded-lg">All</button>
-                    <button className="px-4 py-1.5 bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-medium rounded-lg">Uncompleted (3)</button>
-                    <button className="px-4 py-1.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-medium rounded-lg">Completed (0)</button>
+                    <button 
+                      onClick={() => setTaskFilter('All')}
+                      className={`px-4 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                        taskFilter === 'All' 
+                          ? 'bg-purple-600 text-white' 
+                          : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                      }`}
+                    >
+                      All
+                    </button>
+                    <button 
+                      onClick={() => setTaskFilter('uncompleted')}
+                      className={`px-4 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
+                        taskFilter === 'uncompleted' 
+                          ? 'bg-rose-500/20 text-rose-400 border-rose-500/50' 
+                          : 'bg-slate-800/50 text-slate-400 border-slate-700 hover:bg-slate-800'
+                      }`}
+                    >
+                      Uncompleted ({uncompletedCount})
+                    </button>
+                    <button 
+                      onClick={() => setTaskFilter('completed')}
+                      className={`px-4 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
+                        taskFilter === 'completed' 
+                          ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50' 
+                          : 'bg-slate-800/50 text-slate-400 border-slate-700 hover:bg-slate-800'
+                      }`}
+                    >
+                      Completed ({completedCount})
+                    </button>
                   </div>
 
                   <div className="space-y-6">
-                    {tasks.map((category, idx) => (
-                      <div key={idx} className="space-y-3">
-                        <div className="flex justify-between items-center border-b border-slate-800 pb-2">
-                          <h3 className="font-semibold text-slate-200">{category.category}</h3>
-                          <div className="flex gap-2">
-                            <button className="text-slate-500 hover:text-slate-300"><Edit2 className="w-3.5 h-3.5" /></button>
-                            <button className="text-slate-500 hover:text-slate-300"><MoreHorizontal className="w-4 h-4" /></button>
+                    {filteredTasks.length === 0 ? (
+                      <div className="text-center py-8 text-slate-500 text-sm">
+                        No tasks found for this filter.
+                      </div>
+                    ) : (
+                      filteredTasks.map((category, idx) => (
+                        <div key={idx} className="space-y-3">
+                          <div className="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <h3 className="font-semibold text-slate-200">{category.category}</h3>
+                            <div className="flex gap-2">
+                              <button className="text-slate-500 hover:text-slate-300"><Edit2 className="w-3.5 h-3.5" /></button>
+                              <button className="text-slate-500 hover:text-slate-300"><MoreHorizontal className="w-4 h-4" /></button>
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="space-y-2">
-                          {category.items.map(task => (
-                            <div key={task.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-900/50 rounded-xl border border-slate-800 group hover:border-slate-700 transition-colors">
-                              <div className="flex items-start gap-3">
-                                <button className="mt-0.5 text-slate-500 hover:text-purple-400 transition-colors">
-                                  <Circle className="w-4 h-4" />
-                                </button>
-                                <div>
-                                  <div className="text-sm font-medium text-slate-200">{task.title}</div>
-                                  <div className="flex items-center gap-3 mt-1 text-[11px] text-slate-500">
-                                    {task.date && <span className="text-slate-400">{task.date} • Due On</span>}
-                                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {task.hours} Hrs</span>
-                                    <span className="flex items-center gap-1"><FileText className="w-3 h-3" /> {task.subs} Sub</span>
+                          <div className="space-y-2">
+                            {category.items.map(task => (
+                              <div key={task.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-900/50 rounded-xl border border-slate-800 group hover:border-slate-700 transition-colors">
+                                <div className="flex items-start gap-3">
+                                  <button className="mt-0.5 text-slate-500 hover:text-purple-400 transition-colors">
+                                    {task.status === 'completed' ? (
+                                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                                    ) : (
+                                      <Circle className="w-4 h-4" />
+                                    )}
+                                  </button>
+                                  <div>
+                                    <div className="text-sm font-medium text-slate-200">{task.title}</div>
+                                    <div className="flex items-center gap-3 mt-1 text-[11px] text-slate-500">
+                                      {task.date && <span className="text-slate-400">{task.date} • Due On</span>}
+                                      <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {task.hours} Hrs</span>
+                                      <span className="flex items-center gap-1"><FileText className="w-3 h-3" /> {task.subs} Sub</span>
+                                      {task.status && (
+                                        <span className={`px-1.5 py-0.5 rounded text-[9px] uppercase tracking-wider font-semibold ${
+                                          task.status === 'completed' 
+                                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                                            : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
+                                        }`}>
+                                          {task.status}
+                                        </span>
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
+                                <div className="flex items-center gap-3 mt-3 sm:mt-0 ml-7 sm:ml-0">
+                                  <button className="text-[11px] font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
+                                    Request Approval
+                                  </button>
+                                  <button className="text-slate-500 hover:text-slate-300"><Edit2 className="w-3.5 h-3.5" /></button>
+                                  <button className="text-slate-500 hover:text-rose-400"><MoreHorizontal className="w-4 h-4" /></button>
+                                </div>
                               </div>
-                              <div className="flex items-center gap-3 mt-3 sm:mt-0 ml-7 sm:ml-0">
-                                <button className="text-[11px] font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
-                                  Request Approval
-                                </button>
-                                <button className="text-slate-500 hover:text-slate-300"><Edit2 className="w-3.5 h-3.5" /></button>
-                                <button className="text-slate-500 hover:text-rose-400"><MoreHorizontal className="w-4 h-4" /></button>
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
+                          
+                          <button className="w-full py-2.5 border border-dashed border-purple-500/30 text-purple-400 hover:bg-purple-500/5 hover:border-purple-500/50 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                            <Plus className="w-3.5 h-3.5" /> ADD TASK
+                          </button>
                         </div>
-                        
-                        <button className="w-full py-2.5 border border-dashed border-purple-500/30 text-purple-400 hover:bg-purple-500/5 hover:border-purple-500/50 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all">
-                          <Plus className="w-3.5 h-3.5" /> ADD TASK
-                        </button>
-                      </div>
-                    ))}
+                      ))
+                    )}
                   </div>
                 </div>
 
