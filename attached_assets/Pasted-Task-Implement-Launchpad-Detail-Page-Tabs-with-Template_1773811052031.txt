@@ -1,0 +1,42 @@
+Task: Implement **Launchpad Detail Page Tabs with Template & Category Popup**
+
+Requirements:
+
+1. **Tabs Layout**
+   * Implement 5 tabs: **Chat, Public Notes, Private Notes, Uploads, Activities**.
+   * Only one tab content visible at a time.
+   * Active tab highlighted, following **screenshot style**.
+
+2. **Apply Template**
+   * Notes and Uploads sections should use a **card/grid template** like in the screenshot.
+   * Each card shows: title, snippet/content, date, and actions (edit/delete/view).
+
+3. **Category Popup**
+   * Add a **Category button** on Notes and Uploads cards.
+   * Clicking the button opens a **popup/modal**:
+     - User can **select an existing category** or **add a new one**.
+     - Popup includes **Save** and **Cancel** buttons.
+   * Selected category is applied to the corresponding note or upload.
+
+4. **Uploads Tab**
+   * Upload button opens a **popup/modal** for file selection (images, PDFs, etc.).
+   * **Save** adds selected files to the Uploads list; **Cancel** closes the popup.
+   * Uploaded files display in **grid/list layout** with preview, name, and optional delete/download actions.
+
+5. **Other Tabs**
+   * **Chat**: scrollable messages + input box for sending.
+   * **Public Notes / Private Notes**: card layout matching screenshot; private notes only for authorized users.
+   * **Activities**: timeline/list of actions with timestamp and icons.
+
+6. **UI Consistency**
+   * Tabs, cards, and popups follow the **dashboard design in the screenshot**.
+   * Maintain spacing, typography, hover effects, and responsive layout.
+   * Popups appear centered with overlay and match dashboard styling.
+
+Expected Result:
+
+* Tabs are fully functional, responsive, and visually consistent.
+* Notes and Uploads use **card/grid template**.
+* **Category button** opens popup; selected category is applied correctly.
+* Upload popup allows file selection → saved files appear in Uploads tab.
+* UI matches **screenshot layout and style**.
