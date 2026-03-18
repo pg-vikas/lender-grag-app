@@ -11,6 +11,7 @@ export default function LaunchpadDetailsPage() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [isTaskTemplateModalOpen, setIsTaskTemplateModalOpen] = useState(false);
   const [isTaskCategoryModalOpen, setIsTaskCategoryModalOpen] = useState(false);
+  const [categoryToEdit, setCategoryToEdit] = useState<string | null>(null);
   const [taskFilter, setTaskFilter] = useState<'All' | 'uncompleted' | 'completed'>('All');
   const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string}[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -47,6 +48,27 @@ export default function LaunchpadDetailsPage() {
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
+  };
+
+  const handleEditCategory = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const newName = formData.get('categoryName') as string;
+    
+    if (!newName.trim()) return;
+
+    if (categoryToEdit) {
+      // Edit existing category
+      setTasks(prev => prev.map(cat => 
+        cat.category === categoryToEdit ? { ...cat, category: newName } : cat
+      ));
+    } else {
+      // Add new category
+      setTasks(prev => [...prev, { category: newName, items: [] }]);
+    }
+    
+    setIsTaskCategoryModalOpen(false);
+    setCategoryToEdit(null);
   };
 
   const handleDeleteConfirm = () => {
@@ -197,13 +219,18 @@ export default function LaunchpadDetailsPage() {
                             <h3 className="font-semibold text-slate-200">{category.category}</h3>
                             <div className="flex gap-2">
                               <button 
-                                onClick={() => setIsTaskCategoryModalOpen(true)}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCategoryToEdit(category.category);
+                                  setIsTaskCategoryModalOpen(true);
+                                }}
                                 className="text-slate-500 hover:text-purple-400 transition-colors"
                               >
                                 <Edit2 className="w-3.5 h-3.5" />
                               </button>
                               <button 
-                                onClick={() => {
+                                onClick={(e) => {
+                                  e.stopPropagation();
                                   setItemToDelete({type: 'category', id: category.category, name: category.category});
                                   setIsDeleteModalOpen(true);
                                 }}
@@ -948,37 +975,49 @@ export default function LaunchpadDetailsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
           <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-slate-200">Add Task Category</h2>
+              <h2 className="text-xl font-semibold text-slate-200">{categoryToEdit ? 'Edit Category' : 'Add Task Category'}</h2>
               <button 
-                onClick={() => setIsTaskCategoryModalOpen(false)}
+                onClick={() => {
+                  setIsTaskCategoryModalOpen(false);
+                  setCategoryToEdit(null);
+                }}
                 className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             
-            <div className="px-6 py-8 flex flex-col sm:flex-row sm:items-center gap-4">
-              <label className="text-sm font-medium text-slate-400 whitespace-nowrap">Category Name*</label>
-              <input 
-                type="text" 
-                className="flex-1 bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50"
-              />
-            </div>
-            
-            <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
-              <button 
-                onClick={() => setIsTaskCategoryModalOpen(false)}
-                className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-xl border border-slate-700 transition-colors"
-              >
-                Close
-              </button>
-              <button 
-                onClick={() => setIsTaskCategoryModalOpen(false)}
-                className="px-6 py-2 bg-[#7c3aed] hover:bg-purple-600 shadow-[0_0_10px_rgba(124,58,237,0.3)] text-white text-sm font-medium rounded-xl transition-all"
-              >
-                Submit
-              </button>
-            </div>
+            <form onSubmit={handleEditCategory}>
+              <div className="px-6 py-8 flex flex-col sm:flex-row sm:items-center gap-4">
+                <label className="text-sm font-medium text-slate-400 whitespace-nowrap">Category Name*</label>
+                <input 
+                  type="text" 
+                  name="categoryName"
+                  defaultValue={categoryToEdit || ''}
+                  className="flex-1 bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50"
+                  required
+                />
+              </div>
+              
+              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setIsTaskCategoryModalOpen(false);
+                    setCategoryToEdit(null);
+                  }}
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-xl border border-slate-700 transition-colors"
+                >
+                  Close
+                </button>
+                <button 
+                  type="submit"
+                  className="px-6 py-2 bg-[#7c3aed] hover:bg-purple-600 shadow-[0_0_10px_rgba(124,58,237,0.3)] text-white text-sm font-medium rounded-xl transition-all"
+                >
+                  {categoryToEdit ? 'Save' : 'Submit'}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
