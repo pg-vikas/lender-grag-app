@@ -12,6 +12,8 @@ export default function LaunchpadDetailsPage() {
   const [isTaskTemplateModalOpen, setIsTaskTemplateModalOpen] = useState(false);
   const [isTaskCategoryModalOpen, setIsTaskCategoryModalOpen] = useState(false);
   const [categoryToEdit, setCategoryToEdit] = useState<string | null>(null);
+  const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState<{id: number | string, category: string, title: string, status?: string, hours?: string, subs?: string, date?: string} | null>(null);
   const [taskFilter, setTaskFilter] = useState<'All' | 'uncompleted' | 'completed'>('All');
   const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string}[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -69,6 +71,34 @@ export default function LaunchpadDetailsPage() {
     
     setIsTaskCategoryModalOpen(false);
     setCategoryToEdit(null);
+  };
+
+  const handleEditTask = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!taskToEdit) return;
+
+    const formData = new FormData(e.currentTarget);
+    const title = formData.get('title') as string;
+    const hours = formData.get('hours') as string;
+    const subs = formData.get('subs') as string;
+    const status = formData.get('status') as string;
+
+    setTasks(prev => prev.map(cat => {
+      if (cat.category === taskToEdit.category) {
+        return {
+          ...cat,
+          items: cat.items.map(item => 
+            item.id === taskToEdit.id 
+              ? { ...item, title, hours: hours || "0", subs: subs || "0", status } 
+              : item
+          )
+        };
+      }
+      return cat;
+    }));
+
+    setIsEditTaskModalOpen(false);
+    setTaskToEdit(null);
   };
 
   const handleDeleteConfirm = () => {
@@ -275,13 +305,18 @@ export default function LaunchpadDetailsPage() {
                                     Request Approval
                                   </button>
                                   <button 
-                                    onClick={() => setIsTaskCategoryModalOpen(true)}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setTaskToEdit({...task, category: category.category});
+                                      setIsEditTaskModalOpen(true);
+                                    }}
                                     className="text-slate-500 hover:text-purple-400 transition-colors"
                                   >
                                     <Edit2 className="w-3.5 h-3.5" />
                                   </button>
                                   <button 
-                                    onClick={() => {
+                                    onClick={(e) => {
+                                      e.stopPropagation();
                                       setItemToDelete({type: 'task', id: task.id, name: task.title});
                                       setIsDeleteModalOpen(true);
                                     }}
@@ -966,6 +1001,91 @@ export default function LaunchpadDetailsPage() {
                 <Plus className="w-4 h-4" /> Create
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Task Modal */}
+      {isEditTaskModalOpen && taskToEdit && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-slate-200">Edit Task</h2>
+              <button 
+                onClick={() => {
+                  setIsEditTaskModalOpen(false);
+                  setTaskToEdit(null);
+                }}
+                className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <form onSubmit={handleEditTask}>
+              <div className="p-6 space-y-4">
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-400">Task Title*</label>
+                  <input 
+                    type="text" 
+                    name="title"
+                    defaultValue={taskToEdit.title}
+                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50"
+                    required
+                  />
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex flex-col gap-2 flex-1">
+                    <label className="text-sm font-medium text-slate-400">Hours</label>
+                    <input 
+                      type="number" 
+                      name="hours"
+                      defaultValue={taskToEdit.hours}
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2 flex-1">
+                    <label className="text-sm font-medium text-slate-400">Subs</label>
+                    <input 
+                      type="number" 
+                      name="subs"
+                      defaultValue={taskToEdit.subs}
+                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-400">Status</label>
+                  <select 
+                    name="status"
+                    defaultValue={taskToEdit.status}
+                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50"
+                  >
+                    <option value="uncompleted">Uncompleted</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setIsEditTaskModalOpen(false);
+                    setTaskToEdit(null);
+                  }}
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-xl border border-slate-700 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit"
+                  className="px-6 py-2 bg-[#7c3aed] hover:bg-purple-600 text-white text-sm font-medium rounded-xl shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
