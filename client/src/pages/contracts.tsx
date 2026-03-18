@@ -64,6 +64,7 @@ export default function ContractsPage() {
     Active: contractsList.filter(c => c.status === 'Active').length,
     'Awaiting Signatures': contractsList.filter(c => c.status === 'Awaiting Signatures').length,
     Expired: contractsList.filter(c => c.status === 'Expired').length,
+    Draft: contractsList.filter(c => c.status === 'Draft').length,
   };
 
   return (
@@ -127,7 +128,7 @@ export default function ContractsPage() {
             {/* Stats Row */}
             {showStats && (
               <div className="glass-panel rounded-2xl border-t border-indigo-500/20 p-6 mb-8 shadow-sm border border-white/10 animate-in slide-in-from-top-4 fade-in duration-300">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                   <div 
                     className={`flex flex-col group cursor-pointer p-4 rounded-xl transition-all ${activeFilter === 'Active' ? 'bg-slate-800/50 shadow-inner' : 'hover:bg-slate-800/30'}`}
                     onClick={() => setActiveFilter(activeFilter === 'Active' ? 'All' : 'Active')}
@@ -151,6 +152,14 @@ export default function ContractsPage() {
                     <span className="text-[28px] font-medium text-white mb-1">{stats.Expired}</span>
                     <span className="text-[13px] text-slate-400 mb-4">Expired</span>
                     <div className={`h-[3px] w-full rounded-full ${activeFilter === 'Expired' ? 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]' : 'bg-rose-500/50'}`} />
+                  </div>
+                  <div 
+                    className={`flex flex-col group cursor-pointer p-4 rounded-xl transition-all ${activeFilter === 'Draft' ? 'bg-slate-800/50 shadow-inner' : 'hover:bg-slate-800/30'}`}
+                    onClick={() => setActiveFilter(activeFilter === 'Draft' ? 'All' : 'Draft')}
+                  >
+                    <span className="text-[28px] font-medium text-white mb-1">{stats.Draft}</span>
+                    <span className="text-[13px] text-slate-400 mb-4">Draft</span>
+                    <div className={`h-[3px] w-full rounded-full ${activeFilter === 'Draft' ? 'bg-slate-500 shadow-[0_0_10px_rgba(100,116,139,0.5)]' : 'bg-slate-600/50'}`} />
                   </div>
                 </div>
               </div>
