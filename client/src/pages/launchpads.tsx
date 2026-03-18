@@ -160,9 +160,11 @@ export default function LaunchpadsPage() {
                     filteredLaunchpads.map((item, i) => (
                       <tr key={i} className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
                         <td className="py-4 px-6">
-                          <span className="text-sm font-bold text-white hover:text-purple-400 transition-colors cursor-pointer">
-                            {item.name}
-                          </span>
+                          <Link href={`/launchpads/${i + 1}`}>
+                            <span className="text-sm font-bold text-white hover:text-purple-400 transition-colors cursor-pointer block">
+                              {item.name}
+                            </span>
+                          </Link>
                         </td>
                         <td className="py-4 px-6 text-sm text-slate-300">{item.client}</td>
                         <td className="py-4 px-6">
