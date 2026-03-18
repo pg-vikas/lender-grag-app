@@ -66,7 +66,36 @@ export default function Home() {
                 </div>
                 
                 <div className="flex gap-3">
-                  <button className="px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 text-sm font-medium hover:bg-slate-700/80 transition-colors">
+                  <button 
+                    className="px-4 py-2 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 text-sm font-medium hover:bg-slate-700/80 transition-colors"
+                    onClick={() => {
+                      // Create dummy data
+                      const data = [
+                        ['Date', 'Users', 'Revenue', 'Status'],
+                        ['2025-01-01', '12482', '$142,500', 'Stable'],
+                        ['2025-01-02', '12510', '$143,200', 'Stable'],
+                        ['2025-01-03', '12545', '$144,100', 'Stable'],
+                        ['2025-01-04', '12580', '$145,000', 'Stable'],
+                        ['2025-01-05', '12620', '$145,800', 'Warning'],
+                        ['2025-01-06', '12650', '$146,500', 'Stable'],
+                        ['2025-01-07', '12700', '$147,200', 'Stable'],
+                      ];
+                      
+                      // Convert to CSV
+                      const csvContent = data.map(row => row.join(',')).join('\n');
+                      
+                      // Create a Blob and download link
+                      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                      const url = URL.createObjectURL(blob);
+                      const link = document.createElement('a');
+                      link.setAttribute('href', url);
+                      link.setAttribute('download', `gorilla_hub_report_${new Date().toISOString().split('T')[0]}.csv`);
+                      link.style.visibility = 'hidden';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
+                  >
                     Export Report
                   </button>
                   <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-medium hover:from-indigo-400 hover:to-purple-500 shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all">
