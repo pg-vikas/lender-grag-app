@@ -13,12 +13,10 @@ export default function LaunchpadDetailsPage() {
   const [isTaskCategoryModalOpen, setIsTaskCategoryModalOpen] = useState(false);
   const [taskFilter, setTaskFilter] = useState<'All' | 'uncompleted' | 'completed'>('All');
   const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string}[]>([]);
-
-  const toggleMenu = (menu: string) => {
-    setOpenMenus(prev => prev === menu ? '' : menu);
-  };
-
-  const tasks = [
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<{type: 'task' | 'category' | 'document' | 'note', id: string | number, name: string} | null>(null);
+  
+  const [tasks, setTasks] = useState([
     {
       category: "Trailer",
       items: [
@@ -45,7 +43,27 @@ export default function LaunchpadDetailsPage() {
       category: "Task 3",
       items: []
     }
-  ];
+  ]);
+
+  const toggleMenu = (menu: string) => {
+    setOpenMenus(prev => prev === menu ? '' : menu);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (!itemToDelete) return;
+    
+    if (itemToDelete.type === 'task') {
+      setTasks(prev => prev.map(cat => ({
+        ...cat,
+        items: cat.items.filter(item => item.id !== itemToDelete.id)
+      })));
+    } else if (itemToDelete.type === 'category') {
+      setTasks(prev => prev.filter(cat => cat.category !== itemToDelete.name));
+    }
+    
+    setIsDeleteModalOpen(false);
+    setItemToDelete(null);
+  };
 
   const filteredTasks = tasks.map(category => ({
     ...category,
@@ -178,8 +196,21 @@ export default function LaunchpadDetailsPage() {
                           <div className="flex justify-between items-center border-b border-slate-800 pb-2">
                             <h3 className="font-semibold text-slate-200">{category.category}</h3>
                             <div className="flex gap-2">
-                              <button className="text-slate-500 hover:text-slate-300"><Edit2 className="w-3.5 h-3.5" /></button>
-                              <button className="text-slate-500 hover:text-slate-300"><MoreHorizontal className="w-4 h-4" /></button>
+                              <button 
+                                onClick={() => setIsTaskCategoryModalOpen(true)}
+                                className="text-slate-500 hover:text-purple-400 transition-colors"
+                              >
+                                <Edit2 className="w-3.5 h-3.5" />
+                              </button>
+                              <button 
+                                onClick={() => {
+                                  setItemToDelete({type: 'category', id: category.category, name: category.category});
+                                  setIsDeleteModalOpen(true);
+                                }}
+                                className="text-slate-500 hover:text-rose-400 transition-colors"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
                             </div>
                           </div>
 
@@ -216,8 +247,21 @@ export default function LaunchpadDetailsPage() {
                                   <button className="text-[11px] font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
                                     Request Approval
                                   </button>
-                                  <button className="text-slate-500 hover:text-slate-300"><Edit2 className="w-3.5 h-3.5" /></button>
-                                  <button className="text-slate-500 hover:text-rose-400"><MoreHorizontal className="w-4 h-4" /></button>
+                                  <button 
+                                    onClick={() => setIsTaskCategoryModalOpen(true)}
+                                    className="text-slate-500 hover:text-purple-400 transition-colors"
+                                  >
+                                    <Edit2 className="w-3.5 h-3.5" />
+                                  </button>
+                                  <button 
+                                    onClick={() => {
+                                      setItemToDelete({type: 'task', id: task.id, name: task.title});
+                                      setIsDeleteModalOpen(true);
+                                    }}
+                                    className="text-slate-500 hover:text-rose-400 transition-colors"
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                  </button>
                                 </div>
                               </div>
                             ))}
@@ -257,14 +301,42 @@ export default function LaunchpadDetailsPage() {
                       <div className="text-sm font-medium text-slate-200">Agreement</div>
                       <div className="flex gap-3 text-slate-500">
                         <button className="hover:text-purple-400"><Download className="w-4 h-4" /></button>
-                        <button className="hover:text-cyan-400"><Edit2 className="w-4 h-4" /></button>
+                        <button 
+                          onClick={() => setIsTaskCategoryModalOpen(true)}
+                          className="hover:text-cyan-400 transition-colors"
+                        >
+                          <Edit2 className="w-4 h-4" />
+                        </button>
+                        <button 
+                          onClick={() => {
+                            setItemToDelete({type: 'document', id: 'doc-1', name: 'Agreement'});
+                            setIsDeleteModalOpen(true);
+                          }}
+                          className="hover:text-rose-400 transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
                     <div className="flex justify-between items-center p-4 bg-slate-900/50 rounded-xl border border-slate-800">
                       <div className="text-sm font-medium text-slate-200">Non-Disclosure Agreement</div>
                       <div className="flex gap-3 text-slate-500">
                         <button className="hover:text-purple-400"><Download className="w-4 h-4" /></button>
-                        <button className="hover:text-cyan-400"><Edit2 className="w-4 h-4" /></button>
+                        <button 
+                          onClick={() => setIsTaskCategoryModalOpen(true)}
+                          className="hover:text-cyan-400 transition-colors"
+                        >
+                          <Edit2 className="w-4 h-4" />
+                        </button>
+                        <button 
+                          onClick={() => {
+                            setItemToDelete({type: 'document', id: 'doc-2', name: 'Non-Disclosure Agreement'});
+                            setIsDeleteModalOpen(true);
+                          }}
+                          className="hover:text-rose-400 transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -455,8 +527,21 @@ export default function LaunchpadDetailsPage() {
                             <div className="flex justify-between items-start mb-2">
                               <h4 className="text-sm font-semibold text-slate-200">Project Kickoff Summary</h4>
                               <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button className="p-1 text-slate-400 hover:text-purple-400"><Edit2 className="w-3.5 h-3.5" /></button>
-                                <button className="p-1 text-slate-400 hover:text-rose-400"><Trash2 className="w-3.5 h-3.5" /></button>
+                                <button 
+                                  onClick={() => setIsTaskCategoryModalOpen(true)}
+                                  className="p-1 text-slate-400 hover:text-purple-400"
+                                >
+                                  <Edit2 className="w-3.5 h-3.5" />
+                                </button>
+                                <button 
+                                  onClick={() => {
+                                    setItemToDelete({type: 'note', id: 'note-1', name: 'Project Kickoff Summary'});
+                                    setIsDeleteModalOpen(true);
+                                  }}
+                                  className="p-1 text-slate-400 hover:text-rose-400"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
                               </div>
                             </div>
                             <p className="text-xs text-slate-400 mb-4 line-clamp-3">
@@ -477,8 +562,21 @@ export default function LaunchpadDetailsPage() {
                             <div className="flex justify-between items-start mb-2">
                               <h4 className="text-sm font-semibold text-slate-200">Brand Guidelines</h4>
                               <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button className="p-1 text-slate-400 hover:text-purple-400"><Edit2 className="w-3.5 h-3.5" /></button>
-                                <button className="p-1 text-slate-400 hover:text-rose-400"><Trash2 className="w-3.5 h-3.5" /></button>
+                                <button 
+                                  onClick={() => setIsTaskCategoryModalOpen(true)}
+                                  className="p-1 text-slate-400 hover:text-purple-400"
+                                >
+                                  <Edit2 className="w-3.5 h-3.5" />
+                                </button>
+                                <button 
+                                  onClick={() => {
+                                    setItemToDelete({type: 'note', id: 'note-2', name: 'Brand Guidelines'});
+                                    setIsDeleteModalOpen(true);
+                                  }}
+                                  className="p-1 text-slate-400 hover:text-rose-400"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
                               </div>
                             </div>
                             <p className="text-xs text-slate-400 mb-4 line-clamp-3">
@@ -558,8 +656,21 @@ export default function LaunchpadDetailsPage() {
                                 <span className="bg-purple-500/20 text-purple-400 text-[9px] px-1.5 py-0.5 rounded font-bold tracking-wider">PRIVATE</span>
                               </h4>
                               <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button className="p-1 text-slate-400 hover:text-purple-400"><Edit2 className="w-3.5 h-3.5" /></button>
-                                <button className="p-1 text-slate-400 hover:text-rose-400"><Trash2 className="w-3.5 h-3.5" /></button>
+                                <button 
+                                  onClick={() => setIsTaskCategoryModalOpen(true)}
+                                  className="p-1 text-slate-400 hover:text-purple-400"
+                                >
+                                  <Edit2 className="w-3.5 h-3.5" />
+                                </button>
+                                <button 
+                                  onClick={() => {
+                                    setItemToDelete({type: 'note', id: 'note-3', name: 'Internal Review'});
+                                    setIsDeleteModalOpen(true);
+                                  }}
+                                  className="p-1 text-slate-400 hover:text-rose-400"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
                               </div>
                             </div>
                             <p className="text-xs text-slate-400 mb-4 line-clamp-3 relative z-10">
@@ -684,6 +795,42 @@ export default function LaunchpadDetailsPage() {
           </div>
         </main>
       </div>
+
+      {/* Delete Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6">
+              <div className="flex justify-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-rose-500/20 flex items-center justify-center text-rose-500">
+                  <Trash2 className="w-6 h-6" />
+                </div>
+              </div>
+              <h2 className="text-xl font-bold text-white text-center mb-2">Delete Item</h2>
+              <p className="text-slate-400 text-center mb-6">
+                Are you sure you want to delete <span className="text-slate-200 font-semibold">{itemToDelete?.name}</span>? This action cannot be undone.
+              </p>
+              <div className="flex gap-3">
+                <button 
+                  onClick={() => {
+                    setIsDeleteModalOpen(false);
+                    setItemToDelete(null);
+                  }}
+                  className="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium rounded-xl transition-colors border border-slate-700"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={handleDeleteConfirm}
+                  className="flex-1 py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-medium rounded-xl shadow-[0_0_15px_rgba(244,63,94,0.3)] transition-all"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Upload Modal */}
       {isUploadModalOpen && (
