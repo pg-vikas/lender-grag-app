@@ -9,9 +9,22 @@ export default function LaunchpadsPage() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [openMenus, setOpenMenus] = useState<string>('launchpads');
   const [isAddLaunchpadOpen, setIsAddLaunchpadOpen] = useState(false);
+  const [isEditLaunchpadOpen, setIsEditLaunchpadOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isExportPanelOpen, setIsExportPanelOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
+  
+  // Launchpads State
+  const [launchpads, setLaunchpads] = useState([
+    { id: 1, name: "Landscaper", client: "Pink Gorilla Software", creator: "Jitender", creatorImg: "J", status: "In Progress" },
+    { id: 2, name: "Demo 5", client: "Pink Gorilla Software", creator: "PG", creatorImg: "PG", status: "Not Started" },
+    { id: 3, name: "Test2", client: "Pink Gorilla Software", creator: "Jitender", creatorImg: "J", status: "Not Started" },
+    { id: 4, name: "Demo 4", client: "Vin Gardner", creator: "PG", creatorImg: "PG", status: "Not Started" },
+    { id: 5, name: "Demo 3", client: "Pink Gorilla Software", creator: "PG", creatorImg: "PG", status: "In Progress" },
+  ]);
+
+  const [selectedLaunchpad, setSelectedLaunchpad] = useState<any>(null);
 
   const handleSearch = () => {
     setAppliedSearchQuery(searchQuery);
@@ -33,6 +46,33 @@ export default function LaunchpadsPage() {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
+  const openEditModal = (launchpad: any) => {
+    setSelectedLaunchpad(launchpad);
+    setIsEditLaunchpadOpen(true);
+  };
+
+  const openDeleteModal = (launchpad: any) => {
+    setSelectedLaunchpad(launchpad);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDelete = () => {
+    if (selectedLaunchpad) {
+      setLaunchpads(prev => prev.filter(l => l.id !== selectedLaunchpad.id));
+      setIsDeleteModalOpen(false);
+      setSelectedLaunchpad(null);
+    }
+  };
+
+  const handleEditSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (selectedLaunchpad) {
+      // In a real app we would get values from form, here we'll just mock it
+      // since the form doesn't have an onSubmit handler yet or state for its fields
+      setIsEditLaunchpadOpen(false);
+      setSelectedLaunchpad(null);
+    }
+  };
   
   const stats = [
     { label: 'Not Started', count: 3, colorClass: 'border-slate-500', icon: Clock, iconColor: 'text-slate-400', filterValue: 'Not Started' },
@@ -40,14 +80,6 @@ export default function LaunchpadsPage() {
     { label: 'On Hold', count: 0, colorClass: 'border-yellow-500', icon: PauseCircle, iconColor: 'text-yellow-400', filterValue: 'On Hold' },
     { label: 'Pending Approval', count: 0, colorClass: 'border-orange-500', icon: Clock, iconColor: 'text-orange-400', filterValue: 'Pending Approval' },
     { label: 'Completed', count: 0, colorClass: 'border-emerald-500', icon: CheckCircle2, iconColor: 'text-emerald-400', filterValue: 'Completed' },
-  ];
-
-  const launchpads = [
-    { name: "Landscaper", client: "Pink Gorilla Software", creator: "Jitender", creatorImg: "J", status: "In Progress" },
-    { name: "Demo 5", client: "Pink Gorilla Software", creator: "PG", creatorImg: "PG", status: "Not Started" },
-    { name: "Test2", client: "Pink Gorilla Software", creator: "Jitender", creatorImg: "J", status: "Not Started" },
-    { name: "Demo 4", client: "Vin Gardner", creator: "PG", creatorImg: "PG", status: "Not Started" },
-    { name: "Demo 3", client: "Pink Gorilla Software", creator: "PG", creatorImg: "PG", status: "In Progress" },
   ];
 
   const filteredLaunchpads = launchpads.filter(l => {
@@ -193,10 +225,16 @@ export default function LaunchpadsPage() {
                         </td>
                         <td className="py-4 px-6 text-center">
                           <div className="flex items-center justify-center gap-3">
-                            <button className="text-slate-400 hover:text-purple-400 transition-colors">
+                            <button 
+                              onClick={(e) => { e.stopPropagation(); openEditModal(item); }}
+                              className="text-slate-400 hover:text-purple-400 transition-colors"
+                            >
                               <Edit className="w-4 h-4" />
                             </button>
-                            <button className="text-slate-400 hover:text-rose-400 transition-colors">
+                            <button 
+                              onClick={(e) => { e.stopPropagation(); openDeleteModal(item); }}
+                              className="text-slate-400 hover:text-rose-400 transition-colors"
+                            >
                               <Trash2 className="w-4 h-4" />
                             </button>
                           </div>
@@ -310,6 +348,151 @@ export default function LaunchpadsPage() {
                 className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
               >
                 Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Launchpad Modal */}
+      {isEditLaunchpadOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsEditLaunchpadOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+              <h2 className="text-xl font-bold text-white">Edit Launchpad</h2>
+              <button 
+                onClick={() => setIsEditLaunchpadOpen(false)}
+                className="text-slate-400 hover:text-white p-2 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <form onSubmit={handleEditSubmit}>
+              <div className="p-6 space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Launchpad Name*</label>
+                    <input 
+                      type="text" 
+                      defaultValue={selectedLaunchpad?.name}
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all" 
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Client*</label>
+                    <select 
+                      defaultValue={selectedLaunchpad?.client}
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none"
+                    >
+                      <option value="">Select a client...</option>
+                      <option value="Pink Gorilla Software">Pink Gorilla Software</option>
+                      <option value="Vin Gardner">Vin Gardner</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Start Date*</label>
+                    <input 
+                      type="date" 
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Est. End Date</label>
+                    <input 
+                      type="date" 
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Priority</label>
+                    <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
+                      <option>Normal</option>
+                      <option>High</option>
+                      <option>Low</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Status</label>
+                    <select 
+                      defaultValue={selectedLaunchpad?.status}
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none"
+                    >
+                      <option>Not Started</option>
+                      <option>In Progress</option>
+                      <option>On Hold</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+                  <span className="text-sm font-medium text-slate-300">Description & Details</span>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" className="sr-only peer" />
+                    <div className="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-500"></div>
+                  </label>
+                </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+                <button 
+                  type="button"
+                  onClick={() => setIsEditLaunchpadOpen(false)}
+                  className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit"
+                  className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Launchpad Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl w-full max-w-[400px] p-8 flex flex-col items-center animate-in zoom-in-95 duration-200">
+            <h2 className="text-[20px] font-bold text-white mb-2">Delete Launchpad</h2>
+            <p className="text-[15px] text-slate-300 mb-8 text-center">
+              Are you sure you want to delete <span className="font-semibold text-white">"{selectedLaunchpad?.name}"</span>?
+            </p>
+            
+            <div className="flex gap-4 w-full justify-center">
+              <button 
+                onClick={() => {
+                  setIsDeleteModalOpen(false);
+                  setSelectedLaunchpad(null);
+                }}
+                className="px-6 py-2.5 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-white rounded-xl text-sm font-medium transition-colors w-28"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleDelete}
+                className="px-6 py-2.5 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-sm font-medium transition-all w-28 shadow-[0_0_15px_rgba(244,63,94,0.3)]"
+              >
+                Delete
               </button>
             </div>
           </div>
