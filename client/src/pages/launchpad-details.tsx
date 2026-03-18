@@ -9,6 +9,7 @@ export default function LaunchpadDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<string>('Chat');
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [uploadDocumentType, setUploadDocumentType] = useState('Not Signed');
   const [isTaskTemplateModalOpen, setIsTaskTemplateModalOpen] = useState(false);
   const [isDocTemplateModalOpen, setIsDocTemplateModalOpen] = useState(false);
   const [isDocCategoryModalOpen, setIsDocCategoryModalOpen] = useState(false);
@@ -17,7 +18,10 @@ export default function LaunchpadDetailsPage() {
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState<{id: number | string, category: string, title: string, status?: string, hours?: string, subs?: string, date?: string} | null>(null);
   const [taskFilter, setTaskFilter] = useState<'All' | 'uncompleted' | 'completed'>('All');
-  const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string}[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<{name: string, size: string, date: string, type: string, documentType?: string}[]>([
+    { name: 'Agreement.pdf', size: '2.4 MB', date: '17-10-2023', type: 'pdf', documentType: 'Not Signed' },
+    { name: 'Non-Disclosure Agreement.pdf', size: '1.2 MB', date: '17-10-2023', type: 'pdf', documentType: 'Client Signed' }
+  ]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<{type: 'task' | 'category' | 'document' | 'note', id: string | number, name: string} | null>(null);
   
@@ -360,49 +364,52 @@ export default function LaunchpadDetailsPage() {
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center p-4 bg-slate-900/50 rounded-xl border border-slate-800">
-                      <div className="text-sm font-medium text-slate-200">Agreement</div>
-                      <div className="flex gap-3 text-slate-500">
-                        <button className="hover:text-purple-400"><Download className="w-4 h-4" /></button>
-                        <button 
-                          onClick={() => setIsTaskCategoryModalOpen(true)}
-                          className="hover:text-cyan-400 transition-colors"
-                        >
-                          <Edit2 className="w-4 h-4" />
-                        </button>
-                        <button 
-                          onClick={() => {
-                            setItemToDelete({type: 'document', id: 'doc-1', name: 'Agreement'});
-                            setIsDeleteModalOpen(true);
-                          }}
-                          className="hover:text-rose-400 transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                  <div className="space-y-6">
+                    {['Not Signed', 'Client Signed', 'Contractor Signed', 'Fully Executed'].map((docType) => {
+                      const typeFiles = uploadedFiles.filter(f => f.documentType === docType);
+                      if (typeFiles.length === 0) return null;
+                      
+                      return (
+                        <div key={docType} className="space-y-2">
+                          <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{docType}</h3>
+                          {typeFiles.map((file, idx) => (
+                            <div key={idx} className="flex justify-between items-center p-4 bg-slate-900/50 rounded-xl border border-slate-800">
+                              <div className="flex items-center gap-3">
+                                {file.type.includes('image') ? (
+                                  <ImageIcon className="w-4 h-4 text-emerald-400" />
+                                ) : (
+                                  <FileIcon className="w-4 h-4 text-blue-400" />
+                                )}
+                                <div className="text-sm font-medium text-slate-200">{file.name}</div>
+                              </div>
+                              <div className="flex gap-3 text-slate-500">
+                                <button className="hover:text-purple-400"><Download className="w-4 h-4" /></button>
+                                <button 
+                                  onClick={() => setIsTaskCategoryModalOpen(true)}
+                                  className="hover:text-cyan-400 transition-colors"
+                                >
+                                  <Edit2 className="w-4 h-4" />
+                                </button>
+                                <button 
+                                  onClick={() => {
+                                    setItemToDelete({type: 'document', id: file.name, name: file.name});
+                                    setIsDeleteModalOpen(true);
+                                  }}
+                                  className="hover:text-rose-400 transition-colors"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })}
+                    {uploadedFiles.length === 0 && (
+                      <div className="text-center py-8 text-slate-500 text-sm border-2 border-dashed border-slate-800 rounded-xl">
+                        No documents uploaded yet.
                       </div>
-                    </div>
-                    <div className="flex justify-between items-center p-4 bg-slate-900/50 rounded-xl border border-slate-800">
-                      <div className="text-sm font-medium text-slate-200">Non-Disclosure Agreement</div>
-                      <div className="flex gap-3 text-slate-500">
-                        <button className="hover:text-purple-400"><Download className="w-4 h-4" /></button>
-                        <button 
-                          onClick={() => setIsTaskCategoryModalOpen(true)}
-                          className="hover:text-cyan-400 transition-colors"
-                        >
-                          <Edit2 className="w-4 h-4" />
-                        </button>
-                        <button 
-                          onClick={() => {
-                            setItemToDelete({type: 'document', id: 'doc-2', name: 'Non-Disclosure Agreement'});
-                            setIsDeleteModalOpen(true);
-                          }}
-                          className="hover:text-rose-400 transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </div>
 
@@ -780,37 +787,49 @@ export default function LaunchpadDetailsPage() {
                             <p>No uploads found.</p>
                           </div>
                         ) : (
-                          <div className="grid grid-cols-1 gap-4">
-                            {uploadedFiles.map((file, idx) => (
-                              <div key={idx} className="flex items-start gap-4 p-4 rounded-xl border border-slate-700/50 bg-slate-800/30 group hover:border-emerald-500/50 transition-colors">
-                                <div className="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
-                                  {file.type.includes('image') ? (
-                                    <ImageIcon className="w-6 h-6 text-emerald-400" />
-                                  ) : (
-                                    <FileIcon className="w-6 h-6 text-blue-400" />
-                                  )}
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <p className="text-sm font-medium text-slate-200 break-all line-clamp-2" title={file.name}>{file.name}</p>
-                                  <div className="flex items-center gap-2 mt-1 text-xs text-slate-500">
-                                    <span>{file.size}</span>
-                                    <span>•</span>
-                                    <span>{file.date}</span>
+                          <div className="space-y-6">
+                            {['Not Signed', 'Client Signed', 'Contractor Signed', 'Fully Executed'].map((docType) => {
+                              const typeFiles = uploadedFiles.filter(f => f.documentType === docType);
+                              if (typeFiles.length === 0) return null;
+                              
+                              return (
+                                <div key={docType} className="space-y-3">
+                                  <h4 className="text-sm font-semibold text-slate-400 border-b border-slate-800 pb-2">{docType}</h4>
+                                  <div className="grid grid-cols-1 gap-4">
+                                    {typeFiles.map((file, idx) => (
+                                      <div key={idx} className="flex items-start gap-4 p-4 rounded-xl border border-slate-700/50 bg-slate-800/30 group hover:border-emerald-500/50 transition-colors">
+                                        <div className="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
+                                          {file.type.includes('image') ? (
+                                            <ImageIcon className="w-6 h-6 text-emerald-400" />
+                                          ) : (
+                                            <FileIcon className="w-6 h-6 text-blue-400" />
+                                          )}
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                          <p className="text-sm font-medium text-slate-200 break-all line-clamp-2" title={file.name}>{file.name}</p>
+                                          <div className="flex items-center gap-2 mt-1 text-xs text-slate-500">
+                                            <span>{file.size}</span>
+                                            <span>•</span>
+                                            <span>{file.date}</span>
+                                          </div>
+                                        </div>
+                                        <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                          <button className="p-1.5 text-slate-400 hover:text-emerald-400 transition-colors rounded">
+                                            <Download className="w-4 h-4" />
+                                          </button>
+                                          <button 
+                                            onClick={() => setUploadedFiles(prev => prev.filter(f => f.name !== file.name))}
+                                            className="p-1.5 text-slate-400 hover:text-rose-400 transition-colors rounded"
+                                          >
+                                            <Trash2 className="w-4 h-4" />
+                                          </button>
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
                                 </div>
-                                <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                  <button className="p-1.5 text-slate-400 hover:text-emerald-400 transition-colors rounded">
-                                    <Download className="w-4 h-4" />
-                                  </button>
-                                  <button 
-                                    onClick={() => setUploadedFiles(prev => prev.filter((_, i) => i !== idx))}
-                                    className="p-1.5 text-slate-400 hover:text-rose-400 transition-colors rounded"
-                                  >
-                                    <Trash2 className="w-4 h-4" />
-                                  </button>
-                                </div>
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
                         )}
                       </div>
@@ -910,7 +929,21 @@ export default function LaunchpadDetailsPage() {
               </button>
             </div>
             
-            <div className="p-8">
+            <div className="p-6">
+              <div className="mb-6 flex flex-col gap-2">
+                <label className="text-sm font-medium text-slate-400">Document Type</label>
+                <select 
+                  value={uploadDocumentType}
+                  onChange={(e) => setUploadDocumentType(e.target.value)}
+                  className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50"
+                >
+                  <option value="Not Signed">Not Signed</option>
+                  <option value="Client Signed">Client Signed</option>
+                  <option value="Contractor Signed">Contractor Signed</option>
+                  <option value="Fully Executed">Fully Executed</option>
+                </select>
+              </div>
+
               <label className="border-2 border-dashed border-slate-700 hover:border-emerald-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors bg-slate-900/50 cursor-pointer group w-full">
                 <input 
                   type="file" 
@@ -922,7 +955,8 @@ export default function LaunchpadDetailsPage() {
                         name: file.name,
                         size: (file.size / (1024 * 1024)).toFixed(1) + ' MB',
                         date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
-                        type: file.type.startsWith('image/') ? 'image' : 'document'
+                        type: file.type.startsWith('image/') ? 'image' : 'document',
+                        documentType: uploadDocumentType
                       }));
                       setUploadedFiles(prev => [...prev, ...newFiles]);
                       setIsUploadModalOpen(false);
