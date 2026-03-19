@@ -150,7 +150,7 @@ export default function TicketDetailsPage() {
                         <span className="text-[14px] font-semibold text-[#000000]">Milhan Farooque</span>
                         <span className="text-[12px] text-slate-500">31-10-2025 - (4 months ago)</span>
                       </div>
-                      <p className="text-[14px] text-slate-300">adding a note</p>
+                      <p className="text-[14px] text-[#8094a8]">adding a note</p>
                     </div>
                   </div>
                 </div>
