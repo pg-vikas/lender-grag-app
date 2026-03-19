@@ -18,7 +18,6 @@ export default function TicketDetailsPage() {
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/tickets" />
-
       <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Ticket Details" />
 
@@ -167,7 +166,7 @@ export default function TicketDetailsPage() {
                     </div>
                     <div>
                       <div className="flex flex-col mb-4">
-                        <span className="text-[14px] font-semibold text-white">Milhan Farooque</span>
+                        <span className="text-[14px] font-semibold text-[#000000]">Milhan Farooque</span>
                         <span className="text-[12px] text-slate-500">31-10-2025 - (4 months ago)</span>
                       </div>
                       <p className="text-[14px] text-slate-300">the second note.... it's cool</p>
@@ -197,7 +196,6 @@ export default function TicketDetailsPage() {
           </div>
         </main>
       </div>
-
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center p-4">
@@ -237,7 +235,6 @@ export default function TicketDetailsPage() {
           </div>
         </div>
       )}
-
       {/* Edit Support Ticket Modal */}
       {isEditModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 overflow-y-auto">
@@ -341,7 +338,6 @@ export default function TicketDetailsPage() {
           </div>
         </div>
       )}
-
       {/* Add Note Modal */}
       {isAddNoteModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 overflow-y-auto">
@@ -397,7 +393,6 @@ export default function TicketDetailsPage() {
           </div>
         </div>
       )}
-
       {/* Reply Support Ticket Modal */}
       {isReplyModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 overflow-y-auto">
@@ -453,7 +448,6 @@ export default function TicketDetailsPage() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
