@@ -147,7 +147,7 @@ export default function TicketDetailsPage() {
                     </div>
                     <div>
                       <div className="flex flex-col mb-4">
-                        <span className="text-[14px] font-semibold text-white">Milhan Farooque</span>
+                        <span className="text-[14px] font-semibold text-[#000000]">Milhan Farooque</span>
                         <span className="text-[12px] text-slate-500">31-10-2025 - (4 months ago)</span>
                       </div>
                       <p className="text-[14px] text-slate-300">adding a note</p>
