@@ -35,10 +35,13 @@ export default function InvoiceDetailsPage() {
     ]
   };
 
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const handleDownload = async () => {
     if (!invoiceRef.current) return;
     
     try {
+      setIsDownloading(true);
       // Create canvas from the invoice element
       const canvas = await html2canvas(invoiceRef.current, {
         scale: 2, // Higher scale for better resolution
@@ -51,9 +54,13 @@ export default function InvoiceDetailsPage() {
       const link = document.createElement("a");
       link.href = image;
       link.download = `Invoice_${invoiceData.invoiceNumber}.png`;
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
     } catch (error) {
       console.error("Failed to generate invoice image:", error);
+    } finally {
+      setIsDownloading(false);
     }
   };
 
@@ -70,10 +77,15 @@ export default function InvoiceDetailsPage() {
               <h1 className="text-[22px] font-semibold text-white">Invoice #{invoiceData.invoiceNumber}</h1>
               <button 
                 onClick={handleDownload}
-                className="w-10 h-10 flex items-center justify-center bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-300 hover:text-white hover:bg-slate-900/40 backdrop-blur-xl/50 transition-colors"
+                disabled={isDownloading}
+                className={`w-10 h-10 flex items-center justify-center bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-300 hover:text-white hover:bg-slate-900/40 backdrop-blur-xl/50 transition-colors ${isDownloading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 title="Download Invoice"
               >
-                <Download className="w-4 h-4" />
+                {isDownloading ? (
+                  <div className="w-4 h-4 border-2 border-slate-300 border-t-white rounded-full animate-spin"></div>
+                ) : (
+                  <Download className="w-4 h-4" />
+                )}
               </button>
             </div>
 
