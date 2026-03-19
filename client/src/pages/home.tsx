@@ -286,25 +286,47 @@ export default function Home() {
                     <div className="absolute left-[15px] top-2 bottom-2 w-[2px] bg-slate-800"></div>
                     
                     {[
-                      { type: 'alert', icon: ShieldAlert, color: 'text-rose-400', bg: 'bg-rose-500/10', border: 'border-rose-500/20', title: 'High CPU Usage', desc: 'Node cluster alpha-2', time: 'Just now' },
-                      { type: 'signup', icon: Users, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', title: 'New Agency Signup', desc: 'Creative Digital LLC', time: '2m ago' },
-                      { type: 'payment', icon: Activity, color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', title: 'Plan Upgrade', desc: 'PG Software to Enterprise', time: '15m ago' },
-                      { type: 'system', icon: Server, color: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', title: 'Database Backup', desc: 'Automated snapshot complete', time: '1h ago' },
-                      { type: 'signup', icon: Users, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', title: 'New Agency Signup', desc: 'Marketing Pros Inc', time: '2h ago' },
-                    ].map((event, i) => (
+                      { type: 'alert', icon: ShieldAlert, color: 'text-rose-400', bg: 'bg-rose-500/10', border: 'border-rose-500/20', title: 'High CPU Usage', desc: 'Node cluster alpha-2', time: 'Just now', entityId: 'node-2' },
+                      { type: 'signup', icon: Users, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', title: 'New Agency Signup', desc: 'Creative Digital LLC', time: '2m ago', entityId: 'client-123' },
+                      { type: 'payment', icon: Activity, color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', title: 'Plan Upgrade', desc: 'PG Software to Enterprise', time: '15m ago', entityId: 'sub-456' },
+                      { type: 'system', icon: Server, color: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', title: 'Database Backup', desc: 'Automated snapshot complete', time: '1h ago', entityId: 'db-backup-789' },
+                      { type: 'signup', icon: Users, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', title: 'New Agency Signup', desc: 'Marketing Pros Inc', time: '2h ago', entityId: 'client-124' },
+                    ].map((event, i) => {
+                      // Activity link mapper
+                      const getEventLink = (type: string, id?: string) => {
+                        const baseUrl = ''; // Base url handled by wouter
+                        switch(type) {
+                          case 'alert':
+                          case 'system':
+                            return `${baseUrl}/system-status/${id || ''}`;
+                          case 'signup':
+                            return `${baseUrl}/clients/${id || ''}`;
+                          case 'payment':
+                            return `${baseUrl}/subscriptions/${id || ''}`;
+                          default:
+                            return `${baseUrl}/activity/${id || ''}`;
+                        }
+                      };
+                      
+                      const eventLink = getEventLink(event.type, event.entityId);
+
+                      return (
                       <div key={i} className="relative flex gap-4 group/event">
                         <div className={`relative z-10 w-8 h-8 rounded-full flex items-center justify-center shrink-0 border ${event.bg} ${event.color} ${event.border} shadow-[0_0_10px_rgba(0,0,0,0.2)] group-hover/event:scale-110 transition-transform`}>
                           <event.icon className="w-4 h-4" />
                         </div>
                         <div className="pt-1.5 flex-1 pb-2">
                           <div className="flex justify-between items-start">
-                            <p className="text-sm font-bold text-[#e2e8f0]">{event.title}</p>
+                            <Link href={eventLink}>
+                              <p className="text-sm font-bold text-[#e2e8f0] hover:text-indigo-400 cursor-pointer transition-colors">{event.title}</p>
+                            </Link>
                             <span className="text-xs font-mono text-slate-500">{event.time}</span>
                           </div>
                           <p className="text-xs text-slate-400 mt-0.5">{event.desc}</p>
                         </div>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>
