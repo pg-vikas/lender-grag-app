@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
 import { ExternalLink, Download } from "lucide-react";
+import * as XLSX from 'xlsx';
 
 export default function SubscriptionDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('');
@@ -21,6 +22,13 @@ export default function SubscriptionDetailsPage() {
     { invoice: "INV-000017", date: "27-02-2026", method: "Stripe Payment", amount: "$0.00", status: "Paid" },
     { invoice: "INV-000006", date: "27-01-2026", method: "Stripe Payment", amount: "$0.00", status: "Paid" },
   ];
+
+  const handleDownloadPayment = (payment: any) => {
+    const worksheet = XLSX.utils.json_to_sheet([payment]);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Payment");
+    XLSX.writeFile(workbook, `Payment_${payment.invoice}.xlsx`);
+  };
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
@@ -123,7 +131,10 @@ export default function SubscriptionDetailsPage() {
                           <Link href={`/invoices/${payment.invoice}`} className="hover:text-white transition-colors">
                             <ExternalLink className="w-4 h-4" />
                           </Link>
-                          <button className="hover:text-white transition-colors">
+                          <button 
+                            className="hover:text-white transition-colors"
+                            onClick={() => handleDownloadPayment(payment)}
+                          >
                             <Download className="w-4 h-4" />
                           </button>
                         </div>
