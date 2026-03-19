@@ -3,6 +3,7 @@ import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
 import { Download, Info } from "lucide-react";
 import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 export default function InvoiceDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('');
@@ -49,16 +50,25 @@ export default function InvoiceDetailsPage() {
         useCORS: true, // Allow external images if any
       });
       
-      // Convert to image URL and trigger download
-      const image = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = `Invoice_${invoiceData.invoiceNumber}.png`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const imgData = canvas.toDataURL("image/png");
+      
+      // Calculate PDF dimensions based on canvas aspect ratio to maintain layout
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4"
+      });
+      
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      
+      // Add image to PDF
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      
+      // Download PDF
+      pdf.save(`Invoice_${invoiceData.invoiceNumber}.pdf`);
     } catch (error) {
-      console.error("Failed to generate invoice image:", error);
+      console.error("Failed to generate invoice PDF:", error);
     } finally {
       setIsDownloading(false);
     }
