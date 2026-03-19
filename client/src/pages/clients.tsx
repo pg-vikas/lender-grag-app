@@ -7,6 +7,7 @@ import {
   User,
   Users,
   BarChart2,
+  PieChart,
   HelpCircle,
   ArrowUpRight,
   ArrowRight,
@@ -289,7 +290,7 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
           <Link href="/analytics">
             <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/analytics') ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30 shadow-[0_0_15px_rgba(249,115,22,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
               <div className="flex items-center space-x-3">
-                <BarChart2 className={`w-5 h-5 shrink-0 ${currentPath.includes('/analytics') ? 'text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]' : 'group-hover:text-slate-300'}`} />
+                <PieChart className={`w-5 h-5 shrink-0 ${currentPath.includes('/analytics') ? 'text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]' : 'group-hover:text-slate-300'}`} />
                 {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Analytics</span>}
               </div>
             </div>
