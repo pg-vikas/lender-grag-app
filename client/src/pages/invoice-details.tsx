@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
 import { Download, Info } from "lucide-react";
+import * as XLSX from 'xlsx';
 
 export default function InvoiceDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('');
@@ -9,6 +10,59 @@ export default function InvoiceDetailsPage() {
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
+  };
+
+  const invoiceData = {
+    invoiceNumber: "INV-000023",
+    status: "PAID",
+    from: {
+      name: "Pink Gorilla",
+      address: ["8605 Santa Monica Blvd", "West Hollywood", "CA", "90069", "United States"]
+    },
+    to: "Vs Test",
+    dates: {
+      invoice: "02-03-2026",
+      due: "02-03-2026"
+    },
+    totals: {
+      payments: "$0.00",
+      balance: "$0.00",
+      total: "$0.00"
+    },
+    items: [
+      { description: "Core Starter", qty: 1, unit: "Each", rate: "0.00", total: "0.00" }
+    ]
+  };
+
+  const handleDownload = () => {
+    const invoiceSummary = {
+      InvoiceNumber: invoiceData.invoiceNumber,
+      Status: invoiceData.status,
+      To: invoiceData.to,
+      InvoiceDate: invoiceData.dates.invoice,
+      DueDate: invoiceData.dates.due,
+      Total: invoiceData.totals.total
+    };
+    
+    // Create an array with the summary and the items
+    const exportData = [
+      invoiceSummary,
+      {}, // Empty row for spacing
+      { InvoiceNumber: "Items Details:" },
+      ...invoiceData.items.map(item => ({
+        InvoiceNumber: item.description,
+        Status: `Qty: ${item.qty}`,
+        To: `Unit: ${item.unit}`,
+        InvoiceDate: `Rate: ${item.rate}`,
+        DueDate: `Total: ${item.total}`,
+        Total: ""
+      }))
+    ];
+
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Invoice Details");
+    XLSX.writeFile(workbook, `${invoiceData.invoiceNumber}_Details.xlsx`);
   };
 
   return (
@@ -21,8 +75,12 @@ export default function InvoiceDetailsPage() {
         <main className="flex-1 overflow-y-auto p-6 lg:p-8 relative">
           <div className="max-w-5xl mx-auto">
             <div className="flex justify-between items-center mb-8">
-              <h1 className="text-[22px] font-semibold text-white">Invoice #INV-000023</h1>
-              <button className="w-10 h-10 flex items-center justify-center bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-300 shadow-sm hover:bg-slate-900/40 backdrop-blur-xl/50 transition-colors">
+              <h1 className="text-[22px] font-semibold text-white">Invoice #{invoiceData.invoiceNumber}</h1>
+              <button 
+                onClick={handleDownload}
+                className="w-10 h-10 flex items-center justify-center bg-slate-900/80 border border-white/10 rounded-xl shadow-sm text-slate-300 hover:text-white hover:bg-slate-900/40 backdrop-blur-xl/50 transition-colors"
+                title="Download Invoice"
+              >
                 <Download className="w-4 h-4" />
               </button>
             </div>
