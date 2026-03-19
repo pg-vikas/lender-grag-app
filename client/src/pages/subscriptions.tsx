@@ -13,10 +13,14 @@ export default function SubscriptionsPage() {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
-  const subscriptionsList = [
-    { id: "SUB-000002", client: "Vs Test", plan: "Core Starter", amount: "$99.00", renewed: "27-02-2026", payments: "$0.00", status: "Active" },
-    { id: "SUB-000001", client: "Pink Gorilla...", plan: "Core Starter", amount: "$1.00", renewed: "21-01-2026", payments: "$2.00", status: "Cancelled" },
-  ];
+  const [subscriptionsList, setSubscriptionsList] = useState([
+    { id: "SUB-000002", client: "Vs Test", plan: "Core Starter", amount: "$99.00", renewed: "27-02-2026", payments: "$0.00", status: "Active", pinned: false },
+    { id: "SUB-000001", client: "Pink Gorilla...", plan: "Core Starter", amount: "$1.00", renewed: "21-01-2026", payments: "$2.00", status: "Cancelled", pinned: false },
+  ]);
+
+  const togglePin = (id: string) => {
+    setSubscriptionsList(prev => prev.map(sub => sub.id === id ? { ...sub, pinned: !sub.pinned } : sub));
+  };
 
   const filteredSubscriptions = subscriptionsList.filter(sub => {
     if (appliedSearchQuery) {
@@ -124,8 +128,11 @@ export default function SubscriptionsPage() {
                               <Link href={`/subscriptions/${sub.id}`} className="hover:text-white transition-colors">
                                 <ExternalLink className="w-4 h-4" />
                               </Link>
-                              <button className="hover:text-white transition-colors">
-                                <Pin className="w-4 h-4" />
+                              <button 
+                                onClick={() => togglePin(sub.id)}
+                                className={`transition-colors ${sub.pinned ? 'text-indigo-400' : 'hover:text-white'}`}
+                              >
+                                <Pin className={`w-4 h-4 ${sub.pinned ? 'fill-indigo-400' : ''}`} />
                               </button>
                            </div>
                         </td>
