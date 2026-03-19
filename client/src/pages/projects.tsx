@@ -92,7 +92,6 @@ export default function ProjectsPage() {
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
-
       <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
         <Header title="Projects" />
 
@@ -353,7 +352,7 @@ export default function ProjectsPage() {
                           </div>
                         </td>
                         <td className="py-4 px-6 border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
-                           <span className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-[11px] font-semibold ${getStatusStyle(project.status)}`}>
+                           <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full text-[11px] font-semibold text-orange-500 border border-orange-200 bg-[#ffffff17]">
                              {project.status}
                            </span>
                         </td>
@@ -473,7 +472,6 @@ export default function ProjectsPage() {
           </div>
         </main>
       </div>
-
       {/* Add Project Modal */}
       {isAddProjectModalOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
@@ -644,7 +642,6 @@ export default function ProjectsPage() {
           </div>
         </div>
       )}
-
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
@@ -678,7 +675,6 @@ export default function ProjectsPage() {
           </div>
         </div>
       )}
-
       {/* Export Slide-in Panel */}
       {isExportPanelOpen && (
         <>
