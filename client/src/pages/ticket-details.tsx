@@ -91,7 +91,7 @@ export default function TicketDetailsPage() {
                     
                     <div>
                       <h3 className="text-[13px] font-semibold text-white mb-2">Priority</h3>
-                      <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full text-[11px] font-semibold text-sky-500 border border-sky-200 bg-sky-50/50">
+                      <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full text-[11px] font-semibold border border-sky-200 bg-sky-50/50 text-[#ffffff]">
                         Normal
                       </span>
                     </div>
