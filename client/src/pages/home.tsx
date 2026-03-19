@@ -13,7 +13,9 @@ import {
   ShieldAlert,
   Server,
   Briefcase,
-  ArrowRight
+  ArrowRight,
+  FileText,
+  CheckSquare
 } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
@@ -286,19 +288,22 @@ export default function Home() {
                     <div className="absolute left-[15px] top-2 bottom-2 w-[2px] bg-slate-800"></div>
                     
                     {[
-                      { type: 'alert', icon: ShieldAlert, color: 'text-rose-400', bg: 'bg-rose-500/10', border: 'border-rose-500/20', title: 'High CPU Usage', desc: 'Node cluster alpha-2', time: 'Just now', entityId: 'node-2' },
+                      { type: 'note', icon: FileText, color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20', title: 'New Note Added', desc: 'Project Kickoff Summary', time: 'Just now', entityId: 'launchpad-1' },
                       { type: 'signup', icon: Users, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', title: 'New Agency Signup', desc: 'Creative Digital LLC', time: '2m ago', entityId: 'client-123' },
                       { type: 'payment', icon: Activity, color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', title: 'Plan Upgrade', desc: 'PG Software to Enterprise', time: '15m ago', entityId: 'sub-456' },
-                      { type: 'system', icon: Server, color: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', title: 'Database Backup', desc: 'Automated snapshot complete', time: '1h ago', entityId: 'db-backup-789' },
-                      { type: 'signup', icon: Users, color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20', title: 'New Agency Signup', desc: 'Marketing Pros Inc', time: '2h ago', entityId: 'client-124' },
+                      { type: 'task', icon: CheckSquare, color: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', title: 'Task Completed', desc: 'Wireframe review with client', time: '1h ago', entityId: 'task-789' },
+                      { type: 'contract', icon: FileText, color: 'text-yellow-400', bg: 'bg-yellow-500/10', border: 'border-yellow-500/20', title: 'Contract Signed', desc: 'Marketing Pros Inc', time: '2h ago', entityId: 'contract-124' },
                     ].map((event, i) => {
                       // Activity link mapper
                       const getEventLink = (type: string, id?: string) => {
                         const baseUrl = ''; // Base url handled by wouter
                         switch(type) {
-                          case 'alert':
-                          case 'system':
-                            return `${baseUrl}/system-status/${id || ''}`;
+                          case 'note':
+                            return `${baseUrl}/launchpads/${id || ''}`;
+                          case 'task':
+                            return `${baseUrl}/tasks?id=${id || ''}`;
+                          case 'contract':
+                            return `${baseUrl}/contracts/${id || ''}`;
                           case 'signup':
                             return `${baseUrl}/clients/${id || ''}`;
                           case 'payment':
