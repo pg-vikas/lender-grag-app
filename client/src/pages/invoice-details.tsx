@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
 import { Download, Info } from "lucide-react";
-import html2canvas from "html2canvas";
+import * as htmlToImage from 'html-to-image';
 
 export default function InvoiceDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('');
@@ -39,21 +39,25 @@ export default function InvoiceDetailsPage() {
     if (!invoiceRef.current) return;
     
     try {
-      // Create canvas from the invoice element
-      const canvas = await html2canvas(invoiceRef.current, {
-        scale: 2, // Higher scale for better resolution
-        backgroundColor: "#0f172a", // Match background color to ensure dark mode looks right
-        useCORS: true, // Allow external images if any
+      // Use html-to-image to reliably capture the glassmorphism UI in Vite React
+      const dataUrl = await htmlToImage.toPng(invoiceRef.current, {
+        quality: 1,
+        backgroundColor: '#0f172a',
+        pixelRatio: 2,
+        style: {
+          transform: 'scale(1)',
+          margin: '0',
+          boxShadow: 'none' // Remove exterior shadows so it looks clean as an image
+        }
       });
       
-      // Convert to image URL and trigger download
-      const image = canvas.toDataURL("image/png");
       const link = document.createElement("a");
-      link.href = image;
+      link.href = dataUrl;
       link.download = `Invoice_${invoiceData.invoiceNumber}.png`;
       link.click();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to generate invoice image:", error);
+      alert("Failed to generate image. " + (error?.message || ""));
     }
   };
 
