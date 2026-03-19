@@ -12,14 +12,18 @@ export default function PaymentsPage() {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
-  const paymentsList = [
-    { id: "#9", date: "02-03-2026", invoice: "INV-000023", amount: "$0.00", client: "Vs Test", method: "Stripe" },
-    { id: "#8", date: "01-03-2026", invoice: "INV-000022", amount: "$0.00", client: "Vs Test", method: "Stripe" },
-    { id: "#7", date: "28-02-2026", invoice: "INV-000021", amount: "$0.00", client: "Vs Test", method: "Stripe" },
-    { id: "#6", date: "27-02-2026", invoice: "INV-000020", amount: "$0.00", client: "Vs Test", method: "Stripe" },
-    { id: "#5", date: "27-02-2026", invoice: "INV-000019", amount: "$0.00", client: "Vs Test", method: "Stripe" },
-    { id: "#4", date: "27-02-2026", invoice: "INV-000018", amount: "$0.00", client: "Vs Test", method: "Stripe" },
-  ];
+  const [paymentsList, setPaymentsList] = useState([
+    { id: "#9", date: "02-03-2026", invoice: "INV-000023", amount: "$0.00", client: "Vs Test", method: "Stripe", pinned: false },
+    { id: "#8", date: "01-03-2026", invoice: "INV-000022", amount: "$0.00", client: "Vs Test", method: "Stripe", pinned: false },
+    { id: "#7", date: "28-02-2026", invoice: "INV-000021", amount: "$0.00", client: "Vs Test", method: "Stripe", pinned: false },
+    { id: "#6", date: "27-02-2026", invoice: "INV-000020", amount: "$0.00", client: "Vs Test", method: "Stripe", pinned: false },
+    { id: "#5", date: "27-02-2026", invoice: "INV-000019", amount: "$0.00", client: "Vs Test", method: "Stripe", pinned: false },
+    { id: "#4", date: "27-02-2026", invoice: "INV-000018", amount: "$0.00", client: "Vs Test", method: "Stripe", pinned: false },
+  ]);
+
+  const togglePin = (id: string) => {
+    setPaymentsList(prev => prev.map(payment => payment.id === id ? { ...payment, pinned: !payment.pinned } : payment));
+  };
 
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
@@ -84,8 +88,11 @@ export default function PaymentsPage() {
                               >
                                 <ExternalLink className="w-4 h-4" />
                               </button>
-                              <button className="hover:text-white transition-colors">
-                                <Pin className="w-4 h-4" />
+                              <button 
+                                onClick={() => togglePin(payment.id)}
+                                className={`transition-colors ${payment.pinned ? 'text-indigo-400' : 'hover:text-white'}`}
+                              >
+                                <Pin className={`w-4 h-4 ${payment.pinned ? 'fill-indigo-400' : ''}`} />
                               </button>
                            </div>
                         </td>
