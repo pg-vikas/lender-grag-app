@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useLocation } from "wouter";
 import { Sidebar, Header } from "./clients";
 import { Download, Info } from "lucide-react";
-import * as XLSX from 'xlsx';
+import html2canvas from "html2canvas";
 
 export default function InvoiceDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('');
   const [location] = useLocation();
+  const invoiceRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
@@ -34,35 +35,26 @@ export default function InvoiceDetailsPage() {
     ]
   };
 
-  const handleDownload = () => {
-    const invoiceSummary = {
-      InvoiceNumber: invoiceData.invoiceNumber,
-      Status: invoiceData.status,
-      To: invoiceData.to,
-      InvoiceDate: invoiceData.dates.invoice,
-      DueDate: invoiceData.dates.due,
-      Total: invoiceData.totals.total
-    };
+  const handleDownload = async () => {
+    if (!invoiceRef.current) return;
     
-    // Create an array with the summary and the items
-    const exportData = [
-      invoiceSummary,
-      {}, // Empty row for spacing
-      { InvoiceNumber: "Items Details:" },
-      ...invoiceData.items.map(item => ({
-        InvoiceNumber: item.description,
-        Status: `Qty: ${item.qty}`,
-        To: `Unit: ${item.unit}`,
-        InvoiceDate: `Rate: ${item.rate}`,
-        DueDate: `Total: ${item.total}`,
-        Total: ""
-      }))
-    ];
-
-    const worksheet = XLSX.utils.json_to_sheet(exportData);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Invoice Details");
-    XLSX.writeFile(workbook, `${invoiceData.invoiceNumber}_Details.xlsx`);
+    try {
+      // Create canvas from the invoice element
+      const canvas = await html2canvas(invoiceRef.current, {
+        scale: 2, // Higher scale for better resolution
+        backgroundColor: "#0f172a", // Match background color to ensure dark mode looks right
+        useCORS: true, // Allow external images if any
+      });
+      
+      // Convert to image URL and trigger download
+      const image = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = `Invoice_${invoiceData.invoiceNumber}.png`;
+      link.click();
+    } catch (error) {
+      console.error("Failed to generate invoice image:", error);
+    }
   };
 
   return (
@@ -85,7 +77,7 @@ export default function InvoiceDetailsPage() {
               </button>
             </div>
 
-            <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl shadow-sm border border-white/10 p-8 md:p-12 mb-6">
+            <div ref={invoiceRef} className="bg-slate-900/40 backdrop-blur-xl rounded-xl shadow-sm border border-white/10 p-8 md:p-12 mb-6">
                <div className="flex justify-between items-start mb-12">
                   <div>
                     <h2 className="text-[16px] font-bold text-white mb-1">Invoice</h2>
