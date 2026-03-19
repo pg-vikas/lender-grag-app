@@ -65,6 +65,14 @@ export default function InvoicesPage() {
     XLSX.writeFile(workbook, "Invoices.xlsx");
   };
 
+  const handleDownloadInvoice = (invoice: any) => {
+    const worksheet = XLSX.utils.json_to_sheet([invoice]);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Invoice");
+    XLSX.writeFile(workbook, `${invoice.id}.xlsx`);
+    setActiveDropdown(null);
+  };
+
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
@@ -246,7 +254,10 @@ export default function InvoicesPage() {
                                     >
                                       Add A New Payment
                                     </button>
-                                    <button className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-white hover:bg-slate-700 transition-colors">
+                                    <button 
+                                      className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-white hover:bg-slate-700 transition-colors"
+                                      onClick={() => handleDownloadInvoice(invoice)}
+                                    >
                                       Download
                                     </button>
                                   </div>
