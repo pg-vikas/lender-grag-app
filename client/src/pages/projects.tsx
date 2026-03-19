@@ -360,7 +360,7 @@ export default function ProjectsPage() {
                           <div className="flex items-center gap-2">
                             <button 
                               onClick={() => setIsEditProjectModalOpen(true)}
-                              className="p-1.5 text-slate-500 hover:text-white transition-colors"
+                              className="p-1.5 text-slate-500 hover:text-white transition-colors pl-[5px] pr-[5px] pt-[5px] pb-[5px]"
                               title="Edit Project"
                             >
                               <Edit2 className="w-[15px] h-[15px]" />
