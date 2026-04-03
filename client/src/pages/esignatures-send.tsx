@@ -45,8 +45,8 @@ export default function ESignaturesSendPage() {
 
   const renderStepIndicator = () => {
     const steps = [
-      { num: 1, title: 'Add Documents', icon: FileText },
-      { num: 2, title: 'Add Recipients', icon: Users },
+      { num: 1, title: 'Add Recipients', icon: Users },
+      { num: 2, title: 'Add Documents', icon: FileText },
       { num: 3, title: 'Email Details', icon: Mail },
       { num: 4, title: 'Review & Send', icon: Play }
     ];
@@ -118,8 +118,8 @@ export default function ESignaturesSendPage() {
               
               <div className="mt-16">
                 
-                {/* Step 1: Add Documents & Prepare */}
-                {currentStep === 1 && (
+                {/* Step 2: Add Documents & Prepare */}
+                {currentStep === 2 && (
                   <div className="animate-in fade-in slide-in-from-right-4 duration-500">
                     
                     {!selectedFileId ? (
@@ -185,9 +185,19 @@ export default function ESignaturesSendPage() {
                           
                           <div className="flex items-center gap-2">
                             <span className="text-[12px] text-slate-400 font-medium">Assigning to:</span>
-                            <select className="bg-slate-800 border border-slate-700 text-white text-[12px] rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500">
-                              <option>Signer 1 (Pending)</option>
-                              <option>Signer 2 (Pending)</option>
+                            <select 
+                              className="bg-slate-800 border border-slate-700 text-white text-[12px] rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 min-w-[150px]"
+                              onChange={(e) => {
+                                // In a real app we'd track the selected assignee for new fields
+                              }}
+                            >
+                              {recipients.filter(r => r.name || r.email).length > 0 ? (
+                                recipients.filter(r => r.name || r.email).map((r, i) => (
+                                  <option key={i}>{r.name || r.email} ({r.role})</option>
+                                ))
+                              ) : (
+                                <option>Signer 1 (Pending)</option>
+                              )}
                             </select>
                           </div>
                         </div>
@@ -196,6 +206,13 @@ export default function ESignaturesSendPage() {
                           {/* Tools Sidebar */}
                           <div className="w-48 flex flex-col gap-3 shrink-0">
                             <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Standard Fields</div>
+                            
+                            <button 
+                              onClick={() => setCurrentStep(1)} 
+                              className="w-full py-2 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-400 rounded-lg text-[12px] font-bold transition-colors flex items-center justify-center gap-1.5 mb-2 shadow-sm"
+                            >
+                              <Users className="w-3.5 h-3.5" /> Manage Signers
+                            </button>
                             
                             <div 
                               draggable
@@ -324,8 +341,8 @@ export default function ESignaturesSendPage() {
                     )}
                   </div>
                 )}
-                {/* Step 2: Add Recipients */}
-                {currentStep === 2 && (
+                {/* Step 1: Add Recipients */}
+                {currentStep === 1 && (
                   <div className="animate-in fade-in slide-in-from-right-4 duration-500">
                     <div className="flex justify-between items-center mb-6">
                       <h2 className="text-xl font-bold text-white flex items-center gap-2">
