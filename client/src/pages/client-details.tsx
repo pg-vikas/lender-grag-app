@@ -1035,300 +1035,6 @@ export default function ClientDetailsPage() {
               {/* Middle & Right Content */}
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
-                {/* Notes Section */}
-                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.05)] overflow-hidden">
-                  <div className="p-4 bg-amber-500/10 border-b border-amber-500/20 flex justify-between items-center">
-                    <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
-                      <FileText className="w-5 h-5 text-amber-400" />
-                      Notes
-                    </h2>
-                    <button 
-                      onClick={() => setIsAddNoteModalOpen(true)}
-                      className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-md text-[13px] font-bold transition-all shadow-[0_0_10px_rgba(245,158,11,0.3)]"
-                    >
-                      <Plus className="w-4 h-4" /> Add Note
-                    </button>
-                  </div>
-                  
-                  <div className="p-4 space-y-3 max-h-[400px] overflow-y-auto custom-scrollbar">
-                    {notes.map(note => (
-                      <div key={note.id} className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 relative group hover:border-amber-500/30 transition-colors shadow-sm">
-                        <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-[14px] font-bold text-white group-hover:text-amber-400 transition-colors">{note.title}</h3>
-                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button 
-                              onClick={() => {
-                                setEditingNote(note);
-                                setIsEditNoteModalOpen(true);
-                              }}
-                              className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
-                            >
-                              <Edit2 className="w-3.5 h-3.5" />
-                            </button>
-                            <button 
-                              onClick={() => {
-                                setDeletingNote(note);
-                                setIsDeleteNoteModalOpen(true);
-                              }}
-                              className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-700 rounded-md transition-colors"
-                            >
-                              <Trash2 className="w-3.5 h-3.5" />
-                            </button>
-                          </div>
-                        </div>
-                        <p className="text-[13px] text-slate-300 leading-relaxed whitespace-pre-wrap">{note.description}</p>
-                        <div className="mt-3 flex items-center gap-4 text-[11px] text-slate-500 font-medium pt-3 border-t border-slate-700/50">
-                          <span className="flex items-center gap-1">
-                            <User className="w-3 h-3" /> By {note.author}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" /> Mar 08, 2026 • 11:15 AM
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                    {notes.length === 0 && (
-                      <div className="text-center py-8">
-                        <FileText className="w-10 h-10 text-slate-600 mx-auto mb-3" />
-                        <p className="text-[13px] text-slate-400 font-medium">No notes added yet.</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Analytics Expanded Section */}
-                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.05)] overflow-hidden">
-                  <div className="p-5 border-b border-blue-500/20 bg-blue-500/5 flex justify-between items-center">
-                    <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
-                      <TrendingUp className="w-5 h-5 text-blue-400" />
-                      Client Analytics
-                    </h2>
-                    <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border border-slate-700">
-                      <button className="px-3 py-1.5 rounded text-[12px] font-bold bg-blue-500 text-white shadow-md">30 Days</button>
-                      <button className="px-3 py-1.5 rounded text-[12px] font-bold text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all">90 Days</button>
-                      <button className="px-3 py-1.5 rounded text-[12px] font-bold text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all">All Time</button>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6 space-y-6">
-                    {/* Top Stats Row */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 flex flex-col">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="text-[13px] font-medium text-slate-400">Total Visits</span>
-                          <div className="w-8 h-8 rounded-md bg-blue-500/10 flex items-center justify-center">
-                            <Globe className="w-4 h-4 text-blue-400" />
-                          </div>
-                        </div>
-                        <div className="flex items-end gap-3 mt-auto">
-                          <span className="text-2xl font-bold text-white">1,245</span>
-                          <span className="text-[12px] font-bold text-emerald-400 flex items-center mb-1">
-                            <TrendingUp className="w-3 h-3 mr-0.5" /> +12%
-                          </span>
-                        </div>
-                      </div>
-                      
-                      <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 flex flex-col">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="text-[13px] font-medium text-slate-400">Gorilla Apps Logins</span>
-                          <div className="w-8 h-8 rounded-md bg-purple-500/10 flex items-center justify-center">
-                            <Briefcase className="w-4 h-4 text-purple-400" />
-                          </div>
-                        </div>
-                        <div className="flex items-end gap-3 mt-auto">
-                          <span className="text-2xl font-bold text-white">856</span>
-                          <span className="text-[12px] font-bold text-emerald-400 flex items-center mb-1">
-                            <TrendingUp className="w-3 h-3 mr-0.5" /> +5%
-                          </span>
-                        </div>
-                      </div>
-                      
-                      <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 flex flex-col">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="text-[13px] font-medium text-slate-400">Active Users</span>
-                          <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center">
-                            <Users className="w-4 h-4 text-emerald-400" />
-                          </div>
-                        </div>
-                        <div className="flex items-end gap-3 mt-auto">
-                          <span className="text-2xl font-bold text-white">3</span>
-                          <span className="text-[12px] font-bold text-slate-500 flex items-center mb-1">
-                            No change
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Charts Row */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                      {/* Area Chart - Traffic */}
-                      <div className="bg-slate-800/30 border border-slate-700/30 rounded-xl p-4">
-                        <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
-                          <TrendingUp className="w-4 h-4 text-blue-400" /> Traffic Overview
-                        </h3>
-                        <div className="h-[200px] w-full">
-                          <ResponsiveContainer width="100%" height="100%">
-                            <AreaChart data={[
-                              { name: 'Week 1', visits: 400, logins: 240 },
-                              { name: 'Week 2', visits: 300, logins: 139 },
-                              { name: 'Week 3', visits: 200, logins: 980 },
-                              { name: 'Week 4', visits: 278, logins: 390 },
-                              { name: 'Week 5', visits: 189, logins: 480 },
-                            ]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                              <defs>
-                                <linearGradient id="colorVisits" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
-                                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
-                                </linearGradient>
-                              </defs>
-                              <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                              <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                              <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                              <RechartsTooltip 
-                                contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
-                                itemStyle={{ color: '#e2e8f0' }}
-                              />
-                              <Area type="monotone" dataKey="visits" stroke="#3b82f6" strokeWidth={2} fillOpacity={1} fill="url(#colorVisits)" />
-                            </AreaChart>
-                          </ResponsiveContainer>
-                        </div>
-                      </div>
-
-                      {/* Bar Chart - Device Types */}
-                      <div className="bg-slate-800/30 border border-slate-700/30 rounded-xl p-4">
-                        <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
-                          <Settings className="w-4 h-4 text-purple-400" /> Platform Usage
-                        </h3>
-                        <div className="h-[200px] w-full">
-                          <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={[
-                              { name: 'Desktop', value: 65 },
-                              { name: 'Mobile', value: 30 },
-                              { name: 'Tablet', value: 5 },
-                            ]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                              <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                              <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                              <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                              <RechartsTooltip 
-                                contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
-                                cursor={{ fill: '#334155', opacity: 0.4 }}
-                              />
-                              <Bar dataKey="value" fill="#a855f7" radius={[4, 4, 0, 0]} />
-                            </BarChart>
-                          </ResponsiveContainer>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Document Signing Center */}
-                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-[0_0_15px_rgba(0,0,0,0.2)] overflow-hidden">
-                  <div className="p-5 border-b border-slate-800/80 flex justify-between items-center bg-slate-800/30">
-                    <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
-                      <FileText className="w-5 h-5 text-indigo-400" />
-                      Document Signing Center
-                    </h2>
-                    <button className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-md text-[12px] font-medium transition-colors flex items-center gap-1.5 shadow-[0_0_10px_rgba(79,70,229,0.3)]">
-                      <Plus className="w-3.5 h-3.5" /> New Document
-                    </button>
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="grid grid-cols-1 gap-3">
-                      {/* Signed Document */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-emerald-500/20 rounded-lg hover:bg-slate-800/60 transition-colors group">
-                        <div className="flex items-start gap-4 mb-3 md:mb-0">
-                          <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/20">
-                            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                          </div>
-                          <div>
-                            <h4 className="text-[14px] font-bold text-white group-hover:text-indigo-300 transition-colors">Website Redesign Agreement</h4>
-                            <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                              <span className="text-[11px] font-medium px-2 py-0.5 bg-emerald-500/20 text-emerald-400 rounded border border-emerald-500/30 flex items-center gap-1">
-                                <CheckCircle2 className="w-3 h-3" /> Signed
-                              </span>
-                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
-                                <User className="w-3.5 h-3.5" /> Signed by John Doe
-                              </span>
-                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
-                                <Clock className="w-3.5 h-3.5" /> Mar 15, 2026 at 2:30 PM
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2 md:justify-end">
-                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="View Document">
-                            <Eye className="w-4 h-4" />
-                          </button>
-                          <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-indigo-500/10 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="Download PDF">
-                            <Download className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Pending Document */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-amber-500/20 rounded-lg hover:bg-slate-800/60 transition-colors group">
-                        <div className="flex items-start gap-4 mb-3 md:mb-0">
-                          <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 border border-amber-500/20">
-                            <Clock className="w-5 h-5 text-amber-400" />
-                          </div>
-                          <div>
-                            <h4 className="text-[14px] font-bold text-white group-hover:text-indigo-300 transition-colors">SEO Monthly Retainer</h4>
-                            <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                              <span className="text-[11px] font-medium px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded border border-amber-500/30 flex items-center gap-1">
-                                <Clock className="w-3 h-3" /> Pending Signature
-                              </span>
-                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
-                                <UploadCloud className="w-3.5 h-3.5" /> Sent Mar 20, 2026
-                              </span>
-                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
-                                <Mail className="w-3.5 h-3.5" /> Awaiting John Doe
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2 md:justify-end">
-                          <button className="px-3 py-1.5 text-[11px] font-bold text-slate-300 hover:text-white bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors border border-slate-600">
-                            Remind
-                          </button>
-                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="View Document">
-                            <Eye className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-                      
-                      {/* Draft Document */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-slate-700/50 rounded-lg hover:bg-slate-800/60 transition-colors group">
-                        <div className="flex items-start gap-4 mb-3 md:mb-0">
-                          <div className="w-10 h-10 rounded-lg bg-slate-700/50 flex items-center justify-center shrink-0 border border-slate-600">
-                            <FileText className="w-5 h-5 text-slate-400" />
-                          </div>
-                          <div>
-                            <h4 className="text-[14px] font-bold text-white group-hover:text-indigo-300 transition-colors">NDA Agreement</h4>
-                            <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                              <span className="text-[11px] font-medium px-2 py-0.5 bg-slate-700 text-slate-300 rounded border border-slate-600 flex items-center gap-1">
-                                <Edit2 className="w-3 h-3" /> Draft
-                              </span>
-                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
-                                <Clock className="w-3.5 h-3.5" /> Last edited Mar 22, 2026
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2 md:justify-end">
-                          <button className="px-3 py-1.5 text-[11px] font-bold text-indigo-300 hover:text-white bg-indigo-500/10 hover:bg-indigo-500/20 rounded-lg transition-colors border border-indigo-500/30">
-                            Edit & Send
-                          </button>
-                          <button className="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="Delete">
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
                 {/* Communications Section */}
                 <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.05)] overflow-hidden">
                   <div className="p-5 border-b border-indigo-500/20 bg-indigo-500/5 flex justify-between items-center">
@@ -1716,6 +1422,300 @@ export default function ClientDetailsPage() {
                         </div>
                       </div>
                     )}
+                  </div>
+                </div>
+
+                {/* Notes Section */}
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.05)] overflow-hidden">
+                  <div className="p-4 bg-amber-500/10 border-b border-amber-500/20 flex justify-between items-center">
+                    <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
+                      <FileText className="w-5 h-5 text-amber-400" />
+                      Notes
+                    </h2>
+                    <button 
+                      onClick={() => setIsAddNoteModalOpen(true)}
+                      className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-md text-[13px] font-bold transition-all shadow-[0_0_10px_rgba(245,158,11,0.3)]"
+                    >
+                      <Plus className="w-4 h-4" /> Add Note
+                    </button>
+                  </div>
+                  
+                  <div className="p-4 space-y-3 max-h-[400px] overflow-y-auto custom-scrollbar">
+                    {notes.map(note => (
+                      <div key={note.id} className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 relative group hover:border-amber-500/30 transition-colors shadow-sm">
+                        <div className="flex justify-between items-start mb-2">
+                          <h3 className="text-[14px] font-bold text-white group-hover:text-amber-400 transition-colors">{note.title}</h3>
+                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button 
+                              onClick={() => {
+                                setEditingNote(note);
+                                setIsEditNoteModalOpen(true);
+                              }}
+                              className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
+                            >
+                              <Edit2 className="w-3.5 h-3.5" />
+                            </button>
+                            <button 
+                              onClick={() => {
+                                setDeletingNote(note);
+                                setIsDeleteNoteModalOpen(true);
+                              }}
+                              className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-700 rounded-md transition-colors"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                        <p className="text-[13px] text-slate-300 leading-relaxed whitespace-pre-wrap">{note.description}</p>
+                        <div className="mt-3 flex items-center gap-4 text-[11px] text-slate-500 font-medium pt-3 border-t border-slate-700/50">
+                          <span className="flex items-center gap-1">
+                            <User className="w-3 h-3" /> By {note.author}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" /> Mar 08, 2026 • 11:15 AM
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                    {notes.length === 0 && (
+                      <div className="text-center py-8">
+                        <FileText className="w-10 h-10 text-slate-600 mx-auto mb-3" />
+                        <p className="text-[13px] text-slate-400 font-medium">No notes added yet.</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Analytics Expanded Section */}
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.05)] overflow-hidden">
+                  <div className="p-5 border-b border-blue-500/20 bg-blue-500/5 flex justify-between items-center">
+                    <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-blue-400" />
+                      Client Analytics
+                    </h2>
+                    <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border border-slate-700">
+                      <button className="px-3 py-1.5 rounded text-[12px] font-bold bg-blue-500 text-white shadow-md">30 Days</button>
+                      <button className="px-3 py-1.5 rounded text-[12px] font-bold text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all">90 Days</button>
+                      <button className="px-3 py-1.5 rounded text-[12px] font-bold text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all">All Time</button>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6 space-y-6">
+                    {/* Top Stats Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 flex flex-col">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="text-[13px] font-medium text-slate-400">Total Visits</span>
+                          <div className="w-8 h-8 rounded-md bg-blue-500/10 flex items-center justify-center">
+                            <Globe className="w-4 h-4 text-blue-400" />
+                          </div>
+                        </div>
+                        <div className="flex items-end gap-3 mt-auto">
+                          <span className="text-2xl font-bold text-white">1,245</span>
+                          <span className="text-[12px] font-bold text-emerald-400 flex items-center mb-1">
+                            <TrendingUp className="w-3 h-3 mr-0.5" /> +12%
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 flex flex-col">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="text-[13px] font-medium text-slate-400">Gorilla Apps Logins</span>
+                          <div className="w-8 h-8 rounded-md bg-purple-500/10 flex items-center justify-center">
+                            <Briefcase className="w-4 h-4 text-purple-400" />
+                          </div>
+                        </div>
+                        <div className="flex items-end gap-3 mt-auto">
+                          <span className="text-2xl font-bold text-white">856</span>
+                          <span className="text-[12px] font-bold text-emerald-400 flex items-center mb-1">
+                            <TrendingUp className="w-3 h-3 mr-0.5" /> +5%
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 flex flex-col">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="text-[13px] font-medium text-slate-400">Active Users</span>
+                          <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center">
+                            <Users className="w-4 h-4 text-emerald-400" />
+                          </div>
+                        </div>
+                        <div className="flex items-end gap-3 mt-auto">
+                          <span className="text-2xl font-bold text-white">3</span>
+                          <span className="text-[12px] font-bold text-slate-500 flex items-center mb-1">
+                            No change
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Charts Row */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      {/* Area Chart - Traffic */}
+                      <div className="bg-slate-800/30 border border-slate-700/30 rounded-xl p-4">
+                        <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
+                          <TrendingUp className="w-4 h-4 text-blue-400" /> Traffic Overview
+                        </h3>
+                        <div className="h-[200px] w-full">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <AreaChart data={[
+                              { name: 'Week 1', visits: 400, logins: 240 },
+                              { name: 'Week 2', visits: 300, logins: 139 },
+                              { name: 'Week 3', visits: 200, logins: 980 },
+                              { name: 'Week 4', visits: 278, logins: 390 },
+                              { name: 'Week 5', visits: 189, logins: 480 },
+                            ]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                              <defs>
+                                <linearGradient id="colorVisits" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                                </linearGradient>
+                              </defs>
+                              <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
+                              <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                              <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                              <RechartsTooltip 
+                                contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
+                                itemStyle={{ color: '#e2e8f0' }}
+                              />
+                              <Area type="monotone" dataKey="visits" stroke="#3b82f6" strokeWidth={2} fillOpacity={1} fill="url(#colorVisits)" />
+                            </AreaChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+
+                      {/* Bar Chart - Device Types */}
+                      <div className="bg-slate-800/30 border border-slate-700/30 rounded-xl p-4">
+                        <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
+                          <Settings className="w-4 h-4 text-purple-400" /> Platform Usage
+                        </h3>
+                        <div className="h-[200px] w-full">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <BarChart data={[
+                              { name: 'Desktop', value: 65 },
+                              { name: 'Mobile', value: 30 },
+                              { name: 'Tablet', value: 5 },
+                            ]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                              <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
+                              <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                              <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                              <RechartsTooltip 
+                                contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
+                                cursor={{ fill: '#334155', opacity: 0.4 }}
+                              />
+                              <Bar dataKey="value" fill="#a855f7" radius={[4, 4, 0, 0]} />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Document Signing Center */}
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-[0_0_15px_rgba(0,0,0,0.2)] overflow-hidden">
+                  <div className="p-5 border-b border-slate-800/80 flex justify-between items-center bg-slate-800/30">
+                    <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
+                      <FileText className="w-5 h-5 text-indigo-400" />
+                      Document Signing Center
+                    </h2>
+                    <button className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-md text-[12px] font-medium transition-colors flex items-center gap-1.5 shadow-[0_0_10px_rgba(79,70,229,0.3)]">
+                      <Plus className="w-3.5 h-3.5" /> New Document
+                    </button>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="grid grid-cols-1 gap-3">
+                      {/* Signed Document */}
+                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-emerald-500/20 rounded-lg hover:bg-slate-800/60 transition-colors group">
+                        <div className="flex items-start gap-4 mb-3 md:mb-0">
+                          <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/20">
+                            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-[14px] font-bold text-white group-hover:text-indigo-300 transition-colors">Website Redesign Agreement</h4>
+                            <div className="flex items-center gap-3 mt-1.5 flex-wrap">
+                              <span className="text-[11px] font-medium px-2 py-0.5 bg-emerald-500/20 text-emerald-400 rounded border border-emerald-500/30 flex items-center gap-1">
+                                <CheckCircle2 className="w-3 h-3" /> Signed
+                              </span>
+                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
+                                <User className="w-3.5 h-3.5" /> Signed by John Doe
+                              </span>
+                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
+                                <Clock className="w-3.5 h-3.5" /> Mar 15, 2026 at 2:30 PM
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 md:justify-end">
+                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="View Document">
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-indigo-500/10 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="Download PDF">
+                            <Download className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Pending Document */}
+                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-amber-500/20 rounded-lg hover:bg-slate-800/60 transition-colors group">
+                        <div className="flex items-start gap-4 mb-3 md:mb-0">
+                          <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 border border-amber-500/20">
+                            <Clock className="w-5 h-5 text-amber-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-[14px] font-bold text-white group-hover:text-indigo-300 transition-colors">SEO Monthly Retainer</h4>
+                            <div className="flex items-center gap-3 mt-1.5 flex-wrap">
+                              <span className="text-[11px] font-medium px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded border border-amber-500/30 flex items-center gap-1">
+                                <Clock className="w-3 h-3" /> Pending Signature
+                              </span>
+                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
+                                <UploadCloud className="w-3.5 h-3.5" /> Sent Mar 20, 2026
+                              </span>
+                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
+                                <Mail className="w-3.5 h-3.5" /> Awaiting John Doe
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 md:justify-end">
+                          <button className="px-3 py-1.5 text-[11px] font-bold text-slate-300 hover:text-white bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors border border-slate-600">
+                            Remind
+                          </button>
+                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="View Document">
+                            <Eye className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                      
+                      {/* Draft Document */}
+                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-slate-700/50 rounded-lg hover:bg-slate-800/60 transition-colors group">
+                        <div className="flex items-start gap-4 mb-3 md:mb-0">
+                          <div className="w-10 h-10 rounded-lg bg-slate-700/50 flex items-center justify-center shrink-0 border border-slate-600">
+                            <FileText className="w-5 h-5 text-slate-400" />
+                          </div>
+                          <div>
+                            <h4 className="text-[14px] font-bold text-white group-hover:text-indigo-300 transition-colors">NDA Agreement</h4>
+                            <div className="flex items-center gap-3 mt-1.5 flex-wrap">
+                              <span className="text-[11px] font-medium px-2 py-0.5 bg-slate-700 text-slate-300 rounded border border-slate-600 flex items-center gap-1">
+                                <Edit2 className="w-3 h-3" /> Draft
+                              </span>
+                              <span className="text-[12px] text-slate-400 flex items-center gap-1">
+                                <Clock className="w-3.5 h-3.5" /> Last edited Mar 22, 2026
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 md:justify-end">
+                          <button className="px-3 py-1.5 text-[11px] font-bold text-indigo-300 hover:text-white bg-indigo-500/10 hover:bg-indigo-500/20 rounded-lg transition-colors border border-indigo-500/30">
+                            Edit & Send
+                          </button>
+                          <button className="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="Delete">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -2846,7 +2846,7 @@ export default function ClientDetailsPage() {
                         placeholder="Enter custom designation"
                         className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                         value={(newEmployee as any).customDesignation || ''}
-                        onChange={(e) => setNewEmployee({ ...newEmployee, customDesignation: e.target.value })}
+                        onChange={(e) => setNewEmployee({ ...newEmployee, customDesignation: e.target.value } as any)}
                       />
                       <button
                         onClick={() => setNewEmployee({ ...newEmployee, designation: 'HR' })}
@@ -3004,7 +3004,7 @@ export default function ClientDetailsPage() {
                         placeholder="Enter custom designation"
                         className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                         value={editingEmployee.customDesignation || ''}
-                        onChange={(e) => setEditingEmployee({ ...editingEmployee, customDesignation: e.target.value })}
+                        onChange={(e) => setEditingEmployee({ ...editingEmployee, customDesignation: e.target.value } as any)}
                       />
                       <button
                         onClick={() => setEditingEmployee({ ...editingEmployee, designation: 'HR' })}
@@ -3025,7 +3025,7 @@ export default function ClientDetailsPage() {
                       onChange={(e) => {
                         const val = e.target.value;
                         if (val === 'Custom') {
-                           setEditingEmployee({...editingEmployee, designation: 'Custom', customDesignation: editingEmployee.designation !== 'Custom' ? editingEmployee.designation : ''});
+                           setEditingEmployee({...editingEmployee, designation: 'Custom', customDesignation:  editingEmployee.designation !== 'Custom' ? editingEmployee.designation : ''});
                         } else {
                            setEditingEmployee({...editingEmployee, designation: val});
                         }
