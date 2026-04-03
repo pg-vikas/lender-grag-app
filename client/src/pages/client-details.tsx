@@ -1215,10 +1215,13 @@ export default function ClientDetailsPage() {
                       <Plus className="w-4 h-4" /> Add Note
                     </button>
                   </div>
-                  <div className="p-5 space-y-4 max-h-[450px] overflow-y-auto custom-scrollbar">
-                    {notes.map(note => (
-                      <div key={note.id} className="bg-slate-800/80 border border-amber-500/30 rounded-xl p-5 relative group hover:border-amber-400/60 transition-colors shadow-sm">
-                        <div className="absolute top-4 right-4 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 p-1.5 rounded-lg border border-slate-700 shadow-lg">
+                  <div className="p-6 bg-slate-800/20 grid grid-cols-1 md:grid-cols-2 gap-5 max-h-[500px] overflow-y-auto custom-scrollbar">
+                    {notes.map((note, index) => (
+                      <div key={note.id} className={`bg-gradient-to-br from-[#fef08a] to-[#fde047] rounded-sm p-5 relative group shadow-[2px_4px_10px_rgba(0,0,0,0.15)] hover:shadow-[4px_8px_15px_rgba(0,0,0,0.2)] transition-all duration-300 transform hover:-translate-y-1 ${index % 2 === 0 ? 'rotate-[-1deg] hover:rotate-0' : 'rotate-[1deg] hover:rotate-0'}`}>
+                        {/* Tape effect */}
+                        <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-12 h-5 bg-white/40 shadow-sm backdrop-blur-sm rotate-[-2deg]"></div>
+                        
+                        <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80 p-1.5 rounded shadow-sm border border-yellow-200 z-10">
                           <button 
                             onClick={() => {
                               setEmailForm({ 
@@ -1229,63 +1232,60 @@ export default function ClientDetailsPage() {
                               setSendingEmailNote(note);
                               setIsSendEmailNoteModalOpen(true);
                             }}
-                            className="p-1.5 text-slate-400 hover:text-blue-400 hover:bg-slate-800 rounded transition-colors"
+                            className="p-1 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
                             title="Send as Email"
                           >
-                            <Mail className="w-4 h-4" />
+                            <Mail className="w-3.5 h-3.5" />
                           </button>
                           <button 
                             onClick={() => {
                               setEditingNote(note);
                               setIsEditNoteModalOpen(true);
                             }}
-                            className="p-1.5 text-slate-400 hover:text-amber-400 hover:bg-slate-800 rounded transition-colors"
+                            className="p-1 text-slate-500 hover:text-amber-600 hover:bg-amber-50 rounded transition-colors"
                             title="Edit Note"
                           >
-                            <Edit2 className="w-4 h-4" />
+                            <Edit2 className="w-3.5 h-3.5" />
                           </button>
                           <button 
                             onClick={() => {
                               setDeletingNote(note);
                               setIsDeleteNoteModalOpen(true);
                             }}
-                            className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded transition-colors"
+                            className="p-1 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded transition-colors"
                             title="Delete Note"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
                         
-                        <div className="mb-3 pr-24 border-b border-slate-700/50 pb-3">
-                          <h4 className="font-bold text-white text-[16px]">{note.title}</h4>
+                        <div className="mb-2 pr-20">
+                          <h4 className="font-bold text-slate-800 text-[15px] leading-tight underline decoration-yellow-400 underline-offset-4">{note.title}</h4>
                         </div>
                         
-                        <p className="text-[14px] text-slate-300 mb-5 whitespace-pre-wrap leading-relaxed">{note.description}</p>
+                        <p className="text-[13px] text-slate-700 mb-6 whitespace-pre-wrap leading-relaxed font-medium">{note.description}</p>
                         
-                        <div className="flex flex-wrap justify-between items-center bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                        <div className="flex flex-col gap-2 mt-auto pt-3 border-t border-yellow-400/50">
                           <div className="flex items-center gap-2">
-                            <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-[12px] border border-amber-500/30">
+                            <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-700 font-bold text-[11px] border border-amber-500/30">
                               {note.initial}
                             </div>
-                            <span className="text-[13px] font-bold text-slate-300">{note.author}</span>
+                            <span className="text-[12px] font-bold text-slate-700">{note.author}</span>
                           </div>
                           
-                          <div className="flex items-center gap-3 text-[12px] font-medium text-slate-400">
-                            <div className="flex items-center gap-1">
-                              <span className="text-amber-500/60 font-bold">•</span>
-                              {note.date}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <span className="text-amber-500/60 font-bold">•</span>
-                              {note.time}
-                            </div>
+                          <div className="flex items-center justify-between text-[11px] font-bold text-slate-500">
+                            <span>{note.date}</span>
+                            <span>{note.time}</span>
                           </div>
                         </div>
+                        
+                        {/* Folded corner effect */}
+                        <div className="absolute bottom-0 right-0 w-0 h-0 border-b-[16px] border-l-[16px] border-b-transparent border-l-yellow-500/30 shadow-[-2px_-2px_3px_rgba(0,0,0,0.05)]"></div>
                       </div>
                     ))}
                     
                     {notes.length === 0 && (
-                      <div className="text-center py-10 bg-slate-800/40 rounded-xl border border-slate-700/50 border-dashed">
+                      <div className="col-span-1 md:col-span-2 text-center py-10 bg-slate-800/40 rounded-xl border border-slate-700/50 border-dashed">
                         <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mx-auto mb-4 border border-slate-700">
                           <FileText className="w-8 h-8 text-amber-500/50" />
                         </div>
@@ -1408,10 +1408,10 @@ export default function ClientDetailsPage() {
               </div>
 
               {/* Right Sidebar (Tasks & Activity) */}
-              <div className="w-full lg:w-[320px] shrink-0 space-y-6">
+              <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-6">
                 
                 {/* Pagination */}
-                <div className="flex justify-between items-center bg-slate-900/60 backdrop-blur-xl rounded-lg border border-indigo-500/20 p-2 shadow-sm">
+                <div className="flex justify-between items-center bg-slate-900/60 backdrop-blur-xl rounded-lg border border-indigo-500/20 p-2 shadow-sm shrink-0">
                   <button className="px-3 py-1.5 text-[12px] text-indigo-400 hover:text-white hover:bg-indigo-500/20 rounded font-medium flex items-center gap-1 transition-colors">
                     <ChevronDown className="w-3.5 h-3.5 rotate-90" /> Previous
                   </button>
@@ -1422,7 +1422,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.05)] relative z-[50]">
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.05)] relative z-[50] shrink-0">
                   <div className="p-4 bg-red-500/10 border-b border-red-500/20 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <Zap className="w-5 h-5 text-red-400" /> Tasks
@@ -1484,7 +1484,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.05)] overflow-visible relative z-[40]">
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.05)] overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
                   <div className="p-4 border-b border-blue-500/20 bg-blue-500/5 flex justify-between items-center relative z-[45]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <List className="w-5 h-5 text-blue-400" />
@@ -1523,7 +1523,7 @@ export default function ClientDetailsPage() {
                       )}
                     </div>
                   </div>
-                  <div className="p-4 space-y-3 relative z-10 max-h-[600px] overflow-y-auto custom-scrollbar">
+                  <div className="p-4 space-y-3 relative z-10 flex-1 overflow-y-auto custom-scrollbar">
                     
                     {filteredActivities.length > 0 ? (
                       filteredActivities.map((activity) => (
