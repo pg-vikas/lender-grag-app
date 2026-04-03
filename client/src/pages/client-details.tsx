@@ -528,36 +528,36 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Company Details */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl border border-white/10 relative z-30">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center rounded-t-xl">
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.1)] relative z-30">
+                  <div className="p-4 bg-indigo-500/10 border-b border-indigo-500/20 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
-                      <Building2 className="w-4 h-4 text-indigo-400" />
-                      <span className="font-semibold text-white text-[14px]">Company Details</span>
+                      <Building2 className="w-5 h-5 text-indigo-400" />
+                      <span className="font-bold text-white text-[15px]">Company Details</span>
                     </div>
                     <button 
                       onClick={() => setIsEditClientModalOpen(true)}
-                      className="text-indigo-400 text-[13px] font-medium flex items-center gap-1 hover:text-[#7c3aed]"
+                      className="text-indigo-400 text-[13px] font-bold flex items-center gap-1 hover:text-indigo-300 bg-indigo-500/10 px-3 py-1.5 rounded-md transition-colors"
                     >
                       <Edit2 className="w-3.5 h-3.5" /> Edit
                     </button>
                   </div>
-                  <div className="p-5 space-y-4">
+                  <div className="p-5 space-y-5">
                     <div>
-                      <h3 className="text-[15px] font-bold text-white mb-1">{currentClient.name}</h3>
-                      <span className="inline-block px-2 py-0.5 bg-slate-800 text-slate-400 text-[11px] rounded border border-white/10">No communication yet</span>
+                      <h3 className="text-[18px] font-bold text-white mb-2">{currentClient.name}</h3>
+                      <span className="inline-block px-3 py-1 bg-slate-800 text-slate-300 font-medium text-[12px] rounded-md border border-slate-700">No communication yet</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[12px] text-slate-400">Status:</span>
-                      <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-[11px] font-semibold text-amber-600 border border-amber-200 bg-amber-50">Brand New</span>
+                    <div className="flex items-center gap-3 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                      <span className="text-[13px] text-slate-400 font-medium w-24">Status:</span>
+                      <span className="inline-flex items-center justify-center px-3 py-1 rounded-md text-[12px] font-bold text-amber-500 border border-amber-500/30 bg-amber-500/10 shadow-[0_0_10px_rgba(245,158,11,0.1)]">Brand New</span>
                     </div>
-                    <div className="flex flex-col gap-1 relative">
-                      <span className="text-[12px] text-slate-400">Assigned to:</span>
+                    <div className="flex flex-col gap-2 relative bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                      <span className="text-[13px] text-slate-400 font-medium">Assigned to:</span>
                       <button 
                         onClick={() => setIsAssigneeDropdownOpen(!isAssigneeDropdownOpen)}
-                        className="px-3 py-1.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded text-[12px] text-white flex justify-between items-center w-full hover:bg-slate-800 transition-colors"
+                        className="px-3 py-2.5 bg-slate-900 border border-indigo-500/30 rounded-md text-[13px] font-medium text-white flex justify-between items-center w-full hover:bg-slate-800 transition-colors shadow-inner"
                       >
                         <span className="truncate">{selectedAssignee}</span>
-                        <ChevronDown className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                        <ChevronDown className="w-4 h-4 text-indigo-400 shrink-0" />
                       </button>
                       
                       {isAssigneeDropdownOpen && (
@@ -584,185 +584,231 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Contact Information */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex items-center gap-2">
-                    <Phone className="w-4 h-4 text-indigo-400" />
-                    <span className="font-semibold text-white text-[14px]">Contact Information</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.05)] overflow-hidden">
+                  <div className="p-4 bg-cyan-500/10 border-b border-cyan-500/20 flex items-center gap-2">
+                    <Phone className="w-5 h-5 text-cyan-400" />
+                    <span className="font-bold text-white text-[15px]">Contact Information</span>
                   </div>
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg">
-                      <Phone className="w-4 h-4 text-slate-500" />
-                      <span className="text-[13px] text-white">+1 973 979 7987</span>
+                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
+                      <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
+                        <Phone className="w-4 h-4 text-cyan-400" />
+                      </div>
+                      <span className="text-[14px] font-medium text-white">+1 973 979 7987</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg">
-                      <Mail className="w-4 h-4 text-slate-500" />
-                      <span className="text-[13px] text-slate-500">---</span>
+                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
+                      <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
+                        <Mail className="w-4 h-4 text-cyan-400" />
+                      </div>
+                      <span className="text-[14px] font-medium text-slate-400">---</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 rounded-lg">
-                      <MapPin className="w-4 h-4 text-slate-500" />
-                      <span className="text-[13px] text-slate-500">---</span>
+                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
+                      <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
+                        <MapPin className="w-4 h-4 text-cyan-400" />
+                      </div>
+                      <span className="text-[14px] font-medium text-slate-400">---</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Website */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-[#22c55e]" />
-                    <span className="font-semibold text-white text-[14px]">Website</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.05)] overflow-hidden">
+                  <div className="p-4 bg-emerald-500/10 border-b border-emerald-500/20 flex items-center gap-2">
+                    <Globe className="w-5 h-5 text-emerald-400" />
+                    <span className="font-bold text-white text-[15px]">Website</span>
                   </div>
                   <div className="p-5">
-                    <div className="flex items-center gap-3">
-                      <Globe className="w-4 h-4 text-[#22c55e]" />
-                      <span className="text-[13px] text-slate-500">---</span>
+                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors cursor-pointer group">
+                      <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                        <Globe className="w-4 h-4 text-emerald-400" />
+                      </div>
+                      <span className="text-[14px] font-medium text-slate-400 group-hover:text-emerald-400 transition-colors">---</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Business Discovery */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.05)] overflow-hidden">
+                  <div className="p-4 bg-orange-500/10 border-b border-orange-500/20 flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                      <Compass className="w-4 h-4 text-[#f97316]" />
-                      <span className="font-semibold text-white text-[14px]">Business Discovery</span>
+                      <Compass className="w-5 h-5 text-orange-400" />
+                      <span className="font-bold text-white text-[15px]">Business Discovery</span>
                     </div>
-                    <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="text-indigo-400">
-                      <Edit2 className="w-3.5 h-3.5" />
+                    <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="text-orange-400 hover:text-orange-300 bg-orange-500/10 p-1.5 rounded-md transition-colors">
+                      <Edit2 className="w-4 h-4" />
                     </button>
                   </div>
                   <div className="p-5">
-                    <p className="text-[13px] text-slate-400 mb-4">No business discovery links added yet.</p>
-                    <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="w-full py-2 bg-slate-900/40 backdrop-blur-xl/50 border border-white/10 hover:bg-slate-800 text-[#f97316] rounded-md text-[13px] font-medium transition-colors flex items-center justify-center gap-2">
-                      <Plus className="w-3.5 h-3.5" /> Add More
-                    </button>
+                    <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-4 text-center">
+                      <p className="text-[13px] font-medium text-slate-400 mb-4">No business discovery links added yet.</p>
+                      <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="w-full py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-md text-[13px] font-bold transition-colors flex items-center justify-center gap-2 shadow-sm">
+                        <Plus className="w-4 h-4" /> Add Discovery Links
+                      </button>
+                    </div>
                   </div>
                 </div>
 
                 {/* Google Analytics */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10">
-                    <span className="font-semibold text-white text-[14px]">Google Analytics</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.05)] overflow-hidden">
+                  <div className="p-4 bg-blue-500/10 border-b border-blue-500/20 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2 13h4v8H2v-8zM9 4h4v17H9V4zM16 9h4v12h-4V9z" />
+                    </svg>
+                    <span className="font-bold text-white text-[15px]">Google Analytics</span>
                   </div>
                   <div className="p-5">
-                    <p className="text-[13px] text-slate-400 mb-4 leading-relaxed">
-                      Connect your Google Analytics account to view analytics data in your dashboard.
-                    </p>
-                    <button 
-                      onClick={() => setIsAnalyticsModalOpen(true)}
-                      className="px-4 py-2 bg-slate-900/40 backdrop-blur-xl/50 border border-[#3b82f6]/50 text-[#3b82f6] hover:bg-[#3b82f6]/10 rounded-md text-[13px] font-medium transition-colors flex items-center justify-center gap-2 w-full"
-                    >
-                      Connect
-                    </button>
+                    <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-5 text-center">
+                      <p className="text-[13px] font-medium text-slate-400 mb-4 leading-relaxed">
+                        Connect your Google Analytics account to view analytics data in your dashboard.
+                      </p>
+                      <button 
+                        onClick={() => setIsAnalyticsModalOpen(true)}
+                        className="px-4 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-[13px] font-bold transition-colors flex items-center justify-center gap-2 w-full shadow-sm"
+                      >
+                        Connect Google Analytics
+                      </button>
+                    </div>
                   </div>
                 </div>
 
                 {/* Billing Information */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10">
-                    <span className="font-semibold text-white text-[14px]">Billing Information</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-pink-500/20 shadow-[0_0_15px_rgba(236,72,153,0.05)] overflow-hidden">
+                  <div className="p-4 bg-pink-500/10 border-b border-pink-500/20 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                    <span className="font-bold text-white text-[15px]">Billing Information</span>
                   </div>
                   <div className="p-5 space-y-4">
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-[#ec4899]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span className="text-[13px] text-[#ec4899] font-medium">Plan Type - No Plan</span>
-                    </div>
-                    <div className="flex gap-2">
-                      <button 
-                        onClick={() => {
-                          setSelectedPlanTab('plans');
-                          setIsChoosePlanModalOpen(true);
-                        }}
-                        className="px-4 py-1.5 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-md text-[12px] font-medium transition-colors"
-                      >
-                        Choose Plan
-                      </button>
-                      <button 
-                        onClick={() => setLocation('/contracts')}
-                        className="px-4 py-1.5 border border-[#ec4899] text-[#ec4899] hover:bg-pink-50 rounded-md text-[12px] font-medium transition-colors"
-                      >
-                        Agreement
-                      </button>
+                    <div className="bg-slate-800/50 border border-pink-500/30 rounded-lg p-4">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center">
+                          <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <span className="block text-[12px] font-medium text-slate-400">Current Plan</span>
+                          <span className="text-[15px] font-bold text-pink-400">No Plan Selected</span>
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <button 
+                          onClick={() => {
+                            setSelectedPlanTab('plans');
+                            setIsChoosePlanModalOpen(true);
+                          }}
+                          className="flex-1 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-md text-[13px] font-bold transition-colors shadow-sm"
+                        >
+                          Choose Plan
+                        </button>
+                        <button 
+                          onClick={() => setLocation('/contracts')}
+                          className="flex-1 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white rounded-md text-[13px] font-bold transition-colors"
+                        >
+                          Agreement
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Background */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
-                    <span className="font-semibold text-white text-[14px]">Background</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-violet-500/20 shadow-[0_0_15px_rgba(139,92,246,0.05)] overflow-hidden">
+                  <div className="p-4 bg-violet-500/10 border-b border-violet-500/20 flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <ImageIcon className="w-5 h-5 text-violet-400" />
+                      <span className="font-bold text-white text-[15px]">Background</span>
+                    </div>
                     <button 
                       onClick={() => setIsEditBackgroundModalOpen(true)}
-                      className="text-indigo-400 hover:text-indigo-300 transition-colors"
+                      className="text-violet-400 hover:text-violet-300 bg-violet-500/10 p-1.5 rounded-md transition-colors"
                     >
-                      <Edit2 className="w-3.5 h-3.5" />
+                      <Edit2 className="w-4 h-4" />
                     </button>
                   </div>
                   <div className="p-5">
-                    <p className="text-[12px] text-slate-300 break-words">
-                      https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists
-                    </p>
+                    <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-3">
+                      <a href="https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists" target="_blank" rel="noopener noreferrer" className="text-[13px] font-medium text-violet-400 hover:text-violet-300 hover:underline break-all block">
+                        https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists
+                      </a>
+                    </div>
                   </div>
                 </div>
 
                 {/* General */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10">
-                    <span className="font-semibold text-white text-[14px]">General</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-teal-500/20 shadow-[0_0_15px_rgba(20,184,166,0.05)] overflow-hidden">
+                  <div className="p-4 bg-teal-500/10 border-b border-teal-500/20 flex items-center gap-2">
+                    <Info className="w-5 h-5 text-teal-400" />
+                    <span className="font-bold text-white text-[15px]">General Info</span>
                   </div>
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-3.5 h-3.5 text-[#0ea5e9]" />
-                      <span className="text-[12px] text-slate-400">Timezone:</span>
-                      <span className="text-[12px] text-[#0ea5e9]">America/Denver</span>
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                      <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
+                        <Globe className="w-3.5 h-3.5 text-teal-400" />
+                      </div>
+                      <span className="text-[13px] text-slate-400 w-24">Timezone:</span>
+                      <span className="text-[13px] font-bold text-white">America/Denver</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-3.5 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter text-[#0ea5e9] text-[12px] font-bold">$</span>
-                      <span className="text-[12px] text-slate-400">Currency:</span>
-                      <span className="text-[12px] text-[#0ea5e9]">USD</span>
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                      <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
+                        <span className="text-teal-400 text-[14px] font-bold">$</span>
+                      </div>
+                      <span className="text-[13px] text-slate-400 w-24">Currency:</span>
+                      <span className="text-[13px] font-bold text-white">USD</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-3.5 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter text-[#0ea5e9] text-[12px] font-bold">A<span className="text-[9px]">文</span></span>
-                      <span className="text-[12px] text-slate-400">Language:</span>
-                      <span className="text-[12px] text-[#0ea5e9]">English - US</span>
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                      <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
+                        <span className="text-teal-400 text-[12px] font-bold">A<span className="text-[9px]">文</span></span>
+                      </div>
+                      <span className="text-[13px] text-slate-400 w-24">Language:</span>
+                      <span className="text-[13px] font-bold text-white">English - US</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Building2 className="w-3.5 h-3.5 text-[#0ea5e9]" />
-                      <span className="text-[12px] text-slate-400">Industry:</span>
-                      <span className="text-[12px] text-[#0ea5e9]">Retail Trade</span>
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                      <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
+                        <Building2 className="w-3.5 h-3.5 text-teal-400" />
+                      </div>
+                      <span className="text-[13px] text-slate-400 w-24">Industry:</span>
+                      <span className="text-[13px] font-bold text-white">Retail Trade</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <svg className="w-3.5 h-3.5 text-[#0ea5e9]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v6l4 2"/>
-                      </svg>
-                      <span className="text-[12px] text-slate-400">Year in Business:</span>
-                      <span className="text-[12px] text-[#0ea5e9]">yr</span>
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                      <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
+                        <svg className="w-3.5 h-3.5 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10"/>
+                          <path d="M12 6v6l4 2"/>
+                        </svg>
+                      </div>
+                      <span className="text-[13px] text-slate-400 w-24">Year in Biz:</span>
+                      <span className="text-[13px] font-bold text-white">1 yr</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-3.5 h-3.5 text-[#0ea5e9]" />
-                      <span className="text-[12px] text-slate-400">No. of Employee:</span>
-                      <span className="text-[12px] text-[#0ea5e9]">1-3</span>
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                      <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
+                        <Users className="w-3.5 h-3.5 text-teal-400" />
+                      </div>
+                      <span className="text-[13px] text-slate-400 w-24">Employees:</span>
+                      <span className="text-[13px] font-bold text-white">1-3</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Employee Details */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden flex flex-col max-h-[400px]">
-                  <div className="p-4 flex justify-between items-center border-b border-white/10 bg-slate-900/40 backdrop-blur-xl/50 sticky top-0 z-10 shrink-0">
-                    <span className="font-semibold text-white text-[14px]">Employee Details</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-rose-500/20 shadow-[0_0_15px_rgba(244,63,94,0.05)] overflow-hidden flex flex-col max-h-[500px]">
+                  <div className="p-4 flex justify-between items-center border-b border-rose-500/20 bg-rose-500/10 sticky top-0 z-10 shrink-0">
+                    <div className="flex items-center gap-2">
+                      <Users className="w-5 h-5 text-rose-400" />
+                      <span className="font-bold text-white text-[15px]">Employee Details</span>
+                    </div>
                     <button 
                       onClick={() => setIsAddEmployeeModalOpen(true)}
-                      className="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-indigo-400 hover:text-white hover:bg-slate-700 transition-colors"
+                      className="w-8 h-8 rounded-md bg-rose-500 hover:bg-rose-600 flex items-center justify-center text-white transition-colors shadow-sm"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
                   </div>
-                  <div className="p-0 overflow-y-auto custom-scrollbar flex-1 relative">
+                  <div className="p-3 overflow-y-auto custom-scrollbar flex-1 space-y-3">
                     {employees.map((employee, index) => (
-                      <div key={employee.id} className={`p-4 ${index !== employees.length - 1 ? 'border-b border-white/10' : ''}`}>
-                        <div className="flex justify-end gap-2 mb-2">
+                      <div key={employee.id} className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-4 relative group hover:border-rose-500/30 transition-colors">
+                        <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/80 p-1 rounded-md border border-slate-700">
                           <button 
                             onClick={() => {
                               setEditingEmployee({
@@ -772,7 +818,8 @@ export default function ClientDetailsPage() {
                               });
                               setIsEditEmployeeModalOpen(true);
                             }}
-                            className="text-slate-400 hover:text-indigo-400 transition-colors"
+                            className="p-1.5 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded transition-colors"
+                            title="Edit Employee"
                           >
                             <Edit2 className="w-3.5 h-3.5" />
                           </button>
@@ -781,7 +828,8 @@ export default function ClientDetailsPage() {
                               setUpdatingPasswordEmployee(employee);
                               setIsUpdatePasswordModalOpen(true);
                             }}
-                            className="text-slate-400 hover:text-slate-200 transition-colors"
+                            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded transition-colors"
+                            title="Update Password"
                           >
                             <Lock className="w-3.5 h-3.5" />
                           </button>
@@ -790,38 +838,30 @@ export default function ClientDetailsPage() {
                               setDeletingEmployee(employee);
                               setIsDeleteEmployeeModalOpen(true);
                             }}
-                            className="text-slate-400 hover:text-rose-400 transition-colors"
+                            className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded transition-colors"
+                            title="Delete Employee"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
-                        <div className="space-y-3">
-                          <div className="flex items-start gap-2 text-[13px]">
-                            <User className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                        <div className="space-y-2.5">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-[14px] shrink-0 border border-rose-500/30">
+                              {employee.firstName.charAt(0)}{employee.lastName.charAt(0)}
+                            </div>
                             <div>
-                              <span className="font-semibold text-white">Name: </span>
-                              <span className="text-slate-300">{employee.firstName} {employee.lastName}</span>
+                              <span className="font-bold text-white block text-[14px]">{employee.firstName} {employee.lastName}</span>
+                              <span className="text-rose-400 text-[12px] font-medium">{employee.designation}</span>
                             </div>
                           </div>
-                          <div className="flex items-start gap-2 text-[13px]">
-                            <Mail className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                            <div className="min-w-0 flex-1">
-                              <span className="font-semibold text-white">Email: </span>
-                              <p className="text-slate-300 break-words mt-0.5">{employee.email}</p>
+                          <div className="pt-2 border-t border-slate-700/50 space-y-2">
+                            <div className="flex items-center gap-2 text-[12px]">
+                              <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                              <span className="text-slate-300 truncate" title={employee.email}>{employee.email}</span>
                             </div>
-                          </div>
-                          <div className="flex items-start gap-2 text-[13px]">
-                            <Phone className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                            <div>
-                              <span className="font-semibold text-white">Phone Number: </span>
+                            <div className="flex items-center gap-2 text-[12px]">
+                              <Phone className="w-3.5 h-3.5 text-slate-500 shrink-0" />
                               <span className="text-slate-300">{employee.phone}</span>
-                            </div>
-                          </div>
-                          <div className="flex items-start gap-2 text-[13px]">
-                            <Briefcase className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                            <div>
-                              <span className="font-semibold text-white">Title: </span>
-                              <span className="text-slate-300">{employee.designation}</span>
                             </div>
                           </div>
                         </div>
@@ -831,11 +871,12 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Compliance Essentials */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10">
-                    <span className="font-semibold text-white text-[14px]">Compliance Essentials</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.05)] overflow-hidden">
+                  <div className="p-4 bg-yellow-500/10 border-b border-yellow-500/20 flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-yellow-400" />
+                    <span className="font-bold text-white text-[15px]">Compliance Essentials</span>
                   </div>
-                  <div className="p-5 space-y-3">
+                  <div className="p-5 space-y-2">
                     {[
                       "Privacy Policy",
                       "Terms of Service (Terms & Conditions)",
@@ -845,11 +886,11 @@ export default function ClientDetailsPage() {
                       "SSL Certificate (HTTPS Security) - not a page, but an essential requirement",
                       "Powered by Pink Gorilla Footer"
                     ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2 cursor-pointer group" onClick={() => toggleComplianceItem(i)}>
-                        <div className={`w-4 h-4 rounded border mt-0.5 shrink-0 flex items-center justify-center transition-colors ${checkedComplianceItems[i] ? 'bg-purple-600 border-purple-600' : 'border-[#cbd5e1] group-hover:border-purple-400'}`}>
-                          {checkedComplianceItems[i] && <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
+                      <div key={i} className="flex items-start gap-3 cursor-pointer group p-2.5 rounded-lg hover:bg-slate-800/50 transition-colors" onClick={() => toggleComplianceItem(i)}>
+                        <div className={`w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center transition-colors ${checkedComplianceItems[i] ? 'bg-yellow-500 border-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.4)]' : 'border-slate-600 bg-slate-800/50 group-hover:border-yellow-500/50'}`}>
+                          {checkedComplianceItems[i] && <CheckCircle2 className="w-3.5 h-3.5 text-slate-900 stroke-[3]" />}
                         </div>
-                        <span className={`text-[12px] leading-tight transition-colors select-none ${checkedComplianceItems[i] ? 'text-white font-medium' : 'text-slate-300 group-hover:text-slate-200'}`}>
+                        <span className={`text-[13px] leading-tight transition-colors select-none mt-0.5 ${checkedComplianceItems[i] ? 'text-white font-semibold' : 'text-slate-400 group-hover:text-slate-300'}`}>
                           {item}
                         </span>
                       </div>
@@ -863,80 +904,83 @@ export default function ClientDetailsPage() {
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
                 {/* Communications Section */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-5 border-b border-white/10 flex justify-between items-center">
-                    <h2 className="text-[16px] font-bold text-white">Communications</h2>
-                    <div className="flex items-center gap-4">
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.05)] overflow-hidden">
+                  <div className="p-5 border-b border-indigo-500/20 bg-indigo-500/5 flex justify-between items-center">
+                    <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
+                      <MessageSquare className="w-5 h-5 text-indigo-400" />
+                      Communications
+                    </h2>
+                    <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border border-slate-700">
                       <button 
                         onClick={() => setActiveTab('email')}
-                        className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-[13px] font-medium shadow-sm transition-colors ${activeTab === 'email' ? 'bg-[#ec4899] text-white' : 'text-slate-400 hover:text-white'}`}>
-                        <Mail className="w-3.5 h-3.5" /> Email
+                        className={`flex items-center gap-1.5 px-4 py-2 rounded-md text-[13px] font-bold transition-all ${activeTab === 'email' ? 'bg-indigo-500 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                        <Mail className="w-4 h-4" /> Email
                       </button>
                       <button 
                         onClick={() => setActiveTab('sms')}
-                        className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-[13px] font-medium shadow-sm transition-colors ${activeTab === 'sms' ? 'bg-[#ec4899] text-white' : 'text-slate-400 hover:text-white'}`}>
-                        <MessageSquare className="w-3.5 h-3.5" /> SMS
+                        className={`flex items-center gap-1.5 px-4 py-2 rounded-md text-[13px] font-bold transition-all ${activeTab === 'sms' ? 'bg-indigo-500 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                        <MessageSquare className="w-4 h-4" /> SMS
                       </button>
                       <button 
                         onClick={() => setActiveTab('call')}
-                        className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-[13px] font-medium shadow-sm transition-colors ${activeTab === 'call' ? 'bg-[#ec4899] text-white' : 'text-slate-400 hover:text-white'}`}>
-                        <Phone className="w-3.5 h-3.5" /> Call
+                        className={`flex items-center gap-1.5 px-4 py-2 rounded-md text-[13px] font-bold transition-all ${activeTab === 'call' ? 'bg-indigo-500 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                        <Phone className="w-4 h-4" /> Call
                       </button>
                     </div>
                   </div>
                   
                   <div className="p-6">
                     {activeTab === 'email' && (
-                      <div className="border border-white/10 rounded-lg p-5 bg-slate-900/40 backdrop-blur-xl/50">
-                        <div className="space-y-4">
+                      <div className="border border-indigo-500/20 rounded-xl p-6 bg-slate-800/40 shadow-inner">
+                        <div className="space-y-5">
                           <div>
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">To*</label>
-                            <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="Enter recipient email" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
-                            <p className="text-[11px] text-slate-400 mt-1">
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2">To <span className="text-rose-500">*</span></label>
+                            <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="Enter recipient email" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
+                            <p className="text-[12px] text-slate-400 mt-2 font-medium">
                               Type email address separated by commas to add multiple email address.<br/>
-                              Example: <span className="text-[#ec4899]">demo@pinkgorilla.agency, demo2@pinkgorilla.agency</span>
+                              Example: <span className="text-indigo-400 font-bold">demo@pinkgorilla.agency, demo2@pinkgorilla.agency</span>
                             </p>
                           </div>
                           
                           <div>
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">From*</label>
-                            <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none">
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2">From <span className="text-rose-500">*</span></label>
+                            <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
                               <option>Neeraj Kumar (neeraj@pinkgorillasoftware.com)</option>
                             </select>
                           </div>
                           
                           <div>
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Subject*</label>
-                            <input type="text" placeholder="Enter email subject" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2">Subject <span className="text-rose-500">*</span></label>
+                            <input type="text" placeholder="Enter email subject" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
                           </div>
                           
                           <div>
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Email Template</label>
-                            <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-slate-400 focus:outline-none">
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2">Email Template</label>
+                            <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
                               <option>Select Template</option>
                             </select>
                           </div>
                           
                           <div>
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Message*</label>
-                            <div className="border border-white/10 rounded-md bg-slate-900/40 backdrop-blur-xl overflow-hidden flex flex-col">
-                              <div className="flex items-center gap-1 border-b border-white/10 p-1.5 bg-slate-900/40 backdrop-blur-xl/50">
-                                <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="font-bold text-[12px] px-1">B</span></button>
-                                <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="italic text-[12px] px-1">I</span></button>
-                                <button className="p-1 hover:bg-[#e2e8f0] rounded"><span className="underline text-[12px] px-1">U</span></button>
-                                <div className="w-[1px] h-4 bg-[#cbd5e1] mx-1"></div>
-                                <button className="p-1 hover:bg-[#e2e8f0] rounded"><svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2">Message <span className="text-rose-500">*</span></label>
+                            <div className="border border-slate-700 rounded-lg bg-slate-900 overflow-hidden flex flex-col shadow-inner focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 transition-all">
+                              <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800">
+                                <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><span className="font-bold text-[14px] px-2">B</span></button>
+                                <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><span className="italic text-[14px] px-2">I</span></button>
+                                <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><span className="underline text-[14px] px-2">U</span></button>
+                                <div className="w-[1px] h-5 bg-slate-600 mx-2"></div>
+                                <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
                               </div>
-                              <textarea className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 p-3 min-h-[150px] resize-none focus:outline-none text-[13px] text-white bg-transparent"></textarea>
+                              <textarea className="w-full p-4 min-h-[180px] resize-none focus:outline-none text-[14px] text-white bg-transparent"></textarea>
                             </div>
                           </div>
                           
-                          <div className="flex justify-between items-center pt-2">
-                            <button className="px-3 py-1.5 border border-white/10 bg-slate-900/40 backdrop-blur-xl text-slate-300 rounded text-[12px] font-medium flex items-center gap-1.5 hover:bg-slate-900/40 backdrop-blur-xl/50">
-                              <Plus className="w-3.5 h-3.5" /> Attach Files
+                          <div className="flex justify-between items-center pt-4 mt-2 border-t border-slate-700/50">
+                            <button className="px-4 py-2 border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 hover:text-white rounded-lg text-[13px] font-bold flex items-center gap-2 hover:bg-indigo-500/20 transition-all">
+                              <Plus className="w-4 h-4" /> Attach Files
                             </button>
-                            <button className="px-5 py-2 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-md text-[13px] font-medium transition-colors shadow-sm">
-                              Send Email
+                            <button className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)] flex items-center gap-2">
+                              <Mail className="w-4 h-4" /> Send Email
                             </button>
                           </div>
                         </div>
@@ -944,38 +988,40 @@ export default function ClientDetailsPage() {
                     )}
                     
                     {activeTab === 'sms' && (
-                      <div className="border border-white/10 rounded-lg p-5 bg-slate-900/40 backdrop-blur-xl/50">
-                        <div className="space-y-4">
+                      <div className="border border-indigo-500/20 rounded-xl p-6 bg-slate-800/40 shadow-inner">
+                        <div className="space-y-5">
                           <div>
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">To (Phone)*</label>
-                            <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="Enter recipient phone number" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2">To (Phone) <span className="text-rose-500">*</span></label>
+                            <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="Enter recipient phone number" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
                           </div>
                           
                           <div>
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">From*</label>
-                            <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none">
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2">From <span className="text-rose-500">*</span></label>
+                            <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
                               <option>Company Phone (+1 800 123 4567)</option>
                             </select>
                           </div>
                           
                           <div>
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">SMS Template</label>
-                            <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-slate-400 focus:outline-none">
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2">SMS Template</label>
+                            <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
                               <option>Select Template</option>
                             </select>
                           </div>
                           
                           <div>
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Message*</label>
-                            <textarea placeholder="Type your SMS message here..." className="w-full bg-slate-900/80 border border-white/10 rounded-md focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 p-3 min-h-[120px] resize-none focus:outline-none text-[13px] text-white"></textarea>
-                            <div className="flex justify-end mt-1">
-                              <span className="text-[11px] text-slate-500">0/160 characters</span>
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2">Message <span className="text-rose-500">*</span></label>
+                            <div className="border border-slate-700 rounded-lg bg-slate-900 overflow-hidden shadow-inner focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 transition-all">
+                              <textarea placeholder="Type your SMS message here..." className="w-full p-4 min-h-[140px] resize-none focus:outline-none text-[14px] text-white bg-transparent"></textarea>
+                              <div className="flex justify-end p-2 bg-slate-800 border-t border-slate-700">
+                                <span className="text-[12px] font-medium text-slate-400">0/160 characters</span>
+                              </div>
                             </div>
                           </div>
                           
-                          <div className="flex justify-end items-center pt-2">
-                            <button className="px-5 py-2 bg-[#ec4899] hover:bg-[#db2777] text-white rounded-md text-[13px] font-medium transition-colors shadow-sm">
-                              Send SMS
+                          <div className="flex justify-end items-center pt-4 mt-2 border-t border-slate-700/50">
+                            <button className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)] flex items-center gap-2">
+                              <MessageSquare className="w-4 h-4" /> Send SMS
                             </button>
                           </div>
                         </div>
@@ -983,41 +1029,47 @@ export default function ClientDetailsPage() {
                     )}
 
                     {activeTab === 'call' && (
-                      <div className="border border-white/10 rounded-lg p-5 bg-slate-900/40 backdrop-blur-xl/50">
-                        <div className="space-y-4">
-                          <div className="flex items-center gap-4 mb-2">
+                      <div className="border border-indigo-500/20 rounded-xl p-6 bg-slate-800/40 shadow-inner">
+                        <div className="space-y-6">
+                          <div className="flex items-center gap-6 mb-4">
                             <div className="flex-1">
-                              <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">To (Phone)*</label>
-                              <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="Enter phone number" className="w-full px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50" />
+                              <label className="block text-[13px] font-bold text-slate-300 mb-2">To (Phone) <span className="text-rose-500">*</span></label>
+                              <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="Enter phone number" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
                             </div>
                             <div className="flex-1">
-                              <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">From*</label>
-                              <select className="w-full border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-2.5 bg-slate-900/80 border border-white/10 rounded-md text-[13px] text-white focus:outline-none">
+                              <label className="block text-[13px] font-bold text-slate-300 mb-2">From <span className="text-rose-500">*</span></label>
+                              <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
                                 <option>Company Phone (+1 800 123 4567)</option>
                               </select>
                             </div>
                           </div>
                           
-                          <div className="flex items-center justify-center py-6">
-                            <button className="w-16 h-16 rounded-full bg-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-white shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all transform hover:scale-105">
-                              <Phone className="w-6 h-6 fill-white" />
+                          <div className="flex flex-col items-center justify-center py-8 bg-slate-900/50 rounded-xl border border-slate-700 border-dashed">
+                            <button className="w-20 h-20 rounded-full bg-emerald-500 hover:bg-emerald-400 flex items-center justify-center text-white shadow-[0_0_25px_rgba(16,185,129,0.5)] transition-all transform hover:scale-105 active:scale-95 mb-4">
+                              <Phone className="w-8 h-8 fill-white" />
                             </button>
+                            <span className="text-[15px] font-bold text-emerald-400">Initiate Call</span>
                           </div>
                           
-                          <div className="border-t border-white/10 pt-4 mt-2">
-                            <label className="block text-[13px] font-medium text-[#e2e8f0] mb-1.5">Log Call Notes</label>
-                            <textarea placeholder="Add notes about this call..." className="w-full bg-slate-900/80 border border-white/10 rounded-md focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 p-3 min-h-[100px] resize-none focus:outline-none text-[13px] text-white"></textarea>
+                          <div className="border-t border-slate-700/50 pt-6 mt-4">
+                            <label className="block text-[13px] font-bold text-slate-300 mb-2 flex items-center gap-2">
+                              <FileText className="w-4 h-4 text-indigo-400" /> Log Call Notes
+                            </label>
+                            <textarea placeholder="Add notes about this call..." className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner min-h-[120px] resize-none"></textarea>
                           </div>
                           
-                          <div className="flex justify-between items-center pt-2">
-                            <select className="border border-white/10 focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 px-3 py-1.5 bg-slate-900/80 rounded-md text-[12px] text-white focus:outline-none">
-                              <option>Call Outcome: Connected</option>
-                              <option>Left Voicemail</option>
-                              <option>No Answer</option>
-                              <option>Wrong Number</option>
-                            </select>
-                            <button className="px-5 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-md text-[13px] font-medium transition-colors shadow-sm">
-                              Log Call
+                          <div className="flex justify-between items-center bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <div className="flex items-center gap-3">
+                              <span className="text-[13px] font-bold text-slate-300">Outcome:</span>
+                              <select className="px-4 py-2 bg-slate-900 border border-slate-600 rounded-md text-[13px] font-medium text-white focus:outline-none focus:border-indigo-500 transition-all cursor-pointer min-w-[200px]">
+                                <option>Connected</option>
+                                <option>Left Voicemail</option>
+                                <option>No Answer</option>
+                                <option>Wrong Number</option>
+                              </select>
+                            </div>
+                            <button className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)] flex items-center gap-2">
+                              <CheckCircle2 className="w-4 h-4" /> Save Log
                             </button>
                           </div>
                         </div>
@@ -1027,20 +1079,23 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
-                    <span className="font-semibold text-white text-[15px]">Notes</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.05)] overflow-hidden">
+                  <div className="p-4 bg-amber-500/10 border-b border-amber-500/20 flex justify-between items-center">
+                    <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
+                      <FileText className="w-5 h-5 text-amber-400" />
+                      Notes
+                    </h2>
                     <button 
                       onClick={() => setIsAddNoteModalOpen(true)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded text-[12px] font-medium text-slate-300 hover:bg-slate-800 transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-md text-[13px] font-bold transition-all shadow-[0_0_10px_rgba(245,158,11,0.3)]"
                     >
-                      <PlusCircle className="w-3.5 h-3.5" /> Add Note
+                      <Plus className="w-4 h-4" /> Add Note
                     </button>
                   </div>
-                  <div className="p-5 space-y-4 max-h-[400px] overflow-y-auto custom-scrollbar">
+                  <div className="p-5 space-y-4 max-h-[450px] overflow-y-auto custom-scrollbar">
                     {notes.map(note => (
-                      <div key={note.id} className="bg-[#fefce8] border border-[#fde047] rounded-lg p-4 relative group">
-                        <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div key={note.id} className="bg-slate-800/80 border border-amber-500/30 rounded-xl p-5 relative group hover:border-amber-400/60 transition-colors shadow-sm">
+                        <div className="absolute top-4 right-4 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 p-1.5 rounded-lg border border-slate-700 shadow-lg">
                           <button 
                             onClick={() => {
                               setEmailForm({ 
@@ -1051,140 +1106,171 @@ export default function ClientDetailsPage() {
                               setSendingEmailNote(note);
                               setIsSendEmailNoteModalOpen(true);
                             }}
-                            className="text-slate-400 hover:text-blue-500 transition-colors"
-                            title="Send Email"
+                            className="p-1.5 text-slate-400 hover:text-blue-400 hover:bg-slate-800 rounded transition-colors"
+                            title="Send as Email"
                           >
-                            <Mail className="w-3.5 h-3.5" />
+                            <Mail className="w-4 h-4" />
                           </button>
                           <button 
                             onClick={() => {
                               setEditingNote(note);
                               setIsEditNoteModalOpen(true);
                             }}
-                            className="text-indigo-400 hover:text-indigo-600 transition-colors"
-                            title="Edit"
+                            className="p-1.5 text-slate-400 hover:text-amber-400 hover:bg-slate-800 rounded transition-colors"
+                            title="Edit Note"
                           >
-                            <Edit2 className="w-3.5 h-3.5" />
+                            <Edit2 className="w-4 h-4" />
                           </button>
                           <button 
                             onClick={() => {
                               setDeletingNote(note);
                               setIsDeleteNoteModalOpen(true);
                             }}
-                            className="text-rose-400 hover:text-rose-600 transition-colors"
-                            title="Delete"
+                            className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded transition-colors"
+                            title="Delete Note"
                           >
-                            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>
+                            <Trash2 className="w-4 h-4" />
                           </button>
                         </div>
-                        <h4 className="font-semibold text-slate-800 text-[14px] mb-2 pr-20">{note.title}</h4>
-                        <p className="text-[13px] text-slate-700 mb-4 whitespace-pre-wrap">{note.description}</p>
                         
-                        <div className="flex flex-wrap items-center gap-4 text-[11px] text-slate-500">
-                          <div className="flex items-center gap-1.5">
-                            <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">{note.initial}</div>
-                            <span>{note.author}</span>
+                        <div className="mb-3 pr-24 border-b border-slate-700/50 pb-3">
+                          <h4 className="font-bold text-white text-[16px]">{note.title}</h4>
+                        </div>
+                        
+                        <p className="text-[14px] text-slate-300 mb-5 whitespace-pre-wrap leading-relaxed">{note.description}</p>
+                        
+                        <div className="flex flex-wrap justify-between items-center bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-[12px] border border-amber-500/30">
+                              {note.initial}
+                            </div>
+                            <span className="text-[13px] font-bold text-slate-300">{note.author}</span>
                           </div>
-                          <div className="flex items-center gap-1">
-                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                            {note.date}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                            {note.time}
+                          
+                          <div className="flex items-center gap-3 text-[12px] font-medium text-slate-400">
+                            <div className="flex items-center gap-1">
+                              <span className="text-amber-500/60 font-bold">•</span>
+                              {note.date}
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <span className="text-amber-500/60 font-bold">•</span>
+                              {note.time}
+                            </div>
                           </div>
                         </div>
                       </div>
                     ))}
                     
                     {notes.length === 0 && (
-                      <div className="text-center py-8">
-                        <div className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center mx-auto mb-3">
-                          <FileText className="w-5 h-5 text-slate-500" />
+                      <div className="text-center py-10 bg-slate-800/40 rounded-xl border border-slate-700/50 border-dashed">
+                        <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mx-auto mb-4 border border-slate-700">
+                          <FileText className="w-8 h-8 text-amber-500/50" />
                         </div>
-                        <p className="text-sm text-slate-400">No notes added yet.</p>
+                        <h3 className="text-[16px] font-bold text-white mb-2">No notes yet</h3>
+                        <p className="text-[14px] text-slate-400 max-w-xs mx-auto mb-6">Keep track of important client details, meeting summaries, and quick reminders.</p>
+                        <button 
+                          onClick={() => setIsAddNoteModalOpen(true)}
+                          className="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_15px_rgba(245,158,11,0.3)] inline-flex items-center gap-2"
+                        >
+                          <Plus className="w-4 h-4" /> Create First Note
+                        </button>
                       </div>
                     )}
                   </div>
                 </div>
 
                 {/* Samples Section */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-hidden">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center">
-                    <span className="font-semibold text-white text-[15px]">Samples</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-fuchsia-500/20 shadow-[0_0_15px_rgba(217,70,239,0.05)] overflow-hidden">
+                  <div className="p-4 bg-fuchsia-500/10 border-b border-fuchsia-500/20 flex justify-between items-center">
+                    <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
+                      <List className="w-5 h-5 text-fuchsia-400" />
+                      Client Assets & Samples
+                    </h2>
                     <div className="flex gap-2">
                       <button 
-                        onClick={() => setIsGenerateWebsiteModalOpen(true)}
-                        className="flex items-center gap-1.5 px-3 py-1.5 border border-[#8b5cf6] text-indigo-400 rounded text-[12px] font-medium hover:bg-purple-500/10 transition-colors"
+                        onClick={() => setIsAddLogoModalOpen(true)}
+                        className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 border border-fuchsia-500/30 text-fuchsia-300 hover:text-white rounded-md text-[13px] font-bold transition-all shadow-sm"
                       >
-                        <Plus className="w-3.5 h-3.5" /> Generate Website
+                        <ImageIcon className="w-4 h-4" /> Add Logo
                       </button>
                       <button 
-                        onClick={() => setIsAddLogoModalOpen(true)}
-                        className="flex items-center gap-1.5 px-3 py-1.5 border border-[#8b5cf6] text-indigo-400 rounded text-[12px] font-medium hover:bg-purple-500/10 transition-colors"
+                        onClick={() => setIsGenerateWebsiteModalOpen(true)}
+                        className="flex items-center gap-1.5 px-4 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white rounded-md text-[13px] font-bold transition-all shadow-[0_0_10px_rgba(217,70,239,0.3)]"
                       >
-                        <Plus className="w-3.5 h-3.5" /> Add Logo Sample
+                        <Globe className="w-4 h-4" /> Generate Website
                       </button>
                     </div>
                   </div>
-                  <div className="p-5 space-y-4">
-                    {samples.map(sample => (
-                      <div key={sample.id} className="bg-slate-900/60 rounded-lg border border-slate-700 p-4 relative overflow-hidden flex flex-col justify-center min-h-[90px] group shadow-lg">
-                        <div className="flex justify-between items-start mb-2 relative z-10">
-                          <h4 className="font-semibold text-white text-[14px]">{sample.title}</h4>
-                          <span className="text-[13px] text-slate-400 max-w-[50%] truncate">{sample.url}</span>
-                          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button className="text-slate-400 hover:text-slate-600 transition-colors" title="Copy URL">
-                              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            </button>
-                            <button 
-                              onClick={() => {
-                                setDeletingSample(sample);
-                                setIsDeleteSampleModalOpen(true);
-                              }}
-                              className="text-rose-400 hover:text-rose-600 transition-colors" 
-                              title="Delete"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center gap-4 text-[12px] text-slate-500 relative z-10 mt-auto">
-                          <div className="flex items-center gap-1.5">
-                            <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden">
-                              <svg className="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                  <div className="p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {samples.map(sample => (
+                        <div key={sample.id} className="bg-slate-800/80 border border-slate-700 rounded-xl p-4 relative overflow-hidden flex flex-col group shadow-sm hover:border-fuchsia-500/50 transition-all hover:shadow-[0_4px_20px_rgba(217,70,239,0.1)]">
+                          
+                          {/* Top bar */}
+                          <div className="flex justify-between items-start mb-3 relative z-10">
+                            <div className="flex items-center gap-2">
+                              <div className={`p-1.5 rounded-md ${sample.type === 'Website' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-fuchsia-500/20 text-fuchsia-400'}`}>
+                                {sample.type === 'Website' ? <Globe className="w-4 h-4" /> : <ImageIcon className="w-4 h-4" />}
+                              </div>
+                              <h4 className="font-bold text-white text-[15px]">{sample.title}</h4>
                             </div>
-                            <span>{sample.author}</span>
+                            
+                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/80 p-1 rounded-md border border-slate-700">
+                              <button className="p-1.5 text-slate-400 hover:text-blue-400 hover:bg-slate-800 rounded transition-colors" title="Copy URL">
+                                <LinkIcon className="w-3.5 h-3.5" />
+                              </button>
+                              <button 
+                                onClick={() => {
+                                  setDeletingSample(sample);
+                                  setIsDeleteSampleModalOpen(true);
+                                }}
+                                className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded transition-colors" 
+                                title="Delete"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-1">
-                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                            {sample.date}
+                          
+                          {/* URL Box */}
+                          <div className="bg-slate-900 p-3 rounded-lg border border-slate-700/50 mb-4 relative z-10 flex items-center justify-between group/url cursor-pointer hover:border-fuchsia-500/30 transition-colors">
+                            <span className="text-[13px] text-fuchsia-300 font-medium truncate pr-4">{sample.url}</span>
+                            <LinkIcon className="w-3.5 h-3.5 text-slate-500 group-hover/url:text-fuchsia-400 shrink-0 transition-colors" />
                           </div>
-                          <div className="flex items-center gap-1">
-                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                            {sample.time}
+                          
+                          {/* Footer */}
+                          <div className="flex items-center justify-between text-[11px] font-medium text-slate-400 relative z-10 mt-auto pt-3 border-t border-slate-700/50">
+                            <div className="flex items-center gap-1.5">
+                              <User className="w-3.5 h-3.5 text-slate-500" />
+                              <span>{sample.author}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span>{sample.date}</span>
+                              <span className="text-slate-600 font-bold">•</span>
+                              <span>{sample.time}</span>
+                            </div>
                           </div>
                         </div>
-                        
-                        {/* Corner Ribbon */}
-                        <div className="absolute bottom-0 right-0 overflow-hidden w-[70px] h-[70px] rounded-br-lg z-0 pointer-events-none">
-                          <div className="absolute bottom-[10px] right-[-27px] transform -rotate-45 w-[105px] py-[3px] flex justify-center bg-[#9333ea] shadow-md">
-                            <span className="text-white text-[9px] font-extrabold tracking-widest uppercase">{sample.type}</span>
+                      ))}
+                      
+                      {samples.length === 0 && (
+                        <div className="col-span-1 md:col-span-2 p-10 flex flex-col items-center justify-center text-white bg-slate-800/40 rounded-xl border border-slate-700/50 border-dashed">
+                          <div className="w-16 h-16 mb-4 flex items-center justify-center bg-slate-800 rounded-full border border-slate-700">
+                            <Search className="w-8 h-8 text-slate-500" />
+                          </div>
+                          <h3 className="text-[16px] font-bold text-white mb-2">No assets found</h3>
+                          <p className="text-[13px] text-slate-400 mb-6">Create a website or add a logo sample for this client.</p>
+                          <div className="flex gap-3">
+                            <button 
+                              onClick={() => setIsGenerateWebsiteModalOpen(true)}
+                              className="px-5 py-2.5 bg-fuchsia-600 hover:bg-fuchsia-500 text-white rounded-lg text-[13px] font-bold transition-all shadow-[0_0_10px_rgba(217,70,239,0.3)]"
+                            >
+                              Generate Website
+                            </button>
                           </div>
                         </div>
-                      </div>
-                    ))}
-                    
-                    {samples.length === 0 && (
-                      <div className="p-12 flex flex-col items-center justify-center text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter bg-slate-900/40 backdrop-blur-xl/50 rounded-xl">
-                        <div className="w-16 h-16 mb-4 flex items-center justify-center bg-slate-800 rounded-full">
-                          <Search className="w-8 h-8 text-slate-500" />
-                        </div>
-                        <h3 className="text-[16px] font-semibold text-white mb-1">No records were found</h3>
-                        <p className="text-[13px] text-slate-400">Try a difference search</p>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -1202,28 +1288,30 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Pagination */}
-                <div className="flex justify-between items-center bg-slate-900/40 backdrop-blur-xl rounded-lg border border-white/10 p-2">
-                  <button className="px-3 py-1 text-[12px] text-slate-400 hover:text-white font-medium flex items-center gap-1">
+                <div className="flex justify-between items-center bg-slate-900/60 backdrop-blur-xl rounded-lg border border-indigo-500/20 p-2 shadow-sm">
+                  <button className="px-3 py-1.5 text-[12px] text-indigo-400 hover:text-white hover:bg-indigo-500/20 rounded font-medium flex items-center gap-1 transition-colors">
                     <ChevronDown className="w-3.5 h-3.5 rotate-90" /> Previous
                   </button>
-                  <span className="text-[12px] text-slate-500">Client 2573 of 4539</span>
-                  <button className="px-3 py-1 text-[12px] text-slate-400 hover:text-white font-medium flex items-center gap-1">
+                  <span className="text-[12px] font-bold text-slate-300">Client 2573 of 4539</span>
+                  <button className="px-3 py-1.5 text-[12px] text-indigo-400 hover:text-white hover:bg-indigo-500/20 rounded font-medium flex items-center gap-1 transition-colors">
                     Next <ChevronDown className="w-3.5 h-3.5 -rotate-90" />
                   </button>
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl border border-white/10 relative z-[50]">
-                  <div className="p-4 bg-slate-900/40 backdrop-blur-xl/50 border-b border-white/10 flex justify-between items-center rounded-t-xl relative z-[60]">
-                    <span className="font-semibold text-white text-[15px]">Tasks</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.05)] relative z-[50]">
+                  <div className="p-4 bg-red-500/10 border-b border-red-500/20 flex justify-between items-center rounded-t-xl relative z-[60]">
+                    <span className="font-bold text-white text-[15px] flex items-center gap-2">
+                      <Zap className="w-5 h-5 text-red-400" /> Tasks
+                    </span>
                     <div className="flex gap-2 relative">
                       {/* View All */}
                       <button 
                         onClick={() => setLocation('/tasks')}
-                        className="w-8 h-8 rounded-lg bg-rose-500 hover:bg-rose-600 flex items-center justify-center text-white shadow-[0_0_10px_rgba(244,63,94,0.3)] transition-colors group relative"
+                        className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 flex items-center justify-center text-slate-300 hover:text-white shadow-sm transition-colors group relative"
                       >
                         <Eye className="w-4 h-4" />
-                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800">
+                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
                           View All
                         </div>
                       </button>
@@ -1232,17 +1320,17 @@ export default function ClientDetailsPage() {
                       <div className="relative">
                         <button 
                           onClick={() => setIsTaskDropdownOpen(!isTaskDropdownOpen)}
-                          className="w-8 h-8 rounded-lg bg-purple-600 hover:bg-purple-500 flex items-center justify-center text-white shadow-[0_0_10px_rgba(147,51,234,0.3)] transition-colors relative z-[60]"
+                          className="w-8 h-8 rounded-lg bg-orange-500 hover:bg-orange-600 flex items-center justify-center text-white shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-colors relative z-[60]"
                         >
-                          <Zap className="w-4 h-4" />
+                          <List className="w-4 h-4" />
                         </button>
                         
                         {isTaskDropdownOpen && (
                           <>
                             <div className="fixed inset-0 z-[50]" onClick={() => setIsTaskDropdownOpen(false)}></div>
-                            <div className="absolute right-0 top-full mt-2 w-48 bg-slate-800 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-slate-600 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
+                            <div className="absolute right-0 top-full mt-2 w-48 bg-slate-800 rounded-xl shadow-xl border border-slate-600 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
                               {['1 Day Follow Up', '3 Day Follow Up', '1 Week Follow Up', '2 Week Follow Up', '1 Month Follow Up', '3 Month Follow Up', '6 Month Follow Up', '12 Month Follow Up'].map((item) => (
-                                <button key={item} onClick={() => setIsTaskDropdownOpen(false)} className="w-full text-left px-4 py-2 text-[13px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors relative z-10">
+                                <button key={item} onClick={() => setIsTaskDropdownOpen(false)} className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors relative z-10">
                                   {item}
                                 </button>
                               ))}
@@ -1254,40 +1342,43 @@ export default function ClientDetailsPage() {
                       {/* Add Task */}
                       <button 
                         onClick={() => setIsAddTaskModalOpen(true)}
-                        className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 shadow-sm transition-colors group relative border border-slate-700"
+                        className="w-8 h-8 rounded-lg bg-red-600 hover:bg-red-500 flex items-center justify-center text-white shadow-[0_0_10px_rgba(239,68,68,0.4)] transition-colors group relative"
                       >
                         <Plus className="w-4 h-4" />
-                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800">
+                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
                           Add Task
                         </div>
                       </button>
                     </div>
                   </div>
-                  <div className="p-10 flex flex-col items-center justify-center text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]enter bg-slate-900/40 backdrop-blur-xl/50 rounded-b-xl">
-                    <div className="w-12 h-12 mb-3 flex items-center justify-center text-slate-500">
-                      <Search className="w-8 h-8" />
+                  <div className="p-10 flex flex-col items-center justify-center text-white bg-slate-800/30 rounded-b-xl border-t border-red-500/10">
+                    <div className="w-14 h-14 mb-4 flex items-center justify-center text-slate-500 bg-slate-800 rounded-full border border-slate-700">
+                      <Search className="w-7 h-7 text-red-500/30" />
                     </div>
-                    <h3 className="text-[15px] font-semibold text-white mb-1">No records were found</h3>
-                    <p className="text-[12px] text-slate-400">Try a difference search</p>
+                    <h3 className="text-[16px] font-bold text-white mb-2">No tasks found</h3>
+                    <p className="text-[13px] text-slate-400">Click the + button to create a task</p>
                   </div>
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-900/40 backdrop-blur-xl rounded-xl  border border-white/10 overflow-visible relative z-[40]">
-                  <div className="p-4 border-b border-white/10 flex justify-between items-center relative z-[45]">
-                    <span className="font-semibold text-white text-[15px]">Activity Log</span>
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.05)] overflow-visible relative z-[40]">
+                  <div className="p-4 border-b border-blue-500/20 bg-blue-500/5 flex justify-between items-center relative z-[45]">
+                    <span className="font-bold text-white text-[15px] flex items-center gap-2">
+                      <List className="w-5 h-5 text-blue-400" />
+                      Activity Log
+                    </span>
                     <div className="relative">
                       <button 
                         onClick={() => setIsActivityDropdownOpen(!isActivityDropdownOpen)}
-                        className="flex items-center gap-1.5 text-[13px] font-medium text-slate-300 hover:text-white bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-600 transition-colors"
+                        className="flex items-center gap-1.5 text-[13px] font-bold text-blue-300 hover:text-white bg-blue-500/10 hover:bg-blue-500/20 px-3 py-1.5 rounded-lg border border-blue-500/30 transition-colors shadow-sm"
                       >
-                        {activityFilter} <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isActivityDropdownOpen ? 'rotate-180' : ''}`} />
+                        {activityFilter} <ChevronDown className={`w-4 h-4 transition-transform ${isActivityDropdownOpen ? 'rotate-180' : ''}`} />
                       </button>
                       
                       {isActivityDropdownOpen && (
                         <>
                           <div className="fixed inset-0 z-[50]" onClick={() => setIsActivityDropdownOpen(false)}></div>
-                          <div className="absolute right-0 top-full mt-1.5 w-[180px] bg-[#1e293b] rounded-lg shadow-xl border border-slate-700 py-1.5 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
+                          <div className="absolute right-0 top-full mt-2 w-[180px] bg-slate-800 rounded-xl shadow-xl border border-slate-600 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
                             {['All Activities', 'Text / SMS', 'Emails', 'Tasks', 'Notes', 'Call'].map((item) => (
                               <button 
                                 key={item} 
@@ -1295,10 +1386,10 @@ export default function ClientDetailsPage() {
                                   setActivityFilter(item);
                                   setIsActivityDropdownOpen(false);
                                 }} 
-                                className={`w-full text-left px-4 py-2.5 text-[14px] transition-colors relative z-10
+                                className={`w-full text-left px-4 py-2.5 text-[13px] font-bold transition-colors relative z-10
                                   ${item === activityFilter 
-                                    ? 'bg-[#3b82f6] text-white font-medium' 
-                                    : 'text-[#e2e8f0] hover:bg-slate-800'
+                                    ? 'bg-blue-600 text-white' 
+                                    : 'text-slate-300 hover:bg-slate-700 hover:text-white'
                                   }`}
                               >
                                 {item}
@@ -1309,26 +1400,48 @@ export default function ClientDetailsPage() {
                       )}
                     </div>
                   </div>
-                  <div className="p-4 space-y-3 relative z-10">
+                  <div className="p-4 space-y-3 relative z-10 max-h-[600px] overflow-y-auto custom-scrollbar">
                     
                     {filteredActivities.length > 0 ? (
                       filteredActivities.map((activity) => (
-                        <div key={activity.id} className="bg-[#fefce8] border border-[#fde047] rounded-lg p-3 relative">
-                          <div className="flex gap-2">
-                            {activity.icon}
-                            <div>
-                              <p className="text-[13px] font-medium text-[#e2e8f0] leading-tight line-clamp-2">{activity.title}</p>
-                              <div className="flex flex-col mt-2 gap-0.5 text-[11px] text-slate-400">
-                                <span>{activity.date} - {activity.time}</span>
-                                <span>{activity.type === 'Tasks' ? 'Added By' : activity.type === 'Emails' || activity.type === 'Text / SMS' ? 'Sent by' : 'By'} {activity.author}</span>
+                        <div key={activity.id} className="bg-slate-800/80 border border-slate-700 rounded-xl p-4 relative hover:border-blue-500/40 transition-colors shadow-sm">
+                          <div className="flex gap-3">
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border
+                              ${activity.type === 'Tasks' ? 'bg-red-500/20 border-red-500/30 text-red-400' :
+                                activity.type === 'Emails' ? 'bg-indigo-500/20 border-indigo-500/30 text-indigo-400' :
+                                activity.type === 'Notes' ? 'bg-amber-500/20 border-amber-500/30 text-amber-400' :
+                                activity.type === 'Call' ? 'bg-emerald-500/20 border-emerald-500/30 text-emerald-400' :
+                                'bg-cyan-500/20 border-cyan-500/30 text-cyan-400'}`}
+                            >
+                              {activity.type === 'Tasks' ? <CheckCircle2 className="w-4 h-4" /> :
+                               activity.type === 'Emails' ? <Mail className="w-4 h-4" /> :
+                               activity.type === 'Notes' ? <FileText className="w-4 h-4" /> :
+                               activity.type === 'Call' ? <Phone className="w-4 h-4" /> :
+                               <MessageSquare className="w-4 h-4" />}
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-[13px] font-bold text-white leading-tight mb-2">{activity.title}</p>
+                              <div className="flex flex-col gap-1.5 text-[12px] text-slate-400 font-medium bg-slate-900/50 p-2 rounded-lg border border-slate-700/50">
+                                <div className="flex items-center gap-1.5">
+                                  <User className="w-3.5 h-3.5 text-slate-500" />
+                                  <span><span className="text-slate-500">{activity.type === 'Tasks' ? 'Added By:' : activity.type === 'Emails' || activity.type === 'Text / SMS' ? 'Sent by:' : 'By:'}</span> {activity.author}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500/50 ml-1"></div>
+                                  <span>{activity.date} <span className="mx-1">•</span> {activity.time}</span>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       ))
                     ) : (
-                      <div className="text-center py-6">
-                        <p className="text-[13px] text-slate-400">No activities found for this filter.</p>
+                      <div className="text-center py-10 bg-slate-800/30 rounded-xl border border-slate-700/50 border-dashed">
+                        <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-slate-500 bg-slate-800 rounded-full border border-slate-700">
+                          <List className="w-7 h-7 text-blue-500/30" />
+                        </div>
+                        <h3 className="text-[16px] font-bold text-white mb-1">No activities found</h3>
+                        <p className="text-[13px] text-slate-400">Try changing your filter settings.</p>
                       </div>
                     )}
 
