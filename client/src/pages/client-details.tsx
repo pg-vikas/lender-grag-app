@@ -633,12 +633,60 @@ export default function ClientDetailsPage() {
                       <Edit2 className="w-3.5 h-3.5" /> Edit
                     </button>
                   </div>
-                  <div className="p-5">
-                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors cursor-pointer group">
-                      <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
-                        <Globe className="w-4 h-4 text-emerald-400" />
+                  <div className="p-5 space-y-3">
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Main Website</label>
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
+                        <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                          <Globe className="w-3.5 h-3.5 text-emerald-400" />
+                        </div>
+                        <span className="text-[13px] font-medium text-slate-400 group-hover:text-emerald-400 transition-colors truncate">www.clientwebsite.com</span>
                       </div>
-                      <span className="text-[14px] font-medium text-slate-400 group-hover:text-emerald-400 transition-colors">---</span>
+                    </div>
+                    
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Gorilla Apps Website</label>
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
+                        <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                          <Globe className="w-3.5 h-3.5 text-emerald-400" />
+                        </div>
+                        <span className="text-[13px] font-medium text-slate-400 group-hover:text-emerald-400 transition-colors truncate">client.pinkgorilla.apps</span>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Staging Website</label>
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
+                        <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                          <Globe className="w-3.5 h-3.5 text-emerald-400" />
+                        </div>
+                        <span className="text-[13px] font-medium text-slate-400 group-hover:text-emerald-400 transition-colors truncate">staging.clientwebsite.com</span>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-slate-700/50 space-y-2">
+                      <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pl-1">Gorilla Apps Credentials</label>
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/30 border border-slate-700/30 rounded-lg">
+                        <div className="w-7 h-7 rounded-md bg-slate-700/50 flex items-center justify-center shrink-0">
+                          <User className="w-3.5 h-3.5 text-slate-400" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="block text-[11px] text-slate-500 mb-0.5">Username</span>
+                          <span className="text-[13px] font-medium text-white truncate block">admin@client.com</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/30 border border-slate-700/30 rounded-lg relative group">
+                        <div className="w-7 h-7 rounded-md bg-slate-700/50 flex items-center justify-center shrink-0">
+                          <Lock className="w-3.5 h-3.5 text-slate-400" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="block text-[11px] text-slate-500 mb-0.5">Password</span>
+                          <span className="text-[13px] font-medium text-white tracking-widest block">••••••••••••</span>
+                        </div>
+                        <button className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-slate-500 hover:text-white bg-slate-700/50 hover:bg-slate-600 rounded opacity-0 group-hover:opacity-100 transition-all">
+                          <Eye className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
