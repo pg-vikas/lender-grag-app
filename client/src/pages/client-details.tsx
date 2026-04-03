@@ -89,6 +89,8 @@ export default function ClientDetailsPage() {
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
   const [isChoosePlanModalOpen, setIsChoosePlanModalOpen] = useState(false);
+  const [isManageBillingModalOpen, setIsManageBillingModalOpen] = useState(false);
+  const [billingTab, setBillingTab] = useState<'new_invoice' | 'billing_options'>('new_invoice');
   const [isAddEmployeeModalOpen, setIsAddEmployeeModalOpen] = useState(false);
   const [isEditEmployeeModalOpen, setIsEditEmployeeModalOpen] = useState(false);
   const [isUpdatePasswordModalOpen, setIsUpdatePasswordModalOpen] = useState(false);
@@ -829,6 +831,15 @@ export default function ClientDetailsPage() {
                       <div className="flex gap-3">
                         <button 
                           onClick={() => {
+                            setBillingTab('new_invoice');
+                            setIsManageBillingModalOpen(true);
+                          }}
+                          className="flex-1 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md text-[13px] font-bold transition-colors shadow-sm"
+                        >
+                          Manage Billing
+                        </button>
+                        <button 
+                          onClick={() => {
                             setSelectedPlanTab('plans');
                             setIsChoosePlanModalOpen(true);
                           }}
@@ -836,12 +847,69 @@ export default function ClientDetailsPage() {
                         >
                           Choose Plan
                         </button>
+                      </div>
+                      <div className="mt-3">
                         <button 
                           onClick={() => setLocation('/contracts')}
-                          className="flex-1 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white rounded-md text-[13px] font-bold transition-colors"
+                          className="w-full py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white rounded-md text-[13px] font-bold transition-colors"
                         >
                           Agreement
                         </button>
+                      </div>
+                    </div>
+
+                    {/* Recent Invoices List */}
+                    <div className="mt-4 pt-4 border-t border-pink-500/20">
+                      <h4 className="text-[13px] font-bold text-pink-300 mb-3 flex items-center gap-2">
+                        <FileText className="w-4 h-4" /> Recent Invoices
+                      </h4>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between p-2.5 bg-slate-800/40 border border-slate-700/50 rounded-lg hover:border-pink-500/30 transition-colors group">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0">
+                              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                            </div>
+                            <div>
+                              <span className="block text-[13px] font-bold text-white">INV-2026-041</span>
+                              <span className="block text-[11px] text-slate-400">Paid • Mar 01, 2026</span>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <span className="block text-[13px] font-bold text-white">$1,250.00</span>
+                            <button 
+                              onClick={() => {
+                                setBillingTab('new_invoice');
+                                setIsManageBillingModalOpen(true);
+                              }}
+                              className="text-[11px] text-indigo-400 hover:text-indigo-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              Edit / View
+                            </button>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between p-2.5 bg-slate-800/40 border border-slate-700/50 rounded-lg hover:border-pink-500/30 transition-colors group">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-md bg-amber-500/10 flex items-center justify-center shrink-0">
+                              <Bell className="w-4 h-4 text-amber-400" />
+                            </div>
+                            <div>
+                              <span className="block text-[13px] font-bold text-white">INV-2026-089</span>
+                              <span className="block text-[11px] text-amber-400">Pending • Apr 01, 2026</span>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <span className="block text-[13px] font-bold text-white">$450.00</span>
+                            <button 
+                              onClick={() => {
+                                setBillingTab('new_invoice');
+                                setIsManageBillingModalOpen(true);
+                              }}
+                              className="text-[11px] text-indigo-400 hover:text-indigo-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              Edit / View
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -3874,6 +3942,186 @@ export default function ClientDetailsPage() {
                       className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_0_15px_rgba(147,51,234,0.3)]"
                     >
                       Pay & Upgrade
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Manage Billing Modal */}
+      {isManageBillingModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsManageBillingModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+              <h2 className="text-lg font-semibold text-white flex items-center gap-2">
+                <svg className="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+                Manage Billing
+              </h2>
+              <button 
+                onClick={() => setIsManageBillingModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            {/* Tabs */}
+            <div className="flex border-b border-slate-800 bg-slate-900 px-5 pt-2">
+              <button
+                className={`pb-3 px-4 text-[13px] font-bold border-b-2 transition-colors ${billingTab === 'new_invoice' ? 'border-indigo-500 text-indigo-400' : 'border-transparent text-slate-400 hover:text-slate-300 hover:border-slate-700'}`}
+                onClick={() => setBillingTab('new_invoice')}
+              >
+                New Invoice
+              </button>
+              <button
+                className={`pb-3 px-4 text-[13px] font-bold border-b-2 transition-colors ${billingTab === 'billing_options' ? 'border-indigo-500 text-indigo-400' : 'border-transparent text-slate-400 hover:text-slate-300 hover:border-slate-700'}`}
+                onClick={() => setBillingTab('billing_options')}
+              >
+                Billing Options
+              </button>
+            </div>
+            
+            {/* Body */}
+            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-slate-900/50">
+              {billingTab === 'new_invoice' ? (
+                <div className="space-y-5">
+                  <div className="bg-slate-800/50 border border-slate-700/50 rounded-xl p-5">
+                    <h3 className="text-[14px] font-bold text-white mb-4">Invoice Details</h3>
+                    
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-[12px] font-medium text-slate-400 mb-1.5">Invoice Amount ($)</label>
+                          <input 
+                            type="number" 
+                            placeholder="0.00"
+                            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[12px] font-medium text-slate-400 mb-1.5">Due Date</label>
+                          <input 
+                            type="date" 
+                            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <label className="block text-[12px] font-medium text-slate-400 mb-1.5">Description / Items</label>
+                        <textarea 
+                          rows={3}
+                          placeholder="Web design services, monthly maintenance..."
+                          className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none"
+                        ></textarea>
+                      </div>
+                      
+                      <div>
+                        <label className="block text-[12px] font-medium text-slate-400 mb-1.5">Attach to Contract/Agreement (Optional)</label>
+                        <select className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+                          <option value="">None</option>
+                          <option value="1">Website Redesign Contract (Mar 2026)</option>
+                          <option value="2">SEO Monthly Retainer</option>
+                        </select>
+                      </div>
+                      
+                      <div className="pt-2">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input type="checkbox" className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-slate-900" defaultChecked />
+                          <span className="text-[13px] text-slate-300">Send email notification to client immediately</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-end gap-3 pt-2">
+                    <button 
+                      onClick={() => setIsManageBillingModalOpen(false)}
+                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-lg text-[13px] font-medium transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      onClick={() => setIsManageBillingModalOpen(false)}
+                      className="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[13px] font-medium shadow-[0_0_15px_rgba(79,70,229,0.3)] transition-all flex items-center gap-2"
+                    >
+                      <Plus className="w-4 h-4" /> Generate Invoice
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-5">
+                  <div className="bg-slate-800/50 border border-slate-700/50 rounded-xl p-5">
+                    <h3 className="text-[14px] font-bold text-white mb-4">Payment Methods</h3>
+                    
+                    <div className="space-y-3 mb-5">
+                      {/* Saved Card */}
+                      <div className="flex items-center justify-between p-3 bg-slate-900/80 border border-slate-700 rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-6 bg-slate-800 rounded border border-slate-600 flex items-center justify-center">
+                            <span className="text-[10px] font-bold text-white italic">VISA</span>
+                          </div>
+                          <div>
+                            <p className="text-[13px] font-bold text-white">•••• •••• •••• 4242</p>
+                            <p className="text-[11px] text-slate-400">Expires 12/28</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Default</span>
+                          <button className="text-slate-400 hover:text-rose-400 transition-colors">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                      
+                      {/* Add New Card Button */}
+                      <button className="w-full py-3 border border-dashed border-slate-600 hover:border-indigo-500 hover:bg-indigo-500/5 rounded-lg text-[13px] font-bold text-slate-400 hover:text-indigo-400 transition-all flex items-center justify-center gap-2">
+                        <Plus className="w-4 h-4" /> Add Payment Method
+                      </button>
+                    </div>
+                    
+                    <div className="pt-4 border-t border-slate-700/50">
+                      <h3 className="text-[14px] font-bold text-white mb-4">Billing Settings</h3>
+                      <div className="space-y-3">
+                        <label className="flex items-center justify-between cursor-pointer p-3 bg-slate-900/50 border border-slate-700 rounded-lg hover:bg-slate-800/80 transition-colors">
+                          <div>
+                            <span className="block text-[13px] font-bold text-white mb-0.5">Auto-pay Invoices</span>
+                            <span className="block text-[11px] text-slate-400">Automatically charge default payment method when invoice is generated</span>
+                          </div>
+                          <div className="relative inline-flex items-center">
+                            <input type="checkbox" className="sr-only peer" defaultChecked />
+                            <div className="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-500"></div>
+                          </div>
+                        </label>
+                        
+                        <label className="flex items-center justify-between cursor-pointer p-3 bg-slate-900/50 border border-slate-700 rounded-lg hover:bg-slate-800/80 transition-colors">
+                          <div>
+                            <span className="block text-[13px] font-bold text-white mb-0.5">Paperless Billing</span>
+                            <span className="block text-[11px] text-slate-400">Send invoices and receipts via email only</span>
+                          </div>
+                          <div className="relative inline-flex items-center">
+                            <input type="checkbox" className="sr-only peer" defaultChecked />
+                            <div className="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-500"></div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-end gap-3 pt-2">
+                    <button 
+                      onClick={() => setIsManageBillingModalOpen(false)}
+                      className="px-6 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-lg text-[13px] font-medium transition-colors"
+                    >
+                      Close
                     </button>
                   </div>
                 </div>
