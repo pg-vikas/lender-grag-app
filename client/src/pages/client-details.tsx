@@ -539,7 +539,7 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Company Details */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-indigo-500/30 border-t-indigo-500 border-t-4 shadow-[0_8px_30px_rgba(99,102,241,0.15)] relative z-30">
+                <div className="bg-slate-900/60 bg-indigo-500/10 backdrop-blur-2xl rounded-xl border-indigo-500/30 border-t-indigo-500 border-t-4 shadow-[0_8px_30px_rgba(99,102,241,0.15),inset_0_1px_0_rgba(99,102,241,0.2)] relative z-30">
                   <div className="p-4 bg-gradient-to-r from-indigo-500/20 to-transparent border-b border-indigo-500/30 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
                       <Building2 className="w-5 h-5 text-indigo-400" />
@@ -595,7 +595,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Contact Information & Employees */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-cyan-500/30 border-t-cyan-500 border-t-4 shadow-[0_8px_30px_rgba(6,182,212,0.15)] overflow-hidden flex flex-col max-h-[600px]">
+                <div className="bg-slate-900/60 bg-cyan-500/10 backdrop-blur-2xl rounded-xl border-cyan-500/30 border-t-cyan-500 border-t-4 shadow-[0_8px_30px_rgba(6,182,212,0.15),inset_0_1px_0_rgba(6,182,212,0.2)] overflow-hidden flex flex-col max-h-[600px]">
                   <div className="p-4 bg-gradient-to-r from-cyan-500/20 to-transparent border-b border-cyan-500/30 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-cyan-400" />
@@ -650,7 +650,7 @@ export default function ClientDetailsPage() {
                       <div className="space-y-3">
                         {employees.map((employee, index) => (
                           <div key={employee.id} className="bg-slate-800/50 border-slate-700/50 rounded-lg p-4 relative group hover:border-cyan-500/30 transition-colors">
-                            <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/80 p-1 rounded-md border-slate-700">
+                            <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/90 p-1 rounded-md border-slate-700">
                               <button 
                                 onClick={() => {
                                   setEditingEmployee({
@@ -715,7 +715,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Website */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-emerald-500/30 border-t-emerald-500 border-t-4 shadow-[0_8px_30px_rgba(16,185,129,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-emerald-500/10 backdrop-blur-2xl rounded-xl border-emerald-500/30 border-t-emerald-500 border-t-4 shadow-[0_8px_30px_rgba(16,185,129,0.15),inset_0_1px_0_rgba(16,185,129,0.2)] overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-emerald-500/20 to-transparent border-b border-emerald-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Globe className="w-5 h-5 text-emerald-400" />
@@ -787,7 +787,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Business Discovery */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-orange-500/30 border-t-orange-500 border-t-4 shadow-[0_8px_30px_rgba(249,115,22,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-orange-500/10 backdrop-blur-2xl rounded-xl border-orange-500/30 border-t-orange-500 border-t-4 shadow-[0_8px_30px_rgba(249,115,22,0.15),inset_0_1px_0_rgba(249,115,22,0.2)] overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-orange-500/20 to-transparent border-b border-orange-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Compass className="w-5 h-5 text-orange-400" />
@@ -808,7 +808,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Billing Information */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-pink-500/30 border-t-pink-500 border-t-4 shadow-[0_8px_30px_rgba(236,72,153,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-pink-500/10 backdrop-blur-2xl rounded-xl border-pink-500/30 border-t-pink-500 border-t-4 shadow-[0_8px_30px_rgba(236,72,153,0.15),inset_0_1px_0_rgba(236,72,153,0.2)] overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-pink-500/20 to-transparent border-b border-pink-500/30 flex items-center gap-2">
                     <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -916,7 +916,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Background */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-violet-500/30 border-t-violet-500 border-t-4 shadow-[0_8px_30px_rgba(139,92,246,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-violet-500/10 backdrop-blur-2xl rounded-xl border-violet-500/30 border-t-violet-500 border-t-4 shadow-[0_8px_30px_rgba(139,92,246,0.15),inset_0_1px_0_rgba(139,92,246,0.2)] overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-violet-500/20 to-transparent border-b border-violet-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <ImageIcon className="w-5 h-5 text-violet-400" />
@@ -939,7 +939,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* General */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-[0_8px_30px_rgba(20,184,166,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-[0_8px_30px_rgba(20,184,166,0.15),inset_0_1px_0_rgba(20,184,166,0.2)] overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-teal-500/20 to-transparent border-b border-teal-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Info className="w-5 h-5 text-teal-400" />
@@ -1003,7 +1003,7 @@ export default function ClientDetailsPage() {
 
 
                 {/* Compliance Essentials */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-yellow-500/30 border-t-yellow-500 border-t-4 shadow-[0_8px_30px_rgba(234,179,8,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-yellow-500/10 backdrop-blur-2xl rounded-xl border-yellow-500/30 border-t-yellow-500 border-t-4 shadow-[0_8px_30px_rgba(234,179,8,0.15),inset_0_1px_0_rgba(234,179,8,0.2)] overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-yellow-500/20 to-transparent border-b border-yellow-500/30 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-yellow-400" />
                     <span className="font-bold text-white text-[15px]">Compliance Essentials</span>
@@ -1036,7 +1036,7 @@ export default function ClientDetailsPage() {
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
                 {/* Communications Section */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-rose-500/30 border-t-rose-500 border-t-4 shadow-[0_8px_30px_rgba(244,63,94,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-rose-500/10 backdrop-blur-2xl rounded-xl border-rose-500/30 border-t-rose-500 border-t-4 shadow-[0_8px_30px_rgba(244,63,94,0.15),inset_0_1px_0_rgba(244,63,94,0.2)] overflow-hidden">
                   <div className="p-5 bg-gradient-to-r from-rose-500/20 to-transparent border-b border-rose-500/30 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-rose-400" />
@@ -1072,7 +1072,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                   <User className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="recipient@example.com" className="w-full pl-10 pr-4 py-3 bg-slate-900/80 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner" />
+                                <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="recipient@example.com" className="w-full pl-10 pr-4 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner" />
                               </div>
                               <p className="text-[11px] text-slate-400 mt-1.5 font-medium flex items-center gap-1">
                                 <Info className="w-3 h-3" /> Separate multiple with commas
@@ -1085,7 +1085,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                   <Building2 className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <select className="w-full pl-10 pr-4 py-3 bg-slate-900/80 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                <select className="w-full pl-10 pr-4 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner appearance-none cursor-pointer">
                                   <option>Neeraj Kumar (neeraj@pinkgorillasoftware.com)</option>
                                 </select>
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -1099,7 +1099,7 @@ export default function ClientDetailsPage() {
                             <div className="md:col-span-2">
                               <label className="block text-[12px] font-bold text-rose-300 uppercase tracking-wider mb-2">Subject <span className="text-rose-500">*</span></label>
                               <div className="relative">
-                                <input type="text" placeholder="What is this email about?" className="w-full px-4 py-3 bg-slate-900/80 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner" />
+                                <input type="text" placeholder="What is this email about?" className="w-full px-4 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner" />
                               </div>
                             </div>
                             
@@ -1124,7 +1124,7 @@ export default function ClientDetailsPage() {
                               <span>Message <span className="text-rose-500">*</span></span>
                               <span className="text-[11px] text-slate-500 font-normal normal-case">Markdown supported</span>
                             </label>
-                            <div className="border-slate-700 rounded-xl bg-slate-900/80 overflow-hidden flex flex-col shadow-inner focus-within:border-rose-500 focus-within:ring-1 focus-within:ring-rose-500 transition-all">
+                            <div className="border-slate-700 rounded-xl bg-slate-950/90 overflow-hidden flex flex-col shadow-inner focus-within:border-rose-500 focus-within:ring-1 focus-within:ring-rose-500 transition-all">
                               <div className="flex items-center gap-1 border-b border-slate-700/50 p-2 bg-slate-800/50">
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="font-bold text-[14px]">B</span></button>
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="italic text-[14px]">I</span></button>
@@ -1159,7 +1159,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                                   <Phone className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-10 py-3 bg-slate-900/80 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner relative z-10" />
+                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-10 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner relative z-10" />
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 z-10">
                                   <ChevronDown className="w-4 h-4 text-slate-500 cursor-pointer" />
                                 </div>
@@ -1193,7 +1193,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                   <Building2 className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <select className="w-full pl-10 pr-4 py-3 bg-slate-900/80 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                <select className="w-full pl-10 pr-4 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all shadow-inner appearance-none cursor-pointer">
                                   <option>Company Phone (+1 800 123 4567)</option>
                                 </select>
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -1310,7 +1310,7 @@ export default function ClientDetailsPage() {
                                     type="text" 
                                     defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''}
                                     placeholder="Enter phone number..."
-                                    className="w-full pl-10 pr-10 py-2.5 bg-slate-900/80 border-emerald-500/30 rounded-lg text-[16px] font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-center shadow-inner relative z-10"
+                                    className="w-full pl-10 pr-10 py-2.5 bg-slate-950/90 border-emerald-500/30 rounded-lg text-[16px] font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-center shadow-inner relative z-10"
                                   />
                                   <div className="absolute inset-y-0 right-0 flex items-center pr-2 z-10">
                                     <div className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded cursor-pointer transition-colors">
@@ -1412,7 +1412,7 @@ export default function ClientDetailsPage() {
                                   ></textarea>
                                 </div>
                                 
-                                <button className="mt-4 w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_8px_30px_rgba(16,185,129,0.15)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] flex items-center justify-center gap-2">
+                                <button className="mt-4 w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_8px_30px_rgba(16,185,129,0.15),inset_0_1px_0_rgba(16,185,129,0.2)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] flex items-center justify-center gap-2">
                                   <CheckCircle2 className="w-4 h-4" /> Save Call Log
                                 </button>
                               </div>
@@ -1426,7 +1426,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-amber-500/30 border-t-amber-500 border-t-4 shadow-[0_8px_30px_rgba(245,158,11,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-amber-500/10 backdrop-blur-2xl rounded-xl border-amber-500/30 border-t-amber-500 border-t-4 shadow-[0_8px_30px_rgba(245,158,11,0.15),inset_0_1px_0_rgba(245,158,11,0.2)] overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-amber-500/20 to-transparent border-b border-amber-500/30 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-amber-400" />
@@ -1487,7 +1487,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Analytics Expanded Section */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-sky-500/30 border-t-sky-500 border-t-4 shadow-[0_8px_30px_rgba(14,165,233,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-sky-500/10 backdrop-blur-2xl rounded-xl border-sky-500/30 border-t-sky-500 border-t-4 shadow-[0_8px_30px_rgba(14,165,233,0.15),inset_0_1px_0_rgba(14,165,233,0.2)] overflow-hidden">
                   <div className="p-5 border-b border-sky-500/20 bg-sky-500/5 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-sky-400" />
@@ -1613,7 +1613,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Document Signing Center */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-[0_8px_30px_rgba(20,184,166,0.15)]-[0_0_15px_rgba(0,0,0,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-[0_8px_30px_rgba(20,184,166,0.15),inset_0_1px_0_rgba(20,184,166,0.2)] overflow-hidden">
                   <div className="p-5 border-b border-teal-500/20 flex justify-between items-center bg-teal-500/15">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-teal-400" />
@@ -1721,7 +1721,7 @@ export default function ClientDetailsPage() {
 
 
                 {/* Samples Section */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-fuchsia-500/30 border-t-fuchsia-500 border-t-4 shadow-[0_8px_30px_rgba(217,70,239,0.15)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-fuchsia-500/10 backdrop-blur-2xl rounded-xl border-fuchsia-500/30 border-t-fuchsia-500 border-t-4 shadow-[0_8px_30px_rgba(217,70,239,0.15),inset_0_1px_0_rgba(217,70,239,0.2)] overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-fuchsia-500/20 to-transparent border-b border-fuchsia-500/30 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <List className="w-5 h-5 text-fuchsia-400" />
@@ -1756,7 +1756,7 @@ export default function ClientDetailsPage() {
                               <h4 className="font-bold text-white text-[15px]">{sample.title}</h4>
                             </div>
                             
-                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/80 p-1 rounded-md border-slate-700">
+                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/90 p-1 rounded-md border-slate-700">
                               <button className="p-1.5 text-slate-400 hover:text-blue-400 hover:bg-slate-800 rounded transition-colors" title="Copy URL">
                                 <LinkIcon className="w-3.5 h-3.5" />
                               </button>
@@ -1829,7 +1829,7 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-6">
                 
                 {/* Pagination */}
-                <div className="flex justify-between items-center bg-slate-900/80 backdrop-blur-xl rounded-lg border-indigo-500/30 border-t-indigo-500 border-t-4 p-2 shadow-sm shrink-0">
+                <div className="flex justify-between items-center bg-slate-950/90 backdrop-blur-2xl rounded-lg border-indigo-500/30 border-t-indigo-500 border-t-4 p-2 shadow-sm shrink-0">
                   <button className="px-3 py-1.5 text-[12px] text-indigo-400 hover:text-white hover:bg-indigo-500/20 rounded font-medium flex items-center gap-1 transition-colors">
                     <ChevronDown className="w-3.5 h-3.5 rotate-90" /> Previous
                   </button>
@@ -1840,7 +1840,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-red-500/20 shadow-[0_8px_30px_rgba(239,68,68,0.15)] relative z-[50] shrink-0">
+                <div className="bg-slate-950/90 backdrop-blur-2xl rounded-xl border-red-500/20 shadow-[0_8px_30px_rgba(239,68,68,0.15),inset_0_1px_0_rgba(239,68,68,0.2)] relative z-[50] shrink-0">
                   <div className="p-4 bg-red-500/10 border-b border-red-500/20 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <Zap className="w-5 h-5 text-red-400" /> Tasks
@@ -1905,7 +1905,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl border-slate-500/30 border-t-slate-500 border-t-4 shadow-[0_8px_30px_rgba(100,116,139,0.15)] overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
+                <div className="bg-slate-900/60 bg-slate-500/10 backdrop-blur-2xl rounded-xl border-slate-500/30 border-t-slate-500 border-t-4 shadow-[0_8px_30px_rgba(100,116,139,0.15),inset_0_1px_0_rgba(100,116,139,0.2)] overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
                   <div className="p-4 border-b border-slate-500/20 bg-slate-500/5 flex justify-between items-center relative z-[45]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <List className="w-5 h-5 text-slate-400" />
@@ -2051,7 +2051,7 @@ export default function ClientDetailsPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsAddTaskModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2060,7 +2060,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsAddTaskModalOpen(false)}
-                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
               >
                 Submit
               </button>
@@ -2122,7 +2122,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditContactModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2131,7 +2131,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditContactModalOpen(false)}
-                className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all"
+                className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(6,182,212,0.15),inset_0_1px_0_rgba(6,182,212,0.2)] hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all"
               >
                 Save Changes
               </button>
@@ -2225,7 +2225,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditWebsiteModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2234,7 +2234,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditWebsiteModalOpen(false)}
-                className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(16,185,129,0.15)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] transition-all"
+                className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(16,185,129,0.15),inset_0_1px_0_rgba(16,185,129,0.2)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] transition-all"
               >
                 Save Changes
               </button>
@@ -2322,7 +2322,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditGeneralInfoModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2331,7 +2331,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditGeneralInfoModalOpen(false)}
-                className="px-6 py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(20,184,166,0.15)] hover:shadow-[0_0_20px_rgba(20,184,166,0.5)] transition-all"
+                className="px-6 py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(20,184,166,0.15),inset_0_1px_0_rgba(20,184,166,0.2)] hover:shadow-[0_0_20px_rgba(20,184,166,0.5)] transition-all"
               >
                 Save Changes
               </button>
@@ -2381,7 +2381,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2390,7 +2390,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
-                className="px-6 py-2.5 bg-violet-600 hover:bg-violet-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(139,92,246,0.15)] hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all"
+                className="px-6 py-2.5 bg-violet-600 hover:bg-violet-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(139,92,246,0.15),inset_0_1px_0_rgba(139,92,246,0.2)] hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all"
               >
                 Save Background
               </button>
@@ -2652,7 +2652,7 @@ export default function ClientDetailsPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditClientModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2661,7 +2661,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditClientModalOpen(false)}
-                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
               >
                 Save Changes
               </button>
@@ -2699,7 +2699,7 @@ export default function ClientDetailsPage() {
                         value={link.label}
                         onChange={(e) => updateBusinessLink(index, 'label', e.target.value)}
                         placeholder="e.g., Website, Yelp, Facebook" 
-                        className="w-full px-3 py-2.5 bg-slate-900/80 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                        className="w-full px-3 py-2.5 bg-slate-950/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                       />
                     </div>
                     <div>
@@ -2709,7 +2709,7 @@ export default function ClientDetailsPage() {
                         value={link.url}
                         onChange={(e) => updateBusinessLink(index, 'url', e.target.value)}
                         placeholder="https://" 
-                        className="w-full px-3 py-2.5 bg-slate-900/80 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                        className="w-full px-3 py-2.5 bg-slate-950/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                       />
                     </div>
                   </div>
@@ -2749,7 +2749,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsBusinessDiscoveryModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-[0_8px_30px_rgba(147,51,234,0.15)] transition-all"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] transition-all"
               >
                 Save Changes
               </button>
@@ -2906,7 +2906,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleAddEmployee}
                 disabled={!newEmployee.firstName || !newEmployee.email}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Submit
               </button>
@@ -3065,7 +3065,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleEditEmployee}
                 disabled={!editingEmployee.firstName || !editingEmployee.email}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Save
               </button>
@@ -3139,7 +3139,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleUpdatePassword}
                 disabled={!passwordForm.newPassword || passwordForm.newPassword.length < 6 || passwordForm.newPassword !== passwordForm.confirmPassword}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Submit
               </button>
@@ -3172,7 +3172,7 @@ export default function ClientDetailsPage() {
                 </button>
                 <button 
                   onClick={handleDeleteEmployee}
-                  className="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(225,29,72,0.15)] w-full"
+                  className="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(225,29,72,0.15),inset_0_1px_0_rgba(225,29,72,0.2)] w-full"
                 >
                   Delete
                 </button>
@@ -3239,7 +3239,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleAddNote}
                 disabled={!newNote.title || !newNote.description}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Submit
               </button>
@@ -3304,7 +3304,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleEditNote}
                 disabled={!editingNote.title || !editingNote.description}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Submit
               </button>
@@ -3337,7 +3337,7 @@ export default function ClientDetailsPage() {
                 </button>
                 <button 
                   onClick={handleDeleteNote}
-                  className="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] w-full"
+                  className="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] w-full"
                 >
                   Continue
                 </button>
@@ -3424,7 +3424,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleSendEmailNote}
                 disabled={!emailForm.to || !emailForm.subject || !emailForm.message}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Submit
               </button>
@@ -3457,7 +3457,7 @@ export default function ClientDetailsPage() {
                 </button>
                 <button 
                   onClick={handleDeleteSample}
-                  className="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(225,29,72,0.15)] w-full"
+                  className="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(225,29,72,0.15),inset_0_1px_0_rgba(225,29,72,0.2)] w-full"
                 >
                   Delete
                 </button>
@@ -3542,7 +3542,7 @@ export default function ClientDetailsPage() {
 
               {/* Template Preview Section */}
               <div className="border-slate-700 rounded-lg overflow-hidden flex flex-col bg-slate-800/30">
-                <div className="flex-1 bg-slate-900/80 p-4 relative flex items-center justify-center min-h-[250px]">
+                <div className="flex-1 bg-slate-950/90 p-4 relative flex items-center justify-center min-h-[250px]">
                   <div className="w-full h-full bg-slate-800 rounded border-slate-700 shadow-inner flex flex-col overflow-hidden">
                     {/* Mock Website Preview */}
                     <div className="h-6 border-b border-slate-700 bg-slate-800/80 flex items-center px-2 gap-1.5">
@@ -3598,7 +3598,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleGenerateWebsite}
                 disabled={!newWebsiteSample.subdomain}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Submit
               </button>
@@ -3678,7 +3678,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleAddLogo}
                 disabled={!newLogoSample.title}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
               >
                 Submit
               </button>
@@ -3755,7 +3755,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
-                className="px-5 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)]"
+                className="px-5 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)]"
               >
                 Submit
               </button>
@@ -3810,7 +3810,7 @@ export default function ClientDetailsPage() {
                   <input 
                     type="text" 
                     placeholder="123456789" 
-                    className="w-full px-3 py-2.5 bg-slate-900/80 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600"
+                    className="w-full px-3 py-2.5 bg-slate-950/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600"
                   />
                   <p className="text-[12px] text-slate-400 mt-2 leading-relaxed">
                     Your Google Analytics 4 Property ID (numbers only). Get this from: Google Analytics &rarr; Admin &rarr; Property Settings
@@ -3826,7 +3826,7 @@ export default function ClientDetailsPage() {
                       Choose file
                       <input type="file" className="hidden" accept=".json" />
                     </label>
-                    <div className="flex-1 px-3 py-2.5 bg-slate-900/80 border-l-0 border-slate-700 rounded-r-lg text-[13px] text-slate-500 flex items-center">
+                    <div className="flex-1 px-3 py-2.5 bg-slate-950/90 border-l-0 border-slate-700 rounded-r-lg text-[13px] text-slate-500 flex items-center">
                       No file chosen
                     </div>
                   </div>
@@ -3860,7 +3860,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsAnalyticsModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-[0_8px_30px_rgba(147,51,234,0.15)] transition-all"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] transition-all"
               >
                 Submit
               </button>
@@ -3918,7 +3918,7 @@ export default function ClientDetailsPage() {
                           
                           <button 
                             onClick={() => handleChoosePlan(plan)}
-                            className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)]"
+                            className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)]"
                           >
                             {plan.buttonText}
                           </button>
@@ -4007,7 +4007,7 @@ export default function ClientDetailsPage() {
                     </button>
                     <button 
                       onClick={() => setIsChoosePlanModalOpen(false)}
-                      className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15)]"
+                      className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)]"
                     >
                       Pay & Upgrade
                     </button>
@@ -4119,7 +4119,7 @@ export default function ClientDetailsPage() {
                     </button>
                     <button 
                       onClick={() => setIsManageBillingModalOpen(false)}
-                      className="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[13px] font-medium shadow-[0_8px_30px_rgba(79,70,229,0.15)] transition-all flex items-center gap-2"
+                      className="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[13px] font-medium shadow-[0_8px_30px_rgba(79,70,229,0.15),inset_0_1px_0_rgba(79,70,229,0.2)] transition-all flex items-center gap-2"
                     >
                       <Plus className="w-4 h-4" /> Generate Invoice
                     </button>
@@ -4132,7 +4132,7 @@ export default function ClientDetailsPage() {
                     
                     <div className="space-y-3 mb-5">
                       {/* Saved Card */}
-                      <div className="flex items-center justify-between p-3 bg-slate-900/80 border-slate-700 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-slate-950/90 border-slate-700 rounded-lg">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-6 bg-slate-800 rounded border-slate-600 flex items-center justify-center">
                             <span className="text-[10px] font-bold text-white italic">VISA</span>
