@@ -539,8 +539,8 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Company Details */}
-                <div className="bg-slate-900/60 bg-indigo-500/10 backdrop-blur-2xl rounded-xl border-indigo-500/30 border-t-indigo-500 border-t-4 shadow-sm relative z-30">
-                  <div className="p-4 bg-gradient-to-r from-indigo-500/20 to-transparent border-b border-indigo-500/30 flex justify-between items-center rounded-t-xl">
+                <div className="bg-slate-900/60 bg-indigo-500/10 backdrop-blur-2xl rounded-xl border border-indigo-500/30 border-t-indigo-500 border-t-4 shadow-sm relative z-30">
+                  <div className="p-4 bg-gradient-to-r from-indigo-500/20 to-transparent border-b border border-indigo-500/30 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
                       <Building2 className="w-5 h-5 text-indigo-400" />
                       <span className="font-bold text-white text-[15px]">Company Details</span>
@@ -559,13 +559,13 @@ export default function ClientDetailsPage() {
                     </div>
                     <div className="flex items-center gap-3 bg-slate-800/50 p-3 rounded-lg border-slate-700/50">
                       <span className="text-[13px] text-slate-400 font-medium w-24">Status:</span>
-                      <span className="inline-flex items-center justify-center px-3 py-1 rounded-md text-[12px] font-bold text-amber-500 border-amber-500/30 bg-amber-500/10 shadow-sm">Brand New</span>
+                      <span className="inline-flex items-center justify-center px-3 py-1 rounded-md text-[12px] font-bold text-amber-500 border border-amber-500/30 bg-amber-500/10 shadow-sm">Brand New</span>
                     </div>
                     <div className="flex flex-col gap-2 relative bg-slate-800/50 p-3 rounded-lg border-slate-700/50">
                       <span className="text-[13px] text-slate-400 font-medium">Assigned to:</span>
                       <button 
                         onClick={() => setIsAssigneeDropdownOpen(!isAssigneeDropdownOpen)}
-                        className="px-3 py-2.5 bg-slate-900 border-indigo-500/30 rounded-md text-[13px] font-medium text-white flex justify-between items-center w-full hover:bg-slate-800 transition-colors shadow-inner"
+                        className="px-3 py-2.5 bg-slate-900 border border-indigo-500/30 rounded-md text-[13px] font-medium text-white flex justify-between items-center w-full hover:bg-slate-800 transition-colors shadow-inner"
                       >
                         <span className="truncate">{selectedAssignee}</span>
                         <ChevronDown className="w-4 h-4 text-indigo-400 shrink-0" />
@@ -595,8 +595,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Contact Information & Employees */}
-                <div className="bg-slate-900/60 bg-cyan-500/10 backdrop-blur-2xl rounded-xl border-cyan-500/30 border-t-cyan-500 border-t-4 shadow-sm overflow-hidden flex flex-col max-h-[600px]">
-                  <div className="p-4 bg-gradient-to-r from-cyan-500/20 to-transparent border-b border-cyan-500/30 flex justify-between items-center sticky top-0 z-10 shrink-0">
+                <div className="bg-slate-900/60 bg-cyan-500/10 backdrop-blur-2xl rounded-xl border border-cyan-500/30 border-t-cyan-500 border-t-4 shadow-sm overflow-hidden flex flex-col max-h-[600px]">
+                  <div className="p-4 bg-gradient-to-r from-cyan-500/20 to-transparent border-b border border-cyan-500/30 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-cyan-400" />
                       <span className="font-bold text-white text-[15px]">Contacts & Team</span>
@@ -623,19 +623,19 @@ export default function ClientDetailsPage() {
                     <div className="space-y-3">
                       <h4 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider pl-1">Primary Contact</h4>
                       <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
+                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
                           <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
                             <Phone className="w-4 h-4 text-cyan-400" />
                           </div>
                           <span className="text-[14px] font-medium text-white">+1 973 979 7987</span>
                         </div>
-                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
+                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
                           <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
                             <Mail className="w-4 h-4 text-cyan-400" />
                           </div>
                           <span className="text-[14px] font-medium text-slate-400">---</span>
                         </div>
-                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
+                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
                           <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
                             <MapPin className="w-4 h-4 text-cyan-400" />
                           </div>
@@ -649,7 +649,7 @@ export default function ClientDetailsPage() {
                       <h4 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider pl-1">Team Members ({employees.length})</h4>
                       <div className="space-y-3">
                         {employees.map((employee, index) => (
-                          <div key={employee.id} className="bg-slate-800/50 border-slate-700/50 rounded-lg p-4 relative group hover:border-cyan-500/30 transition-colors">
+                          <div key={employee.id} className="bg-slate-800/50 border-slate-700/50 rounded-lg p-4 relative group hover:border border-cyan-500/30 transition-colors">
                             <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/90 p-1 rounded-md border-slate-700">
                               <button 
                                 onClick={() => {
@@ -688,7 +688,7 @@ export default function ClientDetailsPage() {
                             </div>
                             <div className="space-y-2.5">
                               <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[14px] shrink-0 border-cyan-500/30">
+                                <div className="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[14px] shrink-0 border border-cyan-500/30">
                                   {employee.firstName.charAt(0)}{employee.lastName.charAt(0)}
                                 </div>
                                 <div>
@@ -715,8 +715,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Website */}
-                <div className="bg-slate-900/60 bg-emerald-500/10 backdrop-blur-2xl rounded-xl border-emerald-500/30 border-t-emerald-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-emerald-500/20 to-transparent border-b border-emerald-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/60 bg-emerald-500/10 backdrop-blur-2xl rounded-xl border border-emerald-500/30 border-t-emerald-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-gradient-to-r from-emerald-500/20 to-transparent border-b border border-emerald-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Globe className="w-5 h-5 text-emerald-400" />
                       <span className="font-bold text-white text-[15px]">Website</span>
@@ -731,7 +731,7 @@ export default function ClientDetailsPage() {
                   <div className="p-5 space-y-3">
                     <div className="space-y-1">
                       <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Main Website</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
                         <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
                           <Globe className="w-3.5 h-3.5 text-emerald-400" />
                         </div>
@@ -741,7 +741,7 @@ export default function ClientDetailsPage() {
                     
                     <div className="space-y-1">
                       <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Gorilla Apps Website</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
                         <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
                           <Globe className="w-3.5 h-3.5 text-emerald-400" />
                         </div>
@@ -751,7 +751,7 @@ export default function ClientDetailsPage() {
                     
                     <div className="space-y-1">
                       <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Staging Website</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
                         <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
                           <Globe className="w-3.5 h-3.5 text-emerald-400" />
                         </div>
@@ -787,8 +787,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Business Discovery */}
-                <div className="bg-slate-900/60 bg-orange-500/10 backdrop-blur-2xl rounded-xl border-orange-500/30 border-t-orange-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-orange-500/20 to-transparent border-b border-orange-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/60 bg-orange-500/10 backdrop-blur-2xl rounded-xl border border-orange-500/30 border-t-orange-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-gradient-to-r from-orange-500/20 to-transparent border-b border border-orange-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Compass className="w-5 h-5 text-orange-400" />
                       <span className="font-bold text-white text-[15px]">Business Discovery</span>
@@ -808,15 +808,15 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Billing Information */}
-                <div className="bg-slate-900/60 bg-pink-500/10 backdrop-blur-2xl rounded-xl border-pink-500/30 border-t-pink-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-pink-500/20 to-transparent border-b border-pink-500/30 flex items-center gap-2">
+                <div className="bg-slate-900/60 bg-pink-500/10 backdrop-blur-2xl rounded-xl border border-pink-500/30 border-t-pink-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-gradient-to-r from-pink-500/20 to-transparent border-b border border-pink-500/30 flex items-center gap-2">
                     <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                     </svg>
                     <span className="font-bold text-white text-[15px]">Billing Information</span>
                   </div>
                   <div className="p-5 space-y-4">
-                    <div className="bg-slate-800/50 border-pink-500/30 rounded-lg p-4">
+                    <div className="bg-slate-800/50 border border-pink-500/30 rounded-lg p-4">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center">
                           <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -864,7 +864,7 @@ export default function ClientDetailsPage() {
                         <FileText className="w-4 h-4" /> Recent Invoices
                       </h4>
                       <div className="space-y-2">
-                        <div className="flex items-center justify-between p-2.5 bg-slate-800/40 border-slate-700/50 rounded-lg hover:border-pink-500/30 transition-colors group">
+                        <div className="flex items-center justify-between p-2.5 bg-slate-800/40 border-slate-700/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0">
                               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
@@ -887,7 +887,7 @@ export default function ClientDetailsPage() {
                             </button>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between p-2.5 bg-slate-800/40 border-slate-700/50 rounded-lg hover:border-pink-500/30 transition-colors group">
+                        <div className="flex items-center justify-between p-2.5 bg-slate-800/40 border-slate-700/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-md bg-amber-500/10 flex items-center justify-center shrink-0">
                               <Bell className="w-4 h-4 text-amber-400" />
@@ -916,8 +916,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Background */}
-                <div className="bg-slate-900/60 bg-violet-500/10 backdrop-blur-2xl rounded-xl border-violet-500/30 border-t-violet-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-violet-500/20 to-transparent border-b border-violet-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/60 bg-violet-500/10 backdrop-blur-2xl rounded-xl border border-violet-500/30 border-t-violet-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-gradient-to-r from-violet-500/20 to-transparent border-b border border-violet-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <ImageIcon className="w-5 h-5 text-violet-400" />
                       <span className="font-bold text-white text-[15px]">Background</span>
@@ -939,8 +939,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* General */}
-                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-teal-500/20 to-transparent border-b border-teal-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border border-teal-500/30 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-gradient-to-r from-teal-500/20 to-transparent border-b border border-teal-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Info className="w-5 h-5 text-teal-400" />
                       <span className="font-bold text-white text-[15px]">General Info</span>
@@ -953,35 +953,35 @@ export default function ClientDetailsPage() {
                     </button>
                   </div>
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Globe className="w-3.5 h-3.5 text-teal-400" />
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Timezone:</span>
                       <span className="text-[13px] font-bold text-white">America/Denver</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <span className="text-teal-400 text-[14px] font-bold">$</span>
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Currency:</span>
                       <span className="text-[13px] font-bold text-white">USD</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <span className="text-teal-400 text-[12px] font-bold">A<span className="text-[9px]">文</span></span>
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Language:</span>
                       <span className="text-[13px] font-bold text-white">English - US</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Building2 className="w-3.5 h-3.5 text-teal-400" />
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Industry:</span>
                       <span className="text-[13px] font-bold text-white">Retail Trade</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <svg className="w-3.5 h-3.5 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <circle cx="12" cy="12" r="10"/>
@@ -991,7 +991,7 @@ export default function ClientDetailsPage() {
                       <span className="text-[13px] text-slate-400 w-24">Year in Biz:</span>
                       <span className="text-[13px] font-bold text-white">1 yr</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Users className="w-3.5 h-3.5 text-teal-400" />
                       </div>
@@ -1003,8 +1003,8 @@ export default function ClientDetailsPage() {
 
 
                 {/* Compliance Essentials */}
-                <div className="bg-slate-900/60 bg-yellow-500/10 backdrop-blur-2xl rounded-xl border-yellow-500/30 border-t-yellow-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-yellow-500/20 to-transparent border-b border-yellow-500/30 flex items-center gap-2">
+                <div className="bg-slate-900/60 bg-yellow-500/10 backdrop-blur-2xl rounded-xl border border-yellow-500/30 border-t-yellow-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-gradient-to-r from-yellow-500/20 to-transparent border-b border border-yellow-500/30 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-yellow-400" />
                     <span className="font-bold text-white text-[15px]">Compliance Essentials</span>
                   </div>
@@ -1036,8 +1036,8 @@ export default function ClientDetailsPage() {
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
                 {/* Communications Section */}
-                <div className="bg-slate-900/60 bg-blue-500/10 backdrop-blur-2xl rounded-xl border-blue-500/30 border-t-blue-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-5 bg-gradient-to-r from-blue-500/20 to-transparent border-b border-blue-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/60 bg-blue-500/10 backdrop-blur-2xl rounded-xl border border-blue-500/30 border-t-blue-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-5 bg-gradient-to-r from-blue-500/20 to-transparent border-b border border-blue-500/30 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-blue-400" />
                       Communications
@@ -1063,7 +1063,7 @@ export default function ClientDetailsPage() {
                   
                   <div className="p-6">
                     {activeTab === 'email' && (
-                      <div className="border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
+                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
                         <div className="p-6 space-y-6">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -1106,7 +1106,7 @@ export default function ClientDetailsPage() {
                             <div>
                               <label className="block text-[12px] font-bold text-blue-300 uppercase tracking-wider mb-2">Use Template</label>
                               <div className="relative">
-                                <select className="w-full px-4 py-3 bg-blue-500/10 border-blue-500/30 text-blue-300 rounded-lg text-[14px] font-bold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                <select className="w-full px-4 py-3 bg-blue-500/10 border border-blue-500/30 text-blue-300 rounded-lg text-[14px] font-bold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner appearance-none cursor-pointer">
                                   <option>Select a Template...</option>
                                   <option>Welcome Email</option>
                                   <option>Follow Up</option>
@@ -1150,7 +1150,7 @@ export default function ClientDetailsPage() {
                     )}
                     
                     {activeTab === 'sms' && (
-                      <div className="border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
+                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
                         <div className="p-6 space-y-6">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -1207,7 +1207,7 @@ export default function ClientDetailsPage() {
                             <label className="block text-[12px] font-bold text-blue-300 uppercase tracking-wider mb-2 flex justify-between items-center">
                               <span>Message <span className="text-slate-500">*</span></span>
                               <div className="relative w-48">
-                                <select className="w-full pl-3 pr-8 py-1.5 bg-blue-500/10 border-blue-500/30 text-blue-300 rounded text-[11px] font-bold focus:outline-none focus:border-blue-500 transition-all appearance-none cursor-pointer">
+                                <select className="w-full pl-3 pr-8 py-1.5 bg-blue-500/10 border border-blue-500/30 text-blue-300 rounded text-[11px] font-bold focus:outline-none focus:border-blue-500 transition-all appearance-none cursor-pointer">
                                   <option>Use SMS Template...</option>
                                   <option>Appointment Reminder</option>
                                   <option>Quick Follow Up</option>
@@ -1286,7 +1286,7 @@ export default function ClientDetailsPage() {
                     )}
 
                     {activeTab === 'call' && (
-                      <div className="border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
+                      <div className="border border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
                         <div className="p-8">
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                             
@@ -1310,7 +1310,7 @@ export default function ClientDetailsPage() {
                                     type="text" 
                                     defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''}
                                     placeholder="Enter phone number..."
-                                    className="w-full pl-10 pr-10 py-2.5 bg-slate-950/90 border-emerald-500/30 rounded-lg text-[16px] font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-center shadow-inner relative z-10"
+                                    className="w-full pl-10 pr-10 py-2.5 bg-slate-950/90 border border-emerald-500/30 rounded-lg text-[16px] font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-center shadow-inner relative z-10"
                                   />
                                   <div className="absolute inset-y-0 right-0 flex items-center pr-2 z-10">
                                     <div className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded cursor-pointer transition-colors">
@@ -1426,8 +1426,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="bg-slate-900/60 bg-amber-500/10 backdrop-blur-2xl rounded-xl border-amber-500/30 border-t-amber-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-amber-500/20 to-transparent border-b border-amber-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/60 bg-amber-500/10 backdrop-blur-2xl rounded-xl border border-amber-500/30 border-t-amber-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-gradient-to-r from-amber-500/20 to-transparent border-b border border-amber-500/30 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-amber-400" />
                       Notes
@@ -1442,7 +1442,7 @@ export default function ClientDetailsPage() {
                   
                   <div className="p-4 space-y-3 max-h-[400px] overflow-y-auto custom-scrollbar">
                     {notes.map(note => (
-                      <div key={note.id} className="bg-slate-800/40 border-slate-700/50 rounded-xl p-4 relative group hover:border-amber-500/30 transition-colors shadow-sm">
+                      <div key={note.id} className="bg-slate-800/40 border-slate-700/50 rounded-xl p-4 relative group hover:border border-amber-500/30 transition-colors shadow-sm">
                         <div className="flex justify-between items-start mb-2">
                           <h3 className="text-[14px] font-bold text-white group-hover:text-amber-400 transition-colors">{note.title}</h3>
                           <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -1487,7 +1487,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Analytics Expanded Section */}
-                <div className="bg-slate-900/60 bg-sky-500/10 backdrop-blur-2xl rounded-xl border-sky-500/30 border-t-sky-500 border-t-4 shadow-sm overflow-hidden">
+                <div className="bg-slate-900/60 bg-sky-500/10 backdrop-blur-2xl rounded-xl border border-sky-500/30 border-t-sky-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-sky-500/20 bg-sky-500/5 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-sky-400" />
@@ -1613,7 +1613,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Document Signing Center */}
-                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
+                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border border-teal-500/30 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-teal-500/20 flex justify-between items-center bg-teal-500/15">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-teal-400" />
@@ -1627,15 +1627,15 @@ export default function ClientDetailsPage() {
                   <div className="p-6">
                     <div className="grid grid-cols-1 gap-3">
                       {/* Signed Document */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-lg hover:bg-slate-800/60 transition-colors group">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-lg hover:bg-slate-800/60 transition-colors group">
                         <div className="flex items-start gap-4 mb-3 md:mb-0">
-                          <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 border-emerald-500/30 border-t-emerald-500 border-t-4">
+                          <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/30 border-t-emerald-500 border-t-4">
                             <CheckCircle2 className="w-5 h-5 text-emerald-400" />
                           </div>
                           <div>
                             <h4 className="text-[14px] font-bold text-white group-hover:text-indigo-300 transition-colors">Website Redesign Agreement</h4>
                             <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                              <span className="text-[11px] font-medium px-2 py-0.5 bg-emerald-500/20 text-emerald-400 rounded border-emerald-500/30 flex items-center gap-1">
+                              <span className="text-[11px] font-medium px-2 py-0.5 bg-emerald-500/20 text-emerald-400 rounded border border-emerald-500/30 flex items-center gap-1">
                                 <CheckCircle2 className="w-3 h-3" /> Signed
                               </span>
                               <span className="text-[12px] text-slate-400 flex items-center gap-1">
@@ -1658,15 +1658,15 @@ export default function ClientDetailsPage() {
                       </div>
 
                       {/* Pending Document */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border-amber-500/30 border-t-amber-500 border-t-4 rounded-lg hover:bg-slate-800/60 transition-colors group">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-amber-500/30 border-t-amber-500 border-t-4 rounded-lg hover:bg-slate-800/60 transition-colors group">
                         <div className="flex items-start gap-4 mb-3 md:mb-0">
-                          <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 border-amber-500/30 border-t-amber-500 border-t-4">
+                          <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 border border-amber-500/30 border-t-amber-500 border-t-4">
                             <Clock className="w-5 h-5 text-amber-400" />
                           </div>
                           <div>
                             <h4 className="text-[14px] font-bold text-white group-hover:text-indigo-300 transition-colors">SEO Monthly Retainer</h4>
                             <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                              <span className="text-[11px] font-medium px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded border-amber-500/30 flex items-center gap-1">
+                              <span className="text-[11px] font-medium px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded border border-amber-500/30 flex items-center gap-1">
                                 <Clock className="w-3 h-3" /> Pending Signature
                               </span>
                               <span className="text-[12px] text-slate-400 flex items-center gap-1">
@@ -1707,7 +1707,7 @@ export default function ClientDetailsPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2 md:justify-end">
-                          <button className="px-3 py-1.5 text-[11px] font-bold text-indigo-300 hover:text-white bg-indigo-500/10 hover:bg-teal-500/20 rounded-lg transition-colors border-indigo-500/30">
+                          <button className="px-3 py-1.5 text-[11px] font-bold text-indigo-300 hover:text-white bg-indigo-500/10 hover:bg-teal-500/20 rounded-lg transition-colors border border-indigo-500/30">
                             Edit & Send
                           </button>
                           <button className="p-2 text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 rounded-lg transition-colors border-slate-700/50 bg-slate-900/50" title="Delete">
@@ -1721,8 +1721,8 @@ export default function ClientDetailsPage() {
 
 
                 {/* Samples Section */}
-                <div className="bg-slate-900/60 bg-fuchsia-500/10 backdrop-blur-2xl rounded-xl border-fuchsia-500/30 border-t-fuchsia-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-fuchsia-500/20 to-transparent border-b border-fuchsia-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/60 bg-fuchsia-500/10 backdrop-blur-2xl rounded-xl border border-fuchsia-500/30 border-t-fuchsia-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-gradient-to-r from-fuchsia-500/20 to-transparent border-b border border-fuchsia-500/30 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <List className="w-5 h-5 text-fuchsia-400" />
                       Client Assets & Samples
@@ -1730,7 +1730,7 @@ export default function ClientDetailsPage() {
                     <div className="flex gap-2">
                       <button 
                         onClick={() => setIsAddLogoModalOpen(true)}
-                        className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 border-fuchsia-500/30 text-fuchsia-300 hover:text-white rounded-md text-[13px] font-bold transition-all shadow-sm"
+                        className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 border border-fuchsia-500/30 text-fuchsia-300 hover:text-white rounded-md text-[13px] font-bold transition-all shadow-sm"
                       >
                         <ImageIcon className="w-4 h-4" /> Add Logo
                       </button>
@@ -1774,7 +1774,7 @@ export default function ClientDetailsPage() {
                           </div>
                           
                           {/* URL Box */}
-                          <div className="bg-slate-900 p-3 rounded-lg border-slate-700/50 mb-4 relative z-10 flex items-center justify-between group/url cursor-pointer hover:border-fuchsia-500/30 transition-colors">
+                          <div className="bg-slate-900 p-3 rounded-lg border-slate-700/50 mb-4 relative z-10 flex items-center justify-between group/url cursor-pointer hover:border border-fuchsia-500/30 transition-colors">
                             <span className="text-[13px] text-fuchsia-300 font-medium truncate pr-4">{sample.url}</span>
                             <LinkIcon className="w-3.5 h-3.5 text-slate-500 group-hover/url:text-fuchsia-400 shrink-0 transition-colors" />
                           </div>
@@ -1829,7 +1829,7 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-6">
                 
                 {/* Pagination */}
-                <div className="flex justify-between items-center bg-slate-950/90 backdrop-blur-2xl rounded-lg border-indigo-500/30 border-t-indigo-500 border-t-4 p-2 shadow-sm shrink-0">
+                <div className="flex justify-between items-center bg-slate-950/90 backdrop-blur-2xl rounded-lg border border-indigo-500/30 border-t-indigo-500 border-t-4 p-2 shadow-sm shrink-0">
                   <button className="px-3 py-1.5 text-[12px] text-indigo-400 hover:text-white hover:bg-indigo-500/20 rounded font-medium flex items-center gap-1 transition-colors">
                     <ChevronDown className="w-3.5 h-3.5 rotate-90" /> Previous
                   </button>
@@ -1840,8 +1840,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-950/90 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent backdrop-blur-2xl rounded-xl border-purple-500/30 border-t-purple-500 border-t-4 shadow-sm relative z-[50] shrink-0">
-                  <div className="p-4 bg-gradient-to-r from-purple-500/20 to-transparent border-b border-purple-500/30 flex justify-between items-center rounded-t-xl relative z-[60]">
+                <div className="bg-slate-950/90 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent backdrop-blur-2xl rounded-xl border border-purple-500/30 border-t-purple-500 border-t-4 shadow-sm relative z-[50] shrink-0">
+                  <div className="p-4 bg-gradient-to-r from-purple-500/20 to-transparent border-b border border-purple-500/30 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <Zap className="w-5 h-5 text-purple-400" /> Tasks
                     </span>
@@ -1905,7 +1905,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-900/60 bg-slate-500/10 backdrop-blur-2xl rounded-xl border-slate-500/30 border-t-slate-500 border-t-4 shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
+                <div className="bg-slate-900/60 bg-slate-500/10 backdrop-blur-2xl rounded-xl border border-slate-500/30 border-t-slate-500 border-t-4 shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
                   <div className="p-4 border-b border-slate-500/20 bg-slate-500/5 flex justify-between items-center relative z-[45]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <List className="w-5 h-5 text-slate-400" />
@@ -1914,7 +1914,7 @@ export default function ClientDetailsPage() {
                     <div className="relative">
                       <button 
                         onClick={() => setIsActivityDropdownOpen(!isActivityDropdownOpen)}
-                        className="flex items-center gap-1.5 text-[13px] font-bold text-slate-300 hover:text-white bg-slate-500/10 hover:bg-slate-500/20 px-3 py-1.5 rounded-lg border-slate-500/30 transition-colors shadow-sm"
+                        className="flex items-center gap-1.5 text-[13px] font-bold text-slate-300 hover:text-white bg-slate-500/10 hover:bg-slate-500/20 px-3 py-1.5 rounded-lg border border-slate-500/30 transition-colors shadow-sm"
                       >
                         {activityFilter} <ChevronDown className={`w-4 h-4 transition-transform ${isActivityDropdownOpen ? 'rotate-180' : ''}`} />
                       </button>
@@ -1951,11 +1951,11 @@ export default function ClientDetailsPage() {
                         <div key={activity.id} className="bg-slate-800/80 border-slate-700 rounded-xl p-4 relative hover:border-slate-500/40 transition-colors shadow-sm">
                           <div className="flex gap-3">
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border
-                              ${activity.type === 'Tasks' ? 'bg-purple-500/20 border-purple-500/30 text-purple-400' :
-                                activity.type === 'Emails' ? 'bg-indigo-500/20 border-indigo-500/30 text-indigo-400' :
-                                activity.type === 'Notes' ? 'bg-amber-500/20 border-amber-500/30 text-amber-400' :
-                                activity.type === 'Call' ? 'bg-emerald-500/20 border-emerald-500/30 text-emerald-400' :
-                                'bg-cyan-500/20 border-cyan-500/30 text-cyan-400'}`}
+                              ${activity.type === 'Tasks' ? 'bg-purple-500/20 border border-purple-500/30 text-purple-400' :
+                                activity.type === 'Emails' ? 'bg-indigo-500/20 border border-indigo-500/30 text-indigo-400' :
+                                activity.type === 'Notes' ? 'bg-amber-500/20 border border-amber-500/30 text-amber-400' :
+                                activity.type === 'Call' ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-400' :
+                                'bg-cyan-500/20 border border-cyan-500/30 text-cyan-400'}`}
                             >
                               {activity.type === 'Tasks' ? <CheckCircle2 className="w-4 h-4" /> :
                                activity.type === 'Emails' ? <Mail className="w-4 h-4" /> :
@@ -2454,7 +2454,7 @@ export default function ClientDetailsPage() {
                       <input 
                         type="email" 
                         defaultValue={currentClient.email !== '---' ? currentClient.email : ''}
-                        className="w-full px-4 py-2.5 bg-indigo-500/10 border-indigo-500/30 rounded-xl text-sm text-indigo-300 focus:outline-none transition-all placeholder:text-indigo-400/50" 
+                        className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-sm text-indigo-300 focus:outline-none transition-all placeholder:text-indigo-400/50" 
                       />
                     </div>
                     <div>
@@ -2731,7 +2731,7 @@ export default function ClientDetailsPage() {
                   className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-medium transition-colors ${
                     businessLinks.length >= 6 
                       ? 'bg-slate-800 text-slate-500 cursor-not-allowed border-slate-700' 
-                      : 'bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 border-indigo-500/30 border-t-indigo-500 border-t-4'
+                      : 'bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 border border-indigo-500/30 border-t-indigo-500 border-t-4'
                   }`}
                 >
                   <Plus className="w-4 h-4" /> Add Another
@@ -2809,7 +2809,7 @@ export default function ClientDetailsPage() {
                     placeholder="vikas@pinkgorillasoftware.com"
                     value={newEmployee.email}
                     onChange={(e) => setNewEmployee({...newEmployee, email: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-indigo-500/10 border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                    className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                   />
                 </div>
                 
@@ -2889,7 +2889,7 @@ export default function ClientDetailsPage() {
                     value={newEmployee.password}
                     onChange={(e) => setNewEmployee({...newEmployee, password: e.target.value})}
                     placeholder="..........."
-                    className="w-full px-4 py-2.5 bg-indigo-500/10 border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all font-mono tracking-widest"
+                    className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all font-mono tracking-widest"
                   />
                 </div>
               </div>
@@ -2967,7 +2967,7 @@ export default function ClientDetailsPage() {
                     placeholder="vikas@pinkgorillasoftware.com"
                     value={editingEmployee.email}
                     onChange={(e) => setEditingEmployee({...editingEmployee, email: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-indigo-500/10 border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                    className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                   />
                 </div>
                 
@@ -3155,7 +3155,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 text-center">
-              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-4 border-blue-500/30 border-t-blue-500 border-t-4">
+              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-4 border border-blue-500/30 border-t-blue-500 border-t-4">
                 <Trash2 className="w-8 h-8 text-blue-500" />
               </div>
               <h2 className="text-xl font-bold text-white mb-2">Delete Employee?</h2>
@@ -3440,7 +3440,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 text-center">
-              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-4 border-blue-500/30 border-t-blue-500 border-t-4">
+              <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-4 border border-blue-500/30 border-t-blue-500 border-t-4">
                 <Trash2 className="w-8 h-8 text-blue-500" />
               </div>
               <h2 className="text-xl font-bold text-white mb-2">Delete Sample</h2>
@@ -3784,7 +3784,7 @@ export default function ClientDetailsPage() {
             {/* Body */}
             <div className="p-6 space-y-6">
               {/* Info Banner */}
-              <div className="flex items-start gap-3 p-4 bg-indigo-500/10 border-indigo-500/30 border-t-indigo-500 border-t-4 rounded-lg">
+              <div className="flex items-start gap-3 p-4 bg-indigo-500/10 border border-indigo-500/30 border-t-indigo-500 border-t-4 rounded-lg">
                 <Info className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <p className="text-[13px] text-indigo-200/90 leading-relaxed">
@@ -3792,10 +3792,10 @@ export default function ClientDetailsPage() {
                   </p>
                 </div>
                 <div className="flex gap-2 shrink-0">
-                  <button className="w-7 h-7 flex items-center justify-center rounded border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 transition-colors">
+                  <button className="w-7 h-7 flex items-center justify-center rounded border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 transition-colors">
                     <Eye className="w-3.5 h-3.5" />
                   </button>
-                  <button className="w-7 h-7 flex items-center justify-center rounded border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 transition-colors">
+                  <button className="w-7 h-7 flex items-center justify-center rounded border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 transition-colors">
                     <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                   </button>
                 </div>
@@ -3839,7 +3839,7 @@ export default function ClientDetailsPage() {
               </div>
 
               {/* Security Banner */}
-              <div className="flex items-center gap-2 p-3.5 bg-amber-500/10 border-amber-500/30 border-t-amber-500 border-t-4 rounded-lg mt-6">
+              <div className="flex items-center gap-2 p-3.5 bg-amber-500/10 border border-amber-500/30 border-t-amber-500 border-t-4 rounded-lg mt-6">
                 <svg className="w-4 h-4 text-amber-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
@@ -3927,7 +3927,7 @@ export default function ClientDetailsPage() {
                         <div className="flex-1 space-y-3 mb-6">
                           {(expandedPlans[plan.name] ? plan.features : plan.features.slice(0, 5)).map((feature, i) => (
                             <div key={i} className={`flex items-start gap-2 ${i >= 5 ? 'animate-in fade-in slide-in-from-top-1 duration-300' : ''}`}>
-                              <div className="w-4 h-4 rounded-full bg-emerald-500/20 border-emerald-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                              <div className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0 mt-0.5">
                                 <svg className="w-2.5 h-2.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
                               </div>
                               <span className="text-[12px] text-slate-300 leading-tight">{feature}</span>
@@ -4143,7 +4143,7 @@ export default function ClientDetailsPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border-emerald-500/30">Default</span>
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Default</span>
                           <button className="text-slate-400 hover:text-blue-400 transition-colors">
                             <Trash2 className="w-4 h-4" />
                           </button>
