@@ -1229,12 +1229,12 @@ export default function ClientDetailsPage() {
                             
                             <div className="relative max-w-sm mx-auto mt-4">
                               {/* iPhone mock frame */}
-                              <div className="relative border-[6px] border-slate-800 bg-slate-900 rounded-[2.5rem] shadow-xl overflow-hidden h-[400px]">
+                              <div className="relative border-[6px] border-slate-800 bg-slate-900 rounded-[2.5rem] shadow-xl overflow-hidden h-[450px] flex flex-col">
                                 {/* iPhone Notch */}
                                 <div className="absolute top-0 inset-x-0 h-6 bg-slate-800 rounded-b-xl mx-auto w-32 z-20"></div>
                                 
                                 {/* SMS Header */}
-                                <div className="bg-slate-800/80 backdrop-blur-md pt-8 pb-3 px-4 text-center border-b border-slate-700 relative z-10 flex flex-col items-center">
+                                <div className="bg-slate-800/80 backdrop-blur-md pt-8 pb-3 px-4 text-center border-b border-slate-700 relative z-10 shrink-0 flex flex-col items-center">
                                   <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center mb-1">
                                     <User className="w-5 h-5 text-slate-400" />
                                   </div>
@@ -1243,13 +1243,34 @@ export default function ClientDetailsPage() {
                                 </div>
                                 
                                 {/* SMS Body */}
-                                <div className="p-4 h-full bg-[#0f172a] flex flex-col">
-                                  <div className="mt-auto mb-16 relative group">
+                                <div className="p-4 flex-1 bg-[#0f172a] flex flex-col overflow-y-auto custom-scrollbar relative">
+                                  <div className="flex flex-col gap-3 mt-auto mb-4 pt-4">
+                                    <div className="flex flex-col items-start max-w-[85%]">
+                                      <span className="text-[9px] text-slate-500 mb-0.5 ml-2">Mar 06, 10:00 AM</span>
+                                      <div className="bg-slate-800 text-slate-300 p-2.5 rounded-2xl rounded-tl-sm text-[13px] shadow-sm border border-slate-700/50">
+                                        Hi there! We wanted to let you know about our new features. Are you available for a quick chat?
+                                      </div>
+                                    </div>
+                                    <div className="flex flex-col items-end max-w-[85%] self-end">
+                                      <span className="text-[9px] text-slate-500 mb-0.5 mr-2">Mar 06, 10:15 AM</span>
+                                      <div className="bg-indigo-600 text-white p-2.5 rounded-2xl rounded-tr-sm text-[13px] shadow-sm">
+                                        Yes, I'm interested. Can we schedule a call for tomorrow?
+                                      </div>
+                                    </div>
+                                    <div className="flex flex-col items-start max-w-[85%]">
+                                      <span className="text-[9px] text-slate-500 mb-0.5 ml-2">Mar 06, 10:20 AM</span>
+                                      <div className="bg-slate-800 text-slate-300 p-2.5 rounded-2xl rounded-tl-sm text-[13px] shadow-sm border border-slate-700/50">
+                                        Perfect! I'll send over a calendar invite shortly.
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="relative group shrink-0 pb-2">
                                     <textarea 
                                       placeholder="Type your SMS message here..." 
-                                      className="w-full bg-[#1e40af] text-white p-3 pr-10 rounded-2xl rounded-br-sm text-[14px] min-h-[100px] resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm leading-snug"
+                                      className="w-full bg-[#1e40af] text-white p-3 pr-10 rounded-2xl rounded-br-sm text-[14px] min-h-[80px] resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm leading-snug"
                                     ></textarea>
-                                    <span className="absolute bottom-2 right-2 text-[10px] text-blue-200/70 font-medium">0/160</span>
+                                    <span className="absolute bottom-4 right-3 text-[10px] text-blue-200/70 font-medium">0/160</span>
                                   </div>
                                 </div>
                               </div>
