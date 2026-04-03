@@ -98,6 +98,7 @@ export default function ClientDetailsPage() {
   const [deletingEmployee, setDeletingEmployee] = useState<any>(null);
   
   const [checkedComplianceItems, setCheckedComplianceItems] = useState<Record<number, boolean>>({});
+  const [isGorillaAppsExpanded, setIsGorillaAppsExpanded] = useState(false);
 
   // Business Discovery Links State
   const [editClientLinks, setEditClientLinks] = useState([
@@ -712,25 +713,90 @@ export default function ClientDetailsPage() {
                   </div>
                 </div>
 
-                {/* Google Analytics */}
+                {/* Analytics Quick View */}
                 <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.05)] overflow-hidden">
                   <div className="p-4 bg-blue-500/10 border-b border-blue-500/20 flex items-center gap-2">
                     <svg className="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M2 13h4v8H2v-8zM9 4h4v17H9V4zM16 9h4v12h-4V9z" />
                     </svg>
-                    <span className="font-bold text-white text-[15px]">Google Analytics</span>
+                    <span className="font-bold text-white text-[15px]">Analytics Quick View</span>
                   </div>
-                  <div className="p-5">
-                    <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-5 text-center">
-                      <p className="text-[13px] font-medium text-slate-400 mb-4 leading-relaxed">
-                        Connect your Google Analytics account to view analytics data in your dashboard.
-                      </p>
-                      <button 
-                        onClick={() => setIsAnalyticsModalOpen(true)}
-                        className="px-4 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-[13px] font-bold transition-colors flex items-center justify-center gap-2 w-full shadow-sm"
+                  <div className="p-5 space-y-4">
+                    {/* Main Website Visits */}
+                    <div className="flex items-center justify-between p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-md bg-blue-500/10 flex items-center justify-center shrink-0">
+                          <Globe className="w-4 h-4 text-blue-400" />
+                        </div>
+                        <span className="text-[13px] font-medium text-slate-300">Main Website Visits</span>
+                      </div>
+                      <span className="text-[16px] font-bold text-white">1,245</span>
+                    </div>
+
+                    {/* Gorilla Apps Visits */}
+                    <div className="flex items-center justify-between p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-md bg-purple-500/10 flex items-center justify-center shrink-0">
+                          <Briefcase className="w-4 h-4 text-purple-400" />
+                        </div>
+                        <span className="text-[13px] font-medium text-slate-300">Gorilla Apps Visits</span>
+                      </div>
+                      <span className="text-[16px] font-bold text-white">856</span>
+                    </div>
+
+                    {/* Gorilla Apps Users */}
+                    <div className="border border-slate-700/50 rounded-lg overflow-hidden bg-slate-800/30">
+                      <div 
+                        className="flex items-center justify-between p-3 bg-slate-800/50 cursor-pointer hover:bg-slate-700/50 transition-colors"
+                        onClick={() => setIsGorillaAppsExpanded(!isGorillaAppsExpanded)}
                       >
-                        Connect Google Analytics
-                      </button>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0">
+                            <Users className="w-4 h-4 text-emerald-400" />
+                          </div>
+                          <span className="text-[13px] font-medium text-slate-300">Gorilla Apps Users</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="text-[16px] font-bold text-white">3</span>
+                          <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isGorillaAppsExpanded ? 'rotate-180' : ''}`} />
+                        </div>
+                      </div>
+
+                      {/* Expanded Users List */}
+                      {isGorillaAppsExpanded && (
+                        <div className="p-3 border-t border-slate-700/50 space-y-2 bg-slate-900/30">
+                          <div className="flex items-center justify-between text-[12px] p-2 rounded hover:bg-slate-800/50 transition-colors border border-slate-700/30">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white">JS</div>
+                              <span className="font-medium text-slate-300">John Smith</span>
+                            </div>
+                            <div className="flex items-center gap-4 text-slate-400">
+                              <span><span className="font-bold text-slate-300">12</span> logins</span>
+                              <span><span className="font-bold text-slate-300">4.5</span> hrs</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between text-[12px] p-2 rounded hover:bg-slate-800/50 transition-colors border border-slate-700/30">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white">AD</div>
+                              <span className="font-medium text-slate-300">Alice Doe</span>
+                            </div>
+                            <div className="flex items-center gap-4 text-slate-400">
+                              <span><span className="font-bold text-slate-300">8</span> logins</span>
+                              <span><span className="font-bold text-slate-300">2.1</span> hrs</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between text-[12px] p-2 rounded hover:bg-slate-800/50 transition-colors border border-slate-700/30">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white">MJ</div>
+                              <span className="font-medium text-slate-300">Mike Johnson</span>
+                            </div>
+                            <div className="flex items-center gap-4 text-slate-400">
+                              <span><span className="font-bold text-slate-300">2</span> logins</span>
+                              <span><span className="font-bold text-slate-300">0.5</span> hrs</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
