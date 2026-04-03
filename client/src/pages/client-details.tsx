@@ -2693,7 +2693,7 @@ export default function ClientDetailsPage() {
                 <div key={index} className="flex items-start gap-4 p-4 bg-slate-800/30 border-slate-700/50 rounded-lg relative group">
                   <div className="flex-1 space-y-4">
                     <div>
-                      <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Link Label*</label>
+                      <label className="block text-[14px] font-bold text-slate-200 mb-2">Link Label*</label>
                       <input 
                         type="text" 
                         value={link.label}
@@ -2703,7 +2703,7 @@ export default function ClientDetailsPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Link URL*</label>
+                      <label className="block text-[14px] font-bold text-slate-200 mb-2">Link URL*</label>
                       <input 
                         type="url" 
                         value={link.url}
@@ -2779,7 +2779,7 @@ export default function ClientDetailsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* First Name */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">First Name*</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">First Name*</label>
                   <input 
                     type="text" 
                     placeholder="Jordan"
@@ -2791,7 +2791,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Last Name */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Last Name</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Last Name</label>
                   <input 
                     type="text" 
                     placeholder="Peterson"
@@ -2803,7 +2803,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Email Address */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Email Address*</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Email Address*</label>
                   <input 
                     type="email" 
                     placeholder="vikas@pinkgorillasoftware.com"
@@ -2815,7 +2815,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Phone */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Phone</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Phone</label>
                   <div className="flex">
                     <select 
                       value={newEmployee.phoneCode}
@@ -2838,7 +2838,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Designation */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Designation</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Designation</label>
                   {newEmployee.designation === 'Custom' ? (
                     <div className="flex gap-2">
                       <input
@@ -2883,7 +2883,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Password */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Password*</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Password*</label>
                   <input 
                     type="password" 
                     value={newEmployee.password}
@@ -2937,7 +2937,7 @@ export default function ClientDetailsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* First Name */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">First Name*</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">First Name*</label>
                   <input 
                     type="text" 
                     placeholder="Jordan"
@@ -2949,7 +2949,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Last Name */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Last Name</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Last Name</label>
                   <input 
                     type="text" 
                     placeholder="Peterson"
@@ -2961,7 +2961,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Email Address */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Email Address*</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Email Address*</label>
                   <input 
                     type="email" 
                     placeholder="vikas@pinkgorillasoftware.com"
@@ -2973,7 +2973,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Phone */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Phone</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Phone</label>
                   <div className="flex">
                     <select 
                       value={editingEmployee.phoneCode}
@@ -2996,7 +2996,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Designation */}
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Designation</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Designation</label>
                   {editingEmployee.designation === 'Custom' ? (
                     <div className="flex gap-2">
                       <input
@@ -3099,7 +3099,7 @@ export default function ClientDetailsPage() {
                 </div>
                 
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">New Password*</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">New Password*</label>
                   <input 
                     type="password" 
                     value={passwordForm.newPassword}
@@ -3113,7 +3113,7 @@ export default function ClientDetailsPage() {
                 </div>
                 
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Confirm Password*</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Confirm Password*</label>
                   <input 
                     type="password" 
                     value={passwordForm.confirmPassword}
@@ -3187,9 +3187,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsAddNoteModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
-              <h2 className="text-xl font-bold text-white">Create A New Note</h2>
+          <div className="relative bg-slate-900/95 border border-amber-500/30 border-t-amber-500 border-t-4 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-amber-500/30 bg-gradient-to-r from-amber-500/20 to-transparent rounded-t-xl">
+              <h2 className="text-xl font-bold text-white flex items-center gap-2"><svg className="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg> Create A New Note</h2>
               <button 
                 onClick={() => setIsAddNoteModalOpen(false)}
                 className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
@@ -3200,18 +3200,18 @@ export default function ClientDetailsPage() {
             
             <div className="p-6 space-y-5">
               <div>
-                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Title*</label>
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">Title*</label>
                 <input 
                   type="text" 
                   value={newNote.title}
                   onChange={(e) => setNewNote({...newNote, title: e.target.value})}
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                  className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all shadow-inner"
                 />
               </div>
               
               <div>
-                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Description*</label>
-                <div className="border-slate-700 rounded-lg bg-slate-900/50 overflow-hidden focus-within:border-purple-500/50 focus-within:ring-1 focus-within:ring-purple-500/50 transition-all">
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">Description*</label>
+                <div className="border border-slate-700 rounded-lg bg-slate-950 overflow-hidden focus-within:border-amber-500 focus-within:ring-1 focus-within:ring-amber-500 transition-all shadow-inner">
                   <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800/50 overflow-x-auto custom-scrollbar">
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
@@ -3223,7 +3223,7 @@ export default function ClientDetailsPage() {
                   <textarea 
                     value={newNote.description}
                     onChange={(e) => setNewNote({...newNote, description: e.target.value})}
-                    className="w-full p-4 min-h-[200px] resize-none focus:outline-none text-[13px] text-white bg-transparent"
+                    className="w-full p-4 min-h-[200px] resize-none focus:outline-none text-[14px] text-white bg-transparent"
                   ></textarea>
                 </div>
               </div>
@@ -3239,7 +3239,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleAddNote}
                 disabled={!newNote.title || !newNote.description}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
+                className="px-6 py-2 bg-amber-600 hover:bg-amber-500 disabled:opacity-50 disabled:hover:bg-amber-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Submit
               </button>
@@ -3253,9 +3253,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsEditNoteModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
-              <h2 className="text-xl font-bold text-white">Edit Note</h2>
+          <div className="relative bg-slate-900/95 border border-amber-500/30 border-t-amber-500 border-t-4 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-amber-500/30 bg-gradient-to-r from-amber-500/20 to-transparent rounded-t-xl">
+              <h2 className="text-xl font-bold text-white flex items-center gap-2"><svg className="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Edit Note</h2>
               <button 
                 onClick={() => setIsEditNoteModalOpen(false)}
                 className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
@@ -3266,18 +3266,18 @@ export default function ClientDetailsPage() {
             
             <div className="p-6 space-y-5">
               <div>
-                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Title*</label>
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">Title*</label>
                 <input 
                   type="text" 
                   value={editingNote.title}
                   onChange={(e) => setEditingNote({...editingNote, title: e.target.value})}
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                  className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all shadow-inner"
                 />
               </div>
               
               <div>
-                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Description*</label>
-                <div className="border-slate-700 rounded-lg bg-slate-900/50 overflow-hidden focus-within:border-purple-500/50 focus-within:ring-1 focus-within:ring-purple-500/50 transition-all">
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">Description*</label>
+                <div className="border border-slate-700 rounded-lg bg-slate-950 overflow-hidden focus-within:border-amber-500 focus-within:ring-1 focus-within:ring-amber-500 transition-all shadow-inner">
                   <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800/50 overflow-x-auto custom-scrollbar">
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
@@ -3288,7 +3288,7 @@ export default function ClientDetailsPage() {
                   <textarea 
                     value={editingNote.description}
                     onChange={(e) => setEditingNote({...editingNote, description: e.target.value})}
-                    className="w-full p-4 min-h-[200px] resize-none focus:outline-none text-[13px] text-white bg-transparent"
+                    className="w-full p-4 min-h-[200px] resize-none focus:outline-none text-[14px] text-white bg-transparent"
                   ></textarea>
                 </div>
               </div>
@@ -3304,7 +3304,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleEditNote}
                 disabled={!editingNote.title || !editingNote.description}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
+                className="px-6 py-2 bg-amber-600 hover:bg-amber-500 disabled:opacity-50 disabled:hover:bg-amber-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Submit
               </button>
@@ -3365,7 +3365,7 @@ export default function ClientDetailsPage() {
             
             <div className="p-6 space-y-4">
               <div>
-                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">To*</label>
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">To*</label>
                 <input 
                   type="email" 
                   value={emailForm.to}
@@ -3375,7 +3375,7 @@ export default function ClientDetailsPage() {
               </div>
               
               <div>
-                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Subject*</label>
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">Subject*</label>
                 <input 
                   type="text" 
                   value={emailForm.subject}
@@ -3407,7 +3407,7 @@ export default function ClientDetailsPage() {
               </div>
               
               <div>
-                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">From*</label>
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">From*</label>
                 <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all outline-none">
                   <option>Staging Pink Gorilla (vikas@pinkgorillasoftware.com)</option>
                 </select>
@@ -3486,7 +3486,7 @@ export default function ClientDetailsPage() {
             <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-5">
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Subdomain*</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Subdomain*</label>
                   <div className="flex">
                     <input 
                       type="text" 
@@ -3502,7 +3502,7 @@ export default function ClientDetailsPage() {
                 </div>
                 
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Logo (PNG/JPG)</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Logo (PNG/JPG)</label>
                   <div className="flex items-center gap-3 w-full px-4 py-2 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-slate-400 relative overflow-hidden group">
                     <input 
                       type="file" 
@@ -3527,7 +3527,7 @@ export default function ClientDetailsPage() {
                 </div>
                 
                 <div>
-                  <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Template*</label>
+                  <label className="block text-[14px] font-bold text-slate-200 mb-2">Template*</label>
                   <select 
                     value={newWebsiteSample.template}
                     onChange={(e) => setNewWebsiteSample({...newWebsiteSample, template: e.target.value})}
@@ -3625,7 +3625,7 @@ export default function ClientDetailsPage() {
             
             <div className="p-6 space-y-5">
               <div>
-                <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Title*</label>
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">Title*</label>
                 <input 
                   type="text" 
                   placeholder="Sample"
