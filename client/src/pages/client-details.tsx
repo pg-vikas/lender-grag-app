@@ -87,6 +87,35 @@ export default function ClientDetailsPage() {
     : activities.filter(a => a.type === activityFilter);
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
+  const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
+  const [isTemplateDropdownOpen, setIsTemplateDropdownOpen] = useState(false);
+  const [emailTemplates, setEmailTemplates] = useState([
+    { id: 1, name: 'Welcome Email', subject: 'Welcome to Gorilla Hub', body: 'Hi there,\n\nWelcome!' },
+    { id: 2, name: 'Follow Up', subject: 'Following up on our conversation', body: 'Hi,\n\nJust following up...' },
+    { id: 3, name: 'Invoice Reminder', subject: 'Invoice Overdue', body: 'Please pay your invoice.' }
+  ]);
+  const [newTemplate, setNewTemplate] = useState({ name: '', subject: '', body: '' });
+  const [selectedTemplateId, setSelectedTemplateId] = useState<number | null>(null);
+  
+  const handleCreateTemplate = () => {
+    if (newTemplate.name) {
+      setEmailTemplates([...emailTemplates, { id: Date.now(), ...newTemplate }]);
+      setIsTemplateModalOpen(false);
+      setNewTemplate({ name: '', subject: '', body: '' });
+    }
+  };
+  
+  const handleDeleteTemplate = (e: React.MouseEvent, id: number) => {
+    e.stopPropagation();
+    setEmailTemplates(emailTemplates.filter(t => t.id !== id));
+    if (selectedTemplateId === id) setSelectedTemplateId(null);
+  };
+  
+  const handleSelectTemplate = (template: any) => {
+    setSelectedTemplateId(template.id);
+    setIsTemplateDropdownOpen(false);
+    // Ideally we would update the email body here, but for mockup we just select it
+  };
   const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
   const [isChoosePlanModalOpen, setIsChoosePlanModalOpen] = useState(false);
   const [isManageBillingModalOpen, setIsManageBillingModalOpen] = useState(false);
@@ -1104,17 +1133,56 @@ export default function ClientDetailsPage() {
                             </div>
                             
                             <div>
-                              <label className="block text-[12px] font-bold text-blue-300 uppercase tracking-wider mb-2">Use Template</label>
+                              <div className="flex items-center justify-between mb-2">
+                                <label className="block text-[12px] font-bold text-blue-300 uppercase tracking-wider">Use Template</label>
+                                <button 
+                                  onClick={() => setIsTemplateModalOpen(true)}
+                                  className="text-[11px] font-bold text-blue-400 hover:text-blue-300 flex items-center gap-1 bg-blue-500/10 hover:bg-blue-500/20 px-2 py-1 rounded border border-blue-500/30 transition-colors"
+                                >
+                                  <Plus className="w-3 h-3" /> New
+                                </button>
+                              </div>
                               <div className="relative">
-                                <select className="w-full px-4 py-3 bg-blue-500/10 border border-blue-500/30 text-blue-300 rounded-lg text-[14px] font-bold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner appearance-none cursor-pointer">
-                                  <option>Select a Template...</option>
-                                  <option>Welcome Email</option>
-                                  <option>Follow Up</option>
-                                  <option>Invoice Reminder</option>
-                                </select>
-                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                  <ChevronDown className="h-4 w-4 text-blue-400" />
-                                </div>
+                                <button 
+                                  onClick={() => setIsTemplateDropdownOpen(!isTemplateDropdownOpen)}
+                                  className="w-full flex items-center justify-between px-4 py-3 bg-blue-500/10 border border-blue-500/30 text-blue-300 rounded-lg text-[14px] font-bold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner cursor-pointer"
+                                >
+                                  <span className="truncate">{selectedTemplateId ? emailTemplates.find(t => t.id === selectedTemplateId)?.name : 'Select a Template...'}</span>
+                                  <ChevronDown className={`h-4 w-4 text-blue-400 transition-transform duration-200 ${isTemplateDropdownOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                
+                                {isTemplateDropdownOpen && (
+                                  <div className="absolute z-50 mt-1 w-full bg-slate-800 border border-blue-500/30 rounded-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2">
+                                    <div className="max-h-60 overflow-y-auto custom-scrollbar">
+                                      <div 
+                                        className="px-4 py-2.5 text-[13px] text-slate-300 hover:bg-slate-700 cursor-pointer border-b border-slate-700/50"
+                                        onClick={() => { setSelectedTemplateId(null); setIsTemplateDropdownOpen(false); }}
+                                      >
+                                        None (Clear)
+                                      </div>
+                                      {emailTemplates.length === 0 ? (
+                                        <div className="px-4 py-3 text-[13px] text-slate-500 text-center italic">No templates found</div>
+                                      ) : (
+                                        emailTemplates.map(template => (
+                                          <div 
+                                            key={template.id}
+                                            className="px-4 py-2.5 text-[13px] font-medium text-white hover:bg-blue-500/20 cursor-pointer flex items-center justify-between group"
+                                            onClick={() => handleSelectTemplate(template)}
+                                          >
+                                            <span className="truncate">{template.name}</span>
+                                            <button 
+                                              onClick={(e) => handleDeleteTemplate(e, template.id)}
+                                              className="opacity-0 group-hover:opacity-100 p-1.5 text-slate-400 hover:text-red-400 hover:bg-slate-700/50 rounded transition-all"
+                                              title="Delete Template"
+                                            >
+                                              <Trash2 className="w-3.5 h-3.5" />
+                                            </button>
+                                          </div>
+                                        ))
+                                      )}
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -4194,6 +4262,77 @@ export default function ClientDetailsPage() {
                   </div>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Create Template Modal */}
+      {isTemplateModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsTemplateModalOpen(false)}></div>
+          
+          <div className="relative bg-slate-900/95 border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-blue-500/30 bg-gradient-to-r from-blue-500/20 to-transparent rounded-t-xl">
+              <h2 className="text-xl font-bold text-white flex items-center gap-2"><svg className="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> Create New Template</h2>
+              <button 
+                onClick={() => setIsTemplateModalOpen(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-5">
+              <div>
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">Template Name*</label>
+                <input 
+                  type="text" 
+                  value={newTemplate.name}
+                  onChange={(e) => setNewTemplate({...newTemplate, name: e.target.value})}
+                  placeholder="e.g. Welcome Onboarding Email"
+                  className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">Subject Line</label>
+                <input 
+                  type="text" 
+                  value={newTemplate.subject}
+                  onChange={(e) => setNewTemplate({...newTemplate, subject: e.target.value})}
+                  placeholder="Subject of the email"
+                  className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-[14px] font-bold text-slate-200 mb-2">Template Body*</label>
+                <div className="border border-slate-700 rounded-lg bg-slate-950 overflow-hidden focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all shadow-inner">
+                  <textarea 
+                    value={newTemplate.body}
+                    onChange={(e) => setNewTemplate({...newTemplate, body: e.target.value})}
+                    placeholder="Write the template body here..."
+                    className="w-full p-4 min-h-[200px] resize-none focus:outline-none text-[14px] text-white bg-transparent"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+              <button 
+                onClick={() => setIsTemplateModalOpen(false)}
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleCreateTemplate}
+                disabled={!newTemplate.name || !newTemplate.body}
+                className="px-6 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:hover:bg-blue-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
+              >
+                Save Template
+              </button>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Sidebar, Header } from "./clients";
-import { UploadCloud, FileText, User, Mail, Plus, X, ArrowRight, CheckCircle2, Link as LinkIcon, Settings, Calendar, MapPin, Eye, Building2, Copy, Play } from "lucide-react";
+import { UploadCloud, FileText, User, Mail, Plus, X, ArrowRight, CheckCircle2, Link as LinkIcon, Settings, Calendar, MapPin, Eye, Building2, Copy, Play, Trash2 } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function ESignaturesSendPage() {
