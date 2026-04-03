@@ -587,38 +587,122 @@ export default function ClientDetailsPage() {
                   </div>
                 </div>
 
-                {/* Contact Information */}
-                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.05)] overflow-hidden">
-                  <div className="p-4 bg-cyan-500/10 border-b border-cyan-500/20 flex justify-between items-center">
+                {/* Contact Information & Employees */}
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.05)] overflow-hidden flex flex-col max-h-[600px]">
+                  <div className="p-4 bg-cyan-500/10 border-b border-cyan-500/20 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
-                      <Phone className="w-5 h-5 text-cyan-400" />
-                      <span className="font-bold text-white text-[15px]">Contact Information</span>
+                      <Users className="w-5 h-5 text-cyan-400" />
+                      <span className="font-bold text-white text-[15px]">Contacts & Team</span>
                     </div>
-                    <button 
-                      onClick={() => setIsEditContactModalOpen(true)}
-                      className="text-cyan-400 text-[13px] font-bold flex items-center gap-1 hover:text-cyan-300 bg-cyan-500/10 px-3 py-1.5 rounded-md transition-colors"
-                    >
-                      <Edit2 className="w-3.5 h-3.5" /> Edit
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button 
+                        onClick={() => setIsEditContactModalOpen(true)}
+                        className="text-cyan-400 text-[13px] font-bold flex items-center gap-1 hover:text-cyan-300 bg-cyan-500/10 px-3 py-1.5 rounded-md transition-colors"
+                      >
+                        <Edit2 className="w-3.5 h-3.5" /> Edit Main
+                      </button>
+                      <button 
+                        onClick={() => setIsAddEmployeeModalOpen(true)}
+                        className="w-8 h-8 rounded-md bg-cyan-500 hover:bg-cyan-600 flex items-center justify-center text-white transition-colors shadow-sm"
+                        title="Add Team Member"
+                      >
+                        <Plus className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="p-5 space-y-3">
-                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
-                      <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
-                        <Phone className="w-4 h-4 text-cyan-400" />
+                  
+                  <div className="p-5 overflow-y-auto custom-scrollbar flex-1 space-y-6">
+                    {/* Primary Contact Info */}
+                    <div className="space-y-3">
+                      <h4 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider pl-1">Primary Contact</h4>
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
+                          <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
+                            <Phone className="w-4 h-4 text-cyan-400" />
+                          </div>
+                          <span className="text-[14px] font-medium text-white">+1 973 979 7987</span>
+                        </div>
+                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
+                          <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
+                            <Mail className="w-4 h-4 text-cyan-400" />
+                          </div>
+                          <span className="text-[14px] font-medium text-slate-400">---</span>
+                        </div>
+                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
+                          <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
+                            <MapPin className="w-4 h-4 text-cyan-400" />
+                          </div>
+                          <span className="text-[14px] font-medium text-slate-400">---</span>
+                        </div>
                       </div>
-                      <span className="text-[14px] font-medium text-white">+1 973 979 7987</span>
                     </div>
-                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
-                      <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
-                        <Mail className="w-4 h-4 text-cyan-400" />
+
+                    {/* Team Members */}
+                    <div className="space-y-3 pt-2 border-t border-slate-800">
+                      <h4 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider pl-1">Team Members ({employees.length})</h4>
+                      <div className="space-y-3">
+                        {employees.map((employee, index) => (
+                          <div key={employee.id} className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-4 relative group hover:border-cyan-500/30 transition-colors">
+                            <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/80 p-1 rounded-md border border-slate-700">
+                              <button 
+                                onClick={() => {
+                                  setEditingEmployee({
+                                    ...employee,
+                                    phoneCode: employee.phone.split(' ')[0] || '+1',
+                                    phoneNumber: employee.phone.split(' ').slice(1).join(' ') || ''
+                                  });
+                                  setIsEditEmployeeModalOpen(true);
+                                }}
+                                className="p-1.5 text-slate-400 hover:text-cyan-400 hover:bg-slate-800 rounded transition-colors"
+                                title="Edit Employee"
+                              >
+                                <Edit2 className="w-3.5 h-3.5" />
+                              </button>
+                              <button 
+                                onClick={() => {
+                                  setUpdatingPasswordEmployee(employee);
+                                  setIsUpdatePasswordModalOpen(true);
+                                }}
+                                className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded transition-colors"
+                                title="Update Password"
+                              >
+                                <Lock className="w-3.5 h-3.5" />
+                              </button>
+                              <button 
+                                onClick={() => {
+                                  setDeletingEmployee(employee);
+                                  setIsDeleteEmployeeModalOpen(true);
+                                }}
+                                className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded transition-colors"
+                                title="Delete Employee"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                            <div className="space-y-2.5">
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[14px] shrink-0 border border-cyan-500/30">
+                                  {employee.firstName.charAt(0)}{employee.lastName.charAt(0)}
+                                </div>
+                                <div>
+                                  <span className="font-bold text-white block text-[14px]">{employee.firstName} {employee.lastName}</span>
+                                  <span className="text-cyan-400 text-[12px] font-medium">{employee.designation}</span>
+                                </div>
+                              </div>
+                              <div className="pt-2 border-t border-slate-700/50 space-y-2">
+                                <div className="flex items-center gap-2 text-[12px]">
+                                  <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                                  <span className="text-slate-300 truncate" title={employee.email}>{employee.email}</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-[12px]">
+                                  <Phone className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                                  <span className="text-slate-300">{employee.phone}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                      <span className="text-[14px] font-medium text-slate-400">---</span>
-                    </div>
-                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
-                      <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
-                        <MapPin className="w-4 h-4 text-cyan-400" />
-                      </div>
-                      <span className="text-[14px] font-medium text-slate-400">---</span>
                     </div>
                   </div>
                 </div>
@@ -932,84 +1016,6 @@ export default function ClientDetailsPage() {
                   </div>
                 </div>
 
-                {/* Employee Details */}
-                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-rose-500/20 shadow-[0_0_15px_rgba(244,63,94,0.05)] overflow-hidden flex flex-col max-h-[500px]">
-                  <div className="p-4 flex justify-between items-center border-b border-rose-500/20 bg-rose-500/10 sticky top-0 z-10 shrink-0">
-                    <div className="flex items-center gap-2">
-                      <Users className="w-5 h-5 text-rose-400" />
-                      <span className="font-bold text-white text-[15px]">Employee Details</span>
-                    </div>
-                    <button 
-                      onClick={() => setIsAddEmployeeModalOpen(true)}
-                      className="w-8 h-8 rounded-md bg-rose-500 hover:bg-rose-600 flex items-center justify-center text-white transition-colors shadow-sm"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </button>
-                  </div>
-                  <div className="p-3 overflow-y-auto custom-scrollbar flex-1 space-y-3">
-                    {employees.map((employee, index) => (
-                      <div key={employee.id} className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-4 relative group hover:border-rose-500/30 transition-colors">
-                        <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/80 p-1 rounded-md border border-slate-700">
-                          <button 
-                            onClick={() => {
-                              setEditingEmployee({
-                                ...employee,
-                                phoneCode: employee.phone.split(' ')[0] || '+1',
-                                phoneNumber: employee.phone.split(' ').slice(1).join(' ') || ''
-                              });
-                              setIsEditEmployeeModalOpen(true);
-                            }}
-                            className="p-1.5 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded transition-colors"
-                            title="Edit Employee"
-                          >
-                            <Edit2 className="w-3.5 h-3.5" />
-                          </button>
-                          <button 
-                            onClick={() => {
-                              setUpdatingPasswordEmployee(employee);
-                              setIsUpdatePasswordModalOpen(true);
-                            }}
-                            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded transition-colors"
-                            title="Update Password"
-                          >
-                            <Lock className="w-3.5 h-3.5" />
-                          </button>
-                          <button 
-                            onClick={() => {
-                              setDeletingEmployee(employee);
-                              setIsDeleteEmployeeModalOpen(true);
-                            }}
-                            className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded transition-colors"
-                            title="Delete Employee"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                        <div className="space-y-2.5">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-[14px] shrink-0 border border-rose-500/30">
-                              {employee.firstName.charAt(0)}{employee.lastName.charAt(0)}
-                            </div>
-                            <div>
-                              <span className="font-bold text-white block text-[14px]">{employee.firstName} {employee.lastName}</span>
-                              <span className="text-rose-400 text-[12px] font-medium">{employee.designation}</span>
-                            </div>
-                          </div>
-                          <div className="pt-2 border-t border-slate-700/50 space-y-2">
-                            <div className="flex items-center gap-2 text-[12px]">
-                              <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                              <span className="text-slate-300 truncate" title={employee.email}>{employee.email}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-[12px]">
-                              <Phone className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                              <span className="text-slate-300">{employee.phone}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
 
                 {/* Compliance Essentials */}
                 <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.05)] overflow-hidden">
