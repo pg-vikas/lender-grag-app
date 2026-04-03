@@ -142,7 +142,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div>
-                      <div className="text-slate-400 text-sm font-medium mb-1">Active Agencies</div>
+                      <div className="text-slate-400 text-sm font-medium mb-1">Active Clients</div>
                       <div className="text-3xl font-bold text-white tracking-tight">842</div>
                     </div>
                   </div>
