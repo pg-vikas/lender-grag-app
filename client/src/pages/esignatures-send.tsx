@@ -1,23 +1,28 @@
 import { useState } from "react";
 import { Sidebar, Header } from "./clients";
-import { UploadCloud, FileText, User, Mail, Plus, X, ArrowRight, CheckCircle2, Link as LinkIcon, Settings, Calendar, MapPin, Eye, Building2, Copy, Play, Trash2 } from "lucide-react";
+import { UploadCloud, FileText, User, Mail, Plus, X, ArrowRight, CheckCircle2, Link as LinkIcon, Settings, Calendar, MapPin, Eye, Building2, Copy, Play, Trash2, Edit2, Users } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function ESignaturesSendPage() {
   const [openMenus, setOpenMenus] = useState<string>('esignatures');
   const [location, setLocation] = useLocation();
   const [currentStep, setCurrentStep] = useState(1);
-  const [attachedFiles, setAttachedFiles] = useState<{name: string, size: string, type: string}[]>([]);
+  const [attachedFiles, setAttachedFiles] = useState<{name: string, size: string, type: string, id: string}[]>([]);
+  const [selectedFileId, setSelectedFileId] = useState<string | null>(null);
+  const [signatureFields, setSignatureFields] = useState<{id: string, fileId: string, type: string, x: number, y: number, page: number, assignee: string}[]>([]);
+  const [isDraggingField, setIsDraggingField] = useState<string | null>(null);
   const [recipients, setRecipients] = useState([{ name: '', email: '', role: 'Signer', requireOrder: false }]);
   const [emailSubject, setEmailSubject] = useState('Please sign this document');
   const [emailMessage, setEmailMessage] = useState('Please review and sign the attached document. Let me know if you have any questions.');
 
   const handleFileUpload = () => {
     // Mock file upload
+    const newId = Date.now().toString();
     setAttachedFiles([
       ...attachedFiles,
-      { name: 'Website_Redesign_Agreement.pdf', size: '2.4 MB', type: 'application/pdf' }
+      { name: 'Website_Redesign_Agreement.pdf', size: '2.4 MB', type: 'application/pdf', id: newId }
     ]);
+    setSelectedFileId(newId);
   };
 
   const handleRemoveFile = (index: number) => {
@@ -41,7 +46,7 @@ export default function ESignaturesSendPage() {
   const renderStepIndicator = () => {
     const steps = [
       { num: 1, title: 'Add Documents', icon: FileText },
-      { num: 2, title: 'Add Recipients', icon: UsersGroup },
+      { num: 2, title: 'Add Recipients', icon: Users },
       { num: 3, title: 'Email Details', icon: Mail },
       { num: 4, title: 'Review & Send', icon: Play }
     ];
@@ -112,93 +117,219 @@ export default function ESignaturesSendPage() {
               {renderStepIndicator()}
               
               <div className="mt-16">
-                {/* Step 1: Add Documents */}
+                
+                {/* Step 1: Add Documents & Prepare */}
                 {currentStep === 1 && (
                   <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-                    <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                      <FileText className="w-5 h-5 text-indigo-400" /> Upload Documents
-                    </h2>
                     
-                    {/* Upload Area */}
-                    <div 
-                      className="border-2 border-dashed border-slate-600 rounded-xl p-10 flex flex-col items-center justify-center text-center hover:border-indigo-500 hover:bg-indigo-500/5 transition-all cursor-pointer group"
-                      onClick={handleFileUpload}
-                    >
-                      <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-indigo-500/20 group-hover:text-indigo-400">
-                        <UploadCloud className="w-8 h-8 text-slate-400 group-hover:text-indigo-400 transition-colors" />
-                      </div>
-                      <h3 className="text-[16px] font-bold text-white mb-2">Click to upload or drag & drop</h3>
-                      <p className="text-[13px] text-slate-400 max-w-sm mb-6">
-                        Supported formats: PDF, DOCX, DOC, PNG, JPG (Max 25MB)
-                      </p>
-                      <button className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors shadow-sm">
-                        Browse Files
-                      </button>
-                    </div>
-                    
-                    {/* OR divider */}
-                    <div className="flex items-center my-6">
-                      <div className="flex-1 h-px bg-slate-800"></div>
-                      <span className="px-4 text-[12px] font-bold text-slate-500 uppercase tracking-widest">OR</span>
-                      <div className="flex-1 h-px bg-slate-800"></div>
-                    </div>
-                    
-                    {/* Templates Button */}
-                    <button className="w-full py-4 border border-slate-700 bg-slate-800/50 hover:bg-slate-800 rounded-xl text-left px-6 flex items-center justify-between transition-colors group">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
-                          <Copy className="w-5 h-5 text-indigo-400" />
+                    {!selectedFileId ? (
+                      // Upload View
+                      <>
+                        <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                          <FileText className="w-5 h-5 text-indigo-400" /> Upload Documents
+                        </h2>
+                        
+                        {/* Upload Area */}
+                        <div 
+                          className="border-2 border-dashed border-slate-600 rounded-xl p-10 flex flex-col items-center justify-center text-center hover:border-indigo-500 hover:bg-indigo-500/5 transition-all cursor-pointer group bg-slate-900/50"
+                          onClick={handleFileUpload}
+                        >
+                          <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-indigo-500/20 group-hover:text-indigo-400 border border-slate-700">
+                            <UploadCloud className="w-8 h-8 text-slate-400 group-hover:text-indigo-400 transition-colors" />
+                          </div>
+                          <h3 className="text-[16px] font-bold text-white mb-2">Click to upload or drag & drop</h3>
+                          <p className="text-[13px] text-slate-400 max-w-sm mb-6">
+                            Supported formats: PDF, DOCX, DOC, PNG, JPG (Max 25MB)
+                          </p>
+                          <button className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors shadow-sm">
+                            Browse Files
+                          </button>
                         </div>
-                        <div>
-                          <h4 className="text-[15px] font-bold text-white group-hover:text-indigo-300 transition-colors">Use a Template</h4>
-                          <p className="text-[12px] text-slate-400">Start from a pre-configured template like NDA, Proposal, etc.</p>
+                        
+                        {/* OR divider */}
+                        <div className="flex items-center my-6">
+                          <div className="flex-1 h-px bg-slate-800"></div>
+                          <span className="px-4 text-[12px] font-bold text-slate-500 uppercase tracking-widest">OR</span>
+                          <div className="flex-1 h-px bg-slate-800"></div>
                         </div>
-                      </div>
-                      <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" />
-                    </button>
-                    
-                    {/* Attached Files List */}
-                    {attachedFiles.length > 0 && (
-                      <div className="mt-8">
-                        <h3 className="text-[14px] font-bold text-slate-300 mb-4 uppercase tracking-wider">Attached Documents</h3>
-                        <div className="space-y-3">
-                          {attachedFiles.map((file, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-4 bg-slate-800/50 border border-slate-700 rounded-xl hover:border-slate-600 transition-colors">
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center shrink-0 border border-rose-500/20">
-                                  <FileText className="w-5 h-5 text-rose-400" />
-                                </div>
-                                <div>
-                                  <h4 className="text-[14px] font-bold text-white">{file.name}</h4>
-                                  <p className="text-[12px] text-slate-400">{file.size} • {file.type.split('/')[1].toUpperCase()}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="Preview">
-                                  <Eye className="w-4 h-4" />
-                                </button>
-                                <button 
-                                  onClick={() => handleRemoveFile(idx)}
-                                  className="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" 
-                                  title="Remove"
-                                >
-                                  <Trash2 className="w-4 h-4" />
-                                </button>
-                              </div>
+                        
+                        {/* Templates Button */}
+                        <button className="w-full py-4 border border-slate-700 bg-slate-800/50 hover:bg-slate-800 rounded-xl text-left px-6 flex items-center justify-between transition-colors group">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
+                              <Copy className="w-5 h-5 text-indigo-400" />
                             </div>
-                          ))}
+                            <div>
+                              <h4 className="text-[15px] font-bold text-white group-hover:text-indigo-300 transition-colors">Use a Template</h4>
+                              <p className="text-[12px] text-slate-400">Start from a pre-configured template like NDA, Proposal, etc.</p>
+                            </div>
+                          </div>
+                          <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" />
+                        </button>
+                      </>
+                    ) : (
+                      // Document Preparation View
+                      <div className="flex flex-col h-[600px]">
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center gap-3">
+                            <button 
+                              onClick={() => setSelectedFileId(null)}
+                              className="p-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-slate-400 hover:text-white transition-colors"
+                            >
+                              <ArrowRight className="w-4 h-4 rotate-180" />
+                            </button>
+                            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                              Prepare Document
+                            </h2>
+                          </div>
+                          
+                          <div className="flex items-center gap-2">
+                            <span className="text-[12px] text-slate-400 font-medium">Assigning to:</span>
+                            <select className="bg-slate-800 border border-slate-700 text-white text-[12px] rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500">
+                              <option>Signer 1 (Pending)</option>
+                              <option>Signer 2 (Pending)</option>
+                            </select>
+                          </div>
+                        </div>
+                        
+                        <div className="flex flex-1 gap-6 min-h-0">
+                          {/* Tools Sidebar */}
+                          <div className="w-48 flex flex-col gap-3 shrink-0">
+                            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Standard Fields</div>
+                            
+                            <div 
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData('fieldType', 'signature');
+                                setIsDraggingField('signature');
+                              }}
+                              onDragEnd={() => setIsDraggingField(null)}
+                              className="bg-slate-800/80 hover:bg-indigo-500/20 border border-slate-700 hover:border-indigo-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                                <Edit2 className="w-4 h-4" />
+                              </div>
+                              <span className="text-[13px] font-bold text-slate-200">Signature</span>
+                            </div>
+                            
+                            <div 
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData('fieldType', 'date');
+                                setIsDraggingField('date');
+                              }}
+                              onDragEnd={() => setIsDraggingField(null)}
+                              className="bg-slate-800/80 hover:bg-emerald-500/20 border border-slate-700 hover:border-emerald-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                                <Calendar className="w-4 h-4" />
+                              </div>
+                              <span className="text-[13px] font-bold text-slate-200">Date Signed</span>
+                            </div>
+                            
+                            <div 
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData('fieldType', 'text');
+                                setIsDraggingField('text');
+                              }}
+                              onDragEnd={() => setIsDraggingField(null)}
+                              className="bg-slate-800/80 hover:bg-blue-500/20 border border-slate-700 hover:border-blue-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                                <FileText className="w-4 h-4" />
+                              </div>
+                              <span className="text-[13px] font-bold text-slate-200">Text Box</span>
+                            </div>
+                            
+                            <div className="mt-auto">
+                              <button 
+                                onClick={handleFileUpload}
+                                className="w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-lg text-[12px] font-bold transition-colors flex items-center justify-center gap-2"
+                              >
+                                <Plus className="w-3 h-3" /> Add Document
+                              </button>
+                            </div>
+                          </div>
+                          
+                          {/* Document Viewer Area */}
+                          <div 
+                            className={`flex-1 bg-slate-800/30 border-2 rounded-xl overflow-hidden relative flex flex-col items-center p-6 ${isDraggingField ? 'border-indigo-500/50 border-dashed bg-indigo-500/5' : 'border-slate-700/50 solid'}`}
+                          >
+                            {/* Mock PDF Document */}
+                            <div 
+                              className="w-full max-w-[500px] h-full bg-white rounded shadow-2xl relative overflow-hidden"
+                              onDragOver={(e) => e.preventDefault()}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                const type = e.dataTransfer.getData('fieldType');
+                                if (type && selectedFileId) {
+                                  // Calculate position relative to the document container
+                                  const rect = e.currentTarget.getBoundingClientRect();
+                                  const x = ((e.clientX - rect.left) / rect.width) * 100;
+                                  const y = ((e.clientY - rect.top) / rect.height) * 100;
+                                  
+                                  setSignatureFields([
+                                    ...signatureFields,
+                                    { id: Date.now().toString(), fileId: selectedFileId, type, x, y, page: 1, assignee: 'Signer 1' }
+                                  ]);
+                                }
+                              }}
+                            >
+                              <div className="absolute top-8 left-8 right-8 h-10 bg-slate-200 rounded"></div>
+                              <div className="absolute top-24 left-8 right-8 h-4 bg-slate-100 rounded"></div>
+                              <div className="absolute top-32 left-8 w-3/4 h-4 bg-slate-100 rounded"></div>
+                              <div className="absolute top-48 left-8 right-8 h-32 bg-slate-50 rounded border border-slate-200"></div>
+                              <div className="absolute bottom-40 left-8 w-1/3 h-4 bg-slate-200 rounded"></div>
+                              <div className="absolute bottom-32 left-8 w-1/4 h-px bg-slate-400"></div>
+                              <div className="absolute bottom-28 left-8 text-[8px] text-slate-400 font-bold uppercase tracking-wider">Client Signature</div>
+                              <div className="absolute bottom-40 right-8 w-1/4 h-4 bg-slate-200 rounded"></div>
+                              <div className="absolute bottom-32 right-8 w-1/4 h-px bg-slate-400"></div>
+                              <div className="absolute bottom-28 right-8 text-[8px] text-slate-400 font-bold uppercase tracking-wider">Date</div>
+                              
+                              {/* Dropped Fields */}
+                              {signatureFields.filter(f => f.fileId === selectedFileId).map(field => (
+                                <div 
+                                  key={field.id}
+                                  className={`absolute w-32 h-10 border-2 rounded shadow-lg flex items-center justify-center ${
+                                    field.type === 'signature' ? 'bg-indigo-100 border-indigo-500 text-indigo-700' :
+                                    field.type === 'date' ? 'bg-emerald-100 border-emerald-500 text-emerald-700' :
+                                    'bg-blue-100 border-blue-500 text-blue-700'
+                                  }`}
+                                  style={{ left: `calc(${field.x}% - 4rem)`, top: `calc(${field.y}% - 1.25rem)` }}
+                                >
+                                  <span className="text-[10px] font-bold uppercase tracking-wider">{field.type}</span>
+                                  <button 
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setSignatureFields(signatureFields.filter(f => f.id !== field.id));
+                                    }}
+                                    className="absolute -top-2 -right-2 w-5 h-5 bg-slate-800 text-white rounded-full flex items-center justify-center hover:bg-red-500 transition-colors"
+                                  >
+                                    <X className="w-3 h-3" />
+                                  </button>
+                                </div>
+                              ))}
+                            </div>
+                            
+                            {/* Document Pagination/Controls */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-slate-900/90 backdrop-blur border border-slate-700 rounded-full px-4 py-2 shadow-xl">
+                              <button className="text-slate-400 hover:text-white transition-colors"><ArrowRight className="w-4 h-4 rotate-180" /></button>
+                              <span className="text-[12px] font-bold text-white">Page 1 of 1</span>
+                              <button className="text-slate-400 hover:text-white transition-colors"><ArrowRight className="w-4 h-4" /></button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     )}
                   </div>
                 )}
-                
                 {/* Step 2: Add Recipients */}
                 {currentStep === 2 && (
                   <div className="animate-in fade-in slide-in-from-right-4 duration-500">
                     <div className="flex justify-between items-center mb-6">
                       <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                        <UsersGroup className="w-5 h-5 text-indigo-400" /> Add Recipients
+                        <Users className="w-5 h-5 text-indigo-400" /> Add Recipients
                       </h2>
                       <label className="flex items-center gap-2 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
                         <input type="checkbox" className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-slate-900" />
@@ -444,7 +575,7 @@ export default function ESignaturesSendPage() {
 }
 
 // Temporary icon component to avoid adding more imports
-function UsersGroup(props: any) {
+function UsersGroupIcon(props: any) {
   return (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
