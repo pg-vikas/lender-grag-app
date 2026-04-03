@@ -362,16 +362,46 @@ export default function UsersPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Designation</label>
-                  <select 
-                    value={newUser.designation}
-                    onChange={(e) => setNewUser({...newUser, designation: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
-                  >
-                    <option>HR</option>
-                    <option>Developer</option>
-                    <option>Manager</option>
-                    <option>Support</option>
-                  </select>
+                  {newUser.designation === 'Custom' ? (
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Enter custom designation"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                        value={(newUser as any).customDesignation || ''}
+                        onChange={(e) => setNewUser({ ...newUser, customDesignation: e.target.value })}
+                      />
+                      <button
+                        onClick={() => setNewUser({ ...newUser, designation: 'HR / Human Resources' })}
+                        className="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-sm transition-colors border border-slate-700 shrink-0"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <select 
+                      value={newUser.designation}
+                      onChange={(e) => setNewUser({...newUser, designation: e.target.value})}
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
+                    >
+                      <option value="CEO / President / Founder">CEO / President / Founder</option>
+                      <option value="CTO / Chief Technology Officer">CTO / Chief Technology Officer</option>
+                      <option value="CFO / Chief Financial Officer">CFO / Chief Financial Officer</option>
+                      <option value="COO / Chief Operating Officer">COO / Chief Operating Officer</option>
+                      <option value="Vice President">Vice President</option>
+                      <option value="Director">Director</option>
+                      <option value="Manager">Manager</option>
+                      <option value="HR / Human Resources">HR / Human Resources</option>
+                      <option value="Sales Representative">Sales Representative</option>
+                      <option value="Account Executive">Account Executive</option>
+                      <option value="Marketing Manager">Marketing Manager</option>
+                      <option value="Software Developer">Software Developer</option>
+                      <option value="Designer">Designer</option>
+                      <option value="Customer Support / Success">Customer Support / Success</option>
+                      <option value="Administrator / Office Manager">Administrator / Office Manager</option>
+                      <option value="Custom">Custom...</option>
+                    </select>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Password*</label>
@@ -542,13 +572,24 @@ export default function UsersPage() {
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Designation</label>
                   <select 
-                    defaultValue="HR"
+                    defaultValue="HR / Human Resources"
                     className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
                   >
-                    <option>HR</option>
-                    <option>Developer</option>
-                    <option>Manager</option>
-                    <option>Support</option>
+                    <option value="CEO / President / Founder">CEO / President / Founder</option>
+                    <option value="CTO / Chief Technology Officer">CTO / Chief Technology Officer</option>
+                    <option value="CFO / Chief Financial Officer">CFO / Chief Financial Officer</option>
+                    <option value="COO / Chief Operating Officer">COO / Chief Operating Officer</option>
+                    <option value="Vice President">Vice President</option>
+                    <option value="Director">Director</option>
+                    <option value="Manager">Manager</option>
+                    <option value="HR / Human Resources">HR / Human Resources</option>
+                    <option value="Sales Representative">Sales Representative</option>
+                    <option value="Account Executive">Account Executive</option>
+                    <option value="Marketing Manager">Marketing Manager</option>
+                    <option value="Software Developer">Software Developer</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Customer Support / Success">Customer Support / Success</option>
+                    <option value="Administrator / Office Manager">Administrator / Office Manager</option>
                   </select>
                 </div>
                 <div>

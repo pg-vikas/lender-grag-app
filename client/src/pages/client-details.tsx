@@ -317,7 +317,7 @@ export default function ClientDetailsPage() {
           lastName: newEmployee.lastName,
           email: newEmployee.email,
           phone: `${newEmployee.phoneCode} ${newEmployee.phoneNumber}`,
-          designation: newEmployee.designation
+          designation: newEmployee.designation === 'Custom' ? ((newEmployee as any).customDesignation || 'Unknown') : newEmployee.designation
         }
       ]);
       // Reset form
@@ -327,7 +327,7 @@ export default function ClientDetailsPage() {
         email: '',
         phoneCode: '+1',
         phoneNumber: '',
-        designation: 'HR',
+        designation: 'HR / Human Resources',
         password: ''
       });
       setIsAddEmployeeModalOpen(false);
@@ -336,8 +336,12 @@ export default function ClientDetailsPage() {
 
   const handleEditEmployee = () => {
     if (editingEmployee && editingEmployee.firstName && editingEmployee.email) {
+      const finalDesignation = editingEmployee.designation === 'Custom' 
+        ? (editingEmployee.customDesignation || 'Unknown') 
+        : editingEmployee.designation;
+        
       setEmployees(employees.map(emp => 
-        emp.id === editingEmployee.id ? { ...emp, ...editingEmployee } : emp
+        emp.id === editingEmployee.id ? { ...emp, ...editingEmployee, designation: finalDesignation } : emp
       ));
       setIsEditEmployeeModalOpen(false);
       setEditingEmployee(null);
@@ -2652,16 +2656,46 @@ export default function ClientDetailsPage() {
                 {/* Designation */}
                 <div>
                   <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Designation</label>
-                  <select 
-                    value={newEmployee.designation}
-                    onChange={(e) => setNewEmployee({...newEmployee, designation: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
-                  >
-                    <option value="HR">HR</option>
-                    <option value="Manager">Manager</option>
-                    <option value="Developer">Developer</option>
-                    <option value="Designer">Designer</option>
-                  </select>
+                  {newEmployee.designation === 'Custom' ? (
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Enter custom designation"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                        value={(newEmployee as any).customDesignation || ''}
+                        onChange={(e) => setNewEmployee({ ...newEmployee, customDesignation: e.target.value })}
+                      />
+                      <button
+                        onClick={() => setNewEmployee({ ...newEmployee, designation: 'HR' })}
+                        className="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-[13px] transition-colors border border-slate-700 shrink-0"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <select 
+                      value={newEmployee.designation}
+                      onChange={(e) => setNewEmployee({...newEmployee, designation: e.target.value})}
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
+                    >
+                      <option value="CEO / President / Founder">CEO / President / Founder</option>
+                      <option value="CTO / Chief Technology Officer">CTO / Chief Technology Officer</option>
+                      <option value="CFO / Chief Financial Officer">CFO / Chief Financial Officer</option>
+                      <option value="COO / Chief Operating Officer">COO / Chief Operating Officer</option>
+                      <option value="Vice President">Vice President</option>
+                      <option value="Director">Director</option>
+                      <option value="Manager">Manager</option>
+                      <option value="HR / Human Resources">HR / Human Resources</option>
+                      <option value="Sales Representative">Sales Representative</option>
+                      <option value="Account Executive">Account Executive</option>
+                      <option value="Marketing Manager">Marketing Manager</option>
+                      <option value="Software Developer">Software Developer</option>
+                      <option value="Designer">Designer</option>
+                      <option value="Customer Support / Success">Customer Support / Success</option>
+                      <option value="Administrator / Office Manager">Administrator / Office Manager</option>
+                      <option value="Custom">Custom...</option>
+                    </select>
+                  )}
                 </div>
                 
                 {/* Password */}
@@ -2780,16 +2814,59 @@ export default function ClientDetailsPage() {
                 {/* Designation */}
                 <div>
                   <label className="block text-[13px] font-medium text-slate-300 mb-1.5">Designation</label>
-                  <select 
-                    value={editingEmployee.designation}
-                    onChange={(e) => setEditingEmployee({...editingEmployee, designation: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
-                  >
-                    <option value="HR">HR</option>
-                    <option value="Manager">Manager</option>
-                    <option value="Developer">Developer</option>
-                    <option value="Designer">Designer</option>
-                  </select>
+                  {editingEmployee.designation === 'Custom' ? (
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Enter custom designation"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                        value={editingEmployee.customDesignation || ''}
+                        onChange={(e) => setEditingEmployee({ ...editingEmployee, customDesignation: e.target.value })}
+                      />
+                      <button
+                        onClick={() => setEditingEmployee({ ...editingEmployee, designation: 'HR' })}
+                        className="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-[13px] transition-colors border border-slate-700 shrink-0"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <select 
+                      value={
+                        ["CEO / President / Founder", "CTO / Chief Technology Officer", "CFO / Chief Financial Officer", "COO / Chief Operating Officer", "Vice President", "Director", "Manager", "HR / Human Resources", "Sales Representative", "Account Executive", "Marketing Manager", "Software Developer", "Designer", "Customer Support / Success", "Administrator / Office Manager"].includes(editingEmployee.designation)
+                          ? editingEmployee.designation
+                          : (editingEmployee.designation && editingEmployee.designation !== 'Custom')
+                            ? 'Custom'
+                            : 'HR / Human Resources'
+                      }
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        if (val === 'Custom') {
+                           setEditingEmployee({...editingEmployee, designation: 'Custom', customDesignation: editingEmployee.designation !== 'Custom' ? editingEmployee.designation : ''});
+                        } else {
+                           setEditingEmployee({...editingEmployee, designation: val});
+                        }
+                      }}
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
+                    >
+                      <option value="CEO / President / Founder">CEO / President / Founder</option>
+                      <option value="CTO / Chief Technology Officer">CTO / Chief Technology Officer</option>
+                      <option value="CFO / Chief Financial Officer">CFO / Chief Financial Officer</option>
+                      <option value="COO / Chief Operating Officer">COO / Chief Operating Officer</option>
+                      <option value="Vice President">Vice President</option>
+                      <option value="Director">Director</option>
+                      <option value="Manager">Manager</option>
+                      <option value="HR / Human Resources">HR / Human Resources</option>
+                      <option value="Sales Representative">Sales Representative</option>
+                      <option value="Account Executive">Account Executive</option>
+                      <option value="Marketing Manager">Marketing Manager</option>
+                      <option value="Software Developer">Software Developer</option>
+                      <option value="Designer">Designer</option>
+                      <option value="Customer Support / Success">Customer Support / Success</option>
+                      <option value="Administrator / Office Manager">Administrator / Office Manager</option>
+                      <option value="Custom">Custom...</option>
+                    </select>
+                  )}
                 </div>
               </div>
             </div>
