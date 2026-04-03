@@ -539,7 +539,7 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Company Details */}
-                <div className="bg-slate-900/60 bg-indigo-500/10 backdrop-blur-2xl rounded-xl border-indigo-500/30 border-t-indigo-500 border-t-4 shadow-[0_8px_30px_rgba(99,102,241,0.15),inset_0_1px_0_rgba(99,102,241,0.2)] relative z-30">
+                <div className="bg-slate-900/60 bg-indigo-500/10 backdrop-blur-2xl rounded-xl border-indigo-500/30 border-t-indigo-500 border-t-4 shadow-sm relative z-30">
                   <div className="p-4 bg-gradient-to-r from-indigo-500/20 to-transparent border-b border-indigo-500/30 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
                       <Building2 className="w-5 h-5 text-indigo-400" />
@@ -559,7 +559,7 @@ export default function ClientDetailsPage() {
                     </div>
                     <div className="flex items-center gap-3 bg-slate-800/50 p-3 rounded-lg border-slate-700/50">
                       <span className="text-[13px] text-slate-400 font-medium w-24">Status:</span>
-                      <span className="inline-flex items-center justify-center px-3 py-1 rounded-md text-[12px] font-bold text-amber-500 border-amber-500/30 bg-amber-500/10 shadow-[0_0_10px_rgba(245,158,11,0.1)]">Brand New</span>
+                      <span className="inline-flex items-center justify-center px-3 py-1 rounded-md text-[12px] font-bold text-amber-500 border-amber-500/30 bg-amber-500/10 shadow-sm">Brand New</span>
                     </div>
                     <div className="flex flex-col gap-2 relative bg-slate-800/50 p-3 rounded-lg border-slate-700/50">
                       <span className="text-[13px] text-slate-400 font-medium">Assigned to:</span>
@@ -595,7 +595,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Contact Information & Employees */}
-                <div className="bg-slate-900/60 bg-cyan-500/10 backdrop-blur-2xl rounded-xl border-cyan-500/30 border-t-cyan-500 border-t-4 shadow-[0_8px_30px_rgba(6,182,212,0.15),inset_0_1px_0_rgba(6,182,212,0.2)] overflow-hidden flex flex-col max-h-[600px]">
+                <div className="bg-slate-900/60 bg-cyan-500/10 backdrop-blur-2xl rounded-xl border-cyan-500/30 border-t-cyan-500 border-t-4 shadow-sm overflow-hidden flex flex-col max-h-[600px]">
                   <div className="p-4 bg-gradient-to-r from-cyan-500/20 to-transparent border-b border-cyan-500/30 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-cyan-400" />
@@ -715,7 +715,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Website */}
-                <div className="bg-slate-900/60 bg-emerald-500/10 backdrop-blur-2xl rounded-xl border-emerald-500/30 border-t-emerald-500 border-t-4 shadow-[0_8px_30px_rgba(16,185,129,0.15),inset_0_1px_0_rgba(16,185,129,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-emerald-500/10 backdrop-blur-2xl rounded-xl border-emerald-500/30 border-t-emerald-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-emerald-500/20 to-transparent border-b border-emerald-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Globe className="w-5 h-5 text-emerald-400" />
@@ -787,7 +787,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Business Discovery */}
-                <div className="bg-slate-900/60 bg-orange-500/10 backdrop-blur-2xl rounded-xl border-orange-500/30 border-t-orange-500 border-t-4 shadow-[0_8px_30px_rgba(249,115,22,0.15),inset_0_1px_0_rgba(249,115,22,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-orange-500/10 backdrop-blur-2xl rounded-xl border-orange-500/30 border-t-orange-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-orange-500/20 to-transparent border-b border-orange-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Compass className="w-5 h-5 text-orange-400" />
@@ -808,7 +808,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Billing Information */}
-                <div className="bg-slate-900/60 bg-pink-500/10 backdrop-blur-2xl rounded-xl border-pink-500/30 border-t-pink-500 border-t-4 shadow-[0_8px_30px_rgba(236,72,153,0.15),inset_0_1px_0_rgba(236,72,153,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-pink-500/10 backdrop-blur-2xl rounded-xl border-pink-500/30 border-t-pink-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-pink-500/20 to-transparent border-b border-pink-500/30 flex items-center gap-2">
                     <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -916,7 +916,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Background */}
-                <div className="bg-slate-900/60 bg-violet-500/10 backdrop-blur-2xl rounded-xl border-violet-500/30 border-t-violet-500 border-t-4 shadow-[0_8px_30px_rgba(139,92,246,0.15),inset_0_1px_0_rgba(139,92,246,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-violet-500/10 backdrop-blur-2xl rounded-xl border-violet-500/30 border-t-violet-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-violet-500/20 to-transparent border-b border-violet-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <ImageIcon className="w-5 h-5 text-violet-400" />
@@ -939,7 +939,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* General */}
-                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-[0_8px_30px_rgba(20,184,166,0.15),inset_0_1px_0_rgba(20,184,166,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-teal-500/20 to-transparent border-b border-teal-500/30 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Info className="w-5 h-5 text-teal-400" />
@@ -1003,7 +1003,7 @@ export default function ClientDetailsPage() {
 
 
                 {/* Compliance Essentials */}
-                <div className="bg-slate-900/60 bg-yellow-500/10 backdrop-blur-2xl rounded-xl border-yellow-500/30 border-t-yellow-500 border-t-4 shadow-[0_8px_30px_rgba(234,179,8,0.15),inset_0_1px_0_rgba(234,179,8,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-yellow-500/10 backdrop-blur-2xl rounded-xl border-yellow-500/30 border-t-yellow-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-yellow-500/20 to-transparent border-b border-yellow-500/30 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-yellow-400" />
                     <span className="font-bold text-white text-[15px]">Compliance Essentials</span>
@@ -1019,7 +1019,7 @@ export default function ClientDetailsPage() {
                       "Powered by Pink Gorilla Footer"
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-3 cursor-pointer group p-2.5 rounded-lg hover:bg-slate-800/50 transition-colors" onClick={() => toggleComplianceItem(i)}>
-                        <div className={`w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center transition-colors ${checkedComplianceItems[i] ? 'bg-yellow-500 border-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.4)]' : 'border-slate-600 bg-slate-800/50 group-hover:border-yellow-500/50'}`}>
+                        <div className={`w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center transition-colors ${checkedComplianceItems[i] ? 'bg-yellow-500 border-yellow-500 shadow-sm' : 'border-slate-600 bg-slate-800/50 group-hover:border-yellow-500/50'}`}>
                           {checkedComplianceItems[i] && <CheckCircle2 className="w-3.5 h-3.5 text-slate-900 stroke-[3]" />}
                         </div>
                         <span className={`text-[13px] leading-tight transition-colors select-none mt-0.5 ${checkedComplianceItems[i] ? 'text-white font-semibold' : 'text-slate-400 group-hover:text-slate-300'}`}>
@@ -1036,7 +1036,7 @@ export default function ClientDetailsPage() {
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
                 {/* Communications Section */}
-                <div className="bg-slate-900/60 bg-blue-500/10 backdrop-blur-2xl rounded-xl border-blue-500/30 border-t-blue-500 border-t-4 shadow-[0_8px_30px_rgba(59,130,246,0.15),inset_0_1px_0_rgba(59,130,246,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-blue-500/10 backdrop-blur-2xl rounded-xl border-blue-500/30 border-t-blue-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-5 bg-gradient-to-r from-blue-500/20 to-transparent border-b border-blue-500/30 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-blue-400" />
@@ -1142,7 +1142,7 @@ export default function ClientDetailsPage() {
                           <button className="px-4 py-2.5 border-slate-600 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg text-[13px] font-bold flex items-center gap-2 transition-all">
                             <Plus className="w-4 h-4" /> Attach Files
                           </button>
-                          <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_25px_rgba(79,70,229,0.6)] flex items-center gap-2 group">
+                          <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
                             <Mail className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" /> Send Email
                           </button>
                         </div>
@@ -1278,7 +1278,7 @@ export default function ClientDetailsPage() {
                         </div>
                         
                         <div className="flex justify-end items-center p-4 bg-slate-900/50 border-t border-slate-700/50">
-                          <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_25px_rgba(79,70,229,0.6)] flex items-center gap-2 group">
+                          <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
                             <MessageSquare className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" /> Send SMS
                           </button>
                         </div>
@@ -1293,7 +1293,7 @@ export default function ClientDetailsPage() {
                             {/* Left Side - Dialer UI */}
                             <div className="flex flex-col items-center justify-center bg-slate-900/60 rounded-2xl border-slate-700/50 p-8 shadow-inner relative overflow-hidden">
                               {/* Background glowing orb */}
-                              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-emerald-500/10 blur-[50px] rounded-full pointer-events-none"></div>
+                              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 hidden rounded-full pointer-events-none"></div>
                               
                               <div className="text-center mb-8 relative z-10">
                                 <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-3 border-slate-700">
@@ -1350,7 +1350,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-0 rounded-full bg-emerald-500/30 animate-ping opacity-75"></div>
                                 <div className="absolute inset-2 rounded-full bg-emerald-500/40 animate-pulse"></div>
                                 {/* Main Button */}
-                                <div className="absolute inset-0 bg-emerald-500 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] group-hover:scale-105 group-active:scale-95 transition-transform border-4 border-slate-900">
+                                <div className="absolute inset-0 bg-emerald-500 rounded-full flex items-center justify-center shadow-sm group-hover:scale-105 group-active:scale-95 transition-transform border-4 border-slate-900">
                                   <Phone className="w-10 h-10 fill-white text-white" />
                                 </div>
                               </button>
@@ -1412,7 +1412,7 @@ export default function ClientDetailsPage() {
                                   ></textarea>
                                 </div>
                                 
-                                <button className="mt-4 w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_8px_30px_rgba(16,185,129,0.15),inset_0_1px_0_rgba(16,185,129,0.2)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] flex items-center justify-center gap-2">
+                                <button className="mt-4 w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center justify-center gap-2">
                                   <CheckCircle2 className="w-4 h-4" /> Save Call Log
                                 </button>
                               </div>
@@ -1426,7 +1426,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="bg-slate-900/60 bg-amber-500/10 backdrop-blur-2xl rounded-xl border-amber-500/30 border-t-amber-500 border-t-4 shadow-[0_8px_30px_rgba(245,158,11,0.15),inset_0_1px_0_rgba(245,158,11,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-amber-500/10 backdrop-blur-2xl rounded-xl border-amber-500/30 border-t-amber-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-amber-500/20 to-transparent border-b border-amber-500/30 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-amber-400" />
@@ -1434,7 +1434,7 @@ export default function ClientDetailsPage() {
                     </h2>
                     <button 
                       onClick={() => setIsAddNoteModalOpen(true)}
-                      className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-md text-[13px] font-bold transition-all shadow-[0_0_10px_rgba(245,158,11,0.3)]"
+                      className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-md text-[13px] font-bold transition-all shadow-sm"
                     >
                       <Plus className="w-4 h-4" /> Add Note
                     </button>
@@ -1487,7 +1487,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Analytics Expanded Section */}
-                <div className="bg-slate-900/60 bg-sky-500/10 backdrop-blur-2xl rounded-xl border-sky-500/30 border-t-sky-500 border-t-4 shadow-[0_8px_30px_rgba(14,165,233,0.15),inset_0_1px_0_rgba(14,165,233,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-sky-500/10 backdrop-blur-2xl rounded-xl border-sky-500/30 border-t-sky-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-sky-500/20 bg-sky-500/5 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-sky-400" />
@@ -1613,13 +1613,13 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Document Signing Center */}
-                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-[0_8px_30px_rgba(20,184,166,0.15),inset_0_1px_0_rgba(20,184,166,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border-teal-500/30 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-teal-500/20 flex justify-between items-center bg-teal-500/15">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-teal-400" />
                       Document Signing Center
                     </h2>
-                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-500 text-white rounded-md text-[12px] font-medium transition-colors flex items-center gap-1.5 shadow-[0_0_10px_rgba(20,184,166,0.3)]">
+                    <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-500 text-white rounded-md text-[12px] font-medium transition-colors flex items-center gap-1.5 shadow-sm">
                       <Plus className="w-3.5 h-3.5" /> New Document
                     </button>
                   </div>
@@ -1721,7 +1721,7 @@ export default function ClientDetailsPage() {
 
 
                 {/* Samples Section */}
-                <div className="bg-slate-900/60 bg-fuchsia-500/10 backdrop-blur-2xl rounded-xl border-fuchsia-500/30 border-t-fuchsia-500 border-t-4 shadow-[0_8px_30px_rgba(217,70,239,0.15),inset_0_1px_0_rgba(217,70,239,0.2)] overflow-hidden">
+                <div className="bg-slate-900/60 bg-fuchsia-500/10 backdrop-blur-2xl rounded-xl border-fuchsia-500/30 border-t-fuchsia-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-4 bg-gradient-to-r from-fuchsia-500/20 to-transparent border-b border-fuchsia-500/30 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <List className="w-5 h-5 text-fuchsia-400" />
@@ -1736,7 +1736,7 @@ export default function ClientDetailsPage() {
                       </button>
                       <button 
                         onClick={() => setIsGenerateWebsiteModalOpen(true)}
-                        className="flex items-center gap-1.5 px-4 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white rounded-md text-[13px] font-bold transition-all shadow-[0_0_10px_rgba(217,70,239,0.3)]"
+                        className="flex items-center gap-1.5 px-4 py-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white rounded-md text-[13px] font-bold transition-all shadow-sm"
                       >
                         <Globe className="w-4 h-4" /> Generate Website
                       </button>
@@ -1745,7 +1745,7 @@ export default function ClientDetailsPage() {
                   <div className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {samples.map(sample => (
-                        <div key={sample.id} className="bg-slate-800/80 border-slate-700 rounded-xl p-4 relative overflow-hidden flex flex-col group shadow-sm hover:border-fuchsia-500/50 transition-all hover:shadow-[0_4px_20px_rgba(217,70,239,0.1)]">
+                        <div key={sample.id} className="bg-slate-800/80 border-slate-700 rounded-xl p-4 relative overflow-hidden flex flex-col group shadow-sm hover:border-fuchsia-500/50 transition-all hover:shadow-sm">
                           
                           {/* Top bar */}
                           <div className="flex justify-between items-start mb-3 relative z-10">
@@ -1804,7 +1804,7 @@ export default function ClientDetailsPage() {
                           <div className="flex gap-3">
                             <button 
                               onClick={() => setIsGenerateWebsiteModalOpen(true)}
-                              className="px-5 py-2.5 bg-fuchsia-600 hover:bg-fuchsia-500 text-white rounded-lg text-[13px] font-bold transition-all shadow-[0_0_10px_rgba(217,70,239,0.3)]"
+                              className="px-5 py-2.5 bg-fuchsia-600 hover:bg-fuchsia-500 text-white rounded-lg text-[13px] font-bold transition-all shadow-sm"
                             >
                               Generate Website
                             </button>
@@ -1840,7 +1840,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-950/90 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent backdrop-blur-2xl rounded-xl border-purple-500/30 border-t-purple-500 border-t-4 shadow-[0_8px_30px_rgba(168,85,247,0.15),inset_0_1px_0_rgba(168,85,247,0.2)] relative z-[50] shrink-0">
+                <div className="bg-slate-950/90 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent backdrop-blur-2xl rounded-xl border-purple-500/30 border-t-purple-500 border-t-4 shadow-sm relative z-[50] shrink-0">
                   <div className="p-4 bg-gradient-to-r from-purple-500/20 to-transparent border-b border-purple-500/30 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <Zap className="w-5 h-5 text-purple-400" /> Tasks
@@ -1861,7 +1861,7 @@ export default function ClientDetailsPage() {
                       <div className="relative">
                         <button 
                           onClick={() => setIsTaskDropdownOpen(!isTaskDropdownOpen)}
-                          className="w-8 h-8 rounded-lg bg-orange-500 hover:bg-orange-600 flex items-center justify-center text-white shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-colors group relative z-[60]"
+                          className="w-8 h-8 rounded-lg bg-orange-500 hover:bg-orange-600 flex items-center justify-center text-white shadow-sm transition-colors group relative z-[60]"
                         >
                           <Zap className="w-4 h-4" />
                           <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
@@ -1886,7 +1886,7 @@ export default function ClientDetailsPage() {
                       {/* Add Task */}
                       <button 
                         onClick={() => setIsAddTaskModalOpen(true)}
-                        className="w-8 h-8 rounded-lg bg-purple-600 hover:bg-purple-500 flex items-center justify-center text-white shadow-[0_0_10px_rgba(168,85,247,0.4)] transition-colors group relative"
+                        className="w-8 h-8 rounded-lg bg-purple-600 hover:bg-purple-500 flex items-center justify-center text-white shadow-sm transition-colors group relative"
                       >
                         <Plus className="w-4 h-4" />
                         <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
@@ -1905,7 +1905,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-900/60 bg-slate-500/10 backdrop-blur-2xl rounded-xl border-slate-500/30 border-t-slate-500 border-t-4 shadow-[0_8px_30px_rgba(100,116,139,0.15),inset_0_1px_0_rgba(100,116,139,0.2)] overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
+                <div className="bg-slate-900/60 bg-slate-500/10 backdrop-blur-2xl rounded-xl border-slate-500/30 border-t-slate-500 border-t-4 shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
                   <div className="p-4 border-b border-slate-500/20 bg-slate-500/5 flex justify-between items-center relative z-[45]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <List className="w-5 h-5 text-slate-400" />
@@ -2060,7 +2060,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsAddTaskModalOpen(false)}
-                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-sm hover:shadow-sm transition-all"
               >
                 Submit
               </button>
@@ -2131,7 +2131,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditContactModalOpen(false)}
-                className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(6,182,212,0.15),inset_0_1px_0_rgba(6,182,212,0.2)] hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all"
+                className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl font-medium shadow-sm hover:shadow-sm transition-all"
               >
                 Save Changes
               </button>
@@ -2234,7 +2234,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditWebsiteModalOpen(false)}
-                className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(16,185,129,0.15),inset_0_1px_0_rgba(16,185,129,0.2)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] transition-all"
+                className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium shadow-sm hover:shadow-sm transition-all"
               >
                 Save Changes
               </button>
@@ -2331,7 +2331,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditGeneralInfoModalOpen(false)}
-                className="px-6 py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(20,184,166,0.15),inset_0_1px_0_rgba(20,184,166,0.2)] hover:shadow-[0_0_20px_rgba(20,184,166,0.5)] transition-all"
+                className="px-6 py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-medium shadow-sm hover:shadow-sm transition-all"
               >
                 Save Changes
               </button>
@@ -2390,7 +2390,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
-                className="px-6 py-2.5 bg-violet-600 hover:bg-violet-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(139,92,246,0.15),inset_0_1px_0_rgba(139,92,246,0.2)] hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all"
+                className="px-6 py-2.5 bg-violet-600 hover:bg-violet-500 text-white rounded-xl font-medium shadow-sm hover:shadow-sm transition-all"
               >
                 Save Background
               </button>
@@ -2621,7 +2621,7 @@ export default function ClientDetailsPage() {
                     onClick={() => setIsEditorEnabled(!isEditorEnabled)}
                     className={`w-11 h-6 rounded-full relative transition-colors focus:outline-none cursor-pointer ${isEditorEnabled ? 'bg-purple-600' : 'bg-slate-700'}`}
                   >
-                    <span className={`absolute top-1 w-4 h-4 rounded-full transition-transform shadow-[0_0_5px_rgba(0,0,0,0.2)] ${isEditorEnabled ? 'left-[22px] bg-white' : 'left-1 bg-slate-400'}`}></span>
+                    <span className={`absolute top-1 w-4 h-4 rounded-full transition-transform shadow-sm ${isEditorEnabled ? 'left-[22px] bg-white' : 'left-1 bg-slate-400'}`}></span>
                   </button>
                 </div>
 
@@ -2661,7 +2661,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditClientModalOpen(false)}
-                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all"
+                className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-sm hover:shadow-sm transition-all"
               >
                 Save Changes
               </button>
@@ -2749,7 +2749,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsBusinessDiscoveryModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] transition-all"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-sm transition-all"
               >
                 Save Changes
               </button>
@@ -2906,7 +2906,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleAddEmployee}
                 disabled={!newEmployee.firstName || !newEmployee.email}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Submit
               </button>
@@ -3065,7 +3065,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleEditEmployee}
                 disabled={!editingEmployee.firstName || !editingEmployee.email}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Save
               </button>
@@ -3139,7 +3139,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleUpdatePassword}
                 disabled={!passwordForm.newPassword || passwordForm.newPassword.length < 6 || passwordForm.newPassword !== passwordForm.confirmPassword}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Submit
               </button>
@@ -3172,7 +3172,7 @@ export default function ClientDetailsPage() {
                 </button>
                 <button 
                   onClick={handleDeleteEmployee}
-                  className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(225,29,72,0.15),inset_0_1px_0_rgba(225,29,72,0.2)] w-full"
+                  className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm w-full"
                 >
                   Delete
                 </button>
@@ -3239,7 +3239,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleAddNote}
                 disabled={!newNote.title || !newNote.description}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Submit
               </button>
@@ -3304,7 +3304,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleEditNote}
                 disabled={!editingNote.title || !editingNote.description}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Submit
               </button>
@@ -3337,7 +3337,7 @@ export default function ClientDetailsPage() {
                 </button>
                 <button 
                   onClick={handleDeleteNote}
-                  className="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] w-full"
+                  className="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm w-full"
                 >
                   Continue
                 </button>
@@ -3424,7 +3424,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleSendEmailNote}
                 disabled={!emailForm.to || !emailForm.subject || !emailForm.message}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Submit
               </button>
@@ -3457,7 +3457,7 @@ export default function ClientDetailsPage() {
                 </button>
                 <button 
                   onClick={handleDeleteSample}
-                  className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(225,29,72,0.15),inset_0_1px_0_rgba(225,29,72,0.2)] w-full"
+                  className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm w-full"
                 >
                   Delete
                 </button>
@@ -3598,7 +3598,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleGenerateWebsite}
                 disabled={!newWebsiteSample.subdomain}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Submit
               </button>
@@ -3678,7 +3678,7 @@ export default function ClientDetailsPage() {
               <button 
                 onClick={handleAddLogo}
                 disabled={!newLogoSample.title}
-                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] hover:shadow-[0_0_20px_rgba(147,51,234,0.4)]"
+                className="px-6 py-2 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:hover:bg-purple-600 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm hover:shadow-sm"
               >
                 Submit
               </button>
@@ -3755,7 +3755,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
-                className="px-5 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)]"
+                className="px-5 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm"
               >
                 Submit
               </button>
@@ -3860,7 +3860,7 @@ export default function ClientDetailsPage() {
               </button>
               <button 
                 onClick={() => setIsAnalyticsModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)] transition-all"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium bg-purple-600 hover:bg-purple-500 text-white shadow-sm transition-all"
               >
                 Submit
               </button>
@@ -3918,7 +3918,7 @@ export default function ClientDetailsPage() {
                           
                           <button 
                             onClick={() => handleChoosePlan(plan)}
-                            className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)]"
+                            className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm"
                           >
                             {plan.buttonText}
                           </button>
@@ -4007,7 +4007,7 @@ export default function ClientDetailsPage() {
                     </button>
                     <button 
                       onClick={() => setIsChoosePlanModalOpen(false)}
-                      className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-[0_8px_30px_rgba(147,51,234,0.15),inset_0_1px_0_rgba(147,51,234,0.2)]"
+                      className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-[13px] font-medium transition-colors shadow-sm"
                     >
                       Pay & Upgrade
                     </button>
@@ -4119,7 +4119,7 @@ export default function ClientDetailsPage() {
                     </button>
                     <button 
                       onClick={() => setIsManageBillingModalOpen(false)}
-                      className="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[13px] font-medium shadow-[0_8px_30px_rgba(79,70,229,0.15),inset_0_1px_0_rgba(79,70,229,0.2)] transition-all flex items-center gap-2"
+                      className="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[13px] font-medium shadow-sm transition-all flex items-center gap-2"
                     >
                       <Plus className="w-4 h-4" /> Generate Invoice
                     </button>
