@@ -585,9 +585,17 @@ export default function ClientDetailsPage() {
 
                 {/* Contact Information */}
                 <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.05)] overflow-hidden">
-                  <div className="p-4 bg-cyan-500/10 border-b border-cyan-500/20 flex items-center gap-2">
-                    <Phone className="w-5 h-5 text-cyan-400" />
-                    <span className="font-bold text-white text-[15px]">Contact Information</span>
+                  <div className="p-4 bg-cyan-500/10 border-b border-cyan-500/20 flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-5 h-5 text-cyan-400" />
+                      <span className="font-bold text-white text-[15px]">Contact Information</span>
+                    </div>
+                    <button 
+                      onClick={() => setIsEditClientModalOpen(true)}
+                      className="text-cyan-400 text-[13px] font-bold flex items-center gap-1 hover:text-cyan-300 bg-cyan-500/10 px-3 py-1.5 rounded-md transition-colors"
+                    >
+                      <Edit2 className="w-3.5 h-3.5" /> Edit
+                    </button>
                   </div>
                   <div className="p-5 space-y-3">
                     <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-colors">
@@ -613,9 +621,17 @@ export default function ClientDetailsPage() {
 
                 {/* Website */}
                 <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.05)] overflow-hidden">
-                  <div className="p-4 bg-emerald-500/10 border-b border-emerald-500/20 flex items-center gap-2">
-                    <Globe className="w-5 h-5 text-emerald-400" />
-                    <span className="font-bold text-white text-[15px]">Website</span>
+                  <div className="p-4 bg-emerald-500/10 border-b border-emerald-500/20 flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <Globe className="w-5 h-5 text-emerald-400" />
+                      <span className="font-bold text-white text-[15px]">Website</span>
+                    </div>
+                    <button 
+                      onClick={() => setIsEditClientModalOpen(true)}
+                      className="text-emerald-400 text-[13px] font-bold flex items-center gap-1 hover:text-emerald-300 bg-emerald-500/10 px-3 py-1.5 rounded-md transition-colors"
+                    >
+                      <Edit2 className="w-3.5 h-3.5" /> Edit
+                    </button>
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-3 p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors cursor-pointer group">
@@ -634,8 +650,8 @@ export default function ClientDetailsPage() {
                       <Compass className="w-5 h-5 text-orange-400" />
                       <span className="font-bold text-white text-[15px]">Business Discovery</span>
                     </div>
-                    <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="text-orange-400 hover:text-orange-300 bg-orange-500/10 p-1.5 rounded-md transition-colors">
-                      <Edit2 className="w-4 h-4" />
+                    <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="text-orange-400 text-[13px] font-bold flex items-center gap-1 hover:text-orange-300 bg-orange-500/10 px-3 py-1.5 rounded-md transition-colors">
+                      <Edit2 className="w-3.5 h-3.5" /> Edit
                     </button>
                   </div>
                   <div className="p-5">
@@ -722,9 +738,9 @@ export default function ClientDetailsPage() {
                     </div>
                     <button 
                       onClick={() => setIsEditBackgroundModalOpen(true)}
-                      className="text-violet-400 hover:text-violet-300 bg-violet-500/10 p-1.5 rounded-md transition-colors"
+                      className="text-violet-400 text-[13px] font-bold flex items-center gap-1 hover:text-violet-300 bg-violet-500/10 px-3 py-1.5 rounded-md transition-colors"
                     >
-                      <Edit2 className="w-4 h-4" />
+                      <Edit2 className="w-3.5 h-3.5" /> Edit
                     </button>
                   </div>
                   <div className="p-5">
@@ -738,9 +754,17 @@ export default function ClientDetailsPage() {
 
                 {/* General */}
                 <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-teal-500/20 shadow-[0_0_15px_rgba(20,184,166,0.05)] overflow-hidden">
-                  <div className="p-4 bg-teal-500/10 border-b border-teal-500/20 flex items-center gap-2">
-                    <Info className="w-5 h-5 text-teal-400" />
-                    <span className="font-bold text-white text-[15px]">General Info</span>
+                  <div className="p-4 bg-teal-500/10 border-b border-teal-500/20 flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <Info className="w-5 h-5 text-teal-400" />
+                      <span className="font-bold text-white text-[15px]">General Info</span>
+                    </div>
+                    <button 
+                      onClick={() => setIsEditClientModalOpen(true)}
+                      className="text-teal-400 text-[13px] font-bold flex items-center gap-1 hover:text-teal-300 bg-teal-500/10 px-3 py-1.5 rounded-md transition-colors"
+                    >
+                      <Edit2 className="w-3.5 h-3.5" /> Edit
+                    </button>
                   </div>
                   <div className="p-5 space-y-3">
                     <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-colors">
