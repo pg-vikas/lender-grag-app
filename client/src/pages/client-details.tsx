@@ -99,6 +99,9 @@ export default function ClientDetailsPage() {
   
   const [checkedComplianceItems, setCheckedComplianceItems] = useState<Record<number, boolean>>({});
   const [isGorillaAppsExpanded, setIsGorillaAppsExpanded] = useState(false);
+  const [isEditContactModalOpen, setIsEditContactModalOpen] = useState(false);
+  const [isEditWebsiteModalOpen, setIsEditWebsiteModalOpen] = useState(false);
+  const [isEditGeneralInfoModalOpen, setIsEditGeneralInfoModalOpen] = useState(false);
 
   // Business Discovery Links State
   const [editClientLinks, setEditClientLinks] = useState([
@@ -592,7 +595,7 @@ export default function ClientDetailsPage() {
                       <span className="font-bold text-white text-[15px]">Contact Information</span>
                     </div>
                     <button 
-                      onClick={() => setIsEditClientModalOpen(true)}
+                      onClick={() => setIsEditContactModalOpen(true)}
                       className="text-cyan-400 text-[13px] font-bold flex items-center gap-1 hover:text-cyan-300 bg-cyan-500/10 px-3 py-1.5 rounded-md transition-colors"
                     >
                       <Edit2 className="w-3.5 h-3.5" /> Edit
@@ -628,7 +631,7 @@ export default function ClientDetailsPage() {
                       <span className="font-bold text-white text-[15px]">Website</span>
                     </div>
                     <button 
-                      onClick={() => setIsEditClientModalOpen(true)}
+                      onClick={() => setIsEditWebsiteModalOpen(true)}
                       className="text-emerald-400 text-[13px] font-bold flex items-center gap-1 hover:text-emerald-300 bg-emerald-500/10 px-3 py-1.5 rounded-md transition-colors"
                     >
                       <Edit2 className="w-3.5 h-3.5" /> Edit
@@ -874,7 +877,7 @@ export default function ClientDetailsPage() {
                       <span className="font-bold text-white text-[15px]">General Info</span>
                     </div>
                     <button 
-                      onClick={() => setIsEditClientModalOpen(true)}
+                      onClick={() => setIsEditGeneralInfoModalOpen(true)}
                       className="text-teal-400 text-[13px] font-bold flex items-center gap-1 hover:text-teal-300 bg-teal-500/10 px-3 py-1.5 rounded-md transition-colors"
                     >
                       <Edit2 className="w-3.5 h-3.5" /> Edit
@@ -1851,6 +1854,337 @@ export default function ClientDetailsPage() {
           </div>
         </div>
       )}
+      {/* Edit Contact Information Modal */}
+      {isEditContactModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsEditContactModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+              <div className="flex items-center gap-2">
+                <Phone className="w-5 h-5 text-cyan-400" />
+                <h2 className="text-xl font-bold text-white">Edit Contact Information</h2>
+              </div>
+              <button 
+                onClick={() => setIsEditContactModalOpen(false)}
+                className="text-slate-400 hover:text-white p-2 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-5">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Primary Phone Number</label>
+                <div className="flex">
+                  <select className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
+                    <option>+1</option>
+                  </select>
+                  <input 
+                    type="tel" 
+                    defaultValue="973 979 7987"
+                    className="flex-1 px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Primary Email</label>
+                <input 
+                  type="email" 
+                  placeholder="contact@company.com"
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Office Address</label>
+                <textarea 
+                  placeholder="123 Business Ave, Suite 100&#10;City, State 12345"
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500 min-h-[80px] resize-none" 
+                ></textarea>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsEditContactModalOpen(false)}
+                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => setIsEditContactModalOpen(false)}
+                className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Website Modal */}
+      {isEditWebsiteModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsEditWebsiteModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+              <div className="flex items-center gap-2">
+                <Globe className="w-5 h-5 text-emerald-400" />
+                <h2 className="text-xl font-bold text-white">Edit Websites & Credentials</h2>
+              </div>
+              <button 
+                onClick={() => setIsEditWebsiteModalOpen(false)}
+                className="text-slate-400 hover:text-white p-2 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-[13px] font-bold text-emerald-400 uppercase tracking-wider border-b border-slate-800 pb-2">Websites</h3>
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Main Website URL</label>
+                  <input 
+                    type="url" 
+                    defaultValue="https://www.clientwebsite.com"
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Gorilla Apps Subdomain</label>
+                  <div className="flex items-center">
+                    <input 
+                      type="text" 
+                      defaultValue="client"
+                      className="w-1/3 px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-l-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all text-right" 
+                    />
+                    <div className="px-4 py-2.5 bg-slate-800 border-y border-r border-slate-700 rounded-r-xl text-sm text-slate-400 font-medium">
+                      .pinkgorilla.apps
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Staging URL</label>
+                  <input 
+                    type="url" 
+                    defaultValue="https://staging.clientwebsite.com"
+                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all" 
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-4 pt-2">
+                <h3 className="text-[13px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 pb-2">Gorilla Apps Credentials</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Username / Email</label>
+                    <input 
+                      type="text" 
+                      defaultValue="admin@client.com"
+                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all" 
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Password</label>
+                    <div className="relative">
+                      <input 
+                        type="password" 
+                        defaultValue="password123!"
+                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all pr-10" 
+                      />
+                      <button className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors">
+                        <Eye className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsEditWebsiteModalOpen(false)}
+                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => setIsEditWebsiteModalOpen(false)}
+                className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] transition-all"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit General Info Modal */}
+      {isEditGeneralInfoModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsEditGeneralInfoModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+              <div className="flex items-center gap-2">
+                <Info className="w-5 h-5 text-teal-400" />
+                <h2 className="text-xl font-bold text-white">Edit General Info</h2>
+              </div>
+              <button 
+                onClick={() => setIsEditGeneralInfoModalOpen(false)}
+                className="text-slate-400 hover:text-white p-2 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Timezone</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                  <option value="America/Denver">America/Denver</option>
+                  <option value="America/New_York">America/New_York</option>
+                  <option value="America/Chicago">America/Chicago</option>
+                  <option value="America/Los_Angeles">America/Los_Angeles</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Currency</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                  <option value="USD">USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="GBP">GBP (£)</option>
+                  <option value="CAD">CAD (£)</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Language</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                  <option value="en-US">English - US</option>
+                  <option value="en-GB">English - UK</option>
+                  <option value="es">Spanish</option>
+                  <option value="fr">French</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Industry</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                  <option value="retail">Retail Trade</option>
+                  <option value="tech">Information Technology</option>
+                  <option value="healthcare">Health Care</option>
+                  <option value="finance">Finance</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Years in Business</label>
+                <input 
+                  type="text" 
+                  defaultValue="1 yr"
+                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all placeholder:text-slate-500" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">Number of Employees</label>
+                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                  <option value="1-3">1-3</option>
+                  <option value="4-10">4-10</option>
+                  <option value="11-50">11-50</option>
+                  <option value="51-200">51-200</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsEditGeneralInfoModalOpen(false)}
+                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => setIsEditGeneralInfoModalOpen(false)}
+                className="px-6 py-2.5 bg-teal-600 hover:bg-teal-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(20,184,166,0.3)] hover:shadow-[0_0_20px_rgba(20,184,166,0.5)] transition-all"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Background Modal */}
+      {isEditBackgroundModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsEditBackgroundModalOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+              <div className="flex items-center gap-2">
+                <ImageIcon className="w-5 h-5 text-violet-400" />
+                <h2 className="text-xl font-bold text-white">Edit Background</h2>
+              </div>
+              <button 
+                onClick={() => setIsEditBackgroundModalOpen(false)}
+                className="text-slate-400 hover:text-white p-2 hover:bg-slate-800 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50 focus-within:border-violet-500/50 focus-within:ring-1 focus-within:ring-violet-500/50 transition-all">
+                <div className="bg-slate-800/80 border-b border-slate-700 p-2 flex items-center gap-1 flex-wrap">
+                  <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Bold className="w-4 h-4" /></button>
+                  <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><LinkIcon className="w-4 h-4" /></button>
+                  <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><List className="w-4 h-4" /></button>
+                  <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><AlignLeft className="w-4 h-4" /></button>
+                  <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><ImageIcon className="w-4 h-4" /></button>
+                  <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Video className="w-4 h-4" /></button>
+                </div>
+                <textarea 
+                  className="w-full h-64 bg-slate-900/20 p-4 text-sm text-white focus:outline-none resize-none placeholder:text-slate-500"
+                  placeholder="Enter client background information..."
+                  defaultValue="https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists"
+                ></textarea>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsEditBackgroundModalOpen(false)}
+                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => setIsEditBackgroundModalOpen(false)}
+                className="px-6 py-2.5 bg-violet-600 hover:bg-violet-500 text-white rounded-xl font-medium shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all"
+              >
+                Save Background
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Edit Client Modal */}
       {isEditClientModalOpen && (
         <div 
