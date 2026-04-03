@@ -155,6 +155,45 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             )}
           </div>
 
+          {/* E-Signatures Group */}
+          <div className="relative group">
+            <button 
+              onClick={() => sidebarOpen ? toggleMenu('esignatures') : null}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/esignatures') ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              title={!sidebarOpen ? "E-Signatures" : ""}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <FileText className={`w-5 h-5 shrink-0 ${currentPath.includes('/esignatures') ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'group-hover:text-slate-300'}`} />
+                  <div className="absolute -bottom-1 -right-1 bg-slate-900 rounded-full">
+                    <Edit className="w-3 h-3 text-indigo-400" />
+                  </div>
+                </div>
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">E-Signatures</span>}
+              </div>
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'esignatures' || currentPath.includes('/esignatures') ? '' : '-rotate-90'}`} />}
+            </button>
+            {useAppStore.getState().sidebarOpen && (openMenus === 'esignatures' || currentPath.includes('/esignatures')) && (
+              <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
+                <Link href="/esignatures/send">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/esignatures/send' ? 'bg-indigo-500/20 text-indigo-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Send for Signature
+                  </div>
+                </Link>
+                <Link href="/esignatures/documents">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/esignatures/documents' ? 'bg-indigo-500/20 text-indigo-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Manage Documents
+                  </div>
+                </Link>
+                <Link href="/esignatures/templates">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/esignatures/templates' ? 'bg-indigo-500/20 text-indigo-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Templates
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
+          
           {/* Contracts Group */}
           <div className="relative group">
             <button 

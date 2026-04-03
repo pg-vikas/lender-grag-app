@@ -35,6 +35,10 @@ import WebsiteAnalyticsPage from "@/pages/analytics";
 import GrowthKPIPage from "@/pages/growth-kpi";
 import MessagesPage from "@/pages/messages";
 
+import ESignaturesSendPage from "@/pages/esignatures-send";
+import ESignaturesDocumentsPage from "@/pages/esignatures-documents";
+import ESignaturesTemplatesPage from "@/pages/esignatures-templates";
+
 function Router() {
   return (
     <Switch>
@@ -63,6 +67,9 @@ function Router() {
       <Route path="/contracts/:id/edit" component={ContractDetailsPage} />
       <Route path="/contracts/:id" component={ContractDetailsPage} />
       <Route path="/contracts" component={ContractsPage} />
+      <Route path="/esignatures/send" component={ESignaturesSendPage} />
+      <Route path="/esignatures/documents" component={ESignaturesDocumentsPage} />
+      <Route path="/esignatures/templates" component={ESignaturesTemplatesPage} />
       <Route path="/tickets/create" component={TicketCreatePage} />
       <Route path="/tickets" component={TicketsPage} />
       <Route path="/tickets/:id" component={TicketDetailsPage} />
