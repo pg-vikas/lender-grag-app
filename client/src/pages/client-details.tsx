@@ -931,146 +931,269 @@ export default function ClientDetailsPage() {
                   
                   <div className="p-6">
                     {activeTab === 'email' && (
-                      <div className="border border-indigo-500/20 rounded-xl p-6 bg-slate-800/40 shadow-inner">
-                        <div className="space-y-5">
-                          <div>
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2">To <span className="text-rose-500">*</span></label>
-                            <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="Enter recipient email" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
-                            <p className="text-[12px] text-slate-400 mt-2 font-medium">
-                              Type email address separated by commas to add multiple email address.<br/>
-                              Example: <span className="text-indigo-400 font-bold">demo@pinkgorilla.agency, demo2@pinkgorilla.agency</span>
-                            </p>
-                          </div>
-                          
-                          <div>
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2">From <span className="text-rose-500">*</span></label>
-                            <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
-                              <option>Neeraj Kumar (neeraj@pinkgorillasoftware.com)</option>
-                            </select>
-                          </div>
-                          
-                          <div>
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2">Subject <span className="text-rose-500">*</span></label>
-                            <input type="text" placeholder="Enter email subject" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2">Email Template</label>
-                            <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
-                              <option>Select Template</option>
-                            </select>
-                          </div>
-                          
-                          <div>
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2">Message <span className="text-rose-500">*</span></label>
-                            <div className="border border-slate-700 rounded-lg bg-slate-900 overflow-hidden flex flex-col shadow-inner focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 transition-all">
-                              <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800">
-                                <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><span className="font-bold text-[14px] px-2">B</span></button>
-                                <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><span className="italic text-[14px] px-2">I</span></button>
-                                <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><span className="underline text-[14px] px-2">U</span></button>
-                                <div className="w-[1px] h-5 bg-slate-600 mx-2"></div>
-                                <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+                      <div className="border border-indigo-500/20 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
+                        <div className="p-6 space-y-6">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                              <label className="block text-[12px] font-bold text-indigo-300 uppercase tracking-wider mb-2">To <span className="text-rose-500">*</span></label>
+                              <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <User className="h-4 w-4 text-slate-500" />
+                                </div>
+                                <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="recipient@example.com" className="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
                               </div>
-                              <textarea className="w-full p-4 min-h-[180px] resize-none focus:outline-none text-[14px] text-white bg-transparent"></textarea>
+                              <p className="text-[11px] text-slate-400 mt-1.5 font-medium flex items-center gap-1">
+                                <Info className="w-3 h-3" /> Separate multiple with commas
+                              </p>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-[12px] font-bold text-indigo-300 uppercase tracking-wider mb-2">From <span className="text-rose-500">*</span></label>
+                              <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <Building2 className="h-4 w-4 text-slate-500" />
+                                </div>
+                                <select className="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                  <option>Neeraj Kumar (neeraj@pinkgorillasoftware.com)</option>
+                                </select>
+                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                  <ChevronDown className="h-4 w-4 text-slate-500" />
+                                </div>
+                              </div>
                             </div>
                           </div>
                           
-                          <div className="flex justify-between items-center pt-4 mt-2 border-t border-slate-700/50">
-                            <button className="px-4 py-2 border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 hover:text-white rounded-lg text-[13px] font-bold flex items-center gap-2 hover:bg-indigo-500/20 transition-all">
-                              <Plus className="w-4 h-4" /> Attach Files
-                            </button>
-                            <button className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)] flex items-center gap-2">
-                              <Mail className="w-4 h-4" /> Send Email
-                            </button>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="md:col-span-2">
+                              <label className="block text-[12px] font-bold text-indigo-300 uppercase tracking-wider mb-2">Subject <span className="text-rose-500">*</span></label>
+                              <div className="relative">
+                                <input type="text" placeholder="What is this email about?" className="w-full px-4 py-3 bg-slate-900/80 border border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
+                              </div>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-[12px] font-bold text-indigo-300 uppercase tracking-wider mb-2">Use Template</label>
+                              <div className="relative">
+                                <select className="w-full px-4 py-3 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 rounded-lg text-[14px] font-bold focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                  <option>Select a Template...</option>
+                                  <option>Welcome Email</option>
+                                  <option>Follow Up</option>
+                                  <option>Invoice Reminder</option>
+                                </select>
+                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                  <ChevronDown className="h-4 w-4 text-indigo-400" />
+                                </div>
+                              </div>
+                            </div>
                           </div>
+                          
+                          <div>
+                            <label className="block text-[12px] font-bold text-indigo-300 uppercase tracking-wider mb-2 flex items-center justify-between">
+                              <span>Message <span className="text-rose-500">*</span></span>
+                              <span className="text-[11px] text-slate-500 font-normal normal-case">Markdown supported</span>
+                            </label>
+                            <div className="border border-slate-700 rounded-xl bg-slate-900/80 overflow-hidden flex flex-col shadow-inner focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 transition-all">
+                              <div className="flex items-center gap-1 border-b border-slate-700/50 p-2 bg-slate-800/50">
+                                <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="font-bold text-[14px]">B</span></button>
+                                <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="italic text-[14px]">I</span></button>
+                                <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="underline text-[14px]">U</span></button>
+                                <div className="w-[1px] h-5 bg-slate-700 mx-1"></div>
+                                <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><LinkIcon className="w-4 h-4" /></button>
+                                <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><ImageIcon className="w-4 h-4" /></button>
+                              </div>
+                              <textarea placeholder="Type your message here..." className="w-full p-4 min-h-[200px] resize-none focus:outline-none text-[14px] text-white bg-transparent leading-relaxed"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-between items-center p-4 bg-slate-900/50 border-t border-slate-700/50">
+                          <button className="px-4 py-2.5 border border-slate-600 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg text-[13px] font-bold flex items-center gap-2 transition-all">
+                            <Plus className="w-4 h-4" /> Attach Files
+                          </button>
+                          <button className="px-8 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_25px_rgba(79,70,229,0.6)] flex items-center gap-2 group">
+                            <Mail className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" /> Send Email
+                          </button>
                         </div>
                       </div>
                     )}
                     
                     {activeTab === 'sms' && (
-                      <div className="border border-indigo-500/20 rounded-xl p-6 bg-slate-800/40 shadow-inner">
-                        <div className="space-y-5">
-                          <div>
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2">To (Phone) <span className="text-rose-500">*</span></label>
-                            <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="Enter recipient phone number" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
-                          </div>
-                          
-                          <div>
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2">From <span className="text-rose-500">*</span></label>
-                            <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
-                              <option>Company Phone (+1 800 123 4567)</option>
-                            </select>
-                          </div>
-                          
-                          <div>
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2">SMS Template</label>
-                            <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
-                              <option>Select Template</option>
-                            </select>
-                          </div>
-                          
-                          <div>
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2">Message <span className="text-rose-500">*</span></label>
-                            <div className="border border-slate-700 rounded-lg bg-slate-900 overflow-hidden shadow-inner focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 transition-all">
-                              <textarea placeholder="Type your SMS message here..." className="w-full p-4 min-h-[140px] resize-none focus:outline-none text-[14px] text-white bg-transparent"></textarea>
-                              <div className="flex justify-end p-2 bg-slate-800 border-t border-slate-700">
-                                <span className="text-[12px] font-medium text-slate-400">0/160 characters</span>
+                      <div className="border border-indigo-500/20 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
+                        <div className="p-6 space-y-6">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                              <label className="block text-[12px] font-bold text-indigo-300 uppercase tracking-wider mb-2">To (Phone) <span className="text-rose-500">*</span></label>
+                              <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <Phone className="h-4 w-4 text-slate-500" />
+                                </div>
+                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
+                              </div>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-[12px] font-bold text-indigo-300 uppercase tracking-wider mb-2">From <span className="text-rose-500">*</span></label>
+                              <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <Building2 className="h-4 w-4 text-slate-500" />
+                                </div>
+                                <select className="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                  <option>Company Phone (+1 800 123 4567)</option>
+                                </select>
+                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                  <ChevronDown className="h-4 w-4 text-slate-500" />
+                                </div>
                               </div>
                             </div>
                           </div>
                           
-                          <div className="flex justify-end items-center pt-4 mt-2 border-t border-slate-700/50">
-                            <button className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)] flex items-center gap-2">
-                              <MessageSquare className="w-4 h-4" /> Send SMS
-                            </button>
+                          <div>
+                            <label className="block text-[12px] font-bold text-indigo-300 uppercase tracking-wider mb-2 flex justify-between items-center">
+                              <span>Message <span className="text-rose-500">*</span></span>
+                              <div className="relative w-48">
+                                <select className="w-full pl-3 pr-8 py-1.5 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 rounded text-[11px] font-bold focus:outline-none focus:border-indigo-500 transition-all appearance-none cursor-pointer">
+                                  <option>Use SMS Template...</option>
+                                  <option>Appointment Reminder</option>
+                                  <option>Quick Follow Up</option>
+                                </select>
+                                <div className="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
+                                  <ChevronDown className="h-3 w-3 text-indigo-400" />
+                                </div>
+                              </div>
+                            </label>
+                            
+                            <div className="relative max-w-sm mx-auto mt-4">
+                              {/* iPhone mock frame */}
+                              <div className="relative border-[6px] border-slate-800 bg-slate-900 rounded-[2.5rem] shadow-xl overflow-hidden h-[400px]">
+                                {/* iPhone Notch */}
+                                <div className="absolute top-0 inset-x-0 h-6 bg-slate-800 rounded-b-xl mx-auto w-32 z-20"></div>
+                                
+                                {/* SMS Header */}
+                                <div className="bg-slate-800/80 backdrop-blur-md pt-8 pb-3 px-4 text-center border-b border-slate-700 relative z-10 flex flex-col items-center">
+                                  <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center mb-1">
+                                    <User className="w-5 h-5 text-slate-400" />
+                                  </div>
+                                  <span className="text-white text-[13px] font-semibold">{currentClient.name}</span>
+                                  <span className="text-slate-400 text-[10px]">{currentClient.phone !== '---' ? currentClient.phone : 'No phone number'}</span>
+                                </div>
+                                
+                                {/* SMS Body */}
+                                <div className="p-4 h-full bg-[#0f172a] flex flex-col">
+                                  <div className="mt-auto mb-16 relative group">
+                                    <textarea 
+                                      placeholder="Type your SMS message here..." 
+                                      className="w-full bg-[#1e40af] text-white p-3 pr-10 rounded-2xl rounded-br-sm text-[14px] min-h-[100px] resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm leading-snug"
+                                    ></textarea>
+                                    <span className="absolute bottom-2 right-2 text-[10px] text-blue-200/70 font-medium">0/160</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
+                        </div>
+                        
+                        <div className="flex justify-end items-center p-4 bg-slate-900/50 border-t border-slate-700/50">
+                          <button className="px-8 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_25px_rgba(79,70,229,0.6)] flex items-center gap-2 group">
+                            <MessageSquare className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" /> Send SMS
+                          </button>
                         </div>
                       </div>
                     )}
 
                     {activeTab === 'call' && (
-                      <div className="border border-indigo-500/20 rounded-xl p-6 bg-slate-800/40 shadow-inner">
-                        <div className="space-y-6">
-                          <div className="flex items-center gap-6 mb-4">
-                            <div className="flex-1">
-                              <label className="block text-[13px] font-bold text-slate-300 mb-2">To (Phone) <span className="text-rose-500">*</span></label>
-                              <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="Enter phone number" className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
+                      <div className="border border-emerald-500/20 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
+                        <div className="p-8">
+                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                            
+                            {/* Left Side - Dialer UI */}
+                            <div className="flex flex-col items-center justify-center bg-slate-900/60 rounded-2xl border border-slate-700/50 p-8 shadow-inner relative overflow-hidden">
+                              {/* Background glowing orb */}
+                              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-emerald-500/10 blur-[50px] rounded-full pointer-events-none"></div>
+                              
+                              <div className="text-center mb-8 relative z-10">
+                                <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-3 border border-slate-700">
+                                  <User className="w-8 h-8 text-slate-400" />
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-1">{currentClient.name}</h3>
+                                <div className="flex items-center justify-center gap-2 text-emerald-400 font-mono text-lg bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20">
+                                  <Phone className="w-4 h-4" />
+                                  {currentClient.phone !== '---' ? currentClient.phone : 'No Phone Number'}
+                                </div>
+                              </div>
+                              
+                              <button className="relative group w-24 h-24 rounded-full flex items-center justify-center transition-all z-10 focus:outline-none">
+                                {/* Pulse rings */}
+                                <div className="absolute inset-0 rounded-full bg-emerald-500/30 animate-ping opacity-75"></div>
+                                <div className="absolute inset-2 rounded-full bg-emerald-500/40 animate-pulse"></div>
+                                {/* Main Button */}
+                                <div className="absolute inset-0 bg-emerald-500 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] group-hover:scale-105 group-active:scale-95 transition-transform border-4 border-slate-900">
+                                  <Phone className="w-10 h-10 fill-white text-white" />
+                                </div>
+                              </button>
+                              
+                              <p className="mt-6 text-[13px] font-bold text-slate-400 uppercase tracking-widest relative z-10">Click to Call via Browser</p>
+                              
+                              <div className="mt-6 w-full">
+                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 text-center">Calling From</label>
+                                <select className="w-full text-center px-4 py-2.5 bg-slate-800/80 border border-slate-700 rounded-lg text-[13px] font-medium text-white focus:outline-none focus:border-emerald-500 transition-all appearance-none cursor-pointer">
+                                  <option>Company Phone (+1 800 123 4567)</option>
+                                  <option>Personal Cell (+1 555 987 6543)</option>
+                                </select>
+                              </div>
                             </div>
-                            <div className="flex-1">
-                              <label className="block text-[13px] font-bold text-slate-300 mb-2">From <span className="text-rose-500">*</span></label>
-                              <select className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner appearance-none cursor-pointer">
-                                <option>Company Phone (+1 800 123 4567)</option>
-                              </select>
+                            
+                            {/* Right Side - Call Log */}
+                            <div className="flex flex-col">
+                              <h3 className="text-[16px] font-bold text-emerald-400 mb-4 flex items-center gap-2">
+                                <FileText className="w-5 h-5" />
+                                Log Call Details
+                              </h3>
+                              
+                              <div className="flex-1 flex flex-col bg-slate-900/60 rounded-2xl border border-slate-700/50 p-5 shadow-inner">
+                                <div className="mb-4">
+                                  <label className="block text-[12px] font-bold text-slate-300 uppercase tracking-wider mb-2">Call Outcome <span className="text-rose-500">*</span></label>
+                                  <div className="grid grid-cols-2 gap-2">
+                                    <label className="cursor-pointer">
+                                      <input type="radio" name="outcome" className="peer sr-only" defaultChecked />
+                                      <div className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-emerald-500/20 peer-checked:border-emerald-500/50 peer-checked:text-emerald-400 transition-all hover:bg-slate-700">
+                                        Connected
+                                      </div>
+                                    </label>
+                                    <label className="cursor-pointer">
+                                      <input type="radio" name="outcome" className="peer sr-only" />
+                                      <div className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-amber-500/20 peer-checked:border-amber-500/50 peer-checked:text-amber-400 transition-all hover:bg-slate-700">
+                                        Left Voicemail
+                                      </div>
+                                    </label>
+                                    <label className="cursor-pointer">
+                                      <input type="radio" name="outcome" className="peer sr-only" />
+                                      <div className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-rose-500/20 peer-checked:border-rose-500/50 peer-checked:text-rose-400 transition-all hover:bg-slate-700">
+                                        No Answer
+                                      </div>
+                                    </label>
+                                    <label className="cursor-pointer">
+                                      <input type="radio" name="outcome" className="peer sr-only" />
+                                      <div className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-slate-700 peer-checked:border-slate-500 peer-checked:text-white transition-all hover:bg-slate-700">
+                                        Wrong Number
+                                      </div>
+                                    </label>
+                                  </div>
+                                </div>
+                                
+                                <div className="flex-1 flex flex-col min-h-[150px]">
+                                  <label className="block text-[12px] font-bold text-slate-300 uppercase tracking-wider mb-2">Notes</label>
+                                  <textarea 
+                                    placeholder="What was discussed on the call? Any action items?" 
+                                    className="w-full flex-1 px-4 py-3 bg-slate-800/80 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all shadow-inner resize-none"
+                                  ></textarea>
+                                </div>
+                                
+                                <button className="mt-4 w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] flex items-center justify-center gap-2">
+                                  <CheckCircle2 className="w-4 h-4" /> Save Call Log
+                                </button>
+                              </div>
                             </div>
-                          </div>
-                          
-                          <div className="flex flex-col items-center justify-center py-8 bg-slate-900/50 rounded-xl border border-slate-700 border-dashed">
-                            <button className="w-20 h-20 rounded-full bg-emerald-500 hover:bg-emerald-400 flex items-center justify-center text-white shadow-[0_0_25px_rgba(16,185,129,0.5)] transition-all transform hover:scale-105 active:scale-95 mb-4">
-                              <Phone className="w-8 h-8 fill-white" />
-                            </button>
-                            <span className="text-[15px] font-bold text-emerald-400">Initiate Call</span>
-                          </div>
-                          
-                          <div className="border-t border-slate-700/50 pt-6 mt-4">
-                            <label className="block text-[13px] font-bold text-slate-300 mb-2 flex items-center gap-2">
-                              <FileText className="w-4 h-4 text-indigo-400" /> Log Call Notes
-                            </label>
-                            <textarea placeholder="Add notes about this call..." className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner min-h-[120px] resize-none"></textarea>
-                          </div>
-                          
-                          <div className="flex justify-between items-center bg-slate-800 p-4 rounded-lg border border-slate-700">
-                            <div className="flex items-center gap-3">
-                              <span className="text-[13px] font-bold text-slate-300">Outcome:</span>
-                              <select className="px-4 py-2 bg-slate-900 border border-slate-600 rounded-md text-[13px] font-medium text-white focus:outline-none focus:border-indigo-500 transition-all cursor-pointer min-w-[200px]">
-                                <option>Connected</option>
-                                <option>Left Voicemail</option>
-                                <option>No Answer</option>
-                                <option>Wrong Number</option>
-                              </select>
-                            </div>
-                            <button className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)] flex items-center gap-2">
-                              <CheckCircle2 className="w-4 h-4" /> Save Log
-                            </button>
+                            
                           </div>
                         </div>
                       </div>
