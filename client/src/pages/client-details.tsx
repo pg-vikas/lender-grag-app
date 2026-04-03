@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useLocation, useParams } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2, FileText, Bold, Link as LinkIcon, List, AlignLeft, Image as ImageIcon, Video, Paperclip, Smile } from "lucide-react";
+import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2, FileText, Bold, Link as LinkIcon, List, AlignLeft, Image as ImageIcon, Video, Paperclip, Smile, Settings, TrendingUp, TrendingDown } from "lucide-react";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from "recharts";
 
 export default function ClientDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
@@ -804,94 +805,6 @@ export default function ClientDetailsPage() {
                   </div>
                 </div>
 
-                {/* Analytics Quick View */}
-                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.05)] overflow-hidden">
-                  <div className="p-4 bg-blue-500/10 border-b border-blue-500/20 flex items-center gap-2">
-                    <svg className="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M2 13h4v8H2v-8zM9 4h4v17H9V4zM16 9h4v12h-4V9z" />
-                    </svg>
-                    <span className="font-bold text-white text-[15px]">Analytics Quick View</span>
-                  </div>
-                  <div className="p-5 space-y-4">
-                    {/* Main Website Visits */}
-                    <div className="flex items-center justify-between p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-md bg-blue-500/10 flex items-center justify-center shrink-0">
-                          <Globe className="w-4 h-4 text-blue-400" />
-                        </div>
-                        <span className="text-[13px] font-medium text-slate-300">Main Website Visits</span>
-                      </div>
-                      <span className="text-[16px] font-bold text-white">1,245</span>
-                    </div>
-
-                    {/* Gorilla Apps Visits */}
-                    <div className="flex items-center justify-between p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-md bg-purple-500/10 flex items-center justify-center shrink-0">
-                          <Briefcase className="w-4 h-4 text-purple-400" />
-                        </div>
-                        <span className="text-[13px] font-medium text-slate-300">Gorilla Apps Visits</span>
-                      </div>
-                      <span className="text-[16px] font-bold text-white">856</span>
-                    </div>
-
-                    {/* Gorilla Apps Users */}
-                    <div className="border border-slate-700/50 rounded-lg overflow-hidden bg-slate-800/30">
-                      <div 
-                        className="flex items-center justify-between p-3 bg-slate-800/50 cursor-pointer hover:bg-slate-700/50 transition-colors"
-                        onClick={() => setIsGorillaAppsExpanded(!isGorillaAppsExpanded)}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0">
-                            <Users className="w-4 h-4 text-emerald-400" />
-                          </div>
-                          <span className="text-[13px] font-medium text-slate-300">Gorilla Apps Users</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <span className="text-[16px] font-bold text-white">3</span>
-                          <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isGorillaAppsExpanded ? 'rotate-180' : ''}`} />
-                        </div>
-                      </div>
-
-                      {/* Expanded Users List */}
-                      {isGorillaAppsExpanded && (
-                        <div className="p-3 border-t border-slate-700/50 space-y-2 bg-slate-900/30">
-                          <div className="flex items-center justify-between text-[12px] p-2 rounded hover:bg-slate-800/50 transition-colors border border-slate-700/30">
-                            <div className="flex items-center gap-2">
-                              <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white">JS</div>
-                              <span className="font-medium text-slate-300">John Smith</span>
-                            </div>
-                            <div className="flex items-center gap-4 text-slate-400">
-                              <span><span className="font-bold text-slate-300">12</span> logins</span>
-                              <span><span className="font-bold text-slate-300">4.5</span> hrs</span>
-                            </div>
-                          </div>
-                          <div className="flex items-center justify-between text-[12px] p-2 rounded hover:bg-slate-800/50 transition-colors border border-slate-700/30">
-                            <div className="flex items-center gap-2">
-                              <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white">AD</div>
-                              <span className="font-medium text-slate-300">Alice Doe</span>
-                            </div>
-                            <div className="flex items-center gap-4 text-slate-400">
-                              <span><span className="font-bold text-slate-300">8</span> logins</span>
-                              <span><span className="font-bold text-slate-300">2.1</span> hrs</span>
-                            </div>
-                          </div>
-                          <div className="flex items-center justify-between text-[12px] p-2 rounded hover:bg-slate-800/50 transition-colors border border-slate-700/30">
-                            <div className="flex items-center gap-2">
-                              <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white">MJ</div>
-                              <span className="font-medium text-slate-300">Mike Johnson</span>
-                            </div>
-                            <div className="flex items-center gap-4 text-slate-400">
-                              <span><span className="font-bold text-slate-300">2</span> logins</span>
-                              <span><span className="font-bold text-slate-300">0.5</span> hrs</span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
                 {/* Billing Information */}
                 <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-pink-500/20 shadow-[0_0_15px_rgba(236,72,153,0.05)] overflow-hidden">
                   <div className="p-4 bg-pink-500/10 border-b border-pink-500/20 flex items-center gap-2">
@@ -1054,6 +967,132 @@ export default function ClientDetailsPage() {
               {/* Middle & Right Content */}
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
+                {/* Analytics Expanded Section */}
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.05)] overflow-hidden">
+                  <div className="p-5 border-b border-blue-500/20 bg-blue-500/5 flex justify-between items-center">
+                    <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-blue-400" />
+                      Client Analytics
+                    </h2>
+                    <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border border-slate-700">
+                      <button className="px-3 py-1.5 rounded text-[12px] font-bold bg-blue-500 text-white shadow-md">30 Days</button>
+                      <button className="px-3 py-1.5 rounded text-[12px] font-bold text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all">90 Days</button>
+                      <button className="px-3 py-1.5 rounded text-[12px] font-bold text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all">All Time</button>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6 space-y-6">
+                    {/* Top Stats Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 flex flex-col">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="text-[13px] font-medium text-slate-400">Total Visits</span>
+                          <div className="w-8 h-8 rounded-md bg-blue-500/10 flex items-center justify-center">
+                            <Globe className="w-4 h-4 text-blue-400" />
+                          </div>
+                        </div>
+                        <div className="flex items-end gap-3 mt-auto">
+                          <span className="text-2xl font-bold text-white">1,245</span>
+                          <span className="text-[12px] font-bold text-emerald-400 flex items-center mb-1">
+                            <TrendingUp className="w-3 h-3 mr-0.5" /> +12%
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 flex flex-col">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="text-[13px] font-medium text-slate-400">Gorilla Apps Logins</span>
+                          <div className="w-8 h-8 rounded-md bg-purple-500/10 flex items-center justify-center">
+                            <Briefcase className="w-4 h-4 text-purple-400" />
+                          </div>
+                        </div>
+                        <div className="flex items-end gap-3 mt-auto">
+                          <span className="text-2xl font-bold text-white">856</span>
+                          <span className="text-[12px] font-bold text-emerald-400 flex items-center mb-1">
+                            <TrendingUp className="w-3 h-3 mr-0.5" /> +5%
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-4 flex flex-col">
+                        <div className="flex justify-between items-start mb-2">
+                          <span className="text-[13px] font-medium text-slate-400">Active Users</span>
+                          <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center">
+                            <Users className="w-4 h-4 text-emerald-400" />
+                          </div>
+                        </div>
+                        <div className="flex items-end gap-3 mt-auto">
+                          <span className="text-2xl font-bold text-white">3</span>
+                          <span className="text-[12px] font-bold text-slate-500 flex items-center mb-1">
+                            No change
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Charts Row */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      {/* Area Chart - Traffic */}
+                      <div className="bg-slate-800/30 border border-slate-700/30 rounded-xl p-4">
+                        <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
+                          <TrendingUp className="w-4 h-4 text-blue-400" /> Traffic Overview
+                        </h3>
+                        <div className="h-[200px] w-full">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <AreaChart data={[
+                              { name: 'Week 1', visits: 400, logins: 240 },
+                              { name: 'Week 2', visits: 300, logins: 139 },
+                              { name: 'Week 3', visits: 200, logins: 980 },
+                              { name: 'Week 4', visits: 278, logins: 390 },
+                              { name: 'Week 5', visits: 189, logins: 480 },
+                            ]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                              <defs>
+                                <linearGradient id="colorVisits" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                                </linearGradient>
+                              </defs>
+                              <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
+                              <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                              <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                              <RechartsTooltip 
+                                contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
+                                itemStyle={{ color: '#e2e8f0' }}
+                              />
+                              <Area type="monotone" dataKey="visits" stroke="#3b82f6" strokeWidth={2} fillOpacity={1} fill="url(#colorVisits)" />
+                            </AreaChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+
+                      {/* Bar Chart - Device Types */}
+                      <div className="bg-slate-800/30 border border-slate-700/30 rounded-xl p-4">
+                        <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
+                          <Settings className="w-4 h-4 text-purple-400" /> Platform Usage
+                        </h3>
+                        <div className="h-[200px] w-full">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <BarChart data={[
+                              { name: 'Desktop', value: 65 },
+                              { name: 'Mobile', value: 30 },
+                              { name: 'Tablet', value: 5 },
+                            ]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                              <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
+                              <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                              <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                              <RechartsTooltip 
+                                contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
+                                cursor={{ fill: '#334155', opacity: 0.4 }}
+                              />
+                              <Bar dataKey="value" fill="#a855f7" radius={[4, 4, 0, 0]} />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Communications Section */}
                 <div className="bg-slate-900/60 backdrop-blur-xl rounded-xl border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.05)] overflow-hidden">
                   <div className="p-5 border-b border-indigo-500/20 bg-indigo-500/5 flex justify-between items-center">
