@@ -302,18 +302,20 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
          <div className={`rounded-xl bg-slate-950 flex items-center justify-center border border-slate-800 shadow-inner overflow-hidden relative group cursor-pointer ${sidebarOpen ? 'w-full h-14' : 'w-12 h-12'}`}>
            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity shimmer"></div>
            {sidebarOpen ? (
-             <div className="flex items-center gap-2 relative z-10">
-                <div className="w-6 h-6 rounded bg-indigo-500/20 border border-indigo-500/50 flex items-center justify-center">
-                  <Activity className="w-3.5 h-3.5 text-indigo-400" />
+             <div className="flex items-center gap-2 relative z-10 group/logo">
+                <div className="w-6 h-6 rounded bg-indigo-500/20 border border-indigo-500/50 flex items-center justify-center group-hover/logo:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+                  <Activity className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
                 </div>
-                <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 tracking-wider text-lg uppercase drop-shadow-[0_0_10px_rgba(99,102,241,0.5)]">
+                <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-indigo-400 tracking-wider text-lg uppercase drop-shadow-[0_0_10px_rgba(99,102,241,0.5)] animate-text-gradient">
                   GORILLA HUB
                 </span>
              </div>
            ) : (
-             <span className="font-black text-indigo-400 tracking-tighter text-xl drop-shadow-[0_0_8px_rgba(99,102,241,0.8)] relative z-10">
-               GH
-             </span>
+             <div className="relative z-10 flex items-center justify-center">
+               <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-indigo-400 tracking-tighter text-xl drop-shadow-[0_0_8px_rgba(99,102,241,0.8)] animate-text-gradient">
+                 GH
+               </span>
+             </div>
            )}
          </div>
       </div>
