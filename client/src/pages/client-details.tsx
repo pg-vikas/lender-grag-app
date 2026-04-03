@@ -1023,11 +1023,35 @@ export default function ClientDetailsPage() {
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                               <label className="block text-[12px] font-bold text-indigo-300 uppercase tracking-wider mb-2">To (Phone) <span className="text-rose-500">*</span></label>
-                              <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <div className="relative group/sms">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                                   <Phone className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-4 py-3 bg-slate-900/80 border border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner" />
+                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-10 py-3 bg-slate-900/80 border border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner relative z-10" />
+                                <div className="absolute inset-y-0 right-0 flex items-center pr-3 z-10">
+                                  <ChevronDown className="w-4 h-4 text-slate-500 cursor-pointer" />
+                                </div>
+                                
+                                {/* SMS Dropdown Menu on hover */}
+                                <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-600 rounded-xl shadow-2xl opacity-0 invisible group-hover/sms:opacity-100 group-hover/sms:visible transition-all z-50 overflow-hidden transform origin-top scale-95 group-hover/sms:scale-100 duration-200">
+                                  <div className="p-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-900/50 border-b border-slate-700 text-left">CRM Contacts</div>
+                                  <div className="max-h-[200px] overflow-y-auto custom-scrollbar">
+                                    <button className="w-full text-left px-4 py-2.5 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-700/50 group/item">
+                                      <div className="flex justify-between items-center w-full">
+                                        <span className="text-[13px] font-bold text-white group-hover/item:text-indigo-400 transition-colors">Main Office</span>
+                                        <span className="text-indigo-400/80 font-mono text-[12px]">{currentClient.phone}</span>
+                                      </div>
+                                    </button>
+                                    {employees.map(emp => (
+                                      <button key={emp.id} className="w-full text-left px-4 py-2.5 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-700/50 last:border-0 group/item">
+                                        <div className="flex justify-between items-center w-full">
+                                          <span className="text-[13px] font-bold text-white group-hover/item:text-indigo-400 transition-colors">{emp.firstName} {emp.lastName}</span>
+                                          <span className="text-indigo-400/80 font-mono text-[12px]">{emp.phone}</span>
+                                        </div>
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
                               </div>
                             </div>
                             
@@ -1115,9 +1139,48 @@ export default function ClientDetailsPage() {
                                   <User className="w-8 h-8 text-slate-400" />
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-1">{currentClient.name}</h3>
-                                <div className="flex items-center justify-center gap-2 text-emerald-400 font-mono text-lg bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20">
-                                  <Phone className="w-4 h-4" />
-                                  {currentClient.phone !== '---' ? currentClient.phone : 'No Phone Number'}
+                                
+                                {/* Editable Phone Input with Quick Select */}
+                                <div className="relative w-full max-w-[300px] mx-auto mt-3 group/dialer">
+                                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                                    <Phone className="w-4 h-4 text-emerald-400" />
+                                  </div>
+                                  <input 
+                                    type="text" 
+                                    defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''}
+                                    placeholder="Enter phone number..."
+                                    className="w-full pl-10 pr-10 py-2.5 bg-slate-900/80 border border-emerald-500/30 rounded-lg text-[16px] font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-center shadow-inner relative z-10"
+                                  />
+                                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 z-10">
+                                    <div className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded cursor-pointer transition-colors">
+                                      <ChevronDown className="w-4 h-4" />
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Dropdown Menu on hover */}
+                                  <div className="absolute top-full left-0 right-0 mt-2 bg-slate-800 border border-slate-600 rounded-xl shadow-2xl opacity-0 invisible group-hover/dialer:opacity-100 group-hover/dialer:visible transition-all z-50 overflow-hidden transform origin-top scale-95 group-hover/dialer:scale-100 duration-200 text-left">
+                                    <div className="p-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-900/50 border-b border-slate-700">CRM Contacts</div>
+                                    
+                                    <div className="max-h-[200px] overflow-y-auto custom-scrollbar">
+                                      <button className="w-full text-left px-4 py-3 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-700/50 group/item">
+                                        <div className="flex justify-between items-center w-full mb-1">
+                                          <span className="text-[13px] font-bold text-white group-hover/item:text-emerald-400 transition-colors">Main Office</span>
+                                          <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-900 rounded text-slate-400">Primary</span>
+                                        </div>
+                                        <span className="text-emerald-400/80 font-mono text-[13px]">{currentClient.phone}</span>
+                                      </button>
+                                      
+                                      {employees.map(emp => (
+                                        <button key={emp.id} className="w-full text-left px-4 py-3 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-700/50 last:border-0 group/item">
+                                          <div className="flex justify-between items-center w-full mb-1">
+                                            <span className="text-[13px] font-bold text-white group-hover/item:text-emerald-400 transition-colors">{emp.firstName} {emp.lastName}</span>
+                                            <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-900 rounded text-slate-400 truncate max-w-[80px]">{emp.designation}</span>
+                                          </div>
+                                          <span className="text-emerald-400/80 font-mono text-[13px]">{emp.phone}</span>
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                               
