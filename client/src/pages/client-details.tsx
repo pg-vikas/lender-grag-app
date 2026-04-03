@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useParams } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2, FileText, Bold, Link as LinkIcon, List, AlignLeft, Image as ImageIcon, Video } from "lucide-react";
+import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2, FileText, Bold, Link as LinkIcon, List, AlignLeft, Image as ImageIcon, Video, Paperclip, Smile } from "lucide-react";
 
 export default function ClientDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
@@ -1278,8 +1278,16 @@ export default function ClientDetailsPage() {
                                   <div className="relative group shrink-0 pb-2">
                                     <textarea 
                                       placeholder="Type your SMS message here..." 
-                                      className="w-full bg-[#1e40af] text-white p-3 pr-10 rounded-2xl rounded-br-sm text-[14px] min-h-[80px] resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm leading-snug"
+                                      className="w-full bg-[#1e40af] text-white p-3 pb-8 pr-10 rounded-2xl rounded-br-sm text-[14px] min-h-[80px] resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm leading-snug"
                                     ></textarea>
+                                    <div className="absolute bottom-4 left-3 flex gap-2">
+                                      <button className="text-blue-200/70 hover:text-white transition-colors" title="Attach Image/File">
+                                        <Paperclip className="w-4 h-4" />
+                                      </button>
+                                      <button className="text-blue-200/70 hover:text-white transition-colors" title="Insert Emoji">
+                                        <Smile className="w-4 h-4" />
+                                      </button>
+                                    </div>
                                     <span className="absolute bottom-4 right-3 text-[10px] text-blue-200/70 font-medium">0/160</span>
                                   </div>
                                 </div>
