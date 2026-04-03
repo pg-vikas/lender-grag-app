@@ -1530,9 +1530,12 @@ export default function ClientDetailsPage() {
                       <div className="relative">
                         <button 
                           onClick={() => setIsTaskDropdownOpen(!isTaskDropdownOpen)}
-                          className="w-8 h-8 rounded-lg bg-orange-500 hover:bg-orange-600 flex items-center justify-center text-white shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-colors relative z-[60]"
+                          className="w-8 h-8 rounded-lg bg-orange-500 hover:bg-orange-600 flex items-center justify-center text-white shadow-[0_0_10px_rgba(249,115,22,0.4)] transition-colors group relative z-[60]"
                         >
-                          <List className="w-4 h-4" />
+                          <Zap className="w-4 h-4" />
+                          <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
+                            Quick Reminder
+                          </div>
                         </button>
                         
                         {isTaskDropdownOpen && (
