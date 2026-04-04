@@ -1,0 +1,681 @@
+Build a production-style React document signing workflow for Gorilla Apps that feels as seamless and intuitive as DocuSign, but uses our own premium dark design system.
+
+This is a document sending and preparation experience where users can:
+- add recipients/signers
+- upload one or more documents
+- prepare the document by dragging fields onto pages
+- assign fields to recipients
+- configure email details
+- review and send
+
+The interface must feel polished, modern, premium, and very easy to use. It should not feel like a generic admin form. It should feel like a high-end e-sign product inside Gorilla Apps.
+
+DESIGN SYSTEM / VISUAL STYLE:
+- dark luxury UI
+- deep navy background
+- subtle gradients
+- glowing purple accent
+- glassmorphism cards
+- rounded-xl or 2xl surfaces
+- clean spacing
+- premium typography
+- elegant shadows
+- smooth hover states
+- subtle motion / micro animations
+- highly usable, not cluttered
+- responsive layout
+
+TECH STACK:
+- React
+- TypeScript
+- Tailwind CSS
+- component-based architecture
+- use local mock state only
+- no backend required
+- no real API calls
+- no authentication logic
+- no actual sending logic required
+- if PDF rendering is too heavy, simulate document pages with styled page containers and realistic placeholder content
+- build the architecture cleanly so real PDF rendering can be swapped in later
+
+PRIMARY USER FLOW:
+Convert the current signing wizard into this 5-step flow:
+
+1. Add Recipients
+2. Add Documents
+3. Prepare Document
+4. Email Details
+5. Review & Send
+
+The Prepare Document step is the most important part.
+
+OVERALL PAGE LAYOUT:
+- Full-screen centered app shell
+- Top page title and short explanatory subtitle
+- Large main card container for the wizard
+- Horizontal stepper across the top inside the card
+- Main content area changes based on current step
+- Bottom action bar with Back and Next / Continue buttons
+- On final step show Send for Signature button
+
+GLOBAL UX REQUIREMENTS:
+- The wizard should feel fast and fluid
+- Preserve state across steps
+- Prevent users from progressing when critical requirements are missing
+- Show clear inline errors and smart warnings
+- Always keep actions obvious
+- Maintain premium visual consistency across all screens
+
+CREATE THESE FILES / COMPONENTS:
+
+App.tsx
+- root layout
+- mock data bootstrapping
+- main wizard state
+- step navigation
+- validation handling
+
+components/signing/SignatureWizard.tsx
+- overall step container
+- renders stepper, body, footer buttons
+
+components/signing/StepHeader.tsx
+- title
+- subtitle
+- progress state
+
+components/signing/Stepper.tsx
+- horizontal stepper with:
+  Add Recipients
+  Add Documents
+  Prepare Document
+  Email Details
+  Review & Send
+- active, complete, and upcoming states
+
+components/signing/steps/RecipientsStep.tsx
+- recipient list and add recipient form
+
+components/signing/steps/DocumentsStep.tsx
+- upload area
+- uploaded file cards
+- reorder / remove docs
+- optional “Use a Template” panel
+
+components/signing/steps/PrepareStep.tsx
+- full drag/drop document prep workspace
+
+components/signing/steps/EmailDetailsStep.tsx
+- subject
+- message
+- reminders
+- expiration
+
+components/signing/steps/ReviewStep.tsx
+- final summary
+- validation warnings
+- send button
+
+components/signing/prep/RecipientToolbar.tsx
+- active recipient selector
+- quick recipient chips
+
+components/signing/prep/FieldPalette.tsx
+- draggable fields
+
+components/signing/prep/DocumentWorkspace.tsx
+- overall prep layout wrapper
+
+components/signing/prep/PageThumbnailRail.tsx
+- list of pages
+
+components/signing/prep/DocumentCanvas.tsx
+- center document display area
+- page scrolling
+- zoom controls
+
+components/signing/prep/DocumentPage.tsx
+- one page surface
+- drop zone
+- field rendering overlay
+
+components/signing/prep/PlacedField.tsx
+- draggable / resizable field component
+
+components/signing/prep/FieldInspector.tsx
+- selected field settings editor
+
+components/signing/prep/PrepTopbar.tsx
+- recipient selector
+- zoom
+- undo redo
+- save draft
+
+components/signing/shared/SectionCard.tsx
+- reusable card container
+
+components/signing/shared/EmptyState.tsx
+- reusable empty state
+
+types/signing.ts
+- all type definitions
+
+data/mockSigningData.ts
+- realistic demo data
+
+hooks/useSigningWizard.ts
+- wizard state and navigation
+
+hooks/usePrepareDocument.ts
+- field placement, movement, resizing, selection
+
+UTILITIES:
+utils/signing.ts
+- helper functions for validation, field defaults, counts, warnings
+
+TYPE DEFINITIONS:
+Create and use these TypeScript types:
+
+type StepId =
+  | 'recipients'
+  | 'documents'
+  | 'prepare'
+  | 'email'
+  | 'review'
+
+type RecipientRole =
+  | 'Signer'
+  | 'CC'
+  | 'Approver'
+
+type FieldType =
+  | 'signature'
+  | 'initials'
+  | 'dateSigned'
+  | 'fullName'
+  | 'email'
+  | 'title'
+  | 'text'
+  | 'checkbox'
+  | 'arrow'
+
+type Recipient = {
+  id: string
+  name: string
+  email: string
+  role: RecipientRole
+  order: number
+  color: string
+}
+
+type DocumentFile = {
+  id: string
+  name: string
+  sizeLabel: string
+  pageCount: number
+  url?: string
+}
+
+type PlacedField = {
+  id: string
+  type: FieldType
+  page: number
+  x: number
+  y: number
+  width: number
+  height: number
+  recipientId?: string
+  required: boolean
+  label: string
+  placeholder?: string
+  fontSize?: number
+  checked?: boolean
+}
+
+type EmailDetails = {
+  subject: string
+  message: string
+  sendReminders: boolean
+  reminderFrequency: 'daily' | 'every2days' | 'weekly'
+  expiresInDays: number
+}
+
+type WizardState = {
+  currentStep: StepId
+  recipients: Recipient[]
+  documents: DocumentFile[]
+  placedFields: PlacedField[]
+  selectedFieldId: string | null
+  activeRecipientId: string | null
+  emailDetails: EmailDetails
+  zoom: number
+}
+
+INITIAL MOCK DATA:
+Seed realistic demo data:
+- 2 recipients
+  1. Greg Buyer
+  2. Amy Co-Signer
+- 1 uploaded demo file
+  “Loan Authorization Packet.pdf”
+- 3 pages
+- a few starter fields already placed on page 1 for demo mode
+- subject and message prefilled
+
+RECIPIENT STEP UI:
+Build a premium recipient management screen with:
+- section title: “Add Recipients”
+- explanatory text
+- recipient cards list
+- each card shows:
+  name
+  email
+  role
+  order badge
+  color chip
+  remove button
+- add recipient form with:
+  full name input
+  email input
+  role select
+  add recipient button
+- allow reordering by moving recipient up/down
+- assign each new recipient a rotating color from a preset palette
+- show empty state if no recipients yet
+
+RECIPIENT STEP LOGIC:
+- require at least one recipient with role “Signer” before moving to next step
+- allow CC and Approver types, but only Signer should receive draggable signing fields by default
+- first Signer added becomes activeRecipientId automatically
+- if active recipient is removed, choose the next available signer
+
+DOCUMENT STEP UI:
+Build an upload experience with:
+- heading “Upload Documents”
+- large drop zone area
+- “Click to upload or drag and drop” messaging
+- support text for PDF, DOCX, DOC, PNG, JPG
+- “Browse Files” button
+- uploaded file cards below
+- each card shows:
+  file icon
+  name
+  size
+  page count
+  remove button
+- optional secondary card:
+  “Use a Template”
+  subtitle like “Start from a pre-configured template like NDA, Proposal, etc.”
+
+DOCUMENT STEP LOGIC:
+- do not implement actual file parsing
+- simulate upload by allowing user to click a button that appends mock file objects
+- support multiple docs in state
+- removing a document should also remove fields associated with pages outside remaining doc structure if needed
+- require at least one document before moving to Prepare step
+
+PREPARE DOCUMENT STEP:
+This is the core experience and must be highly detailed.
+
+PREPARE STEP LAYOUT:
+Use a 3-column workspace:
+
+LEFT SIDEBAR
+Width about 260px
+Contains FieldPalette
+
+CENTER MAIN CANVAS
+Flexible width
+Contains the document pages and prep interactions
+
+RIGHT SIDEBAR
+Width about 320px
+Contains selected field inspector
+
+Also include a top toolbar above the center canvas.
+
+PREPARE TOPBAR:
+Include:
+- Active recipient selector dropdown
+- Recipient color chips
+- page info
+- zoom out button
+- zoom percentage display
+- zoom in button
+- undo button
+- redo button
+- Save Draft button
+
+LEFT FIELD PALETTE:
+Group tools into sections:
+
+Signer Fields
+- Signature
+- Initials
+- Date Signed
+- Full Name
+- Email
+- Title
+
+Basic Fields
+- Text Box
+- Checkbox
+
+Helpers
+- Arrow
+
+Each item should be a draggable pill/card with icon, label, and short helper text.
+
+DRAG AND DROP BEHAVIOR:
+Implement HTML5 drag and drop or pointer-based drag logic. Keep it simple but reliable.
+
+When a field is dragged from the left palette and dropped on a document page:
+- detect the target page
+- calculate the drop x/y relative to the page container
+- create a new PlacedField
+- assign default width/height based on field type
+- assign the currently active recipientId for signer fields
+- do not require recipientId for arrow helper field
+- make the new field selected immediately
+- open/update the right inspector with that field’s settings
+
+DEFAULT FIELD SIZES:
+signature: width 180, height 48
+initials: width 90, height 40
+dateSigned: width 140, height 40
+fullName: width 160, height 40
+email: width 180, height 40
+title: width 140, height 40
+text: width 180, height 40
+checkbox: width 28, height 28
+arrow: width 80, height 28
+
+PLACED FIELD VISUAL STYLE:
+Every field overlay should:
+- appear as a rounded rectangle
+- have a translucent colored background
+- have border color based on assigned recipient color
+- show a small top chip label like:
+  “Signature • Greg Buyer”
+- have resize handles on selected state for resizable field types
+- have a soft glow when selected
+- show required star if required
+- be draggable after placement
+
+FIELD TYPES BEHAVIOR:
+signature
+- labeled as signature
+- signer field
+- large signature box
+
+initials
+- smaller initials box
+
+dateSigned
+- auto-filled on sign
+- read-only style indicator
+
+fullName
+- auto-filled from signer
+
+email
+- auto-filled from signer email
+
+title
+- editable text field
+
+text
+- generic text box field
+- supports placeholder
+
+checkbox
+- small square control
+- can toggle checked in preview for demo
+
+arrow
+- simple annotation style marker
+- no recipient required
+
+FIELD MOVEMENT:
+After placement, user can drag fields around within page bounds.
+Requirements:
+- constrain movement inside page boundaries
+- maintain x/y in page-relative coordinates
+- update selected state on click
+- show cursor feedback
+- bring selected field visually above others
+
+FIELD RESIZING:
+Allow resizing from bottom-right handle for:
+- signature
+- initials
+- fullName
+- email
+- title
+- text
+
+Do not resize:
+- checkbox
+- dateSigned
+- arrow by default unless easy to support
+
+RIGHT FIELD INSPECTOR:
+If no field selected:
+- show empty state with text:
+  “Select a field to edit its settings”
+
+If a field is selected, show:
+- field type badge
+- assigned recipient dropdown for signer fields
+- field label input
+- required toggle
+- placeholder input for text field
+- font size slider or select
+- checkbox default toggle for checkbox type
+- duplicate field button
+- delete field button
+
+FIELD INSPECTOR LOGIC:
+- changing assigned recipient updates field border/chip color immediately
+- duplicate should create a new field slightly offset from the original on same page
+- delete removes the field and clears selection if needed
+
+PAGE THUMBNAILS / PAGE NAVIGATION:
+In the center area, show either:
+- a slim left rail of page thumbnails
+or
+- a compact page navigation block above the canvas
+
+Implement a page thumbnail rail if possible.
+Each thumbnail should:
+- show page number
+- indicate field count on that page
+- scroll active page into view when clicked
+
+DOCUMENT CANVAS:
+- show vertically scrollable pages
+- each page should look like a realistic white document sheet on dark background
+- use placeholder lines and sections to simulate PDF content if not rendering real PDFs
+- pages should maintain aspect ratio like standard letter page
+- support 3 mock pages
+- zoom should scale the page container and placed fields proportionally
+
+PREPARE STEP UX RULES:
+- show a hint overlay if there are no fields:
+  “Drag fields onto the document to prepare it for signing”
+- if no active signer is selected and user drags a signer field, show a warning
+- signer fields should preferably require an active signer recipient
+- allow arrow helper without signer
+- clicking blank page clears selected field
+
+STATE MANAGEMENT REQUIREMENTS:
+Create a central state hook using useReducer or well-structured useState.
+
+The state should manage:
+- current step
+- recipients
+- documents
+- placed fields
+- selected field
+- active recipient
+- email details
+- zoom
+
+Implement actions like:
+- ADD_RECIPIENT
+- REMOVE_RECIPIENT
+- REORDER_RECIPIENT
+- SET_ACTIVE_RECIPIENT
+- ADD_DOCUMENT
+- REMOVE_DOCUMENT
+- ADD_FIELD
+- UPDATE_FIELD
+- MOVE_FIELD
+- RESIZE_FIELD
+- SELECT_FIELD
+- DELETE_FIELD
+- DUPLICATE_FIELD
+- SET_EMAIL_DETAILS
+- SET_STEP
+- ZOOM_IN
+- ZOOM_OUT
+
+VALIDATION RULES BY STEP:
+
+Recipients Step valid if:
+- at least one Signer exists
+
+Documents Step valid if:
+- at least one document exists
+
+Prepare Step valid if:
+- at least one field exists
+- every signer has at least one field assigned
+- show warning if there is no signature field anywhere
+- show warning if fields overlap on same page if easy to detect
+
+Email Step valid if:
+- subject is not empty
+- message is not empty
+
+Review Step:
+- summarize any warnings but still allow send if non-critical
+- block send if critical requirements fail
+
+EMAIL DETAILS STEP UI:
+Build a clean form with:
+- subject input
+- message textarea
+- send reminders toggle
+- reminder frequency select
+- expiration days select/input
+- preview card showing how recipient email will look
+
+REVIEW & SEND STEP UI:
+Create a polished summary layout with sections:
+
+1. Documents
+- list uploaded docs
+- total pages
+
+2. Recipients
+- recipient cards
+- role
+- email
+- field count assigned
+
+3. Field Summary
+- total fields
+- fields by type
+- fields by recipient
+
+4. Email Details
+- subject
+- message
+- reminders
+- expiration
+
+5. Validation / Warnings
+Examples:
+- “Amy Co-Signer has no signature field”
+- “No date signed field placed”
+- “1 helper arrow is unassigned”
+
+6. Final Actions
+- Back button
+- Save Draft button
+- Send for Signature button
+
+SEND BUTTON BEHAVIOR:
+No real sending.
+On click:
+- run final validation
+- if valid, show polished success modal or toast:
+  “Envelope prepared successfully”
+  “This is a front-end demo. No real emails were sent.”
+- if invalid, highlight blocking issues
+
+HELPER FUNCTIONS TO IMPLEMENT:
+- getDefaultFieldDimensions(type)
+- isSignerField(type)
+- getRecipientFieldCount(recipientId, placedFields)
+- getFieldsByPage(pageNumber)
+- getValidationWarnings(state)
+- canProceedToStep(step, state)
+- createFieldFromDrop(type, x, y, page, activeRecipientId)
+
+COLOR SYSTEM:
+Use a recipient palette such as:
+- blue
+- emerald
+- amber
+- pink
+- violet
+- cyan
+
+Each signer’s fields should clearly inherit their color.
+Field chips, borders, and tiny badges should reflect this.
+
+ACCESSIBILITY / USABILITY:
+- buttons must be obvious and clickable
+- use focus states
+- use readable contrast
+- keep text sizes comfortable
+- do not overcrowd sidebars
+- ensure drag targets are forgiving
+- make field cards large enough to interact with easily
+
+RESPONSIVE BEHAVIOR:
+Desktop-first.
+For smaller screens:
+- stack sidebars into drawers or collapsible panels
+- keep Prepare step usable on laptop widths
+- no need to fully optimize for mobile signing prep, but avoid broken layouts
+
+IMPORTANT IMPLEMENTATION DETAIL:
+Do not leave this as static design only.
+Actually implement the interaction logic:
+- adding recipients
+- adding mock documents
+- step navigation
+- drag from palette to page
+- placing new fields
+- selecting fields
+- moving fields
+- resizing eligible fields
+- editing field settings in inspector
+- changing active recipient
+- counting fields per signer
+- validation gates between steps
+
+VISUAL POLISH DETAILS:
+- animate field hover and selection states
+- animate step transitions lightly
+- use premium icons
+- make page surfaces feel real
+- use subtle grid/background detail in the canvas area
+- make the whole thing look investor-demo worthy, not just functional
+
+FINAL EXPECTATION:
+Generate all code necessary for a working front-end prototype of this entire signing wizard.
+The result should look like a credible Gorilla Apps e-sign product demo with real local state and interactive drag/drop document preparation behavior.

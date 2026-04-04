@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Recipient, DocumentFile, PlacedField, FieldType } from "../types/signing";
+import PrepareStep, { RECIPIENT_COLORS } from "../components/signing/PrepareStep";
 import { Sidebar, Header } from "./clients";
 import { UploadCloud, FileText, User, Mail, Plus, X, ArrowRight, CheckCircle2, Link as LinkIcon, Settings, Calendar, MapPin, Eye, Building2, Copy, Play, Trash2, Edit2, Users } from "lucide-react";
 import { useLocation } from "wouter";
@@ -7,11 +9,14 @@ export default function ESignaturesSendPage() {
   const [openMenus, setOpenMenus] = useState<string>('esignatures');
   const [location, setLocation] = useLocation();
   const [currentStep, setCurrentStep] = useState(1);
-  const [attachedFiles, setAttachedFiles] = useState<{name: string, size: string, type: string, id: string}[]>([]);
+  const [attachedFiles, setAttachedFiles] = useState<DocumentFile[]>([]);
   const [selectedFileId, setSelectedFileId] = useState<string | null>(null);
   const [signatureFields, setSignatureFields] = useState<{id: string, fileId: string, type: string, x: number, y: number, page: number, assignee: string}[]>([]);
   const [isDraggingField, setIsDraggingField] = useState<string | null>(null);
-  const [recipients, setRecipients] = useState([{ name: '', email: '', role: 'Signer', requireOrder: false }]);
+  const [recipients, setRecipients] = useState<Recipient[]>([
+    { id: 'rec_1', name: 'John Doe', email: 'john@example.com', role: 'Signer', order: 1, color: RECIPIENT_COLORS[0] }
+  ]);
+  const [placedFields, setPlacedFields] = useState<PlacedField[]>([]);
   const [emailSubject, setEmailSubject] = useState('Please sign this document');
   const [emailMessage, setEmailMessage] = useState('Please review and sign the attached document. Let me know if you have any questions.');
 
@@ -20,7 +25,7 @@ export default function ESignaturesSendPage() {
     const newId = Date.now().toString();
     setAttachedFiles([
       ...attachedFiles,
-      { name: 'Website_Redesign_Agreement.pdf', size: '2.4 MB', type: 'application/pdf', id: newId }
+      { name: 'Website_Redesign_Agreement.pdf', sizeLabel: '2.4 MB', pageCount: 3, id: newId }
     ]);
     setSelectedFileId(newId);
   };
@@ -32,7 +37,14 @@ export default function ESignaturesSendPage() {
   };
 
   const handleAddRecipient = () => {
-    setRecipients([...recipients, { name: '', email: '', role: 'Signer', requireOrder: false }]);
+    setRecipients([...recipients, { 
+      id: 'rec_' + Date.now(), 
+      name: '', 
+      email: '', 
+      role: 'Signer', 
+      order: recipients.length + 1,
+      color: RECIPIENT_COLORS[recipients.length % RECIPIENT_COLORS.length]
+    }]);
   };
 
   const handleRemoveRecipient = (index: number) => {

@@ -1,348 +1,474 @@
 import { useState } from "react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
+import { Plus, Search, Edit2, Trash2, ArrowRight, FileText, Calendar, Grip, List as ListIcon, Play } from "lucide-react";
 import { Sidebar, Header } from "./clients";
-import { Search, Plus, Edit2, Trash2, X, FileText, CheckCircle } from "lucide-react";
+
+// Mock data
+const mockTemplates = [
+  { id: 1, name: 'Standard Website Launch', description: 'Complete checklist for launching a new 5-page business website including QA and SEO setup.', category: 'Web Development', tasks: 24, lastUpdated: 'Oct 12, 2025', color: '#3b82f6' },
+  { id: 2, name: 'E-Commerce Store Setup', description: 'Step-by-step process for Shopify/WooCommerce setup including payment gateways and tax config.', category: 'E-Commerce', tasks: 38, lastUpdated: 'Nov 05, 2025', color: '#10b981' },
+  { id: 3, name: 'SEO Migration Protocol', description: 'Critical steps for preserving rankings during a site redesign or domain change.', category: 'Marketing', tasks: 15, lastUpdated: 'Sep 28, 2025', color: '#f59e0b' },
+  { id: 4, name: 'Monthly Maintenance', description: 'Recurring tasks for plugin updates, backups, security scans, and performance testing.', category: 'Maintenance', tasks: 12, lastUpdated: 'Dec 01, 2025', color: '#8b5cf6' },
+  { id: 5, name: 'Client Onboarding', description: 'Initial setup steps including contract signing, intake forms, and kickoff meeting scheduling.', category: 'Operations', tasks: 8, lastUpdated: 'Jan 15, 2026', color: '#ec4899' },
+  { id: 6, name: 'Social Media Campaign', description: 'Template for launching a new 30-day cross-platform social media ad campaign.', category: 'Marketing', tasks: 18, lastUpdated: 'Feb 20, 2026', color: '#06b6d4' }
+];
 
 export default function LaunchpadTemplatesPage() {
-  const [openMenus, setOpenMenus] = useState<string>('launchpads');
-  const [location, setLocation] = useLocation();
-  const [activeTab, setActiveTab] = useState<'All Templates' | 'Task Templates' | 'Document Templates'>('All Templates');
+  const [location] = useLocation();
+  const [openMenus, setOpenMenus] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   
-  // Modal states
-  const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
+  // State for modals
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [templateToEdit, setTemplateToEdit] = useState<{id: string, name: string, creator: string, type: string} | null>(null);
-  const [itemToDelete, setItemToDelete] = useState<{id: string, name: string} | null>(null);
-
-  // Mock data for templates
-  const [templates, setTemplates] = useState([
-    { id: '1', name: 'Demo 5 task Template', creator: 'PG', type: 'Task Templates', date: '22-10-2023' },
-    { id: '2', name: 'Standard Task Template', creator: 'System', type: 'Task Templates', date: '15-09-2023' },
-    { id: '3', name: 'Standard NDA', creator: 'System', type: 'Document Templates', date: '10-09-2023' },
-    { id: '4', name: 'Client Onboarding', creator: 'MJ', type: 'Document Templates', date: '05-11-2023' },
-  ]);
+  
+  const [templates, setTemplates] = useState(mockTemplates);
+  const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
+  
+  // Form states
+  const [formData, setFormData] = useState({ name: '', description: '', category: 'Web Development' });
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(prev => prev === menu ? '' : menu);
   };
 
-  const handleEditTemplate = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const newName = formData.get('templateName') as string;
-    const type = formData.get('templateType') as string;
-    
-    if (!newName.trim()) return;
+  const filteredTemplates = templates.filter(t => 
+    t.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    t.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    t.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-    if (templateToEdit) {
-      setTemplates(prev => prev.map(t => 
-        t.id === templateToEdit.id ? { ...t, name: newName, type } : t
-      ));
-    } else {
-      setTemplates(prev => [...prev, { 
-        id: Date.now().toString(), 
-        name: newName, 
-        creator: 'PG Admin', 
-        type,
-        date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
-      }]);
-    }
-    
-    setIsTemplateModalOpen(false);
-    setTemplateToEdit(null);
+  const handleOpenAdd = () => {
+    setFormData({ name: '', description: '', category: 'Web Development' });
+    setIsAddModalOpen(true);
   };
 
-  const handleDeleteConfirm = () => {
-    if (!itemToDelete) return;
-    setTemplates(prev => prev.filter(t => t.id !== itemToDelete.id));
+  const handleOpenEdit = (template: any) => {
+    setSelectedTemplate(template);
+    setFormData({ name: template.name, description: template.description, category: template.category });
+    setIsEditModalOpen(true);
+  };
+
+  const handleOpenDelete = (template: any) => {
+    setSelectedTemplate(template);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleSaveAdd = () => {
+    if (!formData.name) return;
+    
+    const newTemplate = {
+      id: Date.now(),
+      name: formData.name,
+      description: formData.description,
+      category: formData.category,
+      tasks: 0,
+      lastUpdated: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      color: ['#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#06b6d4'][Math.floor(Math.random() * 6)]
+    };
+    
+    setTemplates([newTemplate, ...templates]);
+    setIsAddModalOpen(false);
+  };
+
+  const handleSaveEdit = () => {
+    if (!formData.name || !selectedTemplate) return;
+    
+    setTemplates(templates.map(t => 
+      t.id === selectedTemplate.id 
+        ? { ...t, name: formData.name, description: formData.description, category: formData.category, lastUpdated: 'Today' } 
+        : t
+    ));
+    setIsEditModalOpen(false);
+  };
+
+  const handleConfirmDelete = () => {
+    if (!selectedTemplate) return;
+    setTemplates(templates.filter(t => t.id !== selectedTemplate.id));
     setIsDeleteModalOpen(false);
-    setItemToDelete(null);
   };
-
-  const filteredTemplates = activeTab === 'All Templates' 
-    ? templates 
-    : templates.filter(t => t.type === activeTab);
 
   return (
-    <div className="flex h-screen bg-[#0f172a] text-slate-200 font-sans overflow-hidden">
+    <div className="h-screen w-full overflow-hidden bg-[#0f172a] flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
       
-      <div className="flex-1 flex flex-col h-screen overflow-hidden">
-        <Header location={location} />
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0f172a] relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 custom-scrollbar">
-          <div className="max-w-7xl mx-auto space-y-6">
-            
-            {/* Header Area */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <h1 className="text-2xl font-bold text-white tracking-tight">Launchpad Templates</h1>
-            </div>
+        <Header title="Launchpads" />
 
-            {/* Main Content Card */}
-            <div className="glass-panel rounded-2xl border border-white/10 overflow-hidden flex flex-col">
+        <div className="flex flex-1 overflow-hidden relative z-10">
+          <main className="flex-1 overflow-y-auto p-6 lg:p-8 scrollbar-hide">
+            <div className="max-w-7xl mx-auto">
               
-              {/* Toolbar */}
-              <div className="p-6 border-b border-slate-800/50 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
+              {/* Page Header */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                  <h1 className="text-3xl font-bold text-white tracking-tight mb-1 flex items-center gap-3">
+                    <FileText className="w-8 h-8 text-indigo-400" />
+                    Launchpad Templates
+                  </h1>
+                  <p className="text-slate-400 text-sm">
+                    Manage reusable task sequences for common project types
+                  </p>
+                </div>
                 
-                {/* Search & Tabs */}
-                <div className="flex flex-col xl:flex-row items-start xl:items-center gap-4 w-full xl:w-auto">
-                  <div className="relative w-full xl:w-64 shrink-0">
-                    <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                     <input 
                       type="text" 
                       placeholder="Search templates..." 
-                      className="w-full bg-slate-900/50 border border-slate-700/50 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-9 pr-4 py-2 bg-slate-900/80 border border-slate-700/50 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 w-64 transition-all"
                     />
                   </div>
                   
-                  <div className="flex bg-slate-900/50 rounded-lg p-1 border border-slate-700/50 overflow-x-auto max-w-full custom-scrollbar">
+                  <div className="flex bg-slate-900/80 border border-slate-700/50 rounded-lg p-1">
                     <button 
-                      onClick={() => setActiveTab('All Templates')}
-                      className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
-                        activeTab === 'All Templates' 
-                          ? 'bg-slate-800 text-white shadow-sm' 
-                          : 'text-slate-400 hover:text-slate-300'
-                      }`}
+                      onClick={() => setViewMode('grid')}
+                      className={`p-1.5 rounded-md transition-colors \${viewMode === 'grid' ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'}`}
                     >
-                      All Templates
+                      <Grip className="w-4 h-4" />
                     </button>
                     <button 
-                      onClick={() => setActiveTab('Task Templates')}
-                      className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
-                        activeTab === 'Task Templates' 
-                          ? 'bg-slate-800 text-white shadow-sm' 
-                          : 'text-slate-400 hover:text-slate-300'
-                      }`}
+                      onClick={() => setViewMode('list')}
+                      className={`p-1.5 rounded-md transition-colors \${viewMode === 'list' ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'}`}
                     >
-                      Task Templates
-                    </button>
-                    <button 
-                      onClick={() => setActiveTab('Document Templates')}
-                      className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors whitespace-nowrap ${
-                        activeTab === 'Document Templates' 
-                          ? 'bg-slate-800 text-white shadow-sm' 
-                          : 'text-slate-400 hover:text-slate-300'
-                      }`}
-                    >
-                      Document Templates
+                      <ListIcon className="w-4 h-4" />
                     </button>
                   </div>
+                  
+                  <button 
+                    onClick={handleOpenAdd}
+                    className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-lg transition-colors flex items-center gap-2 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+                  >
+                    <Plus className="w-4 h-4" /> New Template
+                  </button>
                 </div>
-
-                {/* Add Button */}
-                <button 
-                  onClick={() => {
-                    setTemplateToEdit(null);
-                    setIsTemplateModalOpen(true);
-                  }}
-                  className="px-4 py-2 bg-[#7c3aed] hover:bg-purple-600 text-white text-sm font-medium rounded-lg shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all flex items-center gap-2 whitespace-nowrap shrink-0"
-                >
-                  <Plus className="w-4 h-4" /> Add New Template
-                </button>
               </div>
 
-              {/* Table */}
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="border-b border-slate-800 bg-slate-900/30">
-                      <th className="py-4 px-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">Template Name</th>
-                      <th className="py-4 px-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">Template Type</th>
-                      <th className="py-4 px-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">Created By</th>
-                      <th className="py-4 px-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">Date</th>
-                      <th className="py-4 px-6 text-xs font-semibold text-slate-400 uppercase tracking-wider text-right">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredTemplates.length > 0 ? (
-                      filteredTemplates.map((template) => (
-                        <tr key={template.id} className="border-b border-slate-800/50 hover:bg-slate-800/20 transition-colors group">
-                          <td className="py-4 px-6">
-                            <Link href={`/launchpads/templates/${template.id}`}>
-                              <div className="flex items-center gap-3 cursor-pointer group/link">
-                                <div className={`w-8 h-8 rounded bg-slate-800 flex items-center justify-center shrink-0 ${template.type === 'Task Templates' ? 'text-blue-400 group-hover/link:bg-blue-500/20' : 'text-emerald-400 group-hover/link:bg-emerald-500/20'} transition-colors`}>
-                                  {template.type === 'Task Templates' ? <CheckCircle className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
-                                </div>
-                                <span className="text-sm font-medium text-slate-200 group-hover/link:text-purple-400 transition-colors">{template.name}</span>
-                              </div>
-                            </Link>
-                          </td>
-                          <td className="py-4 px-6">
-                            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium border ${template.type === 'Task Templates' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'}`}>
-                              {template.type === 'Task Templates' ? 'Task Template' : 'Document Template'}
+              {/* Content Area */}
+              {filteredTemplates.length === 0 ? (
+                <div className="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-12 text-center flex flex-col items-center">
+                  <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mb-4 border border-slate-700">
+                    <FileText className="w-8 h-8 text-slate-500" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">No templates found</h3>
+                  <p className="text-slate-400 max-w-md mx-auto mb-6">
+                    {searchQuery ? "We couldn't find any templates matching your search." : "You haven't created any launchpad templates yet. Create your first template to save time on recurring projects."}
+                  </p>
+                  {!searchQuery && (
+                    <button 
+                      onClick={handleOpenAdd}
+                      className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-lg transition-colors flex items-center gap-2"
+                    >
+                      <Plus className="w-4 h-4" /> Create Template
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <div className={`grid gap-6 \${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}>
+                  {filteredTemplates.map(template => (
+                    <div 
+                      key={template.id} 
+                      className={`bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-xl overflow-hidden hover:border-slate-600 transition-all group \${viewMode === 'list' ? 'flex items-center' : 'flex flex-col'}`}
+                      style={{ borderTopColor: template.color, borderTopWidth: '4px' }}
+                    >
+                      <div className={`p-6 \${viewMode === 'list' ? 'flex-1 flex items-center justify-between' : 'flex-1 flex flex-col'}`}>
+                        <div className={`\${viewMode === 'list' ? 'flex items-center gap-6 flex-1' : ''}`}>
+                          <div className="flex items-start justify-between mb-4">
+                            <span 
+                              className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded border"
+                              style={{ 
+                                color: template.color, 
+                                backgroundColor: `\${template.color}15`,
+                                borderColor: `\${template.color}30`
+                              }}
+                            >
+                              {template.category}
                             </span>
-                          </td>
-                          <td className="py-4 px-6">
-                            <div className="flex items-center gap-2">
-                              {template.creator === 'System' ? (
-                                <span className="text-sm text-slate-400">---</span>
-                              ) : (
-                                <>
-                                  <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-slate-300 shrink-0">
-                                    {template.creator.substring(0,2).toUpperCase()}
-                                  </div>
-                                  <span className="text-sm text-slate-300">{template.creator}</span>
-                                </>
-                              )}
-                            </div>
-                          </td>
-                          <td className="py-4 px-6 text-sm text-slate-400">
-                            {template.date}
-                          </td>
-                          <td className="py-4 px-6">
-                            <div className="flex items-center justify-end gap-2">
+                            
+                            {viewMode === 'grid' && (
+                              <div className="flex opacity-0 group-hover:opacity-100 transition-opacity gap-1">
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); handleOpenEdit(template); }}
+                                  className="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-700 transition-colors"
+                                  title="Edit Template"
+                                >
+                                  <Edit2 className="w-3.5 h-3.5" />
+                                </button>
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); handleOpenDelete(template); }}
+                                  className="p-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 rounded border border-rose-500/20 transition-colors"
+                                  title="Delete Template"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                          
+                          <div className={`\${viewMode === 'list' ? 'flex-1' : ''}`}>
+                            <h3 className="text-[16px] font-bold text-white mb-2">{template.name}</h3>
+                            <p className="text-[13px] text-slate-400 line-clamp-2 mb-4 leading-relaxed">
+                              {template.description}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className={`flex items-center gap-4 text-[12px] text-slate-500 \${viewMode === 'list' ? 'mr-8' : 'mt-auto pt-4 border-t border-slate-800/80'}`}>
+                          <div className="flex items-center gap-1.5">
+                            <CheckSquare className="w-3.5 h-3.5" />
+                            {template.tasks} Tasks
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {template.lastUpdated}
+                          </div>
+                        </div>
+                        
+                        {viewMode === 'list' && (
+                          <div className="flex items-center gap-3">
+                            <button 
+                              onClick={() => {}}
+                              className="flex items-center gap-1.5 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-[12px] font-bold rounded-lg border border-slate-700 transition-colors"
+                            >
+                              <Play className="w-3.5 h-3.5" /> Apply
+                            </button>
+                            <div className="flex gap-1">
                               <button 
-                                onClick={() => {
-                                  setTemplateToEdit(template);
-                                  setIsTemplateModalOpen(true);
-                                }}
-                                className="p-1.5 text-slate-400 hover:text-purple-400 hover:bg-purple-400/10 rounded-lg transition-colors"
-                                title="Edit Template"
+                                onClick={(e) => { e.stopPropagation(); handleOpenEdit(template); }}
+                                className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 transition-colors"
                               >
                                 <Edit2 className="w-4 h-4" />
                               </button>
                               <button 
-                                onClick={() => {
-                                  setItemToDelete({id: template.id, name: template.name});
-                                  setIsDeleteModalOpen(true);
-                                }}
-                                className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-rose-400/10 rounded-lg transition-colors"
-                                title="Delete Template"
+                                onClick={(e) => { e.stopPropagation(); handleOpenDelete(template); }}
+                                className="p-2 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 rounded-lg border border-rose-500/20 transition-colors"
                               >
                                 <Trash2 className="w-4 h-4" />
                               </button>
                             </div>
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan={5} className="py-12 text-center">
-                          <div className="flex flex-col items-center justify-center text-slate-500">
-                            <FileText className="w-12 h-12 mb-3 text-slate-600" />
-                            <p className="text-base font-medium">No templates found</p>
-                            <p className="text-sm mt-1">Click "Add New Template" to create one.</p>
                           </div>
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                        )}
+                      </div>
+                      
+                      {viewMode === 'grid' && (
+                        <div className="bg-slate-900 p-3 border-t border-slate-800/80">
+                          <button 
+                            onClick={() => {}}
+                            className="w-full flex items-center justify-center gap-2 py-2 bg-slate-800 hover:bg-slate-700 text-white text-[13px] font-bold rounded-lg transition-colors border border-slate-700/50"
+                          >
+                            <Play className="w-4 h-4" /> Apply Template
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
 
-          </div>
-        </main>
+            </div>
+          </main>
+        </div>
       </div>
 
-      {/* Add/Edit Template Modal */}
-      {isTemplateModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/20">
-              <h2 className="text-xl font-bold text-white">{templateToEdit ? 'Edit' : 'Add New'} Template</h2>
+      {/* Add Modal */}
+      {isAddModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+          <div className="bg-slate-900 border border-indigo-500/30 border-t-indigo-500 border-t-4 rounded-xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex justify-between items-center p-6 border-b border-slate-800 bg-slate-900/50">
+              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                <div className="w-8 h-8 rounded bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                  <Plus className="w-4 h-4" />
+                </div>
+                Create New Template
+              </h2>
               <button 
-                onClick={() => setIsTemplateModalOpen(false)}
-                className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
+                onClick={() => setIsAddModalOpen(false)}
+                className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             
-            <form onSubmit={handleEditTemplate}>
-              <div className="p-6 space-y-6">
-                <div className="space-y-2">
-                  <label className="text-[13px] font-medium text-slate-400">Template Type*</label>
-                  <div className="relative">
-                    <select 
-                      name="templateType"
-                      defaultValue={templateToEdit?.type || (activeTab !== 'All Templates' ? activeTab : 'Task Templates')}
-                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg pl-4 pr-10 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
-                      required
-                    >
-                      <option value="Task Templates" className="bg-slate-800 text-slate-200">Task Template</option>
-                      <option value="Document Templates" className="bg-slate-800 text-slate-200">Document Template</option>
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-400">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[13px] font-medium text-slate-400">Template Name*</label>
-                  <input 
-                    type="text" 
-                    name="templateName"
-                    defaultValue={templateToEdit?.name || ''}
-                    placeholder="e.g., Standard Template"
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[13px] font-medium text-slate-400">Description (Optional)</label>
-                  <textarea 
-                    name="description"
-                    rows={3}
-                    placeholder="Brief description of what this template contains..."
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all resize-none"
-                  ></textarea>
-                </div>
+            <div className="p-6 space-y-5">
+              <div>
+                <label className="block text-[12px] font-bold text-slate-400 uppercase tracking-wider mb-2">Template Name <span className="text-rose-500">*</span></label>
+                <input 
+                  type="text" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  placeholder="e.g., SEO Migration Protocol"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-[14px] text-white focus:outline-none focus:border-indigo-500 transition-colors placeholder:text-slate-600"
+                  autoFocus
+                />
               </div>
               
-              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
-                <button 
-                  type="button"
-                  onClick={() => setIsTemplateModalOpen(false)}
-                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+              <div>
+                <label className="block text-[12px] font-bold text-slate-400 uppercase tracking-wider mb-2">Category</label>
+                <select 
+                  value={formData.category}
+                  onChange={(e) => setFormData({...formData, category: e.target.value})}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-[14px] text-white focus:outline-none focus:border-indigo-500 transition-colors"
                 >
-                  Cancel
-                </button>
-                <button 
-                  type="submit"
-                  className="px-8 py-2 bg-[#7c3aed] hover:bg-purple-600 text-white text-sm font-medium rounded-lg shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all"
-                >
-                  Save
-                </button>
+                  <option value="Web Development">Web Development</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="E-Commerce">E-Commerce</option>
+                  <option value="Operations">Operations</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Delete Confirmation Modal */}
-      {isDeleteModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-rose-500/20 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6">
-              <div className="w-12 h-12 rounded-full bg-rose-500/10 flex items-center justify-center mb-4 mx-auto">
-                <Trash2 className="w-6 h-6 text-rose-500" />
+              
+              <div>
+                <label className="block text-[12px] font-bold text-slate-400 uppercase tracking-wider mb-2">Description</label>
+                <textarea 
+                  value={formData.description}
+                  onChange={(e) => setFormData({...formData, description: e.target.value})}
+                  placeholder="Briefly describe what this template covers..."
+                  rows={4}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-[14px] text-white focus:outline-none focus:border-indigo-500 transition-colors resize-none placeholder:text-slate-600"
+                ></textarea>
               </div>
-              <h2 className="text-xl font-bold text-white text-center mb-2">Delete Template</h2>
-              <p className="text-slate-400 text-center text-sm">
-                Are you sure you want to delete the template <span className="text-slate-200 font-medium">"{itemToDelete?.name}"</span>? This action cannot be undone.
-              </p>
             </div>
             
-            <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-center gap-4">
+            <div className="p-6 border-t border-slate-800 bg-slate-900/50 flex justify-end gap-3">
               <button 
-                onClick={() => setIsDeleteModalOpen(false)}
-                className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors w-full"
+                onClick={() => setIsAddModalOpen(false)}
+                className="px-5 py-2.5 rounded-lg text-[13px] font-bold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
               >
                 Cancel
               </button>
               <button 
-                onClick={handleDeleteConfirm}
-                className="px-6 py-2 bg-rose-500 hover:bg-rose-600 text-white text-sm font-medium rounded-lg shadow-[0_0_15px_rgba(244,63,94,0.3)] transition-all w-full"
+                onClick={handleSaveAdd}
+                disabled={!formData.name}
+                className="px-6 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-500 text-white text-[13px] font-bold transition-colors shadow-lg shadow-indigo-500/20"
               >
-                Delete
+                Create Template
               </button>
             </div>
           </div>
         </div>
       )}
+
+      {/* Edit Modal */}
+      {isEditModalOpen && selectedTemplate && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+          <div 
+            className="bg-slate-900 border border-slate-700/50 border-t-4 rounded-xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+            style={{ borderTopColor: selectedTemplate.color }}
+          >
+            <div className="flex justify-between items-center p-6 border-b border-slate-800 bg-slate-900/50">
+              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                <div className="w-8 h-8 rounded flex items-center justify-center" style={{ backgroundColor: `\${selectedTemplate.color}15`, color: selectedTemplate.color }}>
+                  <Edit2 className="w-4 h-4" />
+                </div>
+                Edit Template
+              </h2>
+              <button 
+                onClick={() => setIsEditModalOpen(false)}
+                className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-5">
+              <div>
+                <label className="block text-[12px] font-bold text-slate-400 uppercase tracking-wider mb-2">Template Name <span className="text-rose-500">*</span></label>
+                <input 
+                  type="text" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-[14px] text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                  autoFocus
+                />
+              </div>
+              
+              <div>
+                <label className="block text-[12px] font-bold text-slate-400 uppercase tracking-wider mb-2">Category</label>
+                <select 
+                  value={formData.category}
+                  onChange={(e) => setFormData({...formData, category: e.target.value})}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-[14px] text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                >
+                  <option value="Web Development">Web Development</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="E-Commerce">E-Commerce</option>
+                  <option value="Operations">Operations</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-[12px] font-bold text-slate-400 uppercase tracking-wider mb-2">Description</label>
+                <textarea 
+                  value={formData.description}
+                  onChange={(e) => setFormData({...formData, description: e.target.value})}
+                  rows={4}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-[14px] text-white focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+                ></textarea>
+              </div>
+            </div>
+            
+            <div className="p-6 border-t border-slate-800 bg-slate-900/50 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsEditModalOpen(false)}
+                className="px-5 py-2.5 rounded-lg text-[13px] font-bold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleSaveEdit}
+                disabled={!formData.name}
+                className="px-6 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-500 text-white text-[13px] font-bold transition-colors shadow-lg shadow-indigo-500/20"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Modal */}
+      {isDeleteModalOpen && selectedTemplate && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+          <div className="bg-slate-900 border border-rose-500/30 border-t-rose-500 border-t-4 rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-8 flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-rose-500/10 rounded-full flex items-center justify-center mb-6 border border-rose-500/20">
+                <Trash2 className="w-8 h-8 text-rose-500" />
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Delete Template?</h2>
+              <p className="text-slate-400 mb-8 text-[14px] leading-relaxed">
+                Are you sure you want to delete <span className="text-white font-bold">"{selectedTemplate.name}"</span>? 
+                This action cannot be undone and will not affect launchpads currently using this template.
+              </p>
+              
+              <div className="flex justify-center gap-3 w-full">
+                <button 
+                  onClick={() => setIsDeleteModalOpen(false)}
+                  className="flex-1 py-3 rounded-xl text-[14px] font-bold text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 transition-colors"
+                >
+                  Keep Template
+                </button>
+                <button 
+                  onClick={handleConfirmDelete}
+                  className="flex-1 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-[14px] font-bold transition-colors shadow-lg shadow-rose-500/20"
+                >
+                  Yes, Delete It
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
