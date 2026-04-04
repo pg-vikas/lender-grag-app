@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Recipient, DocumentFile, PlacedField, FieldType } from "../types/signing";
-import PrepareStep from "../components/signing/PrepareStep";
+import PrepareStep, { RECIPIENT_COLORS } from "../components/signing/PrepareStep";
 import { Sidebar, Header } from "./clients";
 import { UploadCloud, FileText, User, Mail, Plus, X, ArrowRight, CheckCircle2, Link as LinkIcon, Settings, Calendar, MapPin, Eye, Building2, Copy, Play, Trash2, Edit2, Users } from "lucide-react";
 import { useLocation } from "wouter";
@@ -14,7 +14,7 @@ export default function ESignaturesSendPage() {
   const [signatureFields, setSignatureFields] = useState<{id: string, fileId: string, type: string, x: number, y: number, page: number, assignee: string}[]>([]);
   const [isDraggingField, setIsDraggingField] = useState<string | null>(null);
   const [recipients, setRecipients] = useState<Recipient[]>([
-    { id: 'rec_1', name: 'John Doe', email: 'john@example.com', role: 'Signer', order: 1, color: ["#3b82f6", "#10b981", "#f59e0b", "#ec4899", "#8b5cf6", "#06b6d4"][0] }
+    { id: 'rec_1', name: 'John Doe', email: 'john@example.com', role: 'Signer', order: 1, color: RECIPIENT_COLORS[0] }
   ]);
   const [placedFields, setPlacedFields] = useState<PlacedField[]>([]);
   const [emailSubject, setEmailSubject] = useState('Please sign this document');
@@ -43,7 +43,7 @@ export default function ESignaturesSendPage() {
       email: '', 
       role: 'Signer', 
       order: recipients.length + 1,
-      color: ["#3b82f6", "#10b981", "#f59e0b", "#ec4899", "#8b5cf6", "#06b6d4"][recipients.length % ["#3b82f6", "#10b981", "#f59e0b", "#ec4899", "#8b5cf6", "#06b6d4"].length]
+      color: RECIPIENT_COLORS[recipients.length % RECIPIENT_COLORS.length]
     }]);
   };
 
@@ -133,6 +133,7 @@ export default function ESignaturesSendPage() {
                 {/* Step 2: Add Documents & Prepare */}
                 {currentStep === 2 && (
                   <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                    
                     {!selectedFileId ? (
                       // Upload View
                       <>
@@ -140,6 +141,7 @@ export default function ESignaturesSendPage() {
                           <FileText className="w-5 h-5 text-indigo-400" /> Upload Documents
                         </h2>
                         
+                        {/* Upload Area */}
                         <div 
                           className="border-2 border-dashed border-slate-600 rounded-xl p-10 flex flex-col items-center justify-center text-center hover:border-indigo-500 hover:bg-indigo-500/5 transition-all cursor-pointer group bg-slate-900/50"
                           onClick={handleFileUpload}
@@ -156,12 +158,14 @@ export default function ESignaturesSendPage() {
                           </button>
                         </div>
                         
+                        {/* OR divider */}
                         <div className="flex items-center my-6">
                           <div className="flex-1 h-px bg-slate-800"></div>
                           <span className="px-4 text-[12px] font-bold text-slate-500 uppercase tracking-widest">OR</span>
                           <div className="flex-1 h-px bg-slate-800"></div>
                         </div>
                         
+                        {/* Templates Button */}
                         <button className="w-full py-4 border border-slate-700 bg-slate-800/50 hover:bg-slate-800 rounded-xl text-left px-6 flex items-center justify-between transition-colors group">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
@@ -176,16 +180,281 @@ export default function ESignaturesSendPage() {
                         </button>
                       </>
                     ) : (
-                      <PrepareStep 
-                        recipients={recipients}
-                        documents={documents}
-                        placedFields={placedFields}
-                        setPlacedFields={setPlacedFields}
-                      />
+                      // Document Preparation View
+                      <div className="flex flex-col h-[600px]">
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center gap-3">
+                            <button 
+                              onClick={() => setSelectedFileId(null)}
+                              className="p-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-slate-400 hover:text-white transition-colors"
+                            >
+                              <ArrowRight className="w-4 h-4 rotate-180" />
+                            </button>
+                            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                              Prepare Document
+                            </h2>
+                          </div>
+                          
+                          <div className="flex items-center gap-2">
+                            <span className="text-[12px] text-slate-400 font-medium">Assigning to:</span>
+                            <select 
+                              className="bg-slate-800 border border-slate-700 text-white text-[12px] rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 min-w-[150px]"
+                              onChange={(e) => {
+                                // In a real app we'd track the selected assignee for new fields
+                              }}
+                            >
+                              {recipients.filter(r => r.name || r.email).length > 0 ? (
+                                recipients.filter(r => r.name || r.email).map((r, i) => (
+                                  <option key={i}>{r.name || r.email} ({r.role})</option>
+                                ))
+                              ) : (
+                                <option>Signer 1 (Pending)</option>
+                              )}
+                            </select>
+                          </div>
+                        </div>
+                        
+                        <div className="flex flex-1 gap-6 min-h-0">
+                          {/* Tools Sidebar */}
+                          <div className="w-48 flex flex-col gap-3 shrink-0">
+                            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Standard Fields</div>
+                            
+                            <button 
+                              onClick={() => setCurrentStep(1)} 
+                              className="w-full py-2 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-400 rounded-lg text-[12px] font-bold transition-colors flex items-center justify-center gap-1.5 mb-2 shadow-sm"
+                            >
+                              <Users className="w-3.5 h-3.5" /> Manage Signers
+                            </button>
+                            
+                            <div 
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData('fieldType', 'signature');
+                                setIsDraggingField('signature');
+                              }}
+                              onDragEnd={() => setIsDraggingField(null)}
+                              className="bg-slate-800/80 hover:bg-indigo-500/20 border border-slate-700 hover:border-indigo-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                                <Edit2 className="w-4 h-4" />
+                              </div>
+                              <span className="text-[13px] font-bold text-slate-200">Signature</span>
+                            </div>
+                            
+                            <div 
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData('fieldType', 'date');
+                                setIsDraggingField('date');
+                              }}
+                              onDragEnd={() => setIsDraggingField(null)}
+                              className="bg-slate-800/80 hover:bg-emerald-500/20 border border-slate-700 hover:border-emerald-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                                <Calendar className="w-4 h-4" />
+                              </div>
+                              <span className="text-[13px] font-bold text-slate-200">Date Signed</span>
+                            </div>
+                            
+                            <div 
+                              draggable
+                              onDragStart={(e) => {
+                                e.dataTransfer.setData('fieldType', 'text');
+                                setIsDraggingField('text');
+                              }}
+                              onDragEnd={() => setIsDraggingField(null)}
+                              className="bg-slate-800/80 hover:bg-blue-500/20 border border-slate-700 hover:border-blue-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                                <FileText className="w-4 h-4" />
+                              </div>
+                              <span className="text-[13px] font-bold text-slate-200">Text Box</span>
+                            </div>
+                            
+                            <div className="mt-auto">
+                              <button 
+                                onClick={handleFileUpload}
+                                className="w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-lg text-[12px] font-bold transition-colors flex items-center justify-center gap-2"
+                              >
+                                <Plus className="w-3 h-3" /> Add Document
+                              </button>
+                            </div>
+                          </div>
+                          
+                          {/* Document Viewer Area */}
+                          <div 
+                            className={`flex-1 bg-slate-800/30 border-2 rounded-xl overflow-hidden relative flex flex-col items-center p-6 ${isDraggingField ? 'border-indigo-500/50 border-dashed bg-indigo-500/5' : 'border-slate-700/50 solid'}`}
+                          >
+                            {/* Mock PDF Document */}
+                            <div 
+                              className="w-full max-w-[500px] h-full bg-white rounded shadow-2xl relative overflow-hidden"
+                              onDragOver={(e) => e.preventDefault()}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                const type = e.dataTransfer.getData('fieldType');
+                                if (type && selectedFileId) {
+                                  // Calculate position relative to the document container
+                                  const rect = e.currentTarget.getBoundingClientRect();
+                                  const x = ((e.clientX - rect.left) / rect.width) * 100;
+                                  const y = ((e.clientY - rect.top) / rect.height) * 100;
+                                  
+                                  setSignatureFields([
+                                    ...signatureFields,
+                                    { id: Date.now().toString(), fileId: selectedFileId, type, x, y, page: 1, assignee: 'Signer 1' }
+                                  ]);
+                                }
+                              }}
+                            >
+                              <div className="absolute top-8 left-8 right-8 h-10 bg-slate-200 rounded"></div>
+                              <div className="absolute top-24 left-8 right-8 h-4 bg-slate-100 rounded"></div>
+                              <div className="absolute top-32 left-8 w-3/4 h-4 bg-slate-100 rounded"></div>
+                              <div className="absolute top-48 left-8 right-8 h-32 bg-slate-50 rounded border border-slate-200"></div>
+                              <div className="absolute bottom-40 left-8 w-1/3 h-4 bg-slate-200 rounded"></div>
+                              <div className="absolute bottom-32 left-8 w-1/4 h-px bg-slate-400"></div>
+                              <div className="absolute bottom-28 left-8 text-[8px] text-slate-400 font-bold uppercase tracking-wider">Client Signature</div>
+                              <div className="absolute bottom-40 right-8 w-1/4 h-4 bg-slate-200 rounded"></div>
+                              <div className="absolute bottom-32 right-8 w-1/4 h-px bg-slate-400"></div>
+                              <div className="absolute bottom-28 right-8 text-[8px] text-slate-400 font-bold uppercase tracking-wider">Date</div>
+                              
+                              {/* Dropped Fields */}
+                              {signatureFields.filter(f => f.fileId === selectedFileId).map(field => (
+                                <div 
+                                  key={field.id}
+                                  className={`absolute w-32 h-10 border-2 rounded shadow-lg flex items-center justify-center ${
+                                    field.type === 'signature' ? 'bg-indigo-100 border-indigo-500 text-indigo-700' :
+                                    field.type === 'date' ? 'bg-emerald-100 border-emerald-500 text-emerald-700' :
+                                    'bg-blue-100 border-blue-500 text-blue-700'
+                                  }`}
+                                  style={{ left: `calc(${field.x}% - 4rem)`, top: `calc(${field.y}% - 1.25rem)` }}
+                                >
+                                  <span className="text-[10px] font-bold uppercase tracking-wider">{field.type}</span>
+                                  <button 
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setSignatureFields(signatureFields.filter(f => f.id !== field.id));
+                                    }}
+                                    className="absolute -top-2 -right-2 w-5 h-5 bg-slate-800 text-white rounded-full flex items-center justify-center hover:bg-red-500 transition-colors"
+                                  >
+                                    <X className="w-3 h-3" />
+                                  </button>
+                                </div>
+                              ))}
+                            </div>
+                            
+                            {/* Document Pagination/Controls */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-slate-900/90 backdrop-blur border border-slate-700 rounded-full px-4 py-2 shadow-xl">
+                              <button className="text-slate-400 hover:text-white transition-colors"><ArrowRight className="w-4 h-4 rotate-180" /></button>
+                              <span className="text-[12px] font-bold text-white">Page 1 of 1</span>
+                              <button className="text-slate-400 hover:text-white transition-colors"><ArrowRight className="w-4 h-4" /></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     )}
                   </div>
                 )}
+                {/* Step 1: Add Recipients */}
+                {currentStep === 1 && (
+                  <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                    <div className="flex justify-between items-center mb-6">
+                      <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                        <Users className="w-5 h-5 text-indigo-400" /> Add Recipients
+                      </h2>
+                      <label className="flex items-center gap-2 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+                        <input type="checkbox" className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-slate-900" />
+                        <span className="text-[12px] font-bold text-slate-300">Set Signing Order</span>
+                      </label>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      {recipients.map((recipient, idx) => (
+                        <div key={idx} className="p-5 bg-slate-800/40 border border-slate-700/50 rounded-xl relative group flex gap-4">
+                          <div className="flex flex-col items-center justify-center shrink-0 w-8">
+                            <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white mb-1">
+                              {idx + 1}
+                            </div>
+                            {idx < recipients.length - 1 && <div className="w-0.5 h-full bg-slate-700/50 rounded-full mt-1"></div>}
+                          </div>
+                          
+                          <div className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4">
+                            <div className="md:col-span-4">
+                              <label className="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Name</label>
+                              <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <User className="h-4 w-4 text-slate-500" />
+                                </div>
+                                <input 
+                                  type="text" 
+                                  placeholder="John Doe"
+                                  value={recipient.name}
+                                  onChange={(e) => {
+                                    const newRecipients = [...recipients];
+                                    newRecipients[idx].name = e.target.value;
+                                    setRecipients(newRecipients);
+                                  }}
+                                  className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner" 
+                                />
+                              </div>
+                            </div>
+                            <div className="md:col-span-5">
+                              <label className="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Email Address</label>
+                              <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <Mail className="h-4 w-4 text-slate-500" />
+                                </div>
+                                <input 
+                                  type="email" 
+                                  placeholder="john@example.com"
+                                  value={recipient.email}
+                                  onChange={(e) => {
+                                    const newRecipients = [...recipients];
+                                    newRecipients[idx].email = e.target.value;
+                                    setRecipients(newRecipients);
+                                  }}
+                                  className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner" 
+                                />
+                              </div>
+                            </div>
+                            <div className="md:col-span-3">
+                              <label className="block text-[11px] font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Role</label>
+                              <select 
+                                value={recipient.role}
+                                onChange={(e) => {
+                                  const newRecipients = [...recipients];
+                                  newRecipients[idx].role = e.target.value;
+                                  setRecipients(newRecipients);
+                                }}
+                                className="w-full px-3 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner appearance-none cursor-pointer"
+                              >
+                                <option>Signer</option>
+                                <option>Needs to View</option>
+                                <option>Receives Copy</option>
+                              </select>
+                            </div>
+                          </div>
+                          
+                          {recipients.length > 1 && (
+                            <button 
+                              onClick={() => handleRemoveRecipient(idx)}
+                              className="absolute top-2 right-2 p-1.5 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-md transition-colors opacity-0 group-hover:opacity-100"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <button 
+                      onClick={handleAddRecipient}
+                      className="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors flex items-center gap-2"
+                    >
+                      <Plus className="w-4 h-4" /> Add Recipient
+                    </button>
+                  </div>
+                )}
                 
+                {/* Step 3: Email Details */}
                 {currentStep === 3 && (
                   <div className="animate-in fade-in slide-in-from-right-4 duration-500">
                     <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
