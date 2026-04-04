@@ -889,9 +889,20 @@ export default function ClientDetailsPage() {
 
                     {/* Recent Invoices List */}
                     <div className="mt-4 pt-4 border-t border-pink-500/20">
-                      <h4 className="text-[13px] font-bold text-pink-300 mb-3 flex items-center gap-2">
-                        <FileText className="w-4 h-4" /> Recent Invoices
-                      </h4>
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-[13px] font-bold text-pink-300 flex items-center gap-2">
+                          <FileText className="w-4 h-4" /> Recent Invoices
+                        </h4>
+                        <button 
+                          onClick={() => {
+                            setBillingTab('new_invoice');
+                            setIsManageBillingModalOpen(true);
+                          }}
+                          className="text-[11px] font-bold text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1"
+                        >
+                          View All <ArrowRight className="w-3 h-3" />
+                        </button>
+                      </div>
                       <div className="space-y-2">
                         <div className="flex items-center justify-between p-2.5 bg-slate-800/40 border-slate-700/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
                           <div className="flex items-center gap-3">
