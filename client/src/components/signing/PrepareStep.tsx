@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   UploadCloud, FileText, User, Mail, Plus, X, ArrowRight, CheckCircle2, 
   Link as LinkIcon, Settings, Calendar, MapPin, Eye, Building2, Copy, 
@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { Recipient, DocumentFile, PlacedField, FieldType } from '../../types/signing';
 
-export const RECIPIENT_COLORS = [
+const RECIPIENT_COLORS = [
   '#3b82f6', // blue
   '#10b981', // emerald
   '#f59e0b', // amber
@@ -36,42 +36,39 @@ export default function PrepareStep({
   placedFields: PlacedField[], 
   setPlacedFields: any 
 }) {
-  const [activeRecipientId, setActiveRecipientId] = useState<string | null>(
-    recipients.filter(r => r.role === 'Signer')[0]?.id || null
-  );
   const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
   const [zoom, setZoom] = useState(100);
-  const [draggedFieldType, setDraggedFieldType] = useState<FieldType | null>(null);
+  const [draggedField, setDraggedField] = useState<{type: FieldType, recipientId?: string} | null>(null);
   
   const docRef = useRef<HTMLDivElement>(null);
   
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
-    if (!draggedFieldType || !docRef.current) return;
+    if (!draggedField || !docRef.current) return;
     
     const rect = docRef.current.getBoundingClientRect();
     // Calculate relative percentages
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     
-    const dims = getDefaultFieldDimensions(draggedFieldType);
+    const dims = getDefaultFieldDimensions(draggedField.type);
     
     const newField: PlacedField = {
       id: Date.now().toString(),
-      type: draggedFieldType,
+      type: draggedField.type,
       page: 1,
       x,
       y,
       width: dims.w,
       height: dims.h,
-      recipientId: draggedFieldType !== 'arrow' ? (activeRecipientId || undefined) : undefined,
+      recipientId: draggedField.recipientId,
       required: true,
-      label: draggedFieldType
+      label: draggedField.type
     };
     
     setPlacedFields([...placedFields, newField]);
     setSelectedFieldId(newField.id);
-    setDraggedFieldType(null);
+    setDraggedField(null);
   };
   
   const handleDragOver = (e: React.DragEvent) => {
@@ -79,28 +76,16 @@ export default function PrepareStep({
   };
 
   const selectedField = placedFields.find(f => f.id === selectedFieldId);
-  const activeRecipient = recipients.find(r => r.id === activeRecipientId);
+  const signers = recipients.filter(r => r.role === 'Signer');
 
   return (
     <div className="flex flex-col h-[700px] bg-slate-900 border border-slate-700/50 rounded-xl overflow-hidden shadow-2xl">
       {/* Topbar */}
       <div className="h-14 bg-slate-800 border-b border-slate-700 flex items-center justify-between px-4 shrink-0 z-20 relative">
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-[12px] font-bold text-slate-400 uppercase tracking-wider">Signer:</span>
-            <select 
-              value={activeRecipientId || ''} 
-              onChange={(e) => setActiveRecipientId(e.target.value)}
-              className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-[13px] text-white font-medium focus:outline-none focus:border-indigo-500"
-            >
-              {recipients.filter(r => r.role === 'Signer').map(r => (
-                <option key={r.id} value={r.id}>{r.name || r.email}</option>
-              ))}
-            </select>
-          </div>
-          {activeRecipient && (
-            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: activeRecipient.color }}></div>
-          )}
+          <span className="text-[14px] font-bold text-white flex items-center gap-2">
+            <Layout className="w-4 h-4 text-indigo-400" /> Prepare Document
+          </span>
         </div>
         
         <div className="flex items-center gap-4">
@@ -120,36 +105,67 @@ export default function PrepareStep({
       <div className="flex flex-1 min-h-0 relative">
         
         {/* Left Sidebar: Field Palette */}
-        <div className="w-64 bg-slate-800/80 border-r border-slate-700 flex flex-col shrink-0 z-10">
+        <div className="w-72 bg-slate-800/80 border-r border-slate-700 flex flex-col shrink-0 z-10">
           <div className="p-4 border-b border-slate-700/50 bg-slate-800/50">
             <h3 className="text-[12px] font-bold text-slate-400 uppercase tracking-wider">Standard Fields</h3>
           </div>
-          <div className="flex-1 overflow-y-auto p-3 space-y-2 custom-scrollbar">
+          
+          <div className="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-6">
             
-            {/* Field Types */}
-            {[
-              { type: 'signature', icon: Edit2, label: 'Signature' },
-              { type: 'initials', icon: Edit2, label: 'Initials' },
-              { type: 'dateSigned', icon: Calendar, label: 'Date Signed' },
-              { type: 'fullName', icon: User, label: 'Name' },
-              { type: 'email', icon: Mail, label: 'Email' },
-              { type: 'title', icon: Building2, label: 'Title' },
-              { type: 'text', icon: Type, label: 'Text Box' },
-              { type: 'checkbox', icon: Square, label: 'Checkbox' }
-            ].map(field => (
-              <div 
-                key={field.type}
-                draggable
-                onDragStart={(e) => setDraggedFieldType(field.type as FieldType)}
-                onDragEnd={() => setDraggedFieldType(null)}
-                className="flex items-center gap-3 p-3 bg-slate-900 border border-slate-700 rounded-lg cursor-grab active:cursor-grabbing hover:border-indigo-500 hover:bg-indigo-500/10 transition-colors group"
-              >
-                <div className="w-8 h-8 bg-slate-800 rounded flex items-center justify-center text-slate-400 group-hover:text-indigo-400 transition-colors">
-                  <field.icon className="w-4 h-4" />
+            {/* Per-Signer Fields */}
+            {signers.map(signer => (
+              <div key={signer.id} className="space-y-3">
+                <div className="flex items-center gap-2 px-1">
+                  <div className="w-3 h-3 rounded-full shadow-sm" style={{ backgroundColor: signer.color }}></div>
+                  <span className="text-[13px] font-bold text-white truncate">{signer.name || signer.email}</span>
                 </div>
-                <span className="text-[13px] font-medium text-slate-200">{field.label}</span>
+                
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { type: 'signature', icon: Edit2, label: 'Signature' },
+                    { type: 'initials', icon: Edit2, label: 'Initials' },
+                    { type: 'dateSigned', icon: Calendar, label: 'Date Signed' },
+                    { type: 'fullName', icon: User, label: 'Name' },
+                    { type: 'email', icon: Mail, label: 'Email' },
+                    { type: 'title', icon: Building2, label: 'Title' },
+                  ].map(field => (
+                    <div 
+                      key={field.type}
+                      draggable
+                      onDragStart={() => setDraggedField({ type: field.type as FieldType, recipientId: signer.id })}
+                      onDragEnd={() => setDraggedField(null)}
+                      className="flex flex-col items-center justify-center gap-1.5 p-2 bg-slate-900/80 border border-slate-700/50 rounded-lg cursor-grab active:cursor-grabbing hover:border-slate-500 transition-colors group"
+                      style={{ borderLeftColor: signer.color, borderLeftWidth: '3px' }}
+                    >
+                      <field.icon className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+                      <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">{field.label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
+            
+            {/* Generic Fields */}
+            <div className="pt-2 border-t border-slate-700/50">
+              <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3 px-1">Generic Fields</h4>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { type: 'text', icon: Type, label: 'Text Box' },
+                  { type: 'checkbox', icon: Square, label: 'Checkbox' }
+                ].map(field => (
+                  <div 
+                    key={field.type}
+                    draggable
+                    onDragStart={() => setDraggedField({ type: field.type as FieldType })}
+                    onDragEnd={() => setDraggedField(null)}
+                    className="flex flex-col items-center justify-center gap-1.5 p-2 bg-slate-900/80 border border-slate-700/50 rounded-lg cursor-grab active:cursor-grabbing hover:border-indigo-500 transition-colors group"
+                  >
+                    <field.icon className="w-4 h-4 text-slate-400 group-hover:text-indigo-400 transition-colors" />
+                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">{field.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
             
           </div>
         </div>
@@ -160,8 +176,8 @@ export default function PrepareStep({
             ref={docRef}
             className="bg-white rounded shadow-2xl relative transition-transform origin-top"
             style={{ 
-              width: `\${800 * (zoom/100)}px`, 
-              height: `\${1035 * (zoom/100)}px`,
+              width: `${800 * (zoom/100)}px`, 
+              height: `${1035 * (zoom/100)}px`,
             }}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
@@ -199,33 +215,34 @@ export default function PrepareStep({
               const isSelected = field.id === selectedFieldId;
               const fieldRecipient = recipients.find(r => r.id === field.recipientId);
               const color = fieldRecipient ? fieldRecipient.color : '#cbd5e1';
-              const isSignerField = field.type !== 'arrow' && field.type !== 'text';
               
               return (
                 <div 
                   key={field.id}
                   onClick={(e) => { e.stopPropagation(); setSelectedFieldId(field.id); }}
                   className={`absolute border-2 rounded shadow-sm flex flex-col items-center justify-center cursor-move select-none transition-shadow
-                    \${isSelected ? 'ring-2 ring-offset-2 ring-offset-white ring-blue-500 z-50' : 'z-10 hover:shadow-md'}`}
+                    ${isSelected ? 'ring-2 ring-offset-2 ring-offset-white ring-blue-500 z-50' : 'z-10 hover:shadow-md'}`}
                   style={{ 
-                    left: `\${field.x}%`, 
-                    top: `\${field.y}%`, 
-                    width: `\${field.width * (zoom/100)}px`, 
-                    height: `\${field.height * (zoom/100)}px`,
-                    backgroundColor: `\${color}20`,
+                    left: `${field.x}%`, 
+                    top: `${field.y}%`, 
+                    width: `${field.width * (zoom/100)}px`, 
+                    height: `${field.height * (zoom/100)}px`,
+                    backgroundColor: `${color}20`,
                     borderColor: color
                   }}
                 >
-                  <div className="absolute -top-6 left-0 bg-slate-900 text-white text-[10px] px-2 py-0.5 rounded shadow-sm whitespace-nowrap opacity-80" style={{ backgroundColor: color }}>
-                    {field.label} {fieldRecipient ? `• \${fieldRecipient.name || 'Signer'}` : ''} {field.required && '*'}
+                  <div className="absolute -top-6 left-0 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm whitespace-nowrap opacity-90" style={{ backgroundColor: color }}>
+                    {field.label} {field.required && '*'}
                   </div>
                   
                   {field.type === 'signature' && <Edit2 className="w-5 h-5 opacity-50" style={{ color }} />}
+                  {field.type === 'initials' && <span className="font-bold opacity-50 text-xl" style={{ color }}>{fieldRecipient ? (fieldRecipient.name ? fieldRecipient.name.charAt(0) : 'I') : 'I'}</span>}
                   {field.type === 'dateSigned' && <Calendar className="w-5 h-5 opacity-50" style={{ color }} />}
                   {field.type === 'text' && <Type className="w-5 h-5 opacity-50" style={{ color }} />}
+                  {field.type === 'checkbox' && <Square className="w-5 h-5 opacity-50" style={{ color }} />}
                   
                   {/* Resize Handle for selected fields */}
-                  {isSelected && (
+                  {isSelected && field.type !== 'checkbox' && (
                     <div className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-full cursor-se-resize"></div>
                   )}
                 </div>
@@ -245,7 +262,7 @@ export default function PrepareStep({
             <div className="p-5 animate-in fade-in slide-in-from-right-2 duration-200">
               <div className="flex items-center gap-3 mb-6 border-b border-slate-700/50 pb-4">
                 <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center text-slate-300">
-                  <Edit2 className="w-5 h-5" />
+                  <Settings className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-[14px] font-bold text-white capitalize">{selectedField.type}</h3>
@@ -254,7 +271,7 @@ export default function PrepareStep({
               </div>
               
               <div className="space-y-5">
-                {selectedField.type !== 'arrow' && (
+                {selectedField.type !== 'arrow' && selectedField.type !== 'text' && selectedField.type !== 'checkbox' && (
                   <div>
                     <label className="block text-[12px] font-bold text-slate-400 uppercase tracking-wider mb-2">Assigned To</label>
                     <select 
@@ -264,8 +281,8 @@ export default function PrepareStep({
                       }}
                       className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2.5 text-[13px] text-white focus:outline-none focus:border-indigo-500"
                     >
-                      {recipients.map(r => (
-                        <option key={r.id} value={r.id}>{r.name || r.email} ({r.role})</option>
+                      {signers.map(r => (
+                        <option key={r.id} value={r.id}>{r.name || r.email}</option>
                       ))}
                     </select>
                   </div>
