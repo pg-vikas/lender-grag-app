@@ -34,6 +34,7 @@ import UsersPage from "@/pages/users";
 import WebsiteAnalyticsPage from "@/pages/analytics";
 import GrowthKPIPage from "@/pages/growth-kpi";
 import MessagesPage from "@/pages/messages";
+import SocialPublisherPage from "@/pages/social-publisher";
 
 import ESignaturesSendPage from "@/pages/esignatures-send";
 import ESignaturesDocumentsPage from "@/pages/esignatures-documents";
@@ -81,6 +82,7 @@ function Router() {
       <Route path="/analytics" component={WebsiteAnalyticsPage} />
       <Route path="/growth/kpi-overview" component={GrowthKPIPage} />
       <Route path="/messages" component={MessagesPage} />
+      <Route path="/social/publisher" component={SocialPublisherPage} />
       <Route path="/">
         <Redirect to="/home" />
       </Route>
