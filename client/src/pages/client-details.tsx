@@ -6,6 +6,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsToolti
 
 export default function ClientDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
+  const [smsRecipients, setSmsRecipients] = useState<{name: string, phone: string}[]>([{name: "Main Office", phone: currentClient.phone !== "---" ? currentClient.phone : ""}]);
   const [activeTab, setActiveTab] = useState<string>('email');
   const [location, setLocation] = useLocation();
   const params = useParams<{ id: string }>();
@@ -1251,27 +1252,75 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                                   <Phone className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-10 py-3 bg-slate-950 border border-slate-600  rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all  relative z-10" />
-                                <div className="absolute inset-y-0 right-0 flex items-center pr-3 z-10">
-                                  <ChevronDown className="w-4 h-4 text-slate-500 cursor-pointer" />
+                                <div className="w-full pl-10 pr-10 py-2.5 bg-slate-950 border border-slate-600 rounded-lg min-h-[46px] flex flex-wrap gap-2 items-center relative z-10 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
+                                  {smsRecipients.map((rec, i) => (
+                                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 bg-blue-500/20 text-blue-300 rounded text-[13px] font-medium border border-blue-500/30">
+                                      <span className="truncate max-w-[120px]">{rec.name === "Custom" ? rec.phone : rec.name}</span>
+                                      <button 
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          setSmsRecipients(smsRecipients.filter((_, index) => index !== i));
+                                        }}
+                                        className="hover:text-white transition-colors"
+                                      >
+                                        <X className="w-3 h-3" />
+                                      </button>
+                                    </div>
+                                  ))}
+                                  <input 
+                                    type="text" 
+                                    placeholder={smsRecipients.length === 0 ? "Add number..." : ""} 
+                                    className="flex-1 bg-transparent border-none outline-none text-[14px] font-medium text-white placeholder:text-slate-500 min-w-[120px]" 
+                                    onKeyDown={(e) => {
+                                      if (e.key === 'Enter' && e.currentTarget.value.trim()) {
+                                        e.preventDefault();
+                                        setSmsRecipients([...smsRecipients, { name: 'Custom', phone: e.currentTarget.value.trim() }]);
+                                        e.currentTarget.value = '';
+                                      }
+                                    }}
+                                  />
+                                </div>
+                                <div className="absolute inset-y-0 right-0 flex items-center pr-3 z-10 pointer-events-none">
+                                  <ChevronDown className="w-4 h-4 text-slate-500" />
                                 </div>
                                 
                                 {/* SMS Dropdown Menu on hover */}
-                                <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border-slate-600 bg-slate-950 rounded-xl shadow-2xl opacity-0 invisible group-hover/sms:opacity-100 group-hover/sms:visible transition-all z-50 overflow-hidden transform origin-top scale-95 group-hover/sms:scale-100 duration-200">
+                                <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-600 bg-slate-950 rounded-xl shadow-2xl opacity-0 invisible group-hover/sms:opacity-100 group-hover/sms:visible transition-all z-50 overflow-hidden transform origin-top scale-95 group-hover/sms:scale-100 duration-200">
                                   <div className="p-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-950 border-b border-slate-600 text-left">CRM Contacts</div>
                                   <div className="max-h-[200px] overflow-y-auto custom-scrollbar">
-                                    <button className="w-full text-left px-4 py-2.5 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-600/50 group/item">
-                                      <div className="flex justify-between items-center w-full">
+                                    <button 
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        if (currentClient.phone && currentClient.phone !== '---') {
+                                          if (!smsRecipients.some(r => r.phone === currentClient.phone)) {
+                                            setSmsRecipients([...smsRecipients, { name: 'Main Office', phone: currentClient.phone }]);
+                                          }
+                                        }
+                                      }}
+                                      className="w-full text-left px-4 py-2 hover:bg-slate-700 flex items-center justify-between transition-colors border-b border-slate-600/50 group/item"
+                                    >
+                                      <div className="flex flex-col">
                                         <span className="text-[13px] font-bold text-white group-hover/item:text-blue-400 transition-colors">Main Office</span>
-                                        <span className="text-blue-400/80 font-mono text-[12px]">{currentClient.phone}</span>
+                                        <span className="text-blue-400/80 font-mono text-[11px]">{currentClient.phone}</span>
                                       </div>
+                                      <div className="w-5 h-5 rounded-full border border-slate-500 group-hover/item:border-blue-400 flex items-center justify-center"><Plus className="w-3 h-3 text-slate-500 group-hover/item:text-blue-400 transition-colors" /></div>
                                     </button>
                                     {employees.map(emp => (
-                                      <button key={emp.id} className="w-full text-left px-4 py-2.5 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-600/50 last:border-0 group/item">
-                                        <div className="flex justify-between items-center w-full">
+                                      <button 
+                                        key={emp.id} 
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          if (emp.phone && !smsRecipients.some(r => r.phone === emp.phone)) {
+                                            setSmsRecipients([...smsRecipients, { name: `${emp.firstName} ${emp.lastName}`, phone: emp.phone }]);
+                                          }
+                                        }}
+                                        className="w-full text-left px-4 py-2 hover:bg-slate-700 flex items-center justify-between transition-colors border-b border-slate-600/50 last:border-0 group/item"
+                                      >
+                                        <div className="flex flex-col">
                                           <span className="text-[13px] font-bold text-white group-hover/item:text-blue-400 transition-colors">{emp.firstName} {emp.lastName}</span>
-                                          <span className="text-blue-400/80 font-mono text-[12px]">{emp.phone}</span>
+                                          <span className="text-blue-400/80 font-mono text-[11px]">{emp.phone}</span>
                                         </div>
+                                        <div className="w-5 h-5 rounded-full border border-slate-500 group-hover/item:border-blue-400 flex items-center justify-center"><Plus className="w-3 h-3 text-slate-500 group-hover/item:text-blue-400 transition-colors" /></div>
                                       </button>
                                     ))}
                                   </div>
