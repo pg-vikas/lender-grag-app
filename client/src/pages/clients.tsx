@@ -563,7 +563,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-purple-400" />
-                    <span className="font-bold text-white text-[15px]">Tasks Needed</span>
+                    <span className="font-bold text-white text-[15px]">Tasks Needed - FOLLOW UPS</span>
                   </div>
                   <Link href="/tasks">
                     <button className="text-[12px] font-bold text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1">
