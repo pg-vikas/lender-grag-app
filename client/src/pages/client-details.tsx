@@ -568,8 +568,8 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Company Details */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-indigo-500 border-t-4 shadow-sm relative z-30">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center rounded-t-xl">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-indigo-500 border-t-4 shadow-lg shadow-sm relative z-30">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
                       <Building2 className="w-5 h-5 text-indigo-400" />
                       <span className="font-bold text-white text-[15px]">Company Details</span>
@@ -586,11 +586,11 @@ export default function ClientDetailsPage() {
                       <h3 className="text-[18px] font-bold text-white mb-2">{currentClient.name}</h3>
                       <span className="inline-block px-3 py-1 bg-slate-800 text-slate-300 font-medium text-[12px] rounded-md border-slate-700">No communication yet</span>
                     </div>
-                    <div className="flex items-center gap-3 bg-slate-800/50 p-3 rounded-lg border-slate-700/50">
+                    <div className="flex items-center gap-3 bg-slate-900/50 p-3 rounded-lg border-slate-700/50">
                       <span className="text-[13px] text-slate-400 font-medium w-24">Status:</span>
                       <span className="inline-flex items-center justify-center px-3 py-1 rounded-md text-[12px] font-bold text-amber-500 border border-amber-500/30 bg-amber-500/10 shadow-sm">Brand New</span>
                     </div>
-                    <div className="flex flex-col gap-2 relative bg-slate-800/50 p-3 rounded-lg border-slate-700/50">
+                    <div className="flex flex-col gap-2 relative bg-slate-900/50 p-3 rounded-lg border-slate-700/50">
                       <span className="text-[13px] text-slate-400 font-medium">Assigned to:</span>
                       <button 
                         onClick={() => setIsAssigneeDropdownOpen(!isAssigneeDropdownOpen)}
@@ -624,8 +624,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Contact Information & Employees */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-cyan-500 border-t-4 shadow-sm overflow-hidden flex flex-col max-h-[600px]">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center sticky top-0 z-10 shrink-0">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-cyan-500 border-t-4 shadow-lg shadow-sm overflow-hidden flex flex-col max-h-[600px]">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-cyan-400" />
                       <span className="font-bold text-white text-[15px]">Contacts & Team</span>
@@ -652,19 +652,19 @@ export default function ClientDetailsPage() {
                     <div className="space-y-3">
                       <h4 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider pl-1">Primary Contact</h4>
                       <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
+                        <div className="flex items-center gap-3 p-3 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
                           <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
                             <Phone className="w-4 h-4 text-cyan-400" />
                           </div>
                           <span className="text-[14px] font-medium text-white">+1 973 979 7987</span>
                         </div>
-                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
+                        <div className="flex items-center gap-3 p-3 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
                           <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
                             <Mail className="w-4 h-4 text-cyan-400" />
                           </div>
                           <span className="text-[14px] font-medium text-slate-400">---</span>
                         </div>
-                        <div className="flex items-center gap-3 p-3 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
+                        <div className="flex items-center gap-3 p-3 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
                           <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
                             <MapPin className="w-4 h-4 text-cyan-400" />
                           </div>
@@ -678,7 +678,7 @@ export default function ClientDetailsPage() {
                       <h4 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider pl-1">Team Members ({employees.length})</h4>
                       <div className="space-y-3">
                         {employees.map((employee, index) => (
-                          <div key={employee.id} className="bg-slate-800/50 border-slate-700/50 rounded-lg p-4 relative group hover:border border-cyan-500/30 transition-colors">
+                          <div key={employee.id} className="bg-slate-900/50 border-slate-700/50 rounded-lg p-4 relative group hover:border border-cyan-500/30 transition-colors">
                             <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 p-1 rounded-md border-slate-700">
                               <button 
                                 onClick={() => {
@@ -744,8 +744,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Website */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-emerald-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-emerald-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Globe className="w-5 h-5 text-emerald-400" />
                       <span className="font-bold text-white text-[15px]">Website</span>
@@ -760,7 +760,7 @@ export default function ClientDetailsPage() {
                   <div className="p-5 space-y-3">
                     <div className="space-y-1">
                       <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Main Website</label>
-                      <div className="flex flex-col gap-2 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
+                      <div className="flex flex-col gap-2 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
                         <div className="flex items-center gap-3">
                           <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
                             <Globe className="w-3.5 h-3.5 text-emerald-400" />
@@ -783,7 +783,7 @@ export default function ClientDetailsPage() {
                     
                     <div className="space-y-1">
                       <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Gorilla Apps Website</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
                         <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
                           <Globe className="w-3.5 h-3.5 text-emerald-400" />
                         </div>
@@ -793,7 +793,7 @@ export default function ClientDetailsPage() {
                     
                     <div className="space-y-1">
                       <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Staging Website</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
                         <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
                           <Globe className="w-3.5 h-3.5 text-emerald-400" />
                         </div>
@@ -803,7 +803,7 @@ export default function ClientDetailsPage() {
 
                     <div className="mt-4 pt-3 border-t border-slate-700/50 space-y-2">
                       <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pl-1">Gorilla Apps Credentials</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/30 border-slate-700/30 rounded-lg">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/30 border-slate-700/30 rounded-lg">
                         <div className="w-7 h-7 rounded-md bg-slate-700/50 flex items-center justify-center shrink-0">
                           <User className="w-3.5 h-3.5 text-slate-400" />
                         </div>
@@ -812,7 +812,7 @@ export default function ClientDetailsPage() {
                           <span className="text-[13px] font-medium text-white truncate block">admin@client.com</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-800/30 border-slate-700/30 rounded-lg relative group">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/30 border-slate-700/30 rounded-lg relative group">
                         <div className="w-7 h-7 rounded-md bg-slate-700/50 flex items-center justify-center shrink-0">
                           <Lock className="w-3.5 h-3.5 text-slate-400" />
                         </div>
@@ -829,8 +829,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Business Discovery */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-orange-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-orange-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Compass className="w-5 h-5 text-orange-400" />
                       <span className="font-bold text-white text-[15px]">Business Discovery</span>
@@ -840,7 +840,7 @@ export default function ClientDetailsPage() {
                     </button>
                   </div>
                   <div className="p-5">
-                    <div className="bg-slate-800/50 border-slate-700/50 rounded-lg p-4 text-center">
+                    <div className="bg-slate-900/50 border-slate-700/50 rounded-lg p-4 text-center">
                       <p className="text-[13px] font-medium text-slate-400 mb-4">No business discovery links added yet.</p>
                       <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="w-full py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-md text-[13px] font-bold transition-colors flex items-center justify-center gap-2 shadow-sm">
                         <Plus className="w-4 h-4" /> Add Discovery Links
@@ -850,15 +850,15 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Billing Information */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-pink-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex items-center gap-2">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-pink-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex items-center gap-2">
                     <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                     </svg>
                     <span className="font-bold text-white text-[15px]">Billing Information</span>
                   </div>
                   <div className="p-5 space-y-4">
-                    <div className="bg-slate-800/50 border border-pink-500/30 rounded-lg p-4">
+                    <div className="bg-slate-900/50 border border-pink-500/30 rounded-lg p-4">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center">
                           <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -917,7 +917,7 @@ export default function ClientDetailsPage() {
                         </button>
                       </div>
                       <div className="space-y-2">
-                        <div className="flex items-center justify-between p-2.5 bg-slate-800/40 border-slate-700/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
+                        <div className="flex items-center justify-between p-2.5 bg-slate-900/40 border-slate-700/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0">
                               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
@@ -940,7 +940,7 @@ export default function ClientDetailsPage() {
                             </button>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between p-2.5 bg-slate-800/40 border-slate-700/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
+                        <div className="flex items-center justify-between p-2.5 bg-slate-900/40 border-slate-700/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-md bg-amber-500/10 flex items-center justify-center shrink-0">
                               <Bell className="w-4 h-4 text-amber-400" />
@@ -969,8 +969,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Background */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-violet-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-violet-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <ImageIcon className="w-5 h-5 text-violet-400" />
                       <span className="font-bold text-white text-[15px]">Background</span>
@@ -983,7 +983,7 @@ export default function ClientDetailsPage() {
                     </button>
                   </div>
                   <div className="p-5">
-                    <div className="bg-slate-800/50 border-slate-700/50 rounded-lg p-3">
+                    <div className="bg-slate-900/50 border-slate-700/50 rounded-lg p-3">
                       <a href="https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists" target="_blank" rel="noopener noreferrer" className="text-[13px] font-medium text-violet-400 hover:text-violet-300 hover:underline break-all block">
                         https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists
                       </a>
@@ -992,8 +992,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* General */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-teal-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Info className="w-5 h-5 text-teal-400" />
                       <span className="font-bold text-white text-[15px]">General Info</span>
@@ -1006,35 +1006,35 @@ export default function ClientDetailsPage() {
                     </button>
                   </div>
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Globe className="w-3.5 h-3.5 text-teal-400" />
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Timezone:</span>
                       <span className="text-[13px] font-bold text-white">America/Denver</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <span className="text-teal-400 text-[14px] font-bold">$</span>
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Currency:</span>
                       <span className="text-[13px] font-bold text-white">USD</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <span className="text-teal-400 text-[12px] font-bold">A<span className="text-[9px]">文</span></span>
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Language:</span>
                       <span className="text-[13px] font-bold text-white">English - US</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Building2 className="w-3.5 h-3.5 text-teal-400" />
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Industry:</span>
                       <span className="text-[13px] font-bold text-white">Retail Trade</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <svg className="w-3.5 h-3.5 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <circle cx="12" cy="12" r="10"/>
@@ -1044,7 +1044,7 @@ export default function ClientDetailsPage() {
                       <span className="text-[13px] text-slate-400 w-24">Year in Biz:</span>
                       <span className="text-[13px] font-bold text-white">1 yr</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-800/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Users className="w-3.5 h-3.5 text-teal-400" />
                       </div>
@@ -1056,8 +1056,8 @@ export default function ClientDetailsPage() {
 
 
                 {/* Compliance Essentials */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-yellow-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex items-center gap-2">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-yellow-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-yellow-400" />
                     <span className="font-bold text-white text-[15px]">Compliance Essentials</span>
                   </div>
@@ -1071,8 +1071,8 @@ export default function ClientDetailsPage() {
                       "SSL Certificate (HTTPS Security) - not a page, but an essential requirement",
                       "Powered by Pink Gorilla Footer"
                     ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-3 cursor-pointer group p-2.5 rounded-lg hover:bg-slate-800/50 transition-colors" onClick={() => toggleComplianceItem(i)}>
-                        <div className={`w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center transition-colors ${checkedComplianceItems[i] ? 'bg-yellow-500 border-yellow-500 shadow-sm' : 'border-slate-600 bg-slate-800/50 group-hover:border-yellow-500/50'}`}>
+                      <div key={i} className="flex items-start gap-3 cursor-pointer group p-2.5 rounded-lg hover:bg-slate-900/50 transition-colors" onClick={() => toggleComplianceItem(i)}>
+                        <div className={`w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center transition-colors ${checkedComplianceItems[i] ? 'bg-yellow-500 border-yellow-500 shadow-sm' : 'border-slate-600 bg-slate-900/50 group-hover:border-yellow-500/50'}`}>
                           {checkedComplianceItems[i] && <CheckCircle2 className="w-3.5 h-3.5 text-slate-900 stroke-[3]" />}
                         </div>
                         <span className={`text-[13px] leading-tight transition-colors select-none mt-0.5 ${checkedComplianceItems[i] ? 'text-white font-semibold' : 'text-slate-400 group-hover:text-slate-300'}`}>
@@ -1089,8 +1089,8 @@ export default function ClientDetailsPage() {
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
                 {/* Communications Section */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-blue-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-5 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-blue-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-5 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-blue-400" />
                       Communications
@@ -1116,7 +1116,7 @@ export default function ClientDetailsPage() {
                   
                   <div className="p-6">
                     {activeTab === 'email' && (
-                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
+                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-900/40 shadow-inner overflow-hidden">
                         <div className="p-6 space-y-6">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -1217,7 +1217,7 @@ export default function ClientDetailsPage() {
                               <span className="text-[11px] text-slate-500 font-normal normal-case">Markdown supported</span>
                             </label>
                             <div className="border-slate-700 rounded-xl bg-slate-900/90 overflow-hidden flex flex-col shadow-inner focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
-                              <div className="flex items-center gap-1 border-b border-slate-700/50 p-2 bg-slate-800/50">
+                              <div className="flex items-center gap-1 border-b border-slate-700/50 p-2 bg-slate-900/50">
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="font-bold text-[14px]">B</span></button>
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="italic text-[14px]">I</span></button>
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="underline text-[14px]">U</span></button>
@@ -1242,7 +1242,7 @@ export default function ClientDetailsPage() {
                     )}
                     
                     {activeTab === 'sms' && (
-                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
+                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-900/40 shadow-inner overflow-hidden">
                         <div className="p-6 space-y-6">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -1378,7 +1378,7 @@ export default function ClientDetailsPage() {
                     )}
 
                     {activeTab === 'call' && (
-                      <div className="border border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-xl bg-slate-800/40 shadow-inner overflow-hidden">
+                      <div className="border border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-xl bg-slate-900/40 shadow-inner overflow-hidden">
                         <div className="p-8">
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                             
@@ -1518,8 +1518,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-amber-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-amber-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-amber-400" />
                       Notes
@@ -1534,7 +1534,7 @@ export default function ClientDetailsPage() {
                   
                   <div className="p-4 space-y-3 max-h-[400px] overflow-y-auto custom-scrollbar">
                     {notes.map(note => (
-                      <div key={note.id} className="bg-slate-800/40 border-slate-700/50 rounded-xl p-4 relative group hover:border border-amber-500/30 transition-colors shadow-sm">
+                      <div key={note.id} className="bg-slate-900/40 border-slate-700/50 rounded-xl p-4 relative group hover:border border-amber-500/30 transition-colors shadow-sm">
                         <div className="flex justify-between items-start mb-2">
                           <h3 className="text-[14px] font-bold text-white group-hover:text-amber-400 transition-colors">{note.title}</h3>
                           <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -1579,7 +1579,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Analytics Expanded Section */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-sky-500 border-t-4 shadow-sm overflow-hidden">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-sky-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-sky-500/20 bg-sky-500/5 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-sky-400" />
@@ -1595,7 +1595,7 @@ export default function ClientDetailsPage() {
                   <div className="p-6 space-y-6">
                     {/* Top Stats Row */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="bg-slate-800/40 border-slate-700/50 rounded-xl p-4 flex flex-col">
+                      <div className="bg-slate-900/40 border-slate-700/50 rounded-xl p-4 flex flex-col">
                         <div className="flex justify-between items-start mb-2">
                           <span className="text-[13px] font-medium text-slate-400">Total Visits</span>
                           <div className="w-8 h-8 rounded-md bg-sky-500/10 flex items-center justify-center">
@@ -1610,7 +1610,7 @@ export default function ClientDetailsPage() {
                         </div>
                       </div>
                       
-                      <div className="bg-slate-800/40 border-slate-700/50 rounded-xl p-4 flex flex-col">
+                      <div className="bg-slate-900/40 border-slate-700/50 rounded-xl p-4 flex flex-col">
                         <div className="flex justify-between items-start mb-2">
                           <span className="text-[13px] font-medium text-slate-400">Gorilla Apps Logins</span>
                           <div className="w-8 h-8 rounded-md bg-purple-500/10 flex items-center justify-center">
@@ -1625,7 +1625,7 @@ export default function ClientDetailsPage() {
                         </div>
                       </div>
                       
-                      <div className="bg-slate-800/40 border-slate-700/50 rounded-xl p-4 flex flex-col">
+                      <div className="bg-slate-900/40 border-slate-700/50 rounded-xl p-4 flex flex-col">
                         <div className="flex justify-between items-start mb-2">
                           <span className="text-[13px] font-medium text-slate-400">Active Users</span>
                           <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center">
@@ -1644,7 +1644,7 @@ export default function ClientDetailsPage() {
                     {/* Charts Row */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       {/* Area Chart - Traffic */}
-                      <div className="bg-slate-800/30 border-slate-700/30 rounded-xl p-4">
+                      <div className="bg-slate-900/30 border-slate-700/30 rounded-xl p-4">
                         <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
                           <TrendingUp className="w-4 h-4 text-sky-400" /> Traffic Overview
                         </h3>
@@ -1677,7 +1677,7 @@ export default function ClientDetailsPage() {
                       </div>
 
                       {/* Bar Chart - Device Types */}
-                      <div className="bg-slate-800/30 border-slate-700/30 rounded-xl p-4">
+                      <div className="bg-slate-900/30 border-slate-700/30 rounded-xl p-4">
                         <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
                           <Settings className="w-4 h-4 text-purple-400" /> Platform Usage
                         </h3>
@@ -1705,7 +1705,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Document Signing Center */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-teal-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-teal-500/20 flex justify-between items-center bg-teal-500/15">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-teal-400" />
@@ -1719,7 +1719,7 @@ export default function ClientDetailsPage() {
                   <div className="p-6">
                     <div className="grid grid-cols-1 gap-3">
                       {/* Signed Document */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-lg hover:bg-slate-800/60 transition-colors group">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-900/40 border border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-lg hover:bg-slate-800/60 transition-colors group">
                         <div className="flex items-start gap-4 mb-3 md:mb-0">
                           <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/30 border-t-emerald-500 border-t-4">
                             <CheckCircle2 className="w-5 h-5 text-emerald-400" />
@@ -1750,7 +1750,7 @@ export default function ClientDetailsPage() {
                       </div>
 
                       {/* Pending Document */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border border-amber-500/30 border-t-amber-500 border-t-4 rounded-lg hover:bg-slate-800/60 transition-colors group">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-900/40 border border-amber-500/30 border-t-amber-500 border-t-4 rounded-lg hover:bg-slate-800/60 transition-colors group">
                         <div className="flex items-start gap-4 mb-3 md:mb-0">
                           <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 border border-amber-500/30 border-t-amber-500 border-t-4">
                             <Clock className="w-5 h-5 text-amber-400" />
@@ -1781,7 +1781,7 @@ export default function ClientDetailsPage() {
                       </div>
                       
                       {/* Draft Document */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-800/40 border-slate-700/50 rounded-lg hover:bg-slate-800/60 transition-colors group">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-900/40 border-slate-700/50 rounded-lg hover:bg-slate-800/60 transition-colors group">
                         <div className="flex items-start gap-4 mb-3 md:mb-0">
                           <div className="w-10 h-10 rounded-lg bg-slate-700/50 flex items-center justify-center shrink-0 border-slate-600">
                             <FileText className="w-5 h-5 text-slate-400" />
@@ -1813,8 +1813,8 @@ export default function ClientDetailsPage() {
 
 
                 {/* Samples Section */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-fuchsia-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-fuchsia-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <List className="w-5 h-5 text-fuchsia-400" />
                       Client Assets & Samples
@@ -1887,7 +1887,7 @@ export default function ClientDetailsPage() {
                       ))}
                       
                       {samples.length === 0 && (
-                        <div className="col-span-1 md:col-span-2 p-10 flex flex-col items-center justify-center text-white bg-slate-800/40 rounded-xl border-slate-700/50 border-dashed">
+                        <div className="col-span-1 md:col-span-2 p-10 flex flex-col items-center justify-center text-white bg-slate-900/40 rounded-xl border-slate-700/50 border-dashed">
                           <div className="w-16 h-16 mb-4 flex items-center justify-center bg-slate-800 rounded-full border-slate-700">
                             <Search className="w-8 h-8 text-slate-500" />
                           </div>
@@ -1921,7 +1921,7 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-6">
                 
                 {/* Pagination */}
-                <div className="flex justify-between items-center bg-slate-900/90 backdrop-blur-2xl rounded-lg border border-indigo-500/30 border-t-indigo-500 border-t-4 p-2 shadow-sm shrink-0">
+                <div className="flex justify-between items-center bg-slate-800 rounded-lg border border-indigo-500/30 border-t-indigo-500 border-t-4 p-2 shadow-sm shrink-0">
                   <button className="px-3 py-1.5 text-[12px] text-indigo-400 hover:text-white hover:bg-indigo-500/20 rounded font-medium flex items-center gap-1 transition-colors">
                     <ChevronDown className="w-3.5 h-3.5 rotate-90" /> Previous
                   </button>
@@ -1932,8 +1932,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-900/90  backdrop-blur-2xl rounded-xl border border-purple-500/30 border-t-purple-500 border-t-4 shadow-sm relative z-[50] shrink-0">
-                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center rounded-t-xl relative z-[60]">
+                <div className="bg-slate-800 rounded-xl border border-purple-500/30 border-t-purple-500 border-t-4 shadow-sm relative z-[50] shrink-0">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <Zap className="w-5 h-5 text-purple-400" /> Tasks
                     </span>
@@ -1987,7 +1987,7 @@ export default function ClientDetailsPage() {
                       </button>
                     </div>
                   </div>
-                  <div className="p-10 flex flex-col items-center justify-center text-white bg-slate-800/30 rounded-b-xl border-t border-purple-500/10">
+                  <div className="p-10 flex flex-col items-center justify-center text-white bg-slate-900/30 rounded-b-xl border-t border-purple-500/10">
                     <div className="w-14 h-14 mb-4 flex items-center justify-center text-slate-500 bg-slate-800 rounded-full border-slate-700">
                       <Search className="w-7 h-7 text-purple-500/30" />
                     </div>
@@ -1997,7 +1997,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-slate-500 border-t-4 shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
+                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-slate-500 border-t-4 shadow-lg shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
                   <div className="p-4 border-b border-slate-500/20 bg-slate-500/5 flex justify-between items-center relative z-[45]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <List className="w-5 h-5 text-slate-400" />
@@ -2072,7 +2072,7 @@ export default function ClientDetailsPage() {
                         </div>
                       ))
                     ) : (
-                      <div className="text-center py-10 bg-slate-800/30 rounded-xl border-slate-700/50 border-dashed">
+                      <div className="text-center py-10 bg-slate-900/30 rounded-xl border-slate-700/50 border-dashed">
                         <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-slate-500 bg-slate-800 rounded-full border-slate-700">
                           <List className="w-7 h-7 text-blue-500/30" />
                         </div>
@@ -2523,7 +2523,7 @@ export default function ClientDetailsPage() {
                   {/* Logo Upload */}
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Company Logo</label>
-                    <div className="w-32 h-32 bg-slate-800/50 border-slate-700 rounded-xl flex items-center justify-center mb-2">
+                    <div className="w-32 h-32 bg-slate-900/50 border-slate-700 rounded-xl flex items-center justify-center mb-2">
                       <Building2 className="w-8 h-8 text-slate-500" />
                     </div>
                     <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border-slate-700">
@@ -2769,7 +2769,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-lg font-semibold text-white">Business Discovery</h2>
               <button 
                 onClick={() => setIsBusinessDiscoveryModalOpen(false)}
@@ -2782,7 +2782,7 @@ export default function ClientDetailsPage() {
             {/* Body */}
             <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-4">
               {businessLinks.map((link, index) => (
-                <div key={index} className="flex items-start gap-4 p-4 bg-slate-800/30 border-slate-700/50 rounded-lg relative group">
+                <div key={index} className="flex items-start gap-4 p-4 bg-slate-900/30 border-slate-700/50 rounded-lg relative group">
                   <div className="flex-1 space-y-4">
                     <div>
                       <label className="block text-[14px] font-bold text-slate-200 mb-2">Link Label*</label>
@@ -2832,7 +2832,7 @@ export default function ClientDetailsPage() {
             </div>
             
             {/* Footer */}
-            <div className="flex items-center justify-end gap-3 p-5 border-t border-slate-800 bg-slate-800/30 rounded-b-xl">
+            <div className="flex items-center justify-end gap-3 p-5 border-t border-slate-800 bg-slate-900/30 rounded-b-xl">
               <button 
                 onClick={() => setIsBusinessDiscoveryModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
@@ -2856,7 +2856,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Create A New User</h2>
               <button 
                 onClick={() => setIsAddEmployeeModalOpen(false)}
@@ -2988,7 +2988,7 @@ export default function ClientDetailsPage() {
             </div>
             
             {/* Footer */}
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsAddEmployeeModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
@@ -3014,7 +3014,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Edit User</h2>
               <button 
                 onClick={() => setIsEditEmployeeModalOpen(false)}
@@ -3147,7 +3147,7 @@ export default function ClientDetailsPage() {
             </div>
             
             {/* Footer */}
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsEditEmployeeModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
@@ -3173,7 +3173,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-md flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Update Password</h2>
               <button 
                 onClick={() => setIsUpdatePasswordModalOpen(false)}
@@ -3186,7 +3186,7 @@ export default function ClientDetailsPage() {
             {/* Body */}
             <div className="p-6">
               <div className="space-y-4">
-                <div className="mb-2 p-3 bg-slate-800/50 rounded-lg border-slate-700">
+                <div className="mb-2 p-3 bg-slate-900/50 rounded-lg border-slate-700">
                   <p className="text-[13px] text-slate-300">Updating password for <strong>{updatingPasswordEmployee.firstName} {updatingPasswordEmployee.lastName}</strong></p>
                 </div>
                 
@@ -3221,7 +3221,7 @@ export default function ClientDetailsPage() {
             </div>
             
             {/* Footer */}
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsUpdatePasswordModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
@@ -3304,7 +3304,7 @@ export default function ClientDetailsPage() {
               <div>
                 <label className="block text-[14px] font-bold text-slate-200 mb-2">Description*</label>
                 <div className="border border-slate-700 rounded-lg bg-slate-950 overflow-hidden focus-within:border-amber-500 focus-within:ring-1 focus-within:ring-amber-500 transition-all shadow-inner">
-                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800/50 overflow-x-auto custom-scrollbar">
+                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-900/50 overflow-x-auto custom-scrollbar">
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="underline text-[13px] px-1">U</span></button>
@@ -3321,7 +3321,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
             
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsAddNoteModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
@@ -3370,7 +3370,7 @@ export default function ClientDetailsPage() {
               <div>
                 <label className="block text-[14px] font-bold text-slate-200 mb-2">Description*</label>
                 <div className="border border-slate-700 rounded-lg bg-slate-950 overflow-hidden focus-within:border-amber-500 focus-within:ring-1 focus-within:ring-amber-500 transition-all shadow-inner">
-                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800/50 overflow-x-auto custom-scrollbar">
+                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-900/50 overflow-x-auto custom-scrollbar">
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="underline text-[13px] px-1">U</span></button>
@@ -3386,7 +3386,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
             
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsEditNoteModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
@@ -3445,7 +3445,7 @@ export default function ClientDetailsPage() {
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsSendEmailNoteModalOpen(false)}></div>
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Send email</h2>
               <button 
                 onClick={() => setIsSendEmailNoteModalOpen(false)}
@@ -3478,14 +3478,14 @@ export default function ClientDetailsPage() {
               
               <div>
                 <div className="border-slate-700 rounded-lg bg-slate-900/50 overflow-hidden focus-within:border-purple-500/50 focus-within:ring-1 focus-within:ring-purple-500/50 transition-all">
-                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-800/50 overflow-x-auto custom-scrollbar">
+                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-900/50 overflow-x-auto custom-scrollbar">
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="underline text-[13px] px-1">U</span></button>
                     <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
                   </div>
-                  <div className="p-4 bg-slate-800/30">
+                  <div className="p-4 bg-slate-900/30">
                     <p className="text-[13px] text-slate-300 mb-4">Hi [EmployeeName],</p>
                     <p className="text-[13px] text-slate-300 mb-4">A note has been created under {sendingEmailNote.title}.</p>
                     <p className="text-[13px] text-slate-300 mb-1">Note:</p>
@@ -3506,7 +3506,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
             
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsSendEmailNoteModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
@@ -3565,7 +3565,7 @@ export default function ClientDetailsPage() {
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsGenerateWebsiteModalOpen(false)}></div>
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-4xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Create Website</h2>
               <button 
                 onClick={() => setIsGenerateWebsiteModalOpen(false)}
@@ -3633,7 +3633,7 @@ export default function ClientDetailsPage() {
               </div>
 
               {/* Template Preview Section */}
-              <div className="border-slate-700 rounded-lg overflow-hidden flex flex-col bg-slate-800/30">
+              <div className="border-slate-700 rounded-lg overflow-hidden flex flex-col bg-slate-900/30">
                 <div className="flex-1 bg-slate-900/90 p-4 relative flex items-center justify-center min-h-[250px]">
                   <div className="w-full h-full bg-slate-800 rounded border-slate-700 shadow-inner flex flex-col overflow-hidden">
                     {/* Mock Website Preview */}
@@ -3680,7 +3680,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
             
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsGenerateWebsiteModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
@@ -3705,7 +3705,7 @@ export default function ClientDetailsPage() {
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsAddLogoModalOpen(false)}></div>
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Add Logo Sample</h2>
               <button 
                 onClick={() => setIsAddLogoModalOpen(false)}
@@ -3727,7 +3727,7 @@ export default function ClientDetailsPage() {
                 />
               </div>
               
-              <div className="border-2 border-dashed border-slate-700 hover:border-purple-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors cursor-pointer bg-slate-800/20 hover:bg-slate-800/40 relative">
+              <div className="border-2 border-dashed border-slate-700 hover:border-purple-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors cursor-pointer bg-slate-800/20 hover:bg-slate-900/40 relative">
                 <input 
                   type="file" 
                   accept=".png,.jpg,.jpeg,.svg"
@@ -3760,7 +3760,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
             
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsAddLogoModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
@@ -3786,7 +3786,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-lg font-semibold text-white">Edit Background</h2>
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
@@ -3804,7 +3804,7 @@ export default function ClientDetailsPage() {
                 {/* Mock Rich Text Editor */}
                 <div className="border-slate-700 rounded-lg overflow-hidden bg-slate-900/50">
                   {/* Toolbar */}
-                  <div className="flex flex-wrap items-center gap-1 p-2 border-b border-slate-700 bg-slate-800/50 text-slate-400">
+                  <div className="flex flex-wrap items-center gap-1 p-2 border-b border-slate-700 bg-slate-900/50 text-slate-400">
                     <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><span className="font-bold font-serif px-1">B</span></button>
                     <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
                     <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
@@ -3827,10 +3827,10 @@ export default function ClientDetailsPage() {
                   </div>
                   
                   {/* Editor Area */}
-                  <div className="p-3 bg-slate-800/30">
+                  <div className="p-3 bg-slate-900/30">
                     <textarea 
                       defaultValue="https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists"
-                      className="w-full h-48 bg-slate-800/50 border-slate-700/50 rounded p-4 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 resize-none custom-scrollbar"
+                      className="w-full h-48 bg-slate-900/50 border-slate-700/50 rounded p-4 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 resize-none custom-scrollbar"
                     ></textarea>
                   </div>
                 </div>
@@ -3838,7 +3838,7 @@ export default function ClientDetailsPage() {
             </div>
             
             {/* Footer */}
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
@@ -3863,7 +3863,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-lg font-semibold text-white">Configure Google Analytics</h2>
               <button 
                 onClick={() => setIsAnalyticsModalOpen(false)}
@@ -3943,7 +3943,7 @@ export default function ClientDetailsPage() {
             </div>
             
             {/* Footer */}
-            <div className="flex items-center justify-end gap-3 p-5 border-t border-slate-800 bg-slate-800/30 rounded-b-xl">
+            <div className="flex items-center justify-end gap-3 p-5 border-t border-slate-800 bg-slate-900/30 rounded-b-xl">
               <button 
                 onClick={() => setIsAnalyticsModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors border-slate-700 bg-slate-800"
@@ -3967,7 +3967,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <div className="flex items-center gap-3">
                 {selectedPlanTab === 'checkout' && (
                   <button 
@@ -3993,7 +3993,7 @@ export default function ClientDetailsPage() {
                 <div className="flex flex-col h-full">
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 flex-1">
                     {plans.map((plan, idx) => (
-                      <div key={idx} className="bg-slate-800/30 border-slate-700/50 rounded-xl p-5 flex flex-col h-full shadow-sm hover:border-slate-600 transition-colors group">
+                      <div key={idx} className="bg-slate-900/30 border-slate-700/50 rounded-xl p-5 flex flex-col h-full shadow-sm hover:border-slate-600 transition-colors group">
                         <div className="mb-4">
                           <h3 className="text-[15px] font-medium text-white mb-2">{plan.name}</h3>
                           <div className="flex items-baseline gap-1">
@@ -4002,7 +4002,7 @@ export default function ClientDetailsPage() {
                           {plan.period && <p className="text-[12px] text-slate-400 mb-4">{plan.period}</p>}
                           {!plan.period && <p className="text-[12px] text-transparent mb-4 select-none">Spacer</p>}
                           
-                          <div className="bg-slate-800/50 rounded p-2 mb-4 border-slate-700/50">
+                          <div className="bg-slate-900/50 rounded p-2 mb-4 border-slate-700/50">
                             <p className="text-[11px] text-slate-300">
                               <span className="text-slate-500">Launch Cost Est.</span> <span className="text-indigo-400">{plan.launchCost}</span> | {plan.launchTime}
                             </p>
@@ -4057,7 +4057,7 @@ export default function ClientDetailsPage() {
                   </div>
                 </div>
               ) : (
-                <div className="max-w-2xl mx-auto bg-slate-800/30 border-slate-700/50 rounded-xl p-6 shadow-sm">
+                <div className="max-w-2xl mx-auto bg-slate-900/30 border-slate-700/50 rounded-xl p-6 shadow-sm">
                   <div className="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-slate-700/50 pb-6 mb-6">
                     <div>
                       <h3 className="text-lg font-medium text-white mb-1">{selectedPlan?.name} Plan</h3>
@@ -4118,7 +4118,7 @@ export default function ClientDetailsPage() {
           
           <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-800/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
               <h2 className="text-lg font-semibold text-white flex items-center gap-2">
                 <svg className="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -4153,7 +4153,7 @@ export default function ClientDetailsPage() {
             <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-slate-900/50">
               {billingTab === 'new_invoice' ? (
                 <div className="space-y-5">
-                  <div className="bg-slate-800/50 border-slate-700/50 rounded-xl p-5">
+                  <div className="bg-slate-900/50 border-slate-700/50 rounded-xl p-5">
                     <h3 className="text-[14px] font-bold text-white mb-4">Invoice Details</h3>
                     
                     <div className="space-y-4">
@@ -4219,7 +4219,7 @@ export default function ClientDetailsPage() {
                 </div>
               ) : (
                 <div className="space-y-5">
-                  <div className="bg-slate-800/50 border-slate-700/50 rounded-xl p-5">
+                  <div className="bg-slate-900/50 border-slate-700/50 rounded-xl p-5">
                     <h3 className="text-[14px] font-bold text-white mb-4">Payment Methods</h3>
                     
                     <div className="space-y-3 mb-5">
@@ -4343,7 +4343,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
             
-            <div className="p-5 border-t border-slate-800 bg-slate-800/30 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsTemplateModalOpen(false)}
                 className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
