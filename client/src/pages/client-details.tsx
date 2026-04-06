@@ -1532,18 +1532,49 @@ export default function ClientDetailsPage() {
                     </button>
                   </div>
                   
-                  <div className="p-4 space-y-4 max-h-[400px] overflow-y-auto custom-scrollbar bg-slate-800/50">
-                    {notes.map(note => (
-                      <div key={note.id} className="bg-yellow-200/90 text-slate-800 rounded-sm p-4 relative group shadow-[2px_4px_10px_rgba(0,0,0,0.3)] transform transition-transform hover:-translate-y-1 hover:shadow-[4px_8px_15px_rgba(0,0,0,0.4)] before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-br before:from-transparent before:via-transparent before:to-black/5 before:pointer-events-none after:absolute after:bottom-0 after:right-0 after:w-4 after:h-4 after:bg-gradient-to-tl after:from-black/10 after:to-transparent after:rounded-tl-sm">
-                        <div className="flex justify-between items-start mb-2 border-b border-yellow-800/10 pb-2">
-                          <h3 className="text-[15px] font-bold text-yellow-900 group-hover:text-yellow-950 transition-colors font-serif">{note.title}</h3>
-                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-h-[600px] overflow-y-auto custom-scrollbar bg-[url('https://www.transparenttextures.com/patterns/cork-board.png')] bg-[#8b5a2b] relative z-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.7)]">
+                    {notes.map((note, i) => {
+                      const colors = [
+                        { bg: 'bg-[#fdfd96]', fold: 'border-l-[#dada75]', text: 'text-yellow-950', border: 'border-yellow-800/10', muted: 'text-yellow-700', pin: 'bg-red-500 border-red-700' },
+                        { bg: 'bg-[#ffb7b2]', fold: 'border-l-[#e6a5a0]', text: 'text-red-950', border: 'border-red-800/10', muted: 'text-red-700', pin: 'bg-blue-500 border-blue-700' },
+                        { bg: 'bg-[#a1c9f1]', fold: 'border-l-[#91b5d9]', text: 'text-blue-950', border: 'border-blue-800/10', muted: 'text-blue-700', pin: 'bg-yellow-400 border-yellow-600' },
+                        { bg: 'bg-[#b5ead7]', fold: 'border-l-[#a3d3c1]', text: 'text-green-950', border: 'border-green-800/10', muted: 'text-green-700', pin: 'bg-purple-500 border-purple-700' },
+                      ];
+                      const theme = colors[i % colors.length];
+                      
+                      return (
+                      <div 
+                        key={note.id} 
+                        className={`${theme.bg} p-5 flex flex-col relative group transition-all duration-300 z-10 hover:z-20 ${i % 2 === 0 ? (i % 3 === 0 ? '-rotate-3' : 'rotate-2') : (i % 3 === 1 ? '-rotate-1' : 'rotate-3')} hover:scale-[1.05] min-h-[220px] aspect-square max-w-[260px] mx-auto w-full`}
+                        style={{
+                          backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.1) 100%)',
+                          boxShadow: '2px 4px 10px rgba(0,0,0,0.3)'
+                        }}
+                      >
+                        {/* Realistic Page Curl Shadows */}
+                        <div className="absolute bottom-1 right-1 w-1/2 h-1/2 bg-transparent shadow-[3px_5px_10px_rgba(0,0,0,0.4)] -z-10 transform skew-y-6 rotate-3 translate-x-1 transition-transform group-hover:shadow-[5px_8px_15px_rgba(0,0,0,0.4)] group-hover:skew-y-8"></div>
+                        <div className="absolute bottom-1 left-1 w-1/2 h-1/2 bg-transparent shadow-[-3px_5px_10px_rgba(0,0,0,0.4)] -z-10 transform -skew-y-6 -rotate-3 -translate-x-1 transition-transform group-hover:shadow-[-5px_8px_15px_rgba(0,0,0,0.4)] group-hover:-skew-y-8"></div>
+
+                        {/* Push Pin */}
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 transition-transform group-hover:-translate-y-1 drop-shadow-md">
+                          <div className={`w-3.5 h-3.5 rounded-full ${theme.pin} shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.3),2px_3px_5px_rgba(0,0,0,0.5)] relative z-10 border`}>
+                            <div className="absolute top-0.5 left-0.5 w-1 h-1 bg-white/70 rounded-full"></div>
+                          </div>
+                          <div className="w-0.5 h-3 bg-gradient-to-r from-gray-400 to-gray-600 absolute top-2.5 left-1/2 -translate-x-1/2 -z-10 shadow-[1px_1px_2px_rgba(0,0,0,0.3)]"></div>
+                        </div>
+
+                        {/* Folded bottom right corner */}
+                        <div className={`absolute bottom-0 right-0 w-0 h-0 border-b-[20px] border-b-[#8b5a2b] border-l-[20px] ${theme.fold} shadow-[-2px_-2px_3px_rgba(0,0,0,0.15)] transition-all group-hover:border-b-[24px] group-hover:border-l-[24px]`}></div>
+
+                        <div className={`flex justify-between items-start mb-3 border-b ${theme.border} pb-2 relative z-10 mt-1`}>
+                          <h3 className={`text-[18px] font-bold ${theme.text} transition-colors font-['Architects_Daughter',cursive] leading-tight tracking-wide`}>{note.title}</h3>
+                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity ml-2 shrink-0">
                             <button 
                               onClick={() => {
                                 setEditingNote(note);
                                 setIsEditNoteModalOpen(true);
                               }}
-                              className="p-1.5 text-yellow-800 hover:text-white hover:bg-yellow-700/80 rounded-md transition-colors"
+                              className={`p-1 ${theme.muted} hover:text-white hover:bg-black/20 rounded transition-colors`}
                             >
                               <Edit2 className="w-3.5 h-3.5" />
                             </button>
@@ -1552,27 +1583,29 @@ export default function ClientDetailsPage() {
                                 setDeletingNote(note);
                                 setIsDeleteNoteModalOpen(true);
                               }}
-                              className="p-1.5 text-yellow-800 hover:text-white hover:bg-red-500/80 rounded-md transition-colors"
+                              className={`p-1 ${theme.muted} hover:text-white hover:bg-red-500/80 rounded transition-colors`}
                             >
                               <Trash2 className="w-3.5 h-3.5" />
                             </button>
                           </div>
                         </div>
-                        <p className="text-[14px] text-yellow-950/80 leading-relaxed whitespace-pre-wrap font-medium">{note.description}</p>
-                        <div className="mt-3 flex items-center justify-between text-[11px] text-yellow-800/70 font-bold pt-3">
-                          <span className="flex items-center gap-1">
+                        <p className={`text-[16px] ${theme.text} opacity-90 leading-relaxed whitespace-pre-wrap font-['Architects_Daughter',cursive] tracking-wide relative z-10 flex-1`}>{note.description}</p>
+                        
+                        <div className={`mt-3 flex items-center justify-between text-[11px] ${theme.muted} font-bold pt-2 relative z-10`}>
+                          <span className="flex items-center gap-1 font-sans">
                             <User className="w-3 h-3" /> {note.author}
                           </span>
-                          <span className="flex items-center gap-1">
+                          <span className="flex items-center gap-1 font-sans">
                             <Clock className="w-3 h-3" /> Mar 08, 2026
                           </span>
                         </div>
                       </div>
-                    ))}
+                    );
+                    })}
                     {notes.length === 0 && (
-                      <div className="text-center py-8">
-                        <FileText className="w-10 h-10 text-slate-600 mx-auto mb-3" />
-                        <p className="text-[13px] text-slate-400 font-medium">No notes added yet.</p>
+                      <div className="text-center py-8 col-span-full">
+                        <FileText className="w-10 h-10 text-white/50 mx-auto mb-3" />
+                        <p className="text-[15px] text-white/70 font-medium">No notes pinned yet.</p>
                       </div>
                     )}
                   </div>
