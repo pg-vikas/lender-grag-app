@@ -6,14 +6,10 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsToolti
 
 export default function ClientDetailsPage() {
   const [openMenus, setOpenMenus] = useState<string>('crm');
-  const [smsRecipients, setSmsRecipients] = useState<{name: string, phone: string}[]>([{name: "Main Office", phone: currentClient.phone !== "---" ? currentClient.phone : ""}]);
   const [activeTab, setActiveTab] = useState<string>('email');
   const [location, setLocation] = useLocation();
   const params = useParams<{ id: string }>();
 
-  // Mock data for the specific client based on ID
-  const clientId = params.id || "1";
-  
   // Array of mock clients to simulate a database
   const clientsData = [
     { id: "1", name: "Pink Gorilla Software", industry: "Information Technology Services", phone: "+1 555 123 4567", email: "contact@pinkgorilla.agency" },
@@ -22,6 +18,9 @@ export default function ClientDetailsPage() {
     { id: "90", name: "Test demo1", industry: "Health Care & Hospitals", phone: "+1 789 000 0070", email: "test.demo90@example.com" }
   ];
 
+  // Mock data for the specific client based on ID
+  const clientId = params.id || "1";
+  
   const currentClient = clientsData.find(c => c.id === clientId) || { 
     id: clientId, 
     name: `Client ${clientId}`, 
@@ -29,6 +28,8 @@ export default function ClientDetailsPage() {
     phone: "---", 
     email: "---" 
   };
+  
+  const [smsRecipients, setSmsRecipients] = useState<{name: string, phone: string}[]>([{name: "Main Office", phone: currentClient.phone !== "---" ? currentClient.phone : ""}]);
 
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
   const [isTaskDropdownOpen, setIsTaskDropdownOpen] = useState(false);
