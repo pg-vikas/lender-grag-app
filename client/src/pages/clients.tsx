@@ -43,7 +43,8 @@ import {
   Rocket,
   Eye,
   Lock,
-  Trash2
+  Trash2,
+  CheckCircle2
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { useAppStore } from "@/lib/store";
@@ -556,7 +557,67 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 </Button>
               </div>
 
+              
+              {/* Tasks Needed Section */}
+              <div className="mb-8 bg-slate-800 rounded-xl border border-slate-700 border-t-purple-500 border-t-4 shadow-lg overflow-hidden relative z-10">
+                <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-purple-400" />
+                    <span className="font-bold text-white text-[15px]">Tasks Needed</span>
+                  </div>
+                  <Link href="/tasks">
+                    <button className="text-[12px] font-bold text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1">
+                      View All Tasks <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </Link>
+                </div>
+                <div className="p-0 overflow-x-auto">
+                  <table className="w-full text-left">
+                    <thead className="bg-slate-900/50 border-b border-slate-700/80">
+                      <tr>
+                        <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Task</th>
+                        <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Client</th>
+                        <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Due Date</th>
+                        <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Priority</th>
+                        <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider text-right">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-700/50">
+                      {[
+                        { task: 'Initial Discovery Call', client: 'NexGen Dynamics', date: 'Today', priority: 'High', color: 'text-rose-400 bg-rose-500/10 border-rose-500/20' },
+                        { task: 'Send Proposal', client: 'Aqua Pure', date: 'Tomorrow', priority: 'Medium', color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
+                        { task: 'Website Audit', client: 'HealthPlus+', date: 'Apr 10, 2026', priority: 'Normal', color: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
+                        { task: 'Setup Email Campaign', client: 'Red Hot Sales', date: 'Apr 12, 2026', priority: 'High', color: 'text-rose-400 bg-rose-500/10 border-rose-500/20' },
+                      ].map((task, i) => (
+                        <tr key={i} className="hover:bg-slate-700/30 transition-colors group">
+                          <td className="py-3.5 px-5 text-[13px] font-medium text-white group-hover:text-cyan-400 transition-colors cursor-pointer">
+                            {task.task}
+                          </td>
+                          <td className="py-3.5 px-5 text-[13px] text-slate-300">
+                            {task.client}
+                          </td>
+                          <td className="py-3.5 px-5 text-[13px] text-slate-400">
+                            {task.date}
+                          </td>
+                          <td className="py-3.5 px-5">
+                            <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold border ${task.color}`}>
+                              {task.priority}
+                            </span>
+                          </td>
+                          <td className="py-3.5 px-5 text-right">
+                            <button className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white rounded-md text-[11px] font-bold transition-colors">
+                              Mark Done
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
               {/* Action Bar & Filters */}
+
               <div className="flex flex-col gap-4 mb-6">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4 glass-panel p-4 rounded-2xl border-t border-cyan-500/20">
                   <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
