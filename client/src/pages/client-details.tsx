@@ -1532,18 +1532,18 @@ export default function ClientDetailsPage() {
                     </button>
                   </div>
                   
-                  <div className="p-4 space-y-3 max-h-[400px] overflow-y-auto custom-scrollbar">
+                  <div className="p-4 space-y-4 max-h-[400px] overflow-y-auto custom-scrollbar bg-slate-800/50">
                     {notes.map(note => (
-                      <div key={note.id} className="bg-slate-900/40 border-slate-700/50 rounded-xl p-4 relative group hover:border border-amber-500/30 transition-colors shadow-sm">
-                        <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-[14px] font-bold text-white group-hover:text-amber-400 transition-colors">{note.title}</h3>
+                      <div key={note.id} className="bg-yellow-200/90 text-slate-800 rounded-sm p-4 relative group shadow-[2px_4px_10px_rgba(0,0,0,0.3)] transform transition-transform hover:-translate-y-1 hover:shadow-[4px_8px_15px_rgba(0,0,0,0.4)] before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-br before:from-transparent before:via-transparent before:to-black/5 before:pointer-events-none after:absolute after:bottom-0 after:right-0 after:w-4 after:h-4 after:bg-gradient-to-tl after:from-black/10 after:to-transparent after:rounded-tl-sm">
+                        <div className="flex justify-between items-start mb-2 border-b border-yellow-800/10 pb-2">
+                          <h3 className="text-[15px] font-bold text-yellow-900 group-hover:text-yellow-950 transition-colors font-serif">{note.title}</h3>
                           <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button 
                               onClick={() => {
                                 setEditingNote(note);
                                 setIsEditNoteModalOpen(true);
                               }}
-                              className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
+                              className="p-1.5 text-yellow-800 hover:text-white hover:bg-yellow-700/80 rounded-md transition-colors"
                             >
                               <Edit2 className="w-3.5 h-3.5" />
                             </button>
@@ -1552,19 +1552,19 @@ export default function ClientDetailsPage() {
                                 setDeletingNote(note);
                                 setIsDeleteNoteModalOpen(true);
                               }}
-                              className="p-1.5 text-slate-400 hover:text-blue-400 hover:bg-slate-700 rounded-md transition-colors"
+                              className="p-1.5 text-yellow-800 hover:text-white hover:bg-red-500/80 rounded-md transition-colors"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
                             </button>
                           </div>
                         </div>
-                        <p className="text-[13px] text-slate-300 leading-relaxed whitespace-pre-wrap">{note.description}</p>
-                        <div className="mt-3 flex items-center gap-4 text-[11px] text-slate-500 font-medium pt-3 border-t border-slate-700/50">
+                        <p className="text-[14px] text-yellow-950/80 leading-relaxed whitespace-pre-wrap font-medium">{note.description}</p>
+                        <div className="mt-3 flex items-center justify-between text-[11px] text-yellow-800/70 font-bold pt-3">
                           <span className="flex items-center gap-1">
-                            <User className="w-3 h-3" /> By {note.author}
+                            <User className="w-3 h-3" /> {note.author}
                           </span>
                           <span className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" /> Mar 08, 2026 • 11:15 AM
+                            <Clock className="w-3 h-3" /> Mar 08, 2026
                           </span>
                         </div>
                       </div>
