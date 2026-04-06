@@ -568,8 +568,8 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Company Details */}
-                <div className="bg-slate-900/60 bg-indigo-500/10 backdrop-blur-2xl rounded-xl border border-indigo-500/30 border-t-indigo-500 border-t-4 shadow-sm relative z-30">
-                  <div className="p-4 bg-gradient-to-r from-indigo-500/20 to-transparent border-b border border-indigo-500/30 flex justify-between items-center rounded-t-xl">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-indigo-500 border-t-4 shadow-sm relative z-30">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
                       <Building2 className="w-5 h-5 text-indigo-400" />
                       <span className="font-bold text-white text-[15px]">Company Details</span>
@@ -624,8 +624,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Contact Information & Employees */}
-                <div className="bg-slate-900/60 bg-cyan-500/10 backdrop-blur-2xl rounded-xl border border-cyan-500/30 border-t-cyan-500 border-t-4 shadow-sm overflow-hidden flex flex-col max-h-[600px]">
-                  <div className="p-4 bg-gradient-to-r from-cyan-500/20 to-transparent border-b border border-cyan-500/30 flex justify-between items-center sticky top-0 z-10 shrink-0">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-cyan-500 border-t-4 shadow-sm overflow-hidden flex flex-col max-h-[600px]">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-cyan-400" />
                       <span className="font-bold text-white text-[15px]">Contacts & Team</span>
@@ -679,7 +679,7 @@ export default function ClientDetailsPage() {
                       <div className="space-y-3">
                         {employees.map((employee, index) => (
                           <div key={employee.id} className="bg-slate-800/50 border-slate-700/50 rounded-lg p-4 relative group hover:border border-cyan-500/30 transition-colors">
-                            <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/90 p-1 rounded-md border-slate-700">
+                            <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 p-1 rounded-md border-slate-700">
                               <button 
                                 onClick={() => {
                                   setEditingEmployee({
@@ -744,8 +744,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Website */}
-                <div className="bg-slate-900/60 bg-emerald-500/10 backdrop-blur-2xl rounded-xl border border-emerald-500/30 border-t-emerald-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-emerald-500/20 to-transparent border-b border border-emerald-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-emerald-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Globe className="w-5 h-5 text-emerald-400" />
                       <span className="font-bold text-white text-[15px]">Website</span>
@@ -829,8 +829,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Business Discovery */}
-                <div className="bg-slate-900/60 bg-orange-500/10 backdrop-blur-2xl rounded-xl border border-orange-500/30 border-t-orange-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-orange-500/20 to-transparent border-b border border-orange-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-orange-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Compass className="w-5 h-5 text-orange-400" />
                       <span className="font-bold text-white text-[15px]">Business Discovery</span>
@@ -850,8 +850,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Billing Information */}
-                <div className="bg-slate-900/60 bg-pink-500/10 backdrop-blur-2xl rounded-xl border border-pink-500/30 border-t-pink-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-pink-500/20 to-transparent border-b border border-pink-500/30 flex items-center gap-2">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-pink-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex items-center gap-2">
                     <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                     </svg>
@@ -969,8 +969,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Background */}
-                <div className="bg-slate-900/60 bg-violet-500/10 backdrop-blur-2xl rounded-xl border border-violet-500/30 border-t-violet-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-violet-500/20 to-transparent border-b border border-violet-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-violet-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <ImageIcon className="w-5 h-5 text-violet-400" />
                       <span className="font-bold text-white text-[15px]">Background</span>
@@ -992,8 +992,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* General */}
-                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border border-teal-500/30 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-teal-500/20 to-transparent border-b border border-teal-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Info className="w-5 h-5 text-teal-400" />
                       <span className="font-bold text-white text-[15px]">General Info</span>
@@ -1056,8 +1056,8 @@ export default function ClientDetailsPage() {
 
 
                 {/* Compliance Essentials */}
-                <div className="bg-slate-900/60 bg-yellow-500/10 backdrop-blur-2xl rounded-xl border border-yellow-500/30 border-t-yellow-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-yellow-500/20 to-transparent border-b border border-yellow-500/30 flex items-center gap-2">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-yellow-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-yellow-400" />
                     <span className="font-bold text-white text-[15px]">Compliance Essentials</span>
                   </div>
@@ -1089,8 +1089,8 @@ export default function ClientDetailsPage() {
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
                 {/* Communications Section */}
-                <div className="bg-slate-900/60 bg-blue-500/10 backdrop-blur-2xl rounded-xl border border-blue-500/30 border-t-blue-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-5 bg-gradient-to-r from-blue-500/20 to-transparent border-b border border-blue-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-blue-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-5 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-blue-400" />
                       Communications
@@ -1125,7 +1125,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                   <User className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="recipient@example.com" className="w-full pl-10 pr-4 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner" />
+                                <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="recipient@example.com" className="w-full pl-10 pr-4 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner" />
                               </div>
                               <p className="text-[11px] text-slate-400 mt-1.5 font-medium flex items-center gap-1">
                                 <Info className="w-3 h-3" /> Separate multiple with commas
@@ -1138,7 +1138,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                   <Building2 className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <select className="w-full pl-10 pr-4 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                <select className="w-full pl-10 pr-4 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner appearance-none cursor-pointer">
                                   <option>Neeraj Kumar (neeraj@pinkgorillasoftware.com)</option>
                                 </select>
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -1152,7 +1152,7 @@ export default function ClientDetailsPage() {
                             <div className="md:col-span-2">
                               <label className="block text-[12px] font-bold text-blue-300 uppercase tracking-wider mb-2">Subject <span className="text-slate-500">*</span></label>
                               <div className="relative">
-                                <input type="text" placeholder="What is this email about?" className="w-full px-4 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner" />
+                                <input type="text" placeholder="What is this email about?" className="w-full px-4 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner" />
                               </div>
                             </div>
                             
@@ -1216,7 +1216,7 @@ export default function ClientDetailsPage() {
                               <span>Message <span className="text-slate-500">*</span></span>
                               <span className="text-[11px] text-slate-500 font-normal normal-case">Markdown supported</span>
                             </label>
-                            <div className="border-slate-700 rounded-xl bg-slate-950/90 overflow-hidden flex flex-col shadow-inner focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
+                            <div className="border-slate-700 rounded-xl bg-slate-900/90 overflow-hidden flex flex-col shadow-inner focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
                               <div className="flex items-center gap-1 border-b border-slate-700/50 p-2 bg-slate-800/50">
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="font-bold text-[14px]">B</span></button>
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="italic text-[14px]">I</span></button>
@@ -1251,7 +1251,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                                   <Phone className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-10 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner relative z-10" />
+                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-10 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner relative z-10" />
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 z-10">
                                   <ChevronDown className="w-4 h-4 text-slate-500 cursor-pointer" />
                                 </div>
@@ -1285,7 +1285,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                   <Building2 className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <select className="w-full pl-10 pr-4 py-3 bg-slate-950/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                <select className="w-full pl-10 pr-4 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner appearance-none cursor-pointer">
                                   <option>Company Phone (+1 800 123 4567)</option>
                                 </select>
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -1383,7 +1383,7 @@ export default function ClientDetailsPage() {
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                             
                             {/* Left Side - Dialer UI */}
-                            <div className="flex flex-col items-center justify-center bg-slate-900/60 rounded-2xl border-slate-700/50 p-8 shadow-inner relative overflow-hidden">
+                            <div className="flex flex-col items-center justify-center bg-slate-900/80 rounded-2xl border-slate-700/50 p-8 shadow-inner relative overflow-hidden">
                               {/* Background glowing orb */}
                               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 hidden rounded-full pointer-events-none"></div>
                               
@@ -1402,7 +1402,7 @@ export default function ClientDetailsPage() {
                                     type="text" 
                                     defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''}
                                     placeholder="Enter phone number..."
-                                    className="w-full pl-10 pr-10 py-2.5 bg-slate-950/90 border border-emerald-500/30 rounded-lg text-[16px] font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-center shadow-inner relative z-10"
+                                    className="w-full pl-10 pr-10 py-2.5 bg-slate-900/90 border border-emerald-500/30 rounded-lg text-[16px] font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-center shadow-inner relative z-10"
                                   />
                                   <div className="absolute inset-y-0 right-0 flex items-center pr-2 z-10">
                                     <div className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded cursor-pointer transition-colors">
@@ -1465,7 +1465,7 @@ export default function ClientDetailsPage() {
                                 Log Call Details
                               </h3>
                               
-                              <div className="flex-1 flex flex-col bg-slate-900/60 rounded-2xl border-slate-700/50 p-5 shadow-inner">
+                              <div className="flex-1 flex flex-col bg-slate-900/80 rounded-2xl border-slate-700/50 p-5 shadow-inner">
                                 <div className="mb-4">
                                   <label className="block text-[12px] font-bold text-slate-300 uppercase tracking-wider mb-2">Call Outcome <span className="text-slate-500">*</span></label>
                                   <div className="grid grid-cols-2 gap-2">
@@ -1518,8 +1518,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="bg-slate-900/60 bg-amber-500/10 backdrop-blur-2xl rounded-xl border border-amber-500/30 border-t-amber-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-amber-500/20 to-transparent border-b border border-amber-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-amber-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-amber-400" />
                       Notes
@@ -1579,7 +1579,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Analytics Expanded Section */}
-                <div className="bg-slate-900/60 bg-sky-500/10 backdrop-blur-2xl rounded-xl border border-sky-500/30 border-t-sky-500 border-t-4 shadow-sm overflow-hidden">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-sky-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-sky-500/20 bg-sky-500/5 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-sky-400" />
@@ -1705,7 +1705,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Document Signing Center */}
-                <div className="bg-slate-900/60 bg-teal-500/10 backdrop-blur-2xl rounded-xl border border-teal-500/30 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-teal-500 border-t-4 shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-teal-500/20 flex justify-between items-center bg-teal-500/15">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-teal-400" />
@@ -1813,8 +1813,8 @@ export default function ClientDetailsPage() {
 
 
                 {/* Samples Section */}
-                <div className="bg-slate-900/60 bg-fuchsia-500/10 backdrop-blur-2xl rounded-xl border border-fuchsia-500/30 border-t-fuchsia-500 border-t-4 shadow-sm overflow-hidden">
-                  <div className="p-4 bg-gradient-to-r from-fuchsia-500/20 to-transparent border-b border border-fuchsia-500/30 flex justify-between items-center">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-fuchsia-500 border-t-4 shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <List className="w-5 h-5 text-fuchsia-400" />
                       Client Assets & Samples
@@ -1848,7 +1848,7 @@ export default function ClientDetailsPage() {
                               <h4 className="font-bold text-white text-[15px]">{sample.title}</h4>
                             </div>
                             
-                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/90 p-1 rounded-md border-slate-700">
+                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 p-1 rounded-md border-slate-700">
                               <button className="p-1.5 text-slate-400 hover:text-blue-400 hover:bg-slate-800 rounded transition-colors" title="Copy URL">
                                 <LinkIcon className="w-3.5 h-3.5" />
                               </button>
@@ -1921,7 +1921,7 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-6">
                 
                 {/* Pagination */}
-                <div className="flex justify-between items-center bg-slate-950/90 backdrop-blur-2xl rounded-lg border border-indigo-500/30 border-t-indigo-500 border-t-4 p-2 shadow-sm shrink-0">
+                <div className="flex justify-between items-center bg-slate-900/90 backdrop-blur-2xl rounded-lg border border-indigo-500/30 border-t-indigo-500 border-t-4 p-2 shadow-sm shrink-0">
                   <button className="px-3 py-1.5 text-[12px] text-indigo-400 hover:text-white hover:bg-indigo-500/20 rounded font-medium flex items-center gap-1 transition-colors">
                     <ChevronDown className="w-3.5 h-3.5 rotate-90" /> Previous
                   </button>
@@ -1932,8 +1932,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-950/90 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent backdrop-blur-2xl rounded-xl border border-purple-500/30 border-t-purple-500 border-t-4 shadow-sm relative z-[50] shrink-0">
-                  <div className="p-4 bg-gradient-to-r from-purple-500/20 to-transparent border-b border border-purple-500/30 flex justify-between items-center rounded-t-xl relative z-[60]">
+                <div className="bg-slate-900/90  backdrop-blur-2xl rounded-xl border border-purple-500/30 border-t-purple-500 border-t-4 shadow-sm relative z-[50] shrink-0">
+                  <div className="p-4 bg-slate-800/40 border-b border-slate-700/50 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <Zap className="w-5 h-5 text-purple-400" /> Tasks
                     </span>
@@ -1997,7 +1997,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-900/60 bg-slate-500/10 backdrop-blur-2xl rounded-xl border border-slate-500/30 border-t-slate-500 border-t-4 shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
+                <div className="bg-slate-900/80 backdrop-blur-2xl rounded-xl border border-slate-700/50 border-t-slate-500 border-t-4 shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
                   <div className="p-4 border-b border-slate-500/20 bg-slate-500/5 flex justify-between items-center relative z-[45]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <List className="w-5 h-5 text-slate-400" />
@@ -2143,7 +2143,7 @@ export default function ClientDetailsPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsAddTaskModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2214,7 +2214,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditContactModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2317,7 +2317,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditWebsiteModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2414,7 +2414,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditGeneralInfoModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2473,7 +2473,7 @@ export default function ClientDetailsPage() {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2744,7 +2744,7 @@ export default function ClientDetailsPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/90 flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditClientModalOpen(false)}
                 className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
@@ -2791,7 +2791,7 @@ export default function ClientDetailsPage() {
                         value={link.label}
                         onChange={(e) => updateBusinessLink(index, 'label', e.target.value)}
                         placeholder="e.g., Website, Yelp, Facebook" 
-                        className="w-full px-3 py-2.5 bg-slate-950/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                        className="w-full px-3 py-2.5 bg-slate-900/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                       />
                     </div>
                     <div>
@@ -2801,7 +2801,7 @@ export default function ClientDetailsPage() {
                         value={link.url}
                         onChange={(e) => updateBusinessLink(index, 'url', e.target.value)}
                         placeholder="https://" 
-                        className="w-full px-3 py-2.5 bg-slate-950/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                        className="w-full px-3 py-2.5 bg-slate-900/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                       />
                     </div>
                   </div>
@@ -3634,7 +3634,7 @@ export default function ClientDetailsPage() {
 
               {/* Template Preview Section */}
               <div className="border-slate-700 rounded-lg overflow-hidden flex flex-col bg-slate-800/30">
-                <div className="flex-1 bg-slate-950/90 p-4 relative flex items-center justify-center min-h-[250px]">
+                <div className="flex-1 bg-slate-900/90 p-4 relative flex items-center justify-center min-h-[250px]">
                   <div className="w-full h-full bg-slate-800 rounded border-slate-700 shadow-inner flex flex-col overflow-hidden">
                     {/* Mock Website Preview */}
                     <div className="h-6 border-b border-slate-700 bg-slate-800/80 flex items-center px-2 gap-1.5">
@@ -3902,7 +3902,7 @@ export default function ClientDetailsPage() {
                   <input 
                     type="text" 
                     placeholder="123456789" 
-                    className="w-full px-3 py-2.5 bg-slate-950/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600"
+                    className="w-full px-3 py-2.5 bg-slate-900/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600"
                   />
                   <p className="text-[12px] text-slate-400 mt-2 leading-relaxed">
                     Your Google Analytics 4 Property ID (numbers only). Get this from: Google Analytics &rarr; Admin &rarr; Property Settings
@@ -3918,7 +3918,7 @@ export default function ClientDetailsPage() {
                       Choose file
                       <input type="file" className="hidden" accept=".json" />
                     </label>
-                    <div className="flex-1 px-3 py-2.5 bg-slate-950/90 border-l-0 border-slate-700 rounded-r-lg text-[13px] text-slate-500 flex items-center">
+                    <div className="flex-1 px-3 py-2.5 bg-slate-900/90 border-l-0 border-slate-700 rounded-r-lg text-[13px] text-slate-500 flex items-center">
                       No file chosen
                     </div>
                   </div>
@@ -4224,7 +4224,7 @@ export default function ClientDetailsPage() {
                     
                     <div className="space-y-3 mb-5">
                       {/* Saved Card */}
-                      <div className="flex items-center justify-between p-3 bg-slate-950/90 border-slate-700 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-slate-900/90 border-slate-700 rounded-lg">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-6 bg-slate-800 rounded border-slate-600 flex items-center justify-center">
                             <span className="text-[10px] font-bold text-white italic">VISA</span>
