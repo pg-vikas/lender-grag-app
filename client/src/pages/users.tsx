@@ -293,8 +293,8 @@ export default function UsersPage() {
       {/* Add User Modal */}
       {isAddUserModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden flex flex-col relative animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+          <div className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden flex flex-col relative animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Create A New User</h2>
               <button 
                 onClick={() => setIsAddUserModalOpen(false)}
@@ -313,7 +313,7 @@ export default function UsersPage() {
                     value={newUser.firstName}
                     onChange={(e) => setNewUser({...newUser, firstName: e.target.value})}
                     placeholder="Jordan"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
                 <div>
@@ -323,7 +323,7 @@ export default function UsersPage() {
                     value={newUser.lastName}
                     onChange={(e) => setNewUser({...newUser, lastName: e.target.value})}
                     placeholder="Peterson"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
                 <div>
@@ -345,7 +345,7 @@ export default function UsersPage() {
                     <select 
                       value={newUser.phoneCode}
                       onChange={(e) => setNewUser({...newUser, phoneCode: e.target.value})}
-                      className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all w-20"
+                      className="px-3 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all w-20"
                     >
                       <option>+1</option>
                       <option>+44</option>
@@ -356,7 +356,7 @@ export default function UsersPage() {
                       value={newUser.phone}
                       onChange={(e) => setNewUser({...newUser, phone: e.target.value})}
                       placeholder="9876543210"
-                      className="flex-1 px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                      className="flex-1 px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-r-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                     />
                   </div>
                 </div>
@@ -367,13 +367,13 @@ export default function UsersPage() {
                       <input
                         type="text"
                         placeholder="Enter custom designation"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                         value={(newUser as any).customDesignation || ''}
-                        onChange={(e) => setNewUser({ ...newUser, customDesignation: e.target.value })}
+                        onChange={(e) => setNewUser({ ...newUser, customDesignation: e.target.value } as any)}
                       />
                       <button
                         onClick={() => setNewUser({ ...newUser, designation: 'HR / Human Resources' })}
-                        className="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-sm transition-colors border border-slate-700 shrink-0"
+                        className="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-sm transition-colors border border-slate-600 bg-slate-950 shrink-0"
                       >
                         Cancel
                       </button>
@@ -382,7 +382,7 @@ export default function UsersPage() {
                     <select 
                       value={newUser.designation}
                       onChange={(e) => setNewUser({...newUser, designation: e.target.value})}
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
                     >
                       <option value="CEO / President / Founder">CEO / President / Founder</option>
                       <option value="CTO / Chief Technology Officer">CTO / Chief Technology Officer</option>
@@ -410,7 +410,7 @@ export default function UsersPage() {
                     value={newUser.password}
                     onChange={(e) => setNewUser({...newUser, password: e.target.value})}
                     placeholder="••••••••"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
               </div>
@@ -423,7 +423,7 @@ export default function UsersPage() {
                     value={newUser.twilioPhone}
                     onChange={(e) => setNewUser({...newUser, twilioPhone: e.target.value})}
                     placeholder=""
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
                 <div>
@@ -431,7 +431,7 @@ export default function UsersPage() {
                   <select 
                     value={newUser.role}
                     onChange={(e) => setNewUser({...newUser, role: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
                   >
                     <option>Administrator</option>
                     <option>Manager</option>
@@ -447,7 +447,7 @@ export default function UsersPage() {
                   <select 
                     value={newUser.timezone}
                     onChange={(e) => setNewUser({...newUser, timezone: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
                   >
                     <option>America/Denver</option>
                     <option>America/New_York</option>
@@ -462,7 +462,7 @@ export default function UsersPage() {
             <div className="p-6 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
               <button 
                 onClick={() => setIsAddUserModalOpen(false)}
-                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl text-sm font-medium transition-colors"
+                className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl text-sm font-medium transition-colors"
               >
                 Close
               </button>
@@ -489,7 +489,7 @@ export default function UsersPage() {
             <div className="flex items-center justify-center gap-4 w-full">
               <button 
                 onClick={() => setIsDeleteModalOpen(false)} 
-                className="px-6 py-2.5 bg-[#1e293b] border border-slate-700 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
+                className="px-6 py-2.5 bg-[#1e293b] border border-slate-600 bg-slate-950 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
               >
                 Cancel
               </button>
@@ -507,8 +507,8 @@ export default function UsersPage() {
       {/* Edit User Modal */}
       {isEditUserModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden flex flex-col relative animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+          <div className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden flex flex-col relative animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Edit User</h2>
               <button 
                 onClick={() => setIsEditUserModalOpen(false)}
@@ -526,7 +526,7 @@ export default function UsersPage() {
                     type="text" 
                     defaultValue={selectedUser?.name?.split(' ')[0]}
                     placeholder="Jordan"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
                 <div>
@@ -535,7 +535,7 @@ export default function UsersPage() {
                     type="text" 
                     defaultValue={selectedUser?.name?.split(' ').slice(1).join(' ')}
                     placeholder="Peterson"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
                 <div>
@@ -555,7 +555,7 @@ export default function UsersPage() {
                   <div className="flex">
                     <select 
                       defaultValue={selectedUser?.phone?.split(' ')[0] || '+1'}
-                      className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all w-20"
+                      className="px-3 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all w-20"
                     >
                       <option>+1</option>
                       <option>+44</option>
@@ -565,7 +565,7 @@ export default function UsersPage() {
                       type="tel" 
                       defaultValue={selectedUser?.phone?.split(' ').slice(1).join(' ') || ''}
                       placeholder="9876543210"
-                      className="flex-1 px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                      className="flex-1 px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-r-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                     />
                   </div>
                 </div>
@@ -573,7 +573,7 @@ export default function UsersPage() {
                   <label className="block text-sm font-medium text-slate-300 mb-2">Designation</label>
                   <select 
                     defaultValue="HR / Human Resources"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
                   >
                     <option value="CEO / President / Founder">CEO / President / Founder</option>
                     <option value="CTO / Chief Technology Officer">CTO / Chief Technology Officer</option>
@@ -598,7 +598,7 @@ export default function UsersPage() {
                     type="password" 
                     defaultValue="********"
                     placeholder="••••••••"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
               </div>
@@ -609,14 +609,14 @@ export default function UsersPage() {
                   <input 
                     type="tel" 
                     placeholder=""
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Role*</label>
                   <select 
                     defaultValue={selectedUser?.role}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
                   >
                     <option>Administrator</option>
                     <option>Manager</option>
@@ -631,7 +631,7 @@ export default function UsersPage() {
                   <label className="block text-sm font-medium text-slate-300 mb-2">Timezone</label>
                   <select 
                     defaultValue="America/Denver"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none"
                   >
                     <option>America/Denver</option>
                     <option>America/New_York</option>
@@ -646,7 +646,7 @@ export default function UsersPage() {
             <div className="p-6 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditUserModalOpen(false)}
-                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl text-sm font-medium transition-colors"
+                className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl text-sm font-medium transition-colors"
               >
                 Close
               </button>
@@ -667,8 +667,8 @@ export default function UsersPage() {
       {/* Update Password Modal */}
       {isPasswordModalOpen && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl shadow-xl w-full max-w-md overflow-hidden flex flex-col relative animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+          <div className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-2xl shadow-xl w-full max-w-md overflow-hidden flex flex-col relative animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Update Password</h2>
               <button 
                 onClick={() => setIsPasswordModalOpen(false)}
@@ -684,7 +684,7 @@ export default function UsersPage() {
                 <input 
                   type="password" 
                   placeholder="••••••••"
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                 />
               </div>
               <div>
@@ -692,7 +692,7 @@ export default function UsersPage() {
                 <input 
                   type="password" 
                   placeholder="••••••••"
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                 />
               </div>
             </div>
@@ -700,7 +700,7 @@ export default function UsersPage() {
             <div className="p-6 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
               <button 
                 onClick={() => setIsPasswordModalOpen(false)}
-                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl text-sm font-medium transition-colors"
+                className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl text-sm font-medium transition-colors"
               >
                 Close
               </button>
@@ -759,7 +759,7 @@ export default function UsersPage() {
               <div className="mt-8">
                 <h3 className="text-lg font-medium text-white mb-4">Recent Activity</h3>
                 <div className="space-y-4">
-                  <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-800/50 border border-slate-600 bg-slate-950">
                     <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
                       <Activity className="w-4 h-4" />
                     </div>
@@ -768,7 +768,7 @@ export default function UsersPage() {
                       <span className="text-xs text-slate-500">2 hours ago</span>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-800/50 border border-slate-600 bg-slate-950">
                     <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
                       <Edit className="w-4 h-4" />
                     </div>

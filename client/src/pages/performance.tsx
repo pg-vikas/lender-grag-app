@@ -146,14 +146,14 @@ export default function PerformancePage() {
                     type="date" 
                     value={fromDate}
                     onChange={(e) => setFromDate(e.target.value)}
-                    className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" 
+                    className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" 
                   />
                   <span className="text-sm text-slate-400">To</span>
                   <input 
                     type="date" 
                     value={toDate}
                     onChange={(e) => setToDate(e.target.value)}
-                    className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" 
+                    className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" 
                   />
                   <button 
                     onClick={handleApplyDateRange}
@@ -182,7 +182,7 @@ export default function PerformancePage() {
               <h2 className="text-lg font-medium text-slate-300 mb-6">Team Performance Metrics</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-4">
                 {performanceMetrics.map((metric, index) => (
-                  <div key={index} className="bg-slate-900/50 border border-white/5 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-slate-800/50 transition-colors shadow-sm">
+                  <div key={index} className="bg-slate-950 border border-white/5 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-slate-800/50 transition-colors shadow-sm">
                     <div className={`text-xl xl:text-2xl font-bold mb-2 ${metric.color}`}>{metric.value}</div>
                     <div className="text-xs font-medium text-slate-400">{metric.title}</div>
                   </div>

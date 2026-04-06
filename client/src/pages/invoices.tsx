@@ -235,7 +235,7 @@ export default function InvoicesPage() {
                                     className="fixed inset-0 z-10"
                                     onClick={() => setActiveDropdown(null)}
                                   ></div>
-                                  <div className="absolute right-0 top-[24px] z-50 w-[200px] bg-[#1e293b] rounded-lg shadow-xl border border-slate-700 py-2 flex flex-col">
+                                  <div className="absolute right-0 top-[24px] z-50 w-[200px] bg-[#1e293b] rounded-lg shadow-xl border border-slate-600 bg-slate-950 py-2 flex flex-col">
                                     <button 
                                       className="w-full text-left px-5 py-2.5 text-[14px] font-medium text-white hover:bg-slate-700 transition-colors"
                                       onClick={() => {
@@ -530,7 +530,7 @@ export default function InvoicesPage() {
                   setIsDeleteModalOpen(false);
                   setInvoiceToDelete(null);
                 }}
-                className="px-6 py-2.5 bg-[#1e293b] border border-slate-700 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
+                className="px-6 py-2.5 bg-[#1e293b] border border-slate-600 bg-slate-950 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
               >
                 Cancel
               </button>

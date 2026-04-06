@@ -56,7 +56,7 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
   return (
     <aside className={`${sidebarOpen ? 'w-[260px]' : 'w-[80px]'} bg-slate-900 border-r border-slate-800 flex flex-col h-screen sticky top-0 shrink-0 transition-all duration-300 z-30`}>
       <div className={`p-5 border-b border-slate-800 flex items-center ${sidebarOpen ? 'justify-between' : 'justify-center'}`}>
-        <button className={`flex items-center justify-center bg-slate-800 border border-slate-700 rounded-xl hover:bg-slate-700 transition-all group ${sidebarOpen ? 'w-full py-2.5 px-3 justify-between' : 'w-11 h-11'}`}>
+        <button className={`flex items-center justify-center bg-slate-800 border border-slate-600 bg-slate-950 rounded-xl hover:bg-slate-700 transition-all group ${sidebarOpen ? 'w-full py-2.5 px-3 justify-between' : 'w-11 h-11'}`}>
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center overflow-hidden shrink-0 shadow-[0_0_15px_rgba(99,102,241,0.4)] group-hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] transition-shadow">
                <User className="w-4 h-4" />
@@ -363,7 +363,7 @@ export function Header({ title }: { title: string }) {
     <header className="h-[72px] bg-[#0f172a]/90 backdrop-blur-xl flex items-center px-8 shrink-0 sticky top-0 z-20 border-b border-slate-800 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
       <button 
         onClick={toggleSidebar}
-        className="p-2 mr-4 text-slate-400 hover:text-white bg-slate-800/50 hover:bg-slate-700 rounded-lg border border-slate-700 transition-all group"
+        className="p-2 mr-4 text-slate-400 hover:text-white bg-slate-800/50 hover:bg-slate-700 rounded-lg border border-slate-600 bg-slate-950 transition-all group"
       >
         <Menu className="w-5 h-5 group-hover:scale-110 transition-transform" />
       </button>
@@ -378,11 +378,11 @@ export function Header({ title }: { title: string }) {
           <input 
             type="text"
             placeholder="Global search..." 
-            className="w-full pl-10 pr-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+            className="w-full pl-10 pr-4 py-2 bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
           />
           <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
-             <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono font-medium text-slate-500 bg-slate-800 border border-slate-700 rounded">⌘</kbd>
-             <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono font-medium text-slate-500 bg-slate-800 border border-slate-700 rounded">K</kbd>
+             <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono font-medium text-slate-500 bg-slate-800 border border-slate-600 bg-slate-950 rounded">⌘</kbd>
+             <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono font-medium text-slate-500 bg-slate-800 border border-slate-600 bg-slate-950 rounded">K</kbd>
           </div>
         </div>
         
@@ -392,7 +392,7 @@ export function Header({ title }: { title: string }) {
             System Online
           </div>
           
-          <button className="p-2 text-slate-400 hover:text-white bg-slate-800/50 hover:bg-slate-700 rounded-lg border border-slate-700 transition-all relative group">
+          <button className="p-2 text-slate-400 hover:text-white bg-slate-800/50 hover:bg-slate-700 rounded-lg border border-slate-600 bg-slate-950 transition-all relative group">
             <Bell className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-[#0f172a] shadow-[0_0_8px_rgba(244,63,94,0.8)]"></span>
           </button>
@@ -559,8 +559,8 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
 
               
               {/* Tasks Needed Section */}
-              <div className="mb-8 bg-slate-800 rounded-xl border border-slate-700 border-t-purple-500 border-t-4 shadow-lg overflow-hidden relative z-10">
-                <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
+              <div className="mb-8 bg-slate-800 rounded-xl border border-slate-600 bg-slate-950 border-t-purple-500 border-t-4 shadow-lg overflow-hidden relative z-10">
+                <div className="p-4 bg-slate-700/40 border-b border-slate-600 bg-slate-950 flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-purple-400" />
                     <span className="font-bold text-white text-[15px]">Tasks Needed - FOLLOW UPS</span>
@@ -573,7 +573,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 </div>
                 <div className="p-0 overflow-x-auto">
                   <table className="w-full text-left">
-                    <thead className="bg-slate-900/50 border-b border-slate-700/80">
+                    <thead className="bg-slate-950 border-b border-slate-600 bg-slate-950/80">
                       <tr>
                         <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Task</th>
                         <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Client</th>
@@ -629,13 +629,13 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full pl-10 pr-4 py-2.5 bg-slate-900/80 border border-slate-600 bg-slate-950 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     
                     <button 
                       onClick={handleSearch}
-                      className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium shrink-0"
+                      className="px-4 py-2.5 bg-slate-800 border border-slate-600 bg-slate-950 rounded-xl text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium shrink-0"
                     >
                       Filter <Filter className="w-4 h-4" />
                     </button>
@@ -643,7 +643,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     {(appliedSearchQuery || activeFilter !== 'All') && (
                       <button 
                         onClick={handleReset}
-                        className="px-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-xl text-slate-400 hover:text-white hover:bg-slate-700 transition-all text-sm font-medium shrink-0"
+                        className="px-4 py-2.5 bg-slate-800/50 border border-slate-600 bg-slate-950 rounded-xl text-slate-400 hover:text-white hover:bg-slate-700 transition-all text-sm font-medium shrink-0"
                       >
                         Reset
                       </button>
@@ -651,17 +651,17 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
 
                     <button 
                       onClick={() => setIsStateSectionOpen(!isStateSectionOpen)}
-                      className={`p-2.5 border rounded-xl transition-all flex items-center justify-center shrink-0 ${isStateSectionOpen ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-400 shadow-[0_0_10px_rgba(99,102,241,0.2)]' : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-white hover:bg-slate-700'}`}
+                      className={`p-2.5 border rounded-xl transition-all flex items-center justify-center shrink-0 ${isStateSectionOpen ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-400 shadow-[0_0_10px_rgba(99,102,241,0.2)]' : 'bg-slate-800 border-slate-600 bg-slate-950 text-slate-400 hover:text-white hover:bg-slate-700'}`}
                     >
                       <TrendingUp className="w-5 h-5" />
                     </button>
 
                     <div className="flex items-center gap-2 shrink-0">
                       <Link href="/tasks?tab=today">
-                        <button className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-slate-300 font-medium hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">Tasks 0</button>
+                        <button className="px-3 py-2 bg-slate-800 border border-slate-600 bg-slate-950 rounded-xl text-sm text-slate-300 font-medium hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">Tasks 0</button>
                       </Link>
                       <Link href="/tasks?tab=missing">
-                        <button className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-slate-300 font-medium hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">Missing Tasks 0</button>
+                        <button className="px-3 py-2 bg-slate-800 border border-slate-600 bg-slate-950 rounded-xl text-sm text-slate-300 font-medium hover:bg-slate-700 hover:text-white transition-colors cursor-pointer">Missing Tasks 0</button>
                       </Link>
                     </div>
                   </div>
@@ -669,7 +669,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   <div className="flex items-center gap-3 w-full md:w-auto shrink-0">
                     <button 
                       onClick={() => setIsExportPanelOpen(true)}
-                      className="px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
+                      className="px-4 py-2.5 bg-slate-800 border border-slate-600 bg-slate-950 rounded-xl text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
                     >
                       <Download className="w-4 h-4" /> Export
                     </button>
@@ -726,7 +726,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                           <tr key={i} className={`group ${isPinned ? 'bg-amber-500/5 border-l-2 border-l-amber-400' : 'border-l-2 border-l-transparent'}`}>
                           <td className="py-4 px-6">
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-colors">
+                              <div className="w-8 h-8 rounded bg-slate-800 border border-slate-600 bg-slate-950 flex items-center justify-center text-slate-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-colors">
                                 <Building2 className="w-4 h-4" />
                               </div>
                               <Link href={`/clients/${i + 1}`}>
@@ -775,7 +775,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             </button>
 
                             {activeDropdown === i && (
-                              <div className="absolute right-6 top-full mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95">
+                              <div className="absolute right-6 top-full mt-2 w-48 bg-slate-900 border border-slate-600 bg-slate-950 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95">
                                 <div className="py-1">
                                   <button 
                                     onClick={(e) => { e.stopPropagation(); setSelectedClientIndex(i); setIsSuspendModalOpen(true); setActiveDropdown(null); }}
@@ -853,11 +853,11 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
           onClick={() => setIsAddClientModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Add Client</h2>
               <button 
                 onClick={() => setIsAddClientModalOpen(false)}
@@ -878,10 +878,10 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   {/* Logo Upload */}
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Company Logo</label>
-                    <div className="w-32 h-32 bg-slate-800/50 border border-slate-700 rounded-xl flex items-center justify-center mb-2">
+                    <div className="w-32 h-32 bg-slate-800/50 border border-slate-600 bg-slate-950 rounded-xl flex items-center justify-center mb-2">
                       <Building2 className="w-8 h-8 text-slate-500" />
                     </div>
-                    <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border border-slate-700">
+                    <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border border-slate-600 bg-slate-950">
                       Upload
                     </button>
                   </div>
@@ -893,7 +893,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <input 
                         type="text" 
                         placeholder="Pink Gorilla"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
@@ -907,13 +907,13 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Company Phone Number*</label>
                       <div className="flex">
-                        <select className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
+                        <select className="px-3 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
                           <option>+1</option>
                         </select>
                         <input 
                           type="tel" 
                           placeholder="9000000001"
-                          className="flex-1 px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                          className="flex-1 px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                         />
                       </div>
                     </div>
@@ -926,7 +926,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <input 
                         type="url" 
                         placeholder="https://pinkgorilla.agency"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
@@ -934,12 +934,12 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <input 
                         type="text" 
                         placeholder="po 12, ABCD, lame road, LA, CA"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Default Currency</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>USD</option>
                       </select>
                     </div>
@@ -949,19 +949,19 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Default Time Zone</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>America/Denver</option>
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Language</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>English - US</option>
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Status</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>Brand New</option>
                       </select>
                     </div>
@@ -971,7 +971,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Industry</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>Retail Trade</option>
                       </select>
                     </div>
@@ -980,12 +980,12 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <input 
                         type="text" 
                         placeholder="1"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all" 
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">No. of Employees</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>1 - 3</option>
                       </select>
                     </div>
@@ -1003,7 +1003,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     <input 
                       type="url" 
                       placeholder="https://yelp.com/biz/..."
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                     />
                   </div>
                   <div>
@@ -1011,7 +1011,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     <input 
                       type="url" 
                       placeholder="https://google.com/maps/..."
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                     />
                   </div>
                 </div>
@@ -1027,7 +1027,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             placeholder="e.g., Facebook, TripAdvisor"
                             value={link.label}
                             onChange={(e) => handleLinkChange(index, 'label', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                           />
                         </div>
                         <div className="flex-1">
@@ -1037,7 +1037,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             placeholder="https://..."
                             value={link.url}
                             onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                           />
                         </div>
                         <button 
@@ -1070,8 +1070,8 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 </div>
 
                 {isEditorEnabled && (
-                  <div className="animate-in fade-in slide-in-from-top-4 duration-300 border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
-                    <div className="bg-slate-800/80 border-b border-slate-700 p-2 flex items-center gap-1 flex-wrap">
+                  <div className="animate-in fade-in slide-in-from-top-4 duration-300 border border-slate-600 bg-slate-950 rounded-xl overflow-hidden bg-slate-950">
+                    <div className="bg-slate-800/80 border-b border-slate-600 bg-slate-950 p-2 flex items-center gap-1 flex-wrap">
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Bold className="w-4 h-4" /></button>
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><LinkIcon className="w-4 h-4" /></button>
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><List className="w-4 h-4" /></button>
@@ -1094,7 +1094,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
               <button 
                 onClick={() => setIsAddClientModalOpen(false)}
-                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Close
               </button>
@@ -1115,11 +1115,11 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
           onClick={() => setIsEditClientModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Edit Client Profile</h2>
               <button 
                 onClick={() => setIsEditClientModalOpen(false)}
@@ -1140,10 +1140,10 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   {/* Logo Upload */}
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Company Logo</label>
-                    <div className="w-32 h-32 bg-slate-800/50 border border-slate-700 rounded-xl flex items-center justify-center mb-2">
+                    <div className="w-32 h-32 bg-slate-800/50 border border-slate-600 bg-slate-950 rounded-xl flex items-center justify-center mb-2">
                       <Building2 className="w-8 h-8 text-slate-500" />
                     </div>
-                    <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border border-slate-700">
+                    <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border border-slate-600 bg-slate-950">
                       Upload
                     </button>
                   </div>
@@ -1155,7 +1155,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <input 
                         type="text" 
                         defaultValue="Pink Gorilla Software"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
@@ -1169,13 +1169,13 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Company Phone Number*</label>
                       <div className="flex">
-                        <select className="px-3 py-2.5 bg-slate-900/50 border border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
+                        <select className="px-3 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
                           <option>+1</option>
                         </select>
                         <input 
                           type="tel" 
                           defaultValue="9000000001"
-                          className="flex-1 px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                          className="flex-1 px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                         />
                       </div>
                     </div>
@@ -1188,7 +1188,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <input 
                         type="url" 
                         defaultValue="https://pinkgorilla.agency"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
@@ -1196,12 +1196,12 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <input 
                         type="text" 
                         defaultValue="po 12, ABCD, lame road, LA, CA"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Default Currency</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>USD</option>
                       </select>
                     </div>
@@ -1211,13 +1211,13 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Default Time Zone</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>America/Denver</option>
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Language</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>English - US</option>
                       </select>
                     </div>
@@ -1226,7 +1226,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <select 
                         value={editingClientData.status}
                         onChange={(e) => setEditingClientData({...editingClientData, status: e.target.value})}
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none"
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none"
                       >
                         <option value="Active">Active</option>
                         <option value="Brand New">Brand New</option>
@@ -1246,7 +1246,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <select 
                         value={editingClientData.industry}
                         onChange={(e) => setEditingClientData({...editingClientData, industry: e.target.value})}
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none"
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none"
                       >
                         <option value="Information Technology">Information Technology</option>
                         <option value="Retail Trade">Retail Trade</option>
@@ -1262,12 +1262,12 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                       <input 
                         type="text" 
                         defaultValue="5"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all" 
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">No. of Employees</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>10 - 50</option>
                         <option>1 - 3</option>
                       </select>
@@ -1286,7 +1286,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     <input 
                       type="url" 
                       placeholder="https://yelp.com/biz/..."
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                     />
                   </div>
                   <div>
@@ -1294,7 +1294,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     <input 
                       type="url" 
                       placeholder="https://google.com/maps/..."
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                     />
                   </div>
                 </div>
@@ -1310,7 +1310,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             placeholder="e.g., Facebook, TripAdvisor"
                             value={link.label}
                             onChange={(e) => handleLinkChange(index, 'label', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                           />
                         </div>
                         <div className="flex-1">
@@ -1320,7 +1320,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                             placeholder="https://..."
                             value={link.url}
                             onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                           />
                         </div>
                         <button 
@@ -1353,8 +1353,8 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 </div>
 
                 {isEditorEnabled && (
-                  <div className="animate-in fade-in slide-in-from-top-4 duration-300 border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
-                    <div className="bg-slate-800/80 border-b border-slate-700 p-2 flex items-center gap-1 flex-wrap">
+                  <div className="animate-in fade-in slide-in-from-top-4 duration-300 border border-slate-600 bg-slate-950 rounded-xl overflow-hidden bg-slate-950">
+                    <div className="bg-slate-800/80 border-b border-slate-600 bg-slate-950 p-2 flex items-center gap-1 flex-wrap">
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Bold className="w-4 h-4" /></button>
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><LinkIcon className="w-4 h-4" /></button>
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><List className="w-4 h-4" /></button>
@@ -1377,7 +1377,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditClientModalOpen(false)}
-                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Close
               </button>
@@ -1415,11 +1415,11 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
           onClick={() => setIsSendMailModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Send email</h2>
               <button 
                 onClick={() => setIsSendMailModalOpen(false)}
@@ -1433,7 +1433,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
             <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-6">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">To</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                   <option>Select recipient...</option>
                   <option>vikas@pinkgorillasoftware.com</option>
                   <option>maria@pir</option>
@@ -1445,13 +1445,13 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 <input 
                   type="text" 
                   placeholder="Enter subject"
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Use A Template</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                   <option>Select template...</option>
                   <option>Welcome Email</option>
                   <option>Follow Up</option>
@@ -1459,8 +1459,8 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
               </div>
 
               {/* Rich Text Editor */}
-              <div className="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
-                <div className="px-4 py-2 border-b border-slate-700 flex items-center gap-4 text-slate-400 overflow-x-auto">
+              <div className="border border-slate-600 bg-slate-950 rounded-xl overflow-hidden bg-slate-950">
+                <div className="px-4 py-2 border-b border-slate-600 bg-slate-950 flex items-center gap-4 text-slate-400 overflow-x-auto">
                   <button className="hover:text-white transition-colors"><Bold className="w-4 h-4" /></button>
                   <button className="hover:text-white transition-colors"><LinkIcon className="w-4 h-4" /></button>
                   <button className="hover:text-white transition-colors"><List className="w-4 h-4" /></button>
@@ -1476,7 +1476,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
               </div>
 
               {/* File Upload Dropzone */}
-              <div className="border-2 border-dashed border-slate-700 rounded-xl p-8 flex flex-col items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 hover:bg-slate-800/50 transition-all cursor-pointer group">
+              <div className="border-2 border-dashed border-slate-600 bg-slate-950 rounded-xl p-8 flex flex-col items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 hover:bg-slate-800/50 transition-all cursor-pointer group">
                 <UploadCloud className="w-10 h-10 mb-3 text-slate-500 group-hover:text-cyan-400 transition-colors" />
                 <p className="text-sm font-medium">Drop files here or click to upload</p>
               </div>
@@ -1486,7 +1486,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
               <button 
                 onClick={() => setIsSendMailModalOpen(false)}
-                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Close
               </button>
@@ -1513,7 +1513,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
             <div className="flex items-center justify-center gap-4 w-full">
               <button 
                 onClick={() => setIsSuspendModalOpen(false)}
-                className="px-6 py-2.5 bg-[#1e293b] border border-slate-700 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
+                className="px-6 py-2.5 bg-[#1e293b] border border-slate-600 bg-slate-950 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
               >
                 Cancel
               </button>
@@ -1548,7 +1548,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
             className="fixed top-0 right-0 h-full w-[400px] bg-slate-900 border-l border-slate-800 shadow-2xl z-50 flex flex-col animate-in slide-in-from-right duration-300"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/50">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950">
               <div className="flex items-center gap-2 text-white">
                 <Download className="w-5 h-5" />
                 <h2 className="text-lg font-semibold">Export Clients</h2>
@@ -1568,23 +1568,23 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 <h3 className="text-sm font-medium text-slate-300">Date Created</h3>
                 <div className="flex flex-wrap gap-2">
                   <button className="px-3 py-1.5 text-xs font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 rounded-md">Today</button>
-                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-700 rounded-md hover:bg-slate-800 hover:text-white transition-colors">This Week</button>
-                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-700 rounded-md hover:bg-slate-800 hover:text-white transition-colors">This Month</button>
-                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-700 rounded-md hover:bg-slate-800 hover:text-white transition-colors">All Time</button>
+                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-600 bg-slate-950 rounded-md hover:bg-slate-800 hover:text-white transition-colors">This Week</button>
+                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-600 bg-slate-950 rounded-md hover:bg-slate-800 hover:text-white transition-colors">This Month</button>
+                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-600 bg-slate-950 rounded-md hover:bg-slate-800 hover:text-white transition-colors">All Time</button>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex-1">
                     <input 
                       type="text" 
                       placeholder="From"
-                      className="w-full px-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50" 
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50" 
                     />
                   </div>
                   <div className="flex-1">
                     <input 
                       type="text" 
                       placeholder="To"
-                      className="w-full px-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50" 
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50" 
                     />
                   </div>
                 </div>
@@ -1605,7 +1605,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     <label key={field} className="flex items-center gap-3 cursor-pointer group">
                       <div className="relative flex items-center justify-center">
                         <input type="checkbox" defaultChecked className="peer sr-only" />
-                        <div className="w-5 h-5 rounded border border-slate-600 bg-slate-900 peer-checked:bg-[#8b5cf6] peer-checked:border-[#8b5cf6] transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(139,92,246,0)] peer-checked:shadow-[0_0_10px_rgba(139,92,246,0.3)]">
+                        <div className="w-5 h-5 rounded border border-slate-600 bg-slate-950 bg-slate-900 peer-checked:bg-[#8b5cf6] peer-checked:border-[#8b5cf6] transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(139,92,246,0)] peer-checked:shadow-[0_0_10px_rgba(139,92,246,0.3)]">
                           <svg className="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>

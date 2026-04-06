@@ -99,28 +99,28 @@ export default function GrowthKPIPage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="w-[200px] px-3 py-2 bg-slate-900/80 border border-slate-700 rounded-md text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 placeholder:text-slate-500" 
+                    className="w-[200px] px-3 py-2 bg-slate-900/80 border border-slate-600 bg-slate-950 rounded-md text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 placeholder:text-slate-500" 
                   />
                 </div>
-                <select className="px-3 py-2 bg-slate-900/80 border border-slate-700 rounded-md text-sm text-white focus:outline-none">
+                <select className="px-3 py-2 bg-slate-900/80 border border-slate-600 bg-slate-950 rounded-md text-sm text-white focus:outline-none">
                   <option>25</option>
                   <option>50</option>
                   <option>100</option>
                 </select>
-                <select className="px-3 py-2 bg-slate-900/80 border border-slate-700 rounded-md text-sm text-white focus:outline-none min-w-[120px]">
+                <select className="px-3 py-2 bg-slate-900/80 border border-slate-600 bg-slate-950 rounded-md text-sm text-white focus:outline-none min-w-[120px]">
                   <option>All</option>
                   <option>Active</option>
                   <option>Inactive</option>
                 </select>
                 <button 
                   onClick={handleSearch}
-                  className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
+                  className="px-4 py-2 bg-slate-800 border border-slate-600 bg-slate-950 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
                 >
                   Filter <Filter className="w-4 h-4" />
                 </button>
                 <button 
                   onClick={handleReset}
-                  className="px-4 py-2 border border-slate-700 bg-slate-800/50 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors text-white"
+                  className="px-4 py-2 border border-slate-600 bg-slate-950 bg-slate-800/50 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors text-white"
                 >
                   Reset
                 </button>
@@ -129,7 +129,7 @@ export default function GrowthKPIPage() {
                   className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${
                     activeTimeFilter === '24h' 
                       ? 'bg-purple-600 border-purple-500 text-white shadow-[0_0_10px_rgba(147,51,234,0.3)]' 
-                      : 'border-slate-700 bg-slate-800/50 hover:bg-slate-700 text-white'
+                      : 'border-slate-600 bg-slate-950 bg-slate-800/50 hover:bg-slate-700 text-white'
                   }`}
                 >
                   Last 24 hours
@@ -139,7 +139,7 @@ export default function GrowthKPIPage() {
                   className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${
                     activeTimeFilter === '48h' 
                       ? 'bg-purple-600 border-purple-500 text-white shadow-[0_0_10px_rgba(147,51,234,0.3)]' 
-                      : 'border-slate-700 bg-slate-800/50 hover:bg-slate-700 text-white'
+                      : 'border-slate-600 bg-slate-950 bg-slate-800/50 hover:bg-slate-700 text-white'
                   }`}
                 >
                   Last 48 hours
@@ -149,7 +149,7 @@ export default function GrowthKPIPage() {
                   className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${
                     activeTimeFilter === '7d' 
                       ? 'bg-purple-600 border-purple-500 text-white shadow-[0_0_10px_rgba(147,51,234,0.3)]' 
-                      : 'border-slate-700 bg-slate-800/50 hover:bg-slate-700 text-white'
+                      : 'border-slate-600 bg-slate-950 bg-slate-800/50 hover:bg-slate-700 text-white'
                   }`}
                 >
                   Last 7 days
@@ -170,26 +170,26 @@ export default function GrowthKPIPage() {
               </div>
 
               {/* Detailed Table */}
-              <div className="overflow-x-auto rounded-xl border border-slate-700">
+              <div className="overflow-x-auto rounded-xl border border-slate-600 bg-slate-950">
                 <table className="w-full text-left dark-table">
                   <thead>
-                    <tr className="bg-slate-800/50 border-b border-slate-700">
+                    <tr className="bg-slate-800/50 border-b border-slate-600 bg-slate-950">
                       <th className="py-4 px-6 text-sm font-bold text-center" colSpan={1}></th>
-                      <th className="py-3 px-4 text-sm font-bold text-center bg-orange-500/10 text-orange-400 border-x border-slate-700" colSpan={3}>Outreach Attempts</th>
-                      <th className="py-3 px-4 text-sm font-bold text-center bg-purple-500/10 text-purple-400 border-r border-slate-700" colSpan={2}>Clients</th>
-                      <th className="py-3 px-4 text-sm font-bold text-center bg-indigo-500/10 text-indigo-400 border-r border-slate-700" colSpan={1}>Notes</th>
+                      <th className="py-3 px-4 text-sm font-bold text-center bg-orange-500/10 text-orange-400 border-x border-slate-600 bg-slate-950" colSpan={3}>Outreach Attempts</th>
+                      <th className="py-3 px-4 text-sm font-bold text-center bg-purple-500/10 text-purple-400 border-r border-slate-600 bg-slate-950" colSpan={2}>Clients</th>
+                      <th className="py-3 px-4 text-sm font-bold text-center bg-indigo-500/10 text-indigo-400 border-r border-slate-600 bg-slate-950" colSpan={1}>Notes</th>
                       <th className="py-3 px-4 text-sm font-bold text-center bg-cyan-500/10 text-cyan-400" colSpan={2}>Tasks</th>
                     </tr>
-                    <tr className="border-b border-slate-700 text-xs text-slate-400 uppercase tracking-wider bg-slate-900/50">
+                    <tr className="border-b border-slate-600 bg-slate-950 text-xs text-slate-400 uppercase tracking-wider bg-slate-950">
                       <th className="py-3 px-6 font-semibold flex items-center gap-1">Name <span className="text-[10px]">↕</span></th>
-                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-700">Calls <span className="text-[10px]">↕</span></th>
-                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-700">Text <span className="text-[10px]">↕</span></th>
-                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-700">Email <span className="text-[10px]">↕</span></th>
-                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-700">New Contacts <span className="text-[10px]">↕</span></th>
-                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-700">Active Clients <span className="text-[10px]">↕</span></th>
-                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-700">Notes Entered <span className="text-[10px]">↕</span></th>
-                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-700">Follow-up Scheduled <span className="text-[10px]">↕</span></th>
-                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-700">Tasks Completed <span className="text-[10px]">↕</span></th>
+                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-600 bg-slate-950">Calls <span className="text-[10px]">↕</span></th>
+                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-600 bg-slate-950">Text <span className="text-[10px]">↕</span></th>
+                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-600 bg-slate-950">Email <span className="text-[10px]">↕</span></th>
+                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-600 bg-slate-950">New Contacts <span className="text-[10px]">↕</span></th>
+                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-600 bg-slate-950">Active Clients <span className="text-[10px]">↕</span></th>
+                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-600 bg-slate-950">Notes Entered <span className="text-[10px]">↕</span></th>
+                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-600 bg-slate-950">Follow-up Scheduled <span className="text-[10px]">↕</span></th>
+                      <th className="py-3 px-4 text-center font-semibold border-l border-slate-600 bg-slate-950">Tasks Completed <span className="text-[10px]">↕</span></th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/50">

@@ -216,14 +216,14 @@ export default function ContractsPage() {
                       <td className="py-4 px-6 border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
                          <span className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-medium border
                             ${contract.clientStatus === 'Signed' ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10' : 
-                            'text-slate-400 border-slate-600/50 bg-slate-800/50'}`}>
+                            'text-slate-400 border-slate-600 bg-slate-950/50 bg-slate-800/50'}`}>
                            {contract.clientStatus}
                          </span>
                       </td>
                       <td className="py-4 px-6 border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
                          <span className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-medium border
                             ${contract.providerStatus === 'Signed' ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10' : 
-                            'text-slate-400 border-slate-600/50 bg-slate-800/50'}`}>
+                            'text-slate-400 border-slate-600 bg-slate-950/50 bg-slate-800/50'}`}>
                            {contract.providerStatus}
                          </span>
                       </td>
@@ -231,7 +231,7 @@ export default function ContractsPage() {
                          <span className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-medium border
                             ${contract.status === 'Active' ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10' : 
                               contract.status === 'Awaiting Signatures' ? 'text-orange-400 border-orange-400/30 bg-orange-400/10' : 
-                              'text-slate-400 border-slate-600/50 bg-slate-800/50'}`}>
+                              'text-slate-400 border-slate-600 bg-slate-950/50 bg-slate-800/50'}`}>
                            {contract.status}
                          </span>
                       </td>
@@ -248,7 +248,7 @@ export default function ContractsPage() {
                            </button>
 
                            {activeDropdown === i && (
-                             <div className="absolute right-0 top-full mt-2 w-48 bg-slate-900 border border-slate-700 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95">
+                             <div className="absolute right-0 top-full mt-2 w-48 bg-slate-900 border border-slate-600 bg-slate-950 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95">
                                <div className="py-1">
                                  <button 
                                    onClick={(e) => { 
@@ -328,7 +328,7 @@ export default function ContractsPage() {
                   setIsDeleteModalOpen(false);
                   setContractToDelete(null);
                 }}
-                className="px-6 py-2.5 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-white rounded-xl text-sm font-medium transition-colors w-28"
+                className="px-6 py-2.5 bg-slate-800 border border-slate-600 bg-slate-950 hover:bg-slate-700 text-white rounded-xl text-sm font-medium transition-colors w-28"
               >
                 Cancel
               </button>
@@ -406,7 +406,7 @@ export default function ContractsPage() {
                 <label className="flex items-center gap-3 cursor-pointer group">
                   <div className="relative flex items-center justify-center">
                     <input type="checkbox" defaultChecked className="peer sr-only" />
-                    <div className="w-5 h-5 rounded border border-slate-600 bg-slate-900 peer-checked:bg-[#8b5cf6] peer-checked:border-[#8b5cf6] transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(139,92,246,0)] peer-checked:shadow-[0_0_10px_rgba(139,92,246,0.3)]">
+                    <div className="w-5 h-5 rounded border border-slate-600 bg-slate-950 bg-slate-900 peer-checked:bg-[#8b5cf6] peer-checked:border-[#8b5cf6] transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(139,92,246,0)] peer-checked:shadow-[0_0_10px_rgba(139,92,246,0.3)]">
                       <svg className="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>

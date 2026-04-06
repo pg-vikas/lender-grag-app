@@ -187,7 +187,7 @@ export default function ProjectsPage() {
                   <div className="relative z-[100]">
                     <div 
                       onClick={() => setIsAssigneeDropdownOpen(!isAssigneeDropdownOpen)}
-                      className="flex items-center flex-wrap gap-1.5 px-3 py-1.5 bg-transparent border border-slate-700/80 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/30 transition-all cursor-pointer min-w-[140px] max-w-[280px] min-h-[40px]"
+                      className="flex items-center flex-wrap gap-1.5 px-3 py-1.5 bg-transparent border border-slate-600 bg-slate-950/80 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/30 transition-all cursor-pointer min-w-[140px] max-w-[280px] min-h-[40px]"
                     >
                       {selectedAssignees.length === 0 ? (
                         <span className="px-1 text-slate-300">Assigned</span>
@@ -195,7 +195,7 @@ export default function ProjectsPage() {
                         selectedAssignees.map(assignee => (
                           <span 
                             key={assignee} 
-                            className="flex items-center gap-1.5 px-2 py-0.5 bg-transparent border border-slate-700/80 rounded text-[13px] text-slate-200"
+                            className="flex items-center gap-1.5 px-2 py-0.5 bg-transparent border border-slate-600 bg-slate-950/80 rounded text-[13px] text-slate-200"
                             onClick={(e) => {
                               e.stopPropagation();
                               toggleAssignee(assignee);
@@ -237,7 +237,7 @@ export default function ProjectsPage() {
                   </div>
                   <button 
                     onClick={() => setIsExportPanelOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-transparent border border-slate-700/80 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/30 transition-all min-h-[40px]"
+                    className="flex items-center gap-2 px-4 py-2 bg-transparent border border-slate-600 bg-slate-950/80 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800/30 transition-all min-h-[40px]"
                   >
                     <Download className="w-4 h-4" /> Export <ChevronDown className="w-3.5 h-3.5" />
                   </button>
@@ -453,10 +453,10 @@ export default function ProjectsPage() {
                                 {project.dueDate !== "---" ? project.dueDate : "No due date"}
                               </div>
                               <div className="flex items-center -space-x-2">
-                                <div className="w-6 h-6 rounded-full overflow-hidden border border-slate-700 relative z-10 bg-pink-500">
+                                <div className="w-6 h-6 rounded-full overflow-hidden border border-slate-600 bg-slate-950 relative z-10 bg-pink-500">
                                   <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${project.assignee}1`} className="w-full h-full object-cover" />
                                 </div>
-                                <div className="w-6 h-6 rounded-full overflow-hidden border border-slate-700 relative z-0 bg-blue-500">
+                                <div className="w-6 h-6 rounded-full overflow-hidden border border-slate-600 bg-slate-950 relative z-0 bg-blue-500">
                                   <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${project.assignee}2`} className="w-full h-full object-cover" />
                                 </div>
                               </div>
@@ -660,7 +660,7 @@ export default function ProjectsPage() {
                   setIsDeleteModalOpen(false);
                   setProjectToDelete(null);
                 }}
-                className="px-6 py-2.5 bg-[#1e293b] border border-slate-700 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
+                className="px-6 py-2.5 bg-[#1e293b] border border-slate-600 bg-slate-950 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
               >
                 Cancel
               </button>
@@ -693,7 +693,7 @@ export default function ProjectsPage() {
             className="fixed top-0 right-0 h-full w-[400px] bg-slate-900 border-l border-slate-800 shadow-2xl z-50 flex flex-col animate-in slide-in-from-right duration-300"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/50">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950">
               <div className="flex items-center gap-2 text-white">
                 <Download className="w-5 h-5" />
                 <h2 className="text-lg font-semibold">Export Projects</h2>
@@ -721,7 +721,7 @@ export default function ProjectsPage() {
                     <label key={field} className="flex items-center gap-3 cursor-pointer group">
                       <div className="relative flex items-center justify-center">
                         <input type="checkbox" defaultChecked className="peer sr-only" />
-                        <div className="w-5 h-5 rounded border border-slate-600 bg-slate-900 peer-checked:bg-[#8b5cf6] peer-checked:border-[#8b5cf6] transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(139,92,246,0)] peer-checked:shadow-[0_0_10px_rgba(139,92,246,0.3)]">
+                        <div className="w-5 h-5 rounded border border-slate-600 bg-slate-950 bg-slate-900 peer-checked:bg-[#8b5cf6] peer-checked:border-[#8b5cf6] transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(139,92,246,0)] peer-checked:shadow-[0_0_10px_rgba(139,92,246,0.3)]">
                           <svg className="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>

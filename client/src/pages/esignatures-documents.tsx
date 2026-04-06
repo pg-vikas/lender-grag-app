@@ -79,7 +79,7 @@ export default function ESignaturesDocumentsPage() {
         );
       case 'draft':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-700 text-slate-300 border border-slate-600 rounded text-[11px] font-bold">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-700 text-slate-300 border border-slate-600 bg-slate-950 rounded text-[11px] font-bold">
             <Edit2 className="w-3.5 h-3.5" /> Draft
           </span>
         );
@@ -114,7 +114,7 @@ export default function ESignaturesDocumentsPage() {
 
             {/* Stats Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 flex items-center gap-4">
+              <div className="bg-slate-800/40 border border-slate-600 bg-slate-950/50 rounded-xl p-5 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-lg bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
                   <FileText className="w-6 h-6 text-indigo-400" />
                 </div>
@@ -123,7 +123,7 @@ export default function ESignaturesDocumentsPage() {
                   <p className="text-[12px] font-medium text-slate-400">Total Documents</p>
                 </div>
               </div>
-              <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 flex items-center gap-4">
+              <div className="bg-slate-800/40 border border-slate-600 bg-slate-950/50 rounded-xl p-5 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
                   <CheckCircle2 className="w-6 h-6 text-emerald-400" />
                 </div>
@@ -132,7 +132,7 @@ export default function ESignaturesDocumentsPage() {
                   <p className="text-[12px] font-medium text-slate-400">Completed</p>
                 </div>
               </div>
-              <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 flex items-center gap-4">
+              <div className="bg-slate-800/40 border border-slate-600 bg-slate-950/50 rounded-xl p-5 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
                   <Clock className="w-6 h-6 text-amber-400" />
                 </div>
@@ -141,7 +141,7 @@ export default function ESignaturesDocumentsPage() {
                   <p className="text-[12px] font-medium text-slate-400">Waiting for Others</p>
                 </div>
               </div>
-              <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 flex items-center gap-4">
+              <div className="bg-slate-800/40 border border-slate-600 bg-slate-950/50 rounded-xl p-5 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-lg bg-rose-500/10 flex items-center justify-center border border-rose-500/20">
                   <Users className="w-6 h-6 text-rose-400" />
                 </div>
@@ -153,11 +153,11 @@ export default function ESignaturesDocumentsPage() {
             </div>
 
             {/* Main Content Area */}
-            <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden flex flex-col">
+            <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-600 bg-slate-950/50 rounded-2xl shadow-xl overflow-hidden flex flex-col">
               
               {/* Toolbar */}
               <div className="p-4 border-b border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-800/30">
-                <div className="flex bg-slate-900 p-1 rounded-lg border border-slate-700 w-full sm:w-auto overflow-x-auto custom-scrollbar">
+                <div className="flex bg-slate-900 p-1 rounded-lg border border-slate-600 bg-slate-950 w-full sm:w-auto overflow-x-auto custom-scrollbar">
                   {[
                     { id: 'all', label: 'All Documents' },
                     { id: 'pending', label: 'Waiting for Others' },
@@ -186,10 +186,10 @@ export default function ESignaturesDocumentsPage() {
                       placeholder="Search documents..." 
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner"
+                      className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner"
                     />
                   </div>
-                  <button className="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700 rounded-lg transition-colors shadow-sm" title="Filter Options">
+                  <button className="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-600 bg-slate-950 rounded-lg transition-colors shadow-sm" title="Filter Options">
                     <Filter className="w-4 h-4" />
                   </button>
                 </div>
@@ -199,7 +199,7 @@ export default function ESignaturesDocumentsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-800 bg-slate-900/50">
+                    <tr className="border-b border-slate-800 bg-slate-950">
                       <th className="px-6 py-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Document Title</th>
                       <th className="px-6 py-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Status</th>
                       <th className="px-6 py-4 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Recipients</th>
@@ -216,7 +216,7 @@ export default function ESignaturesDocumentsPage() {
                               <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border ${
                                 doc.status === 'completed' ? 'bg-emerald-500/10 border-emerald-500/20' :
                                 doc.status === 'pending' ? 'bg-amber-500/10 border-amber-500/20' :
-                                'bg-slate-700/50 border-slate-600'
+                                'bg-slate-700/50 border-slate-600 bg-slate-950'
                               }`}>
                                 <FileText className={`w-5 h-5 ${
                                   doc.status === 'completed' ? 'text-emerald-400' :
@@ -267,7 +267,7 @@ export default function ESignaturesDocumentsPage() {
                           <td className="px-6 py-4 text-right">
                             <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                               {doc.status === 'pending' && (
-                                <button className="px-3 py-1.5 text-[11px] font-bold text-slate-300 hover:text-white bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors border border-slate-600" title="Send Reminder">
+                                <button className="px-3 py-1.5 text-[11px] font-bold text-slate-300 hover:text-white bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors border border-slate-600 bg-slate-950" title="Send Reminder">
                                   Remind
                                 </button>
                               )}
@@ -280,17 +280,17 @@ export default function ESignaturesDocumentsPage() {
                                 </button>
                               )}
                               
-                              <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="View Document">
+                              <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border border-slate-600 bg-slate-950/50 bg-slate-950" title="View Document">
                                 <Eye className="w-4 h-4" />
                               </button>
                               
                               {doc.status === 'completed' && (
-                                <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-indigo-500/10 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="Download PDF">
+                                <button className="p-2 text-slate-400 hover:text-indigo-400 hover:bg-indigo-500/10 rounded-lg transition-colors border border-slate-600 bg-slate-950/50 bg-slate-950" title="Download PDF">
                                   <Download className="w-4 h-4" />
                                 </button>
                               )}
                               
-                              <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border border-slate-700/50 bg-slate-900/50" title="More Options">
+                              <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border border-slate-600 bg-slate-950/50 bg-slate-950" title="More Options">
                                 <MoreHorizontal className="w-4 h-4" />
                               </button>
                             </div>
@@ -328,8 +328,8 @@ export default function ESignaturesDocumentsPage() {
                     Showing <span className="font-bold text-white">1</span> to <span className="font-bold text-white">{filteredDocs.length}</span> of <span className="font-bold text-white">{filteredDocs.length}</span> documents
                   </span>
                   <div className="flex items-center gap-2">
-                    <button className="px-3 py-1.5 bg-slate-800 text-slate-500 rounded border border-slate-700 text-[12px] font-medium cursor-not-allowed">Previous</button>
-                    <button className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded border border-slate-700 text-[12px] font-medium transition-colors">Next</button>
+                    <button className="px-3 py-1.5 bg-slate-800 text-slate-500 rounded border border-slate-600 bg-slate-950 text-[12px] font-medium cursor-not-allowed">Previous</button>
+                    <button className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded border border-slate-600 bg-slate-950 text-[12px] font-medium transition-colors">Next</button>
                   </div>
                 </div>
               )}

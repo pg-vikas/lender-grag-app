@@ -121,7 +121,7 @@ export default function TasksPage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="w-full h-[40px] px-3 bg-slate-900/50 border border-slate-700 rounded-md focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 text-sm text-white" 
+                    className="w-full h-[40px] px-3 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-md focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 text-sm text-white" 
                   />
                 </div>
                 <div className="flex items-center gap-4">
@@ -134,7 +134,7 @@ export default function TasksPage() {
                   {appliedSearchQuery && (
                     <button 
                       onClick={handleReset}
-                      className="h-[40px] px-6 text-sm font-medium text-slate-300 hover:text-white transition-colors bg-slate-800/50 hover:bg-slate-800 border border-slate-700 rounded-md"
+                      className="h-[40px] px-6 text-sm font-medium text-slate-300 hover:text-white transition-colors bg-slate-800/50 hover:bg-slate-800 border border-slate-600 bg-slate-950 rounded-md"
                     >
                       Reset
                     </button>
@@ -205,7 +205,7 @@ export default function TasksPage() {
                             <td className="py-4 px-6">
                               <input 
                                 type="checkbox" 
-                                className="w-4 h-4 rounded border-slate-700 bg-slate-800/50 checked:bg-indigo-500 checked:border-indigo-500 focus:ring-indigo-500/50 focus:ring-offset-slate-900 transition-all cursor-pointer" 
+                                className="w-4 h-4 rounded border-slate-600 bg-slate-950 bg-slate-800/50 checked:bg-indigo-500 checked:border-indigo-500 focus:ring-indigo-500/50 focus:ring-offset-slate-900 transition-all cursor-pointer" 
                                 defaultChecked={task.isCompleted} 
                               />
                             </td>
@@ -247,7 +247,7 @@ export default function TasksPage() {
                   </div>
                   
                   <div className="p-6 flex justify-center border-t border-white/10">
-                    <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-full text-sm font-medium transition-colors border border-slate-700">
+                    <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-full text-sm font-medium transition-colors border border-slate-600 bg-slate-950">
                       show more
                     </button>
                   </div>
@@ -270,10 +270,10 @@ export default function TasksPage() {
           onClick={() => setIsEditModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200" 
+            className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200" 
             onClick={e => e.stopPropagation()}
           >
-            <div className="px-6 py-4 flex justify-between items-center border-b border-slate-800 bg-slate-900/50">
+            <div className="px-6 py-4 flex justify-between items-center border-b border-slate-800 bg-slate-950">
               <h2 className="text-xl font-bold text-white">Edit Task</h2>
               <button 
                 onClick={() => setIsEditModalOpen(false)} 
@@ -289,7 +289,7 @@ export default function TasksPage() {
                 <input 
                   type="text" 
                   defaultValue={selectedTask?.name} 
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                 />
               </div>
               <div>
@@ -297,12 +297,12 @@ export default function TasksPage() {
                 <input 
                   type="text" 
                   defaultValue="01-12-2025" 
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all" 
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Assignee</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none">
                   <option>Jordan (jordan@yopmail.com)</option>
                   <option>Alex (alex@yopmail.com)</option>
                   <option>Sam (sam@yopmail.com)</option>
@@ -313,7 +313,7 @@ export default function TasksPage() {
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditModalOpen(false)} 
-                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Close
               </button>
@@ -340,7 +340,7 @@ export default function TasksPage() {
             <div className="flex items-center justify-center gap-4 w-full">
               <button 
                 onClick={() => setIsDeleteModalOpen(false)} 
-                className="px-6 py-2.5 bg-[#1e293b] border border-slate-700 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
+                className="px-6 py-2.5 bg-[#1e293b] border border-slate-600 bg-slate-950 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-colors w-28"
               >
                 Cancel
               </button>

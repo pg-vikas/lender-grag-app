@@ -184,7 +184,7 @@ export default function MessagesPage() {
                     placeholder="Search messages..." 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                    className="w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500/50 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
               </div>
@@ -293,7 +293,7 @@ export default function MessagesPage() {
                           className={`px-4 py-2.5 rounded-2xl text-[14px] leading-relaxed shadow-sm ${
                             isSupport 
                               ? 'bg-indigo-600 text-white rounded-br-sm' 
-                              : 'bg-slate-800 border border-slate-700 text-slate-200 rounded-bl-sm'
+                              : 'bg-slate-800 border border-slate-600 bg-slate-950 text-slate-200 rounded-bl-sm'
                           }`}
                         >
                           {msg.text}
@@ -314,7 +314,7 @@ export default function MessagesPage() {
               {/* Chat Input */}
               <div className="p-4 border-t border-slate-800/50 bg-slate-900/40 backdrop-blur-xl">
                 <form onSubmit={handleSendMessage} className="relative flex items-end gap-2">
-                  <div className="flex-1 relative bg-slate-900/60 border border-slate-700 rounded-xl overflow-hidden focus-within:border-indigo-500/50 focus-within:ring-1 focus-within:ring-indigo-500/50 transition-all">
+                  <div className="flex-1 relative bg-slate-900/60 border border-slate-600 bg-slate-950 rounded-xl overflow-hidden focus-within:border-indigo-500/50 focus-within:ring-1 focus-within:ring-indigo-500/50 transition-all">
                     <textarea 
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
@@ -335,14 +335,14 @@ export default function MessagesPage() {
                     className={`p-3 rounded-xl flex items-center justify-center transition-all ${
                       newMessage.trim() 
                         ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_0_15px_rgba(79,70,229,0.3)]' 
-                        : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
+                        : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-600 bg-slate-950'
                     }`}
                   >
                     <Send className="w-5 h-5 ml-0.5" />
                   </button>
                 </form>
                 <div className="text-[10px] text-slate-500 mt-2 text-center">
-                  Press <kbd className="px-1.5 py-0.5 bg-slate-800 rounded mx-0.5 font-sans border border-slate-700">Enter</kbd> to send, <kbd className="px-1.5 py-0.5 bg-slate-800 rounded mx-0.5 font-sans border border-slate-700">Shift</kbd> + <kbd className="px-1.5 py-0.5 bg-slate-800 rounded mx-0.5 font-sans border border-slate-700">Enter</kbd> for new line
+                  Press <kbd className="px-1.5 py-0.5 bg-slate-800 rounded mx-0.5 font-sans border border-slate-600 bg-slate-950">Enter</kbd> to send, <kbd className="px-1.5 py-0.5 bg-slate-800 rounded mx-0.5 font-sans border border-slate-600 bg-slate-950">Shift</kbd> + <kbd className="px-1.5 py-0.5 bg-slate-800 rounded mx-0.5 font-sans border border-slate-600 bg-slate-950">Enter</kbd> for new line
                 </div>
               </div>
 

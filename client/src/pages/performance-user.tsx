@@ -134,9 +134,9 @@ export default function UserPerformancePage() {
                   
                   <div className="flex items-center gap-2 ml-2">
                     <span className="text-sm text-slate-400">From</span>
-                    <input type="date" className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
+                    <input type="date" className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
                     <span className="text-sm text-slate-400">To</span>
-                    <input type="date" className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
+                    <input type="date" className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg px-3 py-1.5 text-sm text-white outline-none focus:border-purple-500" />
                     <button className="bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors">
                       Apply
                     </button>
@@ -155,7 +155,7 @@ export default function UserPerformancePage() {
                   <span className="text-purple-400 font-medium">{currentUser.role}</span>
                 </div>
               </div>
-              <button className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors border border-slate-700">
+              <button className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors border border-slate-600 bg-slate-950">
                 Update
               </button>
             </div>
@@ -165,7 +165,7 @@ export default function UserPerformancePage() {
               <h2 className="text-lg font-medium text-slate-300 mb-6">Performance Metrics Summary</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-4">
                 {performanceMetrics.map((metric, index) => (
-                  <div key={index} className="bg-slate-900/50 border border-white/5 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-slate-800/50 transition-colors shadow-sm">
+                  <div key={index} className="bg-slate-950 border border-white/5 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-slate-800/50 transition-colors shadow-sm">
                     <div className={`text-xl xl:text-2xl font-bold mb-2 ${metric.color}`}>{metric.value}</div>
                     <div className="text-xs font-medium text-slate-400">{metric.title}</div>
                   </div>

@@ -298,7 +298,7 @@ export default function TicketsPage() {
             <div className="flex gap-3 justify-center">
               <button 
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="px-4 py-2 bg-[#1e293b] hover:bg-slate-700 text-white rounded-lg transition-colors border border-slate-700 w-28"
+                className="px-4 py-2 bg-[#1e293b] hover:bg-slate-700 text-white rounded-lg transition-colors border border-slate-600 bg-slate-950 w-28"
               >
                 Cancel
               </button>
@@ -342,14 +342,14 @@ export default function TicketsPage() {
                 <input 
                   type="text" 
                   defaultValue="Test"
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Message*</label>
-                <div className="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
-                  <div className="bg-slate-800/50 border-b border-slate-700 p-2 flex gap-1 flex-wrap">
+                <div className="border border-slate-600 bg-slate-950 rounded-xl overflow-hidden bg-slate-950">
+                  <div className="bg-slate-800/50 border-b border-slate-600 bg-slate-950 p-2 flex gap-1 flex-wrap">
                     <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded font-bold">B</button>
                     <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded italic">I</button>
                     <div className="w-px bg-slate-700 mx-1"></div>
@@ -367,7 +367,7 @@ export default function TicketsPage() {
               
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Department*</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
                   <option>Sales</option>
                   <option>Support</option>
                   <option>Billing</option>
@@ -376,7 +376,7 @@ export default function TicketsPage() {
               
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Status*</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
                   <option>Open</option>
                   <option>In Progress</option>
                   <option>Answered</option>
@@ -387,7 +387,7 @@ export default function TicketsPage() {
               
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Priority*</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
                   <option>Low</option>
                   <option>Normal</option>
                   <option selected>High</option>
@@ -401,7 +401,7 @@ export default function TicketsPage() {
               <div className="flex gap-3">
                 <button 
                   onClick={() => setIsEditModalOpen(false)}
-                  className="px-6 py-2 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors font-medium"
+                  className="px-6 py-2 border border-slate-600 bg-slate-950 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors font-medium"
                 >
                   Close
                 </button>

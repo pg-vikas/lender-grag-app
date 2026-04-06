@@ -192,7 +192,7 @@ export default function ContractDetailsPage() {
               </div>
             </div>
             
-            <div id="contract-document" className="glass-panel rounded-2xl border-t border-indigo-500/20 shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-white/10 bg-slate-900/50 print:bg-white print:text-black">
+            <div id="contract-document" className="glass-panel rounded-2xl border-t border-indigo-500/20 shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden border border-white/10 bg-slate-950 print:bg-white print:text-black">
               
               {/* Header Banner */}
               <div className="relative h-48 bg-gradient-to-r from-purple-800 to-indigo-900 flex flex-col items-center justify-center text-white overflow-hidden print:bg-none print:text-black">
@@ -249,7 +249,7 @@ export default function ContractDetailsPage() {
                           rows={8}
                           value={editedContract.description}
                           onChange={(e) => setEditedContract({...editedContract, description: e.target.value})}
-                          className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all resize-none"
+                          className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all resize-none"
                         />
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -259,7 +259,7 @@ export default function ContractDetailsPage() {
                             type="text"
                             value={editedContract.value}
                             onChange={(e) => setEditedContract({...editedContract, value: e.target.value})}
-                            className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                            className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                           />
                         </div>
                         <div>
@@ -268,7 +268,7 @@ export default function ContractDetailsPage() {
                             type="date"
                             value={editedContract.startDate}
                             onChange={(e) => setEditedContract({...editedContract, startDate: e.target.value})}
-                            className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all [color-scheme:dark]"
+                            className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all [color-scheme:dark]"
                           />
                         </div>
                         <div>
@@ -277,7 +277,7 @@ export default function ContractDetailsPage() {
                             type="date"
                             value={editedContract.endDate}
                             onChange={(e) => setEditedContract({...editedContract, endDate: e.target.value})}
-                            className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all [color-scheme:dark]"
+                            className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all [color-scheme:dark]"
                           />
                         </div>
                       </div>
@@ -354,8 +354,8 @@ export default function ContractDetailsPage() {
       {/* Send Mail Modal */}
       {isMailModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/20">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-600 bg-slate-950/50 flex justify-between items-center bg-slate-900/20">
               <h2 className="text-xl font-bold text-white flex items-center gap-2">
                 <Mail className="w-5 h-5 text-blue-400" /> Send Contract via Mail
               </h2>
@@ -374,7 +374,7 @@ export default function ContractDetailsPage() {
                   <select 
                     value={mailTo}
                     onChange={(e) => setMailTo(e.target.value)}
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all appearance-none"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all appearance-none"
                     required
                   >
                     <option value="">Select an email...</option>
@@ -390,7 +390,7 @@ export default function ContractDetailsPage() {
                     <input 
                       type="email" 
                       placeholder="e.g., new@client.com"
-                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
+                      className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
                       required
                     />
                   </div>
@@ -401,16 +401,16 @@ export default function ContractDetailsPage() {
                   <textarea 
                     rows={3}
                     placeholder="Add a custom message..."
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all resize-none"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all resize-none"
                   ></textarea>
                 </div>
               </div>
               
-              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+              <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-end gap-3">
                 <button 
                   type="button"
                   onClick={() => setIsMailModalOpen(false)}
-                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors"
                 >
                   Cancel
                 </button>
@@ -429,7 +429,7 @@ export default function ContractDetailsPage() {
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 flex flex-col items-center text-center space-y-4">
               <div className="w-12 h-12 rounded-full bg-rose-500/20 text-rose-500 flex items-center justify-center mb-2">
                 <AlertCircle className="w-6 h-6" />
@@ -440,10 +440,10 @@ export default function ContractDetailsPage() {
               </p>
             </div>
             
-            <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-center gap-3">
+            <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-center gap-3">
               <button 
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="px-6 py-2.5 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors flex-1"
+                className="px-6 py-2.5 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors flex-1"
               >
                 Cancel
               </button>

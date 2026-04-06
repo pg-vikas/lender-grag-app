@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { Plus, Search, Edit2, Trash2, ArrowRight, FileText, Calendar, Grip, List as ListIcon, Play } from "lucide-react";
+import { Plus, Search, Edit2, Trash2, ArrowRight, FileText, Calendar, Grip, List as ListIcon, Play, CheckSquare, X } from "lucide-react";
 import { Sidebar, Header } from "./clients";
 
 // Mock data
@@ -123,11 +123,11 @@ export default function LaunchpadTemplatesPage() {
                       placeholder="Search templates..." 
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-9 pr-4 py-2 bg-slate-900/80 border border-slate-700/50 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 w-64 transition-all"
+                      className="pl-9 pr-4 py-2 bg-slate-900/80 border border-slate-600 bg-slate-950/50 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 w-64 transition-all"
                     />
                   </div>
                   
-                  <div className="flex bg-slate-900/80 border border-slate-700/50 rounded-lg p-1">
+                  <div className="flex bg-slate-900/80 border border-slate-600 bg-slate-950/50 rounded-lg p-1">
                     <button 
                       onClick={() => setViewMode('grid')}
                       className={`p-1.5 rounded-md transition-colors \${viewMode === 'grid' ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'}`}
@@ -153,8 +153,8 @@ export default function LaunchpadTemplatesPage() {
 
               {/* Content Area */}
               {filteredTemplates.length === 0 ? (
-                <div className="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-12 text-center flex flex-col items-center">
-                  <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mb-4 border border-slate-700">
+                <div className="bg-slate-900/60 border border-slate-600 bg-slate-950/50 rounded-2xl p-12 text-center flex flex-col items-center">
+                  <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mb-4 border border-slate-600 bg-slate-950">
                     <FileText className="w-8 h-8 text-slate-500" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">No templates found</h3>
@@ -175,7 +175,7 @@ export default function LaunchpadTemplatesPage() {
                   {filteredTemplates.map(template => (
                     <div 
                       key={template.id} 
-                      className={`bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-xl overflow-hidden hover:border-slate-600 transition-all group \${viewMode === 'list' ? 'flex items-center' : 'flex flex-col'}`}
+                      className={`bg-slate-900/60 backdrop-blur-xl border border-slate-600 bg-slate-950/50 rounded-xl overflow-hidden hover:border-slate-600 bg-slate-950 transition-all group \${viewMode === 'list' ? 'flex items-center' : 'flex flex-col'}`}
                       style={{ borderTopColor: template.color, borderTopWidth: '4px' }}
                     >
                       <div className={`p-6 \${viewMode === 'list' ? 'flex-1 flex items-center justify-between' : 'flex-1 flex flex-col'}`}>
@@ -196,7 +196,7 @@ export default function LaunchpadTemplatesPage() {
                               <div className="flex opacity-0 group-hover:opacity-100 transition-opacity gap-1">
                                 <button 
                                   onClick={(e) => { e.stopPropagation(); handleOpenEdit(template); }}
-                                  className="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-700 transition-colors"
+                                  className="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-600 bg-slate-950 transition-colors"
                                   title="Edit Template"
                                 >
                                   <Edit2 className="w-3.5 h-3.5" />
@@ -235,14 +235,14 @@ export default function LaunchpadTemplatesPage() {
                           <div className="flex items-center gap-3">
                             <button 
                               onClick={() => {}}
-                              className="flex items-center gap-1.5 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-[12px] font-bold rounded-lg border border-slate-700 transition-colors"
+                              className="flex items-center gap-1.5 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-[12px] font-bold rounded-lg border border-slate-600 bg-slate-950 transition-colors"
                             >
                               <Play className="w-3.5 h-3.5" /> Apply
                             </button>
                             <div className="flex gap-1">
                               <button 
                                 onClick={(e) => { e.stopPropagation(); handleOpenEdit(template); }}
-                                className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 transition-colors"
+                                className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-600 bg-slate-950 transition-colors"
                               >
                                 <Edit2 className="w-4 h-4" />
                               </button>
@@ -261,7 +261,7 @@ export default function LaunchpadTemplatesPage() {
                         <div className="bg-slate-900 p-3 border-t border-slate-800/80">
                           <button 
                             onClick={() => {}}
-                            className="w-full flex items-center justify-center gap-2 py-2 bg-slate-800 hover:bg-slate-700 text-white text-[13px] font-bold rounded-lg transition-colors border border-slate-700/50"
+                            className="w-full flex items-center justify-center gap-2 py-2 bg-slate-800 hover:bg-slate-700 text-white text-[13px] font-bold rounded-lg transition-colors border border-slate-600 bg-slate-950/50"
                           >
                             <Play className="w-4 h-4" /> Apply Template
                           </button>
@@ -281,7 +281,7 @@ export default function LaunchpadTemplatesPage() {
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
           <div className="bg-slate-900 border border-indigo-500/30 border-t-indigo-500 border-t-4 rounded-xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex justify-between items-center p-6 border-b border-slate-800 bg-slate-900/50">
+            <div className="flex justify-between items-center p-6 border-b border-slate-800 bg-slate-950">
               <h2 className="text-lg font-bold text-white flex items-center gap-2">
                 <div className="w-8 h-8 rounded bg-indigo-500/10 flex items-center justify-center text-indigo-400">
                   <Plus className="w-4 h-4" />
@@ -337,7 +337,7 @@ export default function LaunchpadTemplatesPage() {
               </div>
             </div>
             
-            <div className="p-6 border-t border-slate-800 bg-slate-900/50 flex justify-end gap-3">
+            <div className="p-6 border-t border-slate-800 bg-slate-950 flex justify-end gap-3">
               <button 
                 onClick={() => setIsAddModalOpen(false)}
                 className="px-5 py-2.5 rounded-lg text-[13px] font-bold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
@@ -360,10 +360,10 @@ export default function LaunchpadTemplatesPage() {
       {isEditModalOpen && selectedTemplate && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
           <div 
-            className="bg-slate-900 border border-slate-700/50 border-t-4 rounded-xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border border-slate-600 bg-slate-950/50 border-t-4 rounded-xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200"
             style={{ borderTopColor: selectedTemplate.color }}
           >
-            <div className="flex justify-between items-center p-6 border-b border-slate-800 bg-slate-900/50">
+            <div className="flex justify-between items-center p-6 border-b border-slate-800 bg-slate-950">
               <h2 className="text-lg font-bold text-white flex items-center gap-2">
                 <div className="w-8 h-8 rounded flex items-center justify-center" style={{ backgroundColor: `\${selectedTemplate.color}15`, color: selectedTemplate.color }}>
                   <Edit2 className="w-4 h-4" />
@@ -417,7 +417,7 @@ export default function LaunchpadTemplatesPage() {
               </div>
             </div>
             
-            <div className="p-6 border-t border-slate-800 bg-slate-900/50 flex justify-end gap-3">
+            <div className="p-6 border-t border-slate-800 bg-slate-950 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditModalOpen(false)}
                 className="px-5 py-2.5 rounded-lg text-[13px] font-bold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
@@ -453,7 +453,7 @@ export default function LaunchpadTemplatesPage() {
               <div className="flex justify-center gap-3 w-full">
                 <button 
                   onClick={() => setIsDeleteModalOpen(false)}
-                  className="flex-1 py-3 rounded-xl text-[14px] font-bold text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 transition-colors"
+                  className="flex-1 py-3 rounded-xl text-[14px] font-bold text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-600 bg-slate-950 transition-colors"
                 >
                   Keep Template
                 </button>

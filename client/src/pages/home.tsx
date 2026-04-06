@@ -60,7 +60,7 @@ export default function Home() {
             <div className="max-w-7xl mx-auto space-y-8">
               
               {/* HERO SECTION */}
-              <div className="relative overflow-hidden rounded-3xl bg-slate-900/80 border border-slate-700/50 backdrop-blur-xl shadow-2xl p-8 md:p-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="relative overflow-hidden rounded-3xl bg-slate-900/80 border border-slate-600 bg-slate-950/50 backdrop-blur-xl shadow-2xl p-8 md:p-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-indigo-500/10 to-transparent pointer-events-none"></div>
                 <div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-500/20 blur-[80px] rounded-full pointer-events-none"></div>
                 
@@ -83,7 +83,7 @@ export default function Home() {
                         Create Launchpad
                         <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </button>
-                      <button className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold transition-all border border-slate-600 hover:border-slate-500 flex items-center gap-2">
+                      <button className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold transition-all border border-slate-600 bg-slate-950 hover:border-slate-500 flex items-center gap-2">
                         <User className="w-5 h-5 text-slate-400" />
                         Invite Client
                       </button>
@@ -106,7 +106,7 @@ export default function Home() {
                 ].map((metric, i) => (
                   <div 
                     key={i} 
-                    className={`bg-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50 hover:border-slate-500 transition-all hover:-translate-y-1 shadow-lg group animate-in fade-in slide-in-from-bottom-4`}
+                    className={`bg-slate-900/60 backdrop-blur-xl rounded-2xl p-6 border border-slate-600 bg-slate-950/50 hover:border-slate-500 transition-all hover:-translate-y-1 shadow-lg group animate-in fade-in slide-in-from-bottom-4`}
                     style={{ animationDelay: `\${(i + 1) * 100}ms` }}
                   >
                     <div className="flex justify-between items-start mb-6">
@@ -129,7 +129,7 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
                 {/* Main Chart */}
-                <div className="lg:col-span-2 bg-slate-900/60 backdrop-blur-xl rounded-2xl p-6 lg:p-8 border border-slate-700/50 shadow-lg relative overflow-hidden group animate-in fade-in slide-in-from-bottom-4 delay-500 border-t-indigo-500 border-t-4">
+                <div className="lg:col-span-2 bg-slate-900/60 backdrop-blur-xl rounded-2xl p-6 lg:p-8 border border-slate-600 bg-slate-950/50 shadow-lg relative overflow-hidden group animate-in fade-in slide-in-from-bottom-4 delay-500 border-t-indigo-500 border-t-4">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 blur-[80px] rounded-full"></div>
                   
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 relative z-10">
@@ -137,7 +137,7 @@ export default function Home() {
                       <h2 className="text-xl font-bold text-white mb-1">Platform Revenue Growth</h2>
                       <p className="text-sm text-slate-400">MRR trajectory across all agency tiers</p>
                     </div>
-                    <div className="flex bg-slate-800/80 p-1 rounded-lg border border-slate-700/50">
+                    <div className="flex bg-slate-800/80 p-1 rounded-lg border border-slate-600 bg-slate-950/50">
                       {['7D', '30D', '90D'].map((range) => (
                         <button 
                           key={range}
@@ -166,7 +166,7 @@ export default function Home() {
                       <div className="w-full border-t border-slate-800/80"></div>
                       <div className="w-full border-t border-slate-800/80"></div>
                       <div className="w-full border-t border-slate-800/80"></div>
-                      <div className="w-full border-t border-slate-700"></div>
+                      <div className="w-full border-t border-slate-600 bg-slate-950"></div>
                     </div>
                     
                     {/* Bars */}
@@ -174,7 +174,7 @@ export default function Home() {
                       {chartData[timeRange].map((height, i) => (
                         <div key={i} className="flex-1 flex flex-col justify-end group/bar cursor-pointer relative h-full">
                           {/* Tooltip */}
-                          <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-800 border border-slate-600 text-white text-xs py-1.5 px-3 rounded-lg opacity-0 group-hover/bar:opacity-100 transition-opacity z-20 pointer-events-none whitespace-nowrap shadow-xl flex items-center gap-1.5 font-bold">
+                          <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-800 border border-slate-600 bg-slate-950 text-white text-xs py-1.5 px-3 rounded-lg opacity-0 group-hover/bar:opacity-100 transition-opacity z-20 pointer-events-none whitespace-nowrap shadow-xl flex items-center gap-1.5 font-bold">
                             <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
                             ${(height * 1.5).toFixed(1)}k
                           </div>
@@ -200,7 +200,7 @@ export default function Home() {
                 </div>
 
                 {/* ROI / Revenue Calculator Widget */}
-                <div className="bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-lg flex flex-col animate-in fade-in slide-in-from-bottom-4 delay-700 border-t-emerald-500 border-t-4 relative overflow-hidden">
+                <div className="bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-600 bg-slate-950/50 shadow-lg flex flex-col animate-in fade-in slide-in-from-bottom-4 delay-700 border-t-emerald-500 border-t-4 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[50px] rounded-full"></div>
                   
                   <div className="p-6 border-b border-slate-800/80">
@@ -244,7 +244,7 @@ export default function Home() {
                       </div>
                     </div>
                     
-                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 rounded-xl p-5 relative overflow-hidden group">
+                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600 bg-slate-950/50 rounded-xl p-5 relative overflow-hidden group">
                       <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                       <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Projected Added MRR</div>
                       <div className="text-3xl font-extrabold text-emerald-400 tracking-tight mb-4">
@@ -252,7 +252,7 @@ export default function Home() {
                         <span className="text-sm text-slate-500 font-normal">/mo</span>
                       </div>
                       
-                      <div className="flex justify-between items-center pt-4 border-t border-slate-700/50">
+                      <div className="flex justify-between items-center pt-4 border-t border-slate-600 bg-slate-950/50">
                         <div className="text-[11px] font-bold text-slate-400 uppercase">Annual Impact</div>
                         <div className="text-sm font-bold text-white">
                           +${(calcClients * calcRetainer * 12).toLocaleString()}
@@ -267,7 +267,7 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
                 {/* Client Reviews Widget */}
-                <div className="glass-panel rounded-2xl border border-slate-700/50 shadow-lg flex flex-col animate-in fade-in slide-in-from-bottom-4 delay-1000 border-t-amber-500 border-t-4">
+                <div className="glass-panel rounded-2xl border border-slate-600 bg-slate-950/50 shadow-lg flex flex-col animate-in fade-in slide-in-from-bottom-4 delay-1000 border-t-amber-500 border-t-4">
                   <div className="p-5 border-b border-slate-800/80 flex justify-between items-center bg-slate-900/30">
                     <h2 className="text-[15px] font-bold text-white flex items-center gap-2">
                       <MessageSquare className="w-4 h-4 text-amber-400" /> Client Feedback
@@ -281,10 +281,10 @@ export default function Home() {
                       { name: 'Marcus Cole', company: 'Blue Ocean', rating: 5, text: 'Incredible onboarding experience. Gorilla Hub is next level.', time: '5h ago' },
                       { name: 'Elena Rostova', company: 'Studio Elevate', rating: 4, text: 'Great templates, saved us hours of setup work this week.', time: '1d ago' }
                     ].map((review, i) => (
-                      <div key={i} className="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 hover:bg-slate-800/60 transition-colors">
+                      <div key={i} className="p-4 rounded-xl bg-slate-800/40 border border-slate-600 bg-slate-950/50 hover:bg-slate-800/60 transition-colors">
                         <div className="flex justify-between items-start mb-2">
                           <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white border border-slate-600">
+                            <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white border border-slate-600 bg-slate-950">
                               {review.name.charAt(0)}
                             </div>
                             <div>
@@ -305,14 +305,14 @@ export default function Home() {
                       </div>
                     ))}
                     
-                    <button className="w-full py-2.5 rounded-lg border border-slate-700 text-[13px] font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors mt-2">
+                    <button className="w-full py-2.5 rounded-lg border border-slate-600 bg-slate-950 text-[13px] font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors mt-2">
                       View All Reviews
                     </button>
                   </div>
                 </div>
 
                 {/* Urgent Support Tickets */}
-                <div className="lg:col-span-2 glass-panel rounded-2xl border border-slate-700/50 shadow-lg flex flex-col animate-in fade-in slide-in-from-bottom-4 delay-1000 border-t-rose-500 border-t-4">
+                <div className="lg:col-span-2 glass-panel rounded-2xl border border-slate-600 bg-slate-950/50 shadow-lg flex flex-col animate-in fade-in slide-in-from-bottom-4 delay-1000 border-t-rose-500 border-t-4">
                   <div className="p-5 border-b border-slate-800/80 flex justify-between items-center bg-slate-900/30">
                     <h2 className="text-[15px] font-bold text-white flex items-center gap-2">
                       <ShieldAlert className="w-4 h-4 text-rose-400" /> Attention Required
@@ -324,7 +324,7 @@ export default function Home() {
                   
                   <div className="p-0 overflow-x-auto">
                     <table className="w-full text-left">
-                      <thead className="bg-slate-900/50 border-b border-slate-800">
+                      <thead className="bg-slate-950 border-b border-slate-800">
                         <tr>
                           <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ticket ID</th>
                           <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Client</th>
@@ -362,7 +362,7 @@ export default function Home() {
                   </div>
                   
                   <div className="p-4 border-t border-slate-800/80 bg-slate-900/30">
-                    <button className="w-full py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors border border-slate-700 flex items-center justify-center gap-2">
+                    <button className="w-full py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors border border-slate-600 bg-slate-950 flex items-center justify-center gap-2">
                       <HelpCircle className="w-4 h-4 text-slate-400" /> Go to Support Desk
                     </button>
                   </div>

@@ -92,7 +92,7 @@ export default function TemplatesPage() {
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
       
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
-        <Header location={location} />
+        <Header title="Contract Templates" />
 
         <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 custom-scrollbar">
           <div className="max-w-7xl mx-auto space-y-6">
@@ -204,8 +204,8 @@ export default function TemplatesPage() {
       {/* Add New Template Modal */}
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/20">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-600 bg-slate-950/50 flex justify-between items-center bg-slate-900/20">
               <h2 className="text-xl font-bold text-white">Add New Contract Template</h2>
               <button 
                 onClick={() => setIsAddModalOpen(false)}
@@ -224,7 +224,7 @@ export default function TemplatesPage() {
                     value={formData.title}
                     onChange={(e) => setFormData({...formData, title: e.target.value})}
                     placeholder="e.g., NDA Template"
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                     required
                   />
                 </div>
@@ -235,17 +235,17 @@ export default function TemplatesPage() {
                     value={formData.content}
                     onChange={(e) => setFormData({...formData, content: e.target.value})}
                     placeholder="Enter template content or placeholders here..."
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all resize-none"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all resize-none"
                     required
                   ></textarea>
                 </div>
               </div>
               
-              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+              <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-end gap-3">
                 <button 
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors"
                 >
                   Cancel
                 </button>
@@ -264,8 +264,8 @@ export default function TemplatesPage() {
       {/* Edit Template Modal */}
       {isEditModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/20">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-600 bg-slate-950/50 flex justify-between items-center bg-slate-900/20">
               <h2 className="text-xl font-bold text-white">Edit Contract Template</h2>
               <button 
                 onClick={() => setIsEditModalOpen(false)}
@@ -284,7 +284,7 @@ export default function TemplatesPage() {
                     value={formData.title}
                     onChange={(e) => setFormData({...formData, title: e.target.value})}
                     placeholder="e.g., NDA Template"
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                     required
                   />
                 </div>
@@ -295,17 +295,17 @@ export default function TemplatesPage() {
                     value={formData.content}
                     onChange={(e) => setFormData({...formData, content: e.target.value})}
                     placeholder="Enter template content or placeholders here..."
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all resize-none"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all resize-none"
                     required
                   ></textarea>
                 </div>
               </div>
               
-              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+              <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-end gap-3">
                 <button 
                   type="button"
                   onClick={() => setIsEditModalOpen(false)}
-                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors"
                 >
                   Cancel
                 </button>
@@ -324,7 +324,7 @@ export default function TemplatesPage() {
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && currentTemplate && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 flex flex-col items-center text-center space-y-4">
               <div className="w-12 h-12 rounded-full bg-rose-500/20 text-rose-500 flex items-center justify-center mb-2">
                 <AlertCircle className="w-6 h-6" />
@@ -335,10 +335,10 @@ export default function TemplatesPage() {
               </p>
             </div>
             
-            <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-center gap-3">
+            <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-center gap-3">
               <button 
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="px-6 py-2.5 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors flex-1"
+                className="px-6 py-2.5 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors flex-1"
               >
                 Cancel
               </button>

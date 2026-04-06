@@ -36,14 +36,14 @@ export default function TicketCreatePage() {
                   <input 
                     type="text" 
                     placeholder="Enter ticket subject"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Client*</label>
-                    <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
                       <option value="">Select a client</option>
                       <option value="pink-gorilla">Pink Gorilla Agency</option>
                       <option value="acme-corp">Acme Corp</option>
@@ -51,7 +51,7 @@ export default function TicketCreatePage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Assigned To</label>
-                    <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
                       <option value="">Select assignee</option>
                       <option value="milhan">Milhan Farooque</option>
                       <option value="vikas">Vikas</option>
@@ -62,7 +62,7 @@ export default function TicketCreatePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Department*</label>
-                    <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
                       <option value="sales">Sales</option>
                       <option value="support">Support</option>
                       <option value="billing">Billing</option>
@@ -70,7 +70,7 @@ export default function TicketCreatePage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Priority*</label>
-                    <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
                       <option value="low">Low</option>
                       <option value="normal" selected>Normal</option>
                       <option value="high">High</option>
@@ -81,7 +81,7 @@ export default function TicketCreatePage() {
                 
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Status*</label>
-                  <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
+                  <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-indigo-500/50 transition-all appearance-none">
                     <option value="open">Open</option>
                     <option value="in-progress">In Progress</option>
                     <option value="answered">Answered</option>
@@ -92,8 +92,8 @@ export default function TicketCreatePage() {
 
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Message*</label>
-                  <div className="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
-                    <div className="bg-slate-800/50 border-b border-slate-700 p-2 flex gap-2">
+                  <div className="border border-slate-600 bg-slate-950 rounded-xl overflow-hidden bg-slate-950">
+                    <div className="bg-slate-800/50 border-b border-slate-600 bg-slate-950 p-2 flex gap-2">
                       <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">B</button>
                       <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">I</button>
                       <button type="button" className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded">U</button>
@@ -114,7 +114,7 @@ export default function TicketCreatePage() {
                     <button 
                       type="button"
                       onClick={() => setLocation('/tickets')}
-                      className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors font-medium text-sm"
+                      className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors font-medium text-sm"
                     >
                       Cancel
                     </button>

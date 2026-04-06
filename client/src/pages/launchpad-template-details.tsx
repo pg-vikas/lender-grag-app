@@ -204,7 +204,7 @@ export default function LaunchpadTemplateDetailsPage() {
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath="/launchpads" />
       
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
-        <Header location={location} />
+        <Header title={templateName} />
 
         <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 custom-scrollbar relative">
           <div className="max-w-4xl mx-auto space-y-6">
@@ -238,7 +238,7 @@ export default function LaunchpadTemplateDetailsPage() {
                         setCategoryToEdit(null);
                         setIsTaskCategoryModalOpen(true);
                       }}
-                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700"
+                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-600 bg-slate-950"
                     >
                       <Plus className="w-3.5 h-3.5" /> Add Category
                     </button>
@@ -261,7 +261,7 @@ export default function LaunchpadTemplateDetailsPage() {
                     className={`px-4 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
                       taskFilter === 'uncompleted' 
                         ? 'bg-rose-500/20 text-rose-400 border-rose-500/50' 
-                        : 'bg-slate-800/50 text-slate-400 border-slate-700 hover:bg-slate-800'
+                        : 'bg-slate-800/50 text-slate-400 border-slate-600 bg-slate-950 hover:bg-slate-800'
                     }`}
                   >
                     Uncompleted ({uncompletedCount})
@@ -271,7 +271,7 @@ export default function LaunchpadTemplateDetailsPage() {
                     className={`px-4 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
                       taskFilter === 'completed' 
                         ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50' 
-                        : 'bg-slate-800/50 text-slate-400 border-slate-700 hover:bg-slate-800'
+                        : 'bg-slate-800/50 text-slate-400 border-slate-600 bg-slate-950 hover:bg-slate-800'
                     }`}
                   >
                     Completed ({completedCount})
@@ -281,7 +281,7 @@ export default function LaunchpadTemplateDetailsPage() {
                 <div className="space-y-6">
                   {filteredTasks.length === 0 ? (
                     <div className="text-center py-12 flex flex-col items-center justify-center">
-                      <div className="w-16 h-16 bg-slate-800/50 rounded-full flex items-center justify-center mb-4 border border-slate-700">
+                      <div className="w-16 h-16 bg-slate-800/50 rounded-full flex items-center justify-center mb-4 border border-slate-600 bg-slate-950">
                         <CheckCircle2 className="w-8 h-8 text-slate-500" />
                       </div>
                       <h3 className="text-slate-200 font-medium">No tasks found</h3>
@@ -318,7 +318,7 @@ export default function LaunchpadTemplateDetailsPage() {
 
                         <div className="space-y-2">
                           {category.items.map(task => (
-                            <div key={task.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-900/50 rounded-xl border border-slate-800 group hover:border-slate-700 transition-colors">
+                            <div key={task.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-950 rounded-xl border border-slate-800 group hover:border-slate-600 bg-slate-950 transition-colors">
                               <div className="flex items-start gap-3">
                                 <button className="mt-0.5 text-slate-500 hover:text-purple-400 transition-colors cursor-default">
                                   {task.status === 'completed' ? (
@@ -393,7 +393,7 @@ export default function LaunchpadTemplateDetailsPage() {
                         setDocCategoryToEdit(null);
                         setIsDocCategoryModalOpen(true);
                       }}
-                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-700"
+                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium rounded-lg flex items-center gap-2 transition-colors border border-slate-600 bg-slate-950"
                     >
                       <Plus className="w-3.5 h-3.5" /> Add Category
                     </button>
@@ -403,7 +403,7 @@ export default function LaunchpadTemplateDetailsPage() {
                 <div className="space-y-6">
                   {documentCategories.length === 0 ? (
                     <div className="text-center py-12 flex flex-col items-center justify-center">
-                      <div className="w-16 h-16 bg-slate-800/50 rounded-full flex items-center justify-center mb-4 border border-slate-700">
+                      <div className="w-16 h-16 bg-slate-800/50 rounded-full flex items-center justify-center mb-4 border border-slate-600 bg-slate-950">
                         <FileText className="w-8 h-8 text-slate-500" />
                       </div>
                       <h3 className="text-slate-200 font-medium">No document categories</h3>
@@ -475,7 +475,7 @@ export default function LaunchpadTemplateDetailsPage() {
                           {filteredCategoryFiles.length > 0 && (
                             <div className="space-y-2 mt-2">
                               {filteredCategoryFiles.map((file, idx) => (
-                                <div key={idx} className="flex justify-between items-center p-3 bg-slate-900/50 rounded-xl border border-slate-800 group hover:border-slate-700 transition-colors">
+                                <div key={idx} className="flex justify-between items-center p-3 bg-slate-950 rounded-xl border border-slate-800 group hover:border-slate-600 bg-slate-950 transition-colors">
                                   <div className="flex items-center gap-3">
                                     <div className="w-8 h-8 rounded bg-slate-800 flex items-center justify-center">
                                       {file.type.includes('image') ? (
@@ -531,8 +531,8 @@ export default function LaunchpadTemplateDetailsPage() {
       {/* Add/Edit Task Category Modal */}
       {isTaskCategoryModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/20">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-600 bg-slate-950/50 flex justify-between items-center bg-slate-900/20">
               <h2 className="text-xl font-bold text-white">{categoryToEdit ? 'Edit Category' : 'Add Category'}</h2>
               <button 
                 onClick={() => setIsTaskCategoryModalOpen(false)}
@@ -551,17 +551,17 @@ export default function LaunchpadTemplateDetailsPage() {
                     name="categoryName"
                     defaultValue={categoryToEdit || ''}
                     placeholder="Enter category name"
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                     required
                   />
                 </div>
               </div>
               
-              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+              <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-end gap-3">
                 <button 
                   type="button"
                   onClick={() => setIsTaskCategoryModalOpen(false)}
-                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors"
                 >
                   Cancel
                 </button>
@@ -580,8 +580,8 @@ export default function LaunchpadTemplateDetailsPage() {
       {/* Add/Edit Document Category Modal */}
       {isDocCategoryModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/20">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-600 bg-slate-950/50 flex justify-between items-center bg-slate-900/20">
               <h2 className="text-xl font-bold text-white">{docCategoryToEdit ? 'Edit Document Category' : 'Add Document Category'}</h2>
               <button 
                 onClick={() => setIsDocCategoryModalOpen(false)}
@@ -600,17 +600,17 @@ export default function LaunchpadTemplateDetailsPage() {
                     name="docCategoryName"
                     defaultValue={docCategoryToEdit?.name || ''}
                     placeholder="Enter document category name"
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                     required
                   />
                 </div>
               </div>
               
-              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+              <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-end gap-3">
                 <button 
                   type="button"
                   onClick={() => setIsDocCategoryModalOpen(false)}
-                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors"
                 >
                   Cancel
                 </button>
@@ -629,8 +629,8 @@ export default function LaunchpadTemplateDetailsPage() {
       {/* Edit Task Modal */}
       {isEditTaskModalOpen && taskToEdit && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/20">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-600 bg-slate-950/50 flex justify-between items-center bg-slate-900/20">
               <h2 className="text-xl font-bold text-white">Edit Task</h2>
               <button 
                 onClick={() => setIsEditTaskModalOpen(false)}
@@ -648,7 +648,7 @@ export default function LaunchpadTemplateDetailsPage() {
                     type="text" 
                     name="title"
                     defaultValue={taskToEdit.title}
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                     required
                   />
                 </div>
@@ -659,7 +659,7 @@ export default function LaunchpadTemplateDetailsPage() {
                       type="number" 
                       name="hours"
                       defaultValue={taskToEdit.hours}
-                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                      className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                     />
                   </div>
                   <div className="space-y-2">
@@ -668,7 +668,7 @@ export default function LaunchpadTemplateDetailsPage() {
                       type="number" 
                       name="subs"
                       defaultValue={taskToEdit.subs}
-                      className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                      className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                     />
                   </div>
                 </div>
@@ -677,7 +677,7 @@ export default function LaunchpadTemplateDetailsPage() {
                   <select 
                     name="status"
                     defaultValue={taskToEdit.status}
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg pl-4 pr-10 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg pl-4 pr-10 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
                   >
                     <option value="uncompleted" className="bg-slate-800 text-slate-200">Uncompleted</option>
                     <option value="completed" className="bg-slate-800 text-slate-200">Completed</option>
@@ -685,11 +685,11 @@ export default function LaunchpadTemplateDetailsPage() {
                 </div>
               </div>
               
-              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+              <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-end gap-3">
                 <button 
                   type="button"
                   onClick={() => setIsEditTaskModalOpen(false)}
-                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors"
                 >
                   Cancel
                 </button>
@@ -708,8 +708,8 @@ export default function LaunchpadTemplateDetailsPage() {
       {/* Upload Document Modal */}
       {isUploadModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/20">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-600 bg-slate-950/50 flex justify-between items-center bg-slate-900/20">
               <h2 className="text-xl font-bold text-white">Upload Documents</h2>
               <button 
                 onClick={() => {
@@ -728,7 +728,7 @@ export default function LaunchpadTemplateDetailsPage() {
                 <select 
                   value={uploadDocumentType}
                   onChange={(e) => setUploadDocumentType(e.target.value)}
-                  className="w-full bg-slate-900/50 border border-slate-700 rounded-lg pl-4 pr-10 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
+                  className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg pl-4 pr-10 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
                 >
                   <option value="Client Signed" className="bg-slate-800 text-slate-200">Client Signed</option>
                   <option value="Contractor Signed" className="bg-slate-800 text-slate-200">Contractor Signed</option>
@@ -737,7 +737,7 @@ export default function LaunchpadTemplateDetailsPage() {
                 </select>
               </div>
 
-              <div className="border-2 border-dashed border-slate-700 rounded-xl p-8 flex flex-col items-center justify-center text-center bg-slate-900/30 hover:bg-slate-800/30 transition-colors relative cursor-pointer">
+              <div className="border-2 border-dashed border-slate-600 bg-slate-950 rounded-xl p-8 flex flex-col items-center justify-center text-center bg-slate-900/30 hover:bg-slate-800/30 transition-colors relative cursor-pointer">
                 <input 
                   type="file" 
                   multiple 
@@ -755,7 +755,7 @@ export default function LaunchpadTemplateDetailsPage() {
                 <div className="space-y-2">
                   <h3 className="text-xs font-medium text-slate-400 mb-3 uppercase tracking-wider">Pending Uploads ({pendingUploadFiles.length})</h3>
                   {pendingUploadFiles.map((file, idx) => (
-                    <div key={idx} className="flex justify-between items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                    <div key={idx} className="flex justify-between items-center p-3 bg-slate-800/50 rounded-lg border border-slate-600 bg-slate-950/50">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded bg-slate-900 flex items-center justify-center">
                           {file.type === 'image' ? (
@@ -781,13 +781,13 @@ export default function LaunchpadTemplateDetailsPage() {
               )}
             </div>
             
-            <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+            <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-end gap-3">
               <button 
                 onClick={() => {
                   setIsUploadModalOpen(false);
                   setPendingUploadFiles([]);
                 }}
-                className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+                className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors"
               >
                 Cancel
               </button>
@@ -806,8 +806,8 @@ export default function LaunchpadTemplateDetailsPage() {
       {/* Edit Document Modal */}
       {isEditDocumentModalOpen && documentToEdit && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="glass-panel border border-slate-700/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/20">
+          <div className="glass-panel border border-slate-600 bg-slate-950/50 rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 border-b border-slate-600 bg-slate-950/50 flex justify-between items-center bg-slate-900/20">
               <h2 className="text-xl font-bold text-white">Edit Document</h2>
               <button 
                 onClick={() => {
@@ -844,7 +844,7 @@ export default function LaunchpadTemplateDetailsPage() {
                     type="text" 
                     name="name"
                     defaultValue={documentToEdit.name}
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                     required
                   />
                 </div>
@@ -853,7 +853,7 @@ export default function LaunchpadTemplateDetailsPage() {
                   <select 
                     name="documentType"
                     defaultValue={documentToEdit.documentType || 'Not Signed'}
-                    className="w-full bg-slate-900/50 border border-slate-700 rounded-lg pl-4 pr-10 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
+                    className="w-full bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg pl-4 pr-10 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none"
                   >
                     <option value="Client Signed" className="bg-slate-800 text-slate-200">Client Signed</option>
                     <option value="Contractor Signed" className="bg-slate-800 text-slate-200">Contractor Signed</option>
@@ -863,11 +863,11 @@ export default function LaunchpadTemplateDetailsPage() {
                 </div>
               </div>
               
-              <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-end gap-3">
+              <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-end gap-3">
                 <button 
                   type="button"
                   onClick={() => setIsEditDocumentModalOpen(false)}
-                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors"
+                  className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors"
                 >
                   Cancel
                 </button>
@@ -897,10 +897,10 @@ export default function LaunchpadTemplateDetailsPage() {
               </p>
             </div>
             
-            <div className="p-6 border-t border-slate-700/50 bg-slate-800/30 flex justify-center gap-4">
+            <div className="p-6 border-t border-slate-600 bg-slate-950/50 bg-slate-800/30 flex justify-center gap-4">
               <button 
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-700 transition-colors w-full"
+                className="px-6 py-2 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-medium rounded-lg border border-slate-600 bg-slate-950 transition-colors w-full"
               >
                 Cancel
               </button>

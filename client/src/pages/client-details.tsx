@@ -568,8 +568,8 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Company Details */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-indigo-500 border-t-4 shadow-lg shadow-sm relative z-30">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center rounded-t-xl">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-indigo-500 border-t-4 shadow-lg shadow-sm relative z-30">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
                       <Building2 className="w-5 h-5 text-indigo-400" />
                       <span className="font-bold text-white text-[15px]">Company Details</span>
@@ -584,17 +584,17 @@ export default function ClientDetailsPage() {
                   <div className="p-5 space-y-5">
                     <div>
                       <h3 className="text-[18px] font-bold text-white mb-2">{currentClient.name}</h3>
-                      <span className="inline-block px-3 py-1 bg-slate-800 text-slate-300 font-medium text-[12px] rounded-md border-slate-700">No communication yet</span>
+                      <span className="inline-block px-3 py-1 bg-slate-800 text-slate-300 font-medium text-[12px] rounded-md border-slate-600">No communication yet</span>
                     </div>
-                    <div className="flex items-center gap-3 bg-slate-900/50 p-3 rounded-lg border-slate-700/50">
+                    <div className="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border-slate-600/50">
                       <span className="text-[13px] text-slate-400 font-medium w-24">Status:</span>
                       <span className="inline-flex items-center justify-center px-3 py-1 rounded-md text-[12px] font-bold text-amber-500 border border-amber-500/30 bg-amber-500/10 shadow-sm">Brand New</span>
                     </div>
-                    <div className="flex flex-col gap-2 relative bg-slate-900/50 p-3 rounded-lg border-slate-700/50">
+                    <div className="flex flex-col gap-2 relative bg-slate-950 p-3 rounded-lg border-slate-600/50">
                       <span className="text-[13px] text-slate-400 font-medium">Assigned to:</span>
                       <button 
                         onClick={() => setIsAssigneeDropdownOpen(!isAssigneeDropdownOpen)}
-                        className="px-3 py-2.5 bg-slate-900 border border-indigo-500/30 rounded-md text-[13px] font-medium text-white flex justify-between items-center w-full hover:bg-slate-800 transition-colors shadow-inner"
+                        className="px-3 py-2.5 bg-slate-900 border border-indigo-500/30 rounded-md text-[13px] font-medium text-white flex justify-between items-center w-full hover:bg-slate-800 transition-colors "
                       >
                         <span className="truncate">{selectedAssignee}</span>
                         <ChevronDown className="w-4 h-4 text-indigo-400 shrink-0" />
@@ -603,7 +603,7 @@ export default function ClientDetailsPage() {
                       {isAssigneeDropdownOpen && (
                         <>
                           <div className="fixed inset-0 z-[50]" onClick={() => setIsAssigneeDropdownOpen(false)}></div>
-                          <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border-slate-700 rounded-lg shadow-xl z-[60] py-1 max-h-48 overflow-y-auto custom-scrollbar animate-in fade-in slide-in-from-top-2">
+                          <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border-slate-600 rounded-lg shadow-xl z-[60] py-1 max-h-48 overflow-y-auto custom-scrollbar animate-in fade-in slide-in-from-top-2">
                             {assigneesList.map((assignee, idx) => (
                               <button 
                                 key={idx}
@@ -624,8 +624,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Contact Information & Employees */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-cyan-500 border-t-4 shadow-lg shadow-sm overflow-hidden flex flex-col max-h-[600px]">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center sticky top-0 z-10 shrink-0">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-cyan-500 border-t-4 shadow-lg shadow-sm overflow-hidden flex flex-col max-h-[600px]">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-cyan-400" />
                       <span className="font-bold text-white text-[15px]">Contacts & Team</span>
@@ -652,19 +652,19 @@ export default function ClientDetailsPage() {
                     <div className="space-y-3">
                       <h4 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider pl-1">Primary Contact</h4>
                       <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-3 p-3 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
+                        <div className="flex items-center gap-3 p-3 bg-slate-900 border-slate-600 rounded-lg hover:border border-cyan-500/30 transition-colors">
                           <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
                             <Phone className="w-4 h-4 text-cyan-400" />
                           </div>
                           <span className="text-[14px] font-medium text-white">+1 973 979 7987</span>
                         </div>
-                        <div className="flex items-center gap-3 p-3 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
+                        <div className="flex items-center gap-3 p-3 bg-slate-900 border-slate-600 rounded-lg hover:border border-cyan-500/30 transition-colors">
                           <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
                             <Mail className="w-4 h-4 text-cyan-400" />
                           </div>
                           <span className="text-[14px] font-medium text-slate-400">---</span>
                         </div>
-                        <div className="flex items-center gap-3 p-3 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-cyan-500/30 transition-colors">
+                        <div className="flex items-center gap-3 p-3 bg-slate-900 border-slate-600 rounded-lg hover:border border-cyan-500/30 transition-colors">
                           <div className="w-8 h-8 rounded-md bg-cyan-500/10 flex items-center justify-center shrink-0">
                             <MapPin className="w-4 h-4 text-cyan-400" />
                           </div>
@@ -678,8 +678,8 @@ export default function ClientDetailsPage() {
                       <h4 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider pl-1">Team Members ({employees.length})</h4>
                       <div className="space-y-3">
                         {employees.map((employee, index) => (
-                          <div key={employee.id} className="bg-slate-900/50 border-slate-700/50 rounded-lg p-4 relative group hover:border border-cyan-500/30 transition-colors">
-                            <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 p-1 rounded-md border-slate-700">
+                          <div key={employee.id} className="bg-slate-900 border-slate-600 rounded-lg p-4 relative group hover:border border-cyan-500/30 transition-colors">
+                            <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 p-1 rounded-md border-slate-600">
                               <button 
                                 onClick={() => {
                                   setEditingEmployee({
@@ -725,7 +725,7 @@ export default function ClientDetailsPage() {
                                   <span className="text-cyan-400 text-[12px] font-medium">{employee.designation}</span>
                                 </div>
                               </div>
-                              <div className="pt-2 border-t border-slate-700/50 space-y-2">
+                              <div className="pt-2 border-t border-slate-600/50 space-y-2">
                                 <div className="flex items-center gap-2 text-[12px]">
                                   <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
                                   <span className="text-slate-300 truncate" title={employee.email}>{employee.email}</span>
@@ -744,8 +744,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Website */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-emerald-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-emerald-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Globe className="w-5 h-5 text-emerald-400" />
                       <span className="font-bold text-white text-[15px]">Website</span>
@@ -760,7 +760,7 @@ export default function ClientDetailsPage() {
                   <div className="p-5 space-y-3">
                     <div className="space-y-1">
                       <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Main Website</label>
-                      <div className="flex flex-col gap-2 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
+                      <div className="flex flex-col gap-2 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
                         <div className="flex items-center gap-3">
                           <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
                             <Globe className="w-3.5 h-3.5 text-emerald-400" />
@@ -783,7 +783,7 @@ export default function ClientDetailsPage() {
                     
                     <div className="space-y-1">
                       <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Gorilla Apps Website</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
                         <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
                           <Globe className="w-3.5 h-3.5 text-emerald-400" />
                         </div>
@@ -793,7 +793,7 @@ export default function ClientDetailsPage() {
                     
                     <div className="space-y-1">
                       <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Staging Website</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
                         <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
                           <Globe className="w-3.5 h-3.5 text-emerald-400" />
                         </div>
@@ -801,9 +801,9 @@ export default function ClientDetailsPage() {
                       </div>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-700/50 space-y-2">
+                    <div className="mt-4 pt-3 border-t border-slate-600/50 space-y-2">
                       <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pl-1">Gorilla Apps Credentials</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/30 border-slate-700/30 rounded-lg">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/30 border-slate-600/30 rounded-lg">
                         <div className="w-7 h-7 rounded-md bg-slate-700/50 flex items-center justify-center shrink-0">
                           <User className="w-3.5 h-3.5 text-slate-400" />
                         </div>
@@ -812,7 +812,7 @@ export default function ClientDetailsPage() {
                           <span className="text-[13px] font-medium text-white truncate block">admin@client.com</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/30 border-slate-700/30 rounded-lg relative group">
+                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/30 border-slate-600/30 rounded-lg relative group">
                         <div className="w-7 h-7 rounded-md bg-slate-700/50 flex items-center justify-center shrink-0">
                           <Lock className="w-3.5 h-3.5 text-slate-400" />
                         </div>
@@ -829,8 +829,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Business Discovery */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-orange-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-orange-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Compass className="w-5 h-5 text-orange-400" />
                       <span className="font-bold text-white text-[15px]">Business Discovery</span>
@@ -840,7 +840,7 @@ export default function ClientDetailsPage() {
                     </button>
                   </div>
                   <div className="p-5">
-                    <div className="bg-slate-900/50 border-slate-700/50 rounded-lg p-4 text-center">
+                    <div className="bg-slate-900 border-slate-600 rounded-lg p-4 text-center">
                       <p className="text-[13px] font-medium text-slate-400 mb-4">No business discovery links added yet.</p>
                       <button onClick={() => setIsBusinessDiscoveryModalOpen(true)} className="w-full py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-md text-[13px] font-bold transition-colors flex items-center justify-center gap-2 shadow-sm">
                         <Plus className="w-4 h-4" /> Add Discovery Links
@@ -850,15 +850,15 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Billing Information */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-pink-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex items-center gap-2">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-pink-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex items-center gap-2">
                     <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                     </svg>
                     <span className="font-bold text-white text-[15px]">Billing Information</span>
                   </div>
                   <div className="p-5 space-y-4">
-                    <div className="bg-slate-900/50 border border-pink-500/30 rounded-lg p-4">
+                    <div className="bg-slate-950 border border-pink-500/30 rounded-lg p-4">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center">
                           <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -893,7 +893,7 @@ export default function ClientDetailsPage() {
                       <div className="mt-3">
                         <button 
                           onClick={() => setLocation('/contracts')}
-                          className="w-full py-2 bg-slate-800 hover:bg-slate-700 border-slate-600 text-white rounded-md text-[13px] font-bold transition-colors"
+                          className="w-full py-2 bg-slate-800 hover:bg-slate-700 border-slate-600 bg-slate-950 text-white rounded-md text-[13px] font-bold transition-colors"
                         >
                           Agreement
                         </button>
@@ -917,7 +917,7 @@ export default function ClientDetailsPage() {
                         </button>
                       </div>
                       <div className="space-y-2">
-                        <div className="flex items-center justify-between p-2.5 bg-slate-900/40 border-slate-700/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
+                        <div className="flex items-center justify-between p-2.5 bg-slate-900/40 border-slate-600/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0">
                               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
@@ -940,7 +940,7 @@ export default function ClientDetailsPage() {
                             </button>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between p-2.5 bg-slate-900/40 border-slate-700/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
+                        <div className="flex items-center justify-between p-2.5 bg-slate-900/40 border-slate-600/50 rounded-lg hover:border border-pink-500/30 transition-colors group">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-md bg-amber-500/10 flex items-center justify-center shrink-0">
                               <Bell className="w-4 h-4 text-amber-400" />
@@ -969,8 +969,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Background */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-violet-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-violet-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <ImageIcon className="w-5 h-5 text-violet-400" />
                       <span className="font-bold text-white text-[15px]">Background</span>
@@ -983,7 +983,7 @@ export default function ClientDetailsPage() {
                     </button>
                   </div>
                   <div className="p-5">
-                    <div className="bg-slate-900/50 border-slate-700/50 rounded-lg p-3">
+                    <div className="bg-slate-900 border-slate-600 rounded-lg p-3">
                       <a href="https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists" target="_blank" rel="noopener noreferrer" className="text-[13px] font-medium text-violet-400 hover:text-violet-300 hover:underline break-all block">
                         https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists
                       </a>
@@ -992,8 +992,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* General */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-teal-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-teal-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Info className="w-5 h-5 text-teal-400" />
                       <span className="font-bold text-white text-[15px]">General Info</span>
@@ -1006,35 +1006,35 @@ export default function ClientDetailsPage() {
                     </button>
                   </div>
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Globe className="w-3.5 h-3.5 text-teal-400" />
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Timezone:</span>
                       <span className="text-[13px] font-bold text-white">America/Denver</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <span className="text-teal-400 text-[14px] font-bold">$</span>
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Currency:</span>
                       <span className="text-[13px] font-bold text-white">USD</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <span className="text-teal-400 text-[12px] font-bold">A<span className="text-[9px]">文</span></span>
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Language:</span>
                       <span className="text-[13px] font-bold text-white">English - US</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Building2 className="w-3.5 h-3.5 text-teal-400" />
                       </div>
                       <span className="text-[13px] text-slate-400 w-24">Industry:</span>
                       <span className="text-[13px] font-bold text-white">Retail Trade</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <svg className="w-3.5 h-3.5 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <circle cx="12" cy="12" r="10"/>
@@ -1044,7 +1044,7 @@ export default function ClientDetailsPage() {
                       <span className="text-[13px] text-slate-400 w-24">Year in Biz:</span>
                       <span className="text-[13px] font-bold text-white">1 yr</span>
                     </div>
-                    <div className="flex items-center gap-3 p-2.5 bg-slate-900/50 border-slate-700/50 rounded-lg hover:border border-teal-500/30 transition-colors">
+                    <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-teal-500/30 transition-colors">
                       <div className="w-7 h-7 rounded-md bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Users className="w-3.5 h-3.5 text-teal-400" />
                       </div>
@@ -1056,8 +1056,8 @@ export default function ClientDetailsPage() {
 
 
                 {/* Compliance Essentials */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-yellow-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex items-center gap-2">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-yellow-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-yellow-400" />
                     <span className="font-bold text-white text-[15px]">Compliance Essentials</span>
                   </div>
@@ -1071,8 +1071,8 @@ export default function ClientDetailsPage() {
                       "SSL Certificate (HTTPS Security) - not a page, but an essential requirement",
                       "Powered by Pink Gorilla Footer"
                     ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-3 cursor-pointer group p-2.5 rounded-lg hover:bg-slate-900/50 transition-colors" onClick={() => toggleComplianceItem(i)}>
-                        <div className={`w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center transition-colors ${checkedComplianceItems[i] ? 'bg-yellow-500 border-yellow-500 shadow-sm' : 'border-slate-600 bg-slate-900/50 group-hover:border-yellow-500/50'}`}>
+                      <div key={i} className="flex items-start gap-3 cursor-pointer group p-2.5 rounded-lg hover:bg-slate-950 transition-colors" onClick={() => toggleComplianceItem(i)}>
+                        <div className={`w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center transition-colors ${checkedComplianceItems[i] ? 'bg-yellow-500 border-yellow-500 shadow-sm' : 'border-slate-600 bg-slate-950 group-hover:border-yellow-500/50'}`}>
                           {checkedComplianceItems[i] && <CheckCircle2 className="w-3.5 h-3.5 text-slate-900 stroke-[3]" />}
                         </div>
                         <span className={`text-[13px] leading-tight transition-colors select-none mt-0.5 ${checkedComplianceItems[i] ? 'text-white font-semibold' : 'text-slate-400 group-hover:text-slate-300'}`}>
@@ -1089,13 +1089,13 @@ export default function ClientDetailsPage() {
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
                 {/* Communications Section */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-blue-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-5 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-blue-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-5 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-blue-400" />
                       Communications
                     </h2>
-                    <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border-slate-700">
+                    <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border-slate-600">
                       <button 
                         onClick={() => setActiveTab('email')}
                         className={`flex items-center gap-1.5 px-4 py-2 rounded-md text-[13px] font-bold transition-all ${activeTab === 'email' ? 'bg-blue-500 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
@@ -1116,7 +1116,7 @@ export default function ClientDetailsPage() {
                   
                   <div className="p-6">
                     {activeTab === 'email' && (
-                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-900/40 shadow-inner overflow-hidden">
+                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-900/40  overflow-hidden">
                         <div className="p-6 space-y-6">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -1125,7 +1125,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                   <User className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="recipient@example.com" className="w-full pl-10 pr-4 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner" />
+                                <input type="text" defaultValue={currentClient.email !== '---' ? currentClient.email : ''} placeholder="recipient@example.com" className="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-600  rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all " />
                               </div>
                               <p className="text-[11px] text-slate-400 mt-1.5 font-medium flex items-center gap-1">
                                 <Info className="w-3 h-3" /> Separate multiple with commas
@@ -1138,7 +1138,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                   <Building2 className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <select className="w-full pl-10 pr-4 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                <select className="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-600  rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all  appearance-none cursor-pointer">
                                   <option>Neeraj Kumar (neeraj@pinkgorillasoftware.com)</option>
                                 </select>
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -1152,7 +1152,7 @@ export default function ClientDetailsPage() {
                             <div className="md:col-span-2">
                               <label className="block text-[12px] font-bold text-blue-300 uppercase tracking-wider mb-2">Subject <span className="text-slate-500">*</span></label>
                               <div className="relative">
-                                <input type="text" placeholder="What is this email about?" className="w-full px-4 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner" />
+                                <input type="text" placeholder="What is this email about?" className="w-full px-4 py-3 bg-slate-950 border border-slate-600  rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all " />
                               </div>
                             </div>
                             
@@ -1169,7 +1169,7 @@ export default function ClientDetailsPage() {
                               <div className="relative">
                                 <button 
                                   onClick={() => setIsTemplateDropdownOpen(!isTemplateDropdownOpen)}
-                                  className="w-full flex items-center justify-between px-4 py-3 bg-blue-500/10 border border-blue-500/30 text-blue-300 rounded-lg text-[14px] font-bold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner cursor-pointer"
+                                  className="w-full flex items-center justify-between px-4 py-3 bg-blue-500/10 border border-blue-500/30 text-blue-300 rounded-lg text-[14px] font-bold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all  cursor-pointer"
                                 >
                                   <span className="truncate">{selectedTemplateId ? emailTemplates.find(t => t.id === selectedTemplateId)?.name : 'Select a Template...'}</span>
                                   <ChevronDown className={`h-4 w-4 text-blue-400 transition-transform duration-200 ${isTemplateDropdownOpen ? 'rotate-180' : ''}`} />
@@ -1179,7 +1179,7 @@ export default function ClientDetailsPage() {
                                   <div className="absolute z-50 mt-1 w-full bg-slate-800 border border-blue-500/30 rounded-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2">
                                     <div className="max-h-60 overflow-y-auto custom-scrollbar">
                                       <div 
-                                        className="px-4 py-2.5 text-[13px] text-slate-300 hover:bg-slate-700 cursor-pointer border-b border-slate-700/50"
+                                        className="px-4 py-2.5 text-[13px] text-slate-300 hover:bg-slate-700 cursor-pointer border-b border-slate-600/50"
                                         onClick={() => { setSelectedTemplateId(null); setIsTemplateDropdownOpen(false); }}
                                       >
                                         None (Clear)
@@ -1216,8 +1216,8 @@ export default function ClientDetailsPage() {
                               <span>Message <span className="text-slate-500">*</span></span>
                               <span className="text-[11px] text-slate-500 font-normal normal-case">Markdown supported</span>
                             </label>
-                            <div className="border-slate-700 rounded-xl bg-slate-900/90 overflow-hidden flex flex-col shadow-inner focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
-                              <div className="flex items-center gap-1 border-b border-slate-700/50 p-2 bg-slate-900/50">
+                            <div className="border-slate-600 rounded-xl bg-slate-900/90 overflow-hidden flex flex-col  focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
+                              <div className="flex items-center gap-1 border-b border-slate-600/50 p-2 bg-slate-950">
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="font-bold text-[14px]">B</span></button>
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="italic text-[14px]">I</span></button>
                                 <button className="w-8 h-8 flex items-center justify-center hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"><span className="underline text-[14px]">U</span></button>
@@ -1230,8 +1230,8 @@ export default function ClientDetailsPage() {
                           </div>
                         </div>
                         
-                        <div className="flex justify-between items-center p-4 bg-slate-900/50 border-t border-slate-700/50">
-                          <button className="px-4 py-2.5 border-slate-600 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg text-[13px] font-bold flex items-center gap-2 transition-all">
+                        <div className="flex justify-between items-center p-4 bg-slate-950 border-t border-slate-600/50">
+                          <button className="px-4 py-2.5 border-slate-600 bg-slate-950 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg text-[13px] font-bold flex items-center gap-2 transition-all">
                             <Plus className="w-4 h-4" /> Attach Files
                           </button>
                           <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
@@ -1242,7 +1242,7 @@ export default function ClientDetailsPage() {
                     )}
                     
                     {activeTab === 'sms' && (
-                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-900/40 shadow-inner overflow-hidden">
+                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-900/40  overflow-hidden">
                         <div className="p-6 space-y-6">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -1251,23 +1251,23 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                                   <Phone className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-10 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner relative z-10" />
+                                <input type="text" defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''} placeholder="(555) 123-4567" className="w-full pl-10 pr-10 py-3 bg-slate-950 border border-slate-600  rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all  relative z-10" />
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 z-10">
                                   <ChevronDown className="w-4 h-4 text-slate-500 cursor-pointer" />
                                 </div>
                                 
                                 {/* SMS Dropdown Menu on hover */}
-                                <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border-slate-600 rounded-xl shadow-2xl opacity-0 invisible group-hover/sms:opacity-100 group-hover/sms:visible transition-all z-50 overflow-hidden transform origin-top scale-95 group-hover/sms:scale-100 duration-200">
-                                  <div className="p-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-900/50 border-b border-slate-700 text-left">CRM Contacts</div>
+                                <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border-slate-600 bg-slate-950 rounded-xl shadow-2xl opacity-0 invisible group-hover/sms:opacity-100 group-hover/sms:visible transition-all z-50 overflow-hidden transform origin-top scale-95 group-hover/sms:scale-100 duration-200">
+                                  <div className="p-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-950 border-b border-slate-600 text-left">CRM Contacts</div>
                                   <div className="max-h-[200px] overflow-y-auto custom-scrollbar">
-                                    <button className="w-full text-left px-4 py-2.5 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-700/50 group/item">
+                                    <button className="w-full text-left px-4 py-2.5 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-600/50 group/item">
                                       <div className="flex justify-between items-center w-full">
                                         <span className="text-[13px] font-bold text-white group-hover/item:text-blue-400 transition-colors">Main Office</span>
                                         <span className="text-blue-400/80 font-mono text-[12px]">{currentClient.phone}</span>
                                       </div>
                                     </button>
                                     {employees.map(emp => (
-                                      <button key={emp.id} className="w-full text-left px-4 py-2.5 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-700/50 last:border-0 group/item">
+                                      <button key={emp.id} className="w-full text-left px-4 py-2.5 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-600/50 last:border-0 group/item">
                                         <div className="flex justify-between items-center w-full">
                                           <span className="text-[13px] font-bold text-white group-hover/item:text-blue-400 transition-colors">{emp.firstName} {emp.lastName}</span>
                                           <span className="text-blue-400/80 font-mono text-[12px]">{emp.phone}</span>
@@ -1285,7 +1285,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                   <Building2 className="h-4 w-4 text-slate-500" />
                                 </div>
-                                <select className="w-full pl-10 pr-4 py-3 bg-slate-900/90 border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner appearance-none cursor-pointer">
+                                <select className="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-600  rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all  appearance-none cursor-pointer">
                                   <option>Company Phone (+1 800 123 4567)</option>
                                 </select>
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -1317,7 +1317,7 @@ export default function ClientDetailsPage() {
                                 <div className="absolute top-0 inset-x-0 h-6 bg-slate-800 rounded-b-xl mx-auto w-32 z-20"></div>
                                 
                                 {/* SMS Header */}
-                                <div className="bg-slate-800/80 backdrop-blur-md pt-8 pb-3 px-4 text-center border-b border-slate-700 relative z-10 shrink-0 flex flex-col items-center">
+                                <div className="bg-slate-800/80 backdrop-blur-md pt-8 pb-3 px-4 text-center border-b border-slate-600 relative z-10 shrink-0 flex flex-col items-center">
                                   <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center mb-1">
                                     <User className="w-5 h-5 text-slate-400" />
                                   </div>
@@ -1330,7 +1330,7 @@ export default function ClientDetailsPage() {
                                   <div className="flex flex-col gap-3 mt-auto mb-4 pt-4">
                                     <div className="flex flex-col items-start max-w-[85%]">
                                       <span className="text-[9px] text-slate-500 mb-0.5 ml-2">Mar 06, 10:00 AM</span>
-                                      <div className="bg-slate-800 text-slate-300 p-2.5 rounded-2xl rounded-tl-sm text-[13px] shadow-sm border-slate-700/50">
+                                      <div className="bg-slate-800 text-slate-300 p-2.5 rounded-2xl rounded-tl-sm text-[13px] shadow-sm border-slate-600/50">
                                         Hi there! We wanted to let you know about our new features. Are you available for a quick chat?
                                       </div>
                                     </div>
@@ -1342,7 +1342,7 @@ export default function ClientDetailsPage() {
                                     </div>
                                     <div className="flex flex-col items-start max-w-[85%]">
                                       <span className="text-[9px] text-slate-500 mb-0.5 ml-2">Mar 06, 10:20 AM</span>
-                                      <div className="bg-slate-800 text-slate-300 p-2.5 rounded-2xl rounded-tl-sm text-[13px] shadow-sm border-slate-700/50">
+                                      <div className="bg-slate-800 text-slate-300 p-2.5 rounded-2xl rounded-tl-sm text-[13px] shadow-sm border-slate-600/50">
                                         Perfect! I'll send over a calendar invite shortly.
                                       </div>
                                     </div>
@@ -1369,7 +1369,7 @@ export default function ClientDetailsPage() {
                           </div>
                         </div>
                         
-                        <div className="flex justify-end items-center p-4 bg-slate-900/50 border-t border-slate-700/50">
+                        <div className="flex justify-end items-center p-4 bg-slate-950 border-t border-slate-600/50">
                           <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
                             <MessageSquare className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" /> Send SMS
                           </button>
@@ -1378,17 +1378,17 @@ export default function ClientDetailsPage() {
                     )}
 
                     {activeTab === 'call' && (
-                      <div className="border border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-xl bg-slate-900/40 shadow-inner overflow-hidden">
+                      <div className="border border-emerald-500/30 border-t-emerald-500 border-t-4 rounded-xl bg-slate-900/40  overflow-hidden">
                         <div className="p-8">
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                             
                             {/* Left Side - Dialer UI */}
-                            <div className="flex flex-col items-center justify-center bg-slate-900/80 rounded-2xl border-slate-700/50 p-8 shadow-inner relative overflow-hidden">
+                            <div className="flex flex-col items-center justify-center bg-slate-900/80 rounded-2xl border-slate-600/50 p-8  relative overflow-hidden">
                               {/* Background glowing orb */}
                               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 hidden rounded-full pointer-events-none"></div>
                               
                               <div className="text-center mb-8 relative z-10">
-                                <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-3 border-slate-700">
+                                <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-3 border-slate-600">
                                   <User className="w-8 h-8 text-slate-400" />
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-1">{currentClient.name}</h3>
@@ -1402,7 +1402,7 @@ export default function ClientDetailsPage() {
                                     type="text" 
                                     defaultValue={currentClient.phone !== '---' ? currentClient.phone : ''}
                                     placeholder="Enter phone number..."
-                                    className="w-full pl-10 pr-10 py-2.5 bg-slate-900/90 border border-emerald-500/30 rounded-lg text-[16px] font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-center shadow-inner relative z-10"
+                                    className="w-full pl-10 pr-10 py-2.5 bg-slate-900/90 border border-emerald-500/30 rounded-lg text-[16px] font-mono text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-center  relative z-10"
                                   />
                                   <div className="absolute inset-y-0 right-0 flex items-center pr-2 z-10">
                                     <div className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded cursor-pointer transition-colors">
@@ -1411,11 +1411,11 @@ export default function ClientDetailsPage() {
                                   </div>
                                   
                                   {/* Dropdown Menu on hover */}
-                                  <div className="absolute top-full left-0 right-0 mt-2 bg-slate-800 border-slate-600 rounded-xl shadow-2xl opacity-0 invisible group-hover/dialer:opacity-100 group-hover/dialer:visible transition-all z-50 overflow-hidden transform origin-top scale-95 group-hover/dialer:scale-100 duration-200 text-left">
-                                    <div className="p-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-900/50 border-b border-slate-700">CRM Contacts</div>
+                                  <div className="absolute top-full left-0 right-0 mt-2 bg-slate-800 border-slate-600 bg-slate-950 rounded-xl shadow-2xl opacity-0 invisible group-hover/dialer:opacity-100 group-hover/dialer:visible transition-all z-50 overflow-hidden transform origin-top scale-95 group-hover/dialer:scale-100 duration-200 text-left">
+                                    <div className="p-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-950 border-b border-slate-600">CRM Contacts</div>
                                     
                                     <div className="max-h-[200px] overflow-y-auto custom-scrollbar">
-                                      <button className="w-full text-left px-4 py-3 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-700/50 group/item">
+                                      <button className="w-full text-left px-4 py-3 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-600/50 group/item">
                                         <div className="flex justify-between items-center w-full mb-1">
                                           <span className="text-[13px] font-bold text-white group-hover/item:text-emerald-400 transition-colors">Main Office</span>
                                           <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-900 rounded text-slate-400">Primary</span>
@@ -1424,7 +1424,7 @@ export default function ClientDetailsPage() {
                                       </button>
                                       
                                       {employees.map(emp => (
-                                        <button key={emp.id} className="w-full text-left px-4 py-3 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-700/50 last:border-0 group/item">
+                                        <button key={emp.id} className="w-full text-left px-4 py-3 hover:bg-slate-700 flex flex-col transition-colors border-b border-slate-600/50 last:border-0 group/item">
                                           <div className="flex justify-between items-center w-full mb-1">
                                             <span className="text-[13px] font-bold text-white group-hover/item:text-emerald-400 transition-colors">{emp.firstName} {emp.lastName}</span>
                                             <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-900 rounded text-slate-400 truncate max-w-[80px]">{emp.designation}</span>
@@ -1451,7 +1451,7 @@ export default function ClientDetailsPage() {
                               
                               <div className="mt-6 w-full">
                                 <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 text-center">Calling From</label>
-                                <select className="w-full text-center px-4 py-2.5 bg-slate-800/80 border-slate-700 rounded-lg text-[13px] font-medium text-white focus:outline-none focus:border-emerald-500 transition-all appearance-none cursor-pointer">
+                                <select className="w-full text-center px-4 py-2.5 bg-slate-800/80 border-slate-600 rounded-lg text-[13px] font-medium text-white focus:outline-none focus:border-emerald-500 transition-all appearance-none cursor-pointer">
                                   <option>Company Phone (+1 800 123 4567)</option>
                                   <option>Personal Cell (+1 555 987 6543)</option>
                                 </select>
@@ -1465,31 +1465,31 @@ export default function ClientDetailsPage() {
                                 Log Call Details
                               </h3>
                               
-                              <div className="flex-1 flex flex-col bg-slate-900/80 rounded-2xl border-slate-700/50 p-5 shadow-inner">
+                              <div className="flex-1 flex flex-col bg-slate-900/80 rounded-2xl border-slate-600/50 p-5 ">
                                 <div className="mb-4">
                                   <label className="block text-[12px] font-bold text-slate-300 uppercase tracking-wider mb-2">Call Outcome <span className="text-slate-500">*</span></label>
                                   <div className="grid grid-cols-2 gap-2">
                                     <label className="cursor-pointer">
                                       <input type="radio" name="outcome" className="peer sr-only" defaultChecked />
-                                      <div className="px-3 py-2 bg-slate-800 border-slate-700 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-emerald-500/20 peer-checked:border-emerald-500/50 peer-checked:text-emerald-400 transition-all hover:bg-slate-700">
+                                      <div className="px-3 py-2 bg-slate-800 border-slate-600 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-emerald-500/20 peer-checked:border-emerald-500/50 peer-checked:text-emerald-400 transition-all hover:bg-slate-700">
                                         Connected
                                       </div>
                                     </label>
                                     <label className="cursor-pointer">
                                       <input type="radio" name="outcome" className="peer sr-only" />
-                                      <div className="px-3 py-2 bg-slate-800 border-slate-700 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-amber-500/20 peer-checked:border-amber-500/50 peer-checked:text-amber-400 transition-all hover:bg-slate-700">
+                                      <div className="px-3 py-2 bg-slate-800 border-slate-600 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-amber-500/20 peer-checked:border-amber-500/50 peer-checked:text-amber-400 transition-all hover:bg-slate-700">
                                         Left Voicemail
                                       </div>
                                     </label>
                                     <label className="cursor-pointer">
                                       <input type="radio" name="outcome" className="peer sr-only" />
-                                      <div className="px-3 py-2 bg-slate-800 border-slate-700 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-blue-500/20 peer-checked:border-blue-500/50 peer-checked:text-blue-400 transition-all hover:bg-slate-700">
+                                      <div className="px-3 py-2 bg-slate-800 border-slate-600 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-blue-500/20 peer-checked:border-blue-500/50 peer-checked:text-blue-400 transition-all hover:bg-slate-700">
                                         No Answer
                                       </div>
                                     </label>
                                     <label className="cursor-pointer">
                                       <input type="radio" name="outcome" className="peer sr-only" />
-                                      <div className="px-3 py-2 bg-slate-800 border-slate-700 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-slate-700 peer-checked:border-slate-500 peer-checked:text-white transition-all hover:bg-slate-700">
+                                      <div className="px-3 py-2 bg-slate-800 border-slate-600 rounded-lg text-center text-[13px] font-medium text-slate-300 peer-checked:bg-slate-700 peer-checked:border-slate-500 peer-checked:text-white transition-all hover:bg-slate-700">
                                         Wrong Number
                                       </div>
                                     </label>
@@ -1500,7 +1500,7 @@ export default function ClientDetailsPage() {
                                   <label className="block text-[12px] font-bold text-slate-300 uppercase tracking-wider mb-2">Notes</label>
                                   <textarea 
                                     placeholder="What was discussed on the call? Any action items?" 
-                                    className="w-full flex-1 px-4 py-3 bg-slate-800/80 border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all shadow-inner resize-none"
+                                    className="w-full flex-1 px-4 py-3 bg-slate-800/80 border-slate-600 rounded-lg text-[14px] text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all  resize-none"
                                   ></textarea>
                                 </div>
                                 
@@ -1518,8 +1518,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-amber-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-amber-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-amber-400" />
                       Notes
@@ -1612,13 +1612,13 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Analytics Expanded Section */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-sky-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-sky-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-sky-500/20 bg-sky-500/5 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-sky-400" />
                       Client Analytics
                     </h2>
-                    <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border-slate-700">
+                    <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border-slate-600">
                       <button className="px-3 py-1.5 rounded text-[12px] font-bold bg-sky-500 text-white shadow-md">30 Days</button>
                       <button className="px-3 py-1.5 rounded text-[12px] font-bold text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all">90 Days</button>
                       <button className="px-3 py-1.5 rounded text-[12px] font-bold text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all">All Time</button>
@@ -1628,7 +1628,7 @@ export default function ClientDetailsPage() {
                   <div className="p-6 space-y-6">
                     {/* Top Stats Row */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="bg-slate-900/40 border-slate-700/50 rounded-xl p-4 flex flex-col">
+                      <div className="bg-slate-900/40 border-slate-600/50 rounded-xl p-4 flex flex-col">
                         <div className="flex justify-between items-start mb-2">
                           <span className="text-[13px] font-medium text-slate-400">Total Visits</span>
                           <div className="w-8 h-8 rounded-md bg-sky-500/10 flex items-center justify-center">
@@ -1643,7 +1643,7 @@ export default function ClientDetailsPage() {
                         </div>
                       </div>
                       
-                      <div className="bg-slate-900/40 border-slate-700/50 rounded-xl p-4 flex flex-col">
+                      <div className="bg-slate-900/40 border-slate-600/50 rounded-xl p-4 flex flex-col">
                         <div className="flex justify-between items-start mb-2">
                           <span className="text-[13px] font-medium text-slate-400">Gorilla Apps Logins</span>
                           <div className="w-8 h-8 rounded-md bg-purple-500/10 flex items-center justify-center">
@@ -1658,7 +1658,7 @@ export default function ClientDetailsPage() {
                         </div>
                       </div>
                       
-                      <div className="bg-slate-900/40 border-slate-700/50 rounded-xl p-4 flex flex-col">
+                      <div className="bg-slate-900/40 border-slate-600/50 rounded-xl p-4 flex flex-col">
                         <div className="flex justify-between items-start mb-2">
                           <span className="text-[13px] font-medium text-slate-400">Active Users</span>
                           <div className="w-8 h-8 rounded-md bg-emerald-500/10 flex items-center justify-center">
@@ -1677,7 +1677,7 @@ export default function ClientDetailsPage() {
                     {/* Charts Row */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       {/* Area Chart - Traffic */}
-                      <div className="bg-slate-900/30 border-slate-700/30 rounded-xl p-4">
+                      <div className="bg-slate-900/30 border-slate-600/30 rounded-xl p-4">
                         <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
                           <TrendingUp className="w-4 h-4 text-sky-400" /> Traffic Overview
                         </h3>
@@ -1710,7 +1710,7 @@ export default function ClientDetailsPage() {
                       </div>
 
                       {/* Bar Chart - Device Types */}
-                      <div className="bg-slate-900/30 border-slate-700/30 rounded-xl p-4">
+                      <div className="bg-slate-900/30 border-slate-600/30 rounded-xl p-4">
                         <h3 className="text-[13px] font-bold text-slate-300 mb-4 flex items-center gap-2">
                           <Settings className="w-4 h-4 text-purple-400" /> Platform Usage
                         </h3>
@@ -1738,7 +1738,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Document Signing Center */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-teal-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-teal-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
                   <div className="p-5 border-b border-teal-500/20 flex justify-between items-center bg-teal-500/15">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-teal-400" />
@@ -1773,10 +1773,10 @@ export default function ClientDetailsPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2 md:justify-end">
-                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border-slate-700/50 bg-slate-900/50" title="View Document">
+                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border-slate-600/50 bg-slate-950" title="View Document">
                             <Eye className="w-4 h-4" />
                           </button>
-                          <button className="p-2 text-slate-400 hover:text-teal-400 hover:bg-teal-500/10 rounded-lg transition-colors border-slate-700/50 bg-slate-900/50" title="Download PDF">
+                          <button className="p-2 text-slate-400 hover:text-teal-400 hover:bg-teal-500/10 rounded-lg transition-colors border-slate-600/50 bg-slate-950" title="Download PDF">
                             <Download className="w-4 h-4" />
                           </button>
                         </div>
@@ -1804,25 +1804,25 @@ export default function ClientDetailsPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2 md:justify-end">
-                          <button className="px-3 py-1.5 text-[11px] font-bold text-slate-300 hover:text-white bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors border-slate-600">
+                          <button className="px-3 py-1.5 text-[11px] font-bold text-slate-300 hover:text-white bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-colors border-slate-600 bg-slate-950">
                             Remind
                           </button>
-                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border-slate-700/50 bg-slate-900/50" title="View Document">
+                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors border-slate-600/50 bg-slate-950" title="View Document">
                             <Eye className="w-4 h-4" />
                           </button>
                         </div>
                       </div>
                       
                       {/* Draft Document */}
-                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-900/40 border-slate-700/50 rounded-lg hover:bg-slate-800/60 transition-colors group">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-slate-900/40 border-slate-600/50 rounded-lg hover:bg-slate-800/60 transition-colors group">
                         <div className="flex items-start gap-4 mb-3 md:mb-0">
-                          <div className="w-10 h-10 rounded-lg bg-slate-700/50 flex items-center justify-center shrink-0 border-slate-600">
+                          <div className="w-10 h-10 rounded-lg bg-slate-700/50 flex items-center justify-center shrink-0 border-slate-600 bg-slate-950">
                             <FileText className="w-5 h-5 text-slate-400" />
                           </div>
                           <div>
                             <h4 className="text-[14px] font-bold text-white group-hover:text-indigo-300 transition-colors">NDA Agreement</h4>
                             <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                              <span className="text-[11px] font-medium px-2 py-0.5 bg-slate-700 text-slate-300 rounded border-slate-600 flex items-center gap-1">
+                              <span className="text-[11px] font-medium px-2 py-0.5 bg-slate-700 text-slate-300 rounded border-slate-600 bg-slate-950 flex items-center gap-1">
                                 <Edit2 className="w-3 h-3" /> Draft
                               </span>
                               <span className="text-[12px] text-slate-400 flex items-center gap-1">
@@ -1835,7 +1835,7 @@ export default function ClientDetailsPage() {
                           <button className="px-3 py-1.5 text-[11px] font-bold text-indigo-300 hover:text-white bg-indigo-500/10 hover:bg-teal-500/20 rounded-lg transition-colors border border-indigo-500/30">
                             Edit & Send
                           </button>
-                          <button className="p-2 text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 rounded-lg transition-colors border-slate-700/50 bg-slate-900/50" title="Delete">
+                          <button className="p-2 text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 rounded-lg transition-colors border-slate-600/50 bg-slate-950" title="Delete">
                             <Trash2 className="w-4 h-4" />
                           </button>
                         </div>
@@ -1846,8 +1846,8 @@ export default function ClientDetailsPage() {
 
 
                 {/* Samples Section */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-fuchsia-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-fuchsia-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <List className="w-5 h-5 text-fuchsia-400" />
                       Client Assets & Samples
@@ -1870,7 +1870,7 @@ export default function ClientDetailsPage() {
                   <div className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {samples.map(sample => (
-                        <div key={sample.id} className="bg-slate-800/80 border-slate-700 rounded-xl p-4 relative overflow-hidden flex flex-col group shadow-sm hover:border-fuchsia-500/50 transition-all hover:shadow-sm">
+                        <div key={sample.id} className="bg-slate-800/80 border-slate-600 rounded-xl p-4 relative overflow-hidden flex flex-col group shadow-sm hover:border-fuchsia-500/50 transition-all hover:shadow-sm">
                           
                           {/* Top bar */}
                           <div className="flex justify-between items-start mb-3 relative z-10">
@@ -1881,7 +1881,7 @@ export default function ClientDetailsPage() {
                               <h4 className="font-bold text-white text-[15px]">{sample.title}</h4>
                             </div>
                             
-                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 p-1 rounded-md border-slate-700">
+                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 p-1 rounded-md border-slate-600">
                               <button className="p-1.5 text-slate-400 hover:text-blue-400 hover:bg-slate-800 rounded transition-colors" title="Copy URL">
                                 <LinkIcon className="w-3.5 h-3.5" />
                               </button>
@@ -1899,13 +1899,13 @@ export default function ClientDetailsPage() {
                           </div>
                           
                           {/* URL Box */}
-                          <div className="bg-slate-900 p-3 rounded-lg border-slate-700/50 mb-4 relative z-10 flex items-center justify-between group/url cursor-pointer hover:border border-fuchsia-500/30 transition-colors">
+                          <div className="bg-slate-900 p-3 rounded-lg border-slate-600/50 mb-4 relative z-10 flex items-center justify-between group/url cursor-pointer hover:border border-fuchsia-500/30 transition-colors">
                             <span className="text-[13px] text-fuchsia-300 font-medium truncate pr-4">{sample.url}</span>
                             <LinkIcon className="w-3.5 h-3.5 text-slate-500 group-hover/url:text-fuchsia-400 shrink-0 transition-colors" />
                           </div>
                           
                           {/* Footer */}
-                          <div className="flex items-center justify-between text-[11px] font-medium text-slate-400 relative z-10 mt-auto pt-3 border-t border-slate-700/50">
+                          <div className="flex items-center justify-between text-[11px] font-medium text-slate-400 relative z-10 mt-auto pt-3 border-t border-slate-600/50">
                             <div className="flex items-center gap-1.5">
                               <User className="w-3.5 h-3.5 text-slate-500" />
                               <span>{sample.author}</span>
@@ -1920,8 +1920,8 @@ export default function ClientDetailsPage() {
                       ))}
                       
                       {samples.length === 0 && (
-                        <div className="col-span-1 md:col-span-2 p-10 flex flex-col items-center justify-center text-white bg-slate-900/40 rounded-xl border-slate-700/50 border-dashed">
-                          <div className="w-16 h-16 mb-4 flex items-center justify-center bg-slate-800 rounded-full border-slate-700">
+                        <div className="col-span-1 md:col-span-2 p-10 flex flex-col items-center justify-center text-white bg-slate-900/40 rounded-xl border-slate-600/50 border-dashed">
+                          <div className="w-16 h-16 mb-4 flex items-center justify-center bg-slate-800 rounded-full border-slate-600">
                             <Search className="w-8 h-8 text-slate-500" />
                           </div>
                           <h3 className="text-[16px] font-bold text-white mb-2">No assets found</h3>
@@ -1966,7 +1966,7 @@ export default function ClientDetailsPage() {
 
                 {/* Tasks Widget */}
                 <div className="bg-slate-800 rounded-xl border border-purple-500/30 border-t-purple-500 border-t-4 shadow-sm relative z-[50] shrink-0">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-700 flex justify-between items-center rounded-t-xl relative z-[60]">
+                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <Zap className="w-5 h-5 text-purple-400" /> Tasks
                     </span>
@@ -1974,10 +1974,10 @@ export default function ClientDetailsPage() {
                       {/* View All */}
                       <button 
                         onClick={() => setLocation('/tasks')}
-                        className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 border-slate-600 flex items-center justify-center text-slate-300 hover:text-white shadow-sm transition-colors group relative"
+                        className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 border-slate-600 bg-slate-950 flex items-center justify-center text-slate-300 hover:text-white shadow-sm transition-colors group relative"
                       >
                         <Eye className="w-4 h-4" />
-                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
+                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border-slate-600 bg-slate-950 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
                           View All
                         </div>
                       </button>
@@ -1989,7 +1989,7 @@ export default function ClientDetailsPage() {
                           className="w-8 h-8 rounded-lg bg-orange-500 hover:bg-orange-600 flex items-center justify-center text-white shadow-sm transition-colors group relative z-[60]"
                         >
                           <Zap className="w-4 h-4" />
-                          <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
+                          <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border-slate-600 bg-slate-950 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
                             Quick Reminder
                           </div>
                         </button>
@@ -1997,7 +1997,7 @@ export default function ClientDetailsPage() {
                         {isTaskDropdownOpen && (
                           <>
                             <div className="fixed inset-0 z-[50]" onClick={() => setIsTaskDropdownOpen(false)}></div>
-                            <div className="absolute right-0 top-full mt-2 w-48 bg-slate-800 rounded-xl shadow-xl border-slate-600 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
+                            <div className="absolute right-0 top-full mt-2 w-48 bg-slate-800 rounded-xl shadow-xl border-slate-600 bg-slate-950 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
                               {['1 Day Follow Up', '3 Day Follow Up', '1 Week Follow Up', '2 Week Follow Up', '1 Month Follow Up', '3 Month Follow Up', '6 Month Follow Up', '12 Month Follow Up'].map((item) => (
                                 <button key={item} onClick={() => setIsTaskDropdownOpen(false)} className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors relative z-10">
                                   {item}
@@ -2014,14 +2014,14 @@ export default function ClientDetailsPage() {
                         className="w-8 h-8 rounded-lg bg-purple-600 hover:bg-purple-500 flex items-center justify-center text-white shadow-sm transition-colors group relative"
                       >
                         <Plus className="w-4 h-4" />
-                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border-slate-600 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
+                        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-2.5 py-1.5 bg-slate-800 text-white text-[11px] rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-[100] shadow-lg border-slate-600 bg-slate-950 before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-4 before:border-transparent before:border-b-slate-600 after:content-[''] after:absolute after:-top-[7px] after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-b-slate-800 font-bold">
                           Add Task
                         </div>
                       </button>
                     </div>
                   </div>
                   <div className="p-10 flex flex-col items-center justify-center text-white bg-slate-900/30 rounded-b-xl border-t border-purple-500/10">
-                    <div className="w-14 h-14 mb-4 flex items-center justify-center text-slate-500 bg-slate-800 rounded-full border-slate-700">
+                    <div className="w-14 h-14 mb-4 flex items-center justify-center text-slate-500 bg-slate-800 rounded-full border-slate-600">
                       <Search className="w-7 h-7 text-purple-500/30" />
                     </div>
                     <h3 className="text-[16px] font-bold text-white mb-2">No tasks found</h3>
@@ -2030,7 +2030,7 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-slate-500 border-t-4 shadow-lg shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-slate-500 border-t-4 shadow-lg shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
                   <div className="p-4 border-b border-slate-500/20 bg-slate-500/5 flex justify-between items-center relative z-[45]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <List className="w-5 h-5 text-slate-400" />
@@ -2047,7 +2047,7 @@ export default function ClientDetailsPage() {
                       {isActivityDropdownOpen && (
                         <>
                           <div className="fixed inset-0 z-[50]" onClick={() => setIsActivityDropdownOpen(false)}></div>
-                          <div className="absolute right-0 top-full mt-2 w-[180px] bg-slate-800 rounded-xl shadow-xl border-slate-600 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
+                          <div className="absolute right-0 top-full mt-2 w-[180px] bg-slate-800 rounded-xl shadow-xl border-slate-600 bg-slate-950 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
                             {['All Activities', 'Text / SMS', 'Emails', 'Tasks', 'Notes', 'Call'].map((item) => (
                               <button 
                                 key={item} 
@@ -2073,7 +2073,7 @@ export default function ClientDetailsPage() {
                     
                     {filteredActivities.length > 0 ? (
                       filteredActivities.map((activity) => (
-                        <div key={activity.id} className="bg-slate-800/80 border-slate-700 rounded-xl p-4 relative hover:border-slate-500/40 transition-colors shadow-sm">
+                        <div key={activity.id} className="bg-slate-800/80 border-slate-600 rounded-xl p-4 relative hover:border-slate-500/40 transition-colors shadow-sm">
                           <div className="flex gap-3">
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border
                               ${activity.type === 'Tasks' ? 'bg-purple-500/20 border border-purple-500/30 text-purple-400' :
@@ -2090,7 +2090,7 @@ export default function ClientDetailsPage() {
                             </div>
                             <div className="flex-1">
                               <p className="text-[13px] font-bold text-white leading-tight mb-2">{activity.title}</p>
-                              <div className="flex flex-col gap-1.5 text-[12px] text-slate-400 font-medium bg-slate-900/50 p-2 rounded-lg border-slate-700/50">
+                              <div className="flex flex-col gap-1.5 text-[12px] text-slate-400 font-medium bg-slate-950 p-2 rounded-lg border-slate-600/50">
                                 <div className="flex items-center gap-1.5">
                                   <User className="w-3.5 h-3.5 text-slate-500" />
                                   <span><span className="text-slate-500">{activity.type === 'Tasks' ? 'Added By:' : activity.type === 'Emails' || activity.type === 'Text / SMS' ? 'Sent by:' : 'By:'}</span> {activity.author}</span>
@@ -2105,8 +2105,8 @@ export default function ClientDetailsPage() {
                         </div>
                       ))
                     ) : (
-                      <div className="text-center py-10 bg-slate-900/30 rounded-xl border-slate-700/50 border-dashed">
-                        <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-slate-500 bg-slate-800 rounded-full border-slate-700">
+                      <div className="text-center py-10 bg-slate-900/30 rounded-xl border-slate-600/50 border-dashed">
+                        <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-slate-500 bg-slate-800 rounded-full border-slate-600">
                           <List className="w-7 h-7 text-blue-500/30" />
                         </div>
                         <h3 className="text-[16px] font-bold text-white mb-1">No activities found</h3>
@@ -2132,11 +2132,11 @@ export default function ClientDetailsPage() {
           onClick={() => setIsAddTaskModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border-slate-700 rounded-2xl w-full max-w-[500px] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border-slate-600 rounded-2xl w-full max-w-[500px] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Add A New Task</h2>
               <button 
                 onClick={() => setIsAddTaskModalOpen(false)}
@@ -2153,7 +2153,7 @@ export default function ClientDetailsPage() {
                 <input 
                   type="text" 
                   placeholder="Create MVP for wisdom rules"
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all placeholder:text-slate-500" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all placeholder:text-slate-500" 
                 />
               </div>
 
@@ -2161,13 +2161,13 @@ export default function ClientDetailsPage() {
                 <label className="block text-sm font-medium text-slate-300 mb-2">Due Date</label>
                 <input 
                   type="date" 
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all placeholder:text-slate-500" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all placeholder:text-slate-500" 
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Assignee</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
                   <option value="">Select assignee...</option>
                   <option value="1">Maria Christina</option>
                   <option value="2">Admin Gorilla</option>
@@ -2179,7 +2179,7 @@ export default function ClientDetailsPage() {
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsAddTaskModalOpen(false)}
-                className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Close
               </button>
@@ -2200,10 +2200,10 @@ export default function ClientDetailsPage() {
           onClick={() => setIsEditContactModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border-slate-700 rounded-2xl w-full max-w-xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border-slate-600 rounded-2xl w-full max-w-xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <div className="flex items-center gap-2">
                 <Phone className="w-5 h-5 text-cyan-400" />
                 <h2 className="text-xl font-bold text-white">Edit Contact Information</h2>
@@ -2220,13 +2220,13 @@ export default function ClientDetailsPage() {
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Primary Phone Number</label>
                 <div className="flex">
-                  <select className="px-3 py-2.5 bg-slate-900/50 border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
+                  <select className="px-3 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
                     <option>+1</option>
                   </select>
                   <input 
                     type="tel" 
                     defaultValue="973 979 7987"
-                    className="flex-1 px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                    className="flex-1 px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                   />
                 </div>
               </div>
@@ -2235,14 +2235,14 @@ export default function ClientDetailsPage() {
                 <input 
                   type="email" 
                   placeholder="contact@company.com"
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all placeholder:text-slate-500" 
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Office Address</label>
                 <textarea 
                   placeholder="123 Business Ave, Suite 100&#10;City, State 12345"
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500 min-h-[80px] resize-none" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all placeholder:text-slate-500 min-h-[80px] resize-none" 
                 ></textarea>
               </div>
             </div>
@@ -2250,7 +2250,7 @@ export default function ClientDetailsPage() {
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditContactModalOpen(false)}
-                className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Cancel
               </button>
@@ -2272,10 +2272,10 @@ export default function ClientDetailsPage() {
           onClick={() => setIsEditWebsiteModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border-slate-600 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <div className="flex items-center gap-2">
                 <Globe className="w-5 h-5 text-emerald-400" />
                 <h2 className="text-xl font-bold text-white">Edit Websites & Credentials</h2>
@@ -2296,7 +2296,7 @@ export default function ClientDetailsPage() {
                   <input 
                     type="url" 
                     defaultValue="https://www.clientwebsite.com"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all" 
                   />
                 </div>
                 <div>
@@ -2305,9 +2305,9 @@ export default function ClientDetailsPage() {
                     <input 
                       type="text" 
                       defaultValue="client"
-                      className="w-1/3 px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-l-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all text-right" 
+                      className="w-1/3 px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-l-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all text-right" 
                     />
-                    <div className="px-4 py-2.5 bg-slate-800 border-y border-r border-slate-700 rounded-r-xl text-sm text-slate-400 font-medium">
+                    <div className="px-4 py-2.5 bg-slate-800 border-y border-r border-slate-600 rounded-r-xl text-sm text-slate-400 font-medium">
                       .pinkgorilla.apps
                     </div>
                   </div>
@@ -2317,7 +2317,7 @@ export default function ClientDetailsPage() {
                   <input 
                     type="url" 
                     defaultValue="https://staging.clientwebsite.com"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all" 
                   />
                 </div>
               </div>
@@ -2330,7 +2330,7 @@ export default function ClientDetailsPage() {
                     <input 
                       type="text" 
                       defaultValue="admin@client.com"
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all" 
                     />
                   </div>
                   <div>
@@ -2339,7 +2339,7 @@ export default function ClientDetailsPage() {
                       <input 
                         type="password" 
                         defaultValue="password123!"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all pr-10" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all pr-10" 
                       />
                       <button className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors">
                         <Eye className="w-4 h-4" />
@@ -2353,7 +2353,7 @@ export default function ClientDetailsPage() {
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditWebsiteModalOpen(false)}
-                className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Cancel
               </button>
@@ -2375,10 +2375,10 @@ export default function ClientDetailsPage() {
           onClick={() => setIsEditGeneralInfoModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border-slate-600 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <div className="flex items-center gap-2">
                 <Info className="w-5 h-5 text-teal-400" />
                 <h2 className="text-xl font-bold text-white">Edit General Info</h2>
@@ -2394,7 +2394,7 @@ export default function ClientDetailsPage() {
             <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Timezone</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all appearance-none">
                   <option value="America/Denver">America/Denver</option>
                   <option value="America/New_York">America/New_York</option>
                   <option value="America/Chicago">America/Chicago</option>
@@ -2403,7 +2403,7 @@ export default function ClientDetailsPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Currency</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all appearance-none">
                   <option value="USD">USD ($)</option>
                   <option value="EUR">EUR (€)</option>
                   <option value="GBP">GBP (£)</option>
@@ -2412,7 +2412,7 @@ export default function ClientDetailsPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Language</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all appearance-none">
                   <option value="en-US">English - US</option>
                   <option value="en-GB">English - UK</option>
                   <option value="es">Spanish</option>
@@ -2421,7 +2421,7 @@ export default function ClientDetailsPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Industry</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all appearance-none">
                   <option value="retail">Retail Trade</option>
                   <option value="tech">Information Technology</option>
                   <option value="healthcare">Health Care</option>
@@ -2433,12 +2433,12 @@ export default function ClientDetailsPage() {
                 <input 
                   type="text" 
                   defaultValue="1 yr"
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all placeholder:text-slate-500" 
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all placeholder:text-slate-500" 
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Number of Employees</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/50 transition-all appearance-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all appearance-none">
                   <option value="1-3">1-3</option>
                   <option value="4-10">4-10</option>
                   <option value="11-50">11-50</option>
@@ -2450,7 +2450,7 @@ export default function ClientDetailsPage() {
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditGeneralInfoModalOpen(false)}
-                className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Cancel
               </button>
@@ -2472,10 +2472,10 @@ export default function ClientDetailsPage() {
           onClick={() => setIsEditBackgroundModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border-slate-600 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <div className="flex items-center gap-2">
                 <ImageIcon className="w-5 h-5 text-violet-400" />
                 <h2 className="text-xl font-bold text-white">Edit Background</h2>
@@ -2489,8 +2489,8 @@ export default function ClientDetailsPage() {
             </div>
 
             <div className="p-6">
-              <div className="border-slate-700 rounded-xl overflow-hidden bg-slate-900/50 focus-within:border-violet-500/50 focus-within:ring-1 focus-within:ring-violet-500/50 transition-all">
-                <div className="bg-slate-800/80 border-b border-slate-700 p-2 flex items-center gap-1 flex-wrap">
+              <div className="border-slate-600 rounded-xl overflow-hidden bg-slate-950 focus-within:border-violet-500/50 focus-within:ring-1 focus-within:ring-violet-500/50 transition-all">
+                <div className="bg-slate-800/80 border-b border-slate-600 p-2 flex items-center gap-1 flex-wrap">
                   <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Bold className="w-4 h-4" /></button>
                   <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><LinkIcon className="w-4 h-4" /></button>
                   <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><List className="w-4 h-4" /></button>
@@ -2509,7 +2509,7 @@ export default function ClientDetailsPage() {
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
-                className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Cancel
               </button>
@@ -2531,11 +2531,11 @@ export default function ClientDetailsPage() {
           onClick={() => setIsEditClientModalOpen(false)}
         >
           <div 
-            className="bg-slate-900 border-slate-700 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border-slate-600 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Edit Client Profile</h2>
               <button 
                 onClick={() => setIsEditClientModalOpen(false)}
@@ -2556,10 +2556,10 @@ export default function ClientDetailsPage() {
                   {/* Logo Upload */}
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Company Logo</label>
-                    <div className="w-32 h-32 bg-slate-900/50 border-slate-700 rounded-xl flex items-center justify-center mb-2">
+                    <div className="w-32 h-32 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 flex items-center justify-center mb-2">
                       <Building2 className="w-8 h-8 text-slate-500" />
                     </div>
-                    <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border-slate-700">
+                    <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border-slate-600">
                       Upload
                     </button>
                   </div>
@@ -2571,7 +2571,7 @@ export default function ClientDetailsPage() {
                       <input 
                         type="text" 
                         defaultValue={currentClient.name}
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
@@ -2585,13 +2585,13 @@ export default function ClientDetailsPage() {
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Company Phone Number*</label>
                       <div className="flex">
-                        <select className="px-3 py-2.5 bg-slate-900/50 border-slate-700 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
+                        <select className="px-3 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
                           <option>+1</option>
                         </select>
                         <input 
                           type="tel" 
                           defaultValue={currentClient.phone !== '---' ? currentClient.phone.replace('+1 ', '') : ''}
-                          className="flex-1 px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                          className="flex-1 px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                         />
                       </div>
                     </div>
@@ -2604,7 +2604,7 @@ export default function ClientDetailsPage() {
                       <input 
                         type="url" 
                         defaultValue="https://pinkgorilla.agency"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
@@ -2612,12 +2612,12 @@ export default function ClientDetailsPage() {
                       <input 
                         type="text" 
                         defaultValue="po 12, ABCD, lame road, LA, CA"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Default Currency</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>USD</option>
                       </select>
                     </div>
@@ -2627,19 +2627,19 @@ export default function ClientDetailsPage() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Default Time Zone</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>America/Denver</option>
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Language</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>English - US</option>
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Status</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>Active</option>
                         <option>Brand New</option>
                       </select>
@@ -2650,7 +2650,7 @@ export default function ClientDetailsPage() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Industry</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>Information Technology Services</option>
                         <option>Retail Trade</option>
                       </select>
@@ -2660,12 +2660,12 @@ export default function ClientDetailsPage() {
                       <input 
                         type="text" 
                         defaultValue="5"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all" 
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all" 
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">No. of Employees</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
                         <option>10 - 50</option>
                         <option>1 - 3</option>
                       </select>
@@ -2684,7 +2684,7 @@ export default function ClientDetailsPage() {
                     <input 
                       type="url" 
                       defaultValue="https://yelp.com/biz/pink-gorilla-software"
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
                     />
                   </div>
                   <div>
@@ -2692,7 +2692,7 @@ export default function ClientDetailsPage() {
                     <input 
                       type="url" 
                       defaultValue="https://google.com/maps/place/Pink+Gorilla"
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
                     />
                   </div>
                 </div>
@@ -2708,7 +2708,7 @@ export default function ClientDetailsPage() {
                             placeholder="e.g., Facebook, TripAdvisor"
                             value={link.label}
                             onChange={(e) => handleLinkChange(index, 'label', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                           />
                         </div>
                         <div className="flex-1">
@@ -2718,7 +2718,7 @@ export default function ClientDetailsPage() {
                             placeholder="https://..."
                             value={link.url}
                             onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                           />
                         </div>
                         <button 
@@ -2751,8 +2751,8 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {isEditorEnabled && (
-                  <div className="animate-in fade-in slide-in-from-top-4 duration-300 border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
-                    <div className="bg-slate-800/80 border-b border-slate-700 p-2 flex items-center gap-1 flex-wrap">
+                  <div className="animate-in fade-in slide-in-from-top-4 duration-300 border-slate-600 rounded-xl overflow-hidden bg-slate-950">
+                    <div className="bg-slate-800/80 border-b border-slate-600 p-2 flex items-center gap-1 flex-wrap">
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Bold className="w-4 h-4" /></button>
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><LinkIcon className="w-4 h-4" /></button>
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><List className="w-4 h-4" /></button>
@@ -2764,7 +2764,7 @@ export default function ClientDetailsPage() {
                       className="w-full h-48 bg-slate-400/20 p-4 text-sm text-white focus:outline-none resize-none placeholder:text-slate-500"
                       placeholder="Enter client background information..."
                     ></textarea>
-                    <div className="bg-slate-800/80 border-t border-slate-700 p-3 flex justify-end">
+                    <div className="bg-slate-800/80 border-t border-slate-600 p-3 flex justify-end">
                       <button className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors shadow-sm">
                         Save Notes
                       </button>
@@ -2780,7 +2780,7 @@ export default function ClientDetailsPage() {
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditClientModalOpen(false)}
-                className="px-6 py-2.5 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Close
               </button>
@@ -2800,9 +2800,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsBusinessDiscoveryModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-lg font-semibold text-white">Business Discovery</h2>
               <button 
                 onClick={() => setIsBusinessDiscoveryModalOpen(false)}
@@ -2815,7 +2815,7 @@ export default function ClientDetailsPage() {
             {/* Body */}
             <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-4">
               {businessLinks.map((link, index) => (
-                <div key={index} className="flex items-start gap-4 p-4 bg-slate-900/30 border-slate-700/50 rounded-lg relative group">
+                <div key={index} className="flex items-start gap-4 p-4 bg-slate-900/30 border-slate-600/50 rounded-lg relative group">
                   <div className="flex-1 space-y-4">
                     <div>
                       <label className="block text-[14px] font-bold text-slate-200 mb-2">Link Label*</label>
@@ -2824,7 +2824,7 @@ export default function ClientDetailsPage() {
                         value={link.label}
                         onChange={(e) => updateBusinessLink(index, 'label', e.target.value)}
                         placeholder="e.g., Website, Yelp, Facebook" 
-                        className="w-full px-3 py-2.5 bg-slate-900/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                        className="w-full px-3 py-2.5 bg-slate-950 border border-slate-600  rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                       />
                     </div>
                     <div>
@@ -2834,7 +2834,7 @@ export default function ClientDetailsPage() {
                         value={link.url}
                         onChange={(e) => updateBusinessLink(index, 'url', e.target.value)}
                         placeholder="https://" 
-                        className="w-full px-3 py-2.5 bg-slate-900/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
+                        className="w-full px-3 py-2.5 bg-slate-950 border border-slate-600  rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all"
                       />
                     </div>
                   </div>
@@ -2855,7 +2855,7 @@ export default function ClientDetailsPage() {
                   disabled={businessLinks.length >= 6}
                   className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-medium transition-colors ${
                     businessLinks.length >= 6 
-                      ? 'bg-slate-800 text-slate-500 cursor-not-allowed border-slate-700' 
+                      ? 'bg-slate-800 text-slate-500 cursor-not-allowed border-slate-600' 
                       : 'bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 border border-indigo-500/30 border-t-indigo-500 border-t-4'
                   }`}
                 >
@@ -2887,9 +2887,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsAddEmployeeModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Create A New User</h2>
               <button 
                 onClick={() => setIsAddEmployeeModalOpen(false)}
@@ -2910,7 +2910,7 @@ export default function ClientDetailsPage() {
                     placeholder="Jordan"
                     value={newEmployee.firstName}
                     onChange={(e) => setNewEmployee({...newEmployee, firstName: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
                 
@@ -2922,7 +2922,7 @@ export default function ClientDetailsPage() {
                     placeholder="Peterson"
                     value={newEmployee.lastName}
                     onChange={(e) => setNewEmployee({...newEmployee, lastName: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
                 
@@ -2945,7 +2945,7 @@ export default function ClientDetailsPage() {
                     <select 
                       value={newEmployee.phoneCode}
                       onChange={(e) => setNewEmployee({...newEmployee, phoneCode: e.target.value})}
-                      className="px-3 py-2.5 bg-slate-900/50 border-slate-700 rounded-l-lg border-r-0 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none outline-none"
+                      className="px-3 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-l-lg border-r-0 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none outline-none"
                     >
                       <option value="+1">+1</option>
                       <option value="+44">+44</option>
@@ -2956,7 +2956,7 @@ export default function ClientDetailsPage() {
                       placeholder="9876543210"
                       value={newEmployee.phoneNumber}
                       onChange={(e) => setNewEmployee({...newEmployee, phoneNumber: e.target.value})}
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-r-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-r-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                     />
                   </div>
                 </div>
@@ -2969,13 +2969,13 @@ export default function ClientDetailsPage() {
                       <input
                         type="text"
                         placeholder="Enter custom designation"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                         value={(newEmployee as any).customDesignation || ''}
                         onChange={(e) => setNewEmployee({ ...newEmployee, customDesignation: e.target.value } as any)}
                       />
                       <button
                         onClick={() => setNewEmployee({ ...newEmployee, designation: 'HR' })}
-                        className="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-[13px] transition-colors border-slate-700 shrink-0"
+                        className="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-[13px] transition-colors border-slate-600 shrink-0"
                       >
                         Cancel
                       </button>
@@ -2984,7 +2984,7 @@ export default function ClientDetailsPage() {
                     <select 
                       value={newEmployee.designation}
                       onChange={(e) => setNewEmployee({...newEmployee, designation: e.target.value})}
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
                     >
                       <option value="CEO / President / Founder">CEO / President / Founder</option>
                       <option value="CTO / Chief Technology Officer">CTO / Chief Technology Officer</option>
@@ -3024,7 +3024,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsAddEmployeeModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Close
               </button>
@@ -3045,9 +3045,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsEditEmployeeModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Edit User</h2>
               <button 
                 onClick={() => setIsEditEmployeeModalOpen(false)}
@@ -3068,7 +3068,7 @@ export default function ClientDetailsPage() {
                     placeholder="Jordan"
                     value={editingEmployee.firstName}
                     onChange={(e) => setEditingEmployee({...editingEmployee, firstName: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
                 
@@ -3080,7 +3080,7 @@ export default function ClientDetailsPage() {
                     placeholder="Peterson"
                     value={editingEmployee.lastName}
                     onChange={(e) => setEditingEmployee({...editingEmployee, lastName: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                   />
                 </div>
                 
@@ -3103,7 +3103,7 @@ export default function ClientDetailsPage() {
                     <select 
                       value={editingEmployee.phoneCode}
                       onChange={(e) => setEditingEmployee({...editingEmployee, phoneCode: e.target.value})}
-                      className="px-3 py-2.5 bg-slate-900/50 border-slate-700 rounded-l-lg border-r-0 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none outline-none"
+                      className="px-3 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-l-lg border-r-0 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all appearance-none outline-none"
                     >
                       <option value="+1">+1</option>
                       <option value="+44">+44</option>
@@ -3114,7 +3114,7 @@ export default function ClientDetailsPage() {
                       placeholder="9876543210"
                       value={editingEmployee.phoneNumber}
                       onChange={(e) => setEditingEmployee({...editingEmployee, phoneNumber: e.target.value})}
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-r-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-r-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                     />
                   </div>
                 </div>
@@ -3127,13 +3127,13 @@ export default function ClientDetailsPage() {
                       <input
                         type="text"
                         placeholder="Enter custom designation"
-                        className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-500"
                         value={editingEmployee.customDesignation || ''}
                         onChange={(e) => setEditingEmployee({ ...editingEmployee, customDesignation: e.target.value } as any)}
                       />
                       <button
                         onClick={() => setEditingEmployee({ ...editingEmployee, designation: 'HR' })}
-                        className="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-[13px] transition-colors border-slate-700 shrink-0"
+                        className="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-[13px] transition-colors border-slate-600 shrink-0"
                       >
                         Cancel
                       </button>
@@ -3155,7 +3155,7 @@ export default function ClientDetailsPage() {
                            setEditingEmployee({...editingEmployee, designation: val});
                         }
                       }}
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all outline-none"
                     >
                       <option value="CEO / President / Founder">CEO / President / Founder</option>
                       <option value="CTO / Chief Technology Officer">CTO / Chief Technology Officer</option>
@@ -3183,7 +3183,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsEditEmployeeModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Close
               </button>
@@ -3204,9 +3204,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsUpdatePasswordModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-md flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-md flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Update Password</h2>
               <button 
                 onClick={() => setIsUpdatePasswordModalOpen(false)}
@@ -3219,7 +3219,7 @@ export default function ClientDetailsPage() {
             {/* Body */}
             <div className="p-6">
               <div className="space-y-4">
-                <div className="mb-2 p-3 bg-slate-900/50 rounded-lg border-slate-700">
+                <div className="mb-2 p-3 bg-slate-950 rounded-lg border-slate-600">
                   <p className="text-[13px] text-slate-300">Updating password for <strong>{updatingPasswordEmployee.firstName} {updatingPasswordEmployee.lastName}</strong></p>
                 </div>
                 
@@ -3230,7 +3230,7 @@ export default function ClientDetailsPage() {
                     value={passwordForm.newPassword}
                     onChange={(e) => setPasswordForm({...passwordForm, newPassword: e.target.value})}
                     placeholder="Enter new password"
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all font-mono tracking-widest placeholder:tracking-normal placeholder:font-sans"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all font-mono tracking-widest placeholder:tracking-normal placeholder:font-sans"
                   />
                   {passwordForm.newPassword && passwordForm.newPassword.length < 6 && (
                     <p className="text-blue-400 text-[11px] mt-1">Password must be at least 6 characters long.</p>
@@ -3244,7 +3244,7 @@ export default function ClientDetailsPage() {
                     value={passwordForm.confirmPassword}
                     onChange={(e) => setPasswordForm({...passwordForm, confirmPassword: e.target.value})}
                     placeholder="Confirm new password"
-                    className={`w-full px-4 py-2.5 bg-slate-900/50 border rounded-lg text-[13px] text-white focus:outline-none focus:ring-1 transition-all font-mono tracking-widest placeholder:tracking-normal placeholder:font-sans ${passwordForm.confirmPassword && passwordForm.newPassword !== passwordForm.confirmPassword ? 'border-blue-500/50 focus:border-blue-500/50 focus:ring-blue-500/50' : 'border-slate-700 focus:border-indigo-500/50 focus:ring-indigo-500/50'}`}
+                    className={`w-full px-4 py-2.5 bg-slate-950 border rounded-lg text-[13px] text-white focus:outline-none focus:ring-1 transition-all font-mono tracking-widest placeholder:tracking-normal placeholder:font-sans ${passwordForm.confirmPassword && passwordForm.newPassword !== passwordForm.confirmPassword ? 'border-blue-500/50 focus:border-blue-500/50 focus:ring-blue-500/50' : 'border-slate-600 focus:border-indigo-500/50 focus:ring-indigo-500/50'}`}
                   />
                   {passwordForm.confirmPassword && passwordForm.newPassword !== passwordForm.confirmPassword && (
                     <p className="text-blue-400 text-[11px] mt-1">Passwords do not match.</p>
@@ -3257,7 +3257,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsUpdatePasswordModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Cancel
               </button>
@@ -3278,7 +3278,7 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsDeleteEmployeeModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 text-center">
               <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-4 border border-blue-500/30 border-t-blue-500 border-t-4">
                 <Trash2 className="w-8 h-8 text-blue-500" />
@@ -3291,7 +3291,7 @@ export default function ClientDetailsPage() {
               <div className="flex justify-center gap-3">
                 <button 
                   onClick={() => setIsDeleteEmployeeModalOpen(false)}
-                  className="px-5 py-2.5 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors w-full"
+                  className="px-5 py-2.5 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors w-full"
                 >
                   Cancel
                 </button>
@@ -3330,14 +3330,14 @@ export default function ClientDetailsPage() {
                   type="text" 
                   value={newNote.title}
                   onChange={(e) => setNewNote({...newNote, title: e.target.value})}
-                  className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all shadow-inner"
+                  className="w-full px-4 py-3 bg-slate-950 border-slate-600 rounded-lg text-[14px] text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all "
                 />
               </div>
               
               <div>
                 <label className="block text-[14px] font-bold text-slate-200 mb-2">Description*</label>
-                <div className="border border-slate-700 rounded-lg bg-slate-950 overflow-hidden focus-within:border-amber-500 focus-within:ring-1 focus-within:ring-amber-500 transition-all shadow-inner">
-                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-900/50 overflow-x-auto custom-scrollbar">
+                <div className="border-slate-600 rounded-lg bg-slate-950 overflow-hidden focus-within:border-amber-500 focus-within:ring-1 focus-within:ring-amber-500 transition-all ">
+                  <div className="flex items-center gap-1 border-b border-slate-600 p-2 bg-slate-950 overflow-x-auto custom-scrollbar">
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="underline text-[13px] px-1">U</span></button>
@@ -3357,7 +3357,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsAddNoteModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Close
               </button>
@@ -3396,14 +3396,14 @@ export default function ClientDetailsPage() {
                   type="text" 
                   value={editingNote.title}
                   onChange={(e) => setEditingNote({...editingNote, title: e.target.value})}
-                  className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all shadow-inner"
+                  className="w-full px-4 py-3 bg-slate-950 border-slate-600 rounded-lg text-[14px] text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all "
                 />
               </div>
               
               <div>
                 <label className="block text-[14px] font-bold text-slate-200 mb-2">Description*</label>
-                <div className="border border-slate-700 rounded-lg bg-slate-950 overflow-hidden focus-within:border-amber-500 focus-within:ring-1 focus-within:ring-amber-500 transition-all shadow-inner">
-                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-900/50 overflow-x-auto custom-scrollbar">
+                <div className="border-slate-600 rounded-lg bg-slate-950 overflow-hidden focus-within:border-amber-500 focus-within:ring-1 focus-within:ring-amber-500 transition-all ">
+                  <div className="flex items-center gap-1 border-b border-slate-600 p-2 bg-slate-950 overflow-x-auto custom-scrollbar">
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="underline text-[13px] px-1">U</span></button>
@@ -3422,7 +3422,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsEditNoteModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Close
               </button>
@@ -3443,7 +3443,7 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsDeleteNoteModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 text-center">
               <div className="w-16 h-16 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4 border-purple-500/20">
                 <svg className="w-8 h-8 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>
@@ -3456,7 +3456,7 @@ export default function ClientDetailsPage() {
               <div className="flex justify-center gap-3">
                 <button 
                   onClick={() => setIsDeleteNoteModalOpen(false)}
-                  className="px-5 py-2.5 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors w-full"
+                  className="px-5 py-2.5 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors w-full"
                 >
                   Cancel
                 </button>
@@ -3477,8 +3477,8 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsSendEmailNoteModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Send email</h2>
               <button 
                 onClick={() => setIsSendEmailNoteModalOpen(false)}
@@ -3495,7 +3495,7 @@ export default function ClientDetailsPage() {
                   type="email" 
                   value={emailForm.to}
                   onChange={(e) => setEmailForm({...emailForm, to: e.target.value})}
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                 />
               </div>
               
@@ -3505,13 +3505,13 @@ export default function ClientDetailsPage() {
                   type="text" 
                   value={emailForm.subject}
                   onChange={(e) => setEmailForm({...emailForm, subject: e.target.value})}
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
                 />
               </div>
               
               <div>
-                <div className="border-slate-700 rounded-lg bg-slate-900/50 overflow-hidden focus-within:border-purple-500/50 focus-within:ring-1 focus-within:ring-purple-500/50 transition-all">
-                  <div className="flex items-center gap-1 border-b border-slate-700 p-2 bg-slate-900/50 overflow-x-auto custom-scrollbar">
+                <div className="border-slate-600 rounded-lg bg-slate-950 overflow-hidden focus-within:border-purple-500/50 focus-within:ring-1 focus-within:ring-purple-500/50 transition-all">
+                  <div className="flex items-center gap-1 border-b border-slate-600 p-2 bg-slate-950 overflow-x-auto custom-scrollbar">
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="font-bold text-[13px] px-1">B</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="italic text-[13px] px-1">I</span></button>
                     <button className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-colors"><span className="underline text-[13px] px-1">U</span></button>
@@ -3533,7 +3533,7 @@ export default function ClientDetailsPage() {
               
               <div>
                 <label className="block text-[14px] font-bold text-slate-200 mb-2">From*</label>
-                <select className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-slate-300 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all outline-none">
+                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-lg text-[13px] text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all outline-none">
                   <option>Staging Pink Gorilla (vikas@pinkgorillasoftware.com)</option>
                 </select>
               </div>
@@ -3542,7 +3542,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsSendEmailNoteModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Close
               </button>
@@ -3563,7 +3563,7 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsDeleteSampleModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-sm flex flex-col animate-in fade-in zoom-in-95 duration-200">
             <div className="p-6 text-center">
               <div className="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-4 border border-blue-500/30 border-t-blue-500 border-t-4">
                 <Trash2 className="w-8 h-8 text-blue-500" />
@@ -3576,7 +3576,7 @@ export default function ClientDetailsPage() {
               <div className="flex justify-center gap-3">
                 <button 
                   onClick={() => setIsDeleteSampleModalOpen(false)}
-                  className="px-5 py-2.5 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors w-full"
+                  className="px-5 py-2.5 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors w-full"
                 >
                   Cancel
                 </button>
@@ -3597,8 +3597,8 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsGenerateWebsiteModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-4xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-4xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Create Website</h2>
               <button 
                 onClick={() => setIsGenerateWebsiteModalOpen(false)}
@@ -3618,9 +3618,9 @@ export default function ClientDetailsPage() {
                       placeholder="app"
                       value={newWebsiteSample.subdomain}
                       onChange={(e) => setNewWebsiteSample({...newWebsiteSample, subdomain: e.target.value})}
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-l-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all border-r-0"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-l-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all border-r-0"
                     />
-                    <div className="px-4 py-2.5 bg-slate-800 border-slate-700 rounded-r-lg text-[13px] text-slate-400 flex items-center">
+                    <div className="px-4 py-2.5 bg-slate-800 border-slate-600 rounded-r-lg text-[13px] text-slate-400 flex items-center">
                       pinkgorillasoftware.com
                     </div>
                   </div>
@@ -3628,7 +3628,7 @@ export default function ClientDetailsPage() {
                 
                 <div>
                   <label className="block text-[14px] font-bold text-slate-200 mb-2">Logo (PNG/JPG)</label>
-                  <div className="flex items-center gap-3 w-full px-4 py-2 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-slate-400 relative overflow-hidden group">
+                  <div className="flex items-center gap-3 w-full px-4 py-2 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-slate-400 relative overflow-hidden group">
                     <input 
                       type="file" 
                       accept=".png,.jpg,.jpeg"
@@ -3644,7 +3644,7 @@ export default function ClientDetailsPage() {
                         }
                       }}
                     />
-                    <button type="button" className="px-3 py-1 bg-slate-800 group-hover:bg-slate-700 border-slate-600 rounded text-slate-300 transition-colors pointer-events-none relative z-0">
+                    <button type="button" className="px-3 py-1 bg-slate-800 group-hover:bg-slate-700 border-slate-600 bg-slate-950 rounded text-slate-300 transition-colors pointer-events-none relative z-0">
                       Choose file
                     </button>
                     <span className="truncate relative z-0">{newWebsiteSample.logoFileName || 'No file chosen'}</span>
@@ -3656,7 +3656,7 @@ export default function ClientDetailsPage() {
                   <select 
                     value={newWebsiteSample.template}
                     onChange={(e) => setNewWebsiteSample({...newWebsiteSample, template: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all outline-none appearance-none"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all outline-none appearance-none"
                   >
                     <option value="Accountant1">Accountant1</option>
                     <option value="Agency1">Agency1</option>
@@ -3666,11 +3666,11 @@ export default function ClientDetailsPage() {
               </div>
 
               {/* Template Preview Section */}
-              <div className="border-slate-700 rounded-lg overflow-hidden flex flex-col bg-slate-900/30">
+              <div className="border-slate-600 rounded-lg overflow-hidden flex flex-col bg-slate-900/30">
                 <div className="flex-1 bg-slate-900/90 p-4 relative flex items-center justify-center min-h-[250px]">
-                  <div className="w-full h-full bg-slate-800 rounded border-slate-700 shadow-inner flex flex-col overflow-hidden">
+                  <div className="w-full h-full bg-slate-800 rounded border-slate-600  flex flex-col overflow-hidden">
                     {/* Mock Website Preview */}
-                    <div className="h-6 border-b border-slate-700 bg-slate-800/80 flex items-center px-2 gap-1.5">
+                    <div className="h-6 border-b border-slate-600 bg-slate-800/80 flex items-center px-2 gap-1.5">
                       <div className="w-2 h-2 rounded-full bg-slate-600"></div>
                       <div className="w-2 h-2 rounded-full bg-slate-600"></div>
                       <div className="w-2 h-2 rounded-full bg-slate-600"></div>
@@ -3706,7 +3706,7 @@ export default function ClientDetailsPage() {
                     </div>
                   </div>
                 </div>
-                <div className="p-3 bg-slate-800 text-center border-t border-slate-700 text-[13px] text-slate-300 font-medium flex justify-center items-center gap-2">
+                <div className="p-3 bg-slate-800 text-center border-t border-slate-600 text-[13px] text-slate-300 font-medium flex justify-center items-center gap-2">
                   Template Preview
                   <ChevronDown className="w-4 h-4 text-slate-500" />
                 </div>
@@ -3716,7 +3716,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsGenerateWebsiteModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Close
               </button>
@@ -3737,8 +3737,8 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsAddLogoModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-xl font-bold text-white">Add Logo Sample</h2>
               <button 
                 onClick={() => setIsAddLogoModalOpen(false)}
@@ -3756,11 +3756,11 @@ export default function ClientDetailsPage() {
                   placeholder="Sample"
                   value={newLogoSample.title}
                   onChange={(e) => setNewLogoSample({...newLogoSample, title: e.target.value})}
-                  className="w-full px-4 py-2.5 bg-slate-900/50 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500"
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg text-[13px] text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500"
                 />
               </div>
               
-              <div className="border-2 border-dashed border-slate-700 hover:border-purple-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors cursor-pointer bg-slate-800/20 hover:bg-slate-900/40 relative">
+              <div className="border-2 border-dashed border-slate-600 hover:border-purple-500/50 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors cursor-pointer bg-slate-800/20 hover:bg-slate-900/40 relative">
                 <input 
                   type="file" 
                   accept=".png,.jpg,.jpeg,.svg"
@@ -3796,7 +3796,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsAddLogoModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Close
               </button>
@@ -3817,9 +3817,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsEditBackgroundModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-lg font-semibold text-white">Edit Background</h2>
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
@@ -3835,9 +3835,9 @@ export default function ClientDetailsPage() {
                 <label className="block text-[13px] font-medium text-slate-300 mb-2">Background</label>
                 
                 {/* Mock Rich Text Editor */}
-                <div className="border-slate-700 rounded-lg overflow-hidden bg-slate-900/50">
+                <div className="border-slate-600 rounded-lg overflow-hidden bg-slate-950">
                   {/* Toolbar */}
-                  <div className="flex flex-wrap items-center gap-1 p-2 border-b border-slate-700 bg-slate-900/50 text-slate-400">
+                  <div className="flex flex-wrap items-center gap-1 p-2 border-b border-slate-600 text-slate-400">
                     <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><span className="font-bold font-serif px-1">B</span></button>
                     <button className="p-1.5 hover:bg-slate-700 hover:text-white rounded transition-colors"><svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
                     <div className="w-[1px] h-4 bg-slate-700 mx-1"></div>
@@ -3863,7 +3863,7 @@ export default function ClientDetailsPage() {
                   <div className="p-3 bg-slate-900/30">
                     <textarea 
                       defaultValue="https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists"
-                      className="w-full h-48 bg-slate-900/50 border-slate-700/50 rounded p-4 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 resize-none custom-scrollbar"
+                      className="w-full h-48 bg-slate-900 border-slate-600 rounded p-4 text-[13px] text-slate-300 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 resize-none custom-scrollbar"
                     ></textarea>
                   </div>
                 </div>
@@ -3874,7 +3874,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsEditBackgroundModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Close
               </button>
@@ -3894,9 +3894,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsAnalyticsModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-2xl animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-lg font-semibold text-white">Configure Google Analytics</h2>
               <button 
                 onClick={() => setIsAnalyticsModalOpen(false)}
@@ -3935,7 +3935,7 @@ export default function ClientDetailsPage() {
                   <input 
                     type="text" 
                     placeholder="123456789" 
-                    className="w-full px-3 py-2.5 bg-slate-900/90 border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600"
+                    className="w-full px-3 py-2.5 bg-slate-950 border border-slate-600  rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all placeholder:text-slate-600"
                   />
                   <p className="text-[12px] text-slate-400 mt-2 leading-relaxed">
                     Your Google Analytics 4 Property ID (numbers only). Get this from: Google Analytics &rarr; Admin &rarr; Property Settings
@@ -3947,11 +3947,11 @@ export default function ClientDetailsPage() {
                     Google Analytics Credentials (JSON) <span className="text-slate-400 font-normal">(Optional - for API access)</span>
                   </label>
                   <div className="flex gap-0">
-                    <label className="px-4 py-2.5 bg-slate-800 border-slate-700 rounded-l-lg text-[13px] text-white hover:bg-slate-700 transition-colors cursor-pointer shrink-0">
+                    <label className="px-4 py-2.5 bg-slate-800 border-slate-600 rounded-l-lg text-[13px] text-white hover:bg-slate-700 transition-colors cursor-pointer shrink-0">
                       Choose file
                       <input type="file" className="hidden" accept=".json" />
                     </label>
-                    <div className="flex-1 px-3 py-2.5 bg-slate-900/90 border-l-0 border-slate-700 rounded-r-lg text-[13px] text-slate-500 flex items-center">
+                    <div className="flex-1 px-3 py-2.5 bg-slate-900/90 border-l-0 border-slate-600 rounded-r-lg text-[13px] text-slate-500 flex items-center">
                       No file chosen
                     </div>
                   </div>
@@ -3979,7 +3979,7 @@ export default function ClientDetailsPage() {
             <div className="flex items-center justify-end gap-3 p-5 border-t border-slate-800 bg-slate-900/30 rounded-b-xl">
               <button 
                 onClick={() => setIsAnalyticsModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors border-slate-700 bg-slate-800"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white hover:bg-slate-700 transition-colors border-slate-600 bg-slate-800"
               >
                 Close
               </button>
@@ -3998,9 +3998,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsChoosePlanModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <div className="flex items-center gap-3">
                 {selectedPlanTab === 'checkout' && (
                   <button 
@@ -4026,7 +4026,7 @@ export default function ClientDetailsPage() {
                 <div className="flex flex-col h-full">
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 flex-1">
                     {plans.map((plan, idx) => (
-                      <div key={idx} className="bg-slate-900/30 border-slate-700/50 rounded-xl p-5 flex flex-col h-full shadow-sm hover:border-slate-600 transition-colors group">
+                      <div key={idx} className="bg-slate-900/30 border-slate-600/50 rounded-xl p-5 flex flex-col h-full shadow-sm hover:border-slate-600 bg-slate-950 transition-colors group">
                         <div className="mb-4">
                           <h3 className="text-[15px] font-medium text-white mb-2">{plan.name}</h3>
                           <div className="flex items-baseline gap-1">
@@ -4035,7 +4035,7 @@ export default function ClientDetailsPage() {
                           {plan.period && <p className="text-[12px] text-slate-400 mb-4">{plan.period}</p>}
                           {!plan.period && <p className="text-[12px] text-transparent mb-4 select-none">Spacer</p>}
                           
-                          <div className="bg-slate-900/50 rounded p-2 mb-4 border-slate-700/50">
+                          <div className="bg-slate-950 rounded p-2 mb-4 border-slate-600/50">
                             <p className="text-[11px] text-slate-300">
                               <span className="text-slate-500">Launch Cost Est.</span> <span className="text-indigo-400">{plan.launchCost}</span> | {plan.launchTime}
                             </p>
@@ -4061,7 +4061,7 @@ export default function ClientDetailsPage() {
                         </div>
                         
                         {plan.features.length > 5 && (
-                          <div className="mt-auto pt-4 border-t border-slate-700/50 text-center">
+                          <div className="mt-auto pt-4 border-t border-slate-600/50 text-center">
                             <button 
                               onClick={() => togglePlanExpansion(plan.name)}
                               className="text-[12px] text-indigo-400 hover:text-indigo-300 font-medium underline decoration-indigo-400/30 underline-offset-2"
@@ -4082,7 +4082,7 @@ export default function ClientDetailsPage() {
                         setIsChoosePlanModalOpen(false);
                         setLocation('/contracts');
                       }}
-                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border-slate-700 rounded-lg text-[13px] font-medium transition-colors flex items-center gap-1.5"
+                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border-slate-600 rounded-lg text-[13px] font-medium transition-colors flex items-center gap-1.5"
                     >
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                       View Agreement Details
@@ -4090,8 +4090,8 @@ export default function ClientDetailsPage() {
                   </div>
                 </div>
               ) : (
-                <div className="max-w-2xl mx-auto bg-slate-900/30 border-slate-700/50 rounded-xl p-6 shadow-sm">
-                  <div className="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-slate-700/50 pb-6 mb-6">
+                <div className="max-w-2xl mx-auto bg-slate-900/30 border-slate-600/50 rounded-xl p-6 shadow-sm">
+                  <div className="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-slate-600/50 pb-6 mb-6">
                     <div>
                       <h3 className="text-lg font-medium text-white mb-1">{selectedPlan?.name} Plan</h3>
                       <div className="flex items-baseline gap-1 mb-2">
@@ -4103,11 +4103,11 @@ export default function ClientDetailsPage() {
                   </div>
                   
                   <div className="space-y-4 mb-8">
-                    <div className="flex justify-between items-center pb-4 border-b border-slate-700/50">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-600/50">
                       <span className="text-[14px] text-slate-300">Subscription Total</span>
                       <span className="text-[14px] text-white font-medium">{selectedPlan?.price} {selectedPlan?.period ? `/ ${selectedPlan?.period.toLowerCase().replace('per ', '')}` : ''}</span>
                     </div>
-                    <div className="flex justify-between items-center pb-4 border-b border-slate-700/50">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-600/50">
                       <span className="text-[14px] text-slate-300">OneTime Total</span>
                       <span className="text-[14px] text-white font-medium">{selectedPlan?.launchCost}</span>
                     </div>
@@ -4119,7 +4119,7 @@ export default function ClientDetailsPage() {
                     </div>
                   </div>
                   
-                  <div className="flex justify-between items-center pt-4 border-t border-slate-700/50">
+                  <div className="flex justify-between items-center pt-4 border-t border-slate-600/50">
                     <button 
                       onClick={() => {
                         setIsChoosePlanModalOpen(false);
@@ -4149,9 +4149,9 @@ export default function ClientDetailsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsManageBillingModalOpen(false)}></div>
           
-          <div className="relative bg-slate-900 border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative bg-slate-900 border-slate-600 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/50 rounded-t-xl">
+            <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950 rounded-t-xl">
               <h2 className="text-lg font-semibold text-white flex items-center gap-2">
                 <svg className="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -4169,13 +4169,13 @@ export default function ClientDetailsPage() {
             {/* Tabs */}
             <div className="flex border-b border-slate-800 bg-slate-900 px-5 pt-2">
               <button
-                className={`pb-3 px-4 text-[13px] font-bold border-b-2 transition-colors ${billingTab === 'new_invoice' ? 'border-indigo-500 text-indigo-400' : 'border-transparent text-slate-400 hover:text-slate-300 hover:border-slate-700'}`}
+                className={`pb-3 px-4 text-[13px] font-bold border-b-2 transition-colors ${billingTab === 'new_invoice' ? 'border-indigo-500 text-indigo-400' : 'border-transparent text-slate-400 hover:text-slate-300 hover:border-slate-600'}`}
                 onClick={() => setBillingTab('new_invoice')}
               >
                 New Invoice
               </button>
               <button
-                className={`pb-3 px-4 text-[13px] font-bold border-b-2 transition-colors ${billingTab === 'billing_options' ? 'border-indigo-500 text-indigo-400' : 'border-transparent text-slate-400 hover:text-slate-300 hover:border-slate-700'}`}
+                className={`pb-3 px-4 text-[13px] font-bold border-b-2 transition-colors ${billingTab === 'billing_options' ? 'border-indigo-500 text-indigo-400' : 'border-transparent text-slate-400 hover:text-slate-300 hover:border-slate-600'}`}
                 onClick={() => setBillingTab('billing_options')}
               >
                 Billing Options
@@ -4183,10 +4183,10 @@ export default function ClientDetailsPage() {
             </div>
             
             {/* Body */}
-            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-slate-900/50">
+            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-slate-950">
               {billingTab === 'new_invoice' ? (
                 <div className="space-y-5">
-                  <div className="bg-slate-900/50 border-slate-700/50 rounded-xl p-5">
+                  <div className="bg-slate-900 border-slate-600 rounded-xl p-5">
                     <h3 className="text-[14px] font-bold text-white mb-4">Invoice Details</h3>
                     
                     <div className="space-y-4">
@@ -4196,14 +4196,14 @@ export default function ClientDetailsPage() {
                           <input 
                             type="number" 
                             placeholder="0.00"
-                            className="w-full bg-slate-900 border-slate-700 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                            className="w-full bg-slate-900 border-slate-600 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
                           />
                         </div>
                         <div>
                           <label className="block text-[12px] font-medium text-slate-400 mb-1.5">Due Date</label>
                           <input 
                             type="date" 
-                            className="w-full bg-slate-900 border-slate-700 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                            className="w-full bg-slate-900 border-slate-600 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
                           />
                         </div>
                       </div>
@@ -4213,13 +4213,13 @@ export default function ClientDetailsPage() {
                         <textarea 
                           rows={3}
                           placeholder="Web design services, monthly maintenance..."
-                          className="w-full bg-slate-900 border-slate-700 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none"
+                          className="w-full bg-slate-900 border-slate-600 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none"
                         ></textarea>
                       </div>
                       
                       <div>
                         <label className="block text-[12px] font-medium text-slate-400 mb-1.5">Attach to Contract/Agreement (Optional)</label>
-                        <select className="w-full bg-slate-900 border-slate-700 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+                        <select className="w-full bg-slate-900 border-slate-600 rounded-lg px-3 py-2 text-white text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
                           <option value="">None</option>
                           <option value="1">Website Redesign Contract (Mar 2026)</option>
                           <option value="2">SEO Monthly Retainer</option>
@@ -4228,7 +4228,7 @@ export default function ClientDetailsPage() {
                       
                       <div className="pt-2">
                         <label className="flex items-center gap-2 cursor-pointer">
-                          <input type="checkbox" className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-slate-900" defaultChecked />
+                          <input type="checkbox" className="w-4 h-4 rounded border-slate-600 bg-slate-900 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-slate-900" defaultChecked />
                           <span className="text-[13px] text-slate-300">Send email notification to client immediately</span>
                         </label>
                       </div>
@@ -4238,7 +4238,7 @@ export default function ClientDetailsPage() {
                   <div className="flex justify-end gap-3 pt-2">
                     <button 
                       onClick={() => setIsManageBillingModalOpen(false)}
-                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 border-slate-700 text-white rounded-lg text-[13px] font-medium transition-colors"
+                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 border-slate-600 text-white rounded-lg text-[13px] font-medium transition-colors"
                     >
                       Cancel
                     </button>
@@ -4252,14 +4252,14 @@ export default function ClientDetailsPage() {
                 </div>
               ) : (
                 <div className="space-y-5">
-                  <div className="bg-slate-900/50 border-slate-700/50 rounded-xl p-5">
+                  <div className="bg-slate-900 border-slate-600 rounded-xl p-5">
                     <h3 className="text-[14px] font-bold text-white mb-4">Payment Methods</h3>
                     
                     <div className="space-y-3 mb-5">
                       {/* Saved Card */}
-                      <div className="flex items-center justify-between p-3 bg-slate-900/90 border-slate-700 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-slate-950 border border-slate-600  rounded-lg">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-6 bg-slate-800 rounded border-slate-600 flex items-center justify-center">
+                          <div className="w-10 h-6 bg-slate-800 rounded border-slate-600 bg-slate-950 flex items-center justify-center">
                             <span className="text-[10px] font-bold text-white italic">VISA</span>
                           </div>
                           <div>
@@ -4276,15 +4276,15 @@ export default function ClientDetailsPage() {
                       </div>
                       
                       {/* Add New Card Button */}
-                      <button className="w-full py-3 border-dashed border-slate-600 hover:border-indigo-500 hover:bg-indigo-500/5 rounded-lg text-[13px] font-bold text-slate-400 hover:text-indigo-400 transition-all flex items-center justify-center gap-2">
+                      <button className="w-full py-3 border-dashed border-slate-600 bg-slate-950 hover:border-indigo-500 hover:bg-indigo-500/5 rounded-lg text-[13px] font-bold text-slate-400 hover:text-indigo-400 transition-all flex items-center justify-center gap-2">
                         <Plus className="w-4 h-4" /> Add Payment Method
                       </button>
                     </div>
                     
-                    <div className="pt-4 border-t border-slate-700/50">
+                    <div className="pt-4 border-t border-slate-600/50">
                       <h3 className="text-[14px] font-bold text-white mb-4">Billing Settings</h3>
                       <div className="space-y-3">
-                        <label className="flex items-center justify-between cursor-pointer p-3 bg-slate-900/50 border-slate-700 rounded-lg hover:bg-slate-800/80 transition-colors">
+                        <label className="flex items-center justify-between cursor-pointer p-3 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg hover:bg-slate-800/80 transition-colors">
                           <div>
                             <span className="block text-[13px] font-bold text-white mb-0.5">Auto-pay Invoices</span>
                             <span className="block text-[11px] text-slate-400">Automatically charge default payment method when invoice is generated</span>
@@ -4295,7 +4295,7 @@ export default function ClientDetailsPage() {
                           </div>
                         </label>
                         
-                        <label className="flex items-center justify-between cursor-pointer p-3 bg-slate-900/50 border-slate-700 rounded-lg hover:bg-slate-800/80 transition-colors">
+                        <label className="flex items-center justify-between cursor-pointer p-3 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 rounded-lg hover:bg-slate-800/80 transition-colors">
                           <div>
                             <span className="block text-[13px] font-bold text-white mb-0.5">Paperless Billing</span>
                             <span className="block text-[11px] text-slate-400">Send invoices and receipts via email only</span>
@@ -4312,7 +4312,7 @@ export default function ClientDetailsPage() {
                   <div className="flex justify-end gap-3 pt-2">
                     <button 
                       onClick={() => setIsManageBillingModalOpen(false)}
-                      className="px-6 py-2 bg-slate-800 hover:bg-slate-700 border-slate-700 text-white rounded-lg text-[13px] font-medium transition-colors"
+                      className="px-6 py-2 bg-slate-800 hover:bg-slate-700 border-slate-600 text-white rounded-lg text-[13px] font-medium transition-colors"
                     >
                       Close
                     </button>
@@ -4348,7 +4348,7 @@ export default function ClientDetailsPage() {
                   value={newTemplate.name}
                   onChange={(e) => setNewTemplate({...newTemplate, name: e.target.value})}
                   placeholder="e.g. Welcome Onboarding Email"
-                  className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner"
+                  className="w-full px-4 py-3 bg-slate-950 border-slate-600 rounded-lg text-[14px] text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all "
                 />
               </div>
               
@@ -4359,13 +4359,13 @@ export default function ClientDetailsPage() {
                   value={newTemplate.subject}
                   onChange={(e) => setNewTemplate({...newTemplate, subject: e.target.value})}
                   placeholder="Subject of the email"
-                  className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-[14px] text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner"
+                  className="w-full px-4 py-3 bg-slate-950 border-slate-600 rounded-lg text-[14px] text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all "
                 />
               </div>
               
               <div>
                 <label className="block text-[14px] font-bold text-slate-200 mb-2">Template Body*</label>
-                <div className="border border-slate-700 rounded-lg bg-slate-950 overflow-hidden focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all shadow-inner">
+                <div className="border-slate-600 rounded-lg bg-slate-950 overflow-hidden focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all ">
                   <textarea 
                     value={newTemplate.body}
                     onChange={(e) => setNewTemplate({...newTemplate, body: e.target.value})}
@@ -4379,7 +4379,7 @@ export default function ClientDetailsPage() {
             <div className="p-5 border-t border-slate-800 bg-slate-900/30 flex justify-end gap-3 rounded-b-xl">
               <button 
                 onClick={() => setIsTemplateModalOpen(false)}
-                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-700 hover:bg-slate-800 transition-colors"
+                className="px-5 py-2 rounded-lg text-[13px] font-medium text-slate-300 hover:text-white border-slate-600 hover:bg-slate-800 transition-colors"
               >
                 Cancel
               </button>

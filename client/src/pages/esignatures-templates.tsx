@@ -101,7 +101,7 @@ export default function ESignaturesTemplatesPage() {
                 placeholder="Search templates..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 bg-slate-900/80 border border-slate-700/80 rounded-xl text-[14px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner"
+                className="w-full pl-11 pr-4 py-3 bg-slate-900/80 border border-slate-600 bg-slate-950/80 rounded-xl text-[14px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner"
               />
             </div>
 
@@ -109,7 +109,7 @@ export default function ESignaturesTemplatesPage() {
             {filteredTemplates.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredTemplates.map((template) => (
-                  <div key={template.id} className="bg-slate-900/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/30 transition-all group flex flex-col hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
+                  <div key={template.id} className="bg-slate-900/60 backdrop-blur-sm border border-slate-600 bg-slate-950/50 rounded-2xl p-6 hover:border-indigo-500/30 transition-all group flex flex-col hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
                     <div className="flex justify-between items-start mb-4">
                       <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 text-indigo-400">
                         <FileText className="w-6 h-6" />
@@ -124,7 +124,7 @@ export default function ESignaturesTemplatesPage() {
                     
                     <div className="flex flex-wrap gap-2 mb-6">
                       {template.tags.map((tag, idx) => (
-                        <span key={idx} className="px-2 py-1 bg-slate-800 text-slate-300 rounded border border-slate-700 text-[10px] font-bold tracking-wide uppercase">
+                        <span key={idx} className="px-2 py-1 bg-slate-800 text-slate-300 rounded border border-slate-600 bg-slate-950 text-[10px] font-bold tracking-wide uppercase">
                           {tag}
                         </span>
                       ))}
@@ -150,7 +150,7 @@ export default function ESignaturesTemplatesPage() {
                 ))}
               </div>
             ) : (
-              <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-12 flex flex-col items-center justify-center text-center">
+              <div className="bg-slate-950 border border-slate-800 rounded-2xl p-12 flex flex-col items-center justify-center text-center">
                 <LayoutTemplate className="w-16 h-16 text-slate-600 mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">No templates found</h3>
                 <p className="text-slate-400 text-sm max-w-md mb-6">We couldn't find any templates matching "{searchQuery}". Try adjusting your search or create a new template.</p>

@@ -83,7 +83,7 @@ export default function ESignaturesSendPage() {
                   className={`w-12 h-12 rounded-full flex items-center justify-center border-4 border-slate-900 transition-all duration-300 shadow-xl
                     ${isCompleted ? 'bg-indigo-500 text-white' : 
                       isCurrent ? 'bg-slate-800 border-indigo-500 text-indigo-400 scale-110' : 
-                      'bg-slate-800 text-slate-500 border-slate-700'}`}
+                      'bg-slate-800 text-slate-500 border-slate-600 bg-slate-950'}`}
                 >
                   {isCompleted ? <CheckCircle2 className="w-5 h-5" /> : <Icon className="w-5 h-5" />}
                 </div>
@@ -124,7 +124,7 @@ export default function ESignaturesSendPage() {
             </div>
 
             {/* Wizard Container */}
-            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-[0_0_30px_rgba(0,0,0,0.3)] p-8">
+            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-slate-600 bg-slate-950/50 shadow-[0_0_30px_rgba(0,0,0,0.3)] p-8">
               
               {renderStepIndicator()}
               
@@ -143,17 +143,17 @@ export default function ESignaturesSendPage() {
                         
                         {/* Upload Area */}
                         <div 
-                          className="border-2 border-dashed border-slate-600 rounded-xl p-10 flex flex-col items-center justify-center text-center hover:border-indigo-500 hover:bg-indigo-500/5 transition-all cursor-pointer group bg-slate-900/50"
+                          className="border-2 border-dashed border-slate-600 bg-slate-950 rounded-xl p-10 flex flex-col items-center justify-center text-center hover:border-indigo-500 hover:bg-indigo-500/5 transition-all cursor-pointer group bg-slate-950"
                           onClick={handleFileUpload}
                         >
-                          <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-indigo-500/20 group-hover:text-indigo-400 border border-slate-700">
+                          <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-indigo-500/20 group-hover:text-indigo-400 border border-slate-600 bg-slate-950">
                             <UploadCloud className="w-8 h-8 text-slate-400 group-hover:text-indigo-400 transition-colors" />
                           </div>
                           <h3 className="text-[16px] font-bold text-white mb-2">Click to upload or drag & drop</h3>
                           <p className="text-[13px] text-slate-400 max-w-sm mb-6">
                             Supported formats: PDF, DOCX, DOC, PNG, JPG (Max 25MB)
                           </p>
-                          <button className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors shadow-sm">
+                          <button className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 bg-slate-950 text-white rounded-lg text-[13px] font-bold transition-colors shadow-sm">
                             Browse Files
                           </button>
                         </div>
@@ -166,7 +166,7 @@ export default function ESignaturesSendPage() {
                         </div>
                         
                         {/* Templates Button */}
-                        <button className="w-full py-4 border border-slate-700 bg-slate-800/50 hover:bg-slate-800 rounded-xl text-left px-6 flex items-center justify-between transition-colors group">
+                        <button className="w-full py-4 border border-slate-600 bg-slate-950 bg-slate-800/50 hover:bg-slate-800 rounded-xl text-left px-6 flex items-center justify-between transition-colors group">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
                               <Copy className="w-5 h-5 text-indigo-400" />
@@ -186,7 +186,7 @@ export default function ESignaturesSendPage() {
                           <div className="flex items-center gap-3">
                             <button 
                               onClick={() => setSelectedFileId(null)}
-                              className="p-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-slate-400 hover:text-white transition-colors"
+                              className="p-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 bg-slate-950 rounded-lg text-slate-400 hover:text-white transition-colors"
                             >
                               <ArrowRight className="w-4 h-4 rotate-180" />
                             </button>
@@ -198,7 +198,7 @@ export default function ESignaturesSendPage() {
                           <div className="flex items-center gap-2">
                             <span className="text-[12px] text-slate-400 font-medium">Assigning to:</span>
                             <select 
-                              className="bg-slate-800 border border-slate-700 text-white text-[12px] rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 min-w-[150px]"
+                              className="bg-slate-800 border border-slate-600 bg-slate-950 text-white text-[12px] rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 min-w-[150px]"
                               onChange={(e) => {
                                 // In a real app we'd track the selected assignee for new fields
                               }}
@@ -233,7 +233,7 @@ export default function ESignaturesSendPage() {
                                 setIsDraggingField('signature');
                               }}
                               onDragEnd={() => setIsDraggingField(null)}
-                              className="bg-slate-800/80 hover:bg-indigo-500/20 border border-slate-700 hover:border-indigo-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
+                              className="bg-slate-800/80 hover:bg-indigo-500/20 border border-slate-600 bg-slate-950 hover:border-indigo-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
                             >
                               <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
                                 <Edit2 className="w-4 h-4" />
@@ -248,7 +248,7 @@ export default function ESignaturesSendPage() {
                                 setIsDraggingField('date');
                               }}
                               onDragEnd={() => setIsDraggingField(null)}
-                              className="bg-slate-800/80 hover:bg-emerald-500/20 border border-slate-700 hover:border-emerald-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
+                              className="bg-slate-800/80 hover:bg-emerald-500/20 border border-slate-600 bg-slate-950 hover:border-emerald-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
                             >
                               <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                                 <Calendar className="w-4 h-4" />
@@ -263,7 +263,7 @@ export default function ESignaturesSendPage() {
                                 setIsDraggingField('text');
                               }}
                               onDragEnd={() => setIsDraggingField(null)}
-                              className="bg-slate-800/80 hover:bg-blue-500/20 border border-slate-700 hover:border-blue-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
+                              className="bg-slate-800/80 hover:bg-blue-500/20 border border-slate-600 bg-slate-950 hover:border-blue-500/50 p-3 rounded-xl cursor-grab active:cursor-grabbing flex items-center gap-3 transition-colors shadow-sm"
                             >
                               <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
                                 <FileText className="w-4 h-4" />
@@ -274,7 +274,7 @@ export default function ESignaturesSendPage() {
                             <div className="mt-auto">
                               <button 
                                 onClick={handleFileUpload}
-                                className="w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-lg text-[12px] font-bold transition-colors flex items-center justify-center gap-2"
+                                className="w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 bg-slate-950 text-white rounded-lg text-[12px] font-bold transition-colors flex items-center justify-center gap-2"
                               >
                                 <Plus className="w-3 h-3" /> Add Document
                               </button>
@@ -283,7 +283,7 @@ export default function ESignaturesSendPage() {
                           
                           {/* Document Viewer Area */}
                           <div 
-                            className={`flex-1 bg-slate-800/30 border-2 rounded-xl overflow-hidden relative flex flex-col items-center p-6 ${isDraggingField ? 'border-indigo-500/50 border-dashed bg-indigo-500/5' : 'border-slate-700/50 solid'}`}
+                            className={`flex-1 bg-slate-800/30 border-2 rounded-xl overflow-hidden relative flex flex-col items-center p-6 ${isDraggingField ? 'border-indigo-500/50 border-dashed bg-indigo-500/5' : 'border-slate-600 bg-slate-950/50 solid'}`}
                           >
                             {/* Mock PDF Document */}
                             <div 
@@ -342,7 +342,7 @@ export default function ESignaturesSendPage() {
                             </div>
                             
                             {/* Document Pagination/Controls */}
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-slate-900/90 backdrop-blur border border-slate-700 rounded-full px-4 py-2 shadow-xl">
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-slate-900/90 backdrop-blur border border-slate-600 bg-slate-950 rounded-full px-4 py-2 shadow-xl">
                               <button className="text-slate-400 hover:text-white transition-colors"><ArrowRight className="w-4 h-4 rotate-180" /></button>
                               <span className="text-[12px] font-bold text-white">Page 1 of 1</span>
                               <button className="text-slate-400 hover:text-white transition-colors"><ArrowRight className="w-4 h-4" /></button>
@@ -360,15 +360,15 @@ export default function ESignaturesSendPage() {
                       <h2 className="text-xl font-bold text-white flex items-center gap-2">
                         <Users className="w-5 h-5 text-indigo-400" /> Add Recipients
                       </h2>
-                      <label className="flex items-center gap-2 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
-                        <input type="checkbox" className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-slate-900" />
+                      <label className="flex items-center gap-2 cursor-pointer bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-600 bg-slate-950">
+                        <input type="checkbox" className="w-4 h-4 rounded border-slate-600 bg-slate-950 bg-slate-900 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-slate-900" />
                         <span className="text-[12px] font-bold text-slate-300">Set Signing Order</span>
                       </label>
                     </div>
                     
                     <div className="space-y-4">
                       {recipients.map((recipient, idx) => (
-                        <div key={idx} className="p-5 bg-slate-800/40 border border-slate-700/50 rounded-xl relative group flex gap-4">
+                        <div key={idx} className="p-5 bg-slate-800/40 border border-slate-600 bg-slate-950/50 rounded-xl relative group flex gap-4">
                           <div className="flex flex-col items-center justify-center shrink-0 w-8">
                             <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white mb-1">
                               {idx + 1}
@@ -392,7 +392,7 @@ export default function ESignaturesSendPage() {
                                     newRecipients[idx].name = e.target.value;
                                     setRecipients(newRecipients);
                                   }}
-                                  className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner" 
+                                  className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner" 
                                 />
                               </div>
                             </div>
@@ -411,7 +411,7 @@ export default function ESignaturesSendPage() {
                                     newRecipients[idx].email = e.target.value;
                                     setRecipients(newRecipients);
                                   }}
-                                  className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner" 
+                                  className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner" 
                                 />
                               </div>
                             </div>
@@ -421,10 +421,10 @@ export default function ESignaturesSendPage() {
                                 value={recipient.role}
                                 onChange={(e) => {
                                   const newRecipients = [...recipients];
-                                  newRecipients[idx].role = e.target.value;
+                                  newRecipients[idx].role = e.target.value as any;
                                   setRecipients(newRecipients);
                                 }}
-                                className="w-full px-3 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner appearance-none cursor-pointer"
+                                className="w-full px-3 py-2.5 bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg text-[13px] text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner appearance-none cursor-pointer"
                               >
                                 <option>Signer</option>
                                 <option>Needs to View</option>
@@ -447,7 +447,7 @@ export default function ESignaturesSendPage() {
                     
                     <button 
                       onClick={handleAddRecipient}
-                      className="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors flex items-center gap-2"
+                      className="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 bg-slate-950 text-white rounded-lg text-[13px] font-bold transition-colors flex items-center gap-2"
                     >
                       <Plus className="w-4 h-4" /> Add Recipient
                     </button>
@@ -461,7 +461,7 @@ export default function ESignaturesSendPage() {
                       <Mail className="w-5 h-5 text-indigo-400" /> Email Message
                     </h2>
                     
-                    <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-6">
+                    <div className="bg-slate-800/40 border border-slate-600 bg-slate-950/50 rounded-xl p-6">
                       <div className="space-y-5">
                         <div>
                           <label className="block text-[12px] font-bold text-slate-400 mb-2 uppercase tracking-wider">Email Subject</label>
@@ -469,7 +469,7 @@ export default function ESignaturesSendPage() {
                             type="text" 
                             value={emailSubject}
                             onChange={(e) => setEmailSubject(e.target.value)}
-                            className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner" 
+                            className="w-full px-4 py-3 bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg text-[14px] font-medium text-white focus:outline-none focus:border-indigo-500 transition-colors shadow-inner" 
                           />
                         </div>
                         
@@ -479,7 +479,7 @@ export default function ESignaturesSendPage() {
                             rows={6}
                             value={emailMessage}
                             onChange={(e) => setEmailMessage(e.target.value)}
-                            className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-[14px] text-slate-300 focus:outline-none focus:border-indigo-500 transition-colors shadow-inner resize-none"
+                            className="w-full px-4 py-3 bg-slate-900 border border-slate-600 bg-slate-950 rounded-lg text-[14px] text-slate-300 focus:outline-none focus:border-indigo-500 transition-colors shadow-inner resize-none"
                           ></textarea>
                           <p className="text-[11px] text-slate-500 mt-2">
                             This message will be included in the email sent to all recipients.
@@ -500,12 +500,12 @@ export default function ESignaturesSendPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                       <div className="lg:col-span-2 space-y-6">
                         {/* Documents Summary */}
-                        <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5">
-                          <h3 className="text-[13px] font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-700/50 pb-2">Documents to Sign</h3>
+                        <div className="bg-slate-800/40 border border-slate-600 bg-slate-950/50 rounded-xl p-5">
+                          <h3 className="text-[13px] font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-600 bg-slate-950/50 pb-2">Documents to Sign</h3>
                           {attachedFiles.length > 0 ? (
                             <div className="space-y-3">
                               {attachedFiles.map((file, idx) => (
-                                <div key={idx} className="flex items-center gap-3 bg-slate-900/50 p-3 rounded-lg border border-slate-700">
+                                <div key={idx} className="flex items-center gap-3 bg-slate-950 p-3 rounded-lg border border-slate-600 bg-slate-950">
                                   <FileText className="w-5 h-5 text-rose-400" />
                                   <span className="text-[14px] font-bold text-white">{file.name}</span>
                                 </div>
@@ -520,11 +520,11 @@ export default function ESignaturesSendPage() {
                         </div>
                         
                         {/* Recipients Summary */}
-                        <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5">
-                          <h3 className="text-[13px] font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-700/50 pb-2">Recipients</h3>
+                        <div className="bg-slate-800/40 border border-slate-600 bg-slate-950/50 rounded-xl p-5">
+                          <h3 className="text-[13px] font-bold text-slate-400 uppercase tracking-wider mb-4 border-b border-slate-600 bg-slate-950/50 pb-2">Recipients</h3>
                           <div className="space-y-3">
                             {recipients.map((recipient, idx) => (
-                              <div key={idx} className="flex items-center justify-between bg-slate-900/50 p-3 rounded-lg border border-slate-700">
+                              <div key={idx} className="flex items-center justify-between bg-slate-950 p-3 rounded-lg border border-slate-600 bg-slate-950">
                                 <div className="flex items-center gap-3">
                                   <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-[12px]">
                                     {recipient.name ? recipient.name.charAt(0).toUpperCase() : '?'}
@@ -534,7 +534,7 @@ export default function ESignaturesSendPage() {
                                     <div className="text-[11px] text-slate-400">{recipient.email || 'No email provided'}</div>
                                   </div>
                                 </div>
-                                <span className="px-2.5 py-1 bg-slate-800 rounded text-[10px] font-bold text-slate-300 border border-slate-700">
+                                <span className="px-2.5 py-1 bg-slate-800 rounded text-[10px] font-bold text-slate-300 border border-slate-600 bg-slate-950">
                                   {recipient.role}
                                 </span>
                               </div>
@@ -565,7 +565,7 @@ export default function ESignaturesSendPage() {
                             >
                               <Play className="w-4 h-4" /> Send Now
                             </button>
-                            <button className="w-full py-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white rounded-xl text-[13px] font-bold transition-colors">
+                            <button className="w-full py-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 bg-slate-950 text-white rounded-xl text-[13px] font-bold transition-colors">
                               Preview Layout
                             </button>
                           </div>
@@ -580,7 +580,7 @@ export default function ESignaturesSendPage() {
               <div className="mt-10 pt-6 border-t border-slate-800 flex items-center justify-between">
                 <button 
                   onClick={() => currentStep > 1 ? setCurrentStep(currentStep - 1) : setLocation('/clients/1')}
-                  className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors border border-slate-700"
+                  className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors border border-slate-600 bg-slate-950"
                 >
                   {currentStep === 1 ? 'Cancel' : 'Back'}
                 </button>

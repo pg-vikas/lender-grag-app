@@ -111,7 +111,7 @@ export default function LaunchpadsPage() {
                     className={`glass-panel p-4 rounded-xl border-t cursor-pointer transition-all hover:-translate-y-1 ${stat.colorClass} ${activeFilter === stat.filterValue ? 'bg-slate-800/50 shadow-[inset_0_-4px_10px_-4px_rgba(255,255,255,0.1)]' : ''}`}
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <div className={`p-1.5 rounded-lg bg-slate-800/80 border border-slate-700`}>
+                      <div className={`p-1.5 rounded-lg bg-slate-800/80 border border-slate-600 bg-slate-950`}>
                         <stat.icon className={`w-4 h-4 ${stat.iconColor}`} />
                       </div>
                       <span className="text-sm font-semibold text-slate-300">{stat.label}</span>
@@ -132,13 +132,13 @@ export default function LaunchpadsPage() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       onKeyDown={handleKeyDown}
-                      className="w-full pl-10 pr-4 py-2 bg-slate-900/80 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                      className="w-full pl-10 pr-4 py-2 bg-slate-900/80 border border-slate-600 bg-slate-950 rounded-lg text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
                     />
                   </div>
                   
                   <button 
                     onClick={handleSearch}
-                    className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
+                    className="px-4 py-2 bg-slate-800 border border-slate-600 bg-slate-950 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
                   >
                     Filter <Filter className="w-4 h-4" />
                   </button>
@@ -146,7 +146,7 @@ export default function LaunchpadsPage() {
                   {(appliedSearchQuery || activeFilter !== 'All') && (
                     <button 
                       onClick={handleReset}
-                      className="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-all text-sm font-medium"
+                      className="px-4 py-2 bg-slate-800/50 border border-slate-600 bg-slate-950 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-all text-sm font-medium"
                     >
                       Reset
                     </button>
@@ -155,13 +155,13 @@ export default function LaunchpadsPage() {
                 
                 <div className="flex items-center gap-3 w-full md:w-auto">
                   <Link href="/launchpads/templates">
-                    <button className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all text-sm font-medium">
+                    <button className="px-4 py-2 bg-slate-800 border border-slate-600 bg-slate-950 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all text-sm font-medium">
                       Templates
                     </button>
                   </Link>
                   <button 
                     onClick={() => setIsExportPanelOpen(true)}
-                    className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
+                    className="px-4 py-2 bg-slate-800 border border-slate-600 bg-slate-950 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all flex items-center gap-2 text-sm font-medium"
                   >
                     <Download className="w-4 h-4" /> Export
                   </button>
@@ -216,9 +216,9 @@ export default function LaunchpadsPage() {
                         </td>
                         <td className="py-4 px-6 text-center">
                           <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
-                            item.status === 'Not Started' ? 'text-slate-400 bg-slate-800 border-slate-700' :
+                            item.status === 'Not Started' ? 'text-slate-400 bg-slate-800 border-slate-600 bg-slate-950' :
                             item.status === 'In Progress' ? 'text-blue-400 bg-blue-500/10 border-blue-500/20 shadow-[0_0_10px_rgba(59,130,246,0.1)]' :
-                            'text-slate-400 bg-slate-800 border-slate-700'
+                            'text-slate-400 bg-slate-800 border-slate-600 bg-slate-950'
                           }`}>
                             {item.status}
                           </span>
@@ -256,11 +256,11 @@ export default function LaunchpadsPage() {
           onClick={() => setIsAddLaunchpadOpen(false)}
         >
           <div 
-            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Add New Launchpad</h2>
               <button 
                 onClick={() => setIsAddLaunchpadOpen(false)}
@@ -277,12 +277,12 @@ export default function LaunchpadsPage() {
                   <label className="block text-sm font-medium text-slate-300 mb-2">Launchpad Name*</label>
                   <input 
                     type="text" 
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all" 
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Client*</label>
-                  <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
+                  <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
                     <option value="">Select a client...</option>
                     <option value="1">Pink Gorilla Software</option>
                     <option value="2">Vin Gardner</option>
@@ -295,14 +295,14 @@ export default function LaunchpadsPage() {
                   <label className="block text-sm font-medium text-slate-300 mb-2">Start Date*</label>
                   <input 
                     type="date" 
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Est. End Date</label>
                   <input 
                     type="date" 
-                    className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
                   />
                 </div>
               </div>
@@ -310,7 +310,7 @@ export default function LaunchpadsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Priority</label>
-                  <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
+                  <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
                     <option>Normal</option>
                     <option>High</option>
                     <option>Low</option>
@@ -318,7 +318,7 @@ export default function LaunchpadsPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">Status</label>
-                  <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
+                  <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
                     <option>Not Started</option>
                     <option>In Progress</option>
                     <option>On Hold</option>
@@ -339,7 +339,7 @@ export default function LaunchpadsPage() {
             <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
               <button 
                 onClick={() => setIsAddLaunchpadOpen(false)}
-                className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
               >
                 Close
               </button>
@@ -361,11 +361,11 @@ export default function LaunchpadsPage() {
           onClick={() => setIsEditLaunchpadOpen(false)}
         >
           <div 
-            className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+            className="bg-slate-900 border border-slate-600 bg-slate-950 rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+            <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
               <h2 className="text-xl font-bold text-white">Edit Launchpad</h2>
               <button 
                 onClick={() => setIsEditLaunchpadOpen(false)}
@@ -384,14 +384,14 @@ export default function LaunchpadsPage() {
                     <input 
                       type="text" 
                       defaultValue={selectedLaunchpad?.name}
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all" 
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Client*</label>
                     <select 
                       defaultValue={selectedLaunchpad?.client}
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none"
                     >
                       <option value="">Select a client...</option>
                       <option value="Pink Gorilla Software">Pink Gorilla Software</option>
@@ -405,14 +405,14 @@ export default function LaunchpadsPage() {
                     <label className="block text-sm font-medium text-slate-300 mb-2">Start Date*</label>
                     <input 
                       type="date" 
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Est. End Date</label>
                     <input 
                       type="date" 
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all" 
                     />
                   </div>
                 </div>
@@ -420,7 +420,7 @@ export default function LaunchpadsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-2">Priority</label>
-                    <select className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
                       <option>Normal</option>
                       <option>High</option>
                       <option>Low</option>
@@ -430,7 +430,7 @@ export default function LaunchpadsPage() {
                     <label className="block text-sm font-medium text-slate-300 mb-2">Status</label>
                     <select 
                       defaultValue={selectedLaunchpad?.status}
-                      className="w-full px-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none"
                     >
                       <option>Not Started</option>
                       <option>In Progress</option>
@@ -453,7 +453,7 @@ export default function LaunchpadsPage() {
                 <button 
                   type="button"
                   onClick={() => setIsEditLaunchpadOpen(false)}
-                  className="px-6 py-2.5 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
+                  className="px-6 py-2.5 border border-slate-600 bg-slate-950 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
                 >
                   Cancel
                 </button>
@@ -484,7 +484,7 @@ export default function LaunchpadsPage() {
                   setIsDeleteModalOpen(false);
                   setSelectedLaunchpad(null);
                 }}
-                className="px-6 py-2.5 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-white rounded-xl text-sm font-medium transition-colors w-28"
+                className="px-6 py-2.5 bg-slate-800 border border-slate-600 bg-slate-950 hover:bg-slate-700 text-white rounded-xl text-sm font-medium transition-colors w-28"
               >
                 Cancel
               </button>
@@ -513,7 +513,7 @@ export default function LaunchpadsPage() {
             className="fixed top-0 right-0 h-full w-[400px] bg-slate-900 border-l border-slate-800 shadow-2xl z-50 flex flex-col animate-in slide-in-from-right duration-300"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/50">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950">
               <div className="flex items-center gap-2 text-white">
                 <Download className="w-5 h-5" />
                 <h2 className="text-lg font-semibold">Export Launchpads</h2>
@@ -533,23 +533,23 @@ export default function LaunchpadsPage() {
                 <h3 className="text-sm font-medium text-slate-300">Date Created</h3>
                 <div className="flex flex-wrap gap-2">
                   <button className="px-3 py-1.5 text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/30 rounded-md">Today</button>
-                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-700 rounded-md hover:bg-slate-800 hover:text-white transition-colors">This Week</button>
-                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-700 rounded-md hover:bg-slate-800 hover:text-white transition-colors">This Month</button>
-                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-700 rounded-md hover:bg-slate-800 hover:text-white transition-colors">All Time</button>
+                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-600 bg-slate-950 rounded-md hover:bg-slate-800 hover:text-white transition-colors">This Week</button>
+                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-600 bg-slate-950 rounded-md hover:bg-slate-800 hover:text-white transition-colors">This Month</button>
+                  <button className="px-3 py-1.5 text-xs font-medium text-slate-400 border border-slate-600 bg-slate-950 rounded-md hover:bg-slate-800 hover:text-white transition-colors">All Time</button>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex-1">
                     <input 
                       type="text" 
                       placeholder="From"
-                      className="w-full px-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-500/50" 
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-500/50" 
                     />
                   </div>
                   <div className="flex-1">
                     <input 
                       type="text" 
                       placeholder="To"
-                      className="w-full px-3 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-500/50" 
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-lg text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-500/50" 
                     />
                   </div>
                 </div>
@@ -570,7 +570,7 @@ export default function LaunchpadsPage() {
                     <label key={field} className="flex items-center gap-3 cursor-pointer group">
                       <div className="relative flex items-center justify-center">
                         <input type="checkbox" defaultChecked className="peer sr-only" />
-                        <div className="w-5 h-5 rounded border border-slate-600 bg-slate-900 peer-checked:bg-purple-500 peer-checked:border-purple-500 transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(147,51,234,0)] peer-checked:shadow-[0_0_10px_rgba(147,51,234,0.3)]">
+                        <div className="w-5 h-5 rounded border border-slate-600 bg-slate-950 bg-slate-900 peer-checked:bg-purple-500 peer-checked:border-purple-500 transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(147,51,234,0)] peer-checked:shadow-[0_0_10px_rgba(147,51,234,0.3)]">
                           <svg className="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
