@@ -89,6 +89,11 @@ export default function ProjectsPage() {
     return 'text-sky-500 border border-sky-200 bg-sky-50';
   };
 
+  const getRowSurfaceClass = (index: number) =>
+    index % 2 === 0
+      ? 'bg-slate-900/85 border-slate-700/80'
+      : 'bg-slate-800/65 border-slate-700/70';
+
   return (
     <div className="h-screen w-full overflow-hidden bg-transparent flex font-sans text-[#e2e8f0]">
       <Sidebar openMenus={openMenus} toggleMenu={toggleMenu} currentPath={location} />
@@ -323,41 +328,41 @@ export default function ProjectsPage() {
                   </thead>
                   <tbody>
                     {filteredProjects.map((project, i) => (
-                      <tr key={i} className="bg-slate-900/40 backdrop-blur-xl group">
-                        <td className="py-4 px-6 font-medium rounded-l-[12px] border-y border-l border-white/10 group-hover:border-[#cbd5e1] transition-colors">
+                      <tr key={i} className="group transition-all duration-200">
+                        <td className={`${getRowSurfaceClass(i)} py-4 px-6 font-medium rounded-l-[12px] border-y border-l group-hover:border-slate-500 transition-colors`}>
                           <Link href="/projects/1" className="text-white hover:text-indigo-400 transition-colors">{project.name}</Link>
                         </td>
-                        <td className="py-4 px-6 font-medium text-white border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">{project.client}</td>
-                        <td className="py-4 px-6 font-medium text-white border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">{project.dueDate}</td>
-                        <td className="py-4 px-6 border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
+                        <td className={`${getRowSurfaceClass(i)} py-4 px-6 font-medium text-white border-y group-hover:border-slate-500 transition-colors`}>{project.client}</td>
+                        <td className={`${getRowSurfaceClass(i)} py-4 px-6 font-medium text-white border-y group-hover:border-slate-500 transition-colors`}>{project.dueDate}</td>
+                        <td className={`${getRowSurfaceClass(i)} py-4 px-6 border-y group-hover:border-slate-500 transition-colors`}>
                            <span className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-medium ${getPriorityStyle(project.priority)}`}>
                              {project.priority}
                            </span>
                         </td>
-                        <td className="py-4 px-6 border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
+                        <td className={`${getRowSurfaceClass(i)} py-4 px-6 border-y group-hover:border-slate-500 transition-colors`}>
                           <div className="flex items-center gap-2">
-                            <div className="w-7 h-7 rounded-full overflow-hidden bg-slate-100 shrink-0">
+                            <div className="w-7 h-7 rounded-full overflow-hidden bg-slate-100 shrink-0 ring-1 ring-white/10">
                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${project.createdBy}`} alt={project.createdBy} className="w-full h-full object-cover" />
                             </div>
                             <span className="font-medium text-white">{project.createdBy}</span>
                           </div>
                         </td>
-                        <td className="py-4 px-6 border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
+                        <td className={`${getRowSurfaceClass(i)} py-4 px-6 border-y group-hover:border-slate-500 transition-colors`}>
                           <div className="flex items-center -space-x-2">
-                             <div className="w-7 h-7 rounded-full overflow-hidden border-2 border-white relative z-10 bg-pink-500">
+                             <div className="w-7 h-7 rounded-full overflow-hidden border-2 border-slate-900 relative z-10 bg-pink-500 ring-1 ring-white/10">
                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${project.assignee}1`} className="w-full h-full object-cover" />
                              </div>
-                             <div className="w-7 h-7 rounded-full overflow-hidden border-2 border-white relative z-0 bg-blue-500">
+                             <div className="w-7 h-7 rounded-full overflow-hidden border-2 border-slate-900 relative z-0 bg-blue-500 ring-1 ring-white/10">
                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${project.assignee}2`} className="w-full h-full object-cover" />
                              </div>
                           </div>
                         </td>
-                        <td className="py-4 px-6 border-y border-white/10 group-hover:border-[#cbd5e1] transition-colors">
+                        <td className={`${getRowSurfaceClass(i)} py-4 px-6 border-y group-hover:border-slate-500 transition-colors`}>
                            <span className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-[11px] font-semibold ${getStatusStyle(project.status)}`}>
                              {project.status}
                            </span>
                         </td>
-                        <td className="py-4 px-6 border-y border-r border-white/10 group-hover:border-[#cbd5e1] transition-colors rounded-r-[12px]">
+                        <td className={`${getRowSurfaceClass(i)} py-4 px-6 border-y border-r group-hover:border-slate-500 transition-colors rounded-r-[12px]`}>
                           <div className="flex items-center gap-2">
                             <button 
                               onClick={() => setIsEditProjectModalOpen(true)}
