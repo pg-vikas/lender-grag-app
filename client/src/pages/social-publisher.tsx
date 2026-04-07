@@ -19,16 +19,21 @@ import {
   Instagram,
   Linkedin,
   BarChart,
-  LayoutGrid
+  LayoutGrid,
+  X,
+  Clock
 } from "lucide-react";
 
 export default function SocialPublisher() {
   const [, setLocation] = useLocation();
   const { sidebarOpen, toggleSidebar } = useAppStore();
   const [openMenus, setOpenMenus] = useState<string>("social-media");
-  const [activeTab, setActiveTab] = useState("accounts");
+  const [activeTab, setActiveTab] = useState("composer");
   const [postContent, setPostContent] = useState("");
   const [selectedAccounts, setSelectedAccounts] = useState<string[]>(['twitter']);
+  const [isScheduling, setIsScheduling] = useState(false);
+  const [scheduleDate, setScheduleDate] = useState("");
+  const [scheduleTime, setScheduleTime] = useState("");
 
   const toggleMenu = (menu: string) => {
     setOpenMenus(openMenus === menu ? "" : menu);
@@ -367,23 +372,92 @@ export default function SocialPublisher() {
                   </div>
 
                   {/* Schedule & Publish */}
-                  <div className="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-lg flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <button className="flex items-center space-x-2 px-4 py-2.5 bg-slate-900 border border-slate-600 rounded-xl text-slate-300 hover:bg-slate-800 hover:border-slate-500 transition-all">
-                        <Calendar className="w-4 h-4 text-sky-400" />
-                        <span className="text-sm font-semibold">Schedule Post</span>
-                      </button>
-                      <span className="text-sm text-slate-500">or save as draft</span>
-                    </div>
-                    
-                    <div className="flex space-x-2">
-                      <button className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-white rounded-xl text-sm font-bold transition-all">
-                        Save Draft
-                      </button>
-                      <button className="flex items-center space-x-2 px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-sm font-bold shadow-[0_0_15px_rgba(147,51,234,0.4)] transition-all">
-                        <Send className="w-4 h-4" />
-                        <span>Publish Now</span>
-                      </button>
+                  <div className="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-lg relative">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4 relative">
+                        <button 
+                          onClick={() => setIsScheduling(!isScheduling)}
+                          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl transition-all border ${
+                            scheduleDate && scheduleTime 
+                              ? 'bg-sky-500/10 border-sky-500/50 text-sky-400' 
+                              : isScheduling 
+                                ? 'bg-slate-700 border-slate-500 text-white' 
+                                : 'bg-slate-900 border-slate-600 text-slate-300 hover:bg-slate-800 hover:border-slate-500'
+                          }`}
+                        >
+                          <Calendar className="w-4 h-4 text-sky-400" />
+                          <span className="text-sm font-semibold">
+                            {scheduleDate && scheduleTime ? `${scheduleDate} at ${scheduleTime}` : 'Schedule Post'}
+                          </span>
+                        </button>
+                        
+                        {scheduleDate && scheduleTime && (
+                           <button 
+                             onClick={() => { setScheduleDate(""); setScheduleTime(""); }}
+                             className="text-slate-500 hover:text-rose-400 transition-colors"
+                             title="Clear Schedule"
+                           >
+                             <X className="w-4 h-4" />
+                           </button>
+                        )}
+                        
+                        {!scheduleDate && <span className="text-sm text-slate-500">or save as draft</span>}
+
+                        {/* Scheduling Popover */}
+                        {isScheduling && (
+                          <div className="absolute bottom-full left-0 mb-4 w-72 bg-slate-800 border border-slate-600 rounded-xl shadow-2xl p-4 z-10 animate-in slide-in-from-bottom-2">
+                            <div className="flex items-center justify-between mb-4">
+                              <h4 className="text-white font-bold flex items-center">
+                                <Clock className="w-4 h-4 mr-2 text-sky-400" /> 
+                                Select Date & Time
+                              </h4>
+                              <button onClick={() => setIsScheduling(false)} className="text-slate-400 hover:text-white">
+                                <X className="w-4 h-4" />
+                              </button>
+                            </div>
+                            
+                            <div className="space-y-4">
+                              <div>
+                                <label className="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Date</label>
+                                <input 
+                                  type="date" 
+                                  value={scheduleDate}
+                                  onChange={(e) => setScheduleDate(e.target.value)}
+                                  className="w-full px-3 py-2 bg-slate-950 border border-slate-600 rounded-lg text-sm text-white focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 [color-scheme:dark]"
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Time</label>
+                                <input 
+                                  type="time" 
+                                  value={scheduleTime}
+                                  onChange={(e) => setScheduleTime(e.target.value)}
+                                  className="w-full px-3 py-2 bg-slate-950 border border-slate-600 rounded-lg text-sm text-white focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 [color-scheme:dark]"
+                                />
+                              </div>
+                              <button 
+                                onClick={() => setIsScheduling(false)}
+                                className="w-full py-2 bg-sky-500 hover:bg-sky-400 text-white rounded-lg text-sm font-bold transition-colors mt-2"
+                              >
+                                Confirm Schedule
+                              </button>
+                            </div>
+                            
+                            {/* Decorative pointer arrow */}
+                            <div className="absolute -bottom-2 left-8 w-4 h-4 bg-slate-800 border-b border-r border-slate-600 rotate-45"></div>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="flex space-x-2">
+                        <button className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-white rounded-xl text-sm font-bold transition-all">
+                          Save Draft
+                        </button>
+                        <button className="flex items-center space-x-2 px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-sm font-bold shadow-[0_0_15px_rgba(147,51,234,0.4)] transition-all">
+                          <Send className="w-4 h-4" />
+                          <span>{scheduleDate && scheduleTime ? 'Schedule' : 'Publish Now'}</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
 
