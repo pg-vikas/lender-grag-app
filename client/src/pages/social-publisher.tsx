@@ -26,7 +26,7 @@ export default function SocialPublisher() {
   const [, setLocation] = useLocation();
   const { sidebarOpen, toggleSidebar } = useAppStore();
   const [openMenus, setOpenMenus] = useState<string>("social-media");
-  const [activeTab, setActiveTab] = useState("publisher");
+  const [activeTab, setActiveTab] = useState("accounts");
   const [postContent, setPostContent] = useState("");
   const [selectedAccounts, setSelectedAccounts] = useState<string[]>(['twitter']);
 
@@ -57,15 +57,15 @@ export default function SocialPublisher() {
             <div className="flex flex-wrap items-center gap-2">
               <div className="bg-slate-950 p-1.5 rounded-xl border border-slate-800 shadow-inner flex space-x-1">
                 <button 
-                  onClick={() => setActiveTab("publisher")}
+                  onClick={() => setActiveTab("dashboard")}
                   className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center space-x-2 ${
-                    activeTab === "publisher" 
+                    activeTab === "dashboard" 
                       ? "bg-purple-600 text-white shadow-[0_0_15px_rgba(147,51,234,0.3)]" 
                       : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
                   }`}
                 >
                   <LayoutGrid className="w-4 h-4" />
-                  <span>Publisher</span>
+                  <span>Dashboard</span>
                 </button>
                 <button 
                   onClick={() => setActiveTab("accounts")}
@@ -117,7 +117,7 @@ export default function SocialPublisher() {
               </div>
             </div>
 
-            {activeTab === 'publisher' && (
+            {activeTab === 'dashboard' && (
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-purple-500 border-t-4 p-6 shadow-lg">
                   <h3 className="text-slate-400 text-sm font-medium mb-2">Draft</h3>
@@ -138,6 +138,127 @@ export default function SocialPublisher() {
                 <div className="bg-slate-800 rounded-xl border border-slate-700 border-t-rose-500 border-t-4 p-6 shadow-lg">
                   <h3 className="text-slate-400 text-sm font-medium mb-2">Failed</h3>
                   <p className="text-3xl font-bold text-white">0</p>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'accounts' && (
+              <div className="space-y-6 animate-in fade-in duration-300">
+                {/* Connect Accounts */}
+                <div className="bg-slate-800 rounded-xl border border-slate-700 shadow-lg overflow-hidden">
+                  <div className="p-6 border-b border-slate-700 bg-slate-800/80">
+                    <h3 className="text-lg font-bold text-white">Connect Accounts</h3>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                      <thead>
+                        <tr className="border-b border-slate-700 bg-slate-900/50">
+                          <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Platform</th>
+                          <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Account Name</th>
+                          <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Status</th>
+                          <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Connected At</th>
+                          <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider text-right">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-700/50">
+                        {[
+                          { platform: 'FACEBOOK', name: 'Chayan Alavi', status: 'Connected', date: '2026-03-31 22:24:41', action: 'Disconnect' },
+                          { platform: 'INSTAGRAM', name: 'the.pinkgorilla', status: 'Connected', date: '2026-03-31 22:31:07', action: 'Disconnect' },
+                          { platform: 'THREADS', name: 'THREADS Account', status: 'Connected', date: '2026-04-06 03:36:14', action: 'Disconnect' },
+                          { platform: 'TIKTOK', name: 'TIKTOK Account', status: 'Disconnected', date: '2026-03-30 05:53:09', action: 'Connect' },
+                          { platform: 'YOUTUBE', name: 'Pink Gorilla', status: 'Connected', date: '2026-04-06 06:00:53', action: 'Disconnect' },
+                          { platform: 'X', name: '---', status: 'Disconnected', date: '---', action: 'Connect' },
+                        ].map((row, i) => (
+                          <tr key={i} className="hover:bg-slate-700/30 transition-colors group">
+                            <td className="py-4 px-6 text-[13px] font-bold text-slate-300 group-hover:text-white transition-colors">{row.platform}</td>
+                            <td className="py-4 px-6 text-[13px] text-slate-400">{row.name}</td>
+                            <td className="py-4 px-6">
+                              <span className={`inline-flex items-center px-2.5 py-0.5 rounded text-[11px] font-bold border ${
+                                row.status === 'Connected' 
+                                  ? 'bg-teal-500/10 text-teal-400 border-teal-500/20' 
+                                  : 'bg-slate-500/10 text-slate-400 border-slate-500/20'
+                              }`}>
+                                {row.status}
+                              </span>
+                            </td>
+                            <td className="py-4 px-6 text-[13px] text-slate-400">{row.date}</td>
+                            <td className="py-4 px-6 text-right">
+                              <button className={`px-4 py-1.5 rounded-md text-[11px] font-bold transition-all ${
+                                row.action === 'Connect'
+                                  ? 'bg-sky-500 hover:bg-sky-400 text-white shadow-[0_0_10px_rgba(14,165,233,0.3)]'
+                                  : 'bg-transparent border border-rose-500/30 text-rose-400 hover:bg-rose-500/10 hover:border-rose-500/50'
+                              }`}>
+                                {row.action}
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Platform Credentials */}
+                <div className="bg-slate-800 rounded-xl border border-slate-700 shadow-lg p-6">
+                  <h3 className="text-lg font-bold text-white mb-6">Platform Credentials</h3>
+                  
+                  <div className="flex space-x-6 border-b border-slate-700 mb-6">
+                    {['FACEBOOK', 'INSTAGRAM', 'THREADS', 'TIKTOK', 'YOUTUBE', 'X'].map((plat) => (
+                      <button 
+                        key={plat}
+                        className={`pb-3 text-xs tracking-wider font-bold transition-colors relative ${
+                          plat === 'FACEBOOK' ? 'text-cyan-400' : 'text-slate-500 hover:text-slate-300'
+                        }`}
+                      >
+                        {plat}
+                        {plat === 'FACEBOOK' && (
+                          <div className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-400 rounded-t-full shadow-[0_0_8px_rgba(34,211,238,0.8)]"></div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-700">
+                    <h4 className="text-sm font-bold text-white mb-6 uppercase tracking-wider">FACEBOOK</h4>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Client ID</label>
+                        <input 
+                          type="text" 
+                          defaultValue="1269618474690205"
+                          className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-cyan-500 rounded-xl text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Client Secret</label>
+                        <input 
+                          type="text" 
+                          placeholder="Saved (leave blank to keep)"
+                          className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-cyan-500 rounded-xl text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Status</label>
+                        <div className="relative">
+                          <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-cyan-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-cyan-500/50 transition-all appearance-none cursor-pointer">
+                            <option>Active</option>
+                            <option>Inactive</option>
+                          </select>
+                          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <button className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-sm font-bold shadow-[0_0_15px_rgba(147,51,234,0.4)] transition-all">
+                        Save Credentials
+                      </button>
+                      <button className="px-6 py-2.5 bg-transparent border border-rose-500/30 text-rose-400 hover:bg-rose-500/10 hover:border-rose-500/50 rounded-xl text-sm font-bold transition-all">
+                        Clear Saved
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
