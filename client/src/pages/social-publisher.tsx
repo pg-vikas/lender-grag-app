@@ -24,11 +24,13 @@ import {
   Clock
 } from "lucide-react";
 
+import CalendarTab from "@/components/social-publisher/CalendarTab";
+
 export default function SocialPublisher() {
   const [, setLocation] = useLocation();
   const { sidebarOpen, toggleSidebar } = useAppStore();
   const [openMenus, setOpenMenus] = useState<string>("social-media");
-  const [activeTab, setActiveTab] = useState("composer");
+  const [activeTab, setActiveTab] = useState("calendar");
   const [postContent, setPostContent] = useState("");
   const [selectedAccounts, setSelectedAccounts] = useState<string[]>(['twitter']);
   const [isScheduling, setIsScheduling] = useState(false);
@@ -524,6 +526,10 @@ export default function SocialPublisher() {
                 </div>
 
               </div>
+            )}
+
+            {activeTab === 'calendar' && (
+              <CalendarTab onNewPost={() => setActiveTab('composer')} />
             )}
 
           </div>
