@@ -486,11 +486,19 @@ export default function PreApprovalModule() {
 
                                {/* Signature Block */}
                                <div className="mt-12">
-                                 <p className="mb-8">Sincerely,</p>
-                                 <div className="font-script text-3xl text-indigo-900/60 mb-2">Greg Wynn</div>
-                                 <p className="font-bold">Greg Wynn</p>
-                                 <p className="text-sm">Senior Loan Officer, NMLS #987654</p>
+                                 <p className="mb-4">Sincerely,</p>
+                                 <img src="/greg_signature.png" alt="Greg Wynn Signature" className="h-16 object-contain mb-2 -ml-2 mix-blend-multiply" />
+                                 <p className="font-bold text-slate-900">Greg Wynn</p>
+                                 <p className="text-sm">Branch Manager / Loan Officer</p>
                                  <p className="text-sm">Stone Bridge Mortgage</p>
+                                 <p className="text-sm mt-2">NMLS 276890</p>
+                                 <p className="text-sm">C: 619-550-9885</p>
+                                 <p className="text-sm">F: 866-322-7805</p>
+                                 <p className="text-sm">Greg@StonebridgeMortgage.com</p>
+                                 <p className="text-sm">www.LenderGreg.com</p>
+                                 <p className="text-sm mt-2">514 Via De La Valle #202</p>
+                                 <p className="text-sm">Solana Beach, CA 92075</p>
+                                 <p className="text-sm">Company NMLS: 1938081</p>
                                </div>
                             </div>
                          </div>
