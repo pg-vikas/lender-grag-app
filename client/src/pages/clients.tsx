@@ -922,16 +922,16 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
             {/* Modal Content */}
             <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-8">
               
-              {/* Company Details Section */}
+              {/* Client Details Section */}
               <section className="space-y-6">
-                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Company Details</h3>
+                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Client Details</h3>
                 
                 <div className="space-y-4">
-                  {/* Logo Upload */}
+                  {/* Photo Upload */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Company Logo</label>
-                    <div className="w-32 h-32 bg-slate-800/50 border border-slate-600 bg-slate-950 rounded-xl flex items-center justify-center mb-2">
-                      <Building2 className="w-8 h-8 text-slate-500" />
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Client Photo</label>
+                    <div className="w-32 h-32 bg-slate-800/50 border border-slate-600 bg-slate-950 rounded-xl flex items-center justify-center mb-2 overflow-hidden">
+                      <User className="w-12 h-12 text-slate-500" />
                     </div>
                     <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border border-slate-600 bg-slate-950">
                       Upload
@@ -939,177 +939,196 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                   </div>
 
                   {/* Form Grid 1 */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Name*</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">First Name*</label>
                       <input 
                         type="text" 
-                        placeholder="Pink Gorilla"
+                        placeholder="John"
                         className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Email</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Last Name*</label>
+                      <input 
+                        type="text" 
+                        placeholder="Doe"
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Email Address*</label>
                       <input 
                         type="email" 
-                        placeholder="vikas@pinkgorillasoftware.com"
+                        placeholder="john.doe@example.com"
                         className="w-full px-4 py-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-sm text-indigo-300 focus:outline-none transition-all placeholder:text-indigo-400/50" 
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Phone Number*</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Phone Number*</label>
                       <div className="flex">
                         <select className="px-3 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
                           <option>+1</option>
                         </select>
                         <input 
                           type="tel" 
-                          placeholder="9000000001"
+                          placeholder="555-0123"
                           className="flex-1 px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-r-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                         />
                       </div>
                     </div>
                   </div>
 
-                  {/* Form Grid 2 */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Website</label>
-                      <input 
-                        type="url" 
-                        placeholder="https://pinkgorilla.agency"
-                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Address</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Current Address</label>
                       <input 
                         type="text" 
-                        placeholder="po 12, ABCD, lame road, LA, CA"
+                        placeholder="123 Main St, Apt 4B, City, State, ZIP"
                         className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
                       />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Default Currency</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>USD</option>
-                      </select>
                     </div>
                   </div>
 
                   {/* Form Grid 3 */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Default Time Zone</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Marital Status</label>
                       <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>America/Denver</option>
+                        <option value="">Select Status...</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="separated">Separated</option>
+                        <option value="divorced">Divorced</option>
                       </select>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Language</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>English - US</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Status</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>Brand New</option>
-                      </select>
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Spouse / Co-Borrower Name</label>
+                      <input 
+                        type="text" 
+                        placeholder="Jane Doe (Leave blank if none)"
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
                     </div>
                   </div>
 
                   {/* Form Grid 4 */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Industry</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Annual Income (Est.)</label>
+                      <div className="relative">
+                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                        <input 
+                          type="text" 
+                          placeholder="120,000"
+                          className="w-full pl-9 pr-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Employment Type</label>
                       <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>Retail Trade</option>
+                        <option>W-2 Employee</option>
+                        <option>Self-Employed (1099)</option>
+                        <option>Business Owner</option>
+                        <option>Retired / Fixed Income</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Year in Business</label>
-                      <input 
-                        type="text" 
-                        placeholder="1"
-                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all" 
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">No. of Employees</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Credit Score (Est.)</label>
                       <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>1 - 3</option>
+                        <option>Excellent (740+)</option>
+                        <option>Good (670-739)</option>
+                        <option>Fair (580-669)</option>
+                        <option>Poor (Under 580)</option>
+                        <option>Unknown</option>
                       </select>
                     </div>
                   </div>
                 </div>
               </section>
 
-              {/* Business Discovery Section */}
+              {/* Loan Details Section */}
               <section className="space-y-6">
-                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Business Discovery</h3>
+                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Loan Goals</h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Yelp URL</label>
-                    <input 
-                      type="url" 
-                      placeholder="https://yelp.com/biz/..."
-                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                    />
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Target Purchase Price</label>
+                    <div className="relative">
+                      <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                      <input 
+                        type="text" 
+                        placeholder="500,000"
+                        className="w-full pl-9 pr-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Google URL</label>
-                    <input 
-                      type="url" 
-                      placeholder="https://google.com/maps/..."
-                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                    />
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Available Down Payment</label>
+                    <div className="relative">
+                      <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                      <input 
+                        type="text" 
+                        placeholder="100,000"
+                        className="w-full pl-9 pr-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4">
-                    {clientLinks.map((link, index) => (
-                      <div key={index} className="flex items-end gap-4">
-                        <div className="flex-1">
-                          <label className="block text-sm font-medium text-slate-300 mb-2">Link Label</label>
-                          <input 
-                            type="text" 
-                            placeholder="e.g., Facebook, TripAdvisor"
-                            value={link.label}
-                            onChange={(e) => handleLinkChange(index, 'label', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <label className="block text-sm font-medium text-slate-300 mb-2">Link URL</label>
-                          <input 
-                            type="url" 
-                            placeholder="https://..."
-                            value={link.url}
-                            onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                          />
-                        </div>
-                        <button 
-                          onClick={() => handleRemoveLink(index)}
-                          className="w-[42px] h-[42px] rounded-xl bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-all shrink-0 shadow-sm"
-                          title="Remove Link"
-                        >
-                          <X className="w-5 h-5" />
-                        </button>
-                      </div>
-                    ))}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Property Type</label>
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <option>Single Family Home</option>
+                      <option>Townhouse</option>
+                      <option>Condo</option>
+                      <option>Multi-Family (2-4 Units)</option>
+                    </select>
                   </div>
-                  
-                  <button 
-                    onClick={handleAddLink}
-                    className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2.5 rounded-xl text-sm transition-colors flex items-center gap-2 w-fit"
-                  >
-                    <Plus className="w-4 h-4" /> Add Link
-                  </button>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Occupancy</label>
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <option>Primary Residence</option>
+                      <option>Second Home</option>
+                      <option>Investment Property</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Timeline</label>
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <option>Immediately (0-30 days)</option>
+                      <option>Soon (1-3 months)</option>
+                      <option>Exploring (3-6 months)</option>
+                      <option>Long term (6+ months)</option>
+                    </select>
+                  </div>
                 </div>
+
+                <div className="space-y-4 pt-4 border-t border-slate-800">
+                  <label className="block text-sm font-medium text-slate-300">Realtor Information</label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <input 
+                        type="text" 
+                        placeholder="Agent Name"
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                    <div>
+                      <input 
+                        type="tel" 
+                        placeholder="Agent Phone"
+                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all placeholder:text-slate-500" 
+                      />
+                    </div>
+                  </div>
+                </div>
+
 
                 <div className="flex items-center gap-4 mt-6">
                   <span className="text-sm font-medium text-slate-300">Background</span>
@@ -1328,74 +1347,37 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                 </div>
               </section>
 
-              {/* Business Discovery Section */}
+              {/* Status Section */}
               <section className="space-y-6">
-                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Business Discovery</h3>
+                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Pipeline Status</h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Yelp URL</label>
-                    <input 
-                      type="url" 
-                      placeholder="https://yelp.com/biz/..."
-                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                    />
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Current Status</label>
+                    <select 
+                      value={editingClientData.status}
+                      onChange={(e) => setEditingClientData({...editingClientData, status: e.target.value})}
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none"
+                    >
+                      <option value="Lead / Prospect">Lead / Prospect</option>
+                      <option value="Pre-Approved">Pre-Approved</option>
+                      <option value="Searching for Home">Searching for Home</option>
+                      <option value="Under Contract">Under Contract</option>
+                      <option value="Closed">Closed</option>
+                      <option value="Archived">Archived</option>
+                    </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Google URL</label>
-                    <input 
-                      type="url" 
-                      placeholder="https://google.com/maps/..."
-                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                    />
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Assigned Loan Officer</label>
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <option>Greg Wynn</option>
+                      <option>Unassigned</option>
+                    </select>
                   </div>
                 </div>
-
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4">
-                    {clientLinks.map((link, index) => (
-                      <div key={index} className="flex items-end gap-4">
-                        <div className="flex-1">
-                          <label className="block text-sm font-medium text-slate-300 mb-2">Link Label</label>
-                          <input 
-                            type="text" 
-                            placeholder="e.g., Facebook, TripAdvisor"
-                            value={link.label}
-                            onChange={(e) => handleLinkChange(index, 'label', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <label className="block text-sm font-medium text-slate-300 mb-2">Link URL</label>
-                          <input 
-                            type="url" 
-                            placeholder="https://..."
-                            value={link.url}
-                            onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 shadow-inner focus:border-sky-500 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                          />
-                        </div>
-                        <button 
-                          onClick={() => handleRemoveLink(index)}
-                          className="w-[42px] h-[42px] rounded-xl bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-all shrink-0 shadow-sm"
-                          title="Remove Link"
-                        >
-                          <X className="w-5 h-5" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <button 
-                    onClick={handleAddLink}
-                    className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2.5 rounded-xl text-sm transition-colors flex items-center gap-2 w-fit"
-                  >
-                    <Plus className="w-4 h-4" /> Add Link
-                  </button>
-                </div>
-
+                
                 <div className="flex items-center gap-4 mt-6">
-                  <span className="text-sm font-medium text-slate-300">Background</span>
+                  <span className="text-sm font-medium text-slate-300">Add Note</span>
                   <button 
                     onClick={() => setIsEditorEnabled(!isEditorEnabled)}
                     className={`w-11 h-6 rounded-full relative transition-colors focus:outline-none cursor-pointer ${isEditorEnabled ? 'bg-purple-600' : 'bg-slate-700'}`}
@@ -1416,7 +1398,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
                     </div>
                     <textarea 
                       className="w-full h-48 bg-slate-400/20 p-4 text-sm text-white focus:outline-none resize-none placeholder:text-slate-500"
-                      placeholder=""
+                      placeholder="Add notes about this borrower..."
                     ></textarea>
                   </div>
                 )}
