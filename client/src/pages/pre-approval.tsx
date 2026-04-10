@@ -362,6 +362,7 @@ export default function PreApprovalModule() {
                             >
                               <option>Conventional Standard</option>
                               <option>FHA Standard</option>
+                              <option>VA Standard</option>
                               <option>Realtor Friendly (No Max Price)</option>
                             </select>
                           </div>
