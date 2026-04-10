@@ -425,10 +425,7 @@ export default function PreApprovalModule() {
                                  <p className="text-xs text-slate-500 font-sans">NMLS #1234567 | Equal Housing Lender</p>
                                </div>
                                <div className="text-right text-sm text-slate-600 font-sans">
-                                 <p>100 Financial Way, Suite 400</p>
-                                 <p>New York, NY 10004</p>
-                                 <p>1-800-555-LOAN</p>
-                                 <p className="mt-2">514 Via De La Valle #202</p>
+                                 <p>514 Via De La Valle #202</p>
                                  <p>Solana Beach, CA 92075</p>
                                  <p>Company NMLS: 1938081</p>
                                </div>
