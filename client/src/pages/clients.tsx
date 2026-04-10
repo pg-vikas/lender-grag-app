@@ -61,7 +61,7 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center overflow-hidden shrink-0 shadow-[0_0_15px_rgba(99,102,241,0.4)] group-hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] transition-shadow">
                <User className="w-4 h-4" />
             </div>
-            {sidebarOpen && <span className="text-sm font-bold text-[#e2e8f0] tracking-wide whitespace-nowrap">Super Admin</span>}
+            {sidebarOpen && <span className="text-sm font-bold text-[#e2e8f0] tracking-wide whitespace-nowrap">Loan Officer</span>}
           </div>
           {sidebarOpen && <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />}
         </button>
@@ -398,7 +398,7 @@ export function Header({ title }: { title: string }) {
       </button>
       
       <div className="flex items-center text-sm font-semibold text-slate-400 tracking-wide uppercase">
-        Super Admin <span className="mx-3 text-slate-600">/</span> <span className="text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]">{title}</span>
+        Loan Officer <span className="mx-3 text-slate-600">/</span> <span className="text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]">{title}</span>
       </div>
 
       <div className="ml-auto flex items-center space-x-6">

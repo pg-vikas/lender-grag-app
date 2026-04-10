@@ -52,7 +52,7 @@ export default function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[600px] bg-indigo-500/10 blur-[150px] rounded-full pointer-events-none z-0"></div>
         <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-fuchsia-500/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
-        <Header title="Super Admin Dashboard" />
+        <Header title="Pipeline Dashboard" />
 
         {/* Main Layout */}
         <div className="flex flex-1 overflow-hidden relative z-10">
@@ -68,24 +68,24 @@ export default function Home() {
                   <div className="max-w-2xl">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-6">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                      System Operational
+                      Origination System Operational
                     </div>
                     <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-                      {greeting}, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-fuchsia-400">Admin</span>.
+                      {greeting}, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-fuchsia-400">Loan Officer</span>.
                     </h1>
                     <p className="text-slate-400 text-lg leading-relaxed mb-8 max-w-xl">
-                      Here's what's happening across Gorilla Hub today. Revenue is up <span className="text-emerald-400 font-bold">18%</span> this month, and 12 new agencies joined in the last 48 hours.
+                      Here's your pipeline overview today. Total funded volume is up <span className="text-emerald-400 font-bold">12%</span> this month, and you have 8 applications ready for review.
                     </p>
                     
                     <div className="flex flex-wrap items-center gap-4">
                       <button className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_30px_rgba(79,70,229,0.6)] flex items-center gap-2 group">
                         <Plus className="w-5 h-5" />
-                        Create Launchpad
+                        New Application
                         <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </button>
                       <button className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold transition-all border border-slate-600 bg-slate-950 hover:border-slate-500 flex items-center gap-2">
-                        <User className="w-5 h-5 text-slate-400" />
-                        Invite Client
+                        <FileText className="w-5 h-5 text-slate-400" />
+                        Run Pre-Approval
                       </button>
                     </div>
                   </div>
@@ -99,10 +99,10 @@ export default function Home() {
               {/* TOP METRICS ROW */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                  { title: 'Total Users', value: '12,482', trend: '+12%', up: true, icon: Users, color: 'purple' },
-                  { title: 'Active Clients', value: '842', trend: '+5%', up: true, icon: Building2, color: 'cyan' },
-                  { title: 'Monthly MRR', value: '$142.5k', trend: '+18%', up: true, icon: Activity, color: 'emerald' },
-                  { title: 'API Requests/min', value: '4,281', trend: 'Stable', up: true, icon: Server, color: 'orange' }
+                  { title: 'Active Pipeline', value: '$4.2M', trend: '+12%', up: true, icon: Briefcase, color: 'purple' },
+                  { title: 'Loans in Process', value: '14', trend: '+2', up: true, icon: FileText, color: 'cyan' },
+                  { title: 'Funded YTD', value: '$18.5M', trend: '+18%', up: true, icon: DollarSign, color: 'emerald' },
+                  { title: 'Avg Close Time', value: '22 Days', trend: '-3 Days', up: true, icon: Activity, color: 'orange' }
                 ].map((metric, i) => (
                   <div 
                     key={i} 
@@ -113,7 +113,7 @@ export default function Home() {
                       <div className={`p-3 rounded-xl bg-${metric.color}-500/10 border border-${metric.color}-500/20 text-${metric.color}-400 group-hover:bg-${metric.color}-500 group-hover:text-white transition-colors`}>
                         <metric.icon className="w-5 h-5" />
                       </div>
-                      <div className={`flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-md ${metric.trend === 'Stable' ? 'bg-slate-800 text-slate-300' : 'bg-emerald-500/10 text-emerald-400'}`}>
+                      <div className={`flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-md ${metric.trend.includes('-') && !metric.trend.includes('Days') ? 'bg-rose-500/10 text-rose-400' : 'bg-emerald-500/10 text-emerald-400'}`}>
                         {metric.trend !== 'Stable' && <TrendingUp className="w-3 h-3" />} {metric.trend}
                       </div>
                     </div>
@@ -134,8 +134,8 @@ export default function Home() {
                   
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 relative z-10">
                     <div>
-                      <h2 className="text-xl font-bold text-white mb-1">Platform Revenue Growth</h2>
-                      <p className="text-sm text-slate-400">MRR trajectory across all agency tiers</p>
+                      <h2 className="text-xl font-bold text-white mb-1">Funded Volume Overview</h2>
+                      <p className="text-sm text-slate-400">Total loan amount funded across all programs</p>
                     </div>
                     <div className="flex bg-slate-800/80 p-1 rounded-lg border border-slate-600 bg-slate-950/50">
                       {['7D', '30D', '90D'].map((range) => (
@@ -158,7 +158,7 @@ export default function Home() {
                   <div className="h-72 flex items-end gap-2 relative z-10 pt-4 mt-4">
                     {/* Y Axis */}
                     <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-slate-500 font-mono py-2 w-12 border-r border-slate-800">
-                      <span>$150k</span><span>$100k</span><span>$50k</span><span>$0</span>
+                      <span>$2M</span><span>$1.5M</span><span>$1M</span><span>$0</span>
                     </div>
                     
                     {/* Grid Lines */}
@@ -176,7 +176,7 @@ export default function Home() {
                           {/* Tooltip */}
                           <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-800 border border-slate-600 bg-slate-950 text-white text-xs py-1.5 px-3 rounded-lg opacity-0 group-hover/bar:opacity-100 transition-opacity z-20 pointer-events-none whitespace-nowrap shadow-xl flex items-center gap-1.5 font-bold">
                             <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                            ${(height * 1.5).toFixed(1)}k
+                            ${(height * 0.02).toFixed(2)}M
                           </div>
                           
                           {/* Bar */}
@@ -199,126 +199,108 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* ROI / Revenue Calculator Widget */}
+                {/* Rates Widget */}
                 <div className="bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-600 bg-slate-950/50 shadow-lg flex flex-col animate-in fade-in slide-in-from-bottom-4 delay-700 border-t-emerald-500 border-t-4 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[50px] rounded-full"></div>
                   
                   <div className="p-6 border-b border-slate-800/80">
                     <h2 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
-                      <Calculator className="w-5 h-5 text-emerald-400" /> Revenue Projection
+                      <Percent className="w-5 h-5 text-emerald-400" /> Today's Rates
                     </h2>
-                    <p className="text-xs text-slate-400">Forecast MRR based on client growth</p>
+                    <p className="text-xs text-slate-400">National average mortgage rates</p>
                   </div>
                   
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-6">
-                    <div className="space-y-5">
-                      <div>
-                        <div className="flex justify-between items-end mb-2">
-                          <label className="text-[13px] font-bold text-slate-300">New Clients / Month</label>
-                          <span className="text-[15px] font-bold text-white bg-slate-800 px-2 py-0.5 rounded">{calcClients}</span>
-                        </div>
-                        <input 
-                          type="range" 
-                          min="1" 
-                          max="100" 
-                          value={calcClients}
-                          onChange={(e) => setCalcClients(parseInt(e.target.value))}
-                          className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-                        />
-                      </div>
-                      
-                      <div>
-                        <div className="flex justify-between items-end mb-2">
-                          <label className="text-[13px] font-bold text-slate-300">Average Retainer</label>
-                          <span className="text-[15px] font-bold text-white bg-slate-800 px-2 py-0.5 rounded">${calcRetainer.toLocaleString()}</span>
-                        </div>
-                        <input 
-                          type="range" 
-                          min="500" 
-                          max="10000" 
-                          step="100"
-                          value={calcRetainer}
-                          onChange={(e) => setCalcRetainer(parseInt(e.target.value))}
-                          className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-                        />
-                      </div>
+                  <div className="p-0 flex-1 flex flex-col">
+                    <div className="divide-y divide-slate-800/80">
+                      {[
+                        { program: '30-Year Fixed', rate: '6.85%', apr: '7.02%', trend: 'down' },
+                        { program: '15-Year Fixed', rate: '6.12%', apr: '6.31%', trend: 'down' },
+                        { program: '5/1 ARM', rate: '6.25%', apr: '7.54%', trend: 'up' },
+                        { program: 'Jumbo 30-Year', rate: '7.05%', apr: '7.15%', trend: 'stable' },
+                        { program: 'FHA 30-Year', rate: '6.45%', apr: '7.38%', trend: 'down' }
+                      ].map((item, i) => (
+                         <div key={i} className="p-4 flex items-center justify-between hover:bg-slate-800/40 transition-colors">
+                            <div>
+                               <div className="text-sm font-bold text-white">{item.program}</div>
+                               <div className="text-[11px] text-slate-400">APR {item.apr}</div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                               <div className="text-lg font-extrabold text-emerald-400">{item.rate}</div>
+                               <div className={`flex items-center justify-center w-5 h-5 rounded-full ${
+                                 item.trend === 'down' ? 'bg-emerald-500/20 text-emerald-400' : 
+                                 item.trend === 'up' ? 'bg-rose-500/20 text-rose-400' : 
+                                 'bg-slate-700 text-slate-400'
+                               }`}>
+                                 {item.trend === 'down' ? <TrendingUp className="w-3 h-3 rotate-180" /> : 
+                                  item.trend === 'up' ? <TrendingUp className="w-3 h-3" /> : 
+                                  <span className="w-2 h-0.5 bg-slate-400 rounded-full"></span>}
+                               </div>
+                            </div>
+                         </div>
+                      ))}
                     </div>
                     
-                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600 bg-slate-950/50 rounded-xl p-5 relative overflow-hidden group">
-                      <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                      <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Projected Added MRR</div>
-                      <div className="text-3xl font-extrabold text-emerald-400 tracking-tight mb-4">
-                        ${(calcClients * calcRetainer).toLocaleString()}
-                        <span className="text-sm text-slate-500 font-normal">/mo</span>
-                      </div>
-                      
-                      <div className="flex justify-between items-center pt-4 border-t border-slate-600 bg-slate-950/50">
-                        <div className="text-[11px] font-bold text-slate-400 uppercase">Annual Impact</div>
-                        <div className="text-sm font-bold text-white">
-                          +${(calcClients * calcRetainer * 12).toLocaleString()}
-                        </div>
-                      </div>
+                    <div className="mt-auto p-4 border-t border-slate-800/80 bg-slate-900/30 text-center">
+                       <span className="text-[11px] text-slate-500 font-medium">Last updated: Today at 8:30 AM EST</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* BOTTOM ROW: REVIEWS, FEEDBACK, TICKETS */}
+              {/* BOTTOM ROW: PIPELINE, TASKS */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
-                {/* Client Reviews Widget */}
+                {/* Task List Widget */}
                 <div className="glass-panel rounded-2xl border border-slate-600 bg-slate-950/50 shadow-lg flex flex-col animate-in fade-in slide-in-from-bottom-4 delay-1000 border-t-amber-500 border-t-4">
                   <div className="p-5 border-b border-slate-800/80 flex justify-between items-center bg-slate-900/30">
                     <h2 className="text-[15px] font-bold text-white flex items-center gap-2">
-                      <MessageSquare className="w-4 h-4 text-amber-400" /> Client Feedback
+                      <CheckSquare className="w-4 h-4 text-amber-400" /> Action Items
                     </h2>
-                    <span className="text-xs font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded">4.9/5.0</span>
+                    <span className="text-xs font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded">6 Due Today</span>
                   </div>
                   
-                  <div className="p-5 space-y-4">
-                    {[
-                      { name: 'Sarah Jenkins', company: 'Nexus Digital', rating: 5, text: 'The new dashboard completely transformed how we manage projects.', time: '2h ago' },
-                      { name: 'Marcus Cole', company: 'Blue Ocean', rating: 5, text: 'Incredible onboarding experience. Gorilla Hub is next level.', time: '5h ago' },
-                      { name: 'Elena Rostova', company: 'Studio Elevate', rating: 4, text: 'Great templates, saved us hours of setup work this week.', time: '1d ago' }
-                    ].map((review, i) => (
-                      <div key={i} className="p-4 rounded-xl bg-slate-800/40 border border-slate-600 bg-slate-950/50 hover:bg-slate-800/60 transition-colors">
-                        <div className="flex justify-between items-start mb-2">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white border border-slate-600 bg-slate-950">
-                              {review.name.charAt(0)}
-                            </div>
-                            <div>
-                              <div className="text-[13px] font-bold text-white leading-none">{review.name}</div>
-                              <div className="text-[11px] text-slate-400 mt-1">{review.company}</div>
-                            </div>
-                          </div>
-                          <div className="flex gap-0.5">
-                            {[...Array(5)].map((_, j) => (
-                              <Star key={j} className={`w-3 h-3 ${j < review.rating ? 'text-amber-400 fill-amber-400' : 'text-slate-600'}`} />
-                            ))}
-                          </div>
+                  <div className="p-0">
+                    <div className="divide-y divide-slate-800/50">
+                      {[
+                        { task: 'Review appraisal for Smith property', client: 'John & Jane Smith', type: 'Underwriting', time: '10:00 AM' },
+                        { task: 'Send initial disclosures', client: 'Michael Johnson', type: 'Origination', time: '1:30 PM' },
+                        { task: 'Follow up on missing W2s', client: 'Sarah Williams', type: 'Processing', time: '3:00 PM' },
+                        { task: 'Lock rate before expiration', client: 'David Brown', type: 'Lock Desk', time: '4:15 PM' },
+                        { task: 'Call listing agent for status', client: 'Emily Davis', type: 'Communication', time: '5:00 PM' }
+                      ].map((task, i) => (
+                        <div key={i} className="p-4 flex items-start gap-3 hover:bg-slate-800/40 transition-colors group cursor-pointer">
+                           <div className="mt-0.5 w-4 h-4 rounded border border-slate-500 bg-slate-800 flex items-center justify-center group-hover:border-amber-500 transition-colors">
+                              <CheckSquare className="w-3 h-3 text-transparent group-hover:text-amber-500/50" />
+                           </div>
+                           <div className="flex-1 min-w-0">
+                              <div className="text-[13px] font-bold text-white mb-0.5 truncate">{task.task}</div>
+                              <div className="flex items-center gap-2 text-[11px]">
+                                <span className="text-slate-400 truncate">{task.client}</span>
+                                <span className="w-1 h-1 rounded-full bg-slate-600"></span>
+                                <span className="text-amber-400/80">{task.type}</span>
+                              </div>
+                           </div>
+                           <div className="text-[11px] font-medium text-slate-500 whitespace-nowrap">{task.time}</div>
                         </div>
-                        <p className="text-[13px] text-slate-300 leading-relaxed italic relative">
-                          <span className="text-slate-600 font-serif text-lg absolute -top-1 -left-1">"</span>
-                          &nbsp;&nbsp;{review.text}
-                        </p>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                     
-                    <button className="w-full py-2.5 rounded-lg border border-slate-600 bg-slate-950 text-[13px] font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors mt-2">
-                      View All Reviews
-                    </button>
+                    <div className="p-4 border-t border-slate-800/80 bg-slate-900/30">
+                        <button className="w-full py-2.5 rounded-lg border border-slate-600 bg-slate-950 text-[13px] font-bold text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                        View All Tasks
+                        </button>
+                    </div>
                   </div>
                 </div>
 
-                {/* Urgent Support Tickets */}
+                {/* Pipeline Status */}
                 <div className="lg:col-span-2 glass-panel rounded-2xl border border-slate-600 bg-slate-950/50 shadow-lg flex flex-col animate-in fade-in slide-in-from-bottom-4 delay-1000 border-t-rose-500 border-t-4">
                   <div className="p-5 border-b border-slate-800/80 flex justify-between items-center bg-slate-900/30">
                     <h2 className="text-[15px] font-bold text-white flex items-center gap-2">
-                      <ShieldAlert className="w-4 h-4 text-rose-400" /> Attention Required
+                      <Zap className="w-4 h-4 text-rose-400" /> Active Pipeline Needs Attention
                     </h2>
-                    <Link href="/tickets" className="text-xs font-bold text-slate-400 hover:text-white transition-colors">
-                      View All Tickets <ArrowRight className="w-3 h-3 inline" />
+                    <Link href="/clients" className="text-xs font-bold text-slate-400 hover:text-white transition-colors">
+                      View Full Pipeline <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   </div>
                   
@@ -326,33 +308,37 @@ export default function Home() {
                     <table className="w-full text-left">
                       <thead className="bg-slate-950 border-b border-slate-800">
                         <tr>
-                          <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ticket ID</th>
-                          <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Client</th>
-                          <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Issue Description</th>
+                          <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Borrower</th>
+                          <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Loan Amount</th>
+                          <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Program</th>
+                          <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Est. Close</th>
                           <th className="py-3 px-5 text-[11px] font-bold text-slate-400 uppercase tracking-wider text-right">Status</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-800/50">
                         {[
-                          { id: '#T-4921', rawId: '4921', agency: 'Pink Gorilla', agencyId: '1', issue: 'API Webhook failing on production', status: 'Escalated', color: 'text-rose-400 bg-rose-500/10 border-rose-500/20' },
-                          { id: '#T-4920', rawId: '4920', agency: 'Acme Digital', agencyId: '2', issue: 'Billing portal error during checkout', status: 'In Progress', color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
-                          { id: '#T-4915', rawId: '4915', agency: 'Creative LLC', agencyId: '3', issue: 'Custom domain setup SSL pending', status: 'Waiting', color: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
-                          { id: '#T-4908', rawId: '4908', agency: 'Global Tech', agencyId: '4', issue: 'White label email configuration', status: 'In Progress', color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
-                          { id: '#T-4902', rawId: '4902', agency: 'Design Co', agencyId: '5', issue: 'Team member invites not sending', status: 'New', color: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20' },
-                        ].map((ticket, i) => (
+                          { name: 'Smith, John & Jane', amount: '$450,000', program: '30-Yr Conv', closeDate: 'Oct 15', status: 'Clear to Close', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
+                          { name: 'Johnson, Michael', amount: '$325,000', program: 'FHA 30-Yr', closeDate: 'Oct 22', status: 'Cond. Approval', color: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
+                          { name: 'Williams, Sarah', amount: '$850,000', program: 'Jumbo 30-Yr', closeDate: 'Oct 28', status: 'Appraisal Ordered', color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
+                          { name: 'Brown, David', amount: '$275,000', program: 'VA 30-Yr', closeDate: 'Nov 05', status: 'Processing', color: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20' },
+                          { name: 'Davis, Emily', amount: '$520,000', program: '30-Yr Conv', closeDate: 'Nov 12', status: 'Application', color: 'text-rose-400 bg-rose-500/10 border-rose-500/20' },
+                        ].map((loan, i) => (
                           <tr key={i} className="hover:bg-slate-800/40 transition-colors group cursor-pointer">
-                            <td className="py-3.5 px-5 font-mono text-[13px] text-slate-400 group-hover:text-white transition-colors">
-                              {ticket.id}
+                            <td className="py-3.5 px-5 text-[13px] font-bold text-white group-hover:text-indigo-400 transition-colors">
+                              {loan.name}
                             </td>
-                            <td className="py-3.5 px-5 text-[13px] font-bold text-white">
-                              {ticket.agency}
+                            <td className="py-3.5 px-5 font-mono text-[13px] text-slate-300">
+                              {loan.amount}
                             </td>
-                            <td className="py-3.5 px-5 text-[13px] text-slate-300 truncate max-w-[200px]">
-                              {ticket.issue}
+                            <td className="py-3.5 px-5 text-[13px] text-slate-400">
+                              {loan.program}
+                            </td>
+                            <td className="py-3.5 px-5 text-[13px] text-slate-400">
+                              {loan.closeDate}
                             </td>
                             <td className="py-3.5 px-5 text-right">
-                              <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold border ${ticket.color}`}>
-                                {ticket.status}
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold border ${loan.color}`}>
+                                {loan.status}
                               </span>
                             </td>
                           </tr>
@@ -360,14 +346,7 @@ export default function Home() {
                       </tbody>
                     </table>
                   </div>
-                  
-                  <div className="p-4 border-t border-slate-800/80 bg-slate-900/30">
-                    <button className="w-full py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[13px] font-bold transition-colors border border-slate-600 bg-slate-950 flex items-center justify-center gap-2">
-                      <HelpCircle className="w-4 h-4 text-slate-400" /> Go to Support Desk
-                    </button>
-                  </div>
                 </div>
-
               </div>
               
               {/* Extra spacing at bottom */}
