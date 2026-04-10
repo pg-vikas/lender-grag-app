@@ -109,6 +109,29 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             )}
           </div>
 
+          {/* Pre-Approvals Group */}
+          <div className="relative group">
+            <button 
+              onClick={() => sidebarOpen ? toggleMenu('pre-approvals') : null}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/pre-approvals') ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              title={!sidebarOpen ? "Pre-Approvals" : ""}
+            >
+              <div className="flex items-center space-x-3">
+                <FileText className={`w-5 h-5 shrink-0 ${currentPath.includes('/pre-approvals') ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Pre-Approvals</span>}
+              </div>
+            </button>
+            {useAppStore.getState().sidebarOpen && (openMenus === 'pre-approvals' || currentPath.includes('/pre-approvals')) && (
+              <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
+                <Link href="/pre-approvals">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/pre-approvals') ? 'bg-indigo-500/20 text-indigo-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Letters
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
+          
           {/* Projects Standalone */}
           <Link href="/projects">
             <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/projects') ? 'bg-purple-500/10 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>

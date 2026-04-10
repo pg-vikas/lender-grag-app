@@ -1,0 +1,655 @@
+Build a production quality admin module called Pre Approval Letters for Lender Greg’s backend admin dashboard inside Gorilla Apps.
+
+This module is used by a mortgage lender to manage pre approved borrowers and generate polished branded pre approval letters quickly.
+
+The module must feel like a serious internal financial tool. The design should be modern, clean, sharp, premium, and efficient. It should look like software used by a real lender, not a consumer app. Prioritize clarity, confidence, speed, and professional structure.
+
+Primary Goal
+
+Create a module where Greg can:
+
+view a list of pre approved borrowers
+search and filter them
+select a borrower
+input or update a few deal specific fields
+instantly preview a branded pre approval letter
+generate a PDF
+email the letter
+save the version to borrower history
+
+This module should reduce the workflow to a few clicks.
+
+Module Name
+
+Pre Approval Letters
+
+Subtitle:
+
+Generate, manage, and send borrower pre approval letters instantly.
+
+Core Layout
+
+Create this module as a two panel admin layout.
+
+Left Panel
+
+A borrower list panel with:
+
+search bar
+filters
+sortable rows or cards
+quick action buttons
+Right Panel
+
+A dynamic detail workspace that changes when a borrower is selected.
+
+Use tabs in the right panel:
+
+Overview
+Generate Letter
+History
+Documents
+
+Default to Generate Letter when a borrower is selected.
+
+Visual Style
+
+Design this in a way that fits a premium mortgage admin dashboard.
+
+Style direction
+dark or soft neutral admin background
+elevated white or slightly tinted content cards
+crisp spacing
+high-end typography
+subtle borders
+rounded corners
+strong visual hierarchy
+no clutter
+no goofy gradients
+no playful SaaS look
+Tone
+
+This is for a lender. It should feel:
+
+trusted
+organized
+professional
+efficient
+compliance aware
+Suggested UI ideas
+top page header with title and actions
+borrower list inside a scrollable card
+right side workspace with sticky action bar
+status pills for approval and expiration
+clean form sections with grouped fields
+live branded letter preview on the right side or below the form
+Top Header Section
+
+At the top of the page include:
+
+Left side
+Page title: Pre Approval Letters
+Subtitle: Generate, manage, and send borrower pre approval letters instantly.
+Right side actions
+New Approval
+Import Borrower
+Export Logs
+Left Panel: Borrower List
+
+Create a searchable and filterable list of pre approved clients.
+
+Each borrower row should display:
+
+full name
+co borrower name if exists
+approval status
+loan type
+max purchase price
+max loan amount
+last updated
+expiration date
+assigned agent
+quick actions
+Status types
+
+Use pills or tags for:
+
+Active
+Expiring Soon
+Expired
+Draft
+Archived
+Quick action buttons per row
+Generate
+Edit
+Send
+More
+Filters
+
+Add filter controls for:
+
+status
+loan type
+agent
+expiration window
+updated date
+Search
+
+Search by:
+
+borrower name
+co borrower
+email
+phone
+agent
+Sorting
+
+Allow sorting by:
+
+last updated
+expiration
+max purchase price
+borrower name
+Right Panel Tab 1: Overview
+
+When a borrower is selected, show a clean summary card layout.
+
+Borrower identity card
+full borrower name
+co borrower
+email
+phone
+assigned agent
+file ID
+last updated
+approval status
+Approval details card
+loan type
+occupancy type
+property type
+max purchase price
+max loan amount
+down payment amount
+down payment percent
+interest rate optional
+term length optional
+expiration date
+notes
+Alerts area
+
+Show warning banners if:
+
+approval expires within 7 days
+approval is expired
+required fields are missing
+generated letter exceeds approved max
+borrower profile is incomplete
+Right Panel Tab 2: Generate Letter
+
+This is the main workflow.
+
+Design a form builder + live document preview experience.
+
+Form section structure
+Section A: Letter Basics
+Issue date
+Expiration date
+Letter template
+Letter status:
+Draft
+Final
+Revised
+Preparer name
+Branch info
+NMLS field
+Section B: Borrower Info
+Borrower full name
+Co borrower full name
+Borrower salutation
+Mailing address optional
+Agent name
+Agent email
+Agent phone
+
+Auto populate these from borrower data where available.
+
+Section C: Property and Deal Terms
+Property address or TBD
+City
+State
+Zip
+Purchase price
+Loan amount
+Down payment amount
+Down payment percent
+Loan program
+Occupancy
+Property type
+Estimated interest rate optional
+Estimated monthly payment optional
+Closing timeline optional
+Section D: Conditions and Notes
+Special conditions textarea
+Standard disclaimer block
+Internal notes not shown on letter
+Public notes shown on letter
+Section E: Display Toggles
+
+Use switches or checkboxes:
+
+Include property address
+Show purchase price
+Show loan amount
+Show down payment
+Include monthly payment estimate
+Include disclaimer
+Include co borrower
+Mark as draft watermark
+Use digital signature block
+Live Letter Preview
+
+On the Generate Letter tab, create a real time live preview of the letter as the form updates.
+
+The preview should feel like a printable PDF page.
+
+Preview structure
+company logo area
+lender name and company information
+date
+borrower greeting
+body copy stating the borrower is pre approved
+financial details inserted dynamically
+conditions section
+disclaimer
+signature block
+Important
+
+Make the preview elegant and readable. The preview should look like a polished lender letter, not a plain HTML paragraph dump.
+
+Use a white letter sheet on a soft background with a subtle shadow.
+
+Suggested Pre Approval Letter Copy Logic
+
+Create dynamic copy that reads professionally.
+
+Example structure
+Date
+To Whom It May Concern or named borrower greeting
+Statement confirming pre approval based on reviewed documentation
+Approved up to purchase price
+Loan amount structure
+Loan program and occupancy
+Conditions if applicable
+Expiration language
+Signature and company close
+Example dynamic style
+
+“This letter serves as confirmation that [Borrower Name] has been pre approved for financing, subject to final underwriting approval and standard conditions. Based on the information reviewed, the borrower qualifies for a purchase price up to [Purchase Price] with a loan amount of [Loan Amount], using a [Loan Program] loan structure.”
+
+The exact copy can be template driven.
+
+Letter Templates
+
+Include selectable templates.
+
+Template options
+Conventional Standard
+FHA Standard
+VA Standard
+Jumbo Standard
+Custom Realtor Friendly
+Investor Friendly
+Minimal Letter
+Draft Preview
+
+Each template should slightly adjust wording and visible sections.
+
+Right Panel Tab 3: History
+
+Show a full version log of generated letters.
+
+For each history item display:
+
+version number
+created date and time
+created by
+template used
+purchase price
+loan amount
+status
+sent to
+delivery method
+actions
+Actions
+View
+Download PDF
+Duplicate
+Resend
+Archive
+
+Each version should be immutable once saved, except duplicate for revision.
+
+Right Panel Tab 4: Documents
+
+A clean document manager for borrower related files.
+
+Show:
+
+generated PDFs
+uploaded supporting docs
+e-sign docs if later added
+timestamps
+file type
+uploader
+
+Actions:
+
+upload
+preview
+download
+delete
+attach to borrower record
+Functional Behavior
+
+Implement the module with realistic internal admin behavior.
+
+Required behavior
+selecting a borrower loads all borrower data into the form
+updating form fields changes live preview instantly
+generate PDF button creates a downloadable formatted PDF
+save version button creates a new history record
+send button opens modal for email delivery
+archived borrowers should not be editable unless restored
+Validation rules
+purchase price cannot exceed max approved purchase price unless override enabled
+loan amount cannot exceed max loan amount unless override enabled
+expiration cannot be earlier than issue date
+required borrower name and loan program must exist before generating
+if approval expired, show blocking warning before final generation
+Override system
+
+Add an admin only toggle:
+
+Enable Override
+
+When active:
+
+show a visible override warning
+require override reason textarea
+log the override in history
+Email Send Modal
+
+Create a send workflow.
+
+Fields
+recipient email
+cc email optional
+subject line
+message body
+attach PDF checkbox
+save copy to history checkbox
+Default subject
+
+Pre Approval Letter for [Borrower Name]
+
+Default email body
+
+Professional and clean. Keep it editable.
+
+New Approval Modal
+
+Create a modal to add a new borrower approval manually.
+
+Fields:
+
+borrower name
+co borrower
+email
+phone
+agent
+loan type
+max purchase price
+max loan amount
+down payment amount
+down payment percent
+expiration date
+status
+notes
+
+When saved, it should add a new borrower to the list and open the Generate Letter tab automatically.
+
+Sample Data
+
+Seed the UI with at least 8 realistic sample borrower records.
+
+Use realistic names and varied statuses:
+
+active
+expiring soon
+expired
+archived
+
+Use realistic loan types:
+
+Conventional
+FHA
+VA
+Jumbo
+
+Use realistic amounts and dates.
+
+Components to Build
+
+Create reusable components:
+
+PageHeader
+BorrowerList
+BorrowerRow
+StatusPill
+BorrowerOverviewCard
+ApprovalSummaryCard
+GenerateLetterForm
+LetterPreview
+TemplateSelector
+HistoryTable
+DocumentManager
+SendLetterModal
+NewApprovalModal
+WarningBanner
+EmptyState
+Empty States
+
+Design clean empty states for:
+
+no borrower selected
+no search results
+no history yet
+no documents uploaded
+
+For no borrower selected, show:
+
+title: Select a borrower
+subtitle: Choose a pre approved client from the list to generate a letter
+UX Requirements
+
+Make this feel fast and practical.
+
+Important UX details
+preserve unsaved form state when switching tabs
+warn before leaving if unsaved changes exist
+sticky footer on form with actions:
+Preview
+Save Version
+Generate PDF
+Send Letter
+use autosave draft behavior if possible
+show toast notifications for save, generate, send, archive
+PDF Generation
+
+The generated PDF should:
+
+match the live preview closely
+be properly formatted for letter size
+include branding
+include clean spacing and signature area
+be printable
+use a professional type layout
+Tech Expectations
+
+Use a clean modern frontend stack appropriate for Replit.
+
+Recommended stack
+React
+TypeScript
+Tailwind
+component architecture
+local mock state or lightweight store
+mock API structure that could later connect to backend
+PDF generation library
+modal and form validation system
+State structure
+
+Model data for:
+
+borrowers
+selectedBorrower
+letterDraft
+templates
+versionHistory
+documents
+uiState
+filters
+notifications
+Data Model Shape
+
+Use structured mock types.
+
+Borrower
+id
+firstName
+lastName
+coBorrowerName
+email
+phone
+agentName
+agentEmail
+agentPhone
+loanType
+occupancy
+propertyType
+maxPurchasePrice
+maxLoanAmount
+downPaymentAmount
+downPaymentPercent
+estimatedRate
+estimatedPayment
+expirationDate
+status
+notes
+updatedAt
+LetterDraft
+borrowerId
+issueDate
+expirationDate
+templateId
+propertyAddress
+city
+state
+zip
+purchasePrice
+loanAmount
+downPaymentAmount
+downPaymentPercent
+loanProgram
+occupancy
+propertyType
+estimatedRate
+estimatedPayment
+closingTimeline
+specialConditions
+publicNotes
+internalNotes
+includeAddress
+includePurchasePrice
+includeLoanAmount
+includeDownPayment
+includePaymentEstimate
+includeDisclaimer
+includeCoBorrower
+watermarkDraft
+digitalSignature
+overrideEnabled
+overrideReason
+HistoryRecord
+id
+borrowerId
+versionNumber
+createdAt
+createdBy
+templateName
+purchasePrice
+loanAmount
+status
+sentTo
+deliveryMethod
+overrideUsed
+Interaction Quality
+
+This cannot feel generic.
+
+Make it look like:
+
+a lender’s internal operations center
+a serious document workflow
+a system built to save time and avoid mistakes
+
+Not:
+
+a consumer mortgage website
+a CRM toy
+a plain CRUD table
+Nice Touches to Add
+
+If possible, include:
+
+color coded approval status
+expiration countdown chip
+quick duplicate previous letter action
+one click “Use Max Approved Amount”
+agent details auto fill button
+sticky mini summary of approved ceiling while editing
+conflict warning if entered purchase price exceeds approved ceiling
+subtle branded watermark on live preview draft mode
+Final Deliverable
+
+Produce:
+
+the full functional frontend module
+seeded with sample data
+polished UI
+live preview
+mock PDF generation
+send modal
+version history
+document tab
+realistic admin experience
+Build Priority
+
+If scope gets heavy, prioritize in this order:
+
+Phase 1
+page shell
+borrower list
+borrower detail
+generate form
+live preview
+Phase 2
+PDF generation
+version history
+send modal
+validation and warnings
+Phase 3
+documents tab
+override logging
+autosave drafts
+advanced filtering

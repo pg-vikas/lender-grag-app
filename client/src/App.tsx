@@ -36,6 +36,8 @@ import GrowthKPIPage from "@/pages/growth-kpi";
 import MessagesPage from "@/pages/messages";
 import SocialPublisherPage from "@/pages/social-publisher";
 
+import PreApprovalModule from "@/pages/pre-approval";
+
 import ESignaturesSendPage from "@/pages/esignatures-send";
 import ESignaturesDocumentsPage from "@/pages/esignatures-documents";
 import ESignaturesTemplatesPage from "@/pages/esignatures-templates";
@@ -83,6 +85,7 @@ function Router() {
       <Route path="/growth/kpi-overview" component={GrowthKPIPage} />
       <Route path="/messages" component={MessagesPage} />
       <Route path="/social/publisher" component={SocialPublisherPage} />
+      <Route path="/pre-approvals" component={PreApprovalModule} />
       <Route path="/">
         <Redirect to="/home" />
       </Route>
