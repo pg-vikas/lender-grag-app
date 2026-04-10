@@ -126,6 +126,9 @@ export default function PreApprovalModule() {
   // Email Modal State
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
   const [emailTo, setEmailTo] = useState('');
+  const [emailCc, setEmailCc] = useState('');
+  const [emailBcc, setEmailBcc] = useState('');
+  const [showAdditionalEmails, setShowAdditionalEmails] = useState(false);
   const [emailSubject, setEmailSubject] = useState('');
   const [emailBody, setEmailBody] = useState('');
   const [emailStatus, setEmailStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
@@ -683,7 +686,15 @@ export default function PreApprovalModule() {
                 ) : (
                   <>
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">To</label>
+                      <div className="flex justify-between items-center">
+                        <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">To</label>
+                        <button 
+                          onClick={() => setShowAdditionalEmails(!showAdditionalEmails)}
+                          className="text-xs text-indigo-400 hover:text-indigo-300 font-medium"
+                        >
+                          {showAdditionalEmails ? '- Remove CC/BCC' : '+ Add CC/BCC'}
+                        </button>
+                      </div>
                       <input 
                         type="text" 
                         value={emailTo}
@@ -691,6 +702,31 @@ export default function PreApprovalModule() {
                         className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
                       />
                     </div>
+                    
+                    {showAdditionalEmails && (
+                      <div className="grid grid-cols-2 gap-4 animate-in slide-in-from-top-2 duration-200">
+                        <div className="space-y-1">
+                          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Cc</label>
+                          <input 
+                            type="text" 
+                            value={emailCc}
+                            onChange={(e) => setEmailCc(e.target.value)}
+                            placeholder="agent@example.com"
+                            className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Bcc</label>
+                          <input 
+                            type="text" 
+                            value={emailBcc}
+                            onChange={(e) => setEmailBcc(e.target.value)}
+                            className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                          />
+                        </div>
+                      </div>
+                    )}
+                    
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Subject</label>
                       <input 
