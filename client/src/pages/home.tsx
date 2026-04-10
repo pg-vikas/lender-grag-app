@@ -71,7 +71,7 @@ export default function Home() {
                       Origination System Operational
                     </div>
                     <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-                      {greeting}, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-fuchsia-400">Loan Officer</span>.
+                      {greeting}, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-fuchsia-400">Greg Wynn</span>.
                     </h1>
                     <p className="text-slate-400 text-lg leading-relaxed mb-8 max-w-xl">
                       Here's your pipeline overview today. Total funded volume is up <span className="text-emerald-400 font-bold">12%</span> this month, and you have 8 applications ready for review.
