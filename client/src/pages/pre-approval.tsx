@@ -121,6 +121,7 @@ export default function PreApprovalModule() {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [showRate, setShowRate] = useState(false);
   const [letterTemplate, setLetterTemplate] = useState('Conventional Standard');
+  const [specialConditions, setSpecialConditions] = useState('');
   
   const selectedBorrower = mockBorrowers.find(b => b.id === selectedBorrowerId);
 
@@ -380,6 +381,8 @@ export default function PreApprovalModule() {
                               <label className="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Special Conditions (Printed on letter)</label>
                               <textarea 
                                 rows={3}
+                                value={specialConditions}
+                                onChange={(e) => setSpecialConditions(e.target.value)}
                                 placeholder="E.g., Subject to satisfactory appraisal..."
                                 className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none resize-none"
                               ></textarea>
@@ -477,6 +480,13 @@ export default function PreApprovalModule() {
                                  This pre-approval is valid until <strong>{formatDate(selectedBorrower.expirationDate)}</strong>. 
                                  Please note that this is not a final commitment to lend. Final approval is subject to a satisfactory appraisal of the property, clear title, and no material changes in your financial condition.
                                </p>
+
+                               {specialConditions && (
+                                 <div className="mt-4">
+                                   <h4 className="font-bold text-sm mb-1 uppercase tracking-wider text-slate-700">Special Conditions</h4>
+                                   <p className="whitespace-pre-wrap">{specialConditions}</p>
+                                 </div>
+                               )}
 
                                {showDisclaimer && (
                                  <p className="text-[11px] text-slate-500 italic mt-8 border-t border-slate-200 pt-4 leading-tight">
