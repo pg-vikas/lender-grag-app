@@ -163,6 +163,11 @@ export default function PreApprovalModule() {
     }
   }, [selectedBorrowerId]);
 
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [newBorrowerData, setNewBorrowerData] = useState({
+    name: '', email: '', phone: '', agent: '', loanType: 'Conventional', maxPurchasePrice: 0, maxLoanAmount: 0
+  });
+
   const handleSendEmail = () => {
     setEmailStatus('sending');
     // Simulate network request
@@ -202,7 +207,7 @@ export default function PreApprovalModule() {
             <Button variant="outline" className="bg-slate-800 border-slate-600 text-slate-300 hover:text-white hover:bg-slate-700">
               <Download className="w-4 h-4 mr-2" /> Export Logs
             </Button>
-            <Button className="bg-indigo-600 hover:bg-indigo-500 text-white border-none shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+            <Button onClick={() => setIsAddModalOpen(true)} className="bg-indigo-600 hover:bg-indigo-500 text-white border-none shadow-[0_0_15px_rgba(79,70,229,0.3)]">
               <Plus className="w-4 h-4 mr-2" /> New Approval
             </Button>
           </div>
@@ -801,6 +806,147 @@ export default function PreApprovalModule() {
             </div>
           </div>
         )}
+        {/* Add Borrower Modal */}
+        {isAddModalOpen && (
+          <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-slate-900 border border-slate-700 rounded-xl w-full max-w-2xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+              <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+                <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                  <User className="w-5 h-5 text-indigo-400" /> New Pre-Approval
+                </h2>
+                <button onClick={() => setIsAddModalOpen(false)} className="text-slate-400 hover:text-white transition-colors">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              
+              <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
+                
+                {/* File Upload Section */}
+                <div className="border-2 border-dashed border-slate-700 hover:border-indigo-500 bg-slate-900/50 rounded-xl p-8 flex flex-col items-center justify-center text-center transition-colors cursor-pointer group">
+                  <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <FileCheck className="w-6 h-6 text-indigo-400" />
+                  </div>
+                  <h3 className="text-sm font-bold text-white mb-1">Upload 1003 or LOS Export</h3>
+                  <p className="text-xs text-slate-400 max-w-sm mb-4">Drag and drop Fannie Mae 1003 (3.2/3.4), MISMO, or a raw Encompass/Calyx export file to auto-fill borrower details.</p>
+                  <Button variant="outline" className="bg-slate-950 border-slate-600 text-slate-300 hover:text-white pointer-events-none">
+                    Select File
+                  </Button>
+                </div>
+
+                <div className="relative py-2">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-slate-800"></div>
+                  </div>
+                  <div className="relative flex justify-center text-xs">
+                    <span className="bg-slate-900 px-2 text-slate-500 font-medium uppercase tracking-widest">Or enter manually</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Borrower Name *</label>
+                    <input 
+                      type="text" 
+                      value={newBorrowerData.name}
+                      onChange={(e) => setNewBorrowerData({...newBorrowerData, name: e.target.value})}
+                      placeholder="e.g., John Smith"
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Email Address</label>
+                    <input 
+                      type="email" 
+                      value={newBorrowerData.email}
+                      onChange={(e) => setNewBorrowerData({...newBorrowerData, email: e.target.value})}
+                      placeholder="e.g., john@example.com"
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Phone Number</label>
+                    <input 
+                      type="tel" 
+                      value={newBorrowerData.phone}
+                      onChange={(e) => setNewBorrowerData({...newBorrowerData, phone: e.target.value})}
+                      placeholder="(555) 123-4567"
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Real Estate Agent</label>
+                    <input 
+                      type="text" 
+                      value={newBorrowerData.agent}
+                      onChange={(e) => setNewBorrowerData({...newBorrowerData, agent: e.target.value})}
+                      placeholder="Agent Name"
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-slate-800 grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Loan Program</label>
+                    <select 
+                      value={newBorrowerData.loanType}
+                      onChange={(e) => setNewBorrowerData({...newBorrowerData, loanType: e.target.value})}
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                    >
+                      <option>Conventional</option>
+                      <option>FHA</option>
+                      <option>VA</option>
+                      <option>Jumbo</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Max Purchase Price</label>
+                    <div className="relative">
+                      <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                      <input 
+                        type="number" 
+                        value={newBorrowerData.maxPurchasePrice || ''}
+                        onChange={(e) => setNewBorrowerData({...newBorrowerData, maxPurchasePrice: Number(e.target.value)})}
+                        placeholder="0"
+                        className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-sm text-white focus:border-indigo-500 outline-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Max Loan Amount</label>
+                    <div className="relative">
+                      <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                      <input 
+                        type="number" 
+                        value={newBorrowerData.maxLoanAmount || ''}
+                        onChange={(e) => setNewBorrowerData({...newBorrowerData, maxLoanAmount: Number(e.target.value)})}
+                        placeholder="0"
+                        className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-sm text-white focus:border-indigo-500 outline-none"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+                <Button 
+                  variant="ghost" 
+                  onClick={() => setIsAddModalOpen(false)}
+                  className="text-slate-400 hover:text-white"
+                >
+                  Cancel
+                </Button>
+                <Button 
+                  onClick={() => setIsAddModalOpen(false)}
+                  className="bg-indigo-600 hover:bg-indigo-500 text-white min-w-[120px]"
+                >
+                  Create Approval
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   );
