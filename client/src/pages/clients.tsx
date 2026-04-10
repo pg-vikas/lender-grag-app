@@ -589,13 +589,13 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
               
               {/* Tasks Needed Section */}
               <div className="mb-8 bg-slate-800 rounded-xl border border-slate-600 bg-slate-950 border-t-purple-500 border-t-4 shadow-lg overflow-hidden relative z-10">
-                <div className="p-4 bg-slate-700/40 border-b border-slate-600 bg-slate-950 flex justify-between items-center">
+                <div className="p-4 bg-purple-900/30 border-b border-purple-500/30 flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-purple-400" />
                     <span className="font-bold text-white text-[15px]">Tasks Needed - FOLLOW UPS</span>
                   </div>
                   <Link href="/tasks">
-                    <button className="text-[12px] font-bold text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1">
+                    <button className="text-[12px] font-bold text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1 bg-purple-500/10 px-3 py-1 rounded-lg">
                       View All Tasks <ArrowRight className="w-3 h-3" />
                     </button>
                   </Link>
@@ -648,7 +648,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
               {/* Action Bar & Filters */}
 
               <div className="flex flex-col gap-4 mb-6">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-4 glass-panel p-4 rounded-2xl border-t border-cyan-500/20">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-4 glass-panel p-4 rounded-2xl border-t-cyan-500 border-t-4 shadow-lg bg-cyan-900/10">
                   <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
                     <div className="relative min-w-[200px] flex-1 md:flex-none">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
@@ -725,7 +725,7 @@ export default function ClientsPage({ isActiveOnly = false }: { isActiveOnly?: b
               </div>
 
               {/* Table */}
-              <div className="glass-panel rounded-2xl overflow-visible border-t border-indigo-500/20 pb-[100px]">
+              <div className="glass-panel rounded-2xl overflow-visible border-t-indigo-500 border-t-4 shadow-lg pb-[100px] bg-indigo-900/10">
                 <div className="overflow-visible">
                   <table className="w-full text-left dark-table">
                     <thead>
