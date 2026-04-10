@@ -123,6 +123,13 @@ export default function PreApprovalModule() {
   const [letterTemplate, setLetterTemplate] = useState('Conventional Standard');
   const [specialConditions, setSpecialConditions] = useState('');
   
+  // Email Modal State
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [emailTo, setEmailTo] = useState('');
+  const [emailSubject, setEmailSubject] = useState('');
+  const [emailBody, setEmailBody] = useState('');
+  const [emailStatus, setEmailStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  
   const selectedBorrower = mockBorrowers.find(b => b.id === selectedBorrowerId);
 
   useEffect(() => {
@@ -136,8 +143,24 @@ export default function PreApprovalModule() {
         salutation: `Dear ${selectedBorrower.name}${selectedBorrower.coBorrower ? ` and ${selectedBorrower.coBorrower}` : ''},`
       });
       setOverrideEnabled(false);
+      setEmailTo(selectedBorrower.email);
+      setEmailSubject(`Pre-Approval Letter - ${selectedBorrower.name}`);
+      setEmailBody(`Hi ${selectedBorrower.name.split(' ')[0]},\n\nPlease find attached your updated pre-approval letter from Stone Bridge Mortgage.\n\nLet me know if you have any questions or need me to call the listing agent.\n\nBest,\nGreg Wynn`);
+      setEmailStatus('idle');
     }
   }, [selectedBorrowerId]);
+
+  const handleSendEmail = () => {
+    setEmailStatus('sending');
+    // Simulate network request
+    setTimeout(() => {
+      setEmailStatus('sent');
+      setTimeout(() => {
+        setIsEmailModalOpen(false);
+        setEmailStatus('idle');
+      }, 2000);
+    }, 1500);
+  };
 
   const toggleMenu = (menu: string) => setOpenMenus(prev => prev === menu ? '' : menu);
 
@@ -610,7 +633,10 @@ export default function PreApprovalModule() {
                       Save as Draft
                     </Button>
                     <div className="flex gap-3">
-                      <Button className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-600">
+                      <Button 
+                        onClick={() => setIsEmailModalOpen(true)}
+                        className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-600"
+                      >
                         <Mail className="w-4 h-4 mr-2" /> Email Letter
                       </Button>
                       <Button 
@@ -626,6 +652,109 @@ export default function PreApprovalModule() {
             )}
           </div>
         </div>
+
+        {/* Email Modal Overlay */}
+        {isEmailModalOpen && (
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-slate-900 border border-slate-700 rounded-xl w-full max-w-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+              {/* Modal Header */}
+              <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+                <h3 className="font-bold text-white flex items-center gap-2">
+                  <Mail className="w-5 h-5 text-indigo-400" /> Send Pre-Approval
+                </h3>
+                <button 
+                  onClick={() => setIsEmailModalOpen(false)}
+                  className="text-slate-500 hover:text-slate-300 p-1"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              
+              {/* Modal Body */}
+              <div className="p-6 space-y-4">
+                {emailStatus === 'sent' ? (
+                  <div className="py-8 flex flex-col items-center justify-center text-center">
+                    <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mb-4">
+                      <CheckCircle2 className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">Email Sent Successfully!</h3>
+                    <p className="text-slate-400">The pre-approval letter has been sent to {selectedBorrower?.name}.</p>
+                  </div>
+                ) : (
+                  <>
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">To</label>
+                      <input 
+                        type="text" 
+                        value={emailTo}
+                        onChange={(e) => setEmailTo(e.target.value)}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Subject</label>
+                      <input 
+                        type="text" 
+                        value={emailSubject}
+                        onChange={(e) => setEmailSubject(e.target.value)}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Message</label>
+                      <textarea 
+                        rows={6}
+                        value={emailBody}
+                        onChange={(e) => setEmailBody(e.target.value)}
+                        className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none resize-none"
+                      ></textarea>
+                    </div>
+                    <div className="pt-2">
+                      <div className="flex items-center gap-3 p-3 bg-slate-950/50 rounded-lg border border-slate-800">
+                        <div className="w-8 h-8 bg-indigo-500/20 text-indigo-400 rounded flex items-center justify-center shrink-0">
+                          <FileText className="w-4 h-4" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm text-slate-200 truncate">Pre-Approval_Letter_{selectedBorrower?.name.replace(' ', '_')}.pdf</p>
+                          <p className="text-xs text-slate-500">Auto-generated attachment</p>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+              
+              {/* Modal Footer */}
+              {emailStatus !== 'sent' && (
+                <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/80 flex justify-end gap-3">
+                  <Button 
+                    variant="ghost" 
+                    onClick={() => setIsEmailModalOpen(false)}
+                    className="text-slate-400 hover:text-white"
+                  >
+                    Cancel
+                  </Button>
+                  <Button 
+                    onClick={handleSendEmail}
+                    disabled={emailStatus === 'sending'}
+                    className="bg-indigo-600 hover:bg-indigo-500 text-white min-w-[120px]"
+                  >
+                    {emailStatus === 'sending' ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                        Sending...
+                      </div>
+                    ) : (
+                      <>
+                        <Mail className="w-4 h-4 mr-2" /> Send Email
+                      </>
+                    )}
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
