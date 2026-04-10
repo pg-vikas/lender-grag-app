@@ -1099,6 +1099,11 @@ export default function ClientDetailsPage() {
                     </h2>
                     <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border-slate-600">
                       <button 
+                        onClick={() => setActiveTab('scheduled')}
+                        className={`flex items-center gap-1.5 px-4 py-2 rounded-md text-[13px] font-bold transition-all ${activeTab === 'scheduled' ? 'bg-blue-500 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
+                        <Calendar className="w-4 h-4" /> Scheduled Messages
+                      </button>
+                      <button 
                         onClick={() => setActiveTab('email')}
                         className={`flex items-center gap-1.5 px-4 py-2 rounded-md text-[13px] font-bold transition-all ${activeTab === 'email' ? 'bg-blue-500 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}`}>
                         <Mail className="w-4 h-4" /> Email
@@ -1117,6 +1122,32 @@ export default function ClientDetailsPage() {
                   </div>
                   
                   <div className="p-6">
+                    {activeTab === 'scheduled' && (
+                      <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-900/40 p-6 overflow-hidden min-h-[300px] flex flex-col items-center justify-center">
+                        <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mb-4 border border-slate-700">
+                          <Calendar className="w-8 h-8 text-blue-400" />
+                        </div>
+                        <h3 className="text-lg font-bold text-white mb-2">No Scheduled Messages</h3>
+                        <p className="text-sm text-slate-400 text-center max-w-md">
+                          You don't have any messages scheduled for this client. When you schedule an email or SMS, it will appear here until it is sent.
+                        </p>
+                        <div className="flex gap-4 mt-6">
+                          <button 
+                            onClick={() => setActiveTab('email')}
+                            className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-blue-500/20"
+                          >
+                            Schedule Email
+                          </button>
+                          <button 
+                            onClick={() => setActiveTab('sms')}
+                            className="px-6 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white rounded-lg text-sm font-medium transition-colors"
+                          >
+                            Schedule SMS
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    
                     {activeTab === 'email' && (
                       <div className="border border-blue-500/30 border-t-blue-500 border-t-4 rounded-xl bg-slate-900/40  overflow-hidden">
                         <div className="p-6 space-y-6">
@@ -1236,9 +1267,14 @@ export default function ClientDetailsPage() {
                           <button className="px-4 py-2.5 border-slate-600 bg-slate-950 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg text-[13px] font-bold flex items-center gap-2 transition-all">
                             <Plus className="w-4 h-4" /> Attach Files
                           </button>
-                          <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
-                            <Mail className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" /> Send Email
-                          </button>
+                          <div className="flex items-center gap-3">
+                            <button className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[14px] font-bold transition-all border border-slate-600 flex items-center gap-2">
+                              <Calendar className="w-4 h-4" /> Schedule
+                            </button>
+                            <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
+                              <Mail className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" /> Send Email
+                            </button>
+                          </div>
                         </div>
                       </div>
                     )}
@@ -1419,10 +1455,18 @@ export default function ClientDetailsPage() {
                           </div>
                         </div>
                         
-                        <div className="flex justify-end items-center p-4 bg-slate-950 border-t border-slate-600/50">
-                          <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
-                            <MessageSquare className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" /> Send SMS
+                        <div className="flex justify-between items-center p-4 bg-slate-950 border-t border-slate-600/50">
+                          <button className="px-4 py-2.5 border-slate-600 bg-slate-950 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg text-[13px] font-bold flex items-center gap-2 transition-all">
+                            <Plus className="w-4 h-4" /> Attach Files
                           </button>
+                          <div className="flex items-center gap-3">
+                            <button className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[14px] font-bold transition-all border border-slate-600 flex items-center gap-2">
+                              <Calendar className="w-4 h-4" /> Schedule
+                            </button>
+                            <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
+                              <MessageSquare className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" /> Send SMS
+                            </button>
+                          </div>
                         </div>
                       </div>
                     )}
