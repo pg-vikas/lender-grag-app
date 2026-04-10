@@ -110,9 +110,19 @@ const StatusPill = ({ status }: { status: Status }) => {
 
 export default function PreApprovalModule() {
   const [location] = useLocation();
+  
+  // Extract id and action from search params
+  const searchParams = new URLSearchParams(window.location.search);
+  const initialId = searchParams.get('id');
+  const initialAction = searchParams.get('action');
+
   const [openMenus, setOpenMenus] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedBorrowerId, setSelectedBorrowerId] = useState<string | null>(null);
+  
+  // Find borrower by name if id is provided (since we passed name in the URL from home)
+  const initialBorrower = initialId ? mockBorrowers.find(b => b.name === initialId) : null;
+  
+  const [selectedBorrowerId, setSelectedBorrowerId] = useState<string | null>(initialBorrower ? initialBorrower.id : null);
   const [activeTab, setActiveTab] = useState<'overview' | 'generate' | 'history' | 'documents'>('generate');
   
   // Letter Generation Form State
@@ -124,7 +134,7 @@ export default function PreApprovalModule() {
   const [specialConditions, setSpecialConditions] = useState('');
   
   // Email Modal State
-  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(initialAction === 'send');
   const [emailTo, setEmailTo] = useState('');
   const [emailCc, setEmailCc] = useState('');
   const [emailBcc, setEmailBcc] = useState('');

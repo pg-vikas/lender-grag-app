@@ -121,12 +121,12 @@ export default function Home() {
                               </div>
                             </div>
                             <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <Link href="/pre-approvals" className="w-8 h-8 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center hover:bg-slate-600 hover:text-white transition-all shadow-sm" title="Edit">
+                              <Link href={`/pre-approvals?id=${client.name}`} className="w-8 h-8 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center hover:bg-slate-600 hover:text-white transition-all shadow-sm" title="Edit">
                                 <Edit2 className="w-3.5 h-3.5" />
                               </Link>
-                              <button className="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-all shadow-sm" title="Send">
+                              <Link href={`/pre-approvals?id=${client.name}&action=send`} className="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-all shadow-sm" title="Send">
                                 <Send className="w-3.5 h-3.5" />
-                              </button>
+                              </Link>
                             </div>
                           </div>
                         ))}
