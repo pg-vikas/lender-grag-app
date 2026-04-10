@@ -90,9 +90,45 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <div className="hidden md:block">
-                    <WorkSession />
-                  </div>
+                    {/* Work Session Component removed and replaced with Pre-Approvals */}
+                    <div className="w-full max-w-sm bg-slate-900/80 rounded-2xl border border-slate-700/50 p-6 shadow-xl backdrop-blur-sm z-20">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                          <FileText className="w-4 h-4 text-fuchsia-400" />
+                          Pre-Approvals
+                        </h3>
+                        <Link href="/pre-approval" className="text-xs text-indigo-400 hover:text-indigo-300 font-bold transition-colors">
+                          View All
+                        </Link>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        {[
+                          { name: 'Sarah Jenkins', amount: '$500k', status: 'Ready to Send', statusColor: 'text-emerald-400 bg-emerald-400/10 border border-emerald-400/20' },
+                          { name: 'Michael Chen', amount: '$750k', status: 'In Review', statusColor: 'text-amber-400 bg-amber-400/10 border border-amber-400/20' },
+                          { name: 'Emma Davis', amount: '$425k', status: 'Sent', statusColor: 'text-blue-400 bg-blue-400/10 border border-blue-400/20' },
+                        ].map((client, i) => (
+                          <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800 hover:border-slate-600 transition-colors group">
+                            <div>
+                              <div className="text-sm font-bold text-white mb-0.5">{client.name}</div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs font-mono text-slate-400">{client.amount}</span>
+                                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${client.statusColor}`}>
+                                  {client.status}
+                                </span>
+                              </div>
+                            </div>
+                            <Link href="/pre-approval" className="w-8 h-8 rounded-full bg-fuchsia-500/10 text-fuchsia-400 flex items-center justify-center hover:bg-fuchsia-500 hover:text-white transition-all shadow-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0" title="View Letter">
+                              <ArrowUpRight className="w-4 h-4" />
+                            </Link>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <Link href="/pre-approval" className="mt-4 w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2">
+                        <Plus className="w-4 h-4" /> Generate New Letter
+                      </Link>
+                    </div>
                 </div>
               </div>
 
