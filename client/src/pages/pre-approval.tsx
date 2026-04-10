@@ -428,6 +428,9 @@ export default function PreApprovalModule() {
                                  <p>100 Financial Way, Suite 400</p>
                                  <p>New York, NY 10004</p>
                                  <p>1-800-555-LOAN</p>
+                                 <p className="mt-2">514 Via De La Valle #202</p>
+                                 <p>Solana Beach, CA 92075</p>
+                                 <p>Company NMLS: 1938081</p>
                                </div>
                             </div>
 
@@ -496,9 +499,6 @@ export default function PreApprovalModule() {
                                  <p className="text-sm">F: 866-322-7805</p>
                                  <p className="text-sm">Greg@StonebridgeMortgage.com</p>
                                  <p className="text-sm">www.LenderGreg.com</p>
-                                 <p className="text-sm mt-2">514 Via De La Valle #202</p>
-                                 <p className="text-sm">Solana Beach, CA 92075</p>
-                                 <p className="text-sm">Company NMLS: 1938081</p>
                                </div>
                             </div>
                          </div>
