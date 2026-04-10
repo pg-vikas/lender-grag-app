@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useParams } from "wouter";
 import { Sidebar, Header } from "./clients";
-import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2, FileText, Bold, Link as LinkIcon, List, AlignLeft, Image as ImageIcon, Video, Paperclip, Smile, Settings, TrendingUp, TrendingDown, UploadCloud, Clock, Download, ArrowRight } from "lucide-react";
+import { Building2, Edit2, Mail, MapPin, Globe, Compass, Plus, Phone, Bell, Search, Info, PlusCircle, CheckCircle2, ChevronDown, Users, User, Briefcase, MessageSquare, Eye, Zap, X, Lock, Trash2, FileText, Bold, Link as LinkIcon, List, AlignLeft, Image as ImageIcon, Video, Paperclip, Smile, Settings, TrendingUp, TrendingDown, UploadCloud, Clock, Download, ArrowRight, Calendar } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from "recharts";
 
 export default function ClientDetailsPage() {
