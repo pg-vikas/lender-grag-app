@@ -1149,7 +1149,14 @@ export default function ClientDetailsPage() {
                             <Plus className="w-4 h-4" /> Attach Files
                           </button>
                           <div className="flex items-center gap-3">
-                            <button className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[14px] font-bold transition-all border border-slate-600 flex items-center gap-2">
+                            <button 
+                              onClick={() => {
+                                // Add a basic mock scheduling behavior
+                                alert("Message scheduled for later delivery.");
+                                setActiveTab('scheduled');
+                              }}
+                              className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[14px] font-bold transition-all border border-slate-600 flex items-center gap-2"
+                            >
                               <Calendar className="w-4 h-4" /> Schedule
                             </button>
                             <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
@@ -1341,7 +1348,13 @@ export default function ClientDetailsPage() {
                             <Plus className="w-4 h-4" /> Attach Files
                           </button>
                           <div className="flex items-center gap-3">
-                            <button className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[14px] font-bold transition-all border border-slate-600 flex items-center gap-2">
+                            <button 
+                              onClick={() => {
+                                alert("SMS scheduled for later delivery.");
+                                setActiveTab('scheduled');
+                              }}
+                              className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-[14px] font-bold transition-all border border-slate-600 flex items-center gap-2"
+                            >
                               <Calendar className="w-4 h-4" /> Schedule
                             </button>
                             <button className="px-8 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[14px] font-bold transition-all shadow-sm hover:shadow-sm flex items-center gap-2 group">
