@@ -571,7 +571,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Company Details */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-indigo-500 border-t-4 shadow-lg shadow-sm relative z-30">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center rounded-t-xl">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
                       <Building2 className="w-5 h-5 text-indigo-400" />
                       <span className="font-bold text-white text-[15px]">Company Details</span>
@@ -627,7 +627,7 @@ export default function ClientDetailsPage() {
 
                 {/* Contact Information & Employees */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-cyan-500 border-t-4 shadow-lg shadow-sm overflow-hidden flex flex-col max-h-[600px]">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center sticky top-0 z-10 shrink-0">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-cyan-400" />
                       <span className="font-bold text-white text-[15px]">Contacts & Team</span>
@@ -747,7 +747,7 @@ export default function ClientDetailsPage() {
 
                 {/* Website */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-emerald-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Globe className="w-5 h-5 text-emerald-400" />
                       <span className="font-bold text-white text-[15px]">Website</span>
@@ -832,7 +832,7 @@ export default function ClientDetailsPage() {
 
                 {/* Business Discovery */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-orange-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Compass className="w-5 h-5 text-orange-400" />
                       <span className="font-bold text-white text-[15px]">Business Discovery</span>
@@ -853,7 +853,7 @@ export default function ClientDetailsPage() {
 
                 {/* Billing Information */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-pink-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex items-center gap-2">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex items-center gap-2">
                     <svg className="w-5 h-5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                     </svg>
@@ -972,7 +972,7 @@ export default function ClientDetailsPage() {
 
                 {/* Background */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-violet-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <ImageIcon className="w-5 h-5 text-violet-400" />
                       <span className="font-bold text-white text-[15px]">Background</span>
@@ -995,7 +995,7 @@ export default function ClientDetailsPage() {
 
                 {/* General */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-teal-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <Info className="w-5 h-5 text-teal-400" />
                       <span className="font-bold text-white text-[15px]">General Info</span>
@@ -1059,7 +1059,7 @@ export default function ClientDetailsPage() {
 
                 {/* Compliance Essentials */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-yellow-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex items-center gap-2">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-yellow-400" />
                     <span className="font-bold text-white text-[15px]">Compliance Essentials</span>
                   </div>
@@ -1092,7 +1092,7 @@ export default function ClientDetailsPage() {
                 
                 {/* Communications Section */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-blue-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-5 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
+                  <div className="p-5 bg-slate-800 border-b border-slate-600 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
                       <MessageSquare className="w-5 h-5 text-blue-400" />
                       Communications
@@ -1569,7 +1569,7 @@ export default function ClientDetailsPage() {
 
                 {/* Notes Section */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-amber-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-amber-400" />
                       Notes
@@ -1897,7 +1897,7 @@ export default function ClientDetailsPage() {
 
                 {/* Samples Section */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-fuchsia-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
                       <List className="w-5 h-5 text-fuchsia-400" />
                       Client Assets & Samples
@@ -2016,7 +2016,7 @@ export default function ClientDetailsPage() {
 
                 {/* Tasks Widget */}
                 <div className="bg-slate-800 rounded-xl border border-purple-500/30 border-t-purple-500 border-t-4 shadow-sm relative z-[50] shrink-0">
-                  <div className="p-4 bg-slate-700/40 border-b border-slate-600 flex justify-between items-center rounded-t-xl relative z-[60]">
+                  <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
                       <Zap className="w-5 h-5 text-purple-400" /> Tasks
                     </span>
