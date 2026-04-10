@@ -3,7 +3,7 @@ import {
   Users, BarChart2, HelpCircle, ArrowUpRight, User, Building2, Search, 
   Activity, Zap, TrendingUp, ShieldAlert, Server, Briefcase, ArrowRight, 
   FileText, CheckSquare, Star, Calculator, Plus, MessageSquare, Quote,
-  DollarSign, Percent
+  DollarSign, Percent, Edit2, Send
 } from "lucide-react";
 import { useLocation, Link } from "wouter";
 import { Sidebar, Header } from "./clients";
@@ -97,16 +97,18 @@ export default function Home() {
                           <FileText className="w-4 h-4 text-fuchsia-400" />
                           Pre-Approvals
                         </h3>
-                        <Link href="/pre-approval" className="text-xs text-indigo-400 hover:text-indigo-300 font-bold transition-colors">
+                        <Link href="/pre-approvals" className="text-xs text-indigo-400 hover:text-indigo-300 font-bold transition-colors">
                           View All
                         </Link>
                       </div>
                       
-                      <div className="space-y-3">
+                      <div className="space-y-3 max-h-[160px] overflow-y-auto pr-2 custom-scrollbar">
                         {[
                           { name: 'Sarah Jenkins', amount: '$500k', status: 'Ready to Send', statusColor: 'text-emerald-400 bg-emerald-400/10 border border-emerald-400/20' },
                           { name: 'Michael Chen', amount: '$750k', status: 'In Review', statusColor: 'text-amber-400 bg-amber-400/10 border border-amber-400/20' },
                           { name: 'Emma Davis', amount: '$425k', status: 'Sent', statusColor: 'text-blue-400 bg-blue-400/10 border border-blue-400/20' },
+                          { name: 'John Smith', amount: '$600k', status: 'Draft', statusColor: 'text-slate-400 bg-slate-400/10 border border-slate-400/20' },
+                          { name: 'Lisa Wong', amount: '$850k', status: 'Ready to Send', statusColor: 'text-emerald-400 bg-emerald-400/10 border border-emerald-400/20' },
                         ].map((client, i) => (
                           <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800 hover:border-slate-600 transition-colors group">
                             <div>
@@ -118,14 +120,19 @@ export default function Home() {
                                 </span>
                               </div>
                             </div>
-                            <Link href="/pre-approval" className="w-8 h-8 rounded-full bg-fuchsia-500/10 text-fuchsia-400 flex items-center justify-center hover:bg-fuchsia-500 hover:text-white transition-all shadow-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0" title="View Letter">
-                              <ArrowUpRight className="w-4 h-4" />
-                            </Link>
+                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <Link href="/pre-approvals" className="w-8 h-8 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center hover:bg-slate-600 hover:text-white transition-all shadow-sm" title="Edit">
+                                <Edit2 className="w-3.5 h-3.5" />
+                              </Link>
+                              <button className="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-all shadow-sm" title="Send">
+                                <Send className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
                           </div>
                         ))}
                       </div>
                       
-                      <Link href="/pre-approval" className="mt-4 w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2">
+                      <Link href="/pre-approvals" className="mt-4 w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2">
                         <Plus className="w-4 h-4" /> Generate New Letter
                       </Link>
                     </div>
