@@ -421,10 +421,7 @@ export default function PreApprovalModule() {
                             {/* Letterhead */}
                             <div className="flex justify-between items-start border-b-2 border-slate-200 pb-6 mb-8">
                                <div>
-                                 <div className="w-12 h-12 bg-indigo-600 rounded mb-2 flex items-center justify-center">
-                                    <Building2 className="w-6 h-6 text-white" />
-                                 </div>
-                                 <h2 className="font-bold text-xl tracking-tight text-slate-800">Apex Lending Partners</h2>
+                                 <img src="/stone_bridge_logo.png" alt="Stone Bridge Mortgage" className="h-16 object-contain mb-2" />
                                  <p className="text-xs text-slate-500 font-sans">NMLS #1234567 | Equal Housing Lender</p>
                                </div>
                                <div className="text-right text-sm text-slate-600 font-sans">
@@ -452,7 +449,7 @@ export default function PreApprovalModule() {
                                
                                <p>
                                  Congratulations! Based on a review of your credit history, income, and asset documentation, 
-                                 we are pleased to inform you that you have been pre-approved for a mortgage loan with Apex Lending Partners.
+                                 we are pleased to inform you that you have been pre-approved for a mortgage loan with Stone Bridge Mortgage.
                                </p>
 
                                <div className="bg-slate-50 p-4 border border-slate-200 rounded my-6 font-sans">
@@ -493,7 +490,7 @@ export default function PreApprovalModule() {
                                  <div className="font-script text-3xl text-indigo-900/60 mb-2">Greg Wynn</div>
                                  <p className="font-bold">Greg Wynn</p>
                                  <p className="text-sm">Senior Loan Officer, NMLS #987654</p>
-                                 <p className="text-sm">Apex Lending Partners</p>
+                                 <p className="text-sm">Stone Bridge Mortgage</p>
                                </div>
                             </div>
                          </div>
