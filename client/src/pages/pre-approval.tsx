@@ -421,7 +421,7 @@ export default function PreApprovalModule() {
                             {/* Letterhead */}
                             <div className="flex justify-between items-start border-b-2 border-slate-200 pb-6 mb-8">
                                <div>
-                                 <img src="/stone_bridge_logo.png" alt="Stone Bridge Mortgage" className="h-16 object-contain mb-2" />
+                                 <img src="/stone_bridge_logo_white.png" alt="Stone Bridge Mortgage" className="h-16 object-contain mb-2" />
                                  <p className="text-xs text-slate-500 font-sans">NMLS #1234567 | Equal Housing Lender</p>
                                </div>
                                <div className="text-right text-sm text-slate-600 font-sans">
