@@ -142,6 +142,7 @@ export default function PreApprovalModule() {
   const [emailSubject, setEmailSubject] = useState('');
   const [emailBody, setEmailBody] = useState('');
   const [emailStatus, setEmailStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [includeSms, setIncludeSms] = useState(false);
   
   const selectedBorrower = mockBorrowers.find(b => b.id === selectedBorrowerId);
 
@@ -696,8 +697,8 @@ export default function PreApprovalModule() {
                     <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mb-4">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2">Email Sent Successfully!</h3>
-                    <p className="text-slate-400">The pre-approval letter has been sent to {selectedBorrower?.name}.</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Message Sent Successfully!</h3>
+                    <p className="text-slate-400">The pre-approval letter has been sent to {selectedBorrower?.name}{includeSms ? ' via Email and SMS' : ' via Email'}.</p>
                   </div>
                 ) : (
                   <>
@@ -772,6 +773,24 @@ export default function PreApprovalModule() {
                         </div>
                       </div>
                     </div>
+                    <div className="pt-2 border-t border-slate-800 mt-4">
+                      <label className="flex items-center gap-3 cursor-pointer group">
+                        <div className="relative flex items-center justify-center">
+                          <input 
+                            type="checkbox" 
+                            checked={includeSms}
+                            onChange={(e) => setIncludeSms(e.target.checked)}
+                            className="peer sr-only"
+                          />
+                          <div className="w-5 h-5 border-2 border-slate-600 rounded bg-slate-900 peer-checked:bg-indigo-500 peer-checked:border-indigo-500 transition-all"></div>
+                          <Check className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-white group-hover:text-indigo-400 transition-colors">Also send via SMS to Borrower</p>
+                          <p className="text-xs text-slate-500">Will text a secure link to view/download the PDF</p>
+                        </div>
+                      </label>
+                    </div>
                   </>
                 )}
               </div>
@@ -798,7 +817,7 @@ export default function PreApprovalModule() {
                       </div>
                     ) : (
                       <>
-                        <Mail className="w-4 h-4 mr-2" /> Send Email
+                        <Mail className="w-4 h-4 mr-2" /> Send Message
                       </>
                     )}
                   </Button>
