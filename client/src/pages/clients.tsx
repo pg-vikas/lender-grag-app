@@ -381,7 +381,7 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/users') ? 'bg-rose-500/10 text-rose-400 border border-rose-500/30 shadow-[0_0_15px_rgba(244,63,94,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
               <div className="flex items-center space-x-3">
                 <User className={`w-5 h-5 shrink-0 ${currentPath.includes('/users') ? 'text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.8)]' : 'group-hover:text-slate-300'}`} />
-                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">User</span>}
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Website Users</span>}
               </div>
             </div>
           </Link>
