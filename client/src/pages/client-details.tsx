@@ -745,87 +745,25 @@ export default function ClientDetailsPage() {
                   </div>
                 </div>
 
-                {/* Website */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-emerald-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
+                {/* Background */}
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-violet-500 border-t-4 shadow-lg shadow-sm overflow-hidden">
                   <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                      <Globe className="w-5 h-5 text-emerald-400" />
-                      <span className="font-bold text-white text-[15px]">Website</span>
+                      <ImageIcon className="w-5 h-5 text-violet-400" />
+                      <span className="font-bold text-white text-[15px]">Background</span>
                     </div>
                     <button 
-                      onClick={() => setIsEditWebsiteModalOpen(true)}
-                      className="text-emerald-400 text-[13px] font-bold flex items-center gap-1 hover:text-emerald-300 bg-emerald-500/10 px-3 py-1.5 rounded-md transition-colors"
+                      onClick={() => setIsEditBackgroundModalOpen(true)}
+                      className="text-violet-400 text-[13px] font-bold flex items-center gap-1 hover:text-violet-300 bg-violet-500/10 px-3 py-1.5 rounded-md transition-colors"
                     >
                       <Edit2 className="w-3.5 h-3.5" /> Edit
                     </button>
                   </div>
-                  <div className="p-5 space-y-3">
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Main Website</label>
-                      <div className="flex flex-col gap-2 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border-emerald-500/30 transition-colors group cursor-pointer">
-                        <div className="flex items-center gap-3">
-                          <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
-                            <Globe className="w-3.5 h-3.5 text-emerald-400" />
-                          </div>
-                          <span className="text-[13px] font-medium text-slate-300 group-hover:text-white transition-colors truncate flex-1">www.clientwebsite.com</span>
-                        </div>
-                        
-                        <div className="flex items-center justify-between pl-10 pr-2">
-                          <div className="flex flex-col">
-                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Domain Expires</span>
-                            <span className="text-[12px] font-bold text-slate-300">Oct 14, 2026</span>
-                          </div>
-                          <div className="flex items-center gap-1.5 bg-amber-500/10 px-2 py-1 rounded border border-amber-500/20">
-                            <Clock className="w-3 h-3 text-amber-400" />
-                            <span className="text-[11px] font-bold text-amber-400">193 Days Left</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Gorilla Apps Website</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
-                        <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
-                          <Globe className="w-3.5 h-3.5 text-emerald-400" />
-                        </div>
-                        <span className="text-[13px] font-medium text-slate-400 group-hover:text-emerald-400 transition-colors truncate">client.pinkgorilla.apps</span>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider pl-1">Staging Website</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-900 border-slate-600 rounded-lg hover:border border-emerald-500/30 transition-colors group cursor-pointer">
-                        <div className="w-7 h-7 rounded-md bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors">
-                          <Globe className="w-3.5 h-3.5 text-emerald-400" />
-                        </div>
-                        <span className="text-[13px] font-medium text-slate-400 group-hover:text-emerald-400 transition-colors truncate">staging.clientwebsite.com</span>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 pt-3 border-t border-slate-600/50 space-y-2">
-                      <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pl-1">Gorilla Apps Credentials</label>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/30 border-slate-600/30 rounded-lg">
-                        <div className="w-7 h-7 rounded-md bg-slate-700/50 flex items-center justify-center shrink-0">
-                          <User className="w-3.5 h-3.5 text-slate-400" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="block text-[11px] text-slate-500 mb-0.5">Username</span>
-                          <span className="text-[13px] font-medium text-white truncate block">admin@client.com</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3 p-2.5 bg-slate-900/30 border-slate-600/30 rounded-lg relative group">
-                        <div className="w-7 h-7 rounded-md bg-slate-700/50 flex items-center justify-center shrink-0">
-                          <Lock className="w-3.5 h-3.5 text-slate-400" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="block text-[11px] text-slate-500 mb-0.5">Password</span>
-                          <span className="text-[13px] font-medium text-white tracking-widest block">••••••••••••</span>
-                        </div>
-                        <button className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-slate-500 hover:text-white bg-slate-700/50 hover:bg-slate-600 rounded opacity-0 group-hover:opacity-100 transition-all">
-                          <Eye className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+                  <div className="p-5">
+                    <div className="bg-slate-900 border-slate-600 rounded-lg p-3">
+                      <a href="https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists" target="_blank" rel="noopener noreferrer" className="text-[13px] font-medium text-violet-400 hover:text-violet-300 hover:underline break-all block">
+                        https://www.yelp.com/biz/luciene-santanna-takagi-psyd-newark?osq=Psychologists
+                      </a>
                     </div>
                   </div>
                 </div>
