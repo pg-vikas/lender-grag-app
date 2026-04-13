@@ -212,40 +212,6 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             )}
           </div>
 
-          {/* Sales Group */}
-          <div className="relative group">
-            <button 
-              onClick={() => sidebarOpen ? toggleMenu('sales') : null}
-              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/invoices') || currentPath.includes('/payments') || currentPath.includes('/subscriptions') ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
-              title={!sidebarOpen ? "Sales" : ""}
-            >
-              <div className="flex items-center space-x-3">
-                <DollarSign className={`w-5 h-5 shrink-0 ${currentPath.includes('/invoices') || currentPath.includes('/payments') ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'group-hover:text-slate-300'}`} />
-                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Billing</span>}
-              </div>
-              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'sales' || currentPath.includes('/invoices') || currentPath.includes('/payments') ? '' : '-rotate-90'}`} />}
-            </button>
-            {useAppStore.getState().sidebarOpen && (openMenus === 'sales' || currentPath.includes('/invoices') || currentPath.includes('/payments') || currentPath.includes('/subscriptions')) && (
-              <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
-                <Link href="/invoices">
-                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/invoices') ? 'bg-emerald-500/20 text-emerald-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
-                    Invoices
-                  </div>
-                </Link>
-                <Link href="/payments">
-                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/payments') ? 'bg-emerald-500/20 text-emerald-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
-                    Payments
-                  </div>
-                </Link>
-                <Link href="/subscriptions">
-                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath.includes('/subscriptions') ? 'bg-emerald-500/20 text-emerald-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
-                    Subscriptions
-                  </div>
-                </Link>
-              </div>
-            )}
-          </div>
-
           {/* Support Group */}
           <div className="relative group">
             <button 
