@@ -44,7 +44,9 @@ import {
   Eye,
   Lock,
   Trash2,
-  CheckCircle2
+  CheckCircle2,
+  AlertTriangle,
+  Settings
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { useAppStore } from "@/lib/store";
@@ -283,7 +285,74 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
             </div>
           </Link>
 
-          {/* Reports Group */}
+          {/* Loan Pipeline Group */}
+          <div className="relative group">
+            <button 
+              onClick={() => sidebarOpen ? toggleMenu('pipeline') : null}
+              className={`w-full flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all group ${currentPath.includes('/pipeline') ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}
+              title={!sidebarOpen ? "Loan Pipeline" : ""}
+            >
+              <div className="flex items-center space-x-3">
+                <BarChart2 className={`w-5 h-5 shrink-0 ${currentPath.includes('/pipeline') ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Loan Pipeline</span>}
+              </div>
+              {sidebarOpen && <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openMenus === 'pipeline' || currentPath.includes('/pipeline') ? '' : '-rotate-90'}`} />}
+            </button>
+            {useAppStore.getState().sidebarOpen && (openMenus === 'pipeline' || currentPath.includes('/pipeline')) && (
+              <div className="py-2 space-y-1 animate-in slide-in-from-top-2 duration-200 pl-4 border-l border-slate-800 ml-6 mt-1">
+                <Link href="/pipeline/active">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/pipeline/active' ? 'bg-emerald-500/20 text-emerald-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Active Loans
+                  </div>
+                </Link>
+                <Link href="/pipeline/funded">
+                  <div className={`block w-[95%] px-3 py-2 text-sm rounded-lg transition-all whitespace-nowrap cursor-pointer ${currentPath === '/pipeline/funded' ? 'bg-emerald-500/20 text-emerald-300 font-medium' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800'}`}>
+                    Funded
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Conditions Standalone */}
+          <Link href="/conditions">
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/conditions') ? 'bg-rose-500/10 text-rose-400 border border-rose-500/30 shadow-[0_0_15px_rgba(244,63,94,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+              <div className="flex items-center space-x-3">
+                <AlertTriangle className={`w-5 h-5 shrink-0 ${currentPath.includes('/conditions') ? 'text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Conditions</span>}
+              </div>
+            </div>
+          </Link>
+
+          {/* Pricing Desk Standalone */}
+          <Link href="/pricing-desk">
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/pricing-desk') ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+              <div className="flex items-center space-x-3">
+                <DollarSign className={`w-5 h-5 shrink-0 ${currentPath.includes('/pricing-desk') ? 'text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Pricing Desk</span>}
+              </div>
+            </div>
+          </Link>
+
+          {/* Compliance Standalone */}
+          <Link href="/compliance">
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/compliance') ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+              <div className="flex items-center space-x-3">
+                <CheckCircle2 className={`w-5 h-5 shrink-0 ${currentPath.includes('/compliance') ? 'text-yellow-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Compliance</span>}
+              </div>
+            </div>
+          </Link>
+
+          {/* Team Standalone */}
+          <Link href="/team">
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/team') ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+              <div className="flex items-center space-x-3">
+                <Users className={`w-5 h-5 shrink-0 ${currentPath.includes('/team') ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Team</span>}
+              </div>
+            </div>
+          </Link>
           <div className="relative group">
             <button 
               onClick={() => sidebarOpen ? toggleMenu('reports') : null}
@@ -347,6 +416,16 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
               <div className="flex items-center space-x-3">
                 <PieChart className={`w-5 h-5 shrink-0 ${currentPath.includes('/analytics') ? 'text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]' : 'group-hover:text-slate-300'}`} />
                 {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Analytics</span>}
+              </div>
+            </div>
+          </Link>
+          
+          {/* Settings Standalone */}
+          <Link href="/settings">
+            <div className={`flex items-center ${sidebarOpen ? 'justify-between px-4' : 'justify-center px-0'} py-3 rounded-xl transition-all duration-200 cursor-pointer group ${currentPath.includes('/settings') ? 'bg-slate-500/10 text-slate-300 border border-slate-500/30 shadow-[0_0_15px_rgba(148,163,184,0.15)]' : 'text-slate-400 hover:text-[#e2e8f0] hover:bg-slate-800/50'}`}>
+              <div className="flex items-center space-x-3">
+                <Settings className={`w-5 h-5 shrink-0 ${currentPath.includes('/settings') ? 'text-slate-300 drop-shadow-[0_0_8px_rgba(148,163,184,0.8)]' : 'group-hover:text-slate-300'}`} />
+                {sidebarOpen && <span className="text-sm font-semibold whitespace-nowrap">Settings</span>}
               </div>
             </div>
           </Link>
