@@ -39,6 +39,7 @@ import ESignaturesDocumentsPage from "@/pages/esignatures-documents";
 import ESignaturesTemplatesPage from "@/pages/esignatures-templates";
 
 import ComingSoonPage from "@/pages/coming-soon";
+import SettingsPage from "@/pages/settings";
 
 function Router() {
   return (
@@ -80,6 +81,7 @@ function Router() {
       <Route path="/messages" component={MessagesPage} />
       <Route path="/social/publisher" component={SocialPublisherPage} />
       <Route path="/pre-approvals" component={PreApprovalModule} />
+      <Route path="/settings" component={SettingsPage} />
       
       <Route path="/pipeline/:status">
         <ComingSoonPage title="Loan Pipeline" description="Manage your active and funded loans in one unified view. Drag and drop loans between stages." />
