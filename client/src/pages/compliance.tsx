@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { Header, Sidebar } from "./clients";
-import { Shield, ShieldAlert, CheckCircle2, FileText, Download, Filter, Search, AlertCircle } from "lucide-react";
+import { Shield, ShieldAlert, CheckCircle2, FileText, Download, Filter, Search, AlertCircle, Clock } from "lucide-react";
 
 export default function CompliancePage() {
   const [location] = useLocation();
