@@ -609,10 +609,10 @@ export default function ClientDetailsPage() {
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
                 {/* Client Details */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm relative z-30">
-                  <div className="p-4 bg-indigo-600 border-b border-indigo-700 flex justify-between items-center rounded-t-xl">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-indigo-500 border-t-2 shadow-lg shadow-sm relative z-30">
+                  <div className="p-4 bg-indigo-500/5 border-b border-indigo-500/10 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
-                      <User className="w-5 h-5 text-indigo-100" />
+                      <User className="w-5 h-5 text-indigo-400" />
                       <span className="font-bold text-white text-[15px]">Client Details</span>
                     </div>
                     <button 
@@ -665,10 +665,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Contact Information & Employees */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm overflow-hidden flex flex-col max-h-[600px]">
-                  <div className="p-4 bg-cyan-600 border-b border-cyan-700 flex justify-between items-center sticky top-0 z-10 shrink-0">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-cyan-500 border-t-2 shadow-lg shadow-sm overflow-hidden flex flex-col max-h-[600px]">
+                  <div className="p-4 bg-cyan-500/5 border-b border-cyan-500/10 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
-                      <Users className="w-5 h-5 text-cyan-100" />
+                      <Users className="w-5 h-5 text-cyan-400" />
                       <span className="font-bold text-white text-[15px]">Contact</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -785,10 +785,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Background */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-violet-600 border-b border-violet-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-violet-500 border-t-2 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-violet-500/5 border-b border-violet-500/10 flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                      <ImageIcon className="w-5 h-5 text-violet-100" />
+                      <ImageIcon className="w-5 h-5 text-violet-400" />
                       <span className="font-bold text-white text-[15px]">Background</span>
                     </div>
                     <button 
@@ -829,10 +829,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Background */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-violet-600 border-b border-violet-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-violet-500 border-t-2 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-violet-500/5 border-b border-violet-500/10 flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                      <ImageIcon className="w-5 h-5 text-violet-100" />
+                      <ImageIcon className="w-5 h-5 text-violet-400" />
                       <span className="font-bold text-white text-[15px]">Background</span>
                     </div>
                     <button 
@@ -852,10 +852,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* General */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-teal-600 border-b border-teal-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-teal-500 border-t-2 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-teal-500/5 border-b border-teal-500/10 flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                      <Info className="w-5 h-5 text-teal-100" />
+                      <Info className="w-5 h-5 text-teal-400" />
                       <span className="font-bold text-white text-[15px]">General Info</span>
                     </div>
                     <button 
@@ -949,10 +949,10 @@ export default function ClientDetailsPage() {
               <div className="flex-1 flex flex-col gap-6 min-w-0">
                 
                 {/* Communications Section */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-5 bg-blue-600 border-b border-blue-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-blue-500 border-t-2 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-5 bg-blue-500/5 border-b border-blue-500/10 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
-                      <MessageSquare className="w-5 h-5 text-blue-100" />
+                      <MessageSquare className="w-5 h-5 text-blue-400" />
                       Communications
                     </h2>
                     <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border-slate-600">
@@ -1483,10 +1483,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Notes Section */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-4 bg-amber-600 border-b border-amber-700 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-amber-500 border-t-2 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-4 bg-amber-500/5 border-b border-amber-500/10 flex justify-between items-center">
                     <h2 className="text-[16px] font-bold text-white flex items-center gap-2">
-                      <FileText className="w-5 h-5 text-amber-100" />
+                      <FileText className="w-5 h-5 text-amber-400" />
                       Notes
                     </h2>
                     <button 
@@ -1577,10 +1577,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Analytics Expanded Section */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-5 border-b border-sky-700 bg-sky-600 flex justify-between items-center">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-sky-500 border-t-2 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-5 border-b border-sky-500/10 bg-sky-500/5 flex justify-between items-center">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
-                      <TrendingUp className="w-5 h-5 text-sky-100" />
+                      <TrendingUp className="w-5 h-5 text-sky-400" />
                       Client Analytics
                     </h2>
                     <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-lg border-slate-600">
@@ -1703,10 +1703,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Document Signing Center */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm overflow-hidden">
-                  <div className="p-5 border-b border-teal-700 flex justify-between items-center bg-teal-600">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-teal-500 border-t-2 shadow-lg shadow-sm overflow-hidden">
+                  <div className="p-5 border-b border-teal-500/10 flex justify-between items-center bg-teal-500/5">
                     <h2 className="text-[18px] font-bold text-white flex items-center gap-2">
-                      <FileText className="w-5 h-5 text-teal-100" />
+                      <FileText className="w-5 h-5 text-teal-400" />
                       Document Signing Center
                     </h2>
                     <button className="px-3 py-1.5 bg-teal-600 hover:bg-teal-500 text-white rounded-md text-[12px] font-medium transition-colors flex items-center gap-1.5 shadow-sm">
@@ -1834,10 +1834,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Tasks Widget */}
-                <div className="bg-slate-800 rounded-xl border border-purple-500/30 shadow-sm relative z-[50] shrink-0">
-                  <div className="p-4 bg-purple-600 border-b border-purple-700 flex justify-between items-center rounded-t-xl relative z-[60]">
+                <div className="bg-slate-800 rounded-xl border border-purple-500/30 border-t-purple-500 border-t-2 shadow-sm relative z-[50] shrink-0">
+                  <div className="p-4 bg-purple-500/5 border-b border-purple-500/10 flex justify-between items-center rounded-t-xl relative z-[60]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
-                      <Zap className="w-5 h-5 text-purple-100" /> Tasks
+                      <Zap className="w-5 h-5 text-purple-400" /> Tasks
                     </span>
                     <div className="flex gap-2 relative">
                       {/* View All */}
@@ -1899,10 +1899,10 @@ export default function ClientDetailsPage() {
                 </div>
 
                 {/* Activity Log */}
-                <div className="bg-slate-800 rounded-xl border-slate-600 shadow-lg shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
-                  <div className="p-4 border-b border-slate-700 bg-slate-600 flex justify-between items-center relative z-[45]">
+                <div className="bg-slate-800 rounded-xl border-slate-600 border-t-slate-500 border-t-2 shadow-lg shadow-sm overflow-visible relative z-[40] flex flex-col flex-1 min-h-[500px]">
+                  <div className="p-4 border-b border-slate-500/10 bg-slate-500/5 flex justify-between items-center relative z-[45]">
                     <span className="font-bold text-white text-[15px] flex items-center gap-2">
-                      <List className="w-5 h-5 text-slate-100" />
+                      <List className="w-5 h-5 text-slate-400" />
                       Activity Log
                     </span>
                     <div className="relative">
