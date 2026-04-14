@@ -41,6 +41,12 @@ import ESignaturesTemplatesPage from "@/pages/esignatures-templates";
 import ComingSoonPage from "@/pages/coming-soon";
 import SettingsPage from "@/pages/settings";
 
+import PipelinePage from "@/pages/pipeline";
+import ConditionsPage from "@/pages/conditions";
+import PricingDeskPage from "@/pages/pricing-desk";
+import CompliancePage from "@/pages/compliance";
+import TeamPage from "@/pages/team";
+
 function Router() {
   return (
     <Switch>
@@ -83,21 +89,11 @@ function Router() {
       <Route path="/pre-approvals" component={PreApprovalModule} />
       <Route path="/settings" component={SettingsPage} />
       
-      <Route path="/pipeline/:status">
-        <ComingSoonPage title="Loan Pipeline" description="Manage your active and funded loans in one unified view. Drag and drop loans between stages." />
-      </Route>
-      <Route path="/conditions">
-        <ComingSoonPage title="Conditions Tracker" description="Track and manage loan conditions and document requirements across all files." />
-      </Route>
-      <Route path="/pricing-desk">
-        <ComingSoonPage title="Pricing Desk" description="Real-time rate lock desk, scenarios, and product eligibility." />
-      </Route>
-      <Route path="/compliance">
-        <ComingSoonPage title="Compliance Center" description="Monitor compliance metrics, HMDA data, and audit logs." />
-      </Route>
-      <Route path="/team">
-        <ComingSoonPage title="Team Management" description="Manage loan officers, processors, and team permissions." />
-      </Route>
+      <Route path="/pipeline/:status" component={PipelinePage} />
+      <Route path="/conditions" component={ConditionsPage} />
+      <Route path="/pricing-desk" component={PricingDeskPage} />
+      <Route path="/compliance" component={CompliancePage} />
+      <Route path="/team" component={TeamPage} />
 
       <Route path="/">
         <Redirect to="/home" />
