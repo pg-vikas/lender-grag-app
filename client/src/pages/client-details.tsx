@@ -669,7 +669,7 @@ export default function ClientDetailsPage() {
                   <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center sticky top-0 z-10 shrink-0">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-cyan-400" />
-                      <span className="font-bold text-white text-[15px]">Contacts & Team</span>
+                      <span className="font-bold text-white text-[15px]">Contact</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <button 
