@@ -84,9 +84,48 @@ export default function ClientDetailsPage() {
     }
   ];
 
+  const [dynamicActivities, setDynamicActivities] = useState<any[]>(activities);
+  const [newTaskForm, setNewTaskForm] = useState({ title: '', dueDate: '', assignee: '' });
+
   const filteredActivities = activityFilter === 'All Activities' 
-    ? activities 
-    : activities.filter(a => a.type === activityFilter);
+    ? dynamicActivities 
+    : dynamicActivities.filter(a => a.type === activityFilter);
+
+  const handleQuickReminder = (reminderTime: string) => {
+    const newActivity = {
+      id: Date.now(),
+      type: 'Tasks',
+      title: `Task Reminder: ${reminderTime}`,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      author: 'Greg Wynn',
+      icon: <CheckCircle2 className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
+    };
+    
+    // Add to top of activities
+    // We need to make activities stateful to push new ones
+    setDynamicActivities([newActivity, ...dynamicActivities]);
+    setIsTaskDropdownOpen(false);
+  };
+
+  const handleCreateTask = () => {
+    // Basic validation
+    if (!newTaskForm.title) return;
+    
+    const newActivity = {
+      id: Date.now(),
+      type: 'Tasks',
+      title: `Task: ${newTaskForm.title}`,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      author: 'Greg Wynn',
+      icon: <CheckCircle2 className="w-4 h-4 text-[#eab308] shrink-0 mt-0.5" />
+    };
+    
+    setDynamicActivities([newActivity, ...dynamicActivities]);
+    setIsAddTaskModalOpen(false);
+    setNewTaskForm({ title: '', dueDate: '', assignee: '' });
+  };
   const [isEditClientModalOpen, setIsEditClientModalOpen] = useState(false);
   const [isBusinessDiscoveryModalOpen, setIsBusinessDiscoveryModalOpen] = useState(false);
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
@@ -569,12 +608,12 @@ export default function ClientDetailsPage() {
               {/* Left Sidebar */}
               <div className="w-full lg:w-[320px] shrink-0 space-y-6">
                 
-                {/* Company Details */}
+                {/* Client Details */}
                 <div className="bg-slate-800 rounded-xl border-slate-600 border-t-indigo-500 border-t-4 shadow-lg shadow-sm relative z-30">
                   <div className="p-4 bg-slate-800 border-b border-slate-600 flex justify-between items-center rounded-t-xl">
                     <div className="flex items-center gap-2">
-                      <Building2 className="w-5 h-5 text-indigo-400" />
-                      <span className="font-bold text-white text-[15px]">Company Details</span>
+                      <User className="w-5 h-5 text-indigo-400" />
+                      <span className="font-bold text-white text-[15px]">Client Details</span>
                     </div>
                     <button 
                       onClick={() => setIsEditClientModalOpen(true)}
@@ -1829,7 +1868,7 @@ export default function ClientDetailsPage() {
                             <div className="fixed inset-0 z-[50]" onClick={() => setIsTaskDropdownOpen(false)}></div>
                             <div className="absolute right-0 top-full mt-2 w-48 bg-slate-800 rounded-xl shadow-xl border-slate-600 bg-slate-950 py-2 z-[100] animate-in fade-in slide-in-from-top-2 origin-top-right overflow-hidden">
                               {['1 Day Follow Up', '3 Day Follow Up', '1 Week Follow Up', '2 Week Follow Up', '1 Month Follow Up', '3 Month Follow Up', '6 Month Follow Up', '12 Month Follow Up'].map((item) => (
-                                <button key={item} onClick={() => setIsTaskDropdownOpen(false)} className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors relative z-10">
+                                <button key={item} onClick={() => handleQuickReminder(item)} className="w-full text-left px-4 py-2.5 text-[13px] font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors relative z-10">
                                   {item}
                                 </button>
                               ))}
@@ -1854,7 +1893,7 @@ export default function ClientDetailsPage() {
                     <div className="w-14 h-14 mb-4 flex items-center justify-center text-slate-500 bg-slate-800 rounded-full border-slate-600">
                       <Search className="w-7 h-7 text-purple-500/30" />
                     </div>
-                    <h3 className="text-[16px] font-bold text-white mb-2">No tasks found</h3>
+                    <h3 className="text-[16px] font-bold text-white mb-2">No pending tasks</h3>
                     <p className="text-[13px] text-slate-400">Click the + button to create a task</p>
                   </div>
                 </div>
@@ -1982,6 +2021,8 @@ export default function ClientDetailsPage() {
                 <label className="block text-sm font-medium text-slate-300 mb-2">Task title*</label>
                 <input 
                   type="text" 
+                  value={newTaskForm.title}
+                  onChange={(e) => setNewTaskForm({...newTaskForm, title: e.target.value})}
                   placeholder="Create MVP for wisdom rules"
                   className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all placeholder:text-slate-500" 
                 />
@@ -1991,16 +2032,22 @@ export default function ClientDetailsPage() {
                 <label className="block text-sm font-medium text-slate-300 mb-2">Due Date</label>
                 <input 
                   type="date" 
+                  value={newTaskForm.dueDate}
+                  onChange={(e) => setNewTaskForm({...newTaskForm, dueDate: e.target.value})}
                   className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 transition-all placeholder:text-slate-500" 
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Assignee</label>
-                <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none">
+                <select 
+                  value={newTaskForm.assignee}
+                  onChange={(e) => setNewTaskForm({...newTaskForm, assignee: e.target.value})}
+                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-purple-500/50 transition-all appearance-none"
+                >
                   <option value="">Select assignee...</option>
-                  <option value="1">Maria Christina</option>
-                  <option value="2">Admin Gorilla</option>
+                  <option value="Greg Wynn">Greg Wynn</option>
+                  <option value="Admin Gorilla">Admin Gorilla</option>
                 </select>
               </div>
             </div>
@@ -2014,7 +2061,7 @@ export default function ClientDetailsPage() {
                 Close
               </button>
               <button 
-                onClick={() => setIsAddTaskModalOpen(false)}
+                onClick={handleCreateTask}
                 className="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-medium shadow-sm hover:shadow-sm transition-all"
               >
                 Submit
@@ -2378,16 +2425,16 @@ export default function ClientDetailsPage() {
             {/* Modal Content */}
             <div className="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-8">
               
-              {/* Company Details Section */}
+              {/* Client Details Section */}
               <section className="space-y-6">
-                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Company Details</h3>
+                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Client Details</h3>
                 
                 <div className="space-y-4">
-                  {/* Logo Upload */}
+                  {/* Photo Upload */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Company Logo</label>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Client Photo</label>
                     <div className="w-32 h-32 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 flex items-center justify-center mb-2">
-                      <Building2 className="w-8 h-8 text-slate-500" />
+                      <User className="w-8 h-8 text-slate-500" />
                     </div>
                     <button className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium text-white rounded-lg transition-colors border-slate-600">
                       Upload
@@ -2397,7 +2444,7 @@ export default function ClientDetailsPage() {
                   {/* Form Grid 1 */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Name*</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Client Name*</label>
                       <input 
                         type="text" 
                         defaultValue={currentClient.name}
@@ -2405,7 +2452,7 @@ export default function ClientDetailsPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Email</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
                       <input 
                         type="email" 
                         defaultValue={currentClient.email !== '---' ? currentClient.email : ''}
@@ -2413,7 +2460,7 @@ export default function ClientDetailsPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Phone Number*</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Phone Number*</label>
                       <div className="flex">
                         <select className="px-3 py-2.5 bg-slate-950 border border-slate-600 text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 border-r-0 rounded-l-xl text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all w-20">
                           <option>+1</option>
@@ -2429,146 +2476,81 @@ export default function ClientDetailsPage() {
 
                   {/* Form Grid 2 */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Website</label>
-                      <input 
-                        type="url" 
-                        defaultValue="https://pinkgorilla.agency"
-                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all placeholder:text-slate-500" 
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Company Address</label>
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Current Address</label>
                       <input 
                         type="text" 
-                        defaultValue="po 12, ABCD, lame road, LA, CA"
+                        defaultValue="123 Main St, Anytown, CA 90210"
                         className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all placeholder:text-slate-500" 
                       />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Default Currency</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>USD</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Form Grid 3 */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Default Time Zone</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>America/Denver</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Language</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>English - US</option>
-                      </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Status</label>
                       <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>Active</option>
                         <option>Brand New</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Form Grid 4 */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Industry</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>Information Technology Services</option>
-                        <option>Retail Trade</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Year in Business</label>
-                      <input 
-                        type="text" 
-                        defaultValue="5"
-                        className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all" 
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">No. of Employees</label>
-                      <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-slate-300 focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
-                        <option>10 - 50</option>
-                        <option>1 - 3</option>
+                        <option>Pre-Approved</option>
+                        <option>In Processing</option>
+                        <option>Clear to Close</option>
+                        <option>Funded</option>
+                        <option>Lost/Dead</option>
                       </select>
                     </div>
                   </div>
                 </div>
               </section>
 
-              {/* Business Discovery Section */}
+              {/* Loan Goals Section */}
               <section className="space-y-6">
-                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Business Discovery</h3>
+                <h3 className="text-lg font-bold text-white tracking-tight border-b border-slate-800 pb-2">Loan Goals</h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Yelp URL</label>
-                    <input 
-                      type="url" 
-                      defaultValue="https://yelp.com/biz/pink-gorilla-software"
-                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
-                    />
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Loan Purpose</label>
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <option>Purchase</option>
+                      <option>Rate/Term Refinance</option>
+                      <option>Cash-Out Refinance</option>
+                      <option>Home Equity Loan</option>
+                    </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Google URL</label>
-                    <input 
-                      type="url" 
-                      defaultValue="https://google.com/maps/place/Pink+Gorilla"
-                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-500" 
-                    />
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Property Type</label>
+                    <select className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-all appearance-none">
+                      <option>Single Family</option>
+                      <option>Condominium</option>
+                      <option>Townhouse</option>
+                      <option>Multi-Family (2-4 Units)</option>
+                    </select>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4">
-                    {editClientLinks.map((link, index) => (
-                      <div key={index} className="flex items-end gap-4">
-                        <div className="flex-1">
-                          <label className="block text-sm font-medium text-slate-300 mb-2">Link Label</label>
-                          <input 
-                            type="text" 
-                            placeholder="e.g., Facebook, TripAdvisor"
-                            value={link.label}
-                            onChange={(e) => handleLinkChange(index, 'label', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <label className="block text-sm font-medium text-slate-300 mb-2">Link URL</label>
-                          <input 
-                            type="url" 
-                            placeholder="https://..."
-                            value={link.url}
-                            onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
-                            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
-                          />
-                        </div>
-                        <button 
-                          onClick={() => handleRemoveLink(index)}
-                          className="w-[42px] h-[42px] rounded-xl bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center transition-all shrink-0 shadow-sm"
-                          title="Remove Link"
-                        >
-                          <X className="w-5 h-5" />
-                        </button>
-                      </div>
-                    ))}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Estimated Value / Purchase Price</label>
+                    <input 
+                      type="text" 
+                      placeholder="$"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                    />
                   </div>
-                  
-                  <button 
-                    onClick={handleAddLink}
-                    className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2.5 rounded-xl text-sm transition-colors flex items-center gap-2 w-fit"
-                  >
-                    <Plus className="w-4 h-4" /> Add Link
-                  </button>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Down Payment / Equity</label>
+                    <input 
+                      type="text" 
+                      placeholder="$ or %"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Target Loan Amount</label>
+                    <input 
+                      type="text" 
+                      placeholder="$"
+                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-600 rounded-xl text-white focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all placeholder:text-slate-500" 
+                    />
+                  </div>
                 </div>
+              </section>
 
                 <div className="flex items-center gap-4 border-t border-slate-800 pt-6">
                   <span className="text-sm font-medium text-slate-300">Background</span>
