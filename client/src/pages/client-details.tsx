@@ -2550,7 +2550,6 @@ export default function ClientDetailsPage() {
                     />
                   </div>
                 </div>
-              </section>
 
                 <div className="flex items-center gap-4 border-t border-slate-800 pt-6">
                   <span className="text-sm font-medium text-slate-300">Background</span>
@@ -2570,26 +2569,24 @@ export default function ClientDetailsPage() {
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><List className="w-4 h-4" /></button>
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><AlignLeft className="w-4 h-4" /></button>
                       <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><ImageIcon className="w-4 h-4" /></button>
-                      <button className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Video className="w-4 h-4" /></button>
-                    </div>
-                    <textarea 
-                      className="w-full h-48 bg-slate-400/20 p-4 text-sm text-white focus:outline-none resize-none placeholder:text-slate-500"
-                      placeholder="Enter client background information..."
-                    ></textarea>
-                    <div className="bg-slate-800/80 border-t border-slate-600 p-3 flex justify-end">
-                      <button className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors shadow-sm">
-                        Save Notes
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </section>
-
-
-            </div>
-
-            {/* Modal Footer */}
-            <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
+                  <div className="p-1.5 hover:bg-slate-700 text-slate-300 hover:text-white rounded transition-colors"><Video className="w-4 h-4" /></div>
+                </div>
+                <textarea 
+                  className="w-full h-48 bg-slate-400/20 p-4 text-sm text-white focus:outline-none resize-none placeholder:text-slate-500"
+                  placeholder="Enter client background information..."
+                ></textarea>
+                <div className="bg-slate-800/80 border-t border-slate-600 p-3 flex justify-end">
+                  <button className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors shadow-sm">
+                    Save Notes
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
+        </div>
+        
+        {/* Modal Footer */}
+        <div className="px-6 py-4 border-t border-slate-800 bg-slate-900/90 flex justify-end gap-3">
               <button 
                 onClick={() => setIsEditClientModalOpen(false)}
                 className="px-6 py-2.5 border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl font-medium transition-colors"
