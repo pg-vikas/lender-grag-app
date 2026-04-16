@@ -407,7 +407,7 @@ export function Sidebar({ openMenus, toggleMenu, currentPath }: { openMenus: str
                   <Activity className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
                 </div>
                 <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-indigo-400 tracking-wider text-lg uppercase drop-shadow-[0_0_10px_rgba(99,102,241,0.5)] animate-text-gradient">
-                  GORILLA HUB
+                  GREG GORILLA HUB
                 </span>
              </div>
            ) : (

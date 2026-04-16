@@ -12,7 +12,7 @@ export default function KnowledgebasePage() {
   };
 
   const categories = [
-    { title: "Getting Started", count: 12, description: "Basic tutorials to get you up and running with Gorilla Hub." },
+    { title: "Getting Started", count: 12, description: "Basic tutorials to get you up and running with Greg Gorilla Hub." },
     { title: "Billing & Subscriptions", count: 8, description: "Information about invoicing, payments, and upgrading plans." },
     { title: "Project Management", count: 24, description: "How to create, track, and complete projects efficiently." },
     { title: "Account Settings", count: 6, description: "Managing your profile, notifications, and security preferences." },

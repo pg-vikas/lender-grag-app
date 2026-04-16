@@ -36,7 +36,7 @@ export default function ProjectsPage() {
 
   const [projectsList, setProjectsList] = useState([
     { name: "Twilio ticket + domain verify", client: "Pink Gorilla Ag...", dueDate: "---", priority: "Low", createdBy: "Vikas", assignee: "user1", status: "Pending Approval" },
-    { name: "Design Car Washing Service with Replit", client: "---", dueDate: "---", priority: "Normal", createdBy: "Neeraj", assignee: "user2", status: "In Progress" },
+    { name: "Design Car Washing Service landing page", client: "---", dueDate: "---", priority: "Normal", createdBy: "Neeraj", assignee: "user2", status: "In Progress" },
     { name: "El hefe-you're not the same without the...", client: "Juicy Whip", dueDate: "---", priority: "Normal", createdBy: "Manraj", assignee: "user3", status: "In Progress" },
     { name: "Website Redesign & SEO Optimization", client: "Tech Flow", dueDate: "15-11-2025", priority: "High", createdBy: "Sarah", assignee: "user4", status: "Completed" },
     { name: "Mobile App Development MVP", client: "StartUp Inc", dueDate: "20-10-2025", priority: "Urgent", createdBy: "John", assignee: "user1", status: "Completed" },

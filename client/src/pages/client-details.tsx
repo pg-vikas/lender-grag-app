@@ -131,7 +131,7 @@ export default function ClientDetailsPage() {
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
   const [isTemplateDropdownOpen, setIsTemplateDropdownOpen] = useState(false);
   const [emailTemplates, setEmailTemplates] = useState([
-    { id: 1, name: 'Welcome Email', subject: 'Welcome to Gorilla Hub', body: 'Hi there,\n\nWelcome!' },
+    { id: 1, name: 'Welcome Email', subject: 'Welcome to Greg Gorilla Hub', body: 'Hi there,\n\nWelcome!' },
     { id: 2, name: 'Follow Up', subject: 'Following up on our conversation', body: 'Hi,\n\nJust following up...' },
     { id: 3, name: 'Invoice Reminder', subject: 'Invoice Overdue', body: 'Please pay your invoice.' }
   ]);

@@ -292,7 +292,7 @@ export default function SocialPublisher() {
                         }`}
                       >
                         <Twitter className="w-4 h-4" />
-                        <span className="font-medium text-sm">Gorilla Hub</span>
+                        <span className="font-medium text-sm">Greg Gorilla Hub</span>
                       </button>
                       <button 
                         onClick={() => toggleAccount('facebook')}
@@ -325,7 +325,7 @@ export default function SocialPublisher() {
                         }`}
                       >
                         <Linkedin className="w-4 h-4" />
-                        <span className="font-medium text-sm">Gorilla Hub Inc</span>
+                        <span className="font-medium text-sm">Greg Gorilla Hub Inc</span>
                       </button>
                       
                       <button className="flex items-center space-x-2 px-4 py-2.5 rounded-lg border border-dashed border-slate-600 bg-slate-900/50 text-slate-400 hover:border-purple-500 hover:text-purple-400 transition-all">
@@ -492,7 +492,7 @@ export default function SocialPublisher() {
                                 <span className="text-white font-bold text-sm">GH</span>
                               </div>
                               <div>
-                                <p className="text-white font-bold text-sm leading-tight">Gorilla Hub</p>
+                                <p className="text-white font-bold text-sm leading-tight">Greg Gorilla Hub</p>
                                 <p className="text-slate-500 text-xs">@gorillahub</p>
                               </div>
                               <Twitter className="w-4 h-4 text-[#1DA1F2] ml-auto" />
@@ -510,7 +510,7 @@ export default function SocialPublisher() {
                                 <span className="text-white font-bold text-sm">GH</span>
                               </div>
                               <div>
-                                <p className="text-white font-bold text-sm leading-tight">Gorilla Hub Inc</p>
+                                <p className="text-white font-bold text-sm leading-tight">Greg Gorilla Hub Inc</p>
                                 <p className="text-slate-500 text-xs">Software Development</p>
                               </div>
                               <Linkedin className="w-4 h-4 text-[#0A66C2] ml-auto" />

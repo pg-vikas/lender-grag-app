@@ -30,7 +30,7 @@ export default function Login() {
             <span className="text-3xl font-black text-primary">GH</span>
           </div>
           <h1 className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]xl font-bold tracking-tight text-foreground">Log In</h1>
-          <p className="text-sm text-muted-foreground mt-2">Welcome back to Gorilla Hub</p>
+          <p className="text-sm text-muted-foreground mt-2">Welcome back to Greg Gorilla Hub</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
